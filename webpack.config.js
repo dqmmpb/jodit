@@ -79,18 +79,18 @@ module.exports = (env, argv) => {
                         mangle: {
                             reserved: ['Jodit'],
                         },
-                        compress: {
-                            if_return: true,
-                            unused: true,
-                            booleans: true,
-                            properties: true,
-                            dead_code: true,
-                            pure_getters: true,
-                            unsafe: true,
-                            unsafe_comps: true,
-                            drop_console: true,
-                            passes: 2
-                        },
+                        // compress: {
+                        //     if_return: true,
+                        //     unused: true,
+                        //     booleans: true,
+                        //     properties: true,
+                        //     dead_code: true,
+                        //     pure_getters: true,
+                        //     unsafe: true,
+                        //     unsafe_comps: true,
+                        //     drop_console: true,
+                        //     passes: 2
+                        // },
                         output: {
                             comments: false,
                             beautify: false,
