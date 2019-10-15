@@ -34,7 +34,7 @@
 		"url": "https://github.com/xdan/jodit/issues"
 	},
 	"files": [
-		"build/*"
+		"build"
 	],
 	"homepage": "https://xdsoft.net/jodit/",
 	"devDependencies": {
