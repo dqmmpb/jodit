@@ -22,10 +22,12 @@ import { debounce } from '../modules/helpers/async';
 import { css } from '../modules/helpers/css';
 import { Dom } from '../modules/Dom';
 import 'ace-builds/src-noconflict/ace';
-import 'js-beautify';
 import 'ace-builds/webpack-resolver';
 import 'ace-builds/src-noconflict/theme-idle_fingers';
 import 'ace-builds/src-noconflict/mode-html';
+import 'js-beautify/js/lib/beautify';
+import 'js-beautify/js/lib/beautify-css';
+import 'js-beautify/js/lib/beautify-html';
 
 declare module '../Config' {
 	interface Config {
