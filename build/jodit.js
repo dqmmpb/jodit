@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 69);
+/******/ 	return __webpack_require__(__webpack_require__.s = 67);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2057,29 +2057,29 @@ var tslib_1 = __webpack_require__(1);
 tslib_1.__exportStar(__webpack_require__(29), exports);
 tslib_1.__exportStar(__webpack_require__(5), exports);
 tslib_1.__exportStar(__webpack_require__(14), exports);
-tslib_1.__exportStar(__webpack_require__(46), exports);
-tslib_1.__exportStar(__webpack_require__(85), exports);
-tslib_1.__exportStar(__webpack_require__(49), exports);
+tslib_1.__exportStar(__webpack_require__(44), exports);
+tslib_1.__exportStar(__webpack_require__(83), exports);
+tslib_1.__exportStar(__webpack_require__(47), exports);
 tslib_1.__exportStar(__webpack_require__(19), exports);
 tslib_1.__exportStar(__webpack_require__(23), exports);
 tslib_1.__exportStar(__webpack_require__(9), exports);
+tslib_1.__exportStar(__webpack_require__(102), exports);
+tslib_1.__exportStar(__webpack_require__(103), exports);
 tslib_1.__exportStar(__webpack_require__(104), exports);
-tslib_1.__exportStar(__webpack_require__(105), exports);
-tslib_1.__exportStar(__webpack_require__(106), exports);
 tslib_1.__exportStar(__webpack_require__(10), exports);
-tslib_1.__exportStar(__webpack_require__(55), exports);
-tslib_1.__exportStar(__webpack_require__(107), exports);
-tslib_1.__exportStar(__webpack_require__(56), exports);
-tslib_1.__exportStar(__webpack_require__(24), exports);
 tslib_1.__exportStar(__webpack_require__(53), exports);
-tslib_1.__exportStar(__webpack_require__(108), exports);
+tslib_1.__exportStar(__webpack_require__(105), exports);
+tslib_1.__exportStar(__webpack_require__(54), exports);
+tslib_1.__exportStar(__webpack_require__(24), exports);
+tslib_1.__exportStar(__webpack_require__(51), exports);
+tslib_1.__exportStar(__webpack_require__(106), exports);
 tslib_1.__exportStar(__webpack_require__(31), exports);
 tslib_1.__exportStar(__webpack_require__(30), exports);
-tslib_1.__exportStar(__webpack_require__(54), exports);
-tslib_1.__exportStar(__webpack_require__(109), exports);
+tslib_1.__exportStar(__webpack_require__(52), exports);
+tslib_1.__exportStar(__webpack_require__(107), exports);
 tslib_1.__exportStar(__webpack_require__(12), exports);
 tslib_1.__exportStar(__webpack_require__(32), exports);
-tslib_1.__exportStar(__webpack_require__(110), exports);
+tslib_1.__exportStar(__webpack_require__(108), exports);
 
 
 /***/ }),
@@ -2098,9 +2098,9 @@ tslib_1.__exportStar(__webpack_require__(110), exports);
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-tslib_1.__exportStar(__webpack_require__(44), exports);
+tslib_1.__exportStar(__webpack_require__(42), exports);
 tslib_1.__exportStar(__webpack_require__(18), exports);
-tslib_1.__exportStar(__webpack_require__(79), exports);
+tslib_1.__exportStar(__webpack_require__(77), exports);
 
 
 /***/ }),
@@ -2247,9 +2247,9 @@ exports.Component = Component;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-tslib_1.__exportStar(__webpack_require__(50), exports);
-tslib_1.__exportStar(__webpack_require__(51), exports);
-tslib_1.__exportStar(__webpack_require__(89), exports);
+tslib_1.__exportStar(__webpack_require__(48), exports);
+tslib_1.__exportStar(__webpack_require__(49), exports);
+tslib_1.__exportStar(__webpack_require__(87), exports);
 tslib_1.__exportStar(__webpack_require__(33), exports);
 
 
@@ -2270,9 +2270,9 @@ tslib_1.__exportStar(__webpack_require__(33), exports);
 Object.defineProperty(exports, "__esModule", { value: true });
 var isPlainObject_1 = __webpack_require__(21);
 var isNumeric_1 = __webpack_require__(22);
-var normilizeCSSValue_1 = __webpack_require__(52);
-var camelCase_1 = __webpack_require__(50);
-var fromCamelCase_1 = __webpack_require__(51);
+var normilizeCSSValue_1 = __webpack_require__(50);
+var camelCase_1 = __webpack_require__(48);
+var fromCamelCase_1 = __webpack_require__(49);
 /**
  * Get the value of a computed style property for the first element in the set of matched elements or set one or
  * more CSS properties for every matched element
@@ -2345,13 +2345,13 @@ var Dom_1 = __webpack_require__(0);
 var helpers_1 = __webpack_require__(4);
 var JoditArray_1 = __webpack_require__(31);
 var JoditObject_1 = __webpack_require__(30);
-var observer_1 = __webpack_require__(57);
-var Selection_1 = __webpack_require__(60);
-var StatusBar_1 = __webpack_require__(112);
-var localStorageProvider_1 = __webpack_require__(61);
+var observer_1 = __webpack_require__(55);
+var Selection_1 = __webpack_require__(58);
+var StatusBar_1 = __webpack_require__(110);
+var localStorageProvider_1 = __webpack_require__(59);
 var storage_1 = __webpack_require__(34);
-var viewWithToolbar_1 = __webpack_require__(62);
-var ucfirst_1 = __webpack_require__(119);
+var viewWithToolbar_1 = __webpack_require__(60);
+var ucfirst_1 = __webpack_require__(117);
 var SAFE_COUNT_CHANGE_CALL = 10;
 /**
  * Class Jodit. Main class
@@ -3544,11 +3544,11 @@ exports.getXPathByElement = function (element, root) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var dialog_1 = __webpack_require__(16);
 exports.Dialog = dialog_1.Dialog;
-var alert_1 = __webpack_require__(138);
+var alert_1 = __webpack_require__(136);
 exports.Alert = alert_1.Alert;
-var promt_1 = __webpack_require__(66);
+var promt_1 = __webpack_require__(64);
 exports.Promt = promt_1.Promt;
-var confirm_1 = __webpack_require__(67);
+var confirm_1 = __webpack_require__(65);
 exports.Confirm = confirm_1.Confirm;
 
 
@@ -3673,7 +3673,7 @@ var tslib_1 = __webpack_require__(1);
 var Config_1 = __webpack_require__(3);
 var constants_1 = __webpack_require__(2);
 var helpers_1 = __webpack_require__(4);
-var view_1 = __webpack_require__(63);
+var view_1 = __webpack_require__(61);
 var Dom_1 = __webpack_require__(0);
 var isJoditObject_1 = __webpack_require__(15);
 Config_1.Config.prototype.dialog = {
@@ -4613,15 +4613,15 @@ exports.setTimeout = function (callback, timeout, a1, a2, a3) {
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
+tslib_1.__exportStar(__webpack_require__(91), exports);
+tslib_1.__exportStar(__webpack_require__(92), exports);
 tslib_1.__exportStar(__webpack_require__(93), exports);
 tslib_1.__exportStar(__webpack_require__(94), exports);
 tslib_1.__exportStar(__webpack_require__(95), exports);
 tslib_1.__exportStar(__webpack_require__(96), exports);
 tslib_1.__exportStar(__webpack_require__(97), exports);
+tslib_1.__exportStar(__webpack_require__(50), exports);
 tslib_1.__exportStar(__webpack_require__(98), exports);
-tslib_1.__exportStar(__webpack_require__(99), exports);
-tslib_1.__exportStar(__webpack_require__(52), exports);
-tslib_1.__exportStar(__webpack_require__(100), exports);
 
 
 /***/ }),
@@ -4765,7 +4765,7 @@ exports.JoditToolbarCollection = JoditToolbarCollection;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var isWindow_1 = __webpack_require__(45);
+var isWindow_1 = __webpack_require__(43);
 var type_1 = __webpack_require__(32);
 /**
  * Check if element is simple plaint object
@@ -4828,9 +4828,9 @@ exports.isNumeric = function (value) {
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
+tslib_1.__exportStar(__webpack_require__(99), exports);
+tslib_1.__exportStar(__webpack_require__(100), exports);
 tslib_1.__exportStar(__webpack_require__(101), exports);
-tslib_1.__exportStar(__webpack_require__(102), exports);
-tslib_1.__exportStar(__webpack_require__(103), exports);
 
 
 /***/ }),
@@ -4973,9 +4973,9 @@ var tslib_1 = __webpack_require__(1);
 var Dom_1 = __webpack_require__(0);
 var helpers_1 = __webpack_require__(4);
 var element_1 = __webpack_require__(25);
-var list_1 = __webpack_require__(116);
+var list_1 = __webpack_require__(114);
 var popup_1 = __webpack_require__(27);
-var tooltip_1 = __webpack_require__(117);
+var tooltip_1 = __webpack_require__(115);
 var isJoditObject_1 = __webpack_require__(15);
 var constants_1 = __webpack_require__(2);
 var icon_1 = __webpack_require__(6);
@@ -5983,11 +5983,11 @@ exports.Table = Table;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var asArray_1 = __webpack_require__(43);
+var asArray_1 = __webpack_require__(41);
 exports.asArray = asArray_1.asArray;
-var inArray_1 = __webpack_require__(77);
+var inArray_1 = __webpack_require__(75);
 exports.inArray = inArray_1.inArray;
-var splitArray_1 = __webpack_require__(78);
+var splitArray_1 = __webpack_require__(76);
 exports.splitArray = splitArray_1.splitArray;
 
 
@@ -6198,9 +6198,9 @@ exports.Storage = Storage;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var async_1 = __webpack_require__(5);
-var break_1 = __webpack_require__(115);
+var break_1 = __webpack_require__(113);
 var button_1 = __webpack_require__(26);
-var separator_1 = __webpack_require__(118);
+var separator_1 = __webpack_require__(116);
 var Dom_1 = __webpack_require__(0);
 var Component_1 = __webpack_require__(8);
 var Config_1 = __webpack_require__(3);
@@ -6416,13 +6416,13 @@ exports.ToolbarCollection = ToolbarCollection;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Ajax_1 = __webpack_require__(37);
 exports.Ajax = Ajax_1.Ajax;
-var eventsNative_1 = __webpack_require__(64);
+var eventsNative_1 = __webpack_require__(62);
 exports.EventsNative = eventsNative_1.EventsNative;
 var Component_1 = __webpack_require__(8);
 exports.Component = Component_1.Component;
 var ContextMenu_1 = __webpack_require__(38);
 exports.ContextMenu = ContextMenu_1.ContextMenu;
-var Cookie_1 = __webpack_require__(137);
+var Cookie_1 = __webpack_require__(135);
 exports.Cookie = Cookie_1.Cookie;
 var dialog_1 = __webpack_require__(13);
 exports.Alert = dialog_1.Alert;
@@ -6433,21 +6433,21 @@ var Dom_1 = __webpack_require__(0);
 exports.Dom = Dom_1.Dom;
 var Plugin_1 = __webpack_require__(7);
 exports.Plugin = Plugin_1.Plugin;
-var Create_1 = __webpack_require__(65);
+var Create_1 = __webpack_require__(63);
 exports.Create = Create_1.Create;
 var fileBrowser_1 = __webpack_require__(39);
 exports.FileBrowser = fileBrowser_1.FileBrowser;
 var Helpers = __webpack_require__(4);
 exports.Helpers = Helpers;
-var ImageEditor_1 = __webpack_require__(146);
+var ImageEditor_1 = __webpack_require__(144);
 exports.ImageEditor = ImageEditor_1.ImageEditor;
-var observer_1 = __webpack_require__(57);
+var observer_1 = __webpack_require__(55);
 exports.Observer = observer_1.Observer;
-var Selection_1 = __webpack_require__(60);
+var Selection_1 = __webpack_require__(58);
 exports.Select = Selection_1.Select;
 var storage_1 = __webpack_require__(34);
 exports.Storage = storage_1.Storage;
-var Snapshot_1 = __webpack_require__(58);
+var Snapshot_1 = __webpack_require__(56);
 exports.Snapshot = Snapshot_1.Snapshot;
 var Table_1 = __webpack_require__(28);
 exports.Table = Table_1.Table;
@@ -6459,11 +6459,11 @@ var collection_1 = __webpack_require__(35);
 exports.ToolbarCollection = collection_1.ToolbarCollection;
 var button_1 = __webpack_require__(26);
 exports.ToolbarButton = button_1.ToolbarButton;
-var Stack_1 = __webpack_require__(59);
+var Stack_1 = __webpack_require__(57);
 exports.Stack = Stack_1.Stack;
 var Widget_1 = __webpack_require__(17);
 exports.Widget = Widget_1.Widget;
-var Uploader_1 = __webpack_require__(147);
+var Uploader_1 = __webpack_require__(145);
 exports.Uploader = Uploader_1.Uploader;
 
 
@@ -6739,28 +6739,28 @@ var tslib_1 = __webpack_require__(1);
 var Config_1 = __webpack_require__(3);
 var consts = __webpack_require__(2);
 var dialog_1 = __webpack_require__(16);
-var confirm_1 = __webpack_require__(67);
-var promt_1 = __webpack_require__(66);
+var confirm_1 = __webpack_require__(65);
+var promt_1 = __webpack_require__(64);
 var icon_1 = __webpack_require__(6);
-var localStorageProvider_1 = __webpack_require__(61);
+var localStorageProvider_1 = __webpack_require__(59);
 var storage_1 = __webpack_require__(34);
 var each_1 = __webpack_require__(24);
 var normalize_1 = __webpack_require__(19);
 var selector_1 = __webpack_require__(12);
-var ctrlKey_1 = __webpack_require__(55);
+var ctrlKey_1 = __webpack_require__(53);
 var extend_1 = __webpack_require__(14);
 var setTimeout_1 = __webpack_require__(18);
-var viewWithToolbar_1 = __webpack_require__(62);
-__webpack_require__(139);
+var viewWithToolbar_1 = __webpack_require__(60);
+__webpack_require__(137);
 var Dom_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(5);
 var dialog_2 = __webpack_require__(13);
-var dataProvider_1 = __webpack_require__(140);
-var contextMenu_1 = __webpack_require__(141);
-var observeObject_1 = __webpack_require__(142);
-var item_1 = __webpack_require__(143);
-var memoryStorageProvider_1 = __webpack_require__(144);
-var isValidName_1 = __webpack_require__(145);
+var dataProvider_1 = __webpack_require__(138);
+var contextMenu_1 = __webpack_require__(139);
+var observeObject_1 = __webpack_require__(140);
+var item_1 = __webpack_require__(141);
+var memoryStorageProvider_1 = __webpack_require__(142);
+var isValidName_1 = __webpack_require__(143);
 exports.F_CLASS = 'jodit_filebrowser';
 exports.ITEM_CLASS = exports.F_CLASS + '_files_item';
 exports.ICON_LOADER = '<i class="jodit_icon-loader"></i>';
@@ -7533,5704 +7533,6 @@ module.exports = function(module) {
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* AUTO-GENERATED. DO NOT MODIFY. */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-
- JS Beautifier
----------------
-
-
-  Written by Einar Lielmanis, <einar@beautifier.io>
-      https://beautifier.io/
-
-  Originally converted to javascript by Vital, <vital76@gmail.com>
-  "End braces on own line" added by Chris J. Shull, <chrisjshull@gmail.com>
-  Parsing improvements for brace-less statements by Liam Newman <bitwiseman@beautifier.io>
-
-
-  Usage:
-    js_beautify(js_source_text);
-    js_beautify(js_source_text, options);
-
-  The options are:
-    indent_size (default 4)          - indentation size,
-    indent_char (default space)      - character to indent with,
-    preserve_newlines (default true) - whether existing line breaks should be preserved,
-    max_preserve_newlines (default unlimited) - maximum number of line breaks to be preserved in one chunk,
-
-    jslint_happy (default false) - if true, then jslint-stricter mode is enforced.
-
-            jslint_happy        !jslint_happy
-            ---------------------------------
-            function ()         function()
-
-            switch () {         switch() {
-            case 1:               case 1:
-              break;                break;
-            }                   }
-
-    space_after_anon_function (default false) - should the space before an anonymous function's parens be added, "function()" vs "function ()",
-          NOTE: This option is overriden by jslint_happy (i.e. if jslint_happy is true, space_after_anon_function is true by design)
-
-    brace_style (default "collapse") - "collapse" | "expand" | "end-expand" | "none" | any of the former + ",preserve-inline"
-            put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are.
-            preserve-inline will try to preserve inline blocks of curly braces
-
-    space_before_conditional (default true) - should the space before conditional statement be added, "if(true)" vs "if (true)",
-
-    unescape_strings (default false) - should printable characters in strings encoded in \xNN notation be unescaped, "example" vs "\x65\x78\x61\x6d\x70\x6c\x65"
-
-    wrap_line_length (default unlimited) - lines should wrap at next opportunity after this number of characters.
-          NOTE: This is not a hard limit. Lines will continue until a point where a newline would
-                be preserved if it were present.
-
-    end_with_newline (default false)  - end output with a newline
-
-
-    e.g
-
-    js_beautify(js_source_text, {
-      'indent_size': 1,
-      'indent_char': '\t'
-    });
-
-*/
-
-(function() {
-
-/* GENERATED_BUILD_OUTPUT */
-var legacy_beautify_js =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Beautifier = __webpack_require__(1).Beautifier,
-  Options = __webpack_require__(5).Options;
-
-function js_beautify(js_source_text, options) {
-  var beautifier = new Beautifier(js_source_text, options);
-  return beautifier.beautify();
-}
-
-module.exports = js_beautify;
-module.exports.defaultOptions = function() {
-  return new Options();
-};
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Output = __webpack_require__(2).Output;
-var Token = __webpack_require__(3).Token;
-var acorn = __webpack_require__(4);
-var Options = __webpack_require__(5).Options;
-var Tokenizer = __webpack_require__(7).Tokenizer;
-var line_starters = __webpack_require__(7).line_starters;
-var positionable_operators = __webpack_require__(7).positionable_operators;
-var TOKEN = __webpack_require__(7).TOKEN;
-
-
-function in_array(what, arr) {
-  return arr.indexOf(what) !== -1;
-}
-
-function ltrim(s) {
-  return s.replace(/^\s+/g, '');
-}
-
-function generateMapFromStrings(list) {
-  var result = {};
-  for (var x = 0; x < list.length; x++) {
-    // make the mapped names underscored instead of dash
-    result[list[x].replace(/-/g, '_')] = list[x];
-  }
-  return result;
-}
-
-function reserved_word(token, word) {
-  return token && token.type === TOKEN.RESERVED && token.text === word;
-}
-
-function reserved_array(token, words) {
-  return token && token.type === TOKEN.RESERVED && in_array(token.text, words);
-}
-// Unsure of what they mean, but they work. Worth cleaning up in future.
-var special_words = ['case', 'return', 'do', 'if', 'throw', 'else', 'await', 'break', 'continue', 'async'];
-
-var validPositionValues = ['before-newline', 'after-newline', 'preserve-newline'];
-
-// Generate map from array
-var OPERATOR_POSITION = generateMapFromStrings(validPositionValues);
-
-var OPERATOR_POSITION_BEFORE_OR_PRESERVE = [OPERATOR_POSITION.before_newline, OPERATOR_POSITION.preserve_newline];
-
-var MODE = {
-  BlockStatement: 'BlockStatement', // 'BLOCK'
-  Statement: 'Statement', // 'STATEMENT'
-  ObjectLiteral: 'ObjectLiteral', // 'OBJECT',
-  ArrayLiteral: 'ArrayLiteral', //'[EXPRESSION]',
-  ForInitializer: 'ForInitializer', //'(FOR-EXPRESSION)',
-  Conditional: 'Conditional', //'(COND-EXPRESSION)',
-  Expression: 'Expression' //'(EXPRESSION)'
-};
-
-function remove_redundant_indentation(output, frame) {
-  // This implementation is effective but has some issues:
-  //     - can cause line wrap to happen too soon due to indent removal
-  //           after wrap points are calculated
-  // These issues are minor compared to ugly indentation.
-
-  if (frame.multiline_frame ||
-    frame.mode === MODE.ForInitializer ||
-    frame.mode === MODE.Conditional) {
-    return;
-  }
-
-  // remove one indent from each line inside this section
-  output.remove_indent(frame.start_line_index);
-}
-
-// we could use just string.split, but
-// IE doesn't like returning empty strings
-function split_linebreaks(s) {
-  //return s.split(/\x0d\x0a|\x0a/);
-
-  s = s.replace(acorn.allLineBreaks, '\n');
-  var out = [],
-    idx = s.indexOf("\n");
-  while (idx !== -1) {
-    out.push(s.substring(0, idx));
-    s = s.substring(idx + 1);
-    idx = s.indexOf("\n");
-  }
-  if (s.length) {
-    out.push(s);
-  }
-  return out;
-}
-
-function is_array(mode) {
-  return mode === MODE.ArrayLiteral;
-}
-
-function is_expression(mode) {
-  return in_array(mode, [MODE.Expression, MODE.ForInitializer, MODE.Conditional]);
-}
-
-function all_lines_start_with(lines, c) {
-  for (var i = 0; i < lines.length; i++) {
-    var line = lines[i].trim();
-    if (line.charAt(0) !== c) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function each_line_matches_indent(lines, indent) {
-  var i = 0,
-    len = lines.length,
-    line;
-  for (; i < len; i++) {
-    line = lines[i];
-    // allow empty lines to pass through
-    if (line && line.indexOf(indent) !== 0) {
-      return false;
-    }
-  }
-  return true;
-}
-
-
-function Beautifier(source_text, options) {
-  options = options || {};
-  this._source_text = source_text || '';
-
-  this._output = null;
-  this._tokens = null;
-  this._last_last_text = null;
-  this._flags = null;
-  this._previous_flags = null;
-
-  this._flag_store = null;
-  this._options = new Options(options);
-}
-
-Beautifier.prototype.create_flags = function(flags_base, mode) {
-  var next_indent_level = 0;
-  if (flags_base) {
-    next_indent_level = flags_base.indentation_level;
-    if (!this._output.just_added_newline() &&
-      flags_base.line_indent_level > next_indent_level) {
-      next_indent_level = flags_base.line_indent_level;
-    }
-  }
-
-  var next_flags = {
-    mode: mode,
-    parent: flags_base,
-    last_token: flags_base ? flags_base.last_token : new Token(TOKEN.START_BLOCK, ''), // last token text
-    last_word: flags_base ? flags_base.last_word : '', // last TOKEN.WORD passed
-    declaration_statement: false,
-    declaration_assignment: false,
-    multiline_frame: false,
-    inline_frame: false,
-    if_block: false,
-    else_block: false,
-    do_block: false,
-    do_while: false,
-    import_block: false,
-    in_case_statement: false, // switch(..){ INSIDE HERE }
-    in_case: false, // we're on the exact line with "case 0:"
-    case_body: false, // the indented case-action block
-    indentation_level: next_indent_level,
-    alignment: 0,
-    line_indent_level: flags_base ? flags_base.line_indent_level : next_indent_level,
-    start_line_index: this._output.get_line_number(),
-    ternary_depth: 0
-  };
-  return next_flags;
-};
-
-Beautifier.prototype._reset = function(source_text) {
-  var baseIndentString = source_text.match(/^[\t ]*/)[0];
-
-  this._last_last_text = ''; // pre-last token text
-  this._output = new Output(this._options, baseIndentString);
-
-  // If testing the ignore directive, start with output disable set to true
-  this._output.raw = this._options.test_output_raw;
-
-
-  // Stack of parsing/formatting states, including MODE.
-  // We tokenize, parse, and output in an almost purely a forward-only stream of token input
-  // and formatted output.  This makes the beautifier less accurate than full parsers
-  // but also far more tolerant of syntax errors.
-  //
-  // For example, the default mode is MODE.BlockStatement. If we see a '{' we push a new frame of type
-  // MODE.BlockStatement on the the stack, even though it could be object literal.  If we later
-  // encounter a ":", we'll switch to to MODE.ObjectLiteral.  If we then see a ";",
-  // most full parsers would die, but the beautifier gracefully falls back to
-  // MODE.BlockStatement and continues on.
-  this._flag_store = [];
-  this.set_mode(MODE.BlockStatement);
-  var tokenizer = new Tokenizer(source_text, this._options);
-  this._tokens = tokenizer.tokenize();
-  return source_text;
-};
-
-Beautifier.prototype.beautify = function() {
-  // if disabled, return the input unchanged.
-  if (this._options.disabled) {
-    return this._source_text;
-  }
-
-  var sweet_code;
-  var source_text = this._reset(this._source_text);
-
-  var eol = this._options.eol;
-  if (this._options.eol === 'auto') {
-    eol = '\n';
-    if (source_text && acorn.lineBreak.test(source_text || '')) {
-      eol = source_text.match(acorn.lineBreak)[0];
-    }
-  }
-
-  var current_token = this._tokens.next();
-  while (current_token) {
-    this.handle_token(current_token);
-
-    this._last_last_text = this._flags.last_token.text;
-    this._flags.last_token = current_token;
-
-    current_token = this._tokens.next();
-  }
-
-  sweet_code = this._output.get_code(eol);
-
-  return sweet_code;
-};
-
-Beautifier.prototype.handle_token = function(current_token, preserve_statement_flags) {
-  if (current_token.type === TOKEN.START_EXPR) {
-    this.handle_start_expr(current_token);
-  } else if (current_token.type === TOKEN.END_EXPR) {
-    this.handle_end_expr(current_token);
-  } else if (current_token.type === TOKEN.START_BLOCK) {
-    this.handle_start_block(current_token);
-  } else if (current_token.type === TOKEN.END_BLOCK) {
-    this.handle_end_block(current_token);
-  } else if (current_token.type === TOKEN.WORD) {
-    this.handle_word(current_token);
-  } else if (current_token.type === TOKEN.RESERVED) {
-    this.handle_word(current_token);
-  } else if (current_token.type === TOKEN.SEMICOLON) {
-    this.handle_semicolon(current_token);
-  } else if (current_token.type === TOKEN.STRING) {
-    this.handle_string(current_token);
-  } else if (current_token.type === TOKEN.EQUALS) {
-    this.handle_equals(current_token);
-  } else if (current_token.type === TOKEN.OPERATOR) {
-    this.handle_operator(current_token);
-  } else if (current_token.type === TOKEN.COMMA) {
-    this.handle_comma(current_token);
-  } else if (current_token.type === TOKEN.BLOCK_COMMENT) {
-    this.handle_block_comment(current_token, preserve_statement_flags);
-  } else if (current_token.type === TOKEN.COMMENT) {
-    this.handle_comment(current_token, preserve_statement_flags);
-  } else if (current_token.type === TOKEN.DOT) {
-    this.handle_dot(current_token);
-  } else if (current_token.type === TOKEN.EOF) {
-    this.handle_eof(current_token);
-  } else if (current_token.type === TOKEN.UNKNOWN) {
-    this.handle_unknown(current_token, preserve_statement_flags);
-  } else {
-    this.handle_unknown(current_token, preserve_statement_flags);
-  }
-};
-
-Beautifier.prototype.handle_whitespace_and_comments = function(current_token, preserve_statement_flags) {
-  var newlines = current_token.newlines;
-  var keep_whitespace = this._options.keep_array_indentation && is_array(this._flags.mode);
-
-  if (current_token.comments_before) {
-    var comment_token = current_token.comments_before.next();
-    while (comment_token) {
-      // The cleanest handling of inline comments is to treat them as though they aren't there.
-      // Just continue formatting and the behavior should be logical.
-      // Also ignore unknown tokens.  Again, this should result in better behavior.
-      this.handle_whitespace_and_comments(comment_token, preserve_statement_flags);
-      this.handle_token(comment_token, preserve_statement_flags);
-      comment_token = current_token.comments_before.next();
-    }
-  }
-
-  if (keep_whitespace) {
-    for (var i = 0; i < newlines; i += 1) {
-      this.print_newline(i > 0, preserve_statement_flags);
-    }
-  } else {
-    if (this._options.max_preserve_newlines && newlines > this._options.max_preserve_newlines) {
-      newlines = this._options.max_preserve_newlines;
-    }
-
-    if (this._options.preserve_newlines) {
-      if (newlines > 1) {
-        this.print_newline(false, preserve_statement_flags);
-        for (var j = 1; j < newlines; j += 1) {
-          this.print_newline(true, preserve_statement_flags);
-        }
-      }
-    }
-  }
-
-};
-
-var newline_restricted_tokens = ['async', 'break', 'continue', 'return', 'throw', 'yield'];
-
-Beautifier.prototype.allow_wrap_or_preserved_newline = function(current_token, force_linewrap) {
-  force_linewrap = (force_linewrap === undefined) ? false : force_linewrap;
-
-  // Never wrap the first token on a line
-  if (this._output.just_added_newline()) {
-    return;
-  }
-
-  var shouldPreserveOrForce = (this._options.preserve_newlines && current_token.newlines) || force_linewrap;
-  var operatorLogicApplies = in_array(this._flags.last_token.text, positionable_operators) ||
-    in_array(current_token.text, positionable_operators);
-
-  if (operatorLogicApplies) {
-    var shouldPrintOperatorNewline = (
-        in_array(this._flags.last_token.text, positionable_operators) &&
-        in_array(this._options.operator_position, OPERATOR_POSITION_BEFORE_OR_PRESERVE)
-      ) ||
-      in_array(current_token.text, positionable_operators);
-    shouldPreserveOrForce = shouldPreserveOrForce && shouldPrintOperatorNewline;
-  }
-
-  if (shouldPreserveOrForce) {
-    this.print_newline(false, true);
-  } else if (this._options.wrap_line_length) {
-    if (reserved_array(this._flags.last_token, newline_restricted_tokens)) {
-      // These tokens should never have a newline inserted
-      // between them and the following expression.
-      return;
-    }
-    this._output.set_wrap_point();
-  }
-};
-
-Beautifier.prototype.print_newline = function(force_newline, preserve_statement_flags) {
-  if (!preserve_statement_flags) {
-    if (this._flags.last_token.text !== ';' && this._flags.last_token.text !== ',' && this._flags.last_token.text !== '=' && (this._flags.last_token.type !== TOKEN.OPERATOR || this._flags.last_token.text === '--' || this._flags.last_token.text === '++')) {
-      var next_token = this._tokens.peek();
-      while (this._flags.mode === MODE.Statement &&
-        !(this._flags.if_block && reserved_word(next_token, 'else')) &&
-        !this._flags.do_block) {
-        this.restore_mode();
-      }
-    }
-  }
-
-  if (this._output.add_new_line(force_newline)) {
-    this._flags.multiline_frame = true;
-  }
-};
-
-Beautifier.prototype.print_token_line_indentation = function(current_token) {
-  if (this._output.just_added_newline()) {
-    if (this._options.keep_array_indentation &&
-      current_token.newlines &&
-      (current_token.text === '[' || is_array(this._flags.mode))) {
-      this._output.current_line.set_indent(-1);
-      this._output.current_line.push(current_token.whitespace_before);
-      this._output.space_before_token = false;
-    } else if (this._output.set_indent(this._flags.indentation_level, this._flags.alignment)) {
-      this._flags.line_indent_level = this._flags.indentation_level;
-    }
-  }
-};
-
-Beautifier.prototype.print_token = function(current_token) {
-  if (this._output.raw) {
-    this._output.add_raw_token(current_token);
-    return;
-  }
-
-  if (this._options.comma_first && current_token.previous && current_token.previous.type === TOKEN.COMMA &&
-    this._output.just_added_newline()) {
-    if (this._output.previous_line.last() === ',') {
-      var popped = this._output.previous_line.pop();
-      // if the comma was already at the start of the line,
-      // pull back onto that line and reprint the indentation
-      if (this._output.previous_line.is_empty()) {
-        this._output.previous_line.push(popped);
-        this._output.trim(true);
-        this._output.current_line.pop();
-        this._output.trim();
-      }
-
-      // add the comma in front of the next token
-      this.print_token_line_indentation(current_token);
-      this._output.add_token(',');
-      this._output.space_before_token = true;
-    }
-  }
-
-  this.print_token_line_indentation(current_token);
-  this._output.non_breaking_space = true;
-  this._output.add_token(current_token.text);
-  if (this._output.previous_token_wrapped) {
-    this._flags.multiline_frame = true;
-  }
-};
-
-Beautifier.prototype.indent = function() {
-  this._flags.indentation_level += 1;
-  this._output.set_indent(this._flags.indentation_level, this._flags.alignment);
-};
-
-Beautifier.prototype.deindent = function() {
-  if (this._flags.indentation_level > 0 &&
-    ((!this._flags.parent) || this._flags.indentation_level > this._flags.parent.indentation_level)) {
-    this._flags.indentation_level -= 1;
-    this._output.set_indent(this._flags.indentation_level, this._flags.alignment);
-  }
-};
-
-Beautifier.prototype.set_mode = function(mode) {
-  if (this._flags) {
-    this._flag_store.push(this._flags);
-    this._previous_flags = this._flags;
-  } else {
-    this._previous_flags = this.create_flags(null, mode);
-  }
-
-  this._flags = this.create_flags(this._previous_flags, mode);
-  this._output.set_indent(this._flags.indentation_level, this._flags.alignment);
-};
-
-
-Beautifier.prototype.restore_mode = function() {
-  if (this._flag_store.length > 0) {
-    this._previous_flags = this._flags;
-    this._flags = this._flag_store.pop();
-    if (this._previous_flags.mode === MODE.Statement) {
-      remove_redundant_indentation(this._output, this._previous_flags);
-    }
-    this._output.set_indent(this._flags.indentation_level, this._flags.alignment);
-  }
-};
-
-Beautifier.prototype.start_of_object_property = function() {
-  return this._flags.parent.mode === MODE.ObjectLiteral && this._flags.mode === MODE.Statement && (
-    (this._flags.last_token.text === ':' && this._flags.ternary_depth === 0) || (reserved_array(this._flags.last_token, ['get', 'set'])));
-};
-
-Beautifier.prototype.start_of_statement = function(current_token) {
-  var start = false;
-  start = start || reserved_array(this._flags.last_token, ['var', 'let', 'const']) && current_token.type === TOKEN.WORD;
-  start = start || reserved_word(this._flags.last_token, 'do');
-  start = start || (!(this._flags.parent.mode === MODE.ObjectLiteral && this._flags.mode === MODE.Statement)) && reserved_array(this._flags.last_token, newline_restricted_tokens) && !current_token.newlines;
-  start = start || reserved_word(this._flags.last_token, 'else') &&
-    !(reserved_word(current_token, 'if') && !current_token.comments_before);
-  start = start || (this._flags.last_token.type === TOKEN.END_EXPR && (this._previous_flags.mode === MODE.ForInitializer || this._previous_flags.mode === MODE.Conditional));
-  start = start || (this._flags.last_token.type === TOKEN.WORD && this._flags.mode === MODE.BlockStatement &&
-    !this._flags.in_case &&
-    !(current_token.text === '--' || current_token.text === '++') &&
-    this._last_last_text !== 'function' &&
-    current_token.type !== TOKEN.WORD && current_token.type !== TOKEN.RESERVED);
-  start = start || (this._flags.mode === MODE.ObjectLiteral && (
-    (this._flags.last_token.text === ':' && this._flags.ternary_depth === 0) || reserved_array(this._flags.last_token, ['get', 'set'])));
-
-  if (start) {
-    this.set_mode(MODE.Statement);
-    this.indent();
-
-    this.handle_whitespace_and_comments(current_token, true);
-
-    // Issue #276:
-    // If starting a new statement with [if, for, while, do], push to a new line.
-    // if (a) if (b) if(c) d(); else e(); else f();
-    if (!this.start_of_object_property()) {
-      this.allow_wrap_or_preserved_newline(current_token,
-        reserved_array(current_token, ['do', 'for', 'if', 'while']));
-    }
-    return true;
-  }
-  return false;
-};
-
-Beautifier.prototype.handle_start_expr = function(current_token) {
-  // The conditional starts the statement if appropriate.
-  if (!this.start_of_statement(current_token)) {
-    this.handle_whitespace_and_comments(current_token);
-  }
-
-  var next_mode = MODE.Expression;
-  if (current_token.text === '[') {
-
-    if (this._flags.last_token.type === TOKEN.WORD || this._flags.last_token.text === ')') {
-      // this is array index specifier, break immediately
-      // a[x], fn()[x]
-      if (reserved_array(this._flags.last_token, line_starters)) {
-        this._output.space_before_token = true;
-      }
-      this.print_token(current_token);
-      this.set_mode(next_mode);
-      this.indent();
-      if (this._options.space_in_paren) {
-        this._output.space_before_token = true;
-      }
-      return;
-    }
-
-    next_mode = MODE.ArrayLiteral;
-    if (is_array(this._flags.mode)) {
-      if (this._flags.last_token.text === '[' ||
-        (this._flags.last_token.text === ',' && (this._last_last_text === ']' || this._last_last_text === '}'))) {
-        // ], [ goes to new line
-        // }, [ goes to new line
-        if (!this._options.keep_array_indentation) {
-          this.print_newline();
-        }
-      }
-    }
-
-    if (!in_array(this._flags.last_token.type, [TOKEN.START_EXPR, TOKEN.END_EXPR, TOKEN.WORD, TOKEN.OPERATOR])) {
-      this._output.space_before_token = true;
-    }
-  } else {
-    if (this._flags.last_token.type === TOKEN.RESERVED) {
-      if (this._flags.last_token.text === 'for') {
-        this._output.space_before_token = this._options.space_before_conditional;
-        next_mode = MODE.ForInitializer;
-      } else if (in_array(this._flags.last_token.text, ['if', 'while'])) {
-        this._output.space_before_token = this._options.space_before_conditional;
-        next_mode = MODE.Conditional;
-      } else if (in_array(this._flags.last_word, ['await', 'async'])) {
-        // Should be a space between await and an IIFE, or async and an arrow function
-        this._output.space_before_token = true;
-      } else if (this._flags.last_token.text === 'import' && current_token.whitespace_before === '') {
-        this._output.space_before_token = false;
-      } else if (in_array(this._flags.last_token.text, line_starters) || this._flags.last_token.text === 'catch') {
-        this._output.space_before_token = true;
-      }
-    } else if (this._flags.last_token.type === TOKEN.EQUALS || this._flags.last_token.type === TOKEN.OPERATOR) {
-      // Support of this kind of newline preservation.
-      // a = (b &&
-      //     (c || d));
-      if (!this.start_of_object_property()) {
-        this.allow_wrap_or_preserved_newline(current_token);
-      }
-    } else if (this._flags.last_token.type === TOKEN.WORD) {
-      this._output.space_before_token = false;
-
-      // function name() vs function name ()
-      // function* name() vs function* name ()
-      // async name() vs async name ()
-      // In ES6, you can also define the method properties of an object
-      // var obj = {a: function() {}}
-      // It can be abbreviated
-      // var obj = {a() {}}
-      // var obj = { a() {}} vs var obj = { a () {}}
-      // var obj = { * a() {}} vs var obj = { * a () {}}
-      var peek_back_two = this._tokens.peek(-3);
-      if (this._options.space_after_named_function && peek_back_two) {
-        // peek starts at next character so -1 is current token
-        var peek_back_three = this._tokens.peek(-4);
-        if (reserved_array(peek_back_two, ['async', 'function']) ||
-          (peek_back_two.text === '*' && reserved_array(peek_back_three, ['async', 'function']))) {
-          this._output.space_before_token = true;
-        } else if (this._flags.mode === MODE.ObjectLiteral) {
-          if ((peek_back_two.text === '{' || peek_back_two.text === ',') ||
-            (peek_back_two.text === '*' && (peek_back_three.text === '{' || peek_back_three.text === ','))) {
-            this._output.space_before_token = true;
-          }
-        }
-      }
-    } else {
-      // Support preserving wrapped arrow function expressions
-      // a.b('c',
-      //     () => d.e
-      // )
-      this.allow_wrap_or_preserved_newline(current_token);
-    }
-
-    // function() vs function ()
-    // yield*() vs yield* ()
-    // function*() vs function* ()
-    if ((this._flags.last_token.type === TOKEN.RESERVED && (this._flags.last_word === 'function' || this._flags.last_word === 'typeof')) ||
-      (this._flags.last_token.text === '*' &&
-        (in_array(this._last_last_text, ['function', 'yield']) ||
-          (this._flags.mode === MODE.ObjectLiteral && in_array(this._last_last_text, ['{', ',']))))) {
-      this._output.space_before_token = this._options.space_after_anon_function;
-    }
-  }
-
-  if (this._flags.last_token.text === ';' || this._flags.last_token.type === TOKEN.START_BLOCK) {
-    this.print_newline();
-  } else if (this._flags.last_token.type === TOKEN.END_EXPR || this._flags.last_token.type === TOKEN.START_EXPR || this._flags.last_token.type === TOKEN.END_BLOCK || this._flags.last_token.text === '.' || this._flags.last_token.type === TOKEN.COMMA) {
-    // do nothing on (( and )( and ][ and ]( and .(
-    // TODO: Consider whether forcing this is required.  Review failing tests when removed.
-    this.allow_wrap_or_preserved_newline(current_token, current_token.newlines);
-  }
-
-  this.print_token(current_token);
-  this.set_mode(next_mode);
-  if (this._options.space_in_paren) {
-    this._output.space_before_token = true;
-  }
-
-  // In all cases, if we newline while inside an expression it should be indented.
-  this.indent();
-};
-
-Beautifier.prototype.handle_end_expr = function(current_token) {
-  // statements inside expressions are not valid syntax, but...
-  // statements must all be closed when their container closes
-  while (this._flags.mode === MODE.Statement) {
-    this.restore_mode();
-  }
-
-  this.handle_whitespace_and_comments(current_token);
-
-  if (this._flags.multiline_frame) {
-    this.allow_wrap_or_preserved_newline(current_token,
-      current_token.text === ']' && is_array(this._flags.mode) && !this._options.keep_array_indentation);
-  }
-
-  if (this._options.space_in_paren) {
-    if (this._flags.last_token.type === TOKEN.START_EXPR && !this._options.space_in_empty_paren) {
-      // () [] no inner space in empty parens like these, ever, ref #320
-      this._output.trim();
-      this._output.space_before_token = false;
-    } else {
-      this._output.space_before_token = true;
-    }
-  }
-  this.deindent();
-  this.print_token(current_token);
-  this.restore_mode();
-
-  remove_redundant_indentation(this._output, this._previous_flags);
-
-  // do {} while () // no statement required after
-  if (this._flags.do_while && this._previous_flags.mode === MODE.Conditional) {
-    this._previous_flags.mode = MODE.Expression;
-    this._flags.do_block = false;
-    this._flags.do_while = false;
-
-  }
-};
-
-Beautifier.prototype.handle_start_block = function(current_token) {
-  this.handle_whitespace_and_comments(current_token);
-
-  // Check if this is should be treated as a ObjectLiteral
-  var next_token = this._tokens.peek();
-  var second_token = this._tokens.peek(1);
-  if (this._flags.last_word === 'switch' && this._flags.last_token.type === TOKEN.END_EXPR) {
-    this.set_mode(MODE.BlockStatement);
-    this._flags.in_case_statement = true;
-  } else if (this._flags.case_body) {
-    this.set_mode(MODE.BlockStatement);
-  } else if (second_token && (
-      (in_array(second_token.text, [':', ',']) && in_array(next_token.type, [TOKEN.STRING, TOKEN.WORD, TOKEN.RESERVED])) ||
-      (in_array(next_token.text, ['get', 'set', '...']) && in_array(second_token.type, [TOKEN.WORD, TOKEN.RESERVED]))
-    )) {
-    // We don't support TypeScript,but we didn't break it for a very long time.
-    // We'll try to keep not breaking it.
-    if (!in_array(this._last_last_text, ['class', 'interface'])) {
-      this.set_mode(MODE.ObjectLiteral);
-    } else {
-      this.set_mode(MODE.BlockStatement);
-    }
-  } else if (this._flags.last_token.type === TOKEN.OPERATOR && this._flags.last_token.text === '=>') {
-    // arrow function: (param1, paramN) => { statements }
-    this.set_mode(MODE.BlockStatement);
-  } else if (in_array(this._flags.last_token.type, [TOKEN.EQUALS, TOKEN.START_EXPR, TOKEN.COMMA, TOKEN.OPERATOR]) ||
-    reserved_array(this._flags.last_token, ['return', 'throw', 'import', 'default'])
-  ) {
-    // Detecting shorthand function syntax is difficult by scanning forward,
-    //     so check the surrounding context.
-    // If the block is being returned, imported, export default, passed as arg,
-    //     assigned with = or assigned in a nested object, treat as an ObjectLiteral.
-    this.set_mode(MODE.ObjectLiteral);
-  } else {
-    this.set_mode(MODE.BlockStatement);
-  }
-
-  var empty_braces = !next_token.comments_before && next_token.text === '}';
-  var empty_anonymous_function = empty_braces && this._flags.last_word === 'function' &&
-    this._flags.last_token.type === TOKEN.END_EXPR;
-
-  if (this._options.brace_preserve_inline) // check for inline, set inline_frame if so
-  {
-    // search forward for a newline wanted inside this block
-    var index = 0;
-    var check_token = null;
-    this._flags.inline_frame = true;
-    do {
-      index += 1;
-      check_token = this._tokens.peek(index - 1);
-      if (check_token.newlines) {
-        this._flags.inline_frame = false;
-        break;
-      }
-    } while (check_token.type !== TOKEN.EOF &&
-      !(check_token.type === TOKEN.END_BLOCK && check_token.opened === current_token));
-  }
-
-  if ((this._options.brace_style === "expand" ||
-      (this._options.brace_style === "none" && current_token.newlines)) &&
-    !this._flags.inline_frame) {
-    if (this._flags.last_token.type !== TOKEN.OPERATOR &&
-      (empty_anonymous_function ||
-        this._flags.last_token.type === TOKEN.EQUALS ||
-        (reserved_array(this._flags.last_token, special_words) && this._flags.last_token.text !== 'else'))) {
-      this._output.space_before_token = true;
-    } else {
-      this.print_newline(false, true);
-    }
-  } else { // collapse || inline_frame
-    if (is_array(this._previous_flags.mode) && (this._flags.last_token.type === TOKEN.START_EXPR || this._flags.last_token.type === TOKEN.COMMA)) {
-      if (this._flags.last_token.type === TOKEN.COMMA || this._options.space_in_paren) {
-        this._output.space_before_token = true;
-      }
-
-      if (this._flags.last_token.type === TOKEN.COMMA || (this._flags.last_token.type === TOKEN.START_EXPR && this._flags.inline_frame)) {
-        this.allow_wrap_or_preserved_newline(current_token);
-        this._previous_flags.multiline_frame = this._previous_flags.multiline_frame || this._flags.multiline_frame;
-        this._flags.multiline_frame = false;
-      }
-    }
-    if (this._flags.last_token.type !== TOKEN.OPERATOR && this._flags.last_token.type !== TOKEN.START_EXPR) {
-      if (this._flags.last_token.type === TOKEN.START_BLOCK && !this._flags.inline_frame) {
-        this.print_newline();
-      } else {
-        this._output.space_before_token = true;
-      }
-    }
-  }
-  this.print_token(current_token);
-  this.indent();
-
-  // Except for specific cases, open braces are followed by a new line.
-  if (!empty_braces && !(this._options.brace_preserve_inline && this._flags.inline_frame)) {
-    this.print_newline();
-  }
-};
-
-Beautifier.prototype.handle_end_block = function(current_token) {
-  // statements must all be closed when their container closes
-  this.handle_whitespace_and_comments(current_token);
-
-  while (this._flags.mode === MODE.Statement) {
-    this.restore_mode();
-  }
-
-  var empty_braces = this._flags.last_token.type === TOKEN.START_BLOCK;
-
-  if (this._flags.inline_frame && !empty_braces) { // try inline_frame (only set if this._options.braces-preserve-inline) first
-    this._output.space_before_token = true;
-  } else if (this._options.brace_style === "expand") {
-    if (!empty_braces) {
-      this.print_newline();
-    }
-  } else {
-    // skip {}
-    if (!empty_braces) {
-      if (is_array(this._flags.mode) && this._options.keep_array_indentation) {
-        // we REALLY need a newline here, but newliner would skip that
-        this._options.keep_array_indentation = false;
-        this.print_newline();
-        this._options.keep_array_indentation = true;
-
-      } else {
-        this.print_newline();
-      }
-    }
-  }
-  this.restore_mode();
-  this.print_token(current_token);
-};
-
-Beautifier.prototype.handle_word = function(current_token) {
-  if (current_token.type === TOKEN.RESERVED) {
-    if (in_array(current_token.text, ['set', 'get']) && this._flags.mode !== MODE.ObjectLiteral) {
-      current_token.type = TOKEN.WORD;
-    } else if (current_token.text === 'import' && this._tokens.peek().text === '(') {
-      current_token.type = TOKEN.WORD;
-    } else if (in_array(current_token.text, ['as', 'from']) && !this._flags.import_block) {
-      current_token.type = TOKEN.WORD;
-    } else if (this._flags.mode === MODE.ObjectLiteral) {
-      var next_token = this._tokens.peek();
-      if (next_token.text === ':') {
-        current_token.type = TOKEN.WORD;
-      }
-    }
-  }
-
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-    if (reserved_array(this._flags.last_token, ['var', 'let', 'const']) && current_token.type === TOKEN.WORD) {
-      this._flags.declaration_statement = true;
-    }
-  } else if (current_token.newlines && !is_expression(this._flags.mode) &&
-    (this._flags.last_token.type !== TOKEN.OPERATOR || (this._flags.last_token.text === '--' || this._flags.last_token.text === '++')) &&
-    this._flags.last_token.type !== TOKEN.EQUALS &&
-    (this._options.preserve_newlines || !reserved_array(this._flags.last_token, ['var', 'let', 'const', 'set', 'get']))) {
-    this.handle_whitespace_and_comments(current_token);
-    this.print_newline();
-  } else {
-    this.handle_whitespace_and_comments(current_token);
-  }
-
-  if (this._flags.do_block && !this._flags.do_while) {
-    if (reserved_word(current_token, 'while')) {
-      // do {} ## while ()
-      this._output.space_before_token = true;
-      this.print_token(current_token);
-      this._output.space_before_token = true;
-      this._flags.do_while = true;
-      return;
-    } else {
-      // do {} should always have while as the next word.
-      // if we don't see the expected while, recover
-      this.print_newline();
-      this._flags.do_block = false;
-    }
-  }
-
-  // if may be followed by else, or not
-  // Bare/inline ifs are tricky
-  // Need to unwind the modes correctly: if (a) if (b) c(); else d(); else e();
-  if (this._flags.if_block) {
-    if (!this._flags.else_block && reserved_word(current_token, 'else')) {
-      this._flags.else_block = true;
-    } else {
-      while (this._flags.mode === MODE.Statement) {
-        this.restore_mode();
-      }
-      this._flags.if_block = false;
-      this._flags.else_block = false;
-    }
-  }
-
-  if (this._flags.in_case_statement && reserved_array(current_token, ['case', 'default'])) {
-    this.print_newline();
-    if (this._flags.last_token.type !== TOKEN.END_BLOCK && (this._flags.case_body || this._options.jslint_happy)) {
-      // switch cases following one another
-      this.deindent();
-    }
-    this._flags.case_body = false;
-
-    this.print_token(current_token);
-    this._flags.in_case = true;
-    return;
-  }
-
-  if (this._flags.last_token.type === TOKEN.COMMA || this._flags.last_token.type === TOKEN.START_EXPR || this._flags.last_token.type === TOKEN.EQUALS || this._flags.last_token.type === TOKEN.OPERATOR) {
-    if (!this.start_of_object_property()) {
-      this.allow_wrap_or_preserved_newline(current_token);
-    }
-  }
-
-  if (reserved_word(current_token, 'function')) {
-    if (in_array(this._flags.last_token.text, ['}', ';']) ||
-      (this._output.just_added_newline() && !(in_array(this._flags.last_token.text, ['(', '[', '{', ':', '=', ',']) || this._flags.last_token.type === TOKEN.OPERATOR))) {
-      // make sure there is a nice clean space of at least one blank line
-      // before a new function definition
-      if (!this._output.just_added_blankline() && !current_token.comments_before) {
-        this.print_newline();
-        this.print_newline(true);
-      }
-    }
-    if (this._flags.last_token.type === TOKEN.RESERVED || this._flags.last_token.type === TOKEN.WORD) {
-      if (reserved_array(this._flags.last_token, ['get', 'set', 'new', 'export']) ||
-        reserved_array(this._flags.last_token, newline_restricted_tokens)) {
-        this._output.space_before_token = true;
-      } else if (reserved_word(this._flags.last_token, 'default') && this._last_last_text === 'export') {
-        this._output.space_before_token = true;
-      } else if (this._flags.last_token.text === 'declare') {
-        // accomodates Typescript declare function formatting
-        this._output.space_before_token = true;
-      } else {
-        this.print_newline();
-      }
-    } else if (this._flags.last_token.type === TOKEN.OPERATOR || this._flags.last_token.text === '=') {
-      // foo = function
-      this._output.space_before_token = true;
-    } else if (!this._flags.multiline_frame && (is_expression(this._flags.mode) || is_array(this._flags.mode))) {
-      // (function
-    } else {
-      this.print_newline();
-    }
-
-    this.print_token(current_token);
-    this._flags.last_word = current_token.text;
-    return;
-  }
-
-  var prefix = 'NONE';
-
-  if (this._flags.last_token.type === TOKEN.END_BLOCK) {
-
-    if (this._previous_flags.inline_frame) {
-      prefix = 'SPACE';
-    } else if (!reserved_array(current_token, ['else', 'catch', 'finally', 'from'])) {
-      prefix = 'NEWLINE';
-    } else {
-      if (this._options.brace_style === "expand" ||
-        this._options.brace_style === "end-expand" ||
-        (this._options.brace_style === "none" && current_token.newlines)) {
-        prefix = 'NEWLINE';
-      } else {
-        prefix = 'SPACE';
-        this._output.space_before_token = true;
-      }
-    }
-  } else if (this._flags.last_token.type === TOKEN.SEMICOLON && this._flags.mode === MODE.BlockStatement) {
-    // TODO: Should this be for STATEMENT as well?
-    prefix = 'NEWLINE';
-  } else if (this._flags.last_token.type === TOKEN.SEMICOLON && is_expression(this._flags.mode)) {
-    prefix = 'SPACE';
-  } else if (this._flags.last_token.type === TOKEN.STRING) {
-    prefix = 'NEWLINE';
-  } else if (this._flags.last_token.type === TOKEN.RESERVED || this._flags.last_token.type === TOKEN.WORD ||
-    (this._flags.last_token.text === '*' &&
-      (in_array(this._last_last_text, ['function', 'yield']) ||
-        (this._flags.mode === MODE.ObjectLiteral && in_array(this._last_last_text, ['{', ',']))))) {
-    prefix = 'SPACE';
-  } else if (this._flags.last_token.type === TOKEN.START_BLOCK) {
-    if (this._flags.inline_frame) {
-      prefix = 'SPACE';
-    } else {
-      prefix = 'NEWLINE';
-    }
-  } else if (this._flags.last_token.type === TOKEN.END_EXPR) {
-    this._output.space_before_token = true;
-    prefix = 'NEWLINE';
-  }
-
-  if (reserved_array(current_token, line_starters) && this._flags.last_token.text !== ')') {
-    if (this._flags.inline_frame || this._flags.last_token.text === 'else' || this._flags.last_token.text === 'export') {
-      prefix = 'SPACE';
-    } else {
-      prefix = 'NEWLINE';
-    }
-
-  }
-
-  if (reserved_array(current_token, ['else', 'catch', 'finally'])) {
-    if ((!(this._flags.last_token.type === TOKEN.END_BLOCK && this._previous_flags.mode === MODE.BlockStatement) ||
-        this._options.brace_style === "expand" ||
-        this._options.brace_style === "end-expand" ||
-        (this._options.brace_style === "none" && current_token.newlines)) &&
-      !this._flags.inline_frame) {
-      this.print_newline();
-    } else {
-      this._output.trim(true);
-      var line = this._output.current_line;
-      // If we trimmed and there's something other than a close block before us
-      // put a newline back in.  Handles '} // comment' scenario.
-      if (line.last() !== '}') {
-        this.print_newline();
-      }
-      this._output.space_before_token = true;
-    }
-  } else if (prefix === 'NEWLINE') {
-    if (reserved_array(this._flags.last_token, special_words)) {
-      // no newline between 'return nnn'
-      this._output.space_before_token = true;
-    } else if (this._flags.last_token.text === 'declare' && reserved_array(current_token, ['var', 'let', 'const'])) {
-      // accomodates Typescript declare formatting
-      this._output.space_before_token = true;
-    } else if (this._flags.last_token.type !== TOKEN.END_EXPR) {
-      if ((this._flags.last_token.type !== TOKEN.START_EXPR || !reserved_array(current_token, ['var', 'let', 'const'])) && this._flags.last_token.text !== ':') {
-        // no need to force newline on 'var': for (var x = 0...)
-        if (reserved_word(current_token, 'if') && reserved_word(current_token.previous, 'else')) {
-          // no newline for } else if {
-          this._output.space_before_token = true;
-        } else {
-          this.print_newline();
-        }
-      }
-    } else if (reserved_array(current_token, line_starters) && this._flags.last_token.text !== ')') {
-      this.print_newline();
-    }
-  } else if (this._flags.multiline_frame && is_array(this._flags.mode) && this._flags.last_token.text === ',' && this._last_last_text === '}') {
-    this.print_newline(); // }, in lists get a newline treatment
-  } else if (prefix === 'SPACE') {
-    this._output.space_before_token = true;
-  }
-  if (current_token.previous && (current_token.previous.type === TOKEN.WORD || current_token.previous.type === TOKEN.RESERVED)) {
-    this._output.space_before_token = true;
-  }
-  this.print_token(current_token);
-  this._flags.last_word = current_token.text;
-
-  if (current_token.type === TOKEN.RESERVED) {
-    if (current_token.text === 'do') {
-      this._flags.do_block = true;
-    } else if (current_token.text === 'if') {
-      this._flags.if_block = true;
-    } else if (current_token.text === 'import') {
-      this._flags.import_block = true;
-    } else if (this._flags.import_block && reserved_word(current_token, 'from')) {
-      this._flags.import_block = false;
-    }
-  }
-};
-
-Beautifier.prototype.handle_semicolon = function(current_token) {
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-    // Semicolon can be the start (and end) of a statement
-    this._output.space_before_token = false;
-  } else {
-    this.handle_whitespace_and_comments(current_token);
-  }
-
-  var next_token = this._tokens.peek();
-  while (this._flags.mode === MODE.Statement &&
-    !(this._flags.if_block && reserved_word(next_token, 'else')) &&
-    !this._flags.do_block) {
-    this.restore_mode();
-  }
-
-  // hacky but effective for the moment
-  if (this._flags.import_block) {
-    this._flags.import_block = false;
-  }
-  this.print_token(current_token);
-};
-
-Beautifier.prototype.handle_string = function(current_token) {
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-    // One difference - strings want at least a space before
-    this._output.space_before_token = true;
-  } else {
-    this.handle_whitespace_and_comments(current_token);
-    if (this._flags.last_token.type === TOKEN.RESERVED || this._flags.last_token.type === TOKEN.WORD || this._flags.inline_frame) {
-      this._output.space_before_token = true;
-    } else if (this._flags.last_token.type === TOKEN.COMMA || this._flags.last_token.type === TOKEN.START_EXPR || this._flags.last_token.type === TOKEN.EQUALS || this._flags.last_token.type === TOKEN.OPERATOR) {
-      if (!this.start_of_object_property()) {
-        this.allow_wrap_or_preserved_newline(current_token);
-      }
-    } else {
-      this.print_newline();
-    }
-  }
-  this.print_token(current_token);
-};
-
-Beautifier.prototype.handle_equals = function(current_token) {
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-  } else {
-    this.handle_whitespace_and_comments(current_token);
-  }
-
-  if (this._flags.declaration_statement) {
-    // just got an '=' in a var-line, different formatting/line-breaking, etc will now be done
-    this._flags.declaration_assignment = true;
-  }
-  this._output.space_before_token = true;
-  this.print_token(current_token);
-  this._output.space_before_token = true;
-};
-
-Beautifier.prototype.handle_comma = function(current_token) {
-  this.handle_whitespace_and_comments(current_token, true);
-
-  this.print_token(current_token);
-  this._output.space_before_token = true;
-  if (this._flags.declaration_statement) {
-    if (is_expression(this._flags.parent.mode)) {
-      // do not break on comma, for(var a = 1, b = 2)
-      this._flags.declaration_assignment = false;
-    }
-
-    if (this._flags.declaration_assignment) {
-      this._flags.declaration_assignment = false;
-      this.print_newline(false, true);
-    } else if (this._options.comma_first) {
-      // for comma-first, we want to allow a newline before the comma
-      // to turn into a newline after the comma, which we will fixup later
-      this.allow_wrap_or_preserved_newline(current_token);
-    }
-  } else if (this._flags.mode === MODE.ObjectLiteral ||
-    (this._flags.mode === MODE.Statement && this._flags.parent.mode === MODE.ObjectLiteral)) {
-    if (this._flags.mode === MODE.Statement) {
-      this.restore_mode();
-    }
-
-    if (!this._flags.inline_frame) {
-      this.print_newline();
-    }
-  } else if (this._options.comma_first) {
-    // EXPR or DO_BLOCK
-    // for comma-first, we want to allow a newline before the comma
-    // to turn into a newline after the comma, which we will fixup later
-    this.allow_wrap_or_preserved_newline(current_token);
-  }
-};
-
-Beautifier.prototype.handle_operator = function(current_token) {
-  var isGeneratorAsterisk = current_token.text === '*' &&
-    (reserved_array(this._flags.last_token, ['function', 'yield']) ||
-      (in_array(this._flags.last_token.type, [TOKEN.START_BLOCK, TOKEN.COMMA, TOKEN.END_BLOCK, TOKEN.SEMICOLON]))
-    );
-  var isUnary = in_array(current_token.text, ['-', '+']) && (
-    in_array(this._flags.last_token.type, [TOKEN.START_BLOCK, TOKEN.START_EXPR, TOKEN.EQUALS, TOKEN.OPERATOR]) ||
-    in_array(this._flags.last_token.text, line_starters) ||
-    this._flags.last_token.text === ','
-  );
-
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-  } else {
-    var preserve_statement_flags = !isGeneratorAsterisk;
-    this.handle_whitespace_and_comments(current_token, preserve_statement_flags);
-  }
-
-  if (reserved_array(this._flags.last_token, special_words)) {
-    // "return" had a special handling in TK_WORD. Now we need to return the favor
-    this._output.space_before_token = true;
-    this.print_token(current_token);
-    return;
-  }
-
-  // hack for actionscript's import .*;
-  if (current_token.text === '*' && this._flags.last_token.type === TOKEN.DOT) {
-    this.print_token(current_token);
-    return;
-  }
-
-  if (current_token.text === '::') {
-    // no spaces around exotic namespacing syntax operator
-    this.print_token(current_token);
-    return;
-  }
-
-  // Allow line wrapping between operators when operator_position is
-  //   set to before or preserve
-  if (this._flags.last_token.type === TOKEN.OPERATOR && in_array(this._options.operator_position, OPERATOR_POSITION_BEFORE_OR_PRESERVE)) {
-    this.allow_wrap_or_preserved_newline(current_token);
-  }
-
-  if (current_token.text === ':' && this._flags.in_case) {
-    this.print_token(current_token);
-
-    this._flags.in_case = false;
-    this._flags.case_body = true;
-    if (this._tokens.peek().type !== TOKEN.START_BLOCK) {
-      this.indent();
-      this.print_newline();
-    } else {
-      this._output.space_before_token = true;
-    }
-    return;
-  }
-
-  var space_before = true;
-  var space_after = true;
-  var in_ternary = false;
-  if (current_token.text === ':') {
-    if (this._flags.ternary_depth === 0) {
-      // Colon is invalid javascript outside of ternary and object, but do our best to guess what was meant.
-      space_before = false;
-    } else {
-      this._flags.ternary_depth -= 1;
-      in_ternary = true;
-    }
-  } else if (current_token.text === '?') {
-    this._flags.ternary_depth += 1;
-  }
-
-  // let's handle the operator_position option prior to any conflicting logic
-  if (!isUnary && !isGeneratorAsterisk && this._options.preserve_newlines && in_array(current_token.text, positionable_operators)) {
-    var isColon = current_token.text === ':';
-    var isTernaryColon = (isColon && in_ternary);
-    var isOtherColon = (isColon && !in_ternary);
-
-    switch (this._options.operator_position) {
-      case OPERATOR_POSITION.before_newline:
-        // if the current token is : and it's not a ternary statement then we set space_before to false
-        this._output.space_before_token = !isOtherColon;
-
-        this.print_token(current_token);
-
-        if (!isColon || isTernaryColon) {
-          this.allow_wrap_or_preserved_newline(current_token);
-        }
-
-        this._output.space_before_token = true;
-        return;
-
-      case OPERATOR_POSITION.after_newline:
-        // if the current token is anything but colon, or (via deduction) it's a colon and in a ternary statement,
-        //   then print a newline.
-
-        this._output.space_before_token = true;
-
-        if (!isColon || isTernaryColon) {
-          if (this._tokens.peek().newlines) {
-            this.print_newline(false, true);
-          } else {
-            this.allow_wrap_or_preserved_newline(current_token);
-          }
-        } else {
-          this._output.space_before_token = false;
-        }
-
-        this.print_token(current_token);
-
-        this._output.space_before_token = true;
-        return;
-
-      case OPERATOR_POSITION.preserve_newline:
-        if (!isOtherColon) {
-          this.allow_wrap_or_preserved_newline(current_token);
-        }
-
-        // if we just added a newline, or the current token is : and it's not a ternary statement,
-        //   then we set space_before to false
-        space_before = !(this._output.just_added_newline() || isOtherColon);
-
-        this._output.space_before_token = space_before;
-        this.print_token(current_token);
-        this._output.space_before_token = true;
-        return;
-    }
-  }
-
-  if (isGeneratorAsterisk) {
-    this.allow_wrap_or_preserved_newline(current_token);
-    space_before = false;
-    var next_token = this._tokens.peek();
-    space_after = next_token && in_array(next_token.type, [TOKEN.WORD, TOKEN.RESERVED]);
-  } else if (current_token.text === '...') {
-    this.allow_wrap_or_preserved_newline(current_token);
-    space_before = this._flags.last_token.type === TOKEN.START_BLOCK;
-    space_after = false;
-  } else if (in_array(current_token.text, ['--', '++', '!', '~']) || isUnary) {
-    // unary operators (and binary +/- pretending to be unary) special cases
-    if (this._flags.last_token.type === TOKEN.COMMA || this._flags.last_token.type === TOKEN.START_EXPR) {
-      this.allow_wrap_or_preserved_newline(current_token);
-    }
-
-    space_before = false;
-    space_after = false;
-
-    // http://www.ecma-international.org/ecma-262/5.1/#sec-7.9.1
-    // if there is a newline between -- or ++ and anything else we should preserve it.
-    if (current_token.newlines && (current_token.text === '--' || current_token.text === '++')) {
-      this.print_newline(false, true);
-    }
-
-    if (this._flags.last_token.text === ';' && is_expression(this._flags.mode)) {
-      // for (;; ++i)
-      //        ^^^
-      space_before = true;
-    }
-
-    if (this._flags.last_token.type === TOKEN.RESERVED) {
-      space_before = true;
-    } else if (this._flags.last_token.type === TOKEN.END_EXPR) {
-      space_before = !(this._flags.last_token.text === ']' && (current_token.text === '--' || current_token.text === '++'));
-    } else if (this._flags.last_token.type === TOKEN.OPERATOR) {
-      // a++ + ++b;
-      // a - -b
-      space_before = in_array(current_token.text, ['--', '-', '++', '+']) && in_array(this._flags.last_token.text, ['--', '-', '++', '+']);
-      // + and - are not unary when preceeded by -- or ++ operator
-      // a-- + b
-      // a * +b
-      // a - -b
-      if (in_array(current_token.text, ['+', '-']) && in_array(this._flags.last_token.text, ['--', '++'])) {
-        space_after = true;
-      }
-    }
-
-
-    if (((this._flags.mode === MODE.BlockStatement && !this._flags.inline_frame) || this._flags.mode === MODE.Statement) &&
-      (this._flags.last_token.text === '{' || this._flags.last_token.text === ';')) {
-      // { foo; --i }
-      // foo(); --bar;
-      this.print_newline();
-    }
-  }
-
-  this._output.space_before_token = this._output.space_before_token || space_before;
-  this.print_token(current_token);
-  this._output.space_before_token = space_after;
-};
-
-Beautifier.prototype.handle_block_comment = function(current_token, preserve_statement_flags) {
-  if (this._output.raw) {
-    this._output.add_raw_token(current_token);
-    if (current_token.directives && current_token.directives.preserve === 'end') {
-      // If we're testing the raw output behavior, do not allow a directive to turn it off.
-      this._output.raw = this._options.test_output_raw;
-    }
-    return;
-  }
-
-  if (current_token.directives) {
-    this.print_newline(false, preserve_statement_flags);
-    this.print_token(current_token);
-    if (current_token.directives.preserve === 'start') {
-      this._output.raw = true;
-    }
-    this.print_newline(false, true);
-    return;
-  }
-
-  // inline block
-  if (!acorn.newline.test(current_token.text) && !current_token.newlines) {
-    this._output.space_before_token = true;
-    this.print_token(current_token);
-    this._output.space_before_token = true;
-    return;
-  } else {
-    this.print_block_commment(current_token, preserve_statement_flags);
-  }
-};
-
-Beautifier.prototype.print_block_commment = function(current_token, preserve_statement_flags) {
-  var lines = split_linebreaks(current_token.text);
-  var j; // iterator for this case
-  var javadoc = false;
-  var starless = false;
-  var lastIndent = current_token.whitespace_before;
-  var lastIndentLength = lastIndent.length;
-
-  // block comment starts with a new line
-  this.print_newline(false, preserve_statement_flags);
-
-  // first line always indented
-  this.print_token_line_indentation(current_token);
-  this._output.add_token(lines[0]);
-  this.print_newline(false, preserve_statement_flags);
-
-
-  if (lines.length > 1) {
-    lines = lines.slice(1);
-    javadoc = all_lines_start_with(lines, '*');
-    starless = each_line_matches_indent(lines, lastIndent);
-
-    if (javadoc) {
-      this._flags.alignment = 1;
-    }
-
-    for (j = 0; j < lines.length; j++) {
-      if (javadoc) {
-        // javadoc: reformat and re-indent
-        this.print_token_line_indentation(current_token);
-        this._output.add_token(ltrim(lines[j]));
-      } else if (starless && lines[j]) {
-        // starless: re-indent non-empty content, avoiding trim
-        this.print_token_line_indentation(current_token);
-        this._output.add_token(lines[j].substring(lastIndentLength));
-      } else {
-        // normal comments output raw
-        this._output.current_line.set_indent(-1);
-        this._output.add_token(lines[j]);
-      }
-
-      // for comments on their own line or  more than one line, make sure there's a new line after
-      this.print_newline(false, preserve_statement_flags);
-    }
-
-    this._flags.alignment = 0;
-  }
-};
-
-
-Beautifier.prototype.handle_comment = function(current_token, preserve_statement_flags) {
-  if (current_token.newlines) {
-    this.print_newline(false, preserve_statement_flags);
-  } else {
-    this._output.trim(true);
-  }
-
-  this._output.space_before_token = true;
-  this.print_token(current_token);
-  this.print_newline(false, preserve_statement_flags);
-};
-
-Beautifier.prototype.handle_dot = function(current_token) {
-  if (this.start_of_statement(current_token)) {
-    // The conditional starts the statement if appropriate.
-  } else {
-    this.handle_whitespace_and_comments(current_token, true);
-  }
-
-  if (reserved_array(this._flags.last_token, special_words)) {
-    this._output.space_before_token = false;
-  } else {
-    // allow preserved newlines before dots in general
-    // force newlines on dots after close paren when break_chained - for bar().baz()
-    this.allow_wrap_or_preserved_newline(current_token,
-      this._flags.last_token.text === ')' && this._options.break_chained_methods);
-  }
-
-  // Only unindent chained method dot if this dot starts a new line.
-  // Otherwise the automatic extra indentation removal will handle the over indent
-  if (this._options.unindent_chained_methods && this._output.just_added_newline()) {
-    this.deindent();
-  }
-
-  this.print_token(current_token);
-};
-
-Beautifier.prototype.handle_unknown = function(current_token, preserve_statement_flags) {
-  this.print_token(current_token);
-
-  if (current_token.text[current_token.text.length - 1] === '\n') {
-    this.print_newline(false, preserve_statement_flags);
-  }
-};
-
-Beautifier.prototype.handle_eof = function(current_token) {
-  // Unwind any open statements
-  while (this._flags.mode === MODE.Statement) {
-    this.restore_mode();
-  }
-  this.handle_whitespace_and_comments(current_token);
-};
-
-module.exports.Beautifier = Beautifier;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function OutputLine(parent) {
-  this.__parent = parent;
-  this.__character_count = 0;
-  // use indent_count as a marker for this.__lines that have preserved indentation
-  this.__indent_count = -1;
-  this.__alignment_count = 0;
-  this.__wrap_point_index = 0;
-  this.__wrap_point_character_count = 0;
-  this.__wrap_point_indent_count = -1;
-  this.__wrap_point_alignment_count = 0;
-
-  this.__items = [];
-}
-
-OutputLine.prototype.clone_empty = function() {
-  var line = new OutputLine(this.__parent);
-  line.set_indent(this.__indent_count, this.__alignment_count);
-  return line;
-};
-
-OutputLine.prototype.item = function(index) {
-  if (index < 0) {
-    return this.__items[this.__items.length + index];
-  } else {
-    return this.__items[index];
-  }
-};
-
-OutputLine.prototype.has_match = function(pattern) {
-  for (var lastCheckedOutput = this.__items.length - 1; lastCheckedOutput >= 0; lastCheckedOutput--) {
-    if (this.__items[lastCheckedOutput].match(pattern)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-OutputLine.prototype.set_indent = function(indent, alignment) {
-  if (this.is_empty()) {
-    this.__indent_count = indent || 0;
-    this.__alignment_count = alignment || 0;
-    this.__character_count = this.__parent.get_indent_size(this.__indent_count, this.__alignment_count);
-  }
-};
-
-OutputLine.prototype._set_wrap_point = function() {
-  if (this.__parent.wrap_line_length) {
-    this.__wrap_point_index = this.__items.length;
-    this.__wrap_point_character_count = this.__character_count;
-    this.__wrap_point_indent_count = this.__parent.next_line.__indent_count;
-    this.__wrap_point_alignment_count = this.__parent.next_line.__alignment_count;
-  }
-};
-
-OutputLine.prototype._should_wrap = function() {
-  return this.__wrap_point_index &&
-    this.__character_count > this.__parent.wrap_line_length &&
-    this.__wrap_point_character_count > this.__parent.next_line.__character_count;
-};
-
-OutputLine.prototype._allow_wrap = function() {
-  if (this._should_wrap()) {
-    this.__parent.add_new_line();
-    var next = this.__parent.current_line;
-    next.set_indent(this.__wrap_point_indent_count, this.__wrap_point_alignment_count);
-    next.__items = this.__items.slice(this.__wrap_point_index);
-    this.__items = this.__items.slice(0, this.__wrap_point_index);
-
-    next.__character_count += this.__character_count - this.__wrap_point_character_count;
-    this.__character_count = this.__wrap_point_character_count;
-
-    if (next.__items[0] === " ") {
-      next.__items.splice(0, 1);
-      next.__character_count -= 1;
-    }
-    return true;
-  }
-  return false;
-};
-
-OutputLine.prototype.is_empty = function() {
-  return this.__items.length === 0;
-};
-
-OutputLine.prototype.last = function() {
-  if (!this.is_empty()) {
-    return this.__items[this.__items.length - 1];
-  } else {
-    return null;
-  }
-};
-
-OutputLine.prototype.push = function(item) {
-  this.__items.push(item);
-  var last_newline_index = item.lastIndexOf('\n');
-  if (last_newline_index !== -1) {
-    this.__character_count = item.length - last_newline_index;
-  } else {
-    this.__character_count += item.length;
-  }
-};
-
-OutputLine.prototype.pop = function() {
-  var item = null;
-  if (!this.is_empty()) {
-    item = this.__items.pop();
-    this.__character_count -= item.length;
-  }
-  return item;
-};
-
-
-OutputLine.prototype._remove_indent = function() {
-  if (this.__indent_count > 0) {
-    this.__indent_count -= 1;
-    this.__character_count -= this.__parent.indent_size;
-  }
-};
-
-OutputLine.prototype._remove_wrap_indent = function() {
-  if (this.__wrap_point_indent_count > 0) {
-    this.__wrap_point_indent_count -= 1;
-  }
-};
-OutputLine.prototype.trim = function() {
-  while (this.last() === ' ') {
-    this.__items.pop();
-    this.__character_count -= 1;
-  }
-};
-
-OutputLine.prototype.toString = function() {
-  var result = '';
-  if (this.is_empty()) {
-    if (this.__parent.indent_empty_lines) {
-      result = this.__parent.get_indent_string(this.__indent_count);
-    }
-  } else {
-    result = this.__parent.get_indent_string(this.__indent_count, this.__alignment_count);
-    result += this.__items.join('');
-  }
-  return result;
-};
-
-function IndentStringCache(options, baseIndentString) {
-  this.__cache = [''];
-  this.__indent_size = options.indent_size;
-  this.__indent_string = options.indent_char;
-  if (!options.indent_with_tabs) {
-    this.__indent_string = new Array(options.indent_size + 1).join(options.indent_char);
-  }
-
-  // Set to null to continue support for auto detection of base indent
-  baseIndentString = baseIndentString || '';
-  if (options.indent_level > 0) {
-    baseIndentString = new Array(options.indent_level + 1).join(this.__indent_string);
-  }
-
-  this.__base_string = baseIndentString;
-  this.__base_string_length = baseIndentString.length;
-}
-
-IndentStringCache.prototype.get_indent_size = function(indent, column) {
-  var result = this.__base_string_length;
-  column = column || 0;
-  if (indent < 0) {
-    result = 0;
-  }
-  result += indent * this.__indent_size;
-  result += column;
-  return result;
-};
-
-IndentStringCache.prototype.get_indent_string = function(indent_level, column) {
-  var result = this.__base_string;
-  column = column || 0;
-  if (indent_level < 0) {
-    indent_level = 0;
-    result = '';
-  }
-  column += indent_level * this.__indent_size;
-  this.__ensure_cache(column);
-  result += this.__cache[column];
-  return result;
-};
-
-IndentStringCache.prototype.__ensure_cache = function(column) {
-  while (column >= this.__cache.length) {
-    this.__add_column();
-  }
-};
-
-IndentStringCache.prototype.__add_column = function() {
-  var column = this.__cache.length;
-  var indent = 0;
-  var result = '';
-  if (this.__indent_size && column >= this.__indent_size) {
-    indent = Math.floor(column / this.__indent_size);
-    column -= indent * this.__indent_size;
-    result = new Array(indent + 1).join(this.__indent_string);
-  }
-  if (column) {
-    result += new Array(column + 1).join(' ');
-  }
-
-  this.__cache.push(result);
-};
-
-function Output(options, baseIndentString) {
-  this.__indent_cache = new IndentStringCache(options, baseIndentString);
-  this.raw = false;
-  this._end_with_newline = options.end_with_newline;
-  this.indent_size = options.indent_size;
-  this.wrap_line_length = options.wrap_line_length;
-  this.indent_empty_lines = options.indent_empty_lines;
-  this.__lines = [];
-  this.previous_line = null;
-  this.current_line = null;
-  this.next_line = new OutputLine(this);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-  // initialize
-  this.__add_outputline();
-}
-
-Output.prototype.__add_outputline = function() {
-  this.previous_line = this.current_line;
-  this.current_line = this.next_line.clone_empty();
-  this.__lines.push(this.current_line);
-};
-
-Output.prototype.get_line_number = function() {
-  return this.__lines.length;
-};
-
-Output.prototype.get_indent_string = function(indent, column) {
-  return this.__indent_cache.get_indent_string(indent, column);
-};
-
-Output.prototype.get_indent_size = function(indent, column) {
-  return this.__indent_cache.get_indent_size(indent, column);
-};
-
-Output.prototype.is_empty = function() {
-  return !this.previous_line && this.current_line.is_empty();
-};
-
-Output.prototype.add_new_line = function(force_newline) {
-  // never newline at the start of file
-  // otherwise, newline only if we didn't just add one or we're forced
-  if (this.is_empty() ||
-    (!force_newline && this.just_added_newline())) {
-    return false;
-  }
-
-  // if raw output is enabled, don't print additional newlines,
-  // but still return True as though you had
-  if (!this.raw) {
-    this.__add_outputline();
-  }
-  return true;
-};
-
-Output.prototype.get_code = function(eol) {
-  this.trim(true);
-
-  // handle some edge cases where the last tokens
-  // has text that ends with newline(s)
-  var last_item = this.current_line.pop();
-  if (last_item) {
-    if (last_item[last_item.length - 1] === '\n') {
-      last_item = last_item.replace(/\n+$/g, '');
-    }
-    this.current_line.push(last_item);
-  }
-
-  if (this._end_with_newline) {
-    this.__add_outputline();
-  }
-
-  var sweet_code = this.__lines.join('\n');
-
-  if (eol !== '\n') {
-    sweet_code = sweet_code.replace(/[\n]/g, eol);
-  }
-  return sweet_code;
-};
-
-Output.prototype.set_wrap_point = function() {
-  this.current_line._set_wrap_point();
-};
-
-Output.prototype.set_indent = function(indent, alignment) {
-  indent = indent || 0;
-  alignment = alignment || 0;
-
-  // Next line stores alignment values
-  this.next_line.set_indent(indent, alignment);
-
-  // Never indent your first output indent at the start of the file
-  if (this.__lines.length > 1) {
-    this.current_line.set_indent(indent, alignment);
-    return true;
-  }
-
-  this.current_line.set_indent();
-  return false;
-};
-
-Output.prototype.add_raw_token = function(token) {
-  for (var x = 0; x < token.newlines; x++) {
-    this.__add_outputline();
-  }
-  this.current_line.set_indent(-1);
-  this.current_line.push(token.whitespace_before);
-  this.current_line.push(token.text);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-};
-
-Output.prototype.add_token = function(printable_token) {
-  this.__add_space_before_token();
-  this.current_line.push(printable_token);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = this.current_line._allow_wrap();
-};
-
-Output.prototype.__add_space_before_token = function() {
-  if (this.space_before_token && !this.just_added_newline()) {
-    if (!this.non_breaking_space) {
-      this.set_wrap_point();
-    }
-    this.current_line.push(' ');
-  }
-};
-
-Output.prototype.remove_indent = function(index) {
-  var output_length = this.__lines.length;
-  while (index < output_length) {
-    this.__lines[index]._remove_indent();
-    index++;
-  }
-  this.current_line._remove_wrap_indent();
-};
-
-Output.prototype.trim = function(eat_newlines) {
-  eat_newlines = (eat_newlines === undefined) ? false : eat_newlines;
-
-  this.current_line.trim();
-
-  while (eat_newlines && this.__lines.length > 1 &&
-    this.current_line.is_empty()) {
-    this.__lines.pop();
-    this.current_line = this.__lines[this.__lines.length - 1];
-    this.current_line.trim();
-  }
-
-  this.previous_line = this.__lines.length > 1 ?
-    this.__lines[this.__lines.length - 2] : null;
-};
-
-Output.prototype.just_added_newline = function() {
-  return this.current_line.is_empty();
-};
-
-Output.prototype.just_added_blankline = function() {
-  return this.is_empty() ||
-    (this.current_line.is_empty() && this.previous_line.is_empty());
-};
-
-Output.prototype.ensure_empty_line_above = function(starts_with, ends_with) {
-  var index = this.__lines.length - 2;
-  while (index >= 0) {
-    var potentialEmptyLine = this.__lines[index];
-    if (potentialEmptyLine.is_empty()) {
-      break;
-    } else if (potentialEmptyLine.item(0).indexOf(starts_with) !== 0 &&
-      potentialEmptyLine.item(-1) !== ends_with) {
-      this.__lines.splice(index + 1, 0, new OutputLine(this));
-      this.previous_line = this.__lines[this.__lines.length - 2];
-      break;
-    }
-    index--;
-  }
-};
-
-module.exports.Output = Output;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Token(type, text, newlines, whitespace_before) {
-  this.type = type;
-  this.text = text;
-
-  // comments_before are
-  // comments that have a new line before them
-  // and may or may not have a newline after
-  // this is a set of comments before
-  this.comments_before = null; /* inline comment*/
-
-
-  // this.comments_after =  new TokenStream(); // no new line before and newline after
-  this.newlines = newlines || 0;
-  this.whitespace_before = whitespace_before || '';
-  this.parent = null;
-  this.next = null;
-  this.previous = null;
-  this.opened = null;
-  this.closed = null;
-  this.directives = null;
-}
-
-
-module.exports.Token = Token;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* jshint node: true, curly: false */
-// Parts of this section of code is taken from acorn.
-//
-// Acorn was written by Marijn Haverbeke and released under an MIT
-// license. The Unicode regexps (for identifiers and whitespace) were
-// taken from [Esprima](http://esprima.org) by Ariya Hidayat.
-//
-// Git repositories for Acorn are available at
-//
-//     http://marijnhaverbeke.nl/git/acorn
-//     https://github.com/marijnh/acorn.git
-
-// ## Character categories
-
-
-
-
-// acorn used char codes to squeeze the last bit of performance out
-// Beautifier is okay without that, so we're using regex
-// permit $ (36) and @ (64). @ is used in ES7 decorators.
-// 65 through 91 are uppercase letters.
-// permit _ (95).
-// 97 through 123 are lowercase letters.
-var baseASCIIidentifierStartChars = "\\x24\\x40\\x41-\\x5a\\x5f\\x61-\\x7a";
-
-// inside an identifier @ is not allowed but 0-9 are.
-var baseASCIIidentifierChars = "\\x24\\x30-\\x39\\x41-\\x5a\\x5f\\x61-\\x7a";
-
-// Big ugly regular expressions that match characters in the
-// whitespace, identifier, and identifier-start categories. These
-// are only applied when a character is found to actually have a
-// code point above 128.
-var nonASCIIidentifierStartChars = "\\xaa\\xb5\\xba\\xc0-\\xd6\\xd8-\\xf6\\xf8-\\u02c1\\u02c6-\\u02d1\\u02e0-\\u02e4\\u02ec\\u02ee\\u0370-\\u0374\\u0376\\u0377\\u037a-\\u037d\\u0386\\u0388-\\u038a\\u038c\\u038e-\\u03a1\\u03a3-\\u03f5\\u03f7-\\u0481\\u048a-\\u0527\\u0531-\\u0556\\u0559\\u0561-\\u0587\\u05d0-\\u05ea\\u05f0-\\u05f2\\u0620-\\u064a\\u066e\\u066f\\u0671-\\u06d3\\u06d5\\u06e5\\u06e6\\u06ee\\u06ef\\u06fa-\\u06fc\\u06ff\\u0710\\u0712-\\u072f\\u074d-\\u07a5\\u07b1\\u07ca-\\u07ea\\u07f4\\u07f5\\u07fa\\u0800-\\u0815\\u081a\\u0824\\u0828\\u0840-\\u0858\\u08a0\\u08a2-\\u08ac\\u0904-\\u0939\\u093d\\u0950\\u0958-\\u0961\\u0971-\\u0977\\u0979-\\u097f\\u0985-\\u098c\\u098f\\u0990\\u0993-\\u09a8\\u09aa-\\u09b0\\u09b2\\u09b6-\\u09b9\\u09bd\\u09ce\\u09dc\\u09dd\\u09df-\\u09e1\\u09f0\\u09f1\\u0a05-\\u0a0a\\u0a0f\\u0a10\\u0a13-\\u0a28\\u0a2a-\\u0a30\\u0a32\\u0a33\\u0a35\\u0a36\\u0a38\\u0a39\\u0a59-\\u0a5c\\u0a5e\\u0a72-\\u0a74\\u0a85-\\u0a8d\\u0a8f-\\u0a91\\u0a93-\\u0aa8\\u0aaa-\\u0ab0\\u0ab2\\u0ab3\\u0ab5-\\u0ab9\\u0abd\\u0ad0\\u0ae0\\u0ae1\\u0b05-\\u0b0c\\u0b0f\\u0b10\\u0b13-\\u0b28\\u0b2a-\\u0b30\\u0b32\\u0b33\\u0b35-\\u0b39\\u0b3d\\u0b5c\\u0b5d\\u0b5f-\\u0b61\\u0b71\\u0b83\\u0b85-\\u0b8a\\u0b8e-\\u0b90\\u0b92-\\u0b95\\u0b99\\u0b9a\\u0b9c\\u0b9e\\u0b9f\\u0ba3\\u0ba4\\u0ba8-\\u0baa\\u0bae-\\u0bb9\\u0bd0\\u0c05-\\u0c0c\\u0c0e-\\u0c10\\u0c12-\\u0c28\\u0c2a-\\u0c33\\u0c35-\\u0c39\\u0c3d\\u0c58\\u0c59\\u0c60\\u0c61\\u0c85-\\u0c8c\\u0c8e-\\u0c90\\u0c92-\\u0ca8\\u0caa-\\u0cb3\\u0cb5-\\u0cb9\\u0cbd\\u0cde\\u0ce0\\u0ce1\\u0cf1\\u0cf2\\u0d05-\\u0d0c\\u0d0e-\\u0d10\\u0d12-\\u0d3a\\u0d3d\\u0d4e\\u0d60\\u0d61\\u0d7a-\\u0d7f\\u0d85-\\u0d96\\u0d9a-\\u0db1\\u0db3-\\u0dbb\\u0dbd\\u0dc0-\\u0dc6\\u0e01-\\u0e30\\u0e32\\u0e33\\u0e40-\\u0e46\\u0e81\\u0e82\\u0e84\\u0e87\\u0e88\\u0e8a\\u0e8d\\u0e94-\\u0e97\\u0e99-\\u0e9f\\u0ea1-\\u0ea3\\u0ea5\\u0ea7\\u0eaa\\u0eab\\u0ead-\\u0eb0\\u0eb2\\u0eb3\\u0ebd\\u0ec0-\\u0ec4\\u0ec6\\u0edc-\\u0edf\\u0f00\\u0f40-\\u0f47\\u0f49-\\u0f6c\\u0f88-\\u0f8c\\u1000-\\u102a\\u103f\\u1050-\\u1055\\u105a-\\u105d\\u1061\\u1065\\u1066\\u106e-\\u1070\\u1075-\\u1081\\u108e\\u10a0-\\u10c5\\u10c7\\u10cd\\u10d0-\\u10fa\\u10fc-\\u1248\\u124a-\\u124d\\u1250-\\u1256\\u1258\\u125a-\\u125d\\u1260-\\u1288\\u128a-\\u128d\\u1290-\\u12b0\\u12b2-\\u12b5\\u12b8-\\u12be\\u12c0\\u12c2-\\u12c5\\u12c8-\\u12d6\\u12d8-\\u1310\\u1312-\\u1315\\u1318-\\u135a\\u1380-\\u138f\\u13a0-\\u13f4\\u1401-\\u166c\\u166f-\\u167f\\u1681-\\u169a\\u16a0-\\u16ea\\u16ee-\\u16f0\\u1700-\\u170c\\u170e-\\u1711\\u1720-\\u1731\\u1740-\\u1751\\u1760-\\u176c\\u176e-\\u1770\\u1780-\\u17b3\\u17d7\\u17dc\\u1820-\\u1877\\u1880-\\u18a8\\u18aa\\u18b0-\\u18f5\\u1900-\\u191c\\u1950-\\u196d\\u1970-\\u1974\\u1980-\\u19ab\\u19c1-\\u19c7\\u1a00-\\u1a16\\u1a20-\\u1a54\\u1aa7\\u1b05-\\u1b33\\u1b45-\\u1b4b\\u1b83-\\u1ba0\\u1bae\\u1baf\\u1bba-\\u1be5\\u1c00-\\u1c23\\u1c4d-\\u1c4f\\u1c5a-\\u1c7d\\u1ce9-\\u1cec\\u1cee-\\u1cf1\\u1cf5\\u1cf6\\u1d00-\\u1dbf\\u1e00-\\u1f15\\u1f18-\\u1f1d\\u1f20-\\u1f45\\u1f48-\\u1f4d\\u1f50-\\u1f57\\u1f59\\u1f5b\\u1f5d\\u1f5f-\\u1f7d\\u1f80-\\u1fb4\\u1fb6-\\u1fbc\\u1fbe\\u1fc2-\\u1fc4\\u1fc6-\\u1fcc\\u1fd0-\\u1fd3\\u1fd6-\\u1fdb\\u1fe0-\\u1fec\\u1ff2-\\u1ff4\\u1ff6-\\u1ffc\\u2071\\u207f\\u2090-\\u209c\\u2102\\u2107\\u210a-\\u2113\\u2115\\u2119-\\u211d\\u2124\\u2126\\u2128\\u212a-\\u212d\\u212f-\\u2139\\u213c-\\u213f\\u2145-\\u2149\\u214e\\u2160-\\u2188\\u2c00-\\u2c2e\\u2c30-\\u2c5e\\u2c60-\\u2ce4\\u2ceb-\\u2cee\\u2cf2\\u2cf3\\u2d00-\\u2d25\\u2d27\\u2d2d\\u2d30-\\u2d67\\u2d6f\\u2d80-\\u2d96\\u2da0-\\u2da6\\u2da8-\\u2dae\\u2db0-\\u2db6\\u2db8-\\u2dbe\\u2dc0-\\u2dc6\\u2dc8-\\u2dce\\u2dd0-\\u2dd6\\u2dd8-\\u2dde\\u2e2f\\u3005-\\u3007\\u3021-\\u3029\\u3031-\\u3035\\u3038-\\u303c\\u3041-\\u3096\\u309d-\\u309f\\u30a1-\\u30fa\\u30fc-\\u30ff\\u3105-\\u312d\\u3131-\\u318e\\u31a0-\\u31ba\\u31f0-\\u31ff\\u3400-\\u4db5\\u4e00-\\u9fcc\\ua000-\\ua48c\\ua4d0-\\ua4fd\\ua500-\\ua60c\\ua610-\\ua61f\\ua62a\\ua62b\\ua640-\\ua66e\\ua67f-\\ua697\\ua6a0-\\ua6ef\\ua717-\\ua71f\\ua722-\\ua788\\ua78b-\\ua78e\\ua790-\\ua793\\ua7a0-\\ua7aa\\ua7f8-\\ua801\\ua803-\\ua805\\ua807-\\ua80a\\ua80c-\\ua822\\ua840-\\ua873\\ua882-\\ua8b3\\ua8f2-\\ua8f7\\ua8fb\\ua90a-\\ua925\\ua930-\\ua946\\ua960-\\ua97c\\ua984-\\ua9b2\\ua9cf\\uaa00-\\uaa28\\uaa40-\\uaa42\\uaa44-\\uaa4b\\uaa60-\\uaa76\\uaa7a\\uaa80-\\uaaaf\\uaab1\\uaab5\\uaab6\\uaab9-\\uaabd\\uaac0\\uaac2\\uaadb-\\uaadd\\uaae0-\\uaaea\\uaaf2-\\uaaf4\\uab01-\\uab06\\uab09-\\uab0e\\uab11-\\uab16\\uab20-\\uab26\\uab28-\\uab2e\\uabc0-\\uabe2\\uac00-\\ud7a3\\ud7b0-\\ud7c6\\ud7cb-\\ud7fb\\uf900-\\ufa6d\\ufa70-\\ufad9\\ufb00-\\ufb06\\ufb13-\\ufb17\\ufb1d\\ufb1f-\\ufb28\\ufb2a-\\ufb36\\ufb38-\\ufb3c\\ufb3e\\ufb40\\ufb41\\ufb43\\ufb44\\ufb46-\\ufbb1\\ufbd3-\\ufd3d\\ufd50-\\ufd8f\\ufd92-\\ufdc7\\ufdf0-\\ufdfb\\ufe70-\\ufe74\\ufe76-\\ufefc\\uff21-\\uff3a\\uff41-\\uff5a\\uff66-\\uffbe\\uffc2-\\uffc7\\uffca-\\uffcf\\uffd2-\\uffd7\\uffda-\\uffdc";
-var nonASCIIidentifierChars = "\\u0300-\\u036f\\u0483-\\u0487\\u0591-\\u05bd\\u05bf\\u05c1\\u05c2\\u05c4\\u05c5\\u05c7\\u0610-\\u061a\\u0620-\\u0649\\u0672-\\u06d3\\u06e7-\\u06e8\\u06fb-\\u06fc\\u0730-\\u074a\\u0800-\\u0814\\u081b-\\u0823\\u0825-\\u0827\\u0829-\\u082d\\u0840-\\u0857\\u08e4-\\u08fe\\u0900-\\u0903\\u093a-\\u093c\\u093e-\\u094f\\u0951-\\u0957\\u0962-\\u0963\\u0966-\\u096f\\u0981-\\u0983\\u09bc\\u09be-\\u09c4\\u09c7\\u09c8\\u09d7\\u09df-\\u09e0\\u0a01-\\u0a03\\u0a3c\\u0a3e-\\u0a42\\u0a47\\u0a48\\u0a4b-\\u0a4d\\u0a51\\u0a66-\\u0a71\\u0a75\\u0a81-\\u0a83\\u0abc\\u0abe-\\u0ac5\\u0ac7-\\u0ac9\\u0acb-\\u0acd\\u0ae2-\\u0ae3\\u0ae6-\\u0aef\\u0b01-\\u0b03\\u0b3c\\u0b3e-\\u0b44\\u0b47\\u0b48\\u0b4b-\\u0b4d\\u0b56\\u0b57\\u0b5f-\\u0b60\\u0b66-\\u0b6f\\u0b82\\u0bbe-\\u0bc2\\u0bc6-\\u0bc8\\u0bca-\\u0bcd\\u0bd7\\u0be6-\\u0bef\\u0c01-\\u0c03\\u0c46-\\u0c48\\u0c4a-\\u0c4d\\u0c55\\u0c56\\u0c62-\\u0c63\\u0c66-\\u0c6f\\u0c82\\u0c83\\u0cbc\\u0cbe-\\u0cc4\\u0cc6-\\u0cc8\\u0cca-\\u0ccd\\u0cd5\\u0cd6\\u0ce2-\\u0ce3\\u0ce6-\\u0cef\\u0d02\\u0d03\\u0d46-\\u0d48\\u0d57\\u0d62-\\u0d63\\u0d66-\\u0d6f\\u0d82\\u0d83\\u0dca\\u0dcf-\\u0dd4\\u0dd6\\u0dd8-\\u0ddf\\u0df2\\u0df3\\u0e34-\\u0e3a\\u0e40-\\u0e45\\u0e50-\\u0e59\\u0eb4-\\u0eb9\\u0ec8-\\u0ecd\\u0ed0-\\u0ed9\\u0f18\\u0f19\\u0f20-\\u0f29\\u0f35\\u0f37\\u0f39\\u0f41-\\u0f47\\u0f71-\\u0f84\\u0f86-\\u0f87\\u0f8d-\\u0f97\\u0f99-\\u0fbc\\u0fc6\\u1000-\\u1029\\u1040-\\u1049\\u1067-\\u106d\\u1071-\\u1074\\u1082-\\u108d\\u108f-\\u109d\\u135d-\\u135f\\u170e-\\u1710\\u1720-\\u1730\\u1740-\\u1750\\u1772\\u1773\\u1780-\\u17b2\\u17dd\\u17e0-\\u17e9\\u180b-\\u180d\\u1810-\\u1819\\u1920-\\u192b\\u1930-\\u193b\\u1951-\\u196d\\u19b0-\\u19c0\\u19c8-\\u19c9\\u19d0-\\u19d9\\u1a00-\\u1a15\\u1a20-\\u1a53\\u1a60-\\u1a7c\\u1a7f-\\u1a89\\u1a90-\\u1a99\\u1b46-\\u1b4b\\u1b50-\\u1b59\\u1b6b-\\u1b73\\u1bb0-\\u1bb9\\u1be6-\\u1bf3\\u1c00-\\u1c22\\u1c40-\\u1c49\\u1c5b-\\u1c7d\\u1cd0-\\u1cd2\\u1d00-\\u1dbe\\u1e01-\\u1f15\\u200c\\u200d\\u203f\\u2040\\u2054\\u20d0-\\u20dc\\u20e1\\u20e5-\\u20f0\\u2d81-\\u2d96\\u2de0-\\u2dff\\u3021-\\u3028\\u3099\\u309a\\ua640-\\ua66d\\ua674-\\ua67d\\ua69f\\ua6f0-\\ua6f1\\ua7f8-\\ua800\\ua806\\ua80b\\ua823-\\ua827\\ua880-\\ua881\\ua8b4-\\ua8c4\\ua8d0-\\ua8d9\\ua8f3-\\ua8f7\\ua900-\\ua909\\ua926-\\ua92d\\ua930-\\ua945\\ua980-\\ua983\\ua9b3-\\ua9c0\\uaa00-\\uaa27\\uaa40-\\uaa41\\uaa4c-\\uaa4d\\uaa50-\\uaa59\\uaa7b\\uaae0-\\uaae9\\uaaf2-\\uaaf3\\uabc0-\\uabe1\\uabec\\uabed\\uabf0-\\uabf9\\ufb20-\\ufb28\\ufe00-\\ufe0f\\ufe20-\\ufe26\\ufe33\\ufe34\\ufe4d-\\ufe4f\\uff10-\\uff19\\uff3f";
-//var nonASCIIidentifierStart = new RegExp("[" + nonASCIIidentifierStartChars + "]");
-//var nonASCIIidentifier = new RegExp("[" + nonASCIIidentifierStartChars + nonASCIIidentifierChars + "]");
-
-var identifierStart = "(?:\\\\u[0-9a-fA-F]{4}|[" + baseASCIIidentifierStartChars + nonASCIIidentifierStartChars + "])";
-var identifierChars = "(?:\\\\u[0-9a-fA-F]{4}|[" + baseASCIIidentifierChars + nonASCIIidentifierStartChars + nonASCIIidentifierChars + "])*";
-
-exports.identifier = new RegExp(identifierStart + identifierChars, 'g');
-exports.identifierStart = new RegExp(identifierStart);
-exports.identifierMatch = new RegExp("(?:\\\\u[0-9a-fA-F]{4}|[" + baseASCIIidentifierChars + nonASCIIidentifierStartChars + nonASCIIidentifierChars + "])+");
-
-var nonASCIIwhitespace = /[\u1680\u180e\u2000-\u200a\u202f\u205f\u3000\ufeff]/; // jshint ignore:line
-
-// Whether a single character denotes a newline.
-
-exports.newline = /[\n\r\u2028\u2029]/;
-
-// Matches a whole line break (where CRLF is considered a single
-// line break). Used to count lines.
-
-// in javascript, these two differ
-// in python they are the same, different methods are called on them
-exports.lineBreak = new RegExp('\r\n|' + exports.newline.source);
-exports.allLineBreaks = new RegExp(exports.lineBreak.source, 'g');
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var BaseOptions = __webpack_require__(6).Options;
-
-var validPositionValues = ['before-newline', 'after-newline', 'preserve-newline'];
-
-function Options(options) {
-  BaseOptions.call(this, options, 'js');
-
-  // compatibility, re
-  var raw_brace_style = this.raw_options.brace_style || null;
-  if (raw_brace_style === "expand-strict") { //graceful handling of deprecated option
-    this.raw_options.brace_style = "expand";
-  } else if (raw_brace_style === "collapse-preserve-inline") { //graceful handling of deprecated option
-    this.raw_options.brace_style = "collapse,preserve-inline";
-  } else if (this.raw_options.braces_on_own_line !== undefined) { //graceful handling of deprecated option
-    this.raw_options.brace_style = this.raw_options.braces_on_own_line ? "expand" : "collapse";
-    // } else if (!raw_brace_style) { //Nothing exists to set it
-    //   raw_brace_style = "collapse";
-  }
-
-  //preserve-inline in delimited string will trigger brace_preserve_inline, everything
-  //else is considered a brace_style and the last one only will have an effect
-
-  var brace_style_split = this._get_selection_list('brace_style', ['collapse', 'expand', 'end-expand', 'none', 'preserve-inline']);
-
-  this.brace_preserve_inline = false; //Defaults in case one or other was not specified in meta-option
-  this.brace_style = "collapse";
-
-  for (var bs = 0; bs < brace_style_split.length; bs++) {
-    if (brace_style_split[bs] === "preserve-inline") {
-      this.brace_preserve_inline = true;
-    } else {
-      this.brace_style = brace_style_split[bs];
-    }
-  }
-
-  this.unindent_chained_methods = this._get_boolean('unindent_chained_methods');
-  this.break_chained_methods = this._get_boolean('break_chained_methods');
-  this.space_in_paren = this._get_boolean('space_in_paren');
-  this.space_in_empty_paren = this._get_boolean('space_in_empty_paren');
-  this.jslint_happy = this._get_boolean('jslint_happy');
-  this.space_after_anon_function = this._get_boolean('space_after_anon_function');
-  this.space_after_named_function = this._get_boolean('space_after_named_function');
-  this.keep_array_indentation = this._get_boolean('keep_array_indentation');
-  this.space_before_conditional = this._get_boolean('space_before_conditional', true);
-  this.unescape_strings = this._get_boolean('unescape_strings');
-  this.e4x = this._get_boolean('e4x');
-  this.comma_first = this._get_boolean('comma_first');
-  this.operator_position = this._get_selection('operator_position', validPositionValues);
-
-  // For testing of beautify preserve:start directive
-  this.test_output_raw = this._get_boolean('test_output_raw');
-
-  // force this._options.space_after_anon_function to true if this._options.jslint_happy
-  if (this.jslint_happy) {
-    this.space_after_anon_function = true;
-  }
-
-}
-Options.prototype = new BaseOptions();
-
-
-
-module.exports.Options = Options;
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Options(options, merge_child_field) {
-  this.raw_options = _mergeOpts(options, merge_child_field);
-
-  // Support passing the source text back with no change
-  this.disabled = this._get_boolean('disabled');
-
-  this.eol = this._get_characters('eol', 'auto');
-  this.end_with_newline = this._get_boolean('end_with_newline');
-  this.indent_size = this._get_number('indent_size', 4);
-  this.indent_char = this._get_characters('indent_char', ' ');
-  this.indent_level = this._get_number('indent_level');
-
-  this.preserve_newlines = this._get_boolean('preserve_newlines', true);
-  this.max_preserve_newlines = this._get_number('max_preserve_newlines', 32786);
-  if (!this.preserve_newlines) {
-    this.max_preserve_newlines = 0;
-  }
-
-  this.indent_with_tabs = this._get_boolean('indent_with_tabs', this.indent_char === '\t');
-  if (this.indent_with_tabs) {
-    this.indent_char = '\t';
-
-    // indent_size behavior changed after 1.8.6
-    // It used to be that indent_size would be
-    // set to 1 for indent_with_tabs. That is no longer needed and
-    // actually doesn't make sense - why not use spaces? Further,
-    // that might produce unexpected behavior - tabs being used
-    // for single-column alignment. So, when indent_with_tabs is true
-    // and indent_size is 1, reset indent_size to 4.
-    if (this.indent_size === 1) {
-      this.indent_size = 4;
-    }
-  }
-
-  // Backwards compat with 1.3.x
-  this.wrap_line_length = this._get_number('wrap_line_length', this._get_number('max_char'));
-
-  this.indent_empty_lines = this._get_boolean('indent_empty_lines');
-
-  // valid templating languages ['django', 'erb', 'handlebars', 'php']
-  // For now, 'auto' = all off for javascript, all on for html (and inline javascript).
-  // other values ignored
-  this.templating = this._get_selection_list('templating', ['auto', 'none', 'django', 'erb', 'handlebars', 'php'], ['auto']);
-}
-
-Options.prototype._get_array = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || [];
-  if (typeof option_value === 'object') {
-    if (option_value !== null && typeof option_value.concat === 'function') {
-      result = option_value.concat();
-    }
-  } else if (typeof option_value === 'string') {
-    result = option_value.split(/[^a-zA-Z0-9_\/\-]+/);
-  }
-  return result;
-};
-
-Options.prototype._get_boolean = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = option_value === undefined ? !!default_value : !!option_value;
-  return result;
-};
-
-Options.prototype._get_characters = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || '';
-  if (typeof option_value === 'string') {
-    result = option_value.replace(/\\r/, '\r').replace(/\\n/, '\n').replace(/\\t/, '\t');
-  }
-  return result;
-};
-
-Options.prototype._get_number = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  default_value = parseInt(default_value, 10);
-  if (isNaN(default_value)) {
-    default_value = 0;
-  }
-  var result = parseInt(option_value, 10);
-  if (isNaN(result)) {
-    result = default_value;
-  }
-  return result;
-};
-
-Options.prototype._get_selection = function(name, selection_list, default_value) {
-  var result = this._get_selection_list(name, selection_list, default_value);
-  if (result.length !== 1) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can only be one of the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result[0];
-};
-
-
-Options.prototype._get_selection_list = function(name, selection_list, default_value) {
-  if (!selection_list || selection_list.length === 0) {
-    throw new Error("Selection list cannot be empty.");
-  }
-
-  default_value = default_value || [selection_list[0]];
-  if (!this._is_valid_selection(default_value, selection_list)) {
-    throw new Error("Invalid Default Value!");
-  }
-
-  var result = this._get_array(name, default_value);
-  if (!this._is_valid_selection(result, selection_list)) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can contain only the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result;
-};
-
-Options.prototype._is_valid_selection = function(result, selection_list) {
-  return result.length && selection_list.length &&
-    !result.some(function(item) { return selection_list.indexOf(item) === -1; });
-};
-
-
-// merges child options up with the parent options object
-// Example: obj = {a: 1, b: {a: 2}}
-//          mergeOpts(obj, 'b')
-//
-//          Returns: {a: 2}
-function _mergeOpts(allOptions, childFieldName) {
-  var finalOpts = {};
-  allOptions = _normalizeOpts(allOptions);
-  var name;
-
-  for (name in allOptions) {
-    if (name !== childFieldName) {
-      finalOpts[name] = allOptions[name];
-    }
-  }
-
-  //merge in the per type settings for the childFieldName
-  if (childFieldName && allOptions[childFieldName]) {
-    for (name in allOptions[childFieldName]) {
-      finalOpts[name] = allOptions[childFieldName][name];
-    }
-  }
-  return finalOpts;
-}
-
-function _normalizeOpts(options) {
-  var convertedOpts = {};
-  var key;
-
-  for (key in options) {
-    var newKey = key.replace(/-/g, "_");
-    convertedOpts[newKey] = options[key];
-  }
-  return convertedOpts;
-}
-
-module.exports.Options = Options;
-module.exports.normalizeOpts = _normalizeOpts;
-module.exports.mergeOpts = _mergeOpts;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var InputScanner = __webpack_require__(8).InputScanner;
-var BaseTokenizer = __webpack_require__(9).Tokenizer;
-var BASETOKEN = __webpack_require__(9).TOKEN;
-var Directives = __webpack_require__(13).Directives;
-var acorn = __webpack_require__(4);
-var Pattern = __webpack_require__(12).Pattern;
-var TemplatablePattern = __webpack_require__(14).TemplatablePattern;
-
-
-function in_array(what, arr) {
-  return arr.indexOf(what) !== -1;
-}
-
-
-var TOKEN = {
-  START_EXPR: 'TK_START_EXPR',
-  END_EXPR: 'TK_END_EXPR',
-  START_BLOCK: 'TK_START_BLOCK',
-  END_BLOCK: 'TK_END_BLOCK',
-  WORD: 'TK_WORD',
-  RESERVED: 'TK_RESERVED',
-  SEMICOLON: 'TK_SEMICOLON',
-  STRING: 'TK_STRING',
-  EQUALS: 'TK_EQUALS',
-  OPERATOR: 'TK_OPERATOR',
-  COMMA: 'TK_COMMA',
-  BLOCK_COMMENT: 'TK_BLOCK_COMMENT',
-  COMMENT: 'TK_COMMENT',
-  DOT: 'TK_DOT',
-  UNKNOWN: 'TK_UNKNOWN',
-  START: BASETOKEN.START,
-  RAW: BASETOKEN.RAW,
-  EOF: BASETOKEN.EOF
-};
-
-
-var directives_core = new Directives(/\/\*/, /\*\//);
-
-var number_pattern = /0[xX][0123456789abcdefABCDEF]*|0[oO][01234567]*|0[bB][01]*|\d+n|(?:\.\d+|\d+\.?\d*)(?:[eE][+-]?\d+)?/;
-
-var digit = /[0-9]/;
-
-// Dot "." must be distinguished from "..." and decimal
-var dot_pattern = /[^\d\.]/;
-
-var positionable_operators = (
-  ">>> === !== " +
-  "<< && >= ** != == <= >> || " +
-  "< / - + > : & % ? ^ | *").split(' ');
-
-// IMPORTANT: this must be sorted longest to shortest or tokenizing many not work.
-// Also, you must update possitionable operators separately from punct
-var punct =
-  ">>>= " +
-  "... >>= <<= === >>> !== **= " +
-  "=> ^= :: /= << <= == && -= >= >> != -- += ** || ++ %= &= *= |= " +
-  "= ! ? > < : / ^ - + * & % ~ |";
-
-punct = punct.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&");
-punct = punct.replace(/ /g, '|');
-
-var punct_pattern = new RegExp(punct);
-
-// words which should always start on new line.
-var line_starters = 'continue,try,throw,return,var,let,const,if,switch,case,default,for,while,break,function,import,export'.split(',');
-var reserved_words = line_starters.concat(['do', 'in', 'of', 'else', 'get', 'set', 'new', 'catch', 'finally', 'typeof', 'yield', 'async', 'await', 'from', 'as']);
-var reserved_word_pattern = new RegExp('^(?:' + reserved_words.join('|') + ')$');
-
-// var template_pattern = /(?:(?:<\?php|<\?=)[\s\S]*?\?>)|(?:<%[\s\S]*?%>)/g;
-
-var in_html_comment;
-
-var Tokenizer = function(input_string, options) {
-  BaseTokenizer.call(this, input_string, options);
-
-  this._patterns.whitespace = this._patterns.whitespace.matching(
-    /\u00A0\u1680\u180e\u2000-\u200a\u202f\u205f\u3000\ufeff/.source,
-    /\u2028\u2029/.source);
-
-  var pattern_reader = new Pattern(this._input);
-  var templatable = new TemplatablePattern(this._input)
-    .read_options(this._options);
-
-  this.__patterns = {
-    template: templatable,
-    identifier: templatable.starting_with(acorn.identifier).matching(acorn.identifierMatch),
-    number: pattern_reader.matching(number_pattern),
-    punct: pattern_reader.matching(punct_pattern),
-    // comment ends just before nearest linefeed or end of file
-    comment: pattern_reader.starting_with(/\/\//).until(/[\n\r\u2028\u2029]/),
-    //  /* ... */ comment ends with nearest */ or end of file
-    block_comment: pattern_reader.starting_with(/\/\*/).until_after(/\*\//),
-    html_comment_start: pattern_reader.matching(/<!--/),
-    html_comment_end: pattern_reader.matching(/-->/),
-    include: pattern_reader.starting_with(/#include/).until_after(acorn.lineBreak),
-    shebang: pattern_reader.starting_with(/#!/).until_after(acorn.lineBreak),
-    xml: pattern_reader.matching(/[\s\S]*?<(\/?)([-a-zA-Z:0-9_.]+|{[\s\S]+?}|!\[CDATA\[[\s\S]*?\]\])(\s+{[\s\S]+?}|\s+[-a-zA-Z:0-9_.]+|\s+[-a-zA-Z:0-9_.]+\s*=\s*('[^']*'|"[^"]*"|{[\s\S]+?}))*\s*(\/?)\s*>/),
-    single_quote: templatable.until(/['\\\n\r\u2028\u2029]/),
-    double_quote: templatable.until(/["\\\n\r\u2028\u2029]/),
-    template_text: templatable.until(/[`\\$]/),
-    template_expression: templatable.until(/[`}\\]/)
-  };
-
-};
-Tokenizer.prototype = new BaseTokenizer();
-
-Tokenizer.prototype._is_comment = function(current_token) {
-  return current_token.type === TOKEN.COMMENT || current_token.type === TOKEN.BLOCK_COMMENT || current_token.type === TOKEN.UNKNOWN;
-};
-
-Tokenizer.prototype._is_opening = function(current_token) {
-  return current_token.type === TOKEN.START_BLOCK || current_token.type === TOKEN.START_EXPR;
-};
-
-Tokenizer.prototype._is_closing = function(current_token, open_token) {
-  return (current_token.type === TOKEN.END_BLOCK || current_token.type === TOKEN.END_EXPR) &&
-    (open_token && (
-      (current_token.text === ']' && open_token.text === '[') ||
-      (current_token.text === ')' && open_token.text === '(') ||
-      (current_token.text === '}' && open_token.text === '{')));
-};
-
-Tokenizer.prototype._reset = function() {
-  in_html_comment = false;
-};
-
-Tokenizer.prototype._get_next_token = function(previous_token, open_token) { // jshint unused:false
-  var token = null;
-  this._readWhitespace();
-  var c = this._input.peek();
-
-  if (c === null) {
-    return this._create_token(TOKEN.EOF, '');
-  }
-
-  token = token || this._read_string(c);
-  token = token || this._read_word(previous_token);
-  token = token || this._read_singles(c);
-  token = token || this._read_comment(c);
-  token = token || this._read_regexp(c, previous_token);
-  token = token || this._read_xml(c, previous_token);
-  token = token || this._read_non_javascript(c);
-  token = token || this._read_punctuation();
-  token = token || this._create_token(TOKEN.UNKNOWN, this._input.next());
-
-  return token;
-};
-
-Tokenizer.prototype._read_word = function(previous_token) {
-  var resulting_string;
-  resulting_string = this.__patterns.identifier.read();
-  if (resulting_string !== '') {
-    resulting_string = resulting_string.replace(acorn.allLineBreaks, '\n');
-    if (!(previous_token.type === TOKEN.DOT ||
-        (previous_token.type === TOKEN.RESERVED && (previous_token.text === 'set' || previous_token.text === 'get'))) &&
-      reserved_word_pattern.test(resulting_string)) {
-      if (resulting_string === 'in' || resulting_string === 'of') { // hack for 'in' and 'of' operators
-        return this._create_token(TOKEN.OPERATOR, resulting_string);
-      }
-      return this._create_token(TOKEN.RESERVED, resulting_string);
-    }
-    return this._create_token(TOKEN.WORD, resulting_string);
-  }
-
-  resulting_string = this.__patterns.number.read();
-  if (resulting_string !== '') {
-    return this._create_token(TOKEN.WORD, resulting_string);
-  }
-};
-
-Tokenizer.prototype._read_singles = function(c) {
-  var token = null;
-  if (c === '(' || c === '[') {
-    token = this._create_token(TOKEN.START_EXPR, c);
-  } else if (c === ')' || c === ']') {
-    token = this._create_token(TOKEN.END_EXPR, c);
-  } else if (c === '{') {
-    token = this._create_token(TOKEN.START_BLOCK, c);
-  } else if (c === '}') {
-    token = this._create_token(TOKEN.END_BLOCK, c);
-  } else if (c === ';') {
-    token = this._create_token(TOKEN.SEMICOLON, c);
-  } else if (c === '.' && dot_pattern.test(this._input.peek(1))) {
-    token = this._create_token(TOKEN.DOT, c);
-  } else if (c === ',') {
-    token = this._create_token(TOKEN.COMMA, c);
-  }
-
-  if (token) {
-    this._input.next();
-  }
-  return token;
-};
-
-Tokenizer.prototype._read_punctuation = function() {
-  var resulting_string = this.__patterns.punct.read();
-
-  if (resulting_string !== '') {
-    if (resulting_string === '=') {
-      return this._create_token(TOKEN.EQUALS, resulting_string);
-    } else {
-      return this._create_token(TOKEN.OPERATOR, resulting_string);
-    }
-  }
-};
-
-Tokenizer.prototype._read_non_javascript = function(c) {
-  var resulting_string = '';
-
-  if (c === '#') {
-    if (this._is_first_token()) {
-      resulting_string = this.__patterns.shebang.read();
-
-      if (resulting_string) {
-        return this._create_token(TOKEN.UNKNOWN, resulting_string.trim() + '\n');
-      }
-    }
-
-    // handles extendscript #includes
-    resulting_string = this.__patterns.include.read();
-
-    if (resulting_string) {
-      return this._create_token(TOKEN.UNKNOWN, resulting_string.trim() + '\n');
-    }
-
-    c = this._input.next();
-
-    // Spidermonkey-specific sharp variables for circular references. Considered obsolete.
-    var sharp = '#';
-    if (this._input.hasNext() && this._input.testChar(digit)) {
-      do {
-        c = this._input.next();
-        sharp += c;
-      } while (this._input.hasNext() && c !== '#' && c !== '=');
-      if (c === '#') {
-        //
-      } else if (this._input.peek() === '[' && this._input.peek(1) === ']') {
-        sharp += '[]';
-        this._input.next();
-        this._input.next();
-      } else if (this._input.peek() === '{' && this._input.peek(1) === '}') {
-        sharp += '{}';
-        this._input.next();
-        this._input.next();
-      }
-      return this._create_token(TOKEN.WORD, sharp);
-    }
-
-    this._input.back();
-
-  } else if (c === '<' && this._is_first_token()) {
-    resulting_string = this.__patterns.html_comment_start.read();
-    if (resulting_string) {
-      while (this._input.hasNext() && !this._input.testChar(acorn.newline)) {
-        resulting_string += this._input.next();
-      }
-      in_html_comment = true;
-      return this._create_token(TOKEN.COMMENT, resulting_string);
-    }
-  } else if (in_html_comment && c === '-') {
-    resulting_string = this.__patterns.html_comment_end.read();
-    if (resulting_string) {
-      in_html_comment = false;
-      return this._create_token(TOKEN.COMMENT, resulting_string);
-    }
-  }
-
-  return null;
-};
-
-Tokenizer.prototype._read_comment = function(c) {
-  var token = null;
-  if (c === '/') {
-    var comment = '';
-    if (this._input.peek(1) === '*') {
-      // peek for comment /* ... */
-      comment = this.__patterns.block_comment.read();
-      var directives = directives_core.get_directives(comment);
-      if (directives && directives.ignore === 'start') {
-        comment += directives_core.readIgnored(this._input);
-      }
-      comment = comment.replace(acorn.allLineBreaks, '\n');
-      token = this._create_token(TOKEN.BLOCK_COMMENT, comment);
-      token.directives = directives;
-    } else if (this._input.peek(1) === '/') {
-      // peek for comment // ...
-      comment = this.__patterns.comment.read();
-      token = this._create_token(TOKEN.COMMENT, comment);
-    }
-  }
-  return token;
-};
-
-Tokenizer.prototype._read_string = function(c) {
-  if (c === '`' || c === "'" || c === '"') {
-    var resulting_string = this._input.next();
-    this.has_char_escapes = false;
-
-    if (c === '`') {
-      resulting_string += this._read_string_recursive('`', true, '${');
-    } else {
-      resulting_string += this._read_string_recursive(c);
-    }
-
-    if (this.has_char_escapes && this._options.unescape_strings) {
-      resulting_string = unescape_string(resulting_string);
-    }
-
-    if (this._input.peek() === c) {
-      resulting_string += this._input.next();
-    }
-
-    resulting_string = resulting_string.replace(acorn.allLineBreaks, '\n');
-
-    return this._create_token(TOKEN.STRING, resulting_string);
-  }
-
-  return null;
-};
-
-Tokenizer.prototype._allow_regexp_or_xml = function(previous_token) {
-  // regex and xml can only appear in specific locations during parsing
-  return (previous_token.type === TOKEN.RESERVED && in_array(previous_token.text, ['return', 'case', 'throw', 'else', 'do', 'typeof', 'yield'])) ||
-    (previous_token.type === TOKEN.END_EXPR && previous_token.text === ')' &&
-      previous_token.opened.previous.type === TOKEN.RESERVED && in_array(previous_token.opened.previous.text, ['if', 'while', 'for'])) ||
-    (in_array(previous_token.type, [TOKEN.COMMENT, TOKEN.START_EXPR, TOKEN.START_BLOCK, TOKEN.START,
-      TOKEN.END_BLOCK, TOKEN.OPERATOR, TOKEN.EQUALS, TOKEN.EOF, TOKEN.SEMICOLON, TOKEN.COMMA
-    ]));
-};
-
-Tokenizer.prototype._read_regexp = function(c, previous_token) {
-
-  if (c === '/' && this._allow_regexp_or_xml(previous_token)) {
-    // handle regexp
-    //
-    var resulting_string = this._input.next();
-    var esc = false;
-
-    var in_char_class = false;
-    while (this._input.hasNext() &&
-      ((esc || in_char_class || this._input.peek() !== c) &&
-        !this._input.testChar(acorn.newline))) {
-      resulting_string += this._input.peek();
-      if (!esc) {
-        esc = this._input.peek() === '\\';
-        if (this._input.peek() === '[') {
-          in_char_class = true;
-        } else if (this._input.peek() === ']') {
-          in_char_class = false;
-        }
-      } else {
-        esc = false;
-      }
-      this._input.next();
-    }
-
-    if (this._input.peek() === c) {
-      resulting_string += this._input.next();
-
-      // regexps may have modifiers /regexp/MOD , so fetch those, too
-      // Only [gim] are valid, but if the user puts in garbage, do what we can to take it.
-      resulting_string += this._input.read(acorn.identifier);
-    }
-    return this._create_token(TOKEN.STRING, resulting_string);
-  }
-  return null;
-};
-
-Tokenizer.prototype._read_xml = function(c, previous_token) {
-
-  if (this._options.e4x && c === "<" && this._allow_regexp_or_xml(previous_token)) {
-    var xmlStr = '';
-    var match = this.__patterns.xml.read_match();
-    // handle e4x xml literals
-    //
-    if (match) {
-      // Trim root tag to attempt to
-      var rootTag = match[2].replace(/^{\s+/, '{').replace(/\s+}$/, '}');
-      var isCurlyRoot = rootTag.indexOf('{') === 0;
-      var depth = 0;
-      while (match) {
-        var isEndTag = !!match[1];
-        var tagName = match[2];
-        var isSingletonTag = (!!match[match.length - 1]) || (tagName.slice(0, 8) === "![CDATA[");
-        if (!isSingletonTag &&
-          (tagName === rootTag || (isCurlyRoot && tagName.replace(/^{\s+/, '{').replace(/\s+}$/, '}')))) {
-          if (isEndTag) {
-            --depth;
-          } else {
-            ++depth;
-          }
-        }
-        xmlStr += match[0];
-        if (depth <= 0) {
-          break;
-        }
-        match = this.__patterns.xml.read_match();
-      }
-      // if we didn't close correctly, keep unformatted.
-      if (!match) {
-        xmlStr += this._input.match(/[\s\S]*/g)[0];
-      }
-      xmlStr = xmlStr.replace(acorn.allLineBreaks, '\n');
-      return this._create_token(TOKEN.STRING, xmlStr);
-    }
-  }
-
-  return null;
-};
-
-function unescape_string(s) {
-  // You think that a regex would work for this
-  // return s.replace(/\\x([0-9a-f]{2})/gi, function(match, val) {
-  //         return String.fromCharCode(parseInt(val, 16));
-  //     })
-  // However, dealing with '\xff', '\\xff', '\\\xff' makes this more fun.
-  var out = '',
-    escaped = 0;
-
-  var input_scan = new InputScanner(s);
-  var matched = null;
-
-  while (input_scan.hasNext()) {
-    // Keep any whitespace, non-slash characters
-    // also keep slash pairs.
-    matched = input_scan.match(/([\s]|[^\\]|\\\\)+/g);
-
-    if (matched) {
-      out += matched[0];
-    }
-
-    if (input_scan.peek() === '\\') {
-      input_scan.next();
-      if (input_scan.peek() === 'x') {
-        matched = input_scan.match(/x([0-9A-Fa-f]{2})/g);
-      } else if (input_scan.peek() === 'u') {
-        matched = input_scan.match(/u([0-9A-Fa-f]{4})/g);
-      } else {
-        out += '\\';
-        if (input_scan.hasNext()) {
-          out += input_scan.next();
-        }
-        continue;
-      }
-
-      // If there's some error decoding, return the original string
-      if (!matched) {
-        return s;
-      }
-
-      escaped = parseInt(matched[1], 16);
-
-      if (escaped > 0x7e && escaped <= 0xff && matched[0].indexOf('x') === 0) {
-        // we bail out on \x7f..\xff,
-        // leaving whole string escaped,
-        // as it's probably completely binary
-        return s;
-      } else if (escaped >= 0x00 && escaped < 0x20) {
-        // leave 0x00...0x1f escaped
-        out += '\\' + matched[0];
-        continue;
-      } else if (escaped === 0x22 || escaped === 0x27 || escaped === 0x5c) {
-        // single-quote, apostrophe, backslash - escape these
-        out += '\\' + String.fromCharCode(escaped);
-      } else {
-        out += String.fromCharCode(escaped);
-      }
-    }
-  }
-
-  return out;
-}
-
-// handle string
-//
-Tokenizer.prototype._read_string_recursive = function(delimiter, allow_unescaped_newlines, start_sub) {
-  var current_char;
-  var pattern;
-  if (delimiter === '\'') {
-    pattern = this.__patterns.single_quote;
-  } else if (delimiter === '"') {
-    pattern = this.__patterns.double_quote;
-  } else if (delimiter === '`') {
-    pattern = this.__patterns.template_text;
-  } else if (delimiter === '}') {
-    pattern = this.__patterns.template_expression;
-  }
-
-  var resulting_string = pattern.read();
-  var next = '';
-  while (this._input.hasNext()) {
-    next = this._input.next();
-    if (next === delimiter ||
-      (!allow_unescaped_newlines && acorn.newline.test(next))) {
-      this._input.back();
-      break;
-    } else if (next === '\\' && this._input.hasNext()) {
-      current_char = this._input.peek();
-
-      if (current_char === 'x' || current_char === 'u') {
-        this.has_char_escapes = true;
-      } else if (current_char === '\r' && this._input.peek(1) === '\n') {
-        this._input.next();
-      }
-      next += this._input.next();
-    } else if (start_sub) {
-      if (start_sub === '${' && next === '$' && this._input.peek() === '{') {
-        next += this._input.next();
-      }
-
-      if (start_sub === next) {
-        if (delimiter === '`') {
-          next += this._read_string_recursive('}', allow_unescaped_newlines, '`');
-        } else {
-          next += this._read_string_recursive('`', allow_unescaped_newlines, '${');
-        }
-        if (this._input.hasNext()) {
-          next += this._input.next();
-        }
-      }
-    }
-    next += pattern.read();
-    resulting_string += next;
-  }
-
-  return resulting_string;
-};
-
-module.exports.Tokenizer = Tokenizer;
-module.exports.TOKEN = TOKEN;
-module.exports.positionable_operators = positionable_operators.slice();
-module.exports.line_starters = line_starters.slice();
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var regexp_has_sticky = RegExp.prototype.hasOwnProperty('sticky');
-
-function InputScanner(input_string) {
-  this.__input = input_string || '';
-  this.__input_length = this.__input.length;
-  this.__position = 0;
-}
-
-InputScanner.prototype.restart = function() {
-  this.__position = 0;
-};
-
-InputScanner.prototype.back = function() {
-  if (this.__position > 0) {
-    this.__position -= 1;
-  }
-};
-
-InputScanner.prototype.hasNext = function() {
-  return this.__position < this.__input_length;
-};
-
-InputScanner.prototype.next = function() {
-  var val = null;
-  if (this.hasNext()) {
-    val = this.__input.charAt(this.__position);
-    this.__position += 1;
-  }
-  return val;
-};
-
-InputScanner.prototype.peek = function(index) {
-  var val = null;
-  index = index || 0;
-  index += this.__position;
-  if (index >= 0 && index < this.__input_length) {
-    val = this.__input.charAt(index);
-  }
-  return val;
-};
-
-// This is a JavaScript only helper function (not in python)
-// Javascript doesn't have a match method
-// and not all implementation support "sticky" flag.
-// If they do not support sticky then both this.match() and this.test() method
-// must get the match and check the index of the match.
-// If sticky is supported and set, this method will use it.
-// Otherwise it will check that global is set, and fall back to the slower method.
-InputScanner.prototype.__match = function(pattern, index) {
-  pattern.lastIndex = index;
-  var pattern_match = pattern.exec(this.__input);
-
-  if (pattern_match && !(regexp_has_sticky && pattern.sticky)) {
-    if (pattern_match.index !== index) {
-      pattern_match = null;
-    }
-  }
-
-  return pattern_match;
-};
-
-InputScanner.prototype.test = function(pattern, index) {
-  index = index || 0;
-  index += this.__position;
-
-  if (index >= 0 && index < this.__input_length) {
-    return !!this.__match(pattern, index);
-  } else {
-    return false;
-  }
-};
-
-InputScanner.prototype.testChar = function(pattern, index) {
-  // test one character regex match
-  var val = this.peek(index);
-  pattern.lastIndex = 0;
-  return val !== null && pattern.test(val);
-};
-
-InputScanner.prototype.match = function(pattern) {
-  var pattern_match = this.__match(pattern, this.__position);
-  if (pattern_match) {
-    this.__position += pattern_match[0].length;
-  } else {
-    pattern_match = null;
-  }
-  return pattern_match;
-};
-
-InputScanner.prototype.read = function(starting_pattern, until_pattern, until_after) {
-  var val = '';
-  var match;
-  if (starting_pattern) {
-    match = this.match(starting_pattern);
-    if (match) {
-      val += match[0];
-    }
-  }
-  if (until_pattern && (match || !starting_pattern)) {
-    val += this.readUntil(until_pattern, until_after);
-  }
-  return val;
-};
-
-InputScanner.prototype.readUntil = function(pattern, until_after) {
-  var val = '';
-  var match_index = this.__position;
-  pattern.lastIndex = this.__position;
-  var pattern_match = pattern.exec(this.__input);
-  if (pattern_match) {
-    match_index = pattern_match.index;
-    if (until_after) {
-      match_index += pattern_match[0].length;
-    }
-  } else {
-    match_index = this.__input_length;
-  }
-
-  val = this.__input.substring(this.__position, match_index);
-  this.__position = match_index;
-  return val;
-};
-
-InputScanner.prototype.readUntilAfter = function(pattern) {
-  return this.readUntil(pattern, true);
-};
-
-InputScanner.prototype.get_regexp = function(pattern, match_from) {
-  var result = null;
-  var flags = 'g';
-  if (match_from && regexp_has_sticky) {
-    flags = 'y';
-  }
-  // strings are converted to regexp
-  if (typeof pattern === "string" && pattern !== '') {
-    // result = new RegExp(pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), flags);
-    result = new RegExp(pattern, flags);
-  } else if (pattern) {
-    result = new RegExp(pattern.source, flags);
-  }
-  return result;
-};
-
-InputScanner.prototype.get_literal_regexp = function(literal_string) {
-  return RegExp(literal_string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-};
-
-/* css beautifier legacy helpers */
-InputScanner.prototype.peekUntilAfter = function(pattern) {
-  var start = this.__position;
-  var val = this.readUntilAfter(pattern);
-  this.__position = start;
-  return val;
-};
-
-InputScanner.prototype.lookBack = function(testVal) {
-  var start = this.__position - 1;
-  return start >= testVal.length && this.__input.substring(start - testVal.length, start)
-    .toLowerCase() === testVal;
-};
-
-module.exports.InputScanner = InputScanner;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var InputScanner = __webpack_require__(8).InputScanner;
-var Token = __webpack_require__(3).Token;
-var TokenStream = __webpack_require__(10).TokenStream;
-var WhitespacePattern = __webpack_require__(11).WhitespacePattern;
-
-var TOKEN = {
-  START: 'TK_START',
-  RAW: 'TK_RAW',
-  EOF: 'TK_EOF'
-};
-
-var Tokenizer = function(input_string, options) {
-  this._input = new InputScanner(input_string);
-  this._options = options || {};
-  this.__tokens = null;
-
-  this._patterns = {};
-  this._patterns.whitespace = new WhitespacePattern(this._input);
-};
-
-Tokenizer.prototype.tokenize = function() {
-  this._input.restart();
-  this.__tokens = new TokenStream();
-
-  this._reset();
-
-  var current;
-  var previous = new Token(TOKEN.START, '');
-  var open_token = null;
-  var open_stack = [];
-  var comments = new TokenStream();
-
-  while (previous.type !== TOKEN.EOF) {
-    current = this._get_next_token(previous, open_token);
-    while (this._is_comment(current)) {
-      comments.add(current);
-      current = this._get_next_token(previous, open_token);
-    }
-
-    if (!comments.isEmpty()) {
-      current.comments_before = comments;
-      comments = new TokenStream();
-    }
-
-    current.parent = open_token;
-
-    if (this._is_opening(current)) {
-      open_stack.push(open_token);
-      open_token = current;
-    } else if (open_token && this._is_closing(current, open_token)) {
-      current.opened = open_token;
-      open_token.closed = current;
-      open_token = open_stack.pop();
-      current.parent = open_token;
-    }
-
-    current.previous = previous;
-    previous.next = current;
-
-    this.__tokens.add(current);
-    previous = current;
-  }
-
-  return this.__tokens;
-};
-
-
-Tokenizer.prototype._is_first_token = function() {
-  return this.__tokens.isEmpty();
-};
-
-Tokenizer.prototype._reset = function() {};
-
-Tokenizer.prototype._get_next_token = function(previous_token, open_token) { // jshint unused:false
-  this._readWhitespace();
-  var resulting_string = this._input.read(/.+/g);
-  if (resulting_string) {
-    return this._create_token(TOKEN.RAW, resulting_string);
-  } else {
-    return this._create_token(TOKEN.EOF, '');
-  }
-};
-
-Tokenizer.prototype._is_comment = function(current_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._is_opening = function(current_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._is_closing = function(current_token, open_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._create_token = function(type, text) {
-  var token = new Token(type, text,
-    this._patterns.whitespace.newline_count,
-    this._patterns.whitespace.whitespace_before_token);
-  return token;
-};
-
-Tokenizer.prototype._readWhitespace = function() {
-  return this._patterns.whitespace.read();
-};
-
-
-
-module.exports.Tokenizer = Tokenizer;
-module.exports.TOKEN = TOKEN;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function TokenStream(parent_token) {
-  // private
-  this.__tokens = [];
-  this.__tokens_length = this.__tokens.length;
-  this.__position = 0;
-  this.__parent_token = parent_token;
-}
-
-TokenStream.prototype.restart = function() {
-  this.__position = 0;
-};
-
-TokenStream.prototype.isEmpty = function() {
-  return this.__tokens_length === 0;
-};
-
-TokenStream.prototype.hasNext = function() {
-  return this.__position < this.__tokens_length;
-};
-
-TokenStream.prototype.next = function() {
-  var val = null;
-  if (this.hasNext()) {
-    val = this.__tokens[this.__position];
-    this.__position += 1;
-  }
-  return val;
-};
-
-TokenStream.prototype.peek = function(index) {
-  var val = null;
-  index = index || 0;
-  index += this.__position;
-  if (index >= 0 && index < this.__tokens_length) {
-    val = this.__tokens[index];
-  }
-  return val;
-};
-
-TokenStream.prototype.add = function(token) {
-  if (this.__parent_token) {
-    token.parent = this.__parent_token;
-  }
-  this.__tokens.push(token);
-  this.__tokens_length += 1;
-};
-
-module.exports.TokenStream = TokenStream;
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Pattern = __webpack_require__(12).Pattern;
-
-function WhitespacePattern(input_scanner, parent) {
-  Pattern.call(this, input_scanner, parent);
-  if (parent) {
-    this._line_regexp = this._input.get_regexp(parent._line_regexp);
-  } else {
-    this.__set_whitespace_patterns('', '');
-  }
-
-  this.newline_count = 0;
-  this.whitespace_before_token = '';
-}
-WhitespacePattern.prototype = new Pattern();
-
-WhitespacePattern.prototype.__set_whitespace_patterns = function(whitespace_chars, newline_chars) {
-  whitespace_chars += '\\t ';
-  newline_chars += '\\n\\r';
-
-  this._match_pattern = this._input.get_regexp(
-    '[' + whitespace_chars + newline_chars + ']+', true);
-  this._newline_regexp = this._input.get_regexp(
-    '\\r\\n|[' + newline_chars + ']');
-};
-
-WhitespacePattern.prototype.read = function() {
-  this.newline_count = 0;
-  this.whitespace_before_token = '';
-
-  var resulting_string = this._input.read(this._match_pattern);
-  if (resulting_string === ' ') {
-    this.whitespace_before_token = ' ';
-  } else if (resulting_string) {
-    var matches = this.__split(this._newline_regexp, resulting_string);
-    this.newline_count = matches.length - 1;
-    this.whitespace_before_token = matches[this.newline_count];
-  }
-
-  return resulting_string;
-};
-
-WhitespacePattern.prototype.matching = function(whitespace_chars, newline_chars) {
-  var result = this._create();
-  result.__set_whitespace_patterns(whitespace_chars, newline_chars);
-  result._update();
-  return result;
-};
-
-WhitespacePattern.prototype._create = function() {
-  return new WhitespacePattern(this._input, this);
-};
-
-WhitespacePattern.prototype.__split = function(regexp, input_string) {
-  regexp.lastIndex = 0;
-  var start_index = 0;
-  var result = [];
-  var next_match = regexp.exec(input_string);
-  while (next_match) {
-    result.push(input_string.substring(start_index, next_match.index));
-    start_index = next_match.index + next_match[0].length;
-    next_match = regexp.exec(input_string);
-  }
-
-  if (start_index < input_string.length) {
-    result.push(input_string.substring(start_index, input_string.length));
-  } else {
-    result.push('');
-  }
-
-  return result;
-};
-
-
-
-module.exports.WhitespacePattern = WhitespacePattern;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Pattern(input_scanner, parent) {
-  this._input = input_scanner;
-  this._starting_pattern = null;
-  this._match_pattern = null;
-  this._until_pattern = null;
-  this._until_after = false;
-
-  if (parent) {
-    this._starting_pattern = this._input.get_regexp(parent._starting_pattern, true);
-    this._match_pattern = this._input.get_regexp(parent._match_pattern, true);
-    this._until_pattern = this._input.get_regexp(parent._until_pattern);
-    this._until_after = parent._until_after;
-  }
-}
-
-Pattern.prototype.read = function() {
-  var result = this._input.read(this._starting_pattern);
-  if (!this._starting_pattern || result) {
-    result += this._input.read(this._match_pattern, this._until_pattern, this._until_after);
-  }
-  return result;
-};
-
-Pattern.prototype.read_match = function() {
-  return this._input.match(this._match_pattern);
-};
-
-Pattern.prototype.until_after = function(pattern) {
-  var result = this._create();
-  result._until_after = true;
-  result._until_pattern = this._input.get_regexp(pattern);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.until = function(pattern) {
-  var result = this._create();
-  result._until_after = false;
-  result._until_pattern = this._input.get_regexp(pattern);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.starting_with = function(pattern) {
-  var result = this._create();
-  result._starting_pattern = this._input.get_regexp(pattern, true);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.matching = function(pattern) {
-  var result = this._create();
-  result._match_pattern = this._input.get_regexp(pattern, true);
-  result._update();
-  return result;
-};
-
-Pattern.prototype._create = function() {
-  return new Pattern(this._input, this);
-};
-
-Pattern.prototype._update = function() {};
-
-module.exports.Pattern = Pattern;
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Directives(start_block_pattern, end_block_pattern) {
-  start_block_pattern = typeof start_block_pattern === 'string' ? start_block_pattern : start_block_pattern.source;
-  end_block_pattern = typeof end_block_pattern === 'string' ? end_block_pattern : end_block_pattern.source;
-  this.__directives_block_pattern = new RegExp(start_block_pattern + / beautify( \w+[:]\w+)+ /.source + end_block_pattern, 'g');
-  this.__directive_pattern = / (\w+)[:](\w+)/g;
-
-  this.__directives_end_ignore_pattern = new RegExp(start_block_pattern + /\sbeautify\signore:end\s/.source + end_block_pattern, 'g');
-}
-
-Directives.prototype.get_directives = function(text) {
-  if (!text.match(this.__directives_block_pattern)) {
-    return null;
-  }
-
-  var directives = {};
-  this.__directive_pattern.lastIndex = 0;
-  var directive_match = this.__directive_pattern.exec(text);
-
-  while (directive_match) {
-    directives[directive_match[1]] = directive_match[2];
-    directive_match = this.__directive_pattern.exec(text);
-  }
-
-  return directives;
-};
-
-Directives.prototype.readIgnored = function(input) {
-  return input.readUntilAfter(this.__directives_end_ignore_pattern);
-};
-
-
-module.exports.Directives = Directives;
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Pattern = __webpack_require__(12).Pattern;
-
-
-var template_names = {
-  django: false,
-  erb: false,
-  handlebars: false,
-  php: false
-};
-
-// This lets templates appear anywhere we would do a readUntil
-// The cost is higher but it is pay to play.
-function TemplatablePattern(input_scanner, parent) {
-  Pattern.call(this, input_scanner, parent);
-  this.__template_pattern = null;
-  this._disabled = Object.assign({}, template_names);
-  this._excluded = Object.assign({}, template_names);
-
-  if (parent) {
-    this.__template_pattern = this._input.get_regexp(parent.__template_pattern);
-    this._excluded = Object.assign(this._excluded, parent._excluded);
-    this._disabled = Object.assign(this._disabled, parent._disabled);
-  }
-  var pattern = new Pattern(input_scanner);
-  this.__patterns = {
-    handlebars_comment: pattern.starting_with(/{{!--/).until_after(/--}}/),
-    handlebars_unescaped: pattern.starting_with(/{{{/).until_after(/}}}/),
-    handlebars: pattern.starting_with(/{{/).until_after(/}}/),
-    php: pattern.starting_with(/<\?(?:[=]|php)/).until_after(/\?>/),
-    erb: pattern.starting_with(/<%[^%]/).until_after(/[^%]%>/),
-    // django coflicts with handlebars a bit.
-    django: pattern.starting_with(/{%/).until_after(/%}/),
-    django_value: pattern.starting_with(/{{/).until_after(/}}/),
-    django_comment: pattern.starting_with(/{#/).until_after(/#}/)
-  };
-}
-TemplatablePattern.prototype = new Pattern();
-
-TemplatablePattern.prototype._create = function() {
-  return new TemplatablePattern(this._input, this);
-};
-
-TemplatablePattern.prototype._update = function() {
-  this.__set_templated_pattern();
-};
-
-TemplatablePattern.prototype.disable = function(language) {
-  var result = this._create();
-  result._disabled[language] = true;
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.read_options = function(options) {
-  var result = this._create();
-  for (var language in template_names) {
-    result._disabled[language] = options.templating.indexOf(language) === -1;
-  }
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.exclude = function(language) {
-  var result = this._create();
-  result._excluded[language] = true;
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.read = function() {
-  var result = '';
-  if (this._match_pattern) {
-    result = this._input.read(this._starting_pattern);
-  } else {
-    result = this._input.read(this._starting_pattern, this.__template_pattern);
-  }
-  var next = this._read_template();
-  while (next) {
-    if (this._match_pattern) {
-      next += this._input.read(this._match_pattern);
-    } else {
-      next += this._input.readUntil(this.__template_pattern);
-    }
-    result += next;
-    next = this._read_template();
-  }
-
-  if (this._until_after) {
-    result += this._input.readUntilAfter(this._until_pattern);
-  }
-  return result;
-};
-
-TemplatablePattern.prototype.__set_templated_pattern = function() {
-  var items = [];
-
-  if (!this._disabled.php) {
-    items.push(this.__patterns.php._starting_pattern.source);
-  }
-  if (!this._disabled.handlebars) {
-    items.push(this.__patterns.handlebars._starting_pattern.source);
-  }
-  if (!this._disabled.erb) {
-    items.push(this.__patterns.erb._starting_pattern.source);
-  }
-  if (!this._disabled.django) {
-    items.push(this.__patterns.django._starting_pattern.source);
-    items.push(this.__patterns.django_value._starting_pattern.source);
-    items.push(this.__patterns.django_comment._starting_pattern.source);
-  }
-
-  if (this._until_pattern) {
-    items.push(this._until_pattern.source);
-  }
-  this.__template_pattern = this._input.get_regexp('(?:' + items.join('|') + ')');
-};
-
-TemplatablePattern.prototype._read_template = function() {
-  var resulting_string = '';
-  var c = this._input.peek();
-  if (c === '<') {
-    var peek1 = this._input.peek(1);
-    //if we're in a comment, do something special
-    // We treat all comments as literals, even more than preformatted tags
-    // we just look for the appropriate close tag
-    if (!this._disabled.php && !this._excluded.php && peek1 === '?') {
-      resulting_string = resulting_string ||
-        this.__patterns.php.read();
-    }
-    if (!this._disabled.erb && !this._excluded.erb && peek1 === '%') {
-      resulting_string = resulting_string ||
-        this.__patterns.erb.read();
-    }
-  } else if (c === '{') {
-    if (!this._disabled.handlebars && !this._excluded.handlebars) {
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars_comment.read();
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars_unescaped.read();
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars.read();
-    }
-    if (!this._disabled.django) {
-      // django coflicts with handlebars a bit.
-      if (!this._excluded.django && !this._excluded.handlebars) {
-        resulting_string = resulting_string ||
-          this.__patterns.django_value.read();
-      }
-      if (!this._excluded.django) {
-        resulting_string = resulting_string ||
-          this.__patterns.django_comment.read();
-        resulting_string = resulting_string ||
-          this.__patterns.django.read();
-      }
-    }
-  }
-  return resulting_string;
-};
-
-
-module.exports.TemplatablePattern = TemplatablePattern;
-
-
-/***/ })
-/******/ ]);
-var js_beautify = legacy_beautify_js;
-/* Footer */
-if (true) {
-    // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
-        return { js_beautify: js_beautify };
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-} else {}
-
-}());
-
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* AUTO-GENERATED. DO NOT MODIFY. */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-
-
- CSS Beautifier
----------------
-
-    Written by Harutyun Amirjanyan, (amirjanyan@gmail.com)
-
-    Based on code initially developed by: Einar Lielmanis, <einar@beautifier.io>
-        https://beautifier.io/
-
-    Usage:
-        css_beautify(source_text);
-        css_beautify(source_text, options);
-
-    The options are (default in brackets):
-        indent_size (4)                         — indentation size,
-        indent_char (space)                     — character to indent with,
-        selector_separator_newline (true)       - separate selectors with newline or
-                                                  not (e.g. "a,\nbr" or "a, br")
-        end_with_newline (false)                - end with a newline
-        newline_between_rules (true)            - add a new line after every css rule
-        space_around_selector_separator (false) - ensure space around selector separators:
-                                                  '>', '+', '~' (e.g. "a>b" -> "a > b")
-    e.g
-
-    css_beautify(css_source_text, {
-      'indent_size': 1,
-      'indent_char': '\t',
-      'selector_separator': ' ',
-      'end_with_newline': false,
-      'newline_between_rules': true,
-      'space_around_selector_separator': true
-    });
-*/
-
-// http://www.w3.org/TR/CSS21/syndata.html#tokenization
-// http://www.w3.org/TR/css3-syntax/
-
-(function() {
-
-/* GENERATED_BUILD_OUTPUT */
-var legacy_beautify_css =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function OutputLine(parent) {
-  this.__parent = parent;
-  this.__character_count = 0;
-  // use indent_count as a marker for this.__lines that have preserved indentation
-  this.__indent_count = -1;
-  this.__alignment_count = 0;
-  this.__wrap_point_index = 0;
-  this.__wrap_point_character_count = 0;
-  this.__wrap_point_indent_count = -1;
-  this.__wrap_point_alignment_count = 0;
-
-  this.__items = [];
-}
-
-OutputLine.prototype.clone_empty = function() {
-  var line = new OutputLine(this.__parent);
-  line.set_indent(this.__indent_count, this.__alignment_count);
-  return line;
-};
-
-OutputLine.prototype.item = function(index) {
-  if (index < 0) {
-    return this.__items[this.__items.length + index];
-  } else {
-    return this.__items[index];
-  }
-};
-
-OutputLine.prototype.has_match = function(pattern) {
-  for (var lastCheckedOutput = this.__items.length - 1; lastCheckedOutput >= 0; lastCheckedOutput--) {
-    if (this.__items[lastCheckedOutput].match(pattern)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-OutputLine.prototype.set_indent = function(indent, alignment) {
-  if (this.is_empty()) {
-    this.__indent_count = indent || 0;
-    this.__alignment_count = alignment || 0;
-    this.__character_count = this.__parent.get_indent_size(this.__indent_count, this.__alignment_count);
-  }
-};
-
-OutputLine.prototype._set_wrap_point = function() {
-  if (this.__parent.wrap_line_length) {
-    this.__wrap_point_index = this.__items.length;
-    this.__wrap_point_character_count = this.__character_count;
-    this.__wrap_point_indent_count = this.__parent.next_line.__indent_count;
-    this.__wrap_point_alignment_count = this.__parent.next_line.__alignment_count;
-  }
-};
-
-OutputLine.prototype._should_wrap = function() {
-  return this.__wrap_point_index &&
-    this.__character_count > this.__parent.wrap_line_length &&
-    this.__wrap_point_character_count > this.__parent.next_line.__character_count;
-};
-
-OutputLine.prototype._allow_wrap = function() {
-  if (this._should_wrap()) {
-    this.__parent.add_new_line();
-    var next = this.__parent.current_line;
-    next.set_indent(this.__wrap_point_indent_count, this.__wrap_point_alignment_count);
-    next.__items = this.__items.slice(this.__wrap_point_index);
-    this.__items = this.__items.slice(0, this.__wrap_point_index);
-
-    next.__character_count += this.__character_count - this.__wrap_point_character_count;
-    this.__character_count = this.__wrap_point_character_count;
-
-    if (next.__items[0] === " ") {
-      next.__items.splice(0, 1);
-      next.__character_count -= 1;
-    }
-    return true;
-  }
-  return false;
-};
-
-OutputLine.prototype.is_empty = function() {
-  return this.__items.length === 0;
-};
-
-OutputLine.prototype.last = function() {
-  if (!this.is_empty()) {
-    return this.__items[this.__items.length - 1];
-  } else {
-    return null;
-  }
-};
-
-OutputLine.prototype.push = function(item) {
-  this.__items.push(item);
-  var last_newline_index = item.lastIndexOf('\n');
-  if (last_newline_index !== -1) {
-    this.__character_count = item.length - last_newline_index;
-  } else {
-    this.__character_count += item.length;
-  }
-};
-
-OutputLine.prototype.pop = function() {
-  var item = null;
-  if (!this.is_empty()) {
-    item = this.__items.pop();
-    this.__character_count -= item.length;
-  }
-  return item;
-};
-
-
-OutputLine.prototype._remove_indent = function() {
-  if (this.__indent_count > 0) {
-    this.__indent_count -= 1;
-    this.__character_count -= this.__parent.indent_size;
-  }
-};
-
-OutputLine.prototype._remove_wrap_indent = function() {
-  if (this.__wrap_point_indent_count > 0) {
-    this.__wrap_point_indent_count -= 1;
-  }
-};
-OutputLine.prototype.trim = function() {
-  while (this.last() === ' ') {
-    this.__items.pop();
-    this.__character_count -= 1;
-  }
-};
-
-OutputLine.prototype.toString = function() {
-  var result = '';
-  if (this.is_empty()) {
-    if (this.__parent.indent_empty_lines) {
-      result = this.__parent.get_indent_string(this.__indent_count);
-    }
-  } else {
-    result = this.__parent.get_indent_string(this.__indent_count, this.__alignment_count);
-    result += this.__items.join('');
-  }
-  return result;
-};
-
-function IndentStringCache(options, baseIndentString) {
-  this.__cache = [''];
-  this.__indent_size = options.indent_size;
-  this.__indent_string = options.indent_char;
-  if (!options.indent_with_tabs) {
-    this.__indent_string = new Array(options.indent_size + 1).join(options.indent_char);
-  }
-
-  // Set to null to continue support for auto detection of base indent
-  baseIndentString = baseIndentString || '';
-  if (options.indent_level > 0) {
-    baseIndentString = new Array(options.indent_level + 1).join(this.__indent_string);
-  }
-
-  this.__base_string = baseIndentString;
-  this.__base_string_length = baseIndentString.length;
-}
-
-IndentStringCache.prototype.get_indent_size = function(indent, column) {
-  var result = this.__base_string_length;
-  column = column || 0;
-  if (indent < 0) {
-    result = 0;
-  }
-  result += indent * this.__indent_size;
-  result += column;
-  return result;
-};
-
-IndentStringCache.prototype.get_indent_string = function(indent_level, column) {
-  var result = this.__base_string;
-  column = column || 0;
-  if (indent_level < 0) {
-    indent_level = 0;
-    result = '';
-  }
-  column += indent_level * this.__indent_size;
-  this.__ensure_cache(column);
-  result += this.__cache[column];
-  return result;
-};
-
-IndentStringCache.prototype.__ensure_cache = function(column) {
-  while (column >= this.__cache.length) {
-    this.__add_column();
-  }
-};
-
-IndentStringCache.prototype.__add_column = function() {
-  var column = this.__cache.length;
-  var indent = 0;
-  var result = '';
-  if (this.__indent_size && column >= this.__indent_size) {
-    indent = Math.floor(column / this.__indent_size);
-    column -= indent * this.__indent_size;
-    result = new Array(indent + 1).join(this.__indent_string);
-  }
-  if (column) {
-    result += new Array(column + 1).join(' ');
-  }
-
-  this.__cache.push(result);
-};
-
-function Output(options, baseIndentString) {
-  this.__indent_cache = new IndentStringCache(options, baseIndentString);
-  this.raw = false;
-  this._end_with_newline = options.end_with_newline;
-  this.indent_size = options.indent_size;
-  this.wrap_line_length = options.wrap_line_length;
-  this.indent_empty_lines = options.indent_empty_lines;
-  this.__lines = [];
-  this.previous_line = null;
-  this.current_line = null;
-  this.next_line = new OutputLine(this);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-  // initialize
-  this.__add_outputline();
-}
-
-Output.prototype.__add_outputline = function() {
-  this.previous_line = this.current_line;
-  this.current_line = this.next_line.clone_empty();
-  this.__lines.push(this.current_line);
-};
-
-Output.prototype.get_line_number = function() {
-  return this.__lines.length;
-};
-
-Output.prototype.get_indent_string = function(indent, column) {
-  return this.__indent_cache.get_indent_string(indent, column);
-};
-
-Output.prototype.get_indent_size = function(indent, column) {
-  return this.__indent_cache.get_indent_size(indent, column);
-};
-
-Output.prototype.is_empty = function() {
-  return !this.previous_line && this.current_line.is_empty();
-};
-
-Output.prototype.add_new_line = function(force_newline) {
-  // never newline at the start of file
-  // otherwise, newline only if we didn't just add one or we're forced
-  if (this.is_empty() ||
-    (!force_newline && this.just_added_newline())) {
-    return false;
-  }
-
-  // if raw output is enabled, don't print additional newlines,
-  // but still return True as though you had
-  if (!this.raw) {
-    this.__add_outputline();
-  }
-  return true;
-};
-
-Output.prototype.get_code = function(eol) {
-  this.trim(true);
-
-  // handle some edge cases where the last tokens
-  // has text that ends with newline(s)
-  var last_item = this.current_line.pop();
-  if (last_item) {
-    if (last_item[last_item.length - 1] === '\n') {
-      last_item = last_item.replace(/\n+$/g, '');
-    }
-    this.current_line.push(last_item);
-  }
-
-  if (this._end_with_newline) {
-    this.__add_outputline();
-  }
-
-  var sweet_code = this.__lines.join('\n');
-
-  if (eol !== '\n') {
-    sweet_code = sweet_code.replace(/[\n]/g, eol);
-  }
-  return sweet_code;
-};
-
-Output.prototype.set_wrap_point = function() {
-  this.current_line._set_wrap_point();
-};
-
-Output.prototype.set_indent = function(indent, alignment) {
-  indent = indent || 0;
-  alignment = alignment || 0;
-
-  // Next line stores alignment values
-  this.next_line.set_indent(indent, alignment);
-
-  // Never indent your first output indent at the start of the file
-  if (this.__lines.length > 1) {
-    this.current_line.set_indent(indent, alignment);
-    return true;
-  }
-
-  this.current_line.set_indent();
-  return false;
-};
-
-Output.prototype.add_raw_token = function(token) {
-  for (var x = 0; x < token.newlines; x++) {
-    this.__add_outputline();
-  }
-  this.current_line.set_indent(-1);
-  this.current_line.push(token.whitespace_before);
-  this.current_line.push(token.text);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-};
-
-Output.prototype.add_token = function(printable_token) {
-  this.__add_space_before_token();
-  this.current_line.push(printable_token);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = this.current_line._allow_wrap();
-};
-
-Output.prototype.__add_space_before_token = function() {
-  if (this.space_before_token && !this.just_added_newline()) {
-    if (!this.non_breaking_space) {
-      this.set_wrap_point();
-    }
-    this.current_line.push(' ');
-  }
-};
-
-Output.prototype.remove_indent = function(index) {
-  var output_length = this.__lines.length;
-  while (index < output_length) {
-    this.__lines[index]._remove_indent();
-    index++;
-  }
-  this.current_line._remove_wrap_indent();
-};
-
-Output.prototype.trim = function(eat_newlines) {
-  eat_newlines = (eat_newlines === undefined) ? false : eat_newlines;
-
-  this.current_line.trim();
-
-  while (eat_newlines && this.__lines.length > 1 &&
-    this.current_line.is_empty()) {
-    this.__lines.pop();
-    this.current_line = this.__lines[this.__lines.length - 1];
-    this.current_line.trim();
-  }
-
-  this.previous_line = this.__lines.length > 1 ?
-    this.__lines[this.__lines.length - 2] : null;
-};
-
-Output.prototype.just_added_newline = function() {
-  return this.current_line.is_empty();
-};
-
-Output.prototype.just_added_blankline = function() {
-  return this.is_empty() ||
-    (this.current_line.is_empty() && this.previous_line.is_empty());
-};
-
-Output.prototype.ensure_empty_line_above = function(starts_with, ends_with) {
-  var index = this.__lines.length - 2;
-  while (index >= 0) {
-    var potentialEmptyLine = this.__lines[index];
-    if (potentialEmptyLine.is_empty()) {
-      break;
-    } else if (potentialEmptyLine.item(0).indexOf(starts_with) !== 0 &&
-      potentialEmptyLine.item(-1) !== ends_with) {
-      this.__lines.splice(index + 1, 0, new OutputLine(this));
-      this.previous_line = this.__lines[this.__lines.length - 2];
-      break;
-    }
-    index--;
-  }
-};
-
-module.exports.Output = Output;
-
-
-/***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Options(options, merge_child_field) {
-  this.raw_options = _mergeOpts(options, merge_child_field);
-
-  // Support passing the source text back with no change
-  this.disabled = this._get_boolean('disabled');
-
-  this.eol = this._get_characters('eol', 'auto');
-  this.end_with_newline = this._get_boolean('end_with_newline');
-  this.indent_size = this._get_number('indent_size', 4);
-  this.indent_char = this._get_characters('indent_char', ' ');
-  this.indent_level = this._get_number('indent_level');
-
-  this.preserve_newlines = this._get_boolean('preserve_newlines', true);
-  this.max_preserve_newlines = this._get_number('max_preserve_newlines', 32786);
-  if (!this.preserve_newlines) {
-    this.max_preserve_newlines = 0;
-  }
-
-  this.indent_with_tabs = this._get_boolean('indent_with_tabs', this.indent_char === '\t');
-  if (this.indent_with_tabs) {
-    this.indent_char = '\t';
-
-    // indent_size behavior changed after 1.8.6
-    // It used to be that indent_size would be
-    // set to 1 for indent_with_tabs. That is no longer needed and
-    // actually doesn't make sense - why not use spaces? Further,
-    // that might produce unexpected behavior - tabs being used
-    // for single-column alignment. So, when indent_with_tabs is true
-    // and indent_size is 1, reset indent_size to 4.
-    if (this.indent_size === 1) {
-      this.indent_size = 4;
-    }
-  }
-
-  // Backwards compat with 1.3.x
-  this.wrap_line_length = this._get_number('wrap_line_length', this._get_number('max_char'));
-
-  this.indent_empty_lines = this._get_boolean('indent_empty_lines');
-
-  // valid templating languages ['django', 'erb', 'handlebars', 'php']
-  // For now, 'auto' = all off for javascript, all on for html (and inline javascript).
-  // other values ignored
-  this.templating = this._get_selection_list('templating', ['auto', 'none', 'django', 'erb', 'handlebars', 'php'], ['auto']);
-}
-
-Options.prototype._get_array = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || [];
-  if (typeof option_value === 'object') {
-    if (option_value !== null && typeof option_value.concat === 'function') {
-      result = option_value.concat();
-    }
-  } else if (typeof option_value === 'string') {
-    result = option_value.split(/[^a-zA-Z0-9_\/\-]+/);
-  }
-  return result;
-};
-
-Options.prototype._get_boolean = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = option_value === undefined ? !!default_value : !!option_value;
-  return result;
-};
-
-Options.prototype._get_characters = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || '';
-  if (typeof option_value === 'string') {
-    result = option_value.replace(/\\r/, '\r').replace(/\\n/, '\n').replace(/\\t/, '\t');
-  }
-  return result;
-};
-
-Options.prototype._get_number = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  default_value = parseInt(default_value, 10);
-  if (isNaN(default_value)) {
-    default_value = 0;
-  }
-  var result = parseInt(option_value, 10);
-  if (isNaN(result)) {
-    result = default_value;
-  }
-  return result;
-};
-
-Options.prototype._get_selection = function(name, selection_list, default_value) {
-  var result = this._get_selection_list(name, selection_list, default_value);
-  if (result.length !== 1) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can only be one of the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result[0];
-};
-
-
-Options.prototype._get_selection_list = function(name, selection_list, default_value) {
-  if (!selection_list || selection_list.length === 0) {
-    throw new Error("Selection list cannot be empty.");
-  }
-
-  default_value = default_value || [selection_list[0]];
-  if (!this._is_valid_selection(default_value, selection_list)) {
-    throw new Error("Invalid Default Value!");
-  }
-
-  var result = this._get_array(name, default_value);
-  if (!this._is_valid_selection(result, selection_list)) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can contain only the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result;
-};
-
-Options.prototype._is_valid_selection = function(result, selection_list) {
-  return result.length && selection_list.length &&
-    !result.some(function(item) { return selection_list.indexOf(item) === -1; });
-};
-
-
-// merges child options up with the parent options object
-// Example: obj = {a: 1, b: {a: 2}}
-//          mergeOpts(obj, 'b')
-//
-//          Returns: {a: 2}
-function _mergeOpts(allOptions, childFieldName) {
-  var finalOpts = {};
-  allOptions = _normalizeOpts(allOptions);
-  var name;
-
-  for (name in allOptions) {
-    if (name !== childFieldName) {
-      finalOpts[name] = allOptions[name];
-    }
-  }
-
-  //merge in the per type settings for the childFieldName
-  if (childFieldName && allOptions[childFieldName]) {
-    for (name in allOptions[childFieldName]) {
-      finalOpts[name] = allOptions[childFieldName][name];
-    }
-  }
-  return finalOpts;
-}
-
-function _normalizeOpts(options) {
-  var convertedOpts = {};
-  var key;
-
-  for (key in options) {
-    var newKey = key.replace(/-/g, "_");
-    convertedOpts[newKey] = options[key];
-  }
-  return convertedOpts;
-}
-
-module.exports.Options = Options;
-module.exports.normalizeOpts = _normalizeOpts;
-module.exports.mergeOpts = _mergeOpts;
-
-
-/***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var regexp_has_sticky = RegExp.prototype.hasOwnProperty('sticky');
-
-function InputScanner(input_string) {
-  this.__input = input_string || '';
-  this.__input_length = this.__input.length;
-  this.__position = 0;
-}
-
-InputScanner.prototype.restart = function() {
-  this.__position = 0;
-};
-
-InputScanner.prototype.back = function() {
-  if (this.__position > 0) {
-    this.__position -= 1;
-  }
-};
-
-InputScanner.prototype.hasNext = function() {
-  return this.__position < this.__input_length;
-};
-
-InputScanner.prototype.next = function() {
-  var val = null;
-  if (this.hasNext()) {
-    val = this.__input.charAt(this.__position);
-    this.__position += 1;
-  }
-  return val;
-};
-
-InputScanner.prototype.peek = function(index) {
-  var val = null;
-  index = index || 0;
-  index += this.__position;
-  if (index >= 0 && index < this.__input_length) {
-    val = this.__input.charAt(index);
-  }
-  return val;
-};
-
-// This is a JavaScript only helper function (not in python)
-// Javascript doesn't have a match method
-// and not all implementation support "sticky" flag.
-// If they do not support sticky then both this.match() and this.test() method
-// must get the match and check the index of the match.
-// If sticky is supported and set, this method will use it.
-// Otherwise it will check that global is set, and fall back to the slower method.
-InputScanner.prototype.__match = function(pattern, index) {
-  pattern.lastIndex = index;
-  var pattern_match = pattern.exec(this.__input);
-
-  if (pattern_match && !(regexp_has_sticky && pattern.sticky)) {
-    if (pattern_match.index !== index) {
-      pattern_match = null;
-    }
-  }
-
-  return pattern_match;
-};
-
-InputScanner.prototype.test = function(pattern, index) {
-  index = index || 0;
-  index += this.__position;
-
-  if (index >= 0 && index < this.__input_length) {
-    return !!this.__match(pattern, index);
-  } else {
-    return false;
-  }
-};
-
-InputScanner.prototype.testChar = function(pattern, index) {
-  // test one character regex match
-  var val = this.peek(index);
-  pattern.lastIndex = 0;
-  return val !== null && pattern.test(val);
-};
-
-InputScanner.prototype.match = function(pattern) {
-  var pattern_match = this.__match(pattern, this.__position);
-  if (pattern_match) {
-    this.__position += pattern_match[0].length;
-  } else {
-    pattern_match = null;
-  }
-  return pattern_match;
-};
-
-InputScanner.prototype.read = function(starting_pattern, until_pattern, until_after) {
-  var val = '';
-  var match;
-  if (starting_pattern) {
-    match = this.match(starting_pattern);
-    if (match) {
-      val += match[0];
-    }
-  }
-  if (until_pattern && (match || !starting_pattern)) {
-    val += this.readUntil(until_pattern, until_after);
-  }
-  return val;
-};
-
-InputScanner.prototype.readUntil = function(pattern, until_after) {
-  var val = '';
-  var match_index = this.__position;
-  pattern.lastIndex = this.__position;
-  var pattern_match = pattern.exec(this.__input);
-  if (pattern_match) {
-    match_index = pattern_match.index;
-    if (until_after) {
-      match_index += pattern_match[0].length;
-    }
-  } else {
-    match_index = this.__input_length;
-  }
-
-  val = this.__input.substring(this.__position, match_index);
-  this.__position = match_index;
-  return val;
-};
-
-InputScanner.prototype.readUntilAfter = function(pattern) {
-  return this.readUntil(pattern, true);
-};
-
-InputScanner.prototype.get_regexp = function(pattern, match_from) {
-  var result = null;
-  var flags = 'g';
-  if (match_from && regexp_has_sticky) {
-    flags = 'y';
-  }
-  // strings are converted to regexp
-  if (typeof pattern === "string" && pattern !== '') {
-    // result = new RegExp(pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), flags);
-    result = new RegExp(pattern, flags);
-  } else if (pattern) {
-    result = new RegExp(pattern.source, flags);
-  }
-  return result;
-};
-
-InputScanner.prototype.get_literal_regexp = function(literal_string) {
-  return RegExp(literal_string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-};
-
-/* css beautifier legacy helpers */
-InputScanner.prototype.peekUntilAfter = function(pattern) {
-  var start = this.__position;
-  var val = this.readUntilAfter(pattern);
-  this.__position = start;
-  return val;
-};
-
-InputScanner.prototype.lookBack = function(testVal) {
-  var start = this.__position - 1;
-  return start >= testVal.length && this.__input.substring(start - testVal.length, start)
-    .toLowerCase() === testVal;
-};
-
-module.exports.InputScanner = InputScanner;
-
-
-/***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Directives(start_block_pattern, end_block_pattern) {
-  start_block_pattern = typeof start_block_pattern === 'string' ? start_block_pattern : start_block_pattern.source;
-  end_block_pattern = typeof end_block_pattern === 'string' ? end_block_pattern : end_block_pattern.source;
-  this.__directives_block_pattern = new RegExp(start_block_pattern + / beautify( \w+[:]\w+)+ /.source + end_block_pattern, 'g');
-  this.__directive_pattern = / (\w+)[:](\w+)/g;
-
-  this.__directives_end_ignore_pattern = new RegExp(start_block_pattern + /\sbeautify\signore:end\s/.source + end_block_pattern, 'g');
-}
-
-Directives.prototype.get_directives = function(text) {
-  if (!text.match(this.__directives_block_pattern)) {
-    return null;
-  }
-
-  var directives = {};
-  this.__directive_pattern.lastIndex = 0;
-  var directive_match = this.__directive_pattern.exec(text);
-
-  while (directive_match) {
-    directives[directive_match[1]] = directive_match[2];
-    directive_match = this.__directive_pattern.exec(text);
-  }
-
-  return directives;
-};
-
-Directives.prototype.readIgnored = function(input) {
-  return input.readUntilAfter(this.__directives_end_ignore_pattern);
-};
-
-
-module.exports.Directives = Directives;
-
-
-/***/ }),
-/* 14 */,
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Beautifier = __webpack_require__(16).Beautifier,
-  Options = __webpack_require__(17).Options;
-
-function css_beautify(source_text, options) {
-  var beautifier = new Beautifier(source_text, options);
-  return beautifier.beautify();
-}
-
-module.exports = css_beautify;
-module.exports.defaultOptions = function() {
-  return new Options();
-};
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Options = __webpack_require__(17).Options;
-var Output = __webpack_require__(2).Output;
-var InputScanner = __webpack_require__(8).InputScanner;
-var Directives = __webpack_require__(13).Directives;
-
-var directives_core = new Directives(/\/\*/, /\*\//);
-
-var lineBreak = /\r\n|[\r\n]/;
-var allLineBreaks = /\r\n|[\r\n]/g;
-
-// tokenizer
-var whitespaceChar = /\s/;
-var whitespacePattern = /(?:\s|\n)+/g;
-var block_comment_pattern = /\/\*(?:[\s\S]*?)((?:\*\/)|$)/g;
-var comment_pattern = /\/\/(?:[^\n\r\u2028\u2029]*)/g;
-
-function Beautifier(source_text, options) {
-  this._source_text = source_text || '';
-  // Allow the setting of language/file-type specific options
-  // with inheritance of overall settings
-  this._options = new Options(options);
-  this._ch = null;
-  this._input = null;
-
-  // https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule
-  this.NESTED_AT_RULE = {
-    "@page": true,
-    "@font-face": true,
-    "@keyframes": true,
-    // also in CONDITIONAL_GROUP_RULE below
-    "@media": true,
-    "@supports": true,
-    "@document": true
-  };
-  this.CONDITIONAL_GROUP_RULE = {
-    "@media": true,
-    "@supports": true,
-    "@document": true
-  };
-
-}
-
-Beautifier.prototype.eatString = function(endChars) {
-  var result = '';
-  this._ch = this._input.next();
-  while (this._ch) {
-    result += this._ch;
-    if (this._ch === "\\") {
-      result += this._input.next();
-    } else if (endChars.indexOf(this._ch) !== -1 || this._ch === "\n") {
-      break;
-    }
-    this._ch = this._input.next();
-  }
-  return result;
-};
-
-// Skips any white space in the source text from the current position.
-// When allowAtLeastOneNewLine is true, will output new lines for each
-// newline character found; if the user has preserve_newlines off, only
-// the first newline will be output
-Beautifier.prototype.eatWhitespace = function(allowAtLeastOneNewLine) {
-  var result = whitespaceChar.test(this._input.peek());
-  var isFirstNewLine = true;
-
-  while (whitespaceChar.test(this._input.peek())) {
-    this._ch = this._input.next();
-    if (allowAtLeastOneNewLine && this._ch === '\n') {
-      if (this._options.preserve_newlines || isFirstNewLine) {
-        isFirstNewLine = false;
-        this._output.add_new_line(true);
-      }
-    }
-  }
-  return result;
-};
-
-// Nested pseudo-class if we are insideRule
-// and the next special character found opens
-// a new block
-Beautifier.prototype.foundNestedPseudoClass = function() {
-  var openParen = 0;
-  var i = 1;
-  var ch = this._input.peek(i);
-  while (ch) {
-    if (ch === "{") {
-      return true;
-    } else if (ch === '(') {
-      // pseudoclasses can contain ()
-      openParen += 1;
-    } else if (ch === ')') {
-      if (openParen === 0) {
-        return false;
-      }
-      openParen -= 1;
-    } else if (ch === ";" || ch === "}") {
-      return false;
-    }
-    i++;
-    ch = this._input.peek(i);
-  }
-  return false;
-};
-
-Beautifier.prototype.print_string = function(output_string) {
-  this._output.set_indent(this._indentLevel);
-  this._output.non_breaking_space = true;
-  this._output.add_token(output_string);
-};
-
-Beautifier.prototype.preserveSingleSpace = function(isAfterSpace) {
-  if (isAfterSpace) {
-    this._output.space_before_token = true;
-  }
-};
-
-Beautifier.prototype.indent = function() {
-  this._indentLevel++;
-};
-
-Beautifier.prototype.outdent = function() {
-  if (this._indentLevel > 0) {
-    this._indentLevel--;
-  }
-};
-
-/*_____________________--------------------_____________________*/
-
-Beautifier.prototype.beautify = function() {
-  if (this._options.disabled) {
-    return this._source_text;
-  }
-
-  var source_text = this._source_text;
-  var eol = this._options.eol;
-  if (eol === 'auto') {
-    eol = '\n';
-    if (source_text && lineBreak.test(source_text || '')) {
-      eol = source_text.match(lineBreak)[0];
-    }
-  }
-
-
-  // HACK: newline parsing inconsistent. This brute force normalizes the this._input.
-  source_text = source_text.replace(allLineBreaks, '\n');
-
-  // reset
-  var baseIndentString = source_text.match(/^[\t ]*/)[0];
-
-  this._output = new Output(this._options, baseIndentString);
-  this._input = new InputScanner(source_text);
-  this._indentLevel = 0;
-  this._nestedLevel = 0;
-
-  this._ch = null;
-  var parenLevel = 0;
-
-  var insideRule = false;
-  // This is the value side of a property value pair (blue in the following ex)
-  // label { content: blue }
-  var insidePropertyValue = false;
-  var enteringConditionalGroup = false;
-  var insideAtExtend = false;
-  var insideAtImport = false;
-  var topCharacter = this._ch;
-  var whitespace;
-  var isAfterSpace;
-  var previous_ch;
-
-  while (true) {
-    whitespace = this._input.read(whitespacePattern);
-    isAfterSpace = whitespace !== '';
-    previous_ch = topCharacter;
-    this._ch = this._input.next();
-    if (this._ch === '\\' && this._input.hasNext()) {
-      this._ch += this._input.next();
-    }
-    topCharacter = this._ch;
-
-    if (!this._ch) {
-      break;
-    } else if (this._ch === '/' && this._input.peek() === '*') {
-      // /* css comment */
-      // Always start block comments on a new line.
-      // This handles scenarios where a block comment immediately
-      // follows a property definition on the same line or where
-      // minified code is being beautified.
-      this._output.add_new_line();
-      this._input.back();
-
-      var comment = this._input.read(block_comment_pattern);
-
-      // Handle ignore directive
-      var directives = directives_core.get_directives(comment);
-      if (directives && directives.ignore === 'start') {
-        comment += directives_core.readIgnored(this._input);
-      }
-
-      this.print_string(comment);
-
-      // Ensures any new lines following the comment are preserved
-      this.eatWhitespace(true);
-
-      // Block comments are followed by a new line so they don't
-      // share a line with other properties
-      this._output.add_new_line();
-    } else if (this._ch === '/' && this._input.peek() === '/') {
-      // // single line comment
-      // Preserves the space before a comment
-      // on the same line as a rule
-      this._output.space_before_token = true;
-      this._input.back();
-      this.print_string(this._input.read(comment_pattern));
-
-      // Ensures any new lines following the comment are preserved
-      this.eatWhitespace(true);
-    } else if (this._ch === '@') {
-      this.preserveSingleSpace(isAfterSpace);
-
-      // deal with less propery mixins @{...}
-      if (this._input.peek() === '{') {
-        this.print_string(this._ch + this.eatString('}'));
-      } else {
-        this.print_string(this._ch);
-
-        // strip trailing space, if present, for hash property checks
-        var variableOrRule = this._input.peekUntilAfter(/[: ,;{}()[\]\/='"]/g);
-
-        if (variableOrRule.match(/[ :]$/)) {
-          // we have a variable or pseudo-class, add it and insert one space before continuing
-          variableOrRule = this.eatString(": ").replace(/\s$/, '');
-          this.print_string(variableOrRule);
-          this._output.space_before_token = true;
-        }
-
-        variableOrRule = variableOrRule.replace(/\s$/, '');
-
-        if (variableOrRule === 'extend') {
-          insideAtExtend = true;
-        } else if (variableOrRule === 'import') {
-          insideAtImport = true;
-        }
-
-        // might be a nesting at-rule
-        if (variableOrRule in this.NESTED_AT_RULE) {
-          this._nestedLevel += 1;
-          if (variableOrRule in this.CONDITIONAL_GROUP_RULE) {
-            enteringConditionalGroup = true;
-          }
-          // might be less variable
-        } else if (!insideRule && parenLevel === 0 && variableOrRule.indexOf(':') !== -1) {
-          insidePropertyValue = true;
-          this.indent();
-        }
-      }
-    } else if (this._ch === '#' && this._input.peek() === '{') {
-      this.preserveSingleSpace(isAfterSpace);
-      this.print_string(this._ch + this.eatString('}'));
-    } else if (this._ch === '{') {
-      if (insidePropertyValue) {
-        insidePropertyValue = false;
-        this.outdent();
-      }
-      this.indent();
-      this._output.space_before_token = true;
-      this.print_string(this._ch);
-
-      // when entering conditional groups, only rulesets are allowed
-      if (enteringConditionalGroup) {
-        enteringConditionalGroup = false;
-        insideRule = (this._indentLevel > this._nestedLevel);
-      } else {
-        // otherwise, declarations are also allowed
-        insideRule = (this._indentLevel >= this._nestedLevel);
-      }
-      if (this._options.newline_between_rules && insideRule) {
-        if (this._output.previous_line && this._output.previous_line.item(-1) !== '{') {
-          this._output.ensure_empty_line_above('/', ',');
-        }
-      }
-      this.eatWhitespace(true);
-      this._output.add_new_line();
-    } else if (this._ch === '}') {
-      this.outdent();
-      this._output.add_new_line();
-      if (previous_ch === '{') {
-        this._output.trim(true);
-      }
-      insideAtImport = false;
-      insideAtExtend = false;
-      if (insidePropertyValue) {
-        this.outdent();
-        insidePropertyValue = false;
-      }
-      this.print_string(this._ch);
-      insideRule = false;
-      if (this._nestedLevel) {
-        this._nestedLevel--;
-      }
-
-      this.eatWhitespace(true);
-      this._output.add_new_line();
-
-      if (this._options.newline_between_rules && !this._output.just_added_blankline()) {
-        if (this._input.peek() !== '}') {
-          this._output.add_new_line(true);
-        }
-      }
-    } else if (this._ch === ":") {
-      if ((insideRule || enteringConditionalGroup) && !(this._input.lookBack("&") || this.foundNestedPseudoClass()) && !this._input.lookBack("(") && !insideAtExtend && parenLevel === 0) {
-        // 'property: value' delimiter
-        // which could be in a conditional group query
-        this.print_string(':');
-        if (!insidePropertyValue) {
-          insidePropertyValue = true;
-          this._output.space_before_token = true;
-          this.eatWhitespace(true);
-          this.indent();
-        }
-      } else {
-        // sass/less parent reference don't use a space
-        // sass nested pseudo-class don't use a space
-
-        // preserve space before pseudoclasses/pseudoelements, as it means "in any child"
-        if (this._input.lookBack(" ")) {
-          this._output.space_before_token = true;
-        }
-        if (this._input.peek() === ":") {
-          // pseudo-element
-          this._ch = this._input.next();
-          this.print_string("::");
-        } else {
-          // pseudo-class
-          this.print_string(':');
-        }
-      }
-    } else if (this._ch === '"' || this._ch === '\'') {
-      this.preserveSingleSpace(isAfterSpace);
-      this.print_string(this._ch + this.eatString(this._ch));
-      this.eatWhitespace(true);
-    } else if (this._ch === ';') {
-      if (parenLevel === 0) {
-        if (insidePropertyValue) {
-          this.outdent();
-          insidePropertyValue = false;
-        }
-        insideAtExtend = false;
-        insideAtImport = false;
-        this.print_string(this._ch);
-        this.eatWhitespace(true);
-
-        // This maintains single line comments on the same
-        // line. Block comments are also affected, but
-        // a new line is always output before one inside
-        // that section
-        if (this._input.peek() !== '/') {
-          this._output.add_new_line();
-        }
-      } else {
-        this.print_string(this._ch);
-        this.eatWhitespace(true);
-        this._output.space_before_token = true;
-      }
-    } else if (this._ch === '(') { // may be a url
-      if (this._input.lookBack("url")) {
-        this.print_string(this._ch);
-        this.eatWhitespace();
-        parenLevel++;
-        this.indent();
-        this._ch = this._input.next();
-        if (this._ch === ')' || this._ch === '"' || this._ch === '\'') {
-          this._input.back();
-        } else if (this._ch) {
-          this.print_string(this._ch + this.eatString(')'));
-          if (parenLevel) {
-            parenLevel--;
-            this.outdent();
-          }
-        }
-      } else {
-        this.preserveSingleSpace(isAfterSpace);
-        this.print_string(this._ch);
-        this.eatWhitespace();
-        parenLevel++;
-        this.indent();
-      }
-    } else if (this._ch === ')') {
-      if (parenLevel) {
-        parenLevel--;
-        this.outdent();
-      }
-      this.print_string(this._ch);
-    } else if (this._ch === ',') {
-      this.print_string(this._ch);
-      this.eatWhitespace(true);
-      if (this._options.selector_separator_newline && !insidePropertyValue && parenLevel === 0 && !insideAtImport) {
-        this._output.add_new_line();
-      } else {
-        this._output.space_before_token = true;
-      }
-    } else if ((this._ch === '>' || this._ch === '+' || this._ch === '~') && !insidePropertyValue && parenLevel === 0) {
-      //handle combinator spacing
-      if (this._options.space_around_combinator) {
-        this._output.space_before_token = true;
-        this.print_string(this._ch);
-        this._output.space_before_token = true;
-      } else {
-        this.print_string(this._ch);
-        this.eatWhitespace();
-        // squash extra whitespace
-        if (this._ch && whitespaceChar.test(this._ch)) {
-          this._ch = '';
-        }
-      }
-    } else if (this._ch === ']') {
-      this.print_string(this._ch);
-    } else if (this._ch === '[') {
-      this.preserveSingleSpace(isAfterSpace);
-      this.print_string(this._ch);
-    } else if (this._ch === '=') { // no whitespace before or after
-      this.eatWhitespace();
-      this.print_string('=');
-      if (whitespaceChar.test(this._ch)) {
-        this._ch = '';
-      }
-    } else if (this._ch === '!' && !this._input.lookBack("\\")) { // !important
-      this.print_string(' ');
-      this.print_string(this._ch);
-    } else {
-      this.preserveSingleSpace(isAfterSpace);
-      this.print_string(this._ch);
-    }
-  }
-
-  var sweetCode = this._output.get_code(eol);
-
-  return sweetCode;
-};
-
-module.exports.Beautifier = Beautifier;
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var BaseOptions = __webpack_require__(6).Options;
-
-function Options(options) {
-  BaseOptions.call(this, options, 'css');
-
-  this.selector_separator_newline = this._get_boolean('selector_separator_newline', true);
-  this.newline_between_rules = this._get_boolean('newline_between_rules', true);
-  var space_around_selector_separator = this._get_boolean('space_around_selector_separator');
-  this.space_around_combinator = this._get_boolean('space_around_combinator') || space_around_selector_separator;
-
-}
-Options.prototype = new BaseOptions();
-
-
-
-module.exports.Options = Options;
-
-
-/***/ })
-/******/ ]);
-var css_beautify = legacy_beautify_css;
-/* Footer */
-if (true) {
-    // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
-        return {
-            css_beautify: css_beautify
-        };
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-} else {}
-
-}());
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -13244,7 +7546,7 @@ exports.asArray = function (a) { return (Array.isArray(a) ? a : [a]); };
 
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13303,7 +7605,7 @@ exports.debounce = function (fn, timeout, invokeAsap, ctx) {
 
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13323,7 +7625,7 @@ exports.isWindow = function (obj) {
 
 
 /***/ }),
-/* 46 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13338,19 +7640,19 @@ exports.isWindow = function (obj) {
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
+tslib_1.__exportStar(__webpack_require__(78), exports);
+tslib_1.__exportStar(__webpack_require__(79), exports);
 tslib_1.__exportStar(__webpack_require__(80), exports);
 tslib_1.__exportStar(__webpack_require__(81), exports);
-tslib_1.__exportStar(__webpack_require__(82), exports);
-tslib_1.__exportStar(__webpack_require__(83), exports);
 tslib_1.__exportStar(__webpack_require__(22), exports);
 tslib_1.__exportStar(__webpack_require__(21), exports);
-tslib_1.__exportStar(__webpack_require__(47), exports);
 tslib_1.__exportStar(__webpack_require__(45), exports);
-tslib_1.__exportStar(__webpack_require__(84), exports);
+tslib_1.__exportStar(__webpack_require__(43), exports);
+tslib_1.__exportStar(__webpack_require__(82), exports);
 
 
 /***/ }),
-/* 47 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13383,7 +7685,7 @@ exports.isURL = function (str) {
 
 
 /***/ }),
-/* 48 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13438,7 +7740,7 @@ exports.colorToHex = function (color) {
 
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13453,15 +7755,15 @@ exports.colorToHex = function (color) {
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-tslib_1.__exportStar(__webpack_require__(87), exports);
+tslib_1.__exportStar(__webpack_require__(85), exports);
+tslib_1.__exportStar(__webpack_require__(86), exports);
 tslib_1.__exportStar(__webpack_require__(88), exports);
+tslib_1.__exportStar(__webpack_require__(89), exports);
 tslib_1.__exportStar(__webpack_require__(90), exports);
-tslib_1.__exportStar(__webpack_require__(91), exports);
-tslib_1.__exportStar(__webpack_require__(92), exports);
 
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13488,7 +7790,7 @@ exports.camelCase = function (key) {
 
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13515,7 +7817,7 @@ exports.fromCamelCase = function (key) {
 
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13548,7 +7850,7 @@ exports.normilizeCSSValue = function (key, value) {
 
 
 /***/ }),
-/* 53 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13571,7 +7873,7 @@ exports.completeUrl = function (url) {
 
 
 /***/ }),
-/* 54 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13601,7 +7903,7 @@ exports.parseQuery = function (queryString) {
 
 
 /***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13636,7 +7938,7 @@ exports.ctrlKey = function (e) {
 
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13663,7 +7965,7 @@ exports.defaultLanguage = function (language) {
 
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13681,9 +7983,9 @@ var tslib_1 = __webpack_require__(1);
 var Config_1 = __webpack_require__(3);
 var Component_1 = __webpack_require__(8);
 var async_1 = __webpack_require__(5);
-var Snapshot_1 = __webpack_require__(58);
-var Stack_1 = __webpack_require__(59);
-var command_1 = __webpack_require__(111);
+var Snapshot_1 = __webpack_require__(56);
+var Stack_1 = __webpack_require__(57);
+var command_1 = __webpack_require__(109);
 Config_1.Config.prototype.observer = {
     timeout: 100
 };
@@ -13775,7 +8077,7 @@ exports.Observer = Observer;
 
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13959,7 +8261,7 @@ exports.Snapshot = Snapshot;
 
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14022,7 +8324,7 @@ exports.Stack = Stack;
 
 
 /***/ }),
-/* 60 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14042,7 +8344,7 @@ var Dom_1 = __webpack_require__(0);
 var css_1 = __webpack_require__(10);
 var normalize_1 = __webpack_require__(19);
 var selector_1 = __webpack_require__(12);
-var checker_1 = __webpack_require__(46);
+var checker_1 = __webpack_require__(44);
 var each_1 = __webpack_require__(24);
 var string_1 = __webpack_require__(9);
 var Select = /** @class */ (function () {
@@ -15031,7 +9333,7 @@ exports.Select = Select;
 
 
 /***/ }),
-/* 61 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15070,7 +9372,7 @@ exports.LocalStorageProvider = LocalStorageProvider;
 
 
 /***/ }),
-/* 62 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15085,7 +9387,7 @@ exports.LocalStorageProvider = LocalStorageProvider;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var view_1 = __webpack_require__(63);
+var view_1 = __webpack_require__(61);
 var ViewWithToolbar = /** @class */ (function (_super) {
     tslib_1.__extends(ViewWithToolbar, _super);
     function ViewWithToolbar() {
@@ -15105,7 +9407,7 @@ var joditToolbarCollection_1 = __webpack_require__(20);
 
 
 /***/ }),
-/* 63 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15120,8 +9422,8 @@ var joditToolbarCollection_1 = __webpack_require__(20);
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var eventsNative_1 = __webpack_require__(64);
-var panel_1 = __webpack_require__(114);
+var eventsNative_1 = __webpack_require__(62);
+var panel_1 = __webpack_require__(112);
 var View = /** @class */ (function (_super) {
     tslib_1.__extends(View, _super);
     function View(jodit, options) {
@@ -15221,7 +9523,7 @@ var Jodit_1 = __webpack_require__(11);
 
 
 /***/ }),
-/* 64 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15232,7 +9534,7 @@ var Jodit_1 = __webpack_require__(11);
  * Copyright 2013-2019 Valeriy Chupurnov https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var store_1 = __webpack_require__(113);
+var store_1 = __webpack_require__(111);
 var EventsNative = /** @class */ (function () {
     function EventsNative(doc) {
         var _this = this;
@@ -15598,7 +9900,7 @@ exports.EventsNative = EventsNative;
 
 
 /***/ }),
-/* 65 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15614,7 +9916,7 @@ exports.EventsNative = EventsNative;
 Object.defineProperty(exports, "__esModule", { value: true });
 var isPlainObject_1 = __webpack_require__(21);
 var each_1 = __webpack_require__(24);
-var asArray_1 = __webpack_require__(43);
+var asArray_1 = __webpack_require__(41);
 var Dom_1 = __webpack_require__(0);
 var helpers_1 = __webpack_require__(4);
 var Create = /** @class */ (function () {
@@ -15715,7 +10017,7 @@ exports.Create = Create;
 
 
 /***/ }),
-/* 66 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15801,7 +10103,7 @@ var Jodit_1 = __webpack_require__(11);
 
 
 /***/ }),
-/* 67 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15879,7 +10181,7 @@ var Jodit_1 = __webpack_require__(11);
 
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -15888,7 +10190,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 69 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15902,17 +10204,17 @@ module.exports = function() {
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(70);
+__webpack_require__(68);
 // for SSR
 if (typeof window !== 'undefined') {
-    __webpack_require__(71);
+    __webpack_require__(69);
 }
 var Jodit_1 = __webpack_require__(11);
 var consts = __webpack_require__(2);
-var Languages = __webpack_require__(120);
+var Languages = __webpack_require__(118);
 var Modules = __webpack_require__(36);
-var Plugins = __webpack_require__(148);
-var Icons = __webpack_require__(596);
+var Plugins = __webpack_require__(146);
+var Icons = __webpack_require__(593);
 var Config_1 = __webpack_require__(3);
 var icon_1 = __webpack_require__(6);
 // copy constants in Jodit
@@ -15954,13 +10256,13 @@ exports.default = Jodit_1.Jodit;
 
 
 /***/ }),
-/* 70 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 71 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15974,8 +10276,8 @@ exports.default = Jodit_1.Jodit;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(72);
-__webpack_require__(73);
+__webpack_require__(70);
+__webpack_require__(71);
 (function (e) {
     e.matches ||
         (e.matches =
@@ -16006,7 +10308,7 @@ if (!Array.prototype.includes) {
 
 
 /***/ }),
-/* 72 */
+/* 70 */
 /***/ (function(module, exports) {
 
 /*
@@ -16252,18 +10554,18 @@ if (objCtr.defineProperty) {
 
 
 /***/ }),
-/* 73 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // This file can be required in Browserify and Node.js for automatic polyfill
 // To use it:  require('es6-promise/auto');
 
-module.exports = __webpack_require__(74).polyfill();
+module.exports = __webpack_require__(72).polyfill();
 
 
 /***/ }),
-/* 74 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -17440,10 +11742,10 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(75), __webpack_require__(76)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(73), __webpack_require__(74)))
 
 /***/ }),
-/* 75 */
+/* 73 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -17633,7 +11935,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 76 */
+/* 74 */
 /***/ (function(module, exports) {
 
 var g;
@@ -17659,7 +11961,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 77 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17677,7 +11979,7 @@ exports.inArray = function (needle, haystack) { return haystack.indexOf(needle) 
 
 
 /***/ }),
-/* 78 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17702,7 +12004,7 @@ exports.splitArray = function (a) {
 
 
 /***/ }),
-/* 79 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17762,7 +12064,7 @@ exports.throttle = function (fn, timeout, ctx) {
 
 
 /***/ }),
-/* 80 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17789,7 +12091,7 @@ exports.isHTML = function (str) {
 
 
 /***/ }),
-/* 81 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17817,7 +12119,7 @@ exports.isHTMLFromWord = function (data) {
 
 
 /***/ }),
-/* 82 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17845,7 +12147,7 @@ exports.isInt = function (value) {
 
 
 /***/ }),
-/* 83 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17867,7 +12169,7 @@ exports.isLicense = function (license) {
 
 
 /***/ }),
-/* 84 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17902,7 +12204,7 @@ exports.hasBrowserColorPicker = function () {
 
 
 /***/ }),
-/* 85 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17917,12 +12219,12 @@ exports.hasBrowserColorPicker = function () {
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-tslib_1.__exportStar(__webpack_require__(86), exports);
-tslib_1.__exportStar(__webpack_require__(48), exports);
+tslib_1.__exportStar(__webpack_require__(84), exports);
+tslib_1.__exportStar(__webpack_require__(46), exports);
 
 
 /***/ }),
-/* 86 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17957,7 +12259,7 @@ exports.hexToRgb = function (hex) {
 
 
 /***/ }),
-/* 87 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18027,7 +12329,7 @@ exports.applyStyles = function (html) {
 
 
 /***/ }),
-/* 88 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18112,7 +12414,7 @@ exports.cleanFromWord = function (html) {
 
 
 /***/ }),
-/* 89 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18279,7 +12581,7 @@ exports.sprintf = function () {
 
 
 /***/ }),
-/* 90 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18316,7 +12618,7 @@ exports.clear = function (value, removeEmptyBlocks) {
 
 
 /***/ }),
-/* 91 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18345,7 +12647,7 @@ exports.htmlspecialchars = function (html) {
 
 
 /***/ }),
-/* 92 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18372,7 +12674,7 @@ exports.stripTags = function (html) {
 
 
 /***/ }),
-/* 93 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18407,7 +12709,7 @@ exports.normalizeKeyAliases = function (keys) {
 
 
 /***/ }),
-/* 94 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18435,7 +12737,7 @@ exports.normalizeLicense = function (license, count) {
 
 
 /***/ }),
-/* 95 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18475,7 +12777,7 @@ exports.normalizeNode = function (node) {
 
 
 /***/ }),
-/* 96 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18517,7 +12819,7 @@ exports.normalizePath = function () {
 
 
 /***/ }),
-/* 97 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18554,7 +12856,7 @@ exports.normalizeRelativePath = function (path) {
 
 
 /***/ }),
-/* 98 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18583,7 +12885,7 @@ exports.normalizeSize = function (value) {
 
 
 /***/ }),
-/* 99 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18611,7 +12913,7 @@ exports.normalizeURL = function () {
 
 
 /***/ }),
-/* 100 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18625,7 +12927,7 @@ exports.normalizeURL = function () {
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var colorToHex_1 = __webpack_require__(48);
+var colorToHex_1 = __webpack_require__(46);
 var trim_1 = __webpack_require__(33);
 /**
  * Convert rgba and short HEX color to Full text color. #fff to #FFFFFF
@@ -18657,7 +12959,7 @@ exports.normalizeColor = function (colorInput) {
 
 
 /***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18683,7 +12985,7 @@ exports.getContentWidth = function (element, win) {
 
 
 /***/ }),
-/* 102 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18708,7 +13010,7 @@ exports.innerWidth = function (element, win) {
 
 
 /***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18756,7 +13058,7 @@ exports.offset = function (elm, jodit, doc, recurse) {
 
 
 /***/ }),
-/* 104 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18770,7 +13072,7 @@ exports.offset = function (elm, jodit, doc, recurse) {
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var completeUrl_1 = __webpack_require__(53);
+var completeUrl_1 = __webpack_require__(51);
 exports.appendScript = function (url, callback, className, doc) {
     if (className === void 0) { className = ''; }
     var script = doc.createElement('script');
@@ -18789,7 +13091,7 @@ exports.appendScript = function (url, callback, className, doc) {
 
 
 /***/ }),
-/* 105 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18841,7 +13143,7 @@ exports.browser = function (browser) {
 
 
 /***/ }),
-/* 106 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18855,8 +13157,8 @@ exports.browser = function (browser) {
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var isURL_1 = __webpack_require__(47);
-var parseQuery_1 = __webpack_require__(54);
+var isURL_1 = __webpack_require__(45);
+var parseQuery_1 = __webpack_require__(52);
 /**
  *  Javascript url pattern converter replace youtube/vimeo url in embed code.
  *
@@ -18916,7 +13218,7 @@ exports.convertMediaURLToVideoEmbed = function (url, width, height) {
 
 
 /***/ }),
-/* 107 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18949,7 +13251,7 @@ exports.dataBind = function (elm, key, value) {
 
 
 /***/ }),
-/* 108 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18982,7 +13284,7 @@ exports.humanSizeToBytes = function (human) {
 
 
 /***/ }),
-/* 109 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19028,7 +13330,7 @@ exports.scrollIntoView = function (elm, root, doc) {
 
 
 /***/ }),
-/* 110 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19055,7 +13357,7 @@ exports.val = function (elm, selector, value) {
 
 
 /***/ }),
-/* 111 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19087,7 +13389,7 @@ exports.Command = Command;
 
 
 /***/ }),
-/* 112 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19142,7 +13444,7 @@ exports.StatusBar = StatusBar;
 
 
 /***/ }),
-/* 113 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19212,7 +13514,7 @@ exports.EventHandlersStore = EventHandlersStore;
 
 
 /***/ }),
-/* 114 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19229,7 +13531,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var Component_1 = __webpack_require__(8);
 var Dom_1 = __webpack_require__(0);
-var Create_1 = __webpack_require__(65);
+var Create_1 = __webpack_require__(63);
 var isJoditObject_1 = __webpack_require__(15);
 var Panel = /** @class */ (function (_super) {
     tslib_1.__extends(Panel, _super);
@@ -19298,7 +13600,7 @@ exports.Panel = Panel;
 
 
 /***/ }),
-/* 115 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19327,7 +13629,7 @@ exports.ToolbarBreak = ToolbarBreak;
 
 
 /***/ }),
-/* 116 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19423,7 +13725,7 @@ exports.PopupList = PopupList;
 
 
 /***/ }),
-/* 117 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19487,7 +13789,7 @@ exports.ToolbarTooltip = ToolbarTooltip;
 
 
 /***/ }),
-/* 118 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19508,7 +13810,7 @@ exports.ToolbarSeparator = ToolbarSeparator;
 
 
 /***/ }),
-/* 119 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19537,7 +13839,7 @@ exports.ucfirst = function (value) {
 
 
 /***/ }),
-/* 120 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19550,22 +13852,22 @@ exports.ucfirst = function (value) {
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-var ar_1 = __webpack_require__(121);
-var cs_cz_1 = __webpack_require__(122);
-var de_1 = __webpack_require__(123);
-var es_1 = __webpack_require__(124);
-var fr_1 = __webpack_require__(125);
-var he_1 = __webpack_require__(126);
-var hu_1 = __webpack_require__(127);
-var id_1 = __webpack_require__(128);
-var it_1 = __webpack_require__(129);
-var nl_1 = __webpack_require__(130);
-var pt_br_1 = __webpack_require__(131);
-var ru_1 = __webpack_require__(132);
-var tr_1 = __webpack_require__(133);
-var zh_cn_1 = __webpack_require__(134);
-var zh_tw_1 = __webpack_require__(135);
-var en_1 = __webpack_require__(136);
+var ar_1 = __webpack_require__(119);
+var cs_cz_1 = __webpack_require__(120);
+var de_1 = __webpack_require__(121);
+var es_1 = __webpack_require__(122);
+var fr_1 = __webpack_require__(123);
+var he_1 = __webpack_require__(124);
+var hu_1 = __webpack_require__(125);
+var id_1 = __webpack_require__(126);
+var it_1 = __webpack_require__(127);
+var nl_1 = __webpack_require__(128);
+var pt_br_1 = __webpack_require__(129);
+var ru_1 = __webpack_require__(130);
+var tr_1 = __webpack_require__(131);
+var zh_cn_1 = __webpack_require__(132);
+var zh_tw_1 = __webpack_require__(133);
+var en_1 = __webpack_require__(134);
 var exp = {
     ar: ar_1.default,
     de: de_1.default,
@@ -19604,103 +13906,103 @@ module.exports = exp;
 
 
 /***/ }),
+/* 119 */
+/***/ (function(module, exports) {
+
+module.exports.default = ["إبدأ في الكتابة...","حول جوديت","محرر جوديت","الإصدار الغير تجاري مجاني","رخصة جنو العمومية العامة ، الإصدار الثاني أو الأحدث","دليل مستخدم جوديت","يحتوي على مساعدة مفصلة للاستخدام","للحصول على معلومات حول الترخيص، يرجى الذهاب لموقعنا:","شراء النسخة الكاملة","حقوق الطبع والنشر © XDSoft.net - Chupurnov Valeriy. كل الحقوق محفوظة.","مِرْساة","فتح في نافذة جديدة","فتح المحرر في الحجم الكامل","مسح التنسيق","ملء اللون أو تعيين لون النص","إعادة","تراجع","عريض","مائل","إدراج قائمة غير مرتبة","إدراج قائمة مرتبة","محاذاة للوسط","محاذاة مثبتة","محاذاة لليسار","محاذاة لليمين","إدراج خط أفقي","إدراج صورة","ادخال الملف","إدراج فيديو يوتيوب/فيميو ","إدراج رابط","حجم الخط","نوع الخط","إدراج كتلة تنسيق","عادي","عنوان 1","عنوان 2","عنوان 3","عنوان 4","إقتباس","كود","إدراج","إدراج جدول","تقليل المسافة البادئة","زيادة المسافة البادئة","تحديد أحرف خاصة","إدراج حرف خاص","تنسيق الرسم","تغيير الوضع","هوامش","أعلى","يمين","أسفل","يسار","الأنماط","الطبقات","محاذاة","اليمين","الوسط","اليسار","--غير مضبوط--","Src","العنوان","العنوان البديل","الرابط","افتح الرابط في نافذة جديدة","الصورة","ملف","متقدم","خصائص الصورة","إلغاء","حسنا","يشبه الكود الخاص بك HTML. تبقي كما HTML؟","الصق ك HTML","احتفظ",null,"إدراج كنص","إدراج النص فقط",null,null,"متصفح الملفات","حدث خطأ في تحميل القائمة ","حدث خطأ في تحميل المجلدات","هل أنت واثق؟","أدخل اسم المجلد","إنشاء مجلد","أكتب إسم","إسقاط صورة","إسقاط الملف","أو أنقر","النص البديل","تصفح","رفع","الخلفية","نص","أعلى","الوسط","الأسفل","إدراج عمود قبل","إدراج عمود بعد","إدراج صف أعلى","إدراج صف أسفل","حذف الجدول","حذف الصف","حذف العمود","خلية فارغة","مصدر","بالخط العريض","مائل","شغل","صلة","إلغاء","كرر","طاولة","صورة","نظيف","فقرة","حجم الخط","فيديو","الخط","حول المحرر","طباعة","رمز","أكد","شطب","المسافة البادئة","نتوء","ملء الشاشة","الحجم التقليدي","نسخ التنسيق","الخط","قائمة","قائمة مرقمة","قطع","اختر الكل","قانون","فتح الرابط","تعديل الرابط","سمة Nofollow","إزالة الرابط","مراجعة","لتحرير","تحديث","URL","تحرير","محاذاة أفقية","فلتر","عن طريق التغيير","بالاسم","حسب الحجم","إضافة مجلد","إعادة","احتفظ","حفظ باسم","تغيير الحجم","حجم القطع","عرض","ارتفاع","حافظ على النسب","أن","لا","حذف","تميز","%d حرف","%d كلام",null,"تميز %s","اختر الكل","محاذاة عمودية","انشق، مزق","انقسام عمودي","تقسيم أفقي","اذهب","أضف العمود","اضف سطر","حذف","الحدود","رخصة %s","اضرب من خلال","أكد","حرف فوقي","مخطوطة","قطع الاختيار","استراحة","البحث عن","استبدل ب","يحل محل","معجون","اختر محتوى للصق","يمكنك فقط تحرير صورك الخاصة. تحميل هذه الصورة على المضيف؟","تم تحميل الصورة بنجاح على الخادم!","لوحة","لا توجد ملفات في هذا الدليل.","إعادة تسمية","أدخل اسم جديد","معاينة","تحميل"]
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports) {
+
+module.exports.default = ["Napiš něco","O Jodit","Editor Jodit","Verze pro nekomerční použití","Licence GNU (GPL), verze 2 nebo vyšší","Jodit Uživatelská příručka","obsahuje detailní nápovědu","Pro informace o licenci, prosím, přejděte na naši stránku:","Koupit plnou verzi","Copyright © XDSoft.net - Chupurnov Valeriy. Všechna práva vyhrazena.","Anchor","Otevřít v nové záložce","Otevřít v celoobrazovkovém režimu","Vyčistit formátování","Barva výplně a písma","Vpřed","Zpět","Tučné","Kurzíva","Odrážky","Číslovaný seznam","Zarovnat na střed","Zarovnat do bloku","Zarovnat vlevo","Zarovnat vpravo","Vložit horizontální linku","Vložit obrázek","Vložit soubor","Vložit video (YT/Vimeo)","Vložit odkaz","Velikost písma","Typ písma","Formátovat blok","Normální text","Nadpis 1","Nadpis 2","Nadpis 3","Nadpis 4","Citát","Kód","Vložit","Vložit tabulku","Zmenšit odsazení","Zvětšit odsazení","Vybrat speciální symbol","Vložit speciální symbol","Použít formát","Změnit mód","Okraje","horní","pravý","spodní","levý","Styly","Třídy","Zarovnání","Vpravo","Na střed","Vlevo","--nenastaveno--","src","Titulek","Alternativní text (alt)","Link","Otevřít link v nové záložce","Obrázek","soubor","Rozšířené","Vlastnosti obrázku","Zpět","Ok","Váš text se podobá HTML. Vložit ho jako HTML?","Vložit jako HTML","Ponechat originál","Vyčistit","Vložit jako TEXT","Vložit pouze TEXT","Detekován fragment z Wordu nebo Excelu","Obsah, který vkládáte, je pravděpodobně z Microsoft Word / Excel. Chcete ponechat formát nebo vložit pouze text?","Prohlížeč souborů","Chyba při načítání seznamu souborů","Chyba při načítání složek","Jste si jistý(á)?","Název složky","Vytvořit složku","název","Přetáhněte sem obrázek","Přetáhněte sem soubor","nebo klikněte","Alternativní text","Server","Nahrát","Pozadí","Text","Nahoru","Na střed","Dolu","Vložit sloupec před","Vložit sloupec za","Vložit řádek nad","Vložit řádek pod","Vymazat tabulku","Vymazat řádku","Vymazat sloupec","Vyčistit buňku","HTML","tučně","kurzíva","štětec","odkaz","zpět","vpřed","tabulka","obrázek","guma","odstavec","velikost písma","video","písmo","о editoru","tisk","symbol","podtrženo","přeškrtnuto","zvětšit odsazení","zmenšit odsazení","celoobrazovkový režim","smrsknout","Kopírovat formát","Linka","Odrážka","Číslovaný seznam","Vyjmout","Označit vše","Kód","Otevřít odkaz","Upravit odkaz","Atribut no-follow","Odstranit odkaz","Zobrazit","Chcete-li upravit","Aktualizovat","URL","Editovat","Horizontální zarovnání","Filtr","Dle poslední změny","Dle názvu","Dle velikosti","Přidat složku","Reset","Uložit","Uložit jako...","Změnit rozměr","Ořezat","Šířka","Výška","Ponechat poměr","Ano","Ne","Vyjmout","Označit","Znaky: %d","Slova: %d","Vše","Označit %s","Označit vše","Vertikální zarovnání","Rozdělit","Rozdělit vertikálně","Rozdělit horizontálně","Spojit","Přidat sloupec","Přidat řádek","Vymazat","Okraj","Licence: %s","Přeškrtnuto","Podtrženo","Horní index","Dolní index","Vyjmout označené","Zalomení","Najdi","Nahradit za","Nahradit","Vložit","Vyber obsah pro vložení","Můžete upravovat pouze své obrázky. Načíst obrázek?","Obrázek byl úspěšně nahrán!","paleta","V tomto adresáři nejsou žádné soubory.","přejmenovat","Zadejte nový název","náhled","Stažení"]
+
+/***/ }),
 /* 121 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["إبدأ في الكتابة...","حول جوديت","محرر جوديت","الإصدار الغير تجاري مجاني","رخصة جنو العمومية العامة ، الإصدار الثاني أو الأحدث","دليل مستخدم جوديت","يحتوي على مساعدة مفصلة للاستخدام","للحصول على معلومات حول الترخيص، يرجى الذهاب لموقعنا:","شراء النسخة الكاملة","حقوق الطبع والنشر © XDSoft.net - Chupurnov Valeriy. كل الحقوق محفوظة.","مِرْساة","فتح في نافذة جديدة","فتح المحرر في الحجم الكامل","مسح التنسيق","ملء اللون أو تعيين لون النص","إعادة","تراجع","عريض","مائل","إدراج قائمة غير مرتبة","إدراج قائمة مرتبة","محاذاة للوسط","محاذاة مثبتة","محاذاة لليسار","محاذاة لليمين","إدراج خط أفقي","إدراج صورة","ادخال الملف","إدراج فيديو يوتيوب/فيميو ","إدراج رابط","حجم الخط","نوع الخط","إدراج كتلة تنسيق","عادي","عنوان 1","عنوان 2","عنوان 3","عنوان 4","إقتباس","كود","إدراج","إدراج جدول","تقليل المسافة البادئة","زيادة المسافة البادئة","تحديد أحرف خاصة","إدراج حرف خاص","تنسيق الرسم","تغيير الوضع","هوامش","أعلى","يمين","أسفل","يسار","الأنماط","الطبقات","محاذاة","اليمين","الوسط","اليسار","--غير مضبوط--","Src","العنوان","العنوان البديل","الرابط","افتح الرابط في نافذة جديدة","الصورة","ملف","متقدم","خصائص الصورة","إلغاء","حسنا","متصفح الملفات","حدث خطأ في تحميل القائمة ","حدث خطأ في تحميل المجلدات","هل أنت واثق؟","أدخل اسم المجلد","إنشاء مجلد","أكتب إسم","إسقاط صورة","إسقاط الملف","أو أنقر","النص البديل","رفع","تصفح","الخلفية","نص","أعلى","الوسط","الأسفل","إدراج عمود قبل","إدراج عمود بعد","إدراج صف أعلى","إدراج صف أسفل","حذف الجدول","حذف الصف","حذف العمود","خلية فارغة","%d حرف","%d كلام","اضرب من خلال","أكد","حرف فوقي","مخطوطة","قطع الاختيار","اختر الكل","استراحة","البحث عن","استبدل ب","يحل محل","معجون","اختر محتوى للصق","مصدر","بالخط العريض","مائل","شغل","صلة","إلغاء","كرر","طاولة","صورة","نظيف","فقرة","حجم الخط","فيديو","الخط","حول المحرر","طباعة","رمز","أكد","شطب","المسافة البادئة","نتوء","ملء الشاشة","الحجم التقليدي","نسخ التنسيق","الخط","قائمة","قائمة مرقمة","قطع","اختر الكل","قانون","فتح الرابط","تعديل الرابط","سمة Nofollow","إزالة الرابط","تحديث","لتحرير","مراجعة","URL","تحرير","محاذاة أفقية","فلتر","عن طريق التغيير","بالاسم","حسب الحجم","إضافة مجلد","إعادة","احتفظ","حفظ باسم","تغيير الحجم","حجم القطع","عرض","ارتفاع","حافظ على النسب","أن","لا","حذف","تميز","تميز %s","محاذاة عمودية","انشق، مزق","اذهب","أضف العمود","اضف سطر","رخصة %s","حذف","انقسام عمودي","تقسيم أفقي","الحدود","يشبه الكود الخاص بك HTML. تبقي كما HTML؟","الصق ك HTML","احتفظ","إدراج كنص","إدراج النص فقط","يمكنك فقط تحرير صورك الخاصة. تحميل هذه الصورة على المضيف؟","تم تحميل الصورة بنجاح على الخادم!","لوحة","لا توجد ملفات في هذا الدليل.","إعادة تسمية","أدخل اسم جديد","معاينة","تحميل"]
+module.exports.default = ["Bitte geben Sie einen Text ein","Über Jodit","Jodit Editor","Freie Nicht-kommerzielle Version","GNU General Public License, Version 2 oder höher","Das Jodit Benutzerhandbuch","beinhaltet ausführliche Informationen wie Sie den Editor verwenden können.","Für Lizenz-Informationen, besuchen Sie bitte unsere Webseite:","Vollversion kaufen","Copyright © XDSoft.net - Chupurnov Valeriy. Alle Rechte vorbehalten.","Anker","In neuer Registerkarte öffnen","Editor in voller Größe öffnen","Formatierung löschen","Füllfarbe oder Textfarbe ändern","Wiederholen","Rückgängig machen","Fett","Kursiv","Ungeordnete Liste einfügen","Sortierte Liste einfügen","Mittig ausrichten","Blocksatz","Links ausrichten","Rechts ausrichten","Horizontale Linie einfügen","Bild einfügen","Datei einfügen","Youtube/vimeo Video einfügen","Link einfügen","Schriftgröße","Schriftfamilie","Formatblock einfügen","Normal","Überschrift 1","Überschrift 2","Überschrift 3","Überschrift 4","Zitat","Code","Einfügen","Tabelle einfügen","Einzug verkleinern","Einzug vergrößern","Sonderzeichen auswählen","Sonderzeichen einfügen","Format kopieren","Änderungsmodus","Ränder","Oben","Rechts","Unten","Links","CSS Stiel","CSS Klassen","Ausrichten","Rechts","Zentriert","Links","Keine","Pfad","Titel","Alternativer Text","Link","Link in neuem Tab öffnen","Bild","Datei","Fortgeschritten","Bildeigenschaften","Abbrechen","OK","Es scheint als dass Sie HTML-Text einfügen möchten","Als HTML einfügen?","Original speichern","Säubern","Als Text einfügen","Nur Text einfügen","In Word formatierter Text erkannt","Der Inhalt, den Sie einfügen, stammt aus einem Microsoft Word / Excel-Dokument. Möchten Sie das Format erhalten oder löschen?","Dateibrowser","Fehler beim Laden der Liste","Fehler beim Laden der Ordner","Sind Sie sicher?","Geben Sie den Verzeichnisnamen ein","Verzeichnis erstellen","Typname","Bild hier hinziehen","Datei löschen","oder hier klicken","Alternativtext","Auswählen","Hochladen","Hintergrund","Text","Oben","Mittig","Unten","Spalte einfügen vor","Spalte einfügen nach","Zeile einfügen oberhalb","Zeile unterhalb einfügen","Tabelle löschen","Zeile löschen","Spalte löschen","Leere Zelle","HTML","Fett gedruckt","kursiv","Bürste","Verknüpfung","rückgängig machen","wiederholen","Tabelle","Bild","Radiergummi","Absatz","Schriftgröße","Video","Schriftart","Über","drucken","Symbol","unterstreichen","durchgestrichen","Einzug","Aussenseiter","Vollgröße","schrumpfen","Format kopierenт","die Linie","Liste von","Nummerierte Liste","Schnitt","Wählen Sie Alle aus","Code einbetten","Link öffnen","Link bearbeiten","Nofollow-Attribut","Link entfernen","Ansehen","Bearbeiten","Aktualisieren","URL","Bearbeiten","Horizontale Ausrichtung","filter","Sortieren nach geändert","Nach Name sortieren","Nach Größe sortiert","Ordner hinzufügen","Wiederherstellen","Speichern","Speichern als","Ändern Sie die Größe","Größe anpassen","Breite","Höhe","Halten Sie Proportionen","Ja","Nein","Entfernen","Markieren","Zeichen: %d","Wörter: %d","Wählen Sie Alle aus","Markieren: %s","Wählen Sie Alle aus","Vertikale Ausrichtung",null,"Split vertikal","Split horizontally","Verschmelzen","Spalte hinzufügen","Zeile hinzufügen","Löschen","Rand",null,"Durchschlagen","Unterstreichen","hochgestellt","Index","Auswahl ausschneid","Pause","Suche nach","Ersetzen durch","Ersetzen","Einfügen","Wählen Sie Inhalt zum Einfügen","Sie können nur Ihre eigenen Bilder bearbeiten. Laden Sie dieses Bild auf dem Host herunter?","Das Bild wurde erfolgreich auf den Server hochgeladen!null","Palette","In diesem Verzeichnis befinden sich keine Dateien.","umbenennen","Geben Sie einen neuen Namen ein","Vorschau","Herunterladen"]
 
 /***/ }),
 /* 122 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Napiš něco","O Jodit","Editor Jodit","Verze pro nekomerční použití","Licence GNU (GPL), verze 2 nebo vyšší","Jodit Uživatelská příručka","obsahuje detailní nápovědu","Pro informace o licenci, prosím, přejděte na naši stránku:","Koupit plnou verzi","Copyright © XDSoft.net - Chupurnov Valeriy. Všechna práva vyhrazena.","Anchor","Otevřít v nové záložce","Otevřít v celoobrazovkovém režimu","Vyčistit formátování","Barva výplně a písma","Vpřed","Zpět","Tučné","Kurzíva","Odrážky","Číslovaný seznam","Zarovnat na střed","Zarovnat do bloku","Zarovnat vlevo","Zarovnat vpravo","Vložit horizontální linku","Vložit obrázek","Vložit soubor","Vložit video (YT/Vimeo)","Vložit odkaz","Velikost písma","Typ písma","Formátovat blok","Normální text","Nadpis 1","Nadpis 2","Nadpis 3","Nadpis 4","Citát","Kód","Vložit","Vložit tabulku","Zmenšit odsazení","Zvětšit odsazení","Vybrat speciální symbol","Vložit speciální symbol","Použít formát","Změnit mód","Okraje","horní","pravý","spodní","levý","Styly","Třídy","Zarovnání","Vpravo","Na střed","Vlevo","--nenastaveno--","src","Titulek","Alternativní text (alt)","Link","Otevřít link v nové záložce","Obrázek","soubor","Rozšířené","Vlastnosti obrázku","Zpět","Ok","Prohlížeč souborů","Chyba při načítání seznamu souborů","Chyba při načítání složek","Jste si jistý(á)?","Název složky","Vytvořit složku","název","Přetáhněte sem obrázek","Přetáhněte sem soubor","nebo klikněte","Alternativní text","Nahrát","Server","Pozadí","Text","Nahoru","Na střed","Dolu","Vložit sloupec před","Vložit sloupec za","Vložit řádek nad","Vložit řádek pod","Vymazat tabulku","Vymazat řádku","Vymazat sloupec","Vyčistit buňku","Znaky: %d","Slova: %d","Přeškrtnuto","Podtrženo","Horní index","Dolní index","Vyjmout označené","Označit vše","Zalomení","Najdi","Nahradit za","Nahradit","Vložit","Vyber obsah pro vložení","HTML","tučně","kurzíva","štětec","odkaz","zpět","vpřed","tabulka","obrázek","guma","odstavec","velikost písma","video","písmo","о editoru","tisk","symbol","podtrženo","přeškrtnuto","zvětšit odsazení","zmenšit odsazení","celoobrazovkový režim","smrsknout","Kopírovat formát","Linka","Odrážka","Číslovaný seznam","Vyjmout","Označit vše","Kód","Otevřít odkaz","Upravit odkaz","Atribut no-follow","Odstranit odkaz","Aktualizovat","Chcete-li upravit","Zobrazit","URL","Editovat","Horizontální zarovnání","Filtr","Dle poslední změny","Dle názvu","Dle velikosti","Přidat složku","Reset","Uložit","Uložit jako...","Změnit rozměr","Ořezat","Šířka","Výška","Ponechat poměr","Ano","Ne","Vyjmout","Označit","Označit %s","Vertikální zarovnání","Rozdělit","Spojit","Přidat sloupec","Přidat řádek","Licence: %s","Vymazat","Rozdělit vertikálně","Rozdělit horizontálně","Okraj","Váš text se podobá HTML. Vložit ho jako HTML?","Vložit jako HTML","Ponechat originál","Vložit jako TEXT","Vložit pouze TEXT","Můžete upravovat pouze své obrázky. Načíst obrázek?","Obrázek byl úspěšně nahrán!","paleta","V tomto adresáři nejsou žádné soubory.","přejmenovat","Zadejte nový název","náhled","Stažení"]
+module.exports.default = ["Escriba algo...","Acerca de Jodit","Jodit Editor","Versión gratis no comercial","GNU General Public License, Versión 2 o posterior","Guía de usuario Jodit","contiene ayuda detallada para el uso.","Para información sobre la licencia, por favor visite nuestro sitio:","Compre la versión completa","Copyright © XDSoft.net - Chupurnov Valeriy. Todos los derechos reservados.","Anclar","Abrir en nueva pestaña","Abrir editor en pantalla completa","Limpiar formato","Color de relleno o de letra","Rehacer","Deshacer","Negrita","Cursiva","Insertar lista no ordenada","Insertar lista ordenada","Alinear Centrado","Alinear Justificado","Alinear Izquierda","Alinear Derecha","Insertar línea horizontal","Insertar imagen","Insertar archivo","Insertar video de Youtube/vimeo","Insertar vínculo","Tamaño de letra","Familia de letra","Insertar bloque","Normal","Encabezado 1","Encabezado 2","Encabezado 3","Encabezado 4","Cita","Código","Insertar","Insertar tabla","Disminuir sangría","Aumentar sangría","Seleccionar caracter especial","Insertar caracter especial","Copiar formato","Cambiar modo","Márgenes","arriba","derecha","abajo","izquierda","Estilos CSS","Clases CSS","Alinear","Derecha","Centrado","Izquierda","--No Establecido--","Fuente","Título","Texto Alternativo","Vínculo","Abrir vínculo en nueva pestaña","Imagen","Archivo","Avanzado","Propiedades de imagen","Cancelar","Aceptar","El código es similar a HTML. ¿Mantener como HTML?","Pegar como HTML?","Mantener","Limpiar","Insertar como texto","Insertar solo texto","Pegado desde Word detectado","El contenido pegado proviene de un documento de Microsoft Word/Excel. ¿Desea mantener el formato o limpiarlo?","Buscar archivo","Error al cargar la lista","Error al cargar las carpetas","¿Está seguro?","Entre nombre de carpeta","Crear carpeta","Entre el nombre","Soltar imagen","Soltar archivo","o click","Texto alternativo","Buscar","Subir","Fondo","Texto","Arriba","Centro","Abajo","Insertar columna antes","Interar columna después","Insertar fila arriba","Insertar fila debajo","Borrar tabla","Borrar fila","Borrar columna","Vaciar celda","HTML","negrita","cursiva","Brocha","Vínculo","deshacer","rehacer","Tabla","Imagen","Borrar","Párrafo","Tamaño de letra","Video","Letra","Acerca de","Imprimir","Símbolo","subrayar","tachar","sangría","quitar sangría","Tamaño completo","encoger","Copiar formato","línea horizontal","lista sin ordenar","lista ordenada","Cortar","Seleccionar todo","Incluir código","Abrir vínculo","Editar vínculo","No seguir","Desvincular","Ver","Para editar","Actualizar","URL","Editar","Alineación horizontal","filtrar","Ordenar por fecha modificación","Ordenar por nombre","Ordenar por tamaño","Agregar carpeta","Resetear","Guardar","Guardar como...","Redimensionar","Recortar","Ancho","Alto","Mantener relación de aspecto","Si","No","Quitar","Seleccionar","Caracteres: %d","Palabras: %d","Todo","Seleccionar: %s","Seleccionar todo","Alineación vertical",null,"Dividir vertical","Dividir horizontal","Mezclar","Agregar columna","Agregar fila","Borrar","Borde",null,"Tachado","Subrayado","superíndice","subíndice","Cortar selección","Pausa","Buscar","Reemplazar con","Reemplazar","Pegar","Seleccionar contenido para pegar","Solo puedes editar tus propias imágenes. ¿Descargar esta imagen en el servidor?","¡La imagen se ha subido correctamente al servidor!","paleta","No hay archivos en este directorio.","renombrar","Ingresa un nuevo nombre","avance","Descargar"]
 
 /***/ }),
 /* 123 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Bitte geben Sie einen Text ein","Über Jodit","Jodit Editor","Freie Nicht-kommerzielle Version","GNU General Public License, Version 2 oder höher","Das Jodit Benutzerhandbuch","beinhaltet ausführliche Informationen wie Sie den Editor verwenden können.","Für Lizenz-Informationen, besuchen Sie bitte unsere Webseite:","Vollversion kaufen","Copyright © XDSoft.net - Chupurnov Valeriy. Alle Rechte vorbehalten.","Anker","In neuer Registerkarte öffnen","Editor in voller Größe öffnen","Formatierung löschen","Füllfarbe oder Textfarbe ändern","Wiederholen","Rückgängig machen","Fett","Kursiv","Ungeordnete Liste einfügen","Sortierte Liste einfügen","Mittig ausrichten","Blocksatz","Links ausrichten","Rechts ausrichten","Horizontale Linie einfügen","Bild einfügen","Datei einfügen","Youtube/vimeo Video einfügen","Link einfügen","Schriftgröße","Schriftfamilie","Formatblock einfügen","Normal","Überschrift 1","Überschrift 2","Überschrift 3","Überschrift 4","Zitat","Code","Einfügen","Tabelle einfügen","Einzug verkleinern","Einzug vergrößern","Sonderzeichen auswählen","Sonderzeichen einfügen","Format kopieren","Änderungsmodus","Ränder","Oben","Rechts","Unten","Links","CSS Stiel","CSS Klassen","Ausrichten","Rechts","Zentriert","Links","Keine","Pfad","Titel","Alternativer Text","Link","Link in neuem Tab öffnen","Bild","Datei","Fortgeschritten","Bildeigenschaften","Abbrechen","OK","Dateibrowser","Fehler beim Laden der Liste","Fehler beim Laden der Ordner","Sind Sie sicher?","Geben Sie den Verzeichnisnamen ein","Verzeichnis erstellen","Typname","Bild hier hinziehen","Datei löschen","oder hier klicken","Alternativtext","Hochladen","Auswählen","Hintergrund","Text","Oben","Mittig","Unten","Spalte einfügen vor","Spalte einfügen nach","Zeile einfügen oberhalb","Zeile unterhalb einfügen","Tabelle löschen","Zeile löschen","Spalte löschen","Leere Zelle","Zeichen: %d","Wörter: %d","Durchschlagen","Unterstreichen","hochgestellt","Index","Auswahl ausschneid","Wählen Sie Alle aus","Pause","Suche nach","Ersetzen durch","Ersetzen","Einfügen","Wählen Sie Inhalt zum Einfügen","HTML","Fett gedruckt","kursiv","Bürste","Verknüpfung","rückgängig machen","wiederholen","Tabelle","Bild","Radiergummi","Absatz","Schriftgröße","Video","Schriftart","Über","drucken","Symbol","unterstreichen","durchgestrichen","Einzug","Aussenseiter","Vollgröße","schrumpfen","Format kopierenт","die Linie","Liste von","Nummerierte Liste","Schnitt","Wählen Sie Alle aus","Code einbetten","Link öffnen","Link bearbeiten","Nofollow-Attribut","Link entfernen","Aktualisieren","Bearbeiten","Ansehen","URL","Bearbeiten","Horizontale Ausrichtung","filter","Sortieren nach geändert","Nach Name sortieren","Nach Größe sortiert","Ordner hinzufügen","Wiederherstellen","Speichern","Speichern als","Ändern Sie die Größe","Größe anpassen","Breite","Höhe","Halten Sie Proportionen","Ja","Nein","Entfernen","Markieren","Markieren: %s","Vertikale Ausrichtung",null,"Verschmelzen","Spalte hinzufügen","Zeile hinzufügen",null,"Löschen","Split vertikal","Split horizontally","Rand","Es scheint als dass Sie HTML-Text einfügen möchten","Als HTML einfügen?","Original speichern","Als Text einfügen","Nur Text einfügen","Sie können nur Ihre eigenen Bilder bearbeiten. Laden Sie dieses Bild auf dem Host herunter?","Das Bild wurde erfolgreich auf den Server hochgeladen!null","Palette","In diesem Verzeichnis befinden sich keine Dateien.","umbenennen","Geben Sie einen neuen Namen ein","Vorschau","Herunterladen"]
+module.exports.default = ["Ecrivez ici","A propos de Jodit","Editeur Jodit","Version gratuite, non commerciale","GNU General Public License, version 2 ou ultérieure","Guide de l'utilisateur","Aide détaillée à l'utilisation","Consulter la licence sur notre site web:","Acheter la version complète","Copyright © XDSoft.net - Chupurnov Valeriy. Tous droits réservés.","Ancre","Ouvrir dans un nouvel onglet","Ouvrir l'éditeur en pleine page","Supprimer le formattage","Modifier la couleur du fond ou du texte","Refaire","Défaire","Gras","Italique","Liste non ordonnée","Liste ordonnée","Centrer","Justifier","Aligner à gauche ","Aligner à droite","Insérer une ligne horizontale","Insérer une image","Insérer un fichier","Insérer une vidéo","Insérer un lien","Taille des caractères","Famille des caractères","Bloc formatté","Normal","Titre 1","Titre 2","Titre 3","Titre 4","Citation","Code","Insérer","Insérer un tableau","Diminuer le retrait","Retrait plus","Sélectionnez un caractère spécial","Insérer un caractère spécial","Cloner le format","Mode wysiwyg <-> code html","Marges","haut","droite","Bas","gauche","Styles","Classes","Alignement","Droite","Centre","Gauche","--Non disponible--","Source","Titre","Alternative","Lien","Ouvrir le lien dans un nouvel onglet","Image","fichier","Avancé","Propriétés de l'image","Effacer","OK","Votre texte que vous essayez de coller est similaire au HTML. Collez-le en HTML?","Coller en HTML?","Sauvegarder l'original","Nettoyer","Coller en tant que texte","Coller le texte seulement","C'est peut-être un fragment de Word ou Excel","Le contenu que vous insérez provient d'un document Microsoft Word / Excel. Voulez-vous enregistrer le format ou l'effacer?","Explorateur de fichiers","Erreur de liste de chargement","Erreur de dossier de chargement","Etes-vous sûrs ?","Entrer le non de dossier","Créer un dossier","type de fichier","Coller une image","Déposer un fichier","ou cliquer","Texte de remplacemement","Chercher","Charger","Arrière-plan","Texte","Haut","Milieu","Bas","Insérer une colonne avant","Insérer une colonne après","Insérer une ligne en dessus","Insérer une ligne en dessous","Supprimer le tableau","Supprimer la ligne","Supprimer la colonne","Vider la cellule","la source","graisseux","italique","verser","lien","abolir","prêt","graphique","Image","la gommen","clause","taille de police","Video","police","à propos de l'éditeur","impression","caractère","souligné","barré","indentation","indifférent","taille réelle","taille conventionnelle","Format de copie","la ligne","Liste des","Liste numérotée","Couper","Sélectionner tout",null,"Ouvrir le lien","Modifier le lien","Attribut Nofollow","Supprimer le lien","Voir","Pour éditer","Mettre à jour","URL",null,"Alignement horizontal","Filtre","Trier par modifié","Trier par nom","Classer par taille","Ajouter le dossier","Restaurer","Sauvegarder","Enregistrer sous","Changer la taille","Taille de garniture","Largeur","Hauteur","Garder les proportions","Oui","Non","Supprimer","Mettre en évidence","Symboles: %d","Mots: %d",null,"Mettre en évidence: %s","Tout sélectionner","Alignement vertical",null,null,null,"aller","Ajouter une colonne","Ajouter une rangée","Effacer",null,null,"Frapper à travers","Souligner","exposant","indice","Couper la sélection","Pause","Rechercher","Remplacer par","Remplacer","Coller","Choisissez le contenu à coller","Vous ne pouvez éditer que vos propres images. Téléchargez cette image sur l'hôte?","L'image a été téléchargée avec succès sur le serveur!null","Palette","Il n'y a aucun fichier dans ce répertoire.","renommer","Entrez un nouveau nom","Aperçu","Télécharger"]
 
 /***/ }),
 /* 124 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Escriba algo...","Acerca de Jodit","Jodit Editor","Versión gratis no comercial","GNU General Public License, Versión 2 o posterior","Guía de usuario Jodit","contiene ayuda detallada para el uso.","Para información sobre la licencia, por favor visite nuestro sitio:","Compre la versión completa","Copyright © XDSoft.net - Chupurnov Valeriy. Todos los derechos reservados.","Anclar","Abrir en nueva pestaña","Abrir editor en pantalla completa","Limpiar formato","Color de relleno o de letra","Rehacer","Deshacer","Negrita","Cursiva","Insertar lista no ordenada","Insertar lista ordenada","Alinear Centrado","Alinear Justificado","Alinear Izquierda","Alinear Derecha","Insertar línea horizontal","Insertar imagen","Insertar archivo","Insertar video de Youtube/vimeo","Insertar vínculo","Tamaño de letra","Familia de letra","Insertar bloque","Normal","Encabezado 1","Encabezado 2","Encabezado 3","Encabezado 4","Cita","Código","Insertar","Insertar tabla","Disminuir sangría","Aumentar sangría","Seleccionar caracter especial","Insertar caracter especial","Copiar formato","Cambiar modo","Márgenes","arriba","derecha","abajo","izquierda","Estilos CSS","Clases CSS","Alinear","Derecha","Centrado","Izquierda","--No Establecido--","Fuente","Título","Texto Alternativo","Vínculo","Abrir vínculo en nueva pestaña","Imagen","Archivo","Avanzado","Propiedades de imagen","Cancelar","Aceptar","Buscar archivo","Error al cargar la lista","Error al cargar las carpetas","¿Está seguro?","Entre nombre de carpeta","Crear carpeta","Entre el nombre","Soltar imagen","Soltar archivo","o click","Texto alternativo","Subir","Buscar","Fondo","Texto","Arriba","Centro","Abajo","Insertar columna antes","Interar columna después","Insertar fila arriba","Insertar fila debajo","Borrar tabla","Borrar fila","Borrar columna","Vaciar celda","Caracteres: %d","Palabras: %d","Tachado","Subrayado","superíndice","subíndice","Cortar selección","Seleccionar todo","Pausa","Buscar","Reemplazar con","Reemplazar","Pegar","Seleccionar contenido para pegar","HTML","negrita","cursiva","Brocha","Vínculo","deshacer","rehacer","Tabla","Imagen","Borrar","Párrafo","Tamaño de letra","Video","Letra","Acerca de","Imprimir","Símbolo","subrayar","tachar","sangría","quitar sangría","Tamaño completo","encoger","Copiar formato","línea horizontal","lista sin ordenar","lista ordenada","Cortar","Seleccionar todo","Incluir código","Abrir vínculo","Editar vínculo","No seguir","Desvincular","Actualizar","Para editar","Ver","URL","Editar","Alineación horizontal","filtrar","Ordenar por fecha modificación","Ordenar por nombre","Ordenar por tamaño","Agregar carpeta","Resetear","Guardar","Guardar como...","Redimensionar","Recortar","Ancho","Alto","Mantener relación de aspecto","Si","No","Quitar","Seleccionar","Seleccionar: %s","Alineación vertical",null,"Mezclar","Agregar columna","Agregar fila",null,"Borrar","Dividir vertical","Dividir horizontal","Borde","El código es similar a HTML. ¿Mantener como HTML?","Pegar como HTML?","Mantener","Insertar como texto","Insertar solo texto","Solo puedes editar tus propias imágenes. ¿Descargar esta imagen en el servidor?","¡La imagen se ha subido correctamente al servidor!","paleta","No hay archivos en este directorio.","renombrar","Ingresa un nuevo nombre","avance","Descargar"]
+module.exports.default = ["הקלד משהו...","About Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","Jodit User's Guide","contains detailed help for using.","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","מקום עיגון","פתח בכרטיסיה חדשה","פתח את העורך בחלון חדש","נקה עיצוב","שנה צבע טקסט או רקע","בצע שוב","בטל","מודגש","נטוי","הכנס רשימת תבליטים","הכנס רשימה ממוספרת","מרכז","ישר ","ישר לשמאל","ישר לימין","הכנס קו אופקי","הכנס תמונה","הכנס קובץ","הכנס סרטון וידאו מYouTube/Vimeo","הכנס קישור","גודל גופן","גופן","מעוצב מראש","רגיל","כותרת 1","כותרת 2","כותרת 3","כותרת 4","ציטוט","קוד","הכנס","הכנס טבלה","הקטן כניסה","הגדל כניסה","בחר תו מיוחד","הכנס תו מיוחד","העתק עיצוב","החלף מצב","ריווח","עליון","ימין","תחתון","שמאל","עיצוב CSS","מחלקת CSS","יישור","ימין","מרכז","שמאל","--לא נקבע--","מקור","כותרת","כיתוב חלופי","קישור","פתח בכרטיסיה חדשה","תמונה","קובץ","מתקדם","מאפייני תמונה","ביטול","אישור","הקוד דומה לHTML, האם להשאיר כHTML","הדבק כHTML","השאר","נקה","הכנס כטקסט","הכנס טקסט בלבד","זוהתה הדבקה מ\"וורד\"","התוכן המודבק מגיע ממסמך וורד/אקסל. האם ברצונך להשאיר את העיצוב או לנקותו","סייר הקבצים","שגיאה  בזמן טעינת רשימה","שגיאה בזמן טעינת תקיות","האם אתה בטוח?","הכנס שם תקיה","צור תקיה","סוג הקובץ","הסר תמונה","הסר קובץ","או לחץ","כיתוב חלופי","סייר","העלה","רקע","טקסט","עליון","מרכז","תחתון","הכנס עמודה לפני","הכנס עמודה אחרי","הכנס שורה מעל","הכנס שורה מתחת","מחק טבלה","מחק שורה","מחק עמודה","רוקן תא","HTML","מודגש","נטוי","מברשת","קישור","בטל","בצע שוב","טבלה","תמונה","מחק","פסקה","גודל גופן","וידאו","גופן","עלינו","הדפס","תו מיוחד","קו תחתון","קו חוצה","הגדל כניסה","הקטן כניסה","גודל מלא","כווץ","העתק עיצוב","קו אופקי","רשימת תבליטים","רשימה ממוספרת","חתוך","בחר הכל","הוסף קוד","פתח קישור","ערוך קישור","ללא מעקב","בטל קישור","הצג","כדי לערוך","עדכן","כתובת","ערוך","יישור אופקי","סנן","מין לפי שינוי","מיין לפי שם","מיין לפי גודל","הוסף תקייה","אפס","שמור","שמור בשם...","שנה גודל","חתוך","רוחב","גובה","שמור יחס","כן","לא","הסר","בחר","תווים: %d","מילים: %d","הכל","נבחר: %s","בחר הכל","יישור אנכי",null,"פיצול אנכי","פיצול אופקי","מזג","הוסף עמודה","הוסף שורה","מחק","מסגרת",null,"קו חוצה","קו תחתון","superscript","subscript","גזור בחירה","שבירת שורה","חפש","החלף ב","החלף","הדבק","בחר תוכן להדבקה","רק קבצים המשוייכים שלך ניתנים לעריכה. האם להוריד את הקובץ?","התמונה עלתה בהצלחה!","לוח","אין קבצים בספריה זו.","הונגרית","הזן שם חדש","תצוגה מקדימה","הורד"]
 
 /***/ }),
 /* 125 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Ecrivez ici","A propos de Jodit","Editeur Jodit","Version gratuite, non commerciale","GNU General Public License, version 2 ou ultérieure","Guide de l'utilisateur","Aide détaillée à l'utilisation","Consulter la licence sur notre site web:","Acheter la version complète","Copyright © XDSoft.net - Chupurnov Valeriy. Tous droits réservés.","Ancre","Ouvrir dans un nouvel onglet","Ouvrir l'éditeur en pleine page","Supprimer le formattage","Modifier la couleur du fond ou du texte","Refaire","Défaire","Gras","Italique","Liste non ordonnée","Liste ordonnée","Centrer","Justifier","Aligner à gauche ","Aligner à droite","Insérer une ligne horizontale","Insérer une image","Insérer un fichier","Insérer une vidéo","Insérer un lien","Taille des caractères","Famille des caractères","Bloc formatté","Normal","Titre 1","Titre 2","Titre 3","Titre 4","Citation","Code","Insérer","Insérer un tableau","Diminuer le retrait","Retrait plus","Sélectionnez un caractère spécial","Insérer un caractère spécial","Cloner le format","Mode wysiwyg <-> code html","Marges","haut","droite","Bas","gauche","Styles","Classes","Alignement","Droite","Centre","Gauche","--Non disponible--","Source","Titre","Alternative","Lien","Ouvrir le lien dans un nouvel onglet","Image","fichier","Avancé","Propriétés de l'image","Effacer","OK","Explorateur de fichiers","Erreur de liste de chargement","Erreur de dossier de chargement","Etes-vous sûrs ?","Entrer le non de dossier","Créer un dossier","type de fichier","Coller une image","Déposer un fichier","ou cliquer","Texte de remplacemement","Charger","Chercher","Arrière-plan","Texte","Haut","Milieu","Bas","Insérer une colonne avant","Insérer une colonne après","Insérer une ligne en dessus","Insérer une ligne en dessous","Supprimer le tableau","Supprimer la ligne","Supprimer la colonne","Vider la cellule","Symboles: %d","Mots: %d","Frapper à travers","Souligner","exposant","indice","Couper la sélection","Tout sélectionner","Pause","Rechercher","Remplacer par","Remplacer","Coller","Choisissez le contenu à coller","la source","graisseux","italique","verser","lien","abolir","prêt","graphique","Image","la gommen","clause","taille de police","Video","police","à propos de l'éditeur","impression","caractère","souligné","barré","indentation","indifférent","taille réelle","taille conventionnelle","Format de copie","la ligne","Liste des","Liste numérotée","Couper","Sélectionner tout",null,"Ouvrir le lien","Modifier le lien","Attribut Nofollow","Supprimer le lien","Mettre à jour","Pour éditer","Voir","URL",null,"Alignement horizontal","Filtre","Trier par modifié","Trier par nom","Classer par taille","Ajouter le dossier","Restaurer","Sauvegarder","Enregistrer sous","Changer la taille","Taille de garniture","Largeur","Hauteur","Garder les proportions","Oui","Non","Supprimer","Mettre en évidence","Mettre en évidence: %s","Alignement vertical",null,"aller","Ajouter une colonne","Ajouter une rangée",null,"Effacer",null,null,null,"Votre texte que vous essayez de coller est similaire au HTML. Collez-le en HTML?","Coller en HTML?","Sauvegarder l'original","Coller en tant que texte","Coller le texte seulement","Vous ne pouvez éditer que vos propres images. Téléchargez cette image sur l'hôte?","L'image a été téléchargée avec succès sur le serveur!null","Palette","Il n'y a aucun fichier dans ce répertoire.","renommer","Entrez un nouveau nom","Aperçu","Télécharger"]
+module.exports.default = ["Írjon be valamit","Joditról","Jodit Editor","Ingyenes változat","GNU General Public License, Verzió 2 vagy későbbi","Jodit útmutató","további segítséget tartalmaz","További licence információkért látogassa meg a weboldalunkat:","Teljes verzió megvásárlása","Copyright © XDSoft.net - Chupurnov Valeriy. Minden jog fenntartva.","Horgony","Megnyitás új lapon","Megnyitás teljes méretben","Formázás törlése","Háttér/szöveg szín","Újra","Visszavon","Félkövér","Dőlt","Pontozott lista","Számozott lista","Középre zárt","Sorkizárt","Balra zárt","Jobbra zárt","Vízszintes vonal beszúrása","Kép beszúrás","Fájl beszúrás","Youtube videó beszúrása","Link beszúrás","Betűméret","Betűtípus","Formázott blokk beszúrása","Normál","Fejléc 1","Fejléc 2","Fejléc 3","Fejléc 4","Idézet","Kód","Beszúr","Táblázat beszúrása","Behúzás csökkentése","Behúzás növelése","Speciális karakter kiválasztása","Speciális karakter beszúrása","Kép formázása","Nézet váltása","Szegélyek","felső","jobb","alsó","bal","CSS stílusok","CSS osztályok","Igazítás","Jobbra","Középre","Balra","Nincs","Forrás","Cím","Helyettesítő szöveg","Link","Link megnyitása új lapon","Kép","Fájl","Haladó","Kép tulajdonságai","Mégsem","OK","A beillesztett szöveg HTML-nek tűnik. Megtartsuk HTML-ként?","Beszúrás HTML-ként","Megtartás","Elvetés","Beszúrás szövegként","Csak szöveg beillesztése","Word-ből másolt szöveg","A beillesztett tartalom Microsoft Word/Excel dokumentumból származik. Meg szeretné tartani a formátumát?","Fájl tallózó","Hiba a lista betöltése közben","Hiba a mappák betöltése közben","Biztosan ezt szeretné?","Írjon be egy mappanevet","Mappa létrehozása","írjon be bevet","Húzza ide a képet","Húzza ide a fájlt","vagy kattintson","Helyettesítő szöveg","Tallóz","Feltölt","Háttér","Szöveg","Fent","Középen","Lent","Oszlop beszúrás elé","Oszlop beszúrás utána","Sor beszúrás fölé","Sor beszúrás alá","Táblázat törlése","Sor törlése","Oszlop törlése","Cella tartalmának törlése","HTML","Félkövér","Dőlt","Ecset","Link","Visszavon","Újra","Táblázat","Kép","Törlés","Paragráfus","Betűméret","Videó","Betű","Rólunk","Nyomtat","Szimbólum","Aláhúzott","Áthúzott","Behúzás","Aussenseiter","Teljes méret","Összenyom","Formátum másolás","Egyenes vonal","Lista","Számozott lista","Kivág","Összes kijelölése","Beágyazott kód","Link megnyitása","Link szerkesztése","Nincs követés","Link leválasztása","felülvizsgálat","Szerkesztés","Frissít","URL","Szerkeszt","Vízszintes igazítás","Szűrő","Rendezés módosítás szerint","Rendezés név szerint","Rendezés méret szerint","Mappa hozzáadás","Visszaállít","Mentés","Mentés másként...","Átméretezés","Kivág","Szélesség","Magasság","Képarány megtartása","Igen","Nem","Eltávolít","Kijelöl","Karakterek száma: %d","Szavak száma: %d","Összes","Kijelöl: %s","Összes kijelölése","Függőleges igazítás","Felosztás","Függőleges felosztás","Vízszintes felosztás","Összevonás","Oszlop hozzáadás","Sor hozzáadás","Törlés","Szegély",null,"Áthúzott","Aláhúzott","Felső index","Alsó index","Kivágás","Szünet","Keresés","Csere erre","Csere","Beillesztés","Válasszon tartalmat a beillesztéshez","Csak a saját képeit tudja szerkeszteni. Letölti ezt a képet?","Kép sikeresen feltöltve!","Palette","Er zijn geen bestanden in deze map.","átnevezés","Adja meg az új nevet","előnézet","Letöltés"]
 
 /***/ }),
 /* 126 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["הקלד משהו...","About Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","Jodit User's Guide","contains detailed help for using.","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","מקום עיגון","פתח בכרטיסיה חדשה","פתח את העורך בחלון חדש","נקה עיצוב","שנה צבע טקסט או רקע","בצע שוב","בטל","מודגש","נטוי","הכנס רשימת תבליטים","הכנס רשימה ממוספרת","מרכז","ישר ","ישר לשמאל","ישר לימין","הכנס קו אופקי","הכנס תמונה","הכנס קובץ","הכנס סרטון וידאו מYouTube/Vimeo","הכנס קישור","גודל גופן","גופן","מעוצב מראש","רגיל","כותרת 1","כותרת 2","כותרת 3","כותרת 4","ציטוט","קוד","הכנס","הכנס טבלה","הקטן כניסה","הגדל כניסה","בחר תו מיוחד","הכנס תו מיוחד","העתק עיצוב","החלף מצב","ריווח","עליון","ימין","תחתון","שמאל","עיצוב CSS","מחלקת CSS","יישור","ימין","מרכז","שמאל","--לא נקבע--","מקור","כותרת","כיתוב חלופי","קישור","פתח בכרטיסיה חדשה","תמונה","קובץ","מתקדם","מאפייני תמונה","ביטול","אישור","סייר הקבצים","שגיאה  בזמן טעינת רשימה","שגיאה בזמן טעינת תקיות","האם אתה בטוח?","הכנס שם תקיה","צור תקיה","סוג הקובץ","הסר תמונה","הסר קובץ","או לחץ","כיתוב חלופי","העלה","סייר","רקע","טקסט","עליון","מרכז","תחתון","הכנס עמודה לפני","הכנס עמודה אחרי","הכנס שורה מעל","הכנס שורה מתחת","מחק טבלה","מחק שורה","מחק עמודה","רוקן תא","תווים: %d","מילים: %d","קו חוצה","קו תחתון","superscript","subscript","גזור בחירה","בחר הכל","שבירת שורה","חפש","החלף ב","החלף","הדבק","בחר תוכן להדבקה","HTML","מודגש","נטוי","מברשת","קישור","בטל","בצע שוב","טבלה","תמונה","מחק","פסקה","גודל גופן","וידאו","גופן","עלינו","הדפס","תו מיוחד","קו תחתון","קו חוצה","הגדל כניסה","הקטן כניסה","גודל מלא","כווץ","העתק עיצוב","קו אופקי","רשימת תבליטים","רשימה ממוספרת","חתוך","בחר הכל","הוסף קוד","פתח קישור","ערוך קישור","ללא מעקב","בטל קישור","עדכן","כדי לערוך","הצג","כתובת","ערוך","יישור אופקי","סנן","מין לפי שינוי","מיין לפי שם","מיין לפי גודל","הוסף תקייה","אפס","שמור","שמור בשם...","שנה גודל","חתוך","רוחב","גובה","שמור יחס","כן","לא","הסר","בחר","נבחר: %s","יישור אנכי",null,"מזג","הוסף עמודה","הוסף שורה",null,"מחק","פיצול אנכי","פיצול אופקי","מסגרת","הקוד דומה לHTML, האם להשאיר כHTML","הדבק כHTML","השאר","הכנס כטקסט","הכנס טקסט בלבד","רק קבצים המשוייכים שלך ניתנים לעריכה. האם להוריד את הקובץ?","התמונה עלתה בהצלחה!","לוח","אין קבצים בספריה זו.","הונגרית","הזן שם חדש","תצוגה מקדימה","הורד"]
+module.exports.default = ["Ketik sesuatu","Tentang Jodit","Editor Jodit","Versi Bebas Non-komersil","Lisensi Publik Umum (GPL), versi 2 atau terbaru","Panduan Pengguna Jodit","mencakup detail bantuan penggunaan","Untuk informasi tentang lisensi, silakan kunjungi website:","Beli versi lengkap","Hak Cipta © XDSoft.net - Chupurnov Valeriy. Hak cipta dilindungi undang-undang.","Tautan","Buka di tab baru","Buka editor dalam ukuran penuh","Hapus Pemformatan","Isi warna atau atur warna teks","Ulangi","Batalkan","Tebal","Miring","Sisipkan Daftar Tidak Berurut","Sisipkan Daftar Berurut","Tengah","Penuh","Kiri","Kanan","Sisipkan Garis Horizontal","Sisipkan Gambar","Sisipkan Berkas","Sisipkan video youtube/vimeo","Sisipkan tautan","Ukuran font","Keluarga font","Sisipkan blok format","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Kutip","Kode","Sisipkan","Sisipkan tabel","Kurangi Indentasi","Tambah Indentasi","Pilih Karakter Spesial","Sisipkan Karakter Spesial","Formar warna","Ubah mode","Batas","atas","kanan","bawah","kiri","Gaya","Class","Rata","Kanan","Tengah","Kiri","--Tidak diset--","Src","Judul","Teks alternatif","Tautan","Buka tautan di tab baru","Gambar","berkas","Lanjutan","Properti gambar","Batal","Ya","Kode Anda cenderung ke HTML. Biarkan sebagai HTML?","Paste sebagai HTML","Jaga","Bersih","Sisipkan sebagai teks","Sisipkan hanya teks","Terdeteksi paste dari Word","Konten dipaste dari dokumen Microsoft Word/Excel. Apakah Anda ingin tetap menjaga format atau membersihkannya?","Penjelajah Berkas","Error ketika memuat list","Error ketika memuat folder","Apakah Anda yakin?","Masukkan nama Direktori","Buat direktori","ketik nama","Letakkan gambar","Letakkan berkas","atau klik","Teks alternatif","Jelajahi","Unggah","Latar Belakang","Teks","Atas","Tengah","Bawah","Sisipkan kolom sebelumnya","Sisipkan kolom setelahnya","Sisipkan baris di atasnya","Sisipkan baris di bawahnya","Hapus tabel","Hapus baris","Hapus kolom","Kosongkan cell","sumber","tebal","miring","sikat","tautan","batalkan","ulangi","tabel","gambar","penghapus","paragraf","ukuran font","video","font","tentang","cetak","simbol","garis bawah","coret","menjorok ke dalam","menjorok ke luar","ukuran penuh","menyusut","salin format","hr","ul","ol","potong","Pilih semua","Kode embed","Buka tautan","Edit tautan","No follow","Hapus tautan","Mata","pensil","Perbarui","URL","Edit","Perataan horizontal","Filter","Urutkan berdasarkan perubahan","Urutkan berdasarkan nama","Urutkan berdasarkan ukuran","Tambah folder","Reset","Simpan","Simpan sebagai...","Ubah ukuran","Crop","Lebar","Tinggi","Jaga aspek rasio","Ya","Tidak","Copot","Pilih","Karakter: %d","Kata: %d","Semua","Pilih %s","Pilih semua","Rata vertikal","Bagi","Bagi secara vertikal","Bagi secara horizontal","Gabungkan","Tambah kolom","tambah baris","Hapus","Bingkai","Lisensi: %s","Coret","Garis Bawah","Superskrip","Subskrip","Potong pilihan","Berhenti","Mencari","Ganti dengan","Ganti","Paste","Pilih konten untuk dipaste","Anda hanya dapat mengedit gambar Anda sendiri. Unduh gambar ini di host?","Gambar telah sukses diunggah ke host!","palet","Tidak ada berkas","ganti nama","Masukkan nama baru","pratinjau","Unduh"]
 
 /***/ }),
 /* 127 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Írjon be valamit","Joditról","Jodit Editor","Ingyenes változat","GNU General Public License, Verzió 2 vagy későbbi","Jodit útmutató","további segítséget tartalmaz","További licence információkért látogassa meg a weboldalunkat:","Teljes verzió megvásárlása","Copyright © XDSoft.net - Chupurnov Valeriy. Minden jog fenntartva.","Horgony","Megnyitás új lapon","Megnyitás teljes méretben","Formázás törlése","Háttér/szöveg szín","Újra","Visszavon","Félkövér","Dőlt","Pontozott lista","Számozott lista","Középre zárt","Sorkizárt","Balra zárt","Jobbra zárt","Vízszintes vonal beszúrása","Kép beszúrás","Fájl beszúrás","Youtube videó beszúrása","Link beszúrás","Betűméret","Betűtípus","Formázott blokk beszúrása","Normál","Fejléc 1","Fejléc 2","Fejléc 3","Fejléc 4","Idézet","Kód","Beszúr","Táblázat beszúrása","Behúzás csökkentése","Behúzás növelése","Speciális karakter kiválasztása","Speciális karakter beszúrása","Kép formázása","Nézet váltása","Szegélyek","felső","jobb","alsó","bal","CSS stílusok","CSS osztályok","Igazítás","Jobbra","Középre","Balra","Nincs","Forrás","Cím","Helyettesítő szöveg","Link","Link megnyitása új lapon","Kép","Fájl","Haladó","Kép tulajdonságai","Mégsem","OK","Fájl tallózó","Hiba a lista betöltése közben","Hiba a mappák betöltése közben","Biztosan ezt szeretné?","Írjon be egy mappanevet","Mappa létrehozása","írjon be bevet","Húzza ide a képet","Húzza ide a fájlt","vagy kattintson","Helyettesítő szöveg","Feltölt","Tallóz","Háttér","Szöveg","Fent","Középen","Lent","Oszlop beszúrás elé","Oszlop beszúrás utána","Sor beszúrás fölé","Sor beszúrás alá","Táblázat törlése","Sor törlése","Oszlop törlése","Cella tartalmának törlése","Karakterek száma: %d","Szavak száma: %d","Áthúzott","Aláhúzott","Felső index","Alsó index","Kivágás","Összes kijelölése","Szünet","Keresés","Csere erre","Csere","Beillesztés","Válasszon tartalmat a beillesztéshez","HTML","Félkövér","Dőlt","Ecset","Link","Visszavon","Újra","Táblázat","Kép","Törlés","Paragráfus","Betűméret","Videó","Betű","Rólunk","Nyomtat","Szimbólum","Aláhúzott","Áthúzott","Behúzás","Aussenseiter","Teljes méret","Összenyom","Formátum másolás","Egyenes vonal","Lista","Számozott lista","Kivág","Összes kijelölése","Beágyazott kód","Link megnyitása","Link szerkesztése","Nincs követés","Link leválasztása","Frissít","Szerkesztés","felülvizsgálat","URL","Szerkeszt","Vízszintes igazítás","Szűrő","Rendezés módosítás szerint","Rendezés név szerint","Rendezés méret szerint","Mappa hozzáadás","Visszaállít","Mentés","Mentés másként...","Átméretezés","Kivág","Szélesség","Magasság","Képarány megtartása","Igen","Nem","Eltávolít","Kijelöl","Kijelöl: %s","Függőleges igazítás","Felosztás","Összevonás","Oszlop hozzáadás","Sor hozzáadás",null,"Törlés","Függőleges felosztás","Vízszintes felosztás","Szegély","A beillesztett szöveg HTML-nek tűnik. Megtartsuk HTML-ként?","Beszúrás HTML-ként","Megtartás","Beszúrás szövegként","Csak szöveg beillesztése","Csak a saját képeit tudja szerkeszteni. Letölti ezt a képet?","Kép sikeresen feltöltve!","Palette","Er zijn geen bestanden in deze map.","átnevezés","Adja meg az új nevet","előnézet","Letöltés"]
+module.exports.default = ["Scrivi qualcosa...","A proposito di Jodit","Jodit Editor","Versione gratuita non commerciale","Licenza pubblica generale GNU, versione 2 o successiva","Guida utente di Jodit","contiene una guida dettagliata per l'uso.","Per informazioni sulla licenza, si prega di visitare il nostro sito:","Acquista la versione completa","Copyright © XDSoft.net - Chupurnov Valeriy. Alle Rechte vorbehalten.","Ancora","Apri in una nuova scheda","Apri l'editor a schermo intero","Formato chiaro","Riempi colore o lettera","Ripristina","Annulla","Grassetto","Corsivo","Inserisci lista non ordinata","Inserisci l'elenco ordinato","Allinea Centra","Allineare Giustificato","Allinea a Sinistra","Allinea a Destra","Inserisci la linea orizzontale","Inserisci immagine","Inserisci un file","Inserisci video Youtube/Vimeo","Inserisci il link","Dimensione del carattere","Tipo di font","Inserisci blocco","Normale","Heading 1","Heading 2","Heading 3","Heading 4","Citazione","Codice","Inserisci","Inserisci tabella","Riduci il rientro","Aumenta il rientro","Seleziona una funzione speciale","Inserisci un carattere speciale","Copia formato","Cambia modo","Margini","su","destra","giù","sinistra","Stili CSS","Classi CSS","Allinea","Destra","Centro","Sinistra","--Non Impostato--","Fonte","Titolo","Testo Alternativo","Link","Apri il link in una nuova scheda","Immagine","Archivio","Avanzato","Proprietà dell'immagine","Annulla","Accetta","Il codice è simile all'HTML. Mantieni come HTML?","Incolla come HTML?","Mantieni","Pulisci","Inserisci come testo","Inserisci solo il testo","Incollato da Word rilevato","Il contenuto incollato proviene da un documento Microsoft Word / Excel. Vuoi mantenere il formato o pulirlo?","Cerca il file","Errore durante il caricamento dell'elenco","Errore durante il caricamento delle cartelle","Sei sicuro?","Inserisci il nome della cartella","Crea cartella","Entre el nombre","Rilascia l'immagine","Rilascia file","o click","Testo alternativo","Sfoglia","Carica","Sfondo","Testo","Su","Centro","Sotto","Inserisci prima la colonna","Inserisci colonna dopo","Inserisci la riga sopra","Inserisci la riga sotto","Elimina tabella","Elimina riga","Elimina colonna","Cella vuota","HTML","Grassetto","Corsivo","Pennello","Link","Annulla","Ripristina","Tabella","Immagine","Gomma","Paragrafo","Dimensione del carattere","Video","Font","Approposito di","Stampa","Simbolo","Sottolineato","Barrato","trattino","annulla rientro","A grandezza normale","comprimere","Copia il formato","linea orizzontale","lista non ordinata","lista ordinata","Taglia","Seleziona tutto","Includi codice","Apri link","Modifica link","Non seguire","Togli link","Recensione","Per modificare","Aggiornare"," URL","Modifica","Allineamento orizzontale","Filtro","Ordina per data di modifica","Ordina per nome","Ordina per dimensione","Aggiungi cartella","Reset","Salva","Salva con nome...","Ridimensiona","Tagliare","Larghezza","Altezza","Mantenere le proporzioni","Si","No","Rimuovere","Seleziona","Caratteri: %d","Parole: %d","Tutto","Seleziona: %s","Seleziona tutto","Allineamento verticala",null,"Dividere verticalmente","Diviso orizzontale","Fondi","Aggiungi colonna","Aggiungi riga","Cancella","Bordo",null,"Barrato","Sottolineato","indice","deponente","Taglia la selezione","Pausa","Cerca","Sostituisci con","Sostituisci","Incolla","Seleziona il contenuto da incollare","Puoi modificare solo le tue immagini. Scarica questa immagine sul server?","L'immagine è stata caricata con successo sul server!","tavolozza","Non ci sono file in questa directory.","ungherese","Inserisci un nuovo nome","anteprima","Scaricare"]
 
 /***/ }),
 /* 128 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Ketik sesuatu","Tentang Jodit","Editor Jodit","Versi Bebas Non-komersil","Lisensi Publik Umum (GPL), versi 2 atau terbaru","Panduan Pengguna Jodit","mencakup detail bantuan penggunaan","Untuk informasi tentang lisensi, silakan kunjungi website:","Beli versi lengkap","Hak Cipta © XDSoft.net - Chupurnov Valeriy. Hak cipta dilindungi undang-undang.","Tautan","Buka di tab baru","Buka editor dalam ukuran penuh","Hapus Pemformatan","Isi warna atau atur warna teks","Ulangi","Batalkan","Tebal","Miring","Sisipkan Daftar Tidak Berurut","Sisipkan Daftar Berurut","Tengah","Penuh","Kiri","Kanan","Sisipkan Garis Horizontal","Sisipkan Gambar","Sisipkan Berkas","Sisipkan video youtube/vimeo","Sisipkan tautan","Ukuran font","Keluarga font","Sisipkan blok format","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Kutip","Kode","Sisipkan","Sisipkan tabel","Kurangi Indentasi","Tambah Indentasi","Pilih Karakter Spesial","Sisipkan Karakter Spesial","Formar warna","Ubah mode","Batas","atas","kanan","bawah","kiri","Gaya","Class","Rata","Kanan","Tengah","Kiri","--Tidak diset--","Src","Judul","Teks alternatif","Tautan","Buka tautan di tab baru","Gambar","berkas","Lanjutan","Properti gambar","Batal","Ya","Penjelajah Berkas","Error ketika memuat list","Error ketika memuat folder","Apakah Anda yakin?","Masukkan nama Direktori","Buat direktori","ketik nama","Letakkan gambar","Letakkan berkas","atau klik","Teks alternatif","Unggah","Jelajahi","Latar Belakang","Teks","Atas","Tengah","Bawah","Sisipkan kolom sebelumnya","Sisipkan kolom setelahnya","Sisipkan baris di atasnya","Sisipkan baris di bawahnya","Hapus tabel","Hapus baris","Hapus kolom","Kosongkan cell","Karakter: %d","Kata: %d","Coret","Garis Bawah","Superskrip","Subskrip","Potong pilihan","Pilih semua","Berhenti","Mencari","Ganti dengan","Ganti","Paste","Pilih konten untuk dipaste","sumber","tebal","miring","sikat","tautan","batalkan","ulangi","tabel","gambar","penghapus","paragraf","ukuran font","video","font","tentang","cetak","simbol","garis bawah","coret","menjorok ke dalam","menjorok ke luar","ukuran penuh","menyusut","salin format","hr","ul","ol","potong","Pilih semua","Kode embed","Buka tautan","Edit tautan","No follow","Hapus tautan","Perbarui","pensil","Mata","URL","Edit","Perataan horizontal","Filter","Urutkan berdasarkan perubahan","Urutkan berdasarkan nama","Urutkan berdasarkan ukuran","Tambah folder","Reset","Simpan","Simpan sebagai...","Ubah ukuran","Crop","Lebar","Tinggi","Jaga aspek rasio","Ya","Tidak","Copot","Pilih","Pilih %s","Rata vertikal","Bagi","Gabungkan","Tambah kolom","tambah baris","Lisensi: %s","Hapus","Bagi secara vertikal","Bagi secara horizontal","Bingkai","Kode Anda cenderung ke HTML. Biarkan sebagai HTML?","Paste sebagai HTML","Jaga","Sisipkan sebagai teks","Sisipkan hanya teks","Anda hanya dapat mengedit gambar Anda sendiri. Unduh gambar ini di host?","Gambar telah sukses diunggah ke host!","palet","Tidak ada berkas","ganti nama","Masukkan nama baru","pratinjau","Unduh"]
+module.exports.default = ["Begin met typen..","Over Jodit","Jodit Editor","Gratis niet-commerciële versie","GNU General Public License, versie 2 of hoger","Jodit gebruikershandleiding","bevat gedetailleerde informatie voor gebruik.","Voor informatie over de licentie, ga naar onze website:","Volledige versie kopen","Copyright © XDSoft.net - Chupurnov Valeriy. Alle rechten voorbehouden.","Anker","Open in nieuwe tab","Editor in volledig scherm openen","Opmaak verwijderen","Vulkleur of tekstkleur aanpassen","Opnieuw","Ongedaan maken","Vet","Cursief","Geordende list invoegen","Ongeordende lijst invoegen","Centreren","Uitlijnen op volledige breedte","Links uitlijnen","Rechts uitlijnen","Horizontale lijn invoegen","Afbeelding invoegen","Bestand invoegen","Youtube/Vimeo video invoegen","Link toevoegen","Tekstgrootte","Lettertype","Format blok invoegen","Normaal","Koptekst 1","Koptekst 2","Koptekst 3","Koptekst 4","Citaat","Code","Invoegen","Tabel invoegen","Inspringing verkleinen","Inspringing vergroten","Symbool selecteren","Symbool invoegen","Opmaak kopieren","Modus veranderen","Marges","Boven","Rechts","Onder","Links","CSS styles","CSS classes","Uitlijning","Rechts","Gecentreerd","Links","--Leeg--","Src","Titel","Alternatieve tekst","Link","Link in nieuwe tab openen","Afbeelding","Bestand","Geavanceerd","Afbeeldingseigenschappen","Annuleren","OK","Deze code lijkt op HTML. Als HTML behouden?","Invoegen als HTML","Origineel behouden","Opschonen","Als tekst invoegen","Als onopgemaakte tekst invoegen","Word-tekst gedetecteerd","De geplakte tekst is afkomstig van een Microsoft Word/Excel document. Wil je de opmaak behouden of opschonen?","Bestandsbrowser","Fout bij het laden van de lijst","Fout bij het laden van de mappenlijst","Weet je het zeker?","Geef de map een naam","Map aanmaken","Type naam","Sleep hier een afbeelding naartoe","Sleep hier een bestand naartoe","of klik","Alternatieve tekst","Bladeren","Uploaden","Achtergrond","Tekst","Boven","Midden","Onder","Kolom invoegen (voor)","Kolom invoegen (na)","Rij invoegen (boven)","Rij invoegen (onder)","Tabel verwijderen","Rij verwijderen","Kolom verwijderen","Cel leegmaken","Broncode","vet","cursief","kwast","link","ongedaan maken","opnieuw","tabel","afbeelding","gum","paragraaf","lettergrootte","video","lettertype","over","afdrukken","symbool","onderstreept","doorgestreept","inspringen","minder inspringen","volledige grootte","kleiner maken","opmaak kopiëren","horizontale lijn","lijst","genummerde lijst","knip","alles selecteren","Embed code","link openen","link aanpassen","niet volgen","link verwijderen","Recensie","Om te bewerken","Updaten"," URL","Bewerken","Horizontaal uitlijnen","Filteren","Sorteren op wijzigingsdatum","Sorteren op naam","Sorteren op grootte","Map toevoegen","Herstellen","Opslaan","Opslaan als ...","Grootte aanpassen","Bijknippen","Breedte","Hoogte","Verhouding behouden","Ja","Nee","Verwijderen","Selecteren","Tekens: %d","Woorden: %d","Alles","Selecteer: %s","Selecteer alles","Verticaal uitlijnen",null,"Verticaal splitsen","Horizontaal splitsen","Samenvoegen","Kolom toevoegen","Rij toevoegen","Verwijderen","Rand",null,"Doorstrepen","Onderstrepen","Superscript","Subscript","Selectie knippen","Enter","Zoek naar","Vervangen door","Vervangen","Plakken","Kies content om te plakken","Je kunt alleen je eigen afbeeldingen aanpassen. Deze afbeelding downloaden?","De afbeelding is succesvol geüploadet!","Palette","Er zijn geen bestanden in deze map.","Hongaars","Voer een nieuwe naam in","voorvertoning","Download"]
 
 /***/ }),
 /* 129 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Scrivi qualcosa...","A proposito di Jodit","Jodit Editor","Versione gratuita non commerciale","Licenza pubblica generale GNU, versione 2 o successiva","Guida utente di Jodit","contiene una guida dettagliata per l'uso.","Per informazioni sulla licenza, si prega di visitare il nostro sito:","Acquista la versione completa","Copyright © XDSoft.net - Chupurnov Valeriy. Alle Rechte vorbehalten.","Ancora","Apri in una nuova scheda","Apri l'editor a schermo intero","Formato chiaro","Riempi colore o lettera","Ripristina","Annulla","Grassetto","Corsivo","Inserisci lista non ordinata","Inserisci l'elenco ordinato","Allinea Centra","Allineare Giustificato","Allinea a Sinistra","Allinea a Destra","Inserisci la linea orizzontale","Inserisci immagine","Inserisci un file","Inserisci video Youtube/Vimeo","Inserisci il link","Dimensione del carattere","Tipo di font","Inserisci blocco","Normale","Heading 1","Heading 2","Heading 3","Heading 4","Citazione","Codice","Inserisci","Inserisci tabella","Riduci il rientro","Aumenta il rientro","Seleziona una funzione speciale","Inserisci un carattere speciale","Copia formato","Cambia modo","Margini","su","destra","giù","sinistra","Stili CSS","Classi CSS","Allinea","Destra","Centro","Sinistra","--Non Impostato--","Fonte","Titolo","Testo Alternativo","Link","Apri il link in una nuova scheda","Immagine","Archivio","Avanzato","Proprietà dell'immagine","Annulla","Accetta","Cerca il file","Errore durante il caricamento dell'elenco","Errore durante il caricamento delle cartelle","Sei sicuro?","Inserisci il nome della cartella","Crea cartella","Entre el nombre","Rilascia l'immagine","Rilascia file","o click","Testo alternativo","Carica","Sfoglia","Sfondo","Testo","Su","Centro","Sotto","Inserisci prima la colonna","Inserisci colonna dopo","Inserisci la riga sopra","Inserisci la riga sotto","Elimina tabella","Elimina riga","Elimina colonna","Cella vuota","Caratteri: %d","Parole: %d","Barrato","Sottolineato","indice","deponente","Taglia la selezione","Seleziona tutto","Pausa","Cerca","Sostituisci con","Sostituisci","Incolla","Seleziona il contenuto da incollare","HTML","Grassetto","Corsivo","Pennello","Link","Annulla","Ripristina","Tabella","Immagine","Gomma","Paragrafo","Dimensione del carattere","Video","Font","Approposito di","Stampa","Simbolo","Sottolineato","Barrato","trattino","annulla rientro","A grandezza normale","comprimere","Copia il formato","linea orizzontale","lista non ordinata","lista ordinata","Taglia","Seleziona tutto","Includi codice","Apri link","Modifica link","Non seguire","Togli link","Aggiornare","Per modificare","Recensione"," URL","Modifica","Allineamento orizzontale","Filtro","Ordina per data di modifica","Ordina per nome","Ordina per dimensione","Aggiungi cartella","Reset","Salva","Salva con nome...","Ridimensiona","Tagliare","Larghezza","Altezza","Mantenere le proporzioni","Si","No","Rimuovere","Seleziona","Seleziona: %s","Allineamento verticala",null,"Fondi","Aggiungi colonna","Aggiungi riga",null,"Cancella","Dividere verticalmente","Diviso orizzontale","Bordo","Il codice è simile all'HTML. Mantieni come HTML?","Incolla come HTML?","Mantieni","Inserisci come testo","Inserisci solo il testo","Puoi modificare solo le tue immagini. Scarica questa immagine sul server?","L'immagine è stata caricata con successo sul server!","tavolozza","Non ci sono file in questa directory.","ungherese","Inserisci un nuovo nome","anteprima","Scaricare"]
+module.exports.default = ["Escreva algo...","Sobre o Jodit","Editor Jodit","Versão Gratuita não-comercial","Licença Pública GNU General, Versão 2 ou posterior","Guia de usuário Jodit","contém ajuda detalhada para o uso.","Para informação sobre a licença, por favor visite nosso site:","Compre a versão completa","Copyright © XDSoft.net - Chupurnov Valeriy. Todos os direitos reservados.","Link","Abrir em nova aba","Abrir editor em tela cheia","Limpar formatação","Cor de preenchimento ou cor do texto","Refazer","Desfazer","Negrito","Itálico","Inserir lista não ordenada","Inserir lista ordenada","Centralizar","Justificar","Alinhar à Esquerda","Alinhar à Direita","Inserir linha horizontal","Inserir imagem","Inserir arquivo","Inserir vídeo do Youtube/vimeo","Inserir link","Tamanho da letra","Fonte","Inserir bloco","Normal","Cabeçalho 1","Cabeçalho 2","Cabeçalho 3","Cabeçalho 4","Citação","Código","Inserir","Inserir tabela","Diminuir recuo","Aumentar recuo","Selecionar caractere especial","Inserir caractere especial","Copiar formato","Mudar modo","Margens","cima","direta","baixo","esquerda","Estilos CSS","Classes CSS","Alinhamento","Direita","Centro","Esquerda","--Não Estabelecido--","Fonte","Título","Texto Alternativo","Link","Abrir link em nova aba","Imagem","Arquivo","Avançado","Propriedades da imagem","Cancelar","Ok","Seu código é simular ao HTML. Manter como HTML?","Colar como HTML?","Manter","Limpar","Inserir como Texto","Inserir somente o Texto","Colado do Word Detectado","O conteúdo colado veio de um documento Microsoft Word/Excel. Você deseja manter o formato ou limpa-lo?","Procurar arquivo","Erro ao carregar a lista","Erro ao carregar as pastas","Você tem certeza?","Escreva o nome da pasta","Criar pasta","Escreva seu nome","Soltar imagem","Soltar arquivo","ou clique","Texto alternativo","Explorar","Upload","Fundo","Texto","Cima","Meio","Baixo","Inserir coluna antes","Inserir coluna depois","Inserir linha acima","Inserir linha abaixo","Excluir tabela","Excluir linha","Excluir coluna","Limpar célula","HTML","negrito","itálico","pincel","link","desfazer","refazer","tabela","imagem","apagar","parágrafo","tamanho da letra","vídeo","fonte","Sobre de","Imprimir","Símbolo","sublinhar","tachado","recuar","diminuir recuo","Tamanho completo","diminuir","Copiar formato","linha horizontal","lista não ordenada","lista ordenada","Cortar","Selecionar tudo","Incluir código","Abrir link","Editar link","Não siga","Remover link","Visualizar","Editar","Atualizar","URL","Editar","Alinhamento horizontal","filtrar","Ordenar por modificação","Ordenar por nome","Ordenar por tamanho","Adicionar pasta","Resetar","Salvar","Salvar como...","Redimensionar","Recortar","Largura","Altura","Manter a proporção","Sim","Não","Remover","Selecionar","Caracteres: %d","Palavras: %d","Tudo","Selecionar: %s","Selecionar tudo","Alinhamento vertical",null,"Dividir vertical","Dividir horizontal","Mesclar","Adicionar coluna","Adicionar linha","Excluir","Borda",null,"Tachado","Sublinhar","sobrescrito","subscrito","Cortar seleção","Pausa","Procurar por","Substituir com","Substituir","Colar","Escolher conteúdo para colar","Você só pode editar suas próprias imagens. Baixar essa imagem pro servidor?","A imagem foi enviada com sucesso para o servidor!","Palette","Não há arquivos nesse diretório.","Húngara","Digite um novo nome","preview","Baixar"]
 
 /***/ }),
 /* 130 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Begin met typen..","Over Jodit","Jodit Editor","Gratis niet-commerciële versie","GNU General Public License, versie 2 of hoger","Jodit gebruikershandleiding","bevat gedetailleerde informatie voor gebruik.","Voor informatie over de licentie, ga naar onze website:","Volledige versie kopen","Copyright © XDSoft.net - Chupurnov Valeriy. Alle rechten voorbehouden.","Anker","Open in nieuwe tab","Editor in volledig scherm openen","Opmaak verwijderen","Vulkleur of tekstkleur aanpassen","Opnieuw","Ongedaan maken","Vet","Cursief","Geordende list invoegen","Ongeordende lijst invoegen","Centreren","Uitlijnen op volledige breedte","Links uitlijnen","Rechts uitlijnen","Horizontale lijn invoegen","Afbeelding invoegen","Bestand invoegen","Youtube/Vimeo video invoegen","Link toevoegen","Tekstgrootte","Lettertype","Format blok invoegen","Normaal","Koptekst 1","Koptekst 2","Koptekst 3","Koptekst 4","Citaat","Code","Invoegen","Tabel invoegen","Inspringing verkleinen","Inspringing vergroten","Symbool selecteren","Symbool invoegen","Opmaak kopieren","Modus veranderen","Marges","Boven","Rechts","Onder","Links","CSS styles","CSS classes","Uitlijning","Rechts","Gecentreerd","Links","--Leeg--","Src","Titel","Alternatieve tekst","Link","Link in nieuwe tab openen","Afbeelding","Bestand","Geavanceerd","Afbeeldingseigenschappen","Annuleren","OK","Bestandsbrowser","Fout bij het laden van de lijst","Fout bij het laden van de mappenlijst","Weet je het zeker?","Geef de map een naam","Map aanmaken","Type naam","Sleep hier een afbeelding naartoe","Sleep hier een bestand naartoe","of klik","Alternatieve tekst","Uploaden","Bladeren","Achtergrond","Tekst","Boven","Midden","Onder","Kolom invoegen (voor)","Kolom invoegen (na)","Rij invoegen (boven)","Rij invoegen (onder)","Tabel verwijderen","Rij verwijderen","Kolom verwijderen","Cel leegmaken","Tekens: %d","Woorden: %d","Doorstrepen","Onderstrepen","Superscript","Subscript","Selectie knippen","Selecteer alles","Enter","Zoek naar","Vervangen door","Vervangen","Plakken","Kies content om te plakken","Broncode","vet","cursief","kwast","link","ongedaan maken","opnieuw","tabel","afbeelding","gum","paragraaf","lettergrootte","video","lettertype","over","afdrukken","symbool","onderstreept","doorgestreept","inspringen","minder inspringen","volledige grootte","kleiner maken","opmaak kopiëren","horizontale lijn","lijst","genummerde lijst","knip","alles selecteren","Embed code","link openen","link aanpassen","niet volgen","link verwijderen","Updaten","Om te bewerken","Recensie"," URL","Bewerken","Horizontaal uitlijnen","Filteren","Sorteren op wijzigingsdatum","Sorteren op naam","Sorteren op grootte","Map toevoegen","Herstellen","Opslaan","Opslaan als ...","Grootte aanpassen","Bijknippen","Breedte","Hoogte","Verhouding behouden","Ja","Nee","Verwijderen","Selecteren","Selecteer: %s","Verticaal uitlijnen",null,"Samenvoegen","Kolom toevoegen","Rij toevoegen",null,"Verwijderen","Verticaal splitsen","Horizontaal splitsen","Rand","Deze code lijkt op HTML. Als HTML behouden?","Invoegen als HTML","Origineel behouden","Als tekst invoegen","Als onopgemaakte tekst invoegen","Je kunt alleen je eigen afbeeldingen aanpassen. Deze afbeelding downloaden?","De afbeelding is succesvol geüploadet!","Palette","Er zijn geen bestanden in deze map.","Hongaars","Voer een nieuwe naam in","voorvertoning","Download"]
+module.exports.default = ["Напишите что-либо","О Jodit","Редактор Jodit","Версия для не коммерческого использования","Стандартная общественная лицензия GNU (GPL), версия 2 или выше","Jodit Руководство пользователя","содержит детальную информацию по использованию","Для получения сведений о лицензии , пожалуйста, перейдите на наш сайт:","Купить полную версию","Авторские права © XDSoft.net - Чупурнов Валерий. Все права защищены.","Анкор","Открывать ссылку в новой вкладке","Открыть редактор в полном размере","Очистить форматирование","Цвет заливки или цвет текста","Повтор","Отмена","Жирный","Наклонный","Вставка маркированного списка","Вставить нумерованный список","Выровнять по центру","Выровнять по ширине","Выровнять по левому краю","Выровнять по правому краю","Вставить горизонтальную линию","Вставить изображение","Вставить файл","Вставьте видео","Вставить ссылку","Размер шрифта","Шрифт","Вставить блочный элемент","Нормальный текст","Заголовок 1","Заголовок 2","Заголовок 3","Заголовок 4","Цитата","Код","Вставить","Вставить таблицу","Уменьшить отступ","Увеличить отступ","Выберите специальный символ","Вставить специальный символ","Формат краски","Источник","Отступы","сверху","справа","снизу","слева","Стили","Классы","Выравнивание","По правому краю","По центру","По левому краю","--не устанавливать--","src","Заголовок","Альтернативный текст (alt)","Ссылка","Открывать ссылку в новом окне",null,"Файл","Расширенные","Свойства изображения","Отмена","Ок","Ваш текст, который вы пытаетесь вставить похож на HTML. Вставить его как HTML?","Вставить как HTML?","Сохранить оригинал","Почистить","Вставить как текст","Вставить только текст","Возможно это фрагмент Word или Excel","Контент который вы вставляете поступает из документа Microsoft Word / Excel. Вы хотите сохранить формат или очистить его?","Браузер файлов","Ошибка при загрузке списка изображений","Ошибка при загрузке списка директорий","Вы уверены?","Введите название директории","Создать директорию","введите название","Перетащите сюда изображение","Перетащите сюда файл","или нажмите","Альтернативный текст","Сервер","Загрузка","Фон","Текст"," К верху","По середине","К низу","Вставить столбец до","Вставить столбец после","Вставить ряд выше","Вставить ряд ниже","Удалить таблицу","Удалять ряд","Удалить столбец","Отчистить ячейку","HTML","жирный","курсив","заливка","ссылка","отменить","повторить","таблица","Изображение","очистить","параграф","размер шрифта","видео","шрифт","о редакторе","печать","символ","подчеркнутый","перечеркнутый","отступ","выступ","во весь экран","обычный размер","Копировать формат","линия","Список","Нумерованный список","Вырезать","Выделить все","Код","Открыть ссылку","Редактировать ссылку","Атрибут nofollow","Убрать ссылку","Просмотр","Редактировать","Обновить","URL","Редактировать","Горизонтальное выравнивание","Фильтр","По изменению","По имени","По размеру","Добавить папку","Восстановить","Сохранить","Сохранить как","Изменить размер","Обрезать размер","Ширина","Высота","Сохранять пропорции","Да","Нет","Удалить","Выделить","Символов: %d","Слов: %d","Выделить все","Выделить: %s","Выделить все","Вертикальное выравнивание","Разделить","Разделить по вертикали","Разделить по горизонтали","Объеденить в одну","Добавить столбец","Добавить строку","Удалить","Рамка","Лицензия: %s","Перечеркнуть","Подчеркивание","верхний индекс","индекс","Вырезать","Разделитель","Найти","Заменить на","Заменить","Вставить","Выбрать контент для вставки","Вы можете редактировать только свои собственные изображения. Загрузить это изображение на ваш сервер?","Изображение успешно загружено на сервер!","палитра","В данном каталоге нет файлов","Переименовать","Введите новое имя","Предпросмотр","Скачать"]
 
 /***/ }),
 /* 131 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Escreva algo...","Sobre o Jodit","Editor Jodit","Versão Gratuita não-comercial","Licença Pública GNU General, Versão 2 ou posterior","Guia de usuário Jodit","contém ajuda detalhada para o uso.","Para informação sobre a licença, por favor visite nosso site:","Compre a versão completa","Copyright © XDSoft.net - Chupurnov Valeriy. Todos os direitos reservados.","Link","Abrir em nova aba","Abrir editor em tela cheia","Limpar formatação","Cor de preenchimento ou cor do texto","Refazer","Desfazer","Negrito","Itálico","Inserir lista não ordenada","Inserir lista ordenada","Centralizar","Justificar","Alinhar à Esquerda","Alinhar à Direita","Inserir linha horizontal","Inserir imagem","Inserir arquivo","Inserir vídeo do Youtube/vimeo","Inserir link","Tamanho da letra","Fonte","Inserir bloco","Normal","Cabeçalho 1","Cabeçalho 2","Cabeçalho 3","Cabeçalho 4","Citação","Código","Inserir","Inserir tabela","Diminuir recuo","Aumentar recuo","Selecionar caractere especial","Inserir caractere especial","Copiar formato","Mudar modo","Margens","cima","direta","baixo","esquerda","Estilos CSS","Classes CSS","Alinhamento","Direita","Centro","Esquerda","--Não Estabelecido--","Fonte","Título","Texto Alternativo","Link","Abrir link em nova aba","Imagem","Arquivo","Avançado","Propriedades da imagem","Cancelar","Ok","Procurar arquivo","Erro ao carregar a lista","Erro ao carregar as pastas","Você tem certeza?","Escreva o nome da pasta","Criar pasta","Escreva seu nome","Soltar imagem","Soltar arquivo","ou clique","Texto alternativo","Upload","Explorar","Fundo","Texto","Cima","Meio","Baixo","Inserir coluna antes","Inserir coluna depois","Inserir linha acima","Inserir linha abaixo","Excluir tabela","Excluir linha","Excluir coluna","Limpar célula","Caracteres: %d","Palavras: %d","Tachado","Sublinhar","sobrescrito","subscrito","Cortar seleção","Selecionar tudo","Pausa","Procurar por","Substituir com","Substituir","Colar","Escolher conteúdo para colar","HTML","negrito","itálico","pincel","link","desfazer","refazer","tabela","imagem","apagar","parágrafo","tamanho da letra","vídeo","fonte","Sobre de","Imprimir","Símbolo","sublinhar","tachado","recuar","diminuir recuo","Tamanho completo","diminuir","Copiar formato","linha horizontal","lista não ordenada","lista ordenada","Cortar","Selecionar tudo","Incluir código","Abrir link","Editar link","Não siga","Remover link","Atualizar","Editar","Visualizar","URL","Editar","Alinhamento horizontal","filtrar","Ordenar por modificação","Ordenar por nome","Ordenar por tamanho","Adicionar pasta","Resetar","Salvar","Salvar como...","Redimensionar","Recortar","Largura","Altura","Manter a proporção","Sim","Não","Remover","Selecionar","Selecionar: %s","Alinhamento vertical",null,"Mesclar","Adicionar coluna","Adicionar linha",null,"Excluir","Dividir vertical","Dividir horizontal","Borda","Seu código é simular ao HTML. Manter como HTML?","Colar como HTML?","Manter","Inserir como Texto","Inserir somente o Texto","Você só pode editar suas próprias imagens. Baixar essa imagem pro servidor?","A imagem foi enviada com sucesso para o servidor!","Palette","Não há arquivos nesse diretório.","Húngara","Digite um novo nome","preview","Baixar"]
+module.exports.default = ["Bir şey yazın.","Jodit Hakkında","Jodit Editor","Ücretsiz, ticari olmayan versiyon","GNU General Public License, Versiyon 2 ve sonrası için","Jodit Kullanım Kılavuzu","kullanım için detaylı bilgiler içerir","Lisans hakkında bilgi için lütfen web sitemize gidin:","Tam versiyon satın al","Copyright © XDSoft.net - Chupurnov Valeriy. Tüm Hakları Saklıdır","Bağlantı","Yeni sekmede aç","Tam ekran editör","Stili temizle","Dolgu ve yazı rengi seç","İleri Al","Geri Al","Kalın","İtalik","Sırasız Liste Ekle","Sıralı Liste Ekle","Ortala","Kenarlara Yasla","Sola Yasla","Sağa Yasla","Yatay Çizgi Ekle","Resim Ekle","Dosya Ekle","Youtube/vimeo Videosu Ekle","Bağlantı Ekle","Font Boyutu","Font Ailesi","Blok Ekle","Normal","Başlık 1","Başlık 2","Başlık 3","Başlık 4","Alıntı","Code","Ekle","Tablo Ekle","Girintiyi Azalt","Girintiyi Arttır","Özel Karakter Seç","Özel Karakter Ekle","Resim Biçimi","Mod Değiştir","MEsafeler","Üst","Sağ","Alt","Sol","CSS Stilleri","CSS Sınıfları","Hizalama","Sağ","Ortalı","Sol","Belirlenmedi","Kaynak","Başlık","Alternatif Yazı","Link","Bağlantıyı yeni sekmede aç","Resim","Dosya","Gelişmiş","Resim özellikleri","İptal","Tamam","Kodunuz HTML koduna benziyor. HTML olarak devam etmek ister misiniz?","HTML olarak yapıştır","Sakla","Temizle","Yazı olarak ekle","Nur Text einfügen","Word biçiminde yapıştırma algılandı","Der Inhalt, den Sie einfügen, stammt aus einem Microsoft Word / Excel-Dokument. Möchten Sie das Format erhalten oder löschen?","Dosya Gezgini","Liste yüklenirken hata oluştu","Klasörler yüklenirken hata oluştur","Emin misiniz?","Dizin yolu giriniz","Dizin oluştur","Typname","Resim bırak","Dosya bırak","veya tıkla","Alternatif yazı","Ekle","Yükle","Arka plan","Yazı","Üst","Orta","Aşağı","Öncesine kolon ekle","Sonrasına kolon ekle","Üstüne satır ekle","Altına satır ekle","Tabloyu sil","Satır sil","Kolon sil","Hücreyi boşalt","Kaynak","Kalın","italik","Fırça","Bağlantı","Geri al","İleri al","Tablo","Resim","Silgi","Paragraf","Font boyutu","Video","Font","Hakkında","Yazdır","Sembol","Alt çizgi","Üstü çizili","Girinti","Çıkıntı","Tam ekran","Küçült","Kopyalama Biçimi","Ayraç","Sırasız liste","Sıralı liste","Kes","Tümünü seç","Kod ekle","Bağlantıyı aç","Bağlantıyı düzenle","Nofollow özelliği","Bağlantıyı kaldır","Yorumu","Düzenlemek için","Güncelle","URL","Düzenle","Yatay hizalama","Filtre","Değişime göre sırala","İsme göre sırala","Boyuta göre sırala","Klasör ekle","Sıfırla","Kaydet","Farklı kaydet","Boyutlandır","Kırp","Genişlik","Yükseklik","En boy oranını koru","Evet","Hayır","Sil","Seç","Harfler: %d","Kelimeler: %d","Tümü","Seç: %s","Tümünü seç","Dikey hizalama",null,"Dikey ayır","Yatay ayır","Birleştir","Kolon ekle","Satır ekle","Sil","Kenarlık",null,"Durchschlagen","Alt çizgi","Üst yazı","Alt yazı","Seçilimi kes","Durdur","Ara","Şununla değiştir","Değiştir","Yapıştır","Yapıştırılacak içerik seç","Sadece kendi resimlerinizi düzenleyebilirsiniz. Bu görseli kendi hostunuza indirmek ister misiniz?","Görsel başarıyla hostunuza yüklendi","Palette","Bu dizinde dosya yok.","Macarca","Yeni isim girin","Ön izleme","İndir"]
 
 /***/ }),
 /* 132 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Напишите что-либо","О Jodit","Редактор Jodit","Версия для не коммерческого использования","Стандартная общественная лицензия GNU (GPL), версия 2 или выше","Jodit Руководство пользователя","содержит детальную информацию по использованию","Для получения сведений о лицензии , пожалуйста, перейдите на наш сайт:","Купить полную версию","Авторские права © XDSoft.net - Чупурнов Валерий. Все права защищены.","Анкор","Открывать ссылку в новой вкладке","Открыть редактор в полном размере","Очистить форматирование","Цвет заливки или цвет текста","Повтор","Отмена","Жирный","Наклонный","Вставка маркированного списка","Вставить нумерованный список","Выровнять по центру","Выровнять по ширине","Выровнять по левому краю","Выровнять по правому краю","Вставить горизонтальную линию","Вставить изображение","Вставить файл","Вставьте видео","Вставить ссылку","Размер шрифта","Шрифт","Вставить блочный элемент","Нормальный текст","Заголовок 1","Заголовок 2","Заголовок 3","Заголовок 4","Цитата","Код","Вставить","Вставить таблицу","Уменьшить отступ","Увеличить отступ","Выберите специальный символ","Вставить специальный символ","Формат краски","Источник","Отступы","сверху","справа","снизу","слева","Стили","Классы","Выравнивание","По правому краю","По центру","По левому краю","--не устанавливать--","src","Заголовок","Альтернативный текст (alt)","Ссылка","Открывать ссылку в новом окне",null,"Файл","Расширенные","Свойства изображения","Отмена","Ок","Браузер файлов","Ошибка при загрузке списка изображений","Ошибка при загрузке списка директорий","Вы уверены?","Введите название директории","Создать директорию","введите название","Перетащите сюда изображение","Перетащите сюда файл","или нажмите","Альтернативный текст","Загрузка","Сервер","Фон","Текст"," К верху","По середине","К низу","Вставить столбец до","Вставить столбец после","Вставить ряд выше","Вставить ряд ниже","Удалить таблицу","Удалять ряд","Удалить столбец","Отчистить ячейку","Символов: %d","Слов: %d","Перечеркнуть","Подчеркивание","верхний индекс","индекс","Вырезать","Выделить все","Разделитель","Найти","Заменить на","Заменить","Вставить","Выбрать контент для вставки","HTML","жирный","курсив","заливка","ссылка","отменить","повторить","таблица","Изображение","очистить","параграф","размер шрифта","видео","шрифт","о редакторе","печать","символ","подчеркнутый","перечеркнутый","отступ","выступ","во весь экран","обычный размер","Копировать формат","линия","Список","Нумерованный список","Вырезать","Выделить все","Код","Открыть ссылку","Редактировать ссылку","Атрибут nofollow","Убрать ссылку","Обновить","Редактировать","Просмотр","URL","Редактировать","Горизонтальное выравнивание","Фильтр","По изменению","По имени","По размеру","Добавить папку","Восстановить","Сохранить","Сохранить как","Изменить размер","Обрезать размер","Ширина","Высота","Сохранять пропорции","Да","Нет","Удалить","Выделить","Выделить: %s","Вертикальное выравнивание","Разделить","Объеденить в одну","Добавить столбец","Добавить строку","Лицензия: %s","Удалить","Разделить по вертикали","Разделить по горизонтали","Рамка","Ваш текст, который вы пытаетесь вставить похож на HTML. Вставить его как HTML?","Вставить как HTML?","Сохранить оригинал","Вставить как текст","Вставить только текст","Вы можете редактировать только свои собственные изображения. Загрузить это изображение на ваш сервер?","Изображение успешно загружено на сервер!","палитра","В данном каталоге нет файлов","Переименовать","Введите новое имя","Предпросмотр","Скачать"]
+module.exports.default = ["输入一些内容","关于Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","开发者指南","使用帮助","有关许可证的信息，请访问我们的网站：","购买完整版本","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","在新窗口打开","全屏编辑","清除样式","颜色","重做","撤销","粗体","斜体","符号列表","编号","居中","对齐文本","左对齐","右对齐","分割线","图片","文件","youtube/vimeo 视频","链接","字号","字体","格式块","文本","标题1","标题2","标题3","标题4","引用","代码","插入","表格","减少缩进","增加缩进","选择特殊符号","特殊符号","格式复制","改变模式","外边距（Margins）","top","right","bottom","left","样式","Classes","对齐方式","居右","居中","居左","无","Src","Title","Alternative","Link","在新窗口打开链接","图片","file","高级","图片属性","取消","确定","你粘贴的文本是一段html代码，是否保留源格式","html粘贴","保留源格式","匹配目标格式","把html代码视为普通文本","只保留文本","文本粘贴","正在粘贴 Word/Excel 的文本，是否保留源格式？","文件管理","加载list错误","加载folders错误","你确定吗？","输入路径","创建路径","type name","拖动图片到此","拖动文件到此","或点击","Alternative text","浏览","上传","背景色","字体颜色","顶部","中间","底部","在之前插入列","在之后插入列","在之前插入行","在之后插入行","删除表格","删除行","删除列","清除内容","源码","粗体","斜体","颜色","链接","撤销","重做","表格","图片","橡皮擦","段落","字号","视频","字体","关于","打印","符号","下划线","上出现","增加缩进","减少缩进","全屏","收缩","复制格式","分割线","无序列表","顺序列表","剪切","全选",null,"打开链接","编辑链接","No follow","Unlink","回顧","要編輯","更新","URL",null,"水平对齐","筛选","修改时间排序","名称排序","大小排序","新建文件夹","重置","保存","保存为","调整大小","Crop","宽","高","保存长宽比","是","不","移除","选择","字符数: %d","单词数: %d",null,"选择: %s","全选","垂直对齐",null,null,null,"合并","添加列","添加行","删除",null,null,"删除线","下划线","上标","下标","剪切","Pause","查找","替换为","替换","粘贴","选择内容并粘贴","你只能编辑你自己的图片。Download this image on the host?","图片上传成功","Palette","此目錄中沒有文件。","匈牙利","输入新名称","預習","下載"]
 
 /***/ }),
 /* 133 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Bir şey yazın.","Jodit Hakkında","Jodit Editor","Ücretsiz, ticari olmayan versiyon","GNU General Public License, Versiyon 2 ve sonrası için","Jodit Kullanım Kılavuzu","kullanım için detaylı bilgiler içerir","Lisans hakkında bilgi için lütfen web sitemize gidin:","Tam versiyon satın al","Copyright © XDSoft.net - Chupurnov Valeriy. Tüm Hakları Saklıdır","Bağlantı","Yeni sekmede aç","Tam ekran editör","Stili temizle","Dolgu ve yazı rengi seç","İleri Al","Geri Al","Kalın","İtalik","Sırasız Liste Ekle","Sıralı Liste Ekle","Ortala","Kenarlara Yasla","Sola Yasla","Sağa Yasla","Yatay Çizgi Ekle","Resim Ekle","Dosya Ekle","Youtube/vimeo Videosu Ekle","Bağlantı Ekle","Font Boyutu","Font Ailesi","Blok Ekle","Normal","Başlık 1","Başlık 2","Başlık 3","Başlık 4","Alıntı","Code","Ekle","Tablo Ekle","Girintiyi Azalt","Girintiyi Arttır","Özel Karakter Seç","Özel Karakter Ekle","Resim Biçimi","Mod Değiştir","MEsafeler","Üst","Sağ","Alt","Sol","CSS Stilleri","CSS Sınıfları","Hizalama","Sağ","Ortalı","Sol","Belirlenmedi","Kaynak","Başlık","Alternatif Yazı","Link","Bağlantıyı yeni sekmede aç","Resim","Dosya","Gelişmiş","Resim özellikleri","İptal","Tamam","Dosya Gezgini","Liste yüklenirken hata oluştu","Klasörler yüklenirken hata oluştur","Emin misiniz?","Dizin yolu giriniz","Dizin oluştur","Typname","Resim bırak","Dosya bırak","veya tıkla","Alternatif yazı","Yükle","Ekle","Arka plan","Yazı","Üst","Orta","Aşağı","Öncesine kolon ekle","Sonrasına kolon ekle","Üstüne satır ekle","Altına satır ekle","Tabloyu sil","Satır sil","Kolon sil","Hücreyi boşalt","Harfler: %d","Kelimeler: %d","Durchschlagen","Alt çizgi","Üst yazı","Alt yazı","Seçilimi kes","Tümünü seç","Durdur","Ara","Şununla değiştir","Değiştir","Yapıştır","Yapıştırılacak içerik seç","Kaynak","Kalın","italik","Fırça","Bağlantı","Geri al","İleri al","Tablo","Resim","Silgi","Paragraf","Font boyutu","Video","Font","Hakkında","Yazdır","Sembol","Alt çizgi","Üstü çizili","Girinti","Çıkıntı","Tam ekran","Küçült","Kopyalama Biçimi","Ayraç","Sırasız liste","Sıralı liste","Kes","Tümünü seç","Kod ekle","Bağlantıyı aç","Bağlantıyı düzenle","Nofollow özelliği","Bağlantıyı kaldır","Güncelle","Düzenlemek için","Yorumu","URL","Düzenle","Yatay hizalama","Filtre","Değişime göre sırala","İsme göre sırala","Boyuta göre sırala","Klasör ekle","Sıfırla","Kaydet","Farklı kaydet","Boyutlandır","Kırp","Genişlik","Yükseklik","En boy oranını koru","Evet","Hayır","Sil","Seç","Seç: %s","Dikey hizalama",null,"Birleştir","Kolon ekle","Satır ekle",null,"Sil","Dikey ayır","Yatay ayır","Kenarlık","Kodunuz HTML koduna benziyor. HTML olarak devam etmek ister misiniz?","HTML olarak yapıştır","Sakla","Yazı olarak ekle","Nur Text einfügen","Sadece kendi resimlerinizi düzenleyebilirsiniz. Bu görseli kendi hostunuza indirmek ister misiniz?","Görsel başarıyla hostunuza yüklendi","Palette","Bu dizinde dosya yok.","Macarca","Yeni isim girin","Ön izleme","İndir"]
+module.exports.default = ["輸入一些內容","關於Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","開發者指南","使用幫助","有關許可證的信息，請訪問我們的網站：","購買完整版本","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","在新窗口打開","全屏編輯","清除樣式","顏色","重做","撤銷","粗體","斜體","符號列表","編號","居中","對齊文本","左對齊","右對齊","分割線","圖片","文件","youtube/vimeo 影片","鏈接","字號","字體","格式塊","文本","標題1","標題2","標題3","標題4","引用","代碼","插入","表格","減少縮進","增加縮進","選擇特殊符號","特殊符號","格式複製","改變模式","外邊距（Margins）","top","right","bottom","left","樣式","Classes","對齊方式","居右","居中","居左","無","Src","Title","Alternative","Link","在新窗口打開鏈接","圖片","file","高級","圖片屬性","取消","確定","你黏貼的文本是一段html代碼，是否保留源格式","html黏貼","保留源格式","匹配目標格式","把html代碼視為普通文本","只保留文本","文本黏貼","正在黏貼 Word/Excel 的文本，是否保留源格式？","文件管理","加載list錯誤","加載folders錯誤","你確定嗎？","輸入路徑","創建路徑","type name","拖動圖片到此","拖動文件到此","或點擊","Alternative text","瀏覽","上傳","背景色","字體顏色","頂部","中間","底部","在之前插入列","在之後插入列","在之前插入行","在之後插入行","刪除表格","刪除行","刪除列","清除內容","源碼","粗體","斜體","顏色","鏈接","撤銷","重做","表格","圖片","橡皮擦","段落","字號","影片","字體","關於","打印","符號","下劃線","上出現","增加縮進","減少縮進","全屏","收縮","複製格式","分割線","無序列表","順序列表","剪切","全選",null,"打開鏈接","編輯鏈接","No follow","Unlink","回顧","要編輯","更新","URL",null,"水平對齊","篩選","修改時間排序","名稱排序","大小排序","新建文件夾","重置","保存","保存為","調整大小","Crop","寬","高","保存長寬比","是","不","移除","選擇","字符數: %d","單詞數: %d",null,"選擇: %s","全選","垂直對齊",null,null,null,"合併","添加列","添加行","刪除",null,null,"刪除線","下劃線","上標","下標","剪切","Pause","查找","替換為","替換","黏貼","選擇內容並黏貼","你只能編輯你自己的圖片。Download this image on the host?","圖片上傳成功","Palette","此目錄中沒有文件。","匈牙利","输入新名称","預習","下載"]
 
 /***/ }),
 /* 134 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["输入一些内容","关于Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","开发者指南","使用帮助","有关许可证的信息，请访问我们的网站：","购买完整版本","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","在新窗口打开","全屏编辑","清除样式","颜色","重做","撤销","粗体","斜体","符号列表","编号","居中","对齐文本","左对齐","右对齐","分割线","图片","文件","youtube/vimeo 视频","链接","字号","字体","格式块","文本","标题1","标题2","标题3","标题4","引用","代码","插入","表格","减少缩进","增加缩进","选择特殊符号","特殊符号","格式复制","改变模式","外边距（Margins）","top","right","bottom","left","样式","Classes","对齐方式","居右","居中","居左","无","Src","Title","Alternative","Link","在新窗口打开链接","图片","file","高级","图片属性","取消","确定","文件管理","加载list错误","加载folders错误","你确定吗？","输入路径","创建路径","type name","拖动图片到此","拖动文件到此","或点击","Alternative text","上传","浏览","背景色","字体颜色","顶部","中间","底部","在之前插入列","在之后插入列","在之前插入行","在之后插入行","删除表格","删除行","删除列","清除内容","字符数: %d","单词数: %d","删除线","下划线","上标","下标","剪切","全选","Pause","查找","替换为","替换","粘贴","选择内容并粘贴","源码","粗体","斜体","颜色","链接","撤销","重做","表格","图片","橡皮擦","段落","字号","视频","字体","关于","打印","符号","下划线","上出现","增加缩进","减少缩进","全屏","收缩","复制格式","分割线","无序列表","顺序列表","剪切","全选",null,"打开链接","编辑链接","No follow","Unlink","更新","要編輯","回顧","URL",null,"水平对齐","筛选","修改时间排序","名称排序","大小排序","新建文件夹","重置","保存","保存为","调整大小","Crop","宽","高","保存长宽比","是","不","移除","选择","选择: %s","垂直对齐",null,"合并","添加列","添加行",null,"删除",null,null,null,"你粘贴的文本是一段html代码，是否保留源格式","html粘贴","保留源格式","把html代码视为普通文本","只保留文本","你只能编辑你自己的图片。Download this image on the host?","图片上传成功","Palette","此目錄中沒有文件。","匈牙利","输入新名称","預習","下載"]
+module.exports.default = ["Type something","About Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","Jodit User's Guide","contains detailed help for using","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","Open in new tab","Open editor in fullsize","Clear Formatting","Fill color or set the text color","Redo","Undo","Bold","Italic","Insert Unordered List","Insert Ordered List","Align Center","Align Justify","Align Left","Align Right","Insert Horizontal Line","Insert Image","Insert file","Insert youtube/vimeo video","Insert link","Font size","Font family","Insert format block","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Quote","Code","Insert","Insert table","Decrease Indent","Increase Indent","Select Special Character","Insert Special Character","Paint format","Change mode","Margins","top","right","bottom","left","Styles","Classes","Align","Right","Center","Left","--Not Set--","Src","Title","Alternative","Link","Open link in new tab","Image","file","Advanced","Image properties","Cancel","Ok","Your code is similar to HTML. Keep as HTML?","Paste as HTML","Keep","Clean","Insert as Text","Insert only Text","Word Paste Detected","The pasted content is coming from a Microsoft Word/Excel document. Do you want to keep the format or clean it up?","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","Drop image","Drop file","or click","Alternative text","Browse","Upload","Background","Text","Top","Middle","Bottom","Insert column before","Insert column after","Insert row above","Insert row below","Delete table","Delete row","Delete column","Empty cell","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","hr","ul","ol","cut","selectall","Embed code","Open link","Edit link","No follow","Unlink","Eye","pencil","Update"," URL","Edit","Horizontal align","Filter","Sort by changed","Sort by name","Sort by size","Add folder","Reset","Save","Save as ...","Resize","Crop","Width","Height","Keep Aspect Ratio","Yes","No","Remove","Select","Chars: %d","Words: %d","All","Select %s","Select all","Vertical align","Split","Split vertical","Split horizontal","Merge","Add column","Add row","Delete","Border","License: %s","Strike through","Underline","superscript","subscript","Cut selection","Break","Search for","Replace with","Replace","Paste","Choose Content to Paste","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","palette","There are no files","rename","Enter new name","preview","download"]
 
 /***/ }),
 /* 135 */
-/***/ (function(module, exports) {
-
-module.exports.default = ["輸入一些內容","關於Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","開發者指南","使用幫助","有關許可證的信息，請訪問我們的網站：","購買完整版本","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","在新窗口打開","全屏編輯","清除樣式","顏色","重做","撤銷","粗體","斜體","符號列表","編號","居中","對齊文本","左對齊","右對齊","分割線","圖片","文件","youtube/vimeo 影片","鏈接","字號","字體","格式塊","文本","標題1","標題2","標題3","標題4","引用","代碼","插入","表格","減少縮進","增加縮進","選擇特殊符號","特殊符號","格式複製","改變模式","外邊距（Margins）","top","right","bottom","left","樣式","Classes","對齊方式","居右","居中","居左","無","Src","Title","Alternative","Link","在新窗口打開鏈接","圖片","file","高級","圖片屬性","取消","確定","文件管理","加載list錯誤","加載folders錯誤","你確定嗎？","輸入路徑","創建路徑","type name","拖動圖片到此","拖動文件到此","或點擊","Alternative text","上傳","瀏覽","背景色","字體顏色","頂部","中間","底部","在之前插入列","在之後插入列","在之前插入行","在之後插入行","刪除表格","刪除行","刪除列","清除內容","字符數: %d","單詞數: %d","刪除線","下劃線","上標","下標","剪切","全選","Pause","查找","替換為","替換","黏貼","選擇內容並黏貼","源碼","粗體","斜體","顏色","鏈接","撤銷","重做","表格","圖片","橡皮擦","段落","字號","影片","字體","關於","打印","符號","下劃線","上出現","增加縮進","減少縮進","全屏","收縮","複製格式","分割線","無序列表","順序列表","剪切","全選",null,"打開鏈接","編輯鏈接","No follow","Unlink","更新","要編輯","回顧","URL",null,"水平對齊","篩選","修改時間排序","名稱排序","大小排序","新建文件夾","重置","保存","保存為","調整大小","Crop","寬","高","保存長寬比","是","不","移除","選擇","選擇: %s","垂直對齊",null,"合併","添加列","添加行",null,"刪除",null,null,null,"你黏貼的文本是一段html代碼，是否保留源格式","html黏貼","保留源格式","把html代碼視為普通文本","只保留文本","你只能編輯你自己的圖片。Download this image on the host?","圖片上傳成功","Palette","此目錄中沒有文件。","匈牙利","输入新名称","預習","下載"]
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports) {
-
-module.exports.default = ["Type something","About Jodit","Jodit Editor","Free Non-commercial Version","GNU General Public License, version 2 or later","Jodit User's Guide","contains detailed help for using","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","Open in new tab","Open editor in fullsize","Clear Formatting","Fill color or set the text color","Redo","Undo","Bold","Italic","Insert Unordered List","Insert Ordered List","Align Center","Align Justify","Align Left","Align Right","Insert Horizontal Line","Insert Image","Insert file","Insert youtube/vimeo video","Insert link","Font size","Font family","Insert format block","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Quote","Code","Insert","Insert table","Decrease Indent","Increase Indent","Select Special Character","Insert Special Character","Paint format","Change mode","Margins","top","right","bottom","left","Styles","Classes","Align","Right","Center","Left","--Not Set--","Src","Title","Alternative","Link","Open link in new tab","Image","file","Advanced","Image properties","Cancel","Ok","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","Drop image","Drop file","or click","Alternative text","Upload","Browse","Background","Text","Top","Middle","Bottom","Insert column before","Insert column after","Insert row above","Insert row below","Delete table","Delete row","Delete column","Empty cell","Chars: %d","Words: %d","Strike through","Underline","superscript","subscript","Cut selection","Select all","Break","Search for","Replace with","Replace","Paste","Choose Content to Paste","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","hr","ul","ol","cut","selectall","Embed code","Open link","Edit link","No follow","Unlink","Update","pencil","Eye"," URL","Edit","Horizontal align","Filter","Sort by changed","Sort by name","Sort by size","Add folder","Reset","Save","Save as ...","Resize","Crop","Width","Height","Keep Aspect Ratio","Yes","No","Remove","Select","Select %s","Vertical align","Split","Merge","Add column","Add row","License: %s","Delete","Split vertical","Split horizontal","Border","Your code is similar to HTML. Keep as HTML?","Paste as HTML","Keep","Insert as Text","Insert only Text","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","palette","There are no files","rename","Enter new name","preview","download"]
-
-/***/ }),
-/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19785,7 +14087,7 @@ exports.Cookie = Cookie;
 
 
 /***/ }),
-/* 138 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19855,7 +14157,7 @@ var Dom_1 = __webpack_require__(0);
 
 
 /***/ }),
-/* 139 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19871,7 +14173,7 @@ var Dom_1 = __webpack_require__(0);
 Object.defineProperty(exports, "__esModule", { value: true });
 var Config_1 = __webpack_require__(3);
 var icon_1 = __webpack_require__(6);
-var debounce_1 = __webpack_require__(44);
+var debounce_1 = __webpack_require__(42);
 var helpers_1 = __webpack_require__(4);
 var fileBrowser_1 = __webpack_require__(39);
 Config_1.Config.prototype.filebrowser = {
@@ -20187,7 +14489,7 @@ Config_1.Config.prototype.controls.filebrowser = {
 
 
 /***/ }),
-/* 140 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20529,7 +14831,7 @@ exports.default = dataProvider;
 
 
 /***/ }),
-/* 141 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20675,7 +14977,7 @@ exports.default = (function (self) {
 
 
 /***/ }),
-/* 142 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20742,7 +15044,7 @@ exports.ObserveObject = ObserveObject;
 
 
 /***/ }),
-/* 143 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20811,7 +15113,7 @@ exports.FileBrowserItem = FileBrowserItem;
 
 
 /***/ }),
-/* 144 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20841,7 +15143,7 @@ exports.MemoryStorageProvider = MemoryStorageProvider;
 
 
 /***/ }),
-/* 145 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20871,7 +15173,7 @@ exports.isValidName = function (name) {
 
 
 /***/ }),
-/* 146 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21578,7 +15880,7 @@ exports.ImageEditor = ImageEditor;
 
 
 /***/ }),
-/* 147 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22123,7 +16425,7 @@ exports.Uploader = Uploader;
 
 
 /***/ }),
-/* 148 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22137,89 +16439,89 @@ exports.Uploader = Uploader;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var add_new_line_1 = __webpack_require__(149);
+var add_new_line_1 = __webpack_require__(147);
 exports.addNewLine = add_new_line_1.addNewLine;
-var autofocus_1 = __webpack_require__(150);
+var autofocus_1 = __webpack_require__(148);
 exports.autofocus = autofocus_1.autofocus;
-var backspace_1 = __webpack_require__(151);
+var backspace_1 = __webpack_require__(149);
 exports.backspace = backspace_1.backspace;
-var bold_1 = __webpack_require__(152);
+var bold_1 = __webpack_require__(150);
 exports.bold = bold_1.bold;
-var clean_html_1 = __webpack_require__(153);
+var clean_html_1 = __webpack_require__(151);
 exports.cleanHtml = clean_html_1.cleanHtml;
-var color_1 = __webpack_require__(154);
+var color_1 = __webpack_require__(152);
 exports.color = color_1.color;
-__webpack_require__(155);
-var enter_1 = __webpack_require__(156);
+__webpack_require__(153);
+var enter_1 = __webpack_require__(154);
 exports.enter = enter_1.enter;
-var error_messages_1 = __webpack_require__(157);
+var error_messages_1 = __webpack_require__(155);
 exports.errorMessages = error_messages_1.errorMessages;
-var font_1 = __webpack_require__(158);
+var font_1 = __webpack_require__(156);
 exports.font = font_1.font;
-var format_block_1 = __webpack_require__(159);
+var format_block_1 = __webpack_require__(157);
 exports.formatBlock = format_block_1.formatBlock;
-var fullsize_1 = __webpack_require__(160);
+var fullsize_1 = __webpack_require__(158);
 exports.fullsize = fullsize_1.fullsize;
-var iframe_1 = __webpack_require__(161);
+var iframe_1 = __webpack_require__(159);
 exports.iframe = iframe_1.iframe;
-var indent_1 = __webpack_require__(162);
+var indent_1 = __webpack_require__(160);
 exports.indent = indent_1.indent;
-var image_processor_1 = __webpack_require__(163);
+var image_processor_1 = __webpack_require__(161);
 exports.imageProcessor = image_processor_1.imageProcessor;
-var image_properties_1 = __webpack_require__(164);
+var image_properties_1 = __webpack_require__(162);
 exports.imageProperties = image_properties_1.imageProperties;
-var inline_popup_1 = __webpack_require__(165);
+var inline_popup_1 = __webpack_require__(163);
 exports.inlinePopup = inline_popup_1.inlinePopup;
-var justify_1 = __webpack_require__(166);
+var justify_1 = __webpack_require__(164);
 exports.justify = justify_1.justify;
-var link_1 = __webpack_require__(167);
+var link_1 = __webpack_require__(165);
 exports.link = link_1.link;
-var limit_1 = __webpack_require__(168);
+var limit_1 = __webpack_require__(166);
 exports.limit = limit_1.limit;
-var media_1 = __webpack_require__(169);
+var media_1 = __webpack_require__(167);
 exports.media = media_1.media;
-var mobile_1 = __webpack_require__(170);
+var mobile_1 = __webpack_require__(168);
 exports.mobile = mobile_1.mobile;
-var orderedlist_1 = __webpack_require__(171);
+var orderedlist_1 = __webpack_require__(169);
 exports.orderedlist = orderedlist_1.orderedlist;
-var paste_1 = __webpack_require__(172);
+var paste_1 = __webpack_require__(170);
 exports.paste = paste_1.paste;
-var placeholder_1 = __webpack_require__(174);
+var placeholder_1 = __webpack_require__(172);
 exports.placeholder = placeholder_1.placeholder;
-var redoundo_1 = __webpack_require__(175);
+var redoundo_1 = __webpack_require__(173);
 exports.redoundo = redoundo_1.redoundo;
-var resizer_1 = __webpack_require__(176);
+var resizer_1 = __webpack_require__(174);
 exports.resizer = resizer_1.resizer;
-var size_1 = __webpack_require__(177);
+var size_1 = __webpack_require__(175);
 exports.size = size_1.size;
-var source_1 = __webpack_require__(178);
+var source_1 = __webpack_require__(176);
 exports.source = source_1.source;
-var symbols_1 = __webpack_require__(585);
+var symbols_1 = __webpack_require__(582);
 exports.symbols = symbols_1.symbols;
-var hotkeys_1 = __webpack_require__(586);
+var hotkeys_1 = __webpack_require__(583);
 exports.hotkeys = hotkeys_1.hotkeys;
-var table_1 = __webpack_require__(587);
+var table_1 = __webpack_require__(584);
 exports.table = table_1.TableProcessor;
-var table_keyboard_navigation_1 = __webpack_require__(588);
+var table_keyboard_navigation_1 = __webpack_require__(585);
 exports.tableKeyboardNavigation = table_keyboard_navigation_1.tableKeyboardNavigation;
-var search_1 = __webpack_require__(589);
+var search_1 = __webpack_require__(586);
 exports.search = search_1.search;
-var sticky_1 = __webpack_require__(590);
+var sticky_1 = __webpack_require__(587);
 exports.sticky = sticky_1.sticky;
-var stat_1 = __webpack_require__(591);
+var stat_1 = __webpack_require__(588);
 exports.stat = stat_1.stat;
-var xpath_1 = __webpack_require__(592);
+var xpath_1 = __webpack_require__(589);
 exports.xpath = xpath_1.xpath;
-var drag_and_drop_element_1 = __webpack_require__(593);
+var drag_and_drop_element_1 = __webpack_require__(590);
 exports.DragAndDropElement = drag_and_drop_element_1.DragAndDropElement;
-var drag_and_drop_1 = __webpack_require__(594);
+var drag_and_drop_1 = __webpack_require__(591);
 exports.DragAndDrop = drag_and_drop_1.DragAndDrop;
-var paste_storage_1 = __webpack_require__(595);
+var paste_storage_1 = __webpack_require__(592);
 exports.pasteStorage = paste_storage_1.pasteStorage;
 
 
 /***/ }),
-/* 149 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22433,7 +16735,7 @@ exports.addNewLine = addNewLine;
 
 
 /***/ }),
-/* 150 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22493,7 +16795,7 @@ exports.autofocus = autofocus;
 
 
 /***/ }),
-/* 151 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22813,7 +17115,7 @@ exports.backspace = backspace;
 
 
 /***/ }),
-/* 152 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22905,7 +17207,7 @@ exports.bold = bold;
 
 
 /***/ }),
-/* 153 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23194,7 +17496,7 @@ exports.cleanHtml = cleanHtml;
 
 
 /***/ }),
-/* 154 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23316,7 +17618,7 @@ exports.color = color;
 
 
 /***/ }),
-/* 155 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23427,7 +17729,7 @@ Config_1.Config.prototype.controls.copyformat = {
 
 
 /***/ }),
-/* 156 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23639,7 +17941,7 @@ exports.enter = enter;
 
 
 /***/ }),
-/* 157 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23722,7 +18024,7 @@ exports.errorMessages = errorMessages;
 
 
 /***/ }),
-/* 158 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23875,7 +18177,7 @@ exports.font = font;
 
 
 /***/ }),
-/* 159 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24014,7 +18316,7 @@ exports.formatBlock = formatBlock;
 
 
 /***/ }),
-/* 160 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24119,7 +18421,7 @@ exports.fullsize = fullsize;
 
 
 /***/ }),
-/* 161 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24135,7 +18437,7 @@ exports.fullsize = fullsize;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var Config_1 = __webpack_require__(3);
-var defaultLanguage_1 = __webpack_require__(56);
+var defaultLanguage_1 = __webpack_require__(54);
 var async_1 = __webpack_require__(5);
 var css_1 = __webpack_require__(10);
 /**
@@ -24370,7 +18672,7 @@ exports.iframe = iframe;
 
 
 /***/ }),
-/* 162 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24461,7 +18763,7 @@ exports.indent = indent;
 
 
 /***/ }),
-/* 163 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24508,7 +18810,7 @@ exports.imageProcessor = imageProcessor;
 
 
 /***/ }),
-/* 164 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25146,7 +19448,7 @@ exports.imageProperties = imageProperties;
 
 
 /***/ }),
-/* 165 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25670,7 +19972,7 @@ exports.inlinePopup = inlinePopup;
 
 
 /***/ }),
-/* 166 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25811,7 +20113,7 @@ exports.justify = justify;
 
 
 /***/ }),
-/* 167 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26019,7 +20321,7 @@ exports.link = link;
 
 
 /***/ }),
-/* 168 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26036,7 +20338,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Config_1 = __webpack_require__(3);
 var constants_1 = __webpack_require__(2);
 var async_1 = __webpack_require__(5);
-var html_1 = __webpack_require__(49);
+var html_1 = __webpack_require__(47);
 /**
  * @property {boolean | number} limitWords=false limit words count
  */
@@ -26105,7 +20407,7 @@ exports.limit = limit;
 
 
 /***/ }),
-/* 169 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26199,7 +20501,7 @@ exports.media = media;
 
 
 /***/ }),
-/* 170 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26300,7 +20602,7 @@ exports.mobile = mobile;
 
 
 /***/ }),
-/* 171 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26355,7 +20657,7 @@ exports.orderedlist = orderedlist;
 
 
 /***/ }),
-/* 172 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26374,7 +20676,7 @@ var constants_1 = __webpack_require__(2);
 var dialog_1 = __webpack_require__(13);
 var helpers_1 = __webpack_require__(4);
 var Dom_1 = __webpack_require__(0);
-var nl2br_1 = __webpack_require__(173);
+var nl2br_1 = __webpack_require__(171);
 Config_1.Config.prototype.askBeforePasteHTML = true;
 Config_1.Config.prototype.askBeforePasteFromWord = true;
 Config_1.Config.prototype.nl2brInPlainText = true;
@@ -26629,11 +20931,6 @@ function paste(editor) {
                                 'Do you want to keep the format or clean it up?'), editor.i18n('Word Paste Detected'), function (agree) {
                                 if (agree === true) {
                                     html = helpers_1.applyStyles(html);
-                                    if (editor.options.beautifyHTML &&
-                                        editor.ownerWindow
-                                            .html_beautify) {
-                                        html = editor.ownerWindow.html_beautify(html);
-                                    }
                                 }
                                 if (agree === false) {
                                     html = helpers_1.cleanFromWord(html);
@@ -26716,7 +21013,7 @@ exports.paste = paste;
 
 
 /***/ }),
-/* 173 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26740,7 +21037,7 @@ exports.nl2br = function (html) {
 
 
 /***/ }),
-/* 174 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26874,7 +21171,7 @@ exports.placeholder = placeholder;
 
 
 /***/ }),
-/* 175 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26935,7 +21232,7 @@ exports.redoundo = redoundo;
 
 
 /***/ }),
-/* 176 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27292,7 +21589,7 @@ exports.resizer = resizer;
 
 
 /***/ }),
-/* 177 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27440,7 +21737,7 @@ exports.size = size;
 
 
 /***/ }),
-/* 178 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27467,14 +21764,10 @@ var async_1 = __webpack_require__(5);
 // import { $$ } from '../modules/helpers/selector';
 var css_1 = __webpack_require__(10);
 var Dom_1 = __webpack_require__(0);
-__webpack_require__(179);
-__webpack_require__(180);
-__webpack_require__(582);
-__webpack_require__(583);
-__webpack_require__(41);
-__webpack_require__(42);
-__webpack_require__(584);
-Config_1.Config.prototype.beautifyHTML = true;
+__webpack_require__(177);
+__webpack_require__(178);
+__webpack_require__(580);
+__webpack_require__(581);
 Config_1.Config.prototype.useAceEditor = true;
 Config_1.Config.prototype.sourceEditorNativeOptions = {
     /**
@@ -27500,10 +21793,6 @@ Config_1.Config.prototype.sourceEditorNativeOptions = {
 };
 Config_1.Config.prototype.sourceEditorCDNUrlsJS = [
     'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
-];
-Config_1.Config.prototype.beautifyHTMLCDNUrlsJS = [
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
 ];
 Config_1.Config.prototype.controls.source = {
     mode: consts.MODE_SPLIT,
@@ -27702,10 +21991,6 @@ var source = /** @class */ (function (_super) {
                 if (_this.selInfo[0].endMarker) {
                     value = value.replace(/<span[^>]+data-jodit_selection_marker="end"[^>]*>[<>]*?<\/span>/gim, _this.tempMarkerEnd);
                 }
-                if (_this.jodit.ownerWindow.html_beautify &&
-                    _this.jodit.options.beautifyHTML) {
-                    value = _this.jodit.ownerWindow.html_beautify(value);
-                }
                 selectionStart = value.indexOf(_this.tempMarkerStart);
                 selectionEnd = selectionStart;
                 value = value.replace(_this.tempMarkerStartReg, '');
@@ -27842,13 +22127,7 @@ var source = /** @class */ (function (_super) {
                 _this.mirror.style.display = 'none';
                 undoManager = aceEditor.getSession().getUndoManager();
                 _this.setMirrorValue = function (value) {
-                    if (editor.options.beautifyHTML &&
-                        editor.ownerWindow.html_beautify) {
-                        aceEditor.setValue(editor.ownerWindow.html_beautify(value));
-                    }
-                    else {
-                        aceEditor.setValue(value);
-                    }
+                    aceEditor.setValue(value);
                     aceEditor.clearSelection();
                     updateButtons();
                 };
@@ -27963,11 +22242,6 @@ var source = /** @class */ (function (_super) {
         this.mirrorContainer.appendChild(this.mirror);
         editor.workplace.appendChild(this.mirrorContainer);
         this.autosize();
-        var className = 'beutyfy_html_jodit_helper';
-        if (editor.options.beautifyHTML &&
-            editor.ownerWindow.html_beautify === undefined) {
-            this.loadNext(0, editor.options.beautifyHTMLCDNUrlsJS, false, className);
-        }
         if (editor.options.useAceEditor) {
             this.replaceMirrorToACE();
         }
@@ -28002,7 +22276,7 @@ exports.source = source;
 
 
 /***/ }),
-/* 179 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {/* ***** BEGIN LICENSE BLOCK *****
@@ -32534,7 +26808,7 @@ init(true);function init(packaged) {
     if (!global || !global.document)
         return;
     
-    options.packaged = packaged || require.packaged || module.packaged || (global.define && __webpack_require__(68).packaged);
+    options.packaged = packaged || require.packaged || module.packaged || (global.define && __webpack_require__(66).packaged);
 
     var scriptOptions = {};
     var scriptUrl = "";
@@ -49716,7 +43990,7 @@ exports.config = require("./config");
 exports.require = require;
 
 if (true)
-    exports.define = __webpack_require__(68);
+    exports.define = __webpack_require__(66);
 exports.edit = function(el, options) {
     if (typeof el == "string") {
         var _id = el;
@@ -49788,2821 +44062,2821 @@ exports.version = exports.config.version;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(40)(module)))
 
 /***/ }),
-/* 180 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-ace.config.setModuleUrl('ace/ext/beautify', __webpack_require__(181))
-ace.config.setModuleUrl('ace/ext/elastic_tabstops_lite', __webpack_require__(182))
-ace.config.setModuleUrl('ace/ext/emmet', __webpack_require__(183))
-ace.config.setModuleUrl('ace/ext/error_marker', __webpack_require__(184))
-ace.config.setModuleUrl('ace/ext/keyboard_menu', __webpack_require__(185))
-ace.config.setModuleUrl('ace/ext/language_tools', __webpack_require__(186))
-ace.config.setModuleUrl('ace/ext/linking', __webpack_require__(187))
-ace.config.setModuleUrl('ace/ext/modelist', __webpack_require__(188))
-ace.config.setModuleUrl('ace/ext/options', __webpack_require__(189))
-ace.config.setModuleUrl('ace/ext/prompt', __webpack_require__(190))
-ace.config.setModuleUrl('ace/ext/rtl', __webpack_require__(191))
-ace.config.setModuleUrl('ace/ext/searchbox', __webpack_require__(192))
-ace.config.setModuleUrl('ace/ext/settings_menu', __webpack_require__(193))
-ace.config.setModuleUrl('ace/ext/spellcheck', __webpack_require__(194))
-ace.config.setModuleUrl('ace/ext/split', __webpack_require__(195))
-ace.config.setModuleUrl('ace/ext/static_highlight', __webpack_require__(196))
-ace.config.setModuleUrl('ace/ext/statusbar', __webpack_require__(197))
-ace.config.setModuleUrl('ace/ext/textarea', __webpack_require__(198))
-ace.config.setModuleUrl('ace/ext/themelist', __webpack_require__(199))
-ace.config.setModuleUrl('ace/ext/whitespace', __webpack_require__(200))
-ace.config.setModuleUrl('ace/keyboard/emacs', __webpack_require__(201))
-ace.config.setModuleUrl('ace/keyboard/sublime', __webpack_require__(202))
-ace.config.setModuleUrl('ace/keyboard/vim', __webpack_require__(203))
-ace.config.setModuleUrl('ace/mode/abap', __webpack_require__(204))
-ace.config.setModuleUrl('ace/mode/abc', __webpack_require__(205))
-ace.config.setModuleUrl('ace/mode/actionscript', __webpack_require__(206))
-ace.config.setModuleUrl('ace/mode/ada', __webpack_require__(207))
-ace.config.setModuleUrl('ace/mode/apache_conf', __webpack_require__(208))
-ace.config.setModuleUrl('ace/mode/apex', __webpack_require__(209))
-ace.config.setModuleUrl('ace/mode/applescript', __webpack_require__(210))
-ace.config.setModuleUrl('ace/mode/aql', __webpack_require__(211))
-ace.config.setModuleUrl('ace/mode/asciidoc', __webpack_require__(212))
-ace.config.setModuleUrl('ace/mode/asl', __webpack_require__(213))
-ace.config.setModuleUrl('ace/mode/assembly_x86', __webpack_require__(214))
-ace.config.setModuleUrl('ace/mode/autohotkey', __webpack_require__(215))
-ace.config.setModuleUrl('ace/mode/batchfile', __webpack_require__(216))
-ace.config.setModuleUrl('ace/mode/bro', __webpack_require__(217))
-ace.config.setModuleUrl('ace/mode/c9search', __webpack_require__(218))
-ace.config.setModuleUrl('ace/mode/cirru', __webpack_require__(219))
-ace.config.setModuleUrl('ace/mode/clojure', __webpack_require__(220))
-ace.config.setModuleUrl('ace/mode/cobol', __webpack_require__(221))
-ace.config.setModuleUrl('ace/mode/coffee', __webpack_require__(222))
-ace.config.setModuleUrl('ace/mode/coldfusion', __webpack_require__(223))
-ace.config.setModuleUrl('ace/mode/crystal', __webpack_require__(224))
-ace.config.setModuleUrl('ace/mode/csharp', __webpack_require__(225))
-ace.config.setModuleUrl('ace/mode/csound_document', __webpack_require__(226))
-ace.config.setModuleUrl('ace/mode/csound_orchestra', __webpack_require__(227))
-ace.config.setModuleUrl('ace/mode/csound_score', __webpack_require__(228))
-ace.config.setModuleUrl('ace/mode/csp', __webpack_require__(229))
-ace.config.setModuleUrl('ace/mode/css', __webpack_require__(230))
-ace.config.setModuleUrl('ace/mode/curly', __webpack_require__(231))
-ace.config.setModuleUrl('ace/mode/c_cpp', __webpack_require__(232))
-ace.config.setModuleUrl('ace/mode/d', __webpack_require__(233))
-ace.config.setModuleUrl('ace/mode/dart', __webpack_require__(234))
-ace.config.setModuleUrl('ace/mode/diff', __webpack_require__(235))
-ace.config.setModuleUrl('ace/mode/django', __webpack_require__(236))
-ace.config.setModuleUrl('ace/mode/dockerfile', __webpack_require__(237))
-ace.config.setModuleUrl('ace/mode/dot', __webpack_require__(238))
-ace.config.setModuleUrl('ace/mode/drools', __webpack_require__(239))
-ace.config.setModuleUrl('ace/mode/edifact', __webpack_require__(240))
-ace.config.setModuleUrl('ace/mode/eiffel', __webpack_require__(241))
-ace.config.setModuleUrl('ace/mode/ejs', __webpack_require__(242))
-ace.config.setModuleUrl('ace/mode/elixir', __webpack_require__(243))
-ace.config.setModuleUrl('ace/mode/elm', __webpack_require__(244))
-ace.config.setModuleUrl('ace/mode/erlang', __webpack_require__(245))
-ace.config.setModuleUrl('ace/mode/forth', __webpack_require__(246))
-ace.config.setModuleUrl('ace/mode/fortran', __webpack_require__(247))
-ace.config.setModuleUrl('ace/mode/fsharp', __webpack_require__(248))
-ace.config.setModuleUrl('ace/mode/fsl', __webpack_require__(249))
-ace.config.setModuleUrl('ace/mode/ftl', __webpack_require__(250))
-ace.config.setModuleUrl('ace/mode/gcode', __webpack_require__(251))
-ace.config.setModuleUrl('ace/mode/gherkin', __webpack_require__(252))
-ace.config.setModuleUrl('ace/mode/gitignore', __webpack_require__(253))
-ace.config.setModuleUrl('ace/mode/glsl', __webpack_require__(254))
-ace.config.setModuleUrl('ace/mode/gobstones', __webpack_require__(255))
-ace.config.setModuleUrl('ace/mode/golang', __webpack_require__(256))
-ace.config.setModuleUrl('ace/mode/graphqlschema', __webpack_require__(257))
-ace.config.setModuleUrl('ace/mode/groovy', __webpack_require__(258))
-ace.config.setModuleUrl('ace/mode/haml', __webpack_require__(259))
-ace.config.setModuleUrl('ace/mode/handlebars', __webpack_require__(260))
-ace.config.setModuleUrl('ace/mode/haskell', __webpack_require__(261))
-ace.config.setModuleUrl('ace/mode/haskell_cabal', __webpack_require__(262))
-ace.config.setModuleUrl('ace/mode/haxe', __webpack_require__(263))
-ace.config.setModuleUrl('ace/mode/hjson', __webpack_require__(264))
-ace.config.setModuleUrl('ace/mode/html', __webpack_require__(265))
-ace.config.setModuleUrl('ace/mode/html_elixir', __webpack_require__(266))
-ace.config.setModuleUrl('ace/mode/html_ruby', __webpack_require__(267))
-ace.config.setModuleUrl('ace/mode/ini', __webpack_require__(268))
-ace.config.setModuleUrl('ace/mode/io', __webpack_require__(269))
-ace.config.setModuleUrl('ace/mode/jack', __webpack_require__(270))
-ace.config.setModuleUrl('ace/mode/jade', __webpack_require__(271))
-ace.config.setModuleUrl('ace/mode/java', __webpack_require__(272))
-ace.config.setModuleUrl('ace/mode/javascript', __webpack_require__(273))
-ace.config.setModuleUrl('ace/mode/json', __webpack_require__(274))
-ace.config.setModuleUrl('ace/mode/jsoniq', __webpack_require__(275))
-ace.config.setModuleUrl('ace/mode/jsp', __webpack_require__(276))
-ace.config.setModuleUrl('ace/mode/jssm', __webpack_require__(277))
-ace.config.setModuleUrl('ace/mode/jsx', __webpack_require__(278))
-ace.config.setModuleUrl('ace/mode/julia', __webpack_require__(279))
-ace.config.setModuleUrl('ace/mode/kotlin', __webpack_require__(280))
-ace.config.setModuleUrl('ace/mode/latex', __webpack_require__(281))
-ace.config.setModuleUrl('ace/mode/less', __webpack_require__(282))
-ace.config.setModuleUrl('ace/mode/liquid', __webpack_require__(283))
-ace.config.setModuleUrl('ace/mode/lisp', __webpack_require__(284))
-ace.config.setModuleUrl('ace/mode/livescript', __webpack_require__(285))
-ace.config.setModuleUrl('ace/mode/logiql', __webpack_require__(286))
-ace.config.setModuleUrl('ace/mode/logtalk', __webpack_require__(287))
-ace.config.setModuleUrl('ace/mode/lsl', __webpack_require__(288))
-ace.config.setModuleUrl('ace/mode/lua', __webpack_require__(289))
-ace.config.setModuleUrl('ace/mode/luapage', __webpack_require__(290))
-ace.config.setModuleUrl('ace/mode/lucene', __webpack_require__(291))
-ace.config.setModuleUrl('ace/mode/makefile', __webpack_require__(292))
-ace.config.setModuleUrl('ace/mode/markdown', __webpack_require__(293))
-ace.config.setModuleUrl('ace/mode/mask', __webpack_require__(294))
-ace.config.setModuleUrl('ace/mode/matlab', __webpack_require__(295))
-ace.config.setModuleUrl('ace/mode/maze', __webpack_require__(296))
-ace.config.setModuleUrl('ace/mode/mel', __webpack_require__(297))
-ace.config.setModuleUrl('ace/mode/mixal', __webpack_require__(298))
-ace.config.setModuleUrl('ace/mode/mushcode', __webpack_require__(299))
-ace.config.setModuleUrl('ace/mode/mysql', __webpack_require__(300))
-ace.config.setModuleUrl('ace/mode/nginx', __webpack_require__(301))
-ace.config.setModuleUrl('ace/mode/nim', __webpack_require__(302))
-ace.config.setModuleUrl('ace/mode/nix', __webpack_require__(303))
-ace.config.setModuleUrl('ace/mode/nsis', __webpack_require__(304))
-ace.config.setModuleUrl('ace/mode/objectivec', __webpack_require__(305))
-ace.config.setModuleUrl('ace/mode/ocaml', __webpack_require__(306))
-ace.config.setModuleUrl('ace/mode/pascal', __webpack_require__(307))
-ace.config.setModuleUrl('ace/mode/perl', __webpack_require__(308))
-ace.config.setModuleUrl('ace/mode/perl6', __webpack_require__(309))
-ace.config.setModuleUrl('ace/mode/pgsql', __webpack_require__(310))
-ace.config.setModuleUrl('ace/mode/php', __webpack_require__(311))
-ace.config.setModuleUrl('ace/mode/php_laravel_blade', __webpack_require__(312))
-ace.config.setModuleUrl('ace/mode/pig', __webpack_require__(313))
-ace.config.setModuleUrl('ace/mode/plain_text', __webpack_require__(314))
-ace.config.setModuleUrl('ace/mode/powershell', __webpack_require__(315))
-ace.config.setModuleUrl('ace/mode/praat', __webpack_require__(316))
-ace.config.setModuleUrl('ace/mode/prolog', __webpack_require__(317))
-ace.config.setModuleUrl('ace/mode/properties', __webpack_require__(318))
-ace.config.setModuleUrl('ace/mode/protobuf', __webpack_require__(319))
-ace.config.setModuleUrl('ace/mode/puppet', __webpack_require__(320))
-ace.config.setModuleUrl('ace/mode/python', __webpack_require__(321))
-ace.config.setModuleUrl('ace/mode/r', __webpack_require__(322))
-ace.config.setModuleUrl('ace/mode/razor', __webpack_require__(323))
-ace.config.setModuleUrl('ace/mode/rdoc', __webpack_require__(324))
-ace.config.setModuleUrl('ace/mode/red', __webpack_require__(325))
-ace.config.setModuleUrl('ace/mode/redshift', __webpack_require__(326))
-ace.config.setModuleUrl('ace/mode/rhtml', __webpack_require__(327))
-ace.config.setModuleUrl('ace/mode/rst', __webpack_require__(328))
-ace.config.setModuleUrl('ace/mode/ruby', __webpack_require__(329))
-ace.config.setModuleUrl('ace/mode/rust', __webpack_require__(330))
-ace.config.setModuleUrl('ace/mode/sass', __webpack_require__(331))
-ace.config.setModuleUrl('ace/mode/scad', __webpack_require__(332))
-ace.config.setModuleUrl('ace/mode/scala', __webpack_require__(333))
-ace.config.setModuleUrl('ace/mode/scheme', __webpack_require__(334))
-ace.config.setModuleUrl('ace/mode/scss', __webpack_require__(335))
-ace.config.setModuleUrl('ace/mode/sh', __webpack_require__(336))
-ace.config.setModuleUrl('ace/mode/sjs', __webpack_require__(337))
-ace.config.setModuleUrl('ace/mode/slim', __webpack_require__(338))
-ace.config.setModuleUrl('ace/mode/smarty', __webpack_require__(339))
-ace.config.setModuleUrl('ace/mode/snippets', __webpack_require__(340))
-ace.config.setModuleUrl('ace/mode/soy_template', __webpack_require__(341))
-ace.config.setModuleUrl('ace/mode/space', __webpack_require__(342))
-ace.config.setModuleUrl('ace/mode/sparql', __webpack_require__(343))
-ace.config.setModuleUrl('ace/mode/sql', __webpack_require__(344))
-ace.config.setModuleUrl('ace/mode/sqlserver', __webpack_require__(345))
-ace.config.setModuleUrl('ace/mode/stylus', __webpack_require__(346))
-ace.config.setModuleUrl('ace/mode/svg', __webpack_require__(347))
-ace.config.setModuleUrl('ace/mode/swift', __webpack_require__(348))
-ace.config.setModuleUrl('ace/mode/tcl', __webpack_require__(349))
-ace.config.setModuleUrl('ace/mode/terraform', __webpack_require__(350))
-ace.config.setModuleUrl('ace/mode/tex', __webpack_require__(351))
-ace.config.setModuleUrl('ace/mode/text', __webpack_require__(352))
-ace.config.setModuleUrl('ace/mode/textile', __webpack_require__(353))
-ace.config.setModuleUrl('ace/mode/toml', __webpack_require__(354))
-ace.config.setModuleUrl('ace/mode/tsx', __webpack_require__(355))
-ace.config.setModuleUrl('ace/mode/turtle', __webpack_require__(356))
-ace.config.setModuleUrl('ace/mode/twig', __webpack_require__(357))
-ace.config.setModuleUrl('ace/mode/typescript', __webpack_require__(358))
-ace.config.setModuleUrl('ace/mode/vala', __webpack_require__(359))
-ace.config.setModuleUrl('ace/mode/vbscript', __webpack_require__(360))
-ace.config.setModuleUrl('ace/mode/velocity', __webpack_require__(361))
-ace.config.setModuleUrl('ace/mode/verilog', __webpack_require__(362))
-ace.config.setModuleUrl('ace/mode/vhdl', __webpack_require__(363))
-ace.config.setModuleUrl('ace/mode/visualforce', __webpack_require__(364))
-ace.config.setModuleUrl('ace/mode/wollok', __webpack_require__(365))
-ace.config.setModuleUrl('ace/mode/xml', __webpack_require__(366))
-ace.config.setModuleUrl('ace/mode/xquery', __webpack_require__(367))
-ace.config.setModuleUrl('ace/mode/yaml', __webpack_require__(368))
-ace.config.setModuleUrl('ace/mode/zeek', __webpack_require__(369))
+ace.config.setModuleUrl('ace/ext/beautify', __webpack_require__(179))
+ace.config.setModuleUrl('ace/ext/elastic_tabstops_lite', __webpack_require__(180))
+ace.config.setModuleUrl('ace/ext/emmet', __webpack_require__(181))
+ace.config.setModuleUrl('ace/ext/error_marker', __webpack_require__(182))
+ace.config.setModuleUrl('ace/ext/keyboard_menu', __webpack_require__(183))
+ace.config.setModuleUrl('ace/ext/language_tools', __webpack_require__(184))
+ace.config.setModuleUrl('ace/ext/linking', __webpack_require__(185))
+ace.config.setModuleUrl('ace/ext/modelist', __webpack_require__(186))
+ace.config.setModuleUrl('ace/ext/options', __webpack_require__(187))
+ace.config.setModuleUrl('ace/ext/prompt', __webpack_require__(188))
+ace.config.setModuleUrl('ace/ext/rtl', __webpack_require__(189))
+ace.config.setModuleUrl('ace/ext/searchbox', __webpack_require__(190))
+ace.config.setModuleUrl('ace/ext/settings_menu', __webpack_require__(191))
+ace.config.setModuleUrl('ace/ext/spellcheck', __webpack_require__(192))
+ace.config.setModuleUrl('ace/ext/split', __webpack_require__(193))
+ace.config.setModuleUrl('ace/ext/static_highlight', __webpack_require__(194))
+ace.config.setModuleUrl('ace/ext/statusbar', __webpack_require__(195))
+ace.config.setModuleUrl('ace/ext/textarea', __webpack_require__(196))
+ace.config.setModuleUrl('ace/ext/themelist', __webpack_require__(197))
+ace.config.setModuleUrl('ace/ext/whitespace', __webpack_require__(198))
+ace.config.setModuleUrl('ace/keyboard/emacs', __webpack_require__(199))
+ace.config.setModuleUrl('ace/keyboard/sublime', __webpack_require__(200))
+ace.config.setModuleUrl('ace/keyboard/vim', __webpack_require__(201))
+ace.config.setModuleUrl('ace/mode/abap', __webpack_require__(202))
+ace.config.setModuleUrl('ace/mode/abc', __webpack_require__(203))
+ace.config.setModuleUrl('ace/mode/actionscript', __webpack_require__(204))
+ace.config.setModuleUrl('ace/mode/ada', __webpack_require__(205))
+ace.config.setModuleUrl('ace/mode/apache_conf', __webpack_require__(206))
+ace.config.setModuleUrl('ace/mode/apex', __webpack_require__(207))
+ace.config.setModuleUrl('ace/mode/applescript', __webpack_require__(208))
+ace.config.setModuleUrl('ace/mode/aql', __webpack_require__(209))
+ace.config.setModuleUrl('ace/mode/asciidoc', __webpack_require__(210))
+ace.config.setModuleUrl('ace/mode/asl', __webpack_require__(211))
+ace.config.setModuleUrl('ace/mode/assembly_x86', __webpack_require__(212))
+ace.config.setModuleUrl('ace/mode/autohotkey', __webpack_require__(213))
+ace.config.setModuleUrl('ace/mode/batchfile', __webpack_require__(214))
+ace.config.setModuleUrl('ace/mode/bro', __webpack_require__(215))
+ace.config.setModuleUrl('ace/mode/c9search', __webpack_require__(216))
+ace.config.setModuleUrl('ace/mode/cirru', __webpack_require__(217))
+ace.config.setModuleUrl('ace/mode/clojure', __webpack_require__(218))
+ace.config.setModuleUrl('ace/mode/cobol', __webpack_require__(219))
+ace.config.setModuleUrl('ace/mode/coffee', __webpack_require__(220))
+ace.config.setModuleUrl('ace/mode/coldfusion', __webpack_require__(221))
+ace.config.setModuleUrl('ace/mode/crystal', __webpack_require__(222))
+ace.config.setModuleUrl('ace/mode/csharp', __webpack_require__(223))
+ace.config.setModuleUrl('ace/mode/csound_document', __webpack_require__(224))
+ace.config.setModuleUrl('ace/mode/csound_orchestra', __webpack_require__(225))
+ace.config.setModuleUrl('ace/mode/csound_score', __webpack_require__(226))
+ace.config.setModuleUrl('ace/mode/csp', __webpack_require__(227))
+ace.config.setModuleUrl('ace/mode/css', __webpack_require__(228))
+ace.config.setModuleUrl('ace/mode/curly', __webpack_require__(229))
+ace.config.setModuleUrl('ace/mode/c_cpp', __webpack_require__(230))
+ace.config.setModuleUrl('ace/mode/d', __webpack_require__(231))
+ace.config.setModuleUrl('ace/mode/dart', __webpack_require__(232))
+ace.config.setModuleUrl('ace/mode/diff', __webpack_require__(233))
+ace.config.setModuleUrl('ace/mode/django', __webpack_require__(234))
+ace.config.setModuleUrl('ace/mode/dockerfile', __webpack_require__(235))
+ace.config.setModuleUrl('ace/mode/dot', __webpack_require__(236))
+ace.config.setModuleUrl('ace/mode/drools', __webpack_require__(237))
+ace.config.setModuleUrl('ace/mode/edifact', __webpack_require__(238))
+ace.config.setModuleUrl('ace/mode/eiffel', __webpack_require__(239))
+ace.config.setModuleUrl('ace/mode/ejs', __webpack_require__(240))
+ace.config.setModuleUrl('ace/mode/elixir', __webpack_require__(241))
+ace.config.setModuleUrl('ace/mode/elm', __webpack_require__(242))
+ace.config.setModuleUrl('ace/mode/erlang', __webpack_require__(243))
+ace.config.setModuleUrl('ace/mode/forth', __webpack_require__(244))
+ace.config.setModuleUrl('ace/mode/fortran', __webpack_require__(245))
+ace.config.setModuleUrl('ace/mode/fsharp', __webpack_require__(246))
+ace.config.setModuleUrl('ace/mode/fsl', __webpack_require__(247))
+ace.config.setModuleUrl('ace/mode/ftl', __webpack_require__(248))
+ace.config.setModuleUrl('ace/mode/gcode', __webpack_require__(249))
+ace.config.setModuleUrl('ace/mode/gherkin', __webpack_require__(250))
+ace.config.setModuleUrl('ace/mode/gitignore', __webpack_require__(251))
+ace.config.setModuleUrl('ace/mode/glsl', __webpack_require__(252))
+ace.config.setModuleUrl('ace/mode/gobstones', __webpack_require__(253))
+ace.config.setModuleUrl('ace/mode/golang', __webpack_require__(254))
+ace.config.setModuleUrl('ace/mode/graphqlschema', __webpack_require__(255))
+ace.config.setModuleUrl('ace/mode/groovy', __webpack_require__(256))
+ace.config.setModuleUrl('ace/mode/haml', __webpack_require__(257))
+ace.config.setModuleUrl('ace/mode/handlebars', __webpack_require__(258))
+ace.config.setModuleUrl('ace/mode/haskell', __webpack_require__(259))
+ace.config.setModuleUrl('ace/mode/haskell_cabal', __webpack_require__(260))
+ace.config.setModuleUrl('ace/mode/haxe', __webpack_require__(261))
+ace.config.setModuleUrl('ace/mode/hjson', __webpack_require__(262))
+ace.config.setModuleUrl('ace/mode/html', __webpack_require__(263))
+ace.config.setModuleUrl('ace/mode/html_elixir', __webpack_require__(264))
+ace.config.setModuleUrl('ace/mode/html_ruby', __webpack_require__(265))
+ace.config.setModuleUrl('ace/mode/ini', __webpack_require__(266))
+ace.config.setModuleUrl('ace/mode/io', __webpack_require__(267))
+ace.config.setModuleUrl('ace/mode/jack', __webpack_require__(268))
+ace.config.setModuleUrl('ace/mode/jade', __webpack_require__(269))
+ace.config.setModuleUrl('ace/mode/java', __webpack_require__(270))
+ace.config.setModuleUrl('ace/mode/javascript', __webpack_require__(271))
+ace.config.setModuleUrl('ace/mode/json', __webpack_require__(272))
+ace.config.setModuleUrl('ace/mode/jsoniq', __webpack_require__(273))
+ace.config.setModuleUrl('ace/mode/jsp', __webpack_require__(274))
+ace.config.setModuleUrl('ace/mode/jssm', __webpack_require__(275))
+ace.config.setModuleUrl('ace/mode/jsx', __webpack_require__(276))
+ace.config.setModuleUrl('ace/mode/julia', __webpack_require__(277))
+ace.config.setModuleUrl('ace/mode/kotlin', __webpack_require__(278))
+ace.config.setModuleUrl('ace/mode/latex', __webpack_require__(279))
+ace.config.setModuleUrl('ace/mode/less', __webpack_require__(280))
+ace.config.setModuleUrl('ace/mode/liquid', __webpack_require__(281))
+ace.config.setModuleUrl('ace/mode/lisp', __webpack_require__(282))
+ace.config.setModuleUrl('ace/mode/livescript', __webpack_require__(283))
+ace.config.setModuleUrl('ace/mode/logiql', __webpack_require__(284))
+ace.config.setModuleUrl('ace/mode/logtalk', __webpack_require__(285))
+ace.config.setModuleUrl('ace/mode/lsl', __webpack_require__(286))
+ace.config.setModuleUrl('ace/mode/lua', __webpack_require__(287))
+ace.config.setModuleUrl('ace/mode/luapage', __webpack_require__(288))
+ace.config.setModuleUrl('ace/mode/lucene', __webpack_require__(289))
+ace.config.setModuleUrl('ace/mode/makefile', __webpack_require__(290))
+ace.config.setModuleUrl('ace/mode/markdown', __webpack_require__(291))
+ace.config.setModuleUrl('ace/mode/mask', __webpack_require__(292))
+ace.config.setModuleUrl('ace/mode/matlab', __webpack_require__(293))
+ace.config.setModuleUrl('ace/mode/maze', __webpack_require__(294))
+ace.config.setModuleUrl('ace/mode/mel', __webpack_require__(295))
+ace.config.setModuleUrl('ace/mode/mixal', __webpack_require__(296))
+ace.config.setModuleUrl('ace/mode/mushcode', __webpack_require__(297))
+ace.config.setModuleUrl('ace/mode/mysql', __webpack_require__(298))
+ace.config.setModuleUrl('ace/mode/nginx', __webpack_require__(299))
+ace.config.setModuleUrl('ace/mode/nim', __webpack_require__(300))
+ace.config.setModuleUrl('ace/mode/nix', __webpack_require__(301))
+ace.config.setModuleUrl('ace/mode/nsis', __webpack_require__(302))
+ace.config.setModuleUrl('ace/mode/objectivec', __webpack_require__(303))
+ace.config.setModuleUrl('ace/mode/ocaml', __webpack_require__(304))
+ace.config.setModuleUrl('ace/mode/pascal', __webpack_require__(305))
+ace.config.setModuleUrl('ace/mode/perl', __webpack_require__(306))
+ace.config.setModuleUrl('ace/mode/perl6', __webpack_require__(307))
+ace.config.setModuleUrl('ace/mode/pgsql', __webpack_require__(308))
+ace.config.setModuleUrl('ace/mode/php', __webpack_require__(309))
+ace.config.setModuleUrl('ace/mode/php_laravel_blade', __webpack_require__(310))
+ace.config.setModuleUrl('ace/mode/pig', __webpack_require__(311))
+ace.config.setModuleUrl('ace/mode/plain_text', __webpack_require__(312))
+ace.config.setModuleUrl('ace/mode/powershell', __webpack_require__(313))
+ace.config.setModuleUrl('ace/mode/praat', __webpack_require__(314))
+ace.config.setModuleUrl('ace/mode/prolog', __webpack_require__(315))
+ace.config.setModuleUrl('ace/mode/properties', __webpack_require__(316))
+ace.config.setModuleUrl('ace/mode/protobuf', __webpack_require__(317))
+ace.config.setModuleUrl('ace/mode/puppet', __webpack_require__(318))
+ace.config.setModuleUrl('ace/mode/python', __webpack_require__(319))
+ace.config.setModuleUrl('ace/mode/r', __webpack_require__(320))
+ace.config.setModuleUrl('ace/mode/razor', __webpack_require__(321))
+ace.config.setModuleUrl('ace/mode/rdoc', __webpack_require__(322))
+ace.config.setModuleUrl('ace/mode/red', __webpack_require__(323))
+ace.config.setModuleUrl('ace/mode/redshift', __webpack_require__(324))
+ace.config.setModuleUrl('ace/mode/rhtml', __webpack_require__(325))
+ace.config.setModuleUrl('ace/mode/rst', __webpack_require__(326))
+ace.config.setModuleUrl('ace/mode/ruby', __webpack_require__(327))
+ace.config.setModuleUrl('ace/mode/rust', __webpack_require__(328))
+ace.config.setModuleUrl('ace/mode/sass', __webpack_require__(329))
+ace.config.setModuleUrl('ace/mode/scad', __webpack_require__(330))
+ace.config.setModuleUrl('ace/mode/scala', __webpack_require__(331))
+ace.config.setModuleUrl('ace/mode/scheme', __webpack_require__(332))
+ace.config.setModuleUrl('ace/mode/scss', __webpack_require__(333))
+ace.config.setModuleUrl('ace/mode/sh', __webpack_require__(334))
+ace.config.setModuleUrl('ace/mode/sjs', __webpack_require__(335))
+ace.config.setModuleUrl('ace/mode/slim', __webpack_require__(336))
+ace.config.setModuleUrl('ace/mode/smarty', __webpack_require__(337))
+ace.config.setModuleUrl('ace/mode/snippets', __webpack_require__(338))
+ace.config.setModuleUrl('ace/mode/soy_template', __webpack_require__(339))
+ace.config.setModuleUrl('ace/mode/space', __webpack_require__(340))
+ace.config.setModuleUrl('ace/mode/sparql', __webpack_require__(341))
+ace.config.setModuleUrl('ace/mode/sql', __webpack_require__(342))
+ace.config.setModuleUrl('ace/mode/sqlserver', __webpack_require__(343))
+ace.config.setModuleUrl('ace/mode/stylus', __webpack_require__(344))
+ace.config.setModuleUrl('ace/mode/svg', __webpack_require__(345))
+ace.config.setModuleUrl('ace/mode/swift', __webpack_require__(346))
+ace.config.setModuleUrl('ace/mode/tcl', __webpack_require__(347))
+ace.config.setModuleUrl('ace/mode/terraform', __webpack_require__(348))
+ace.config.setModuleUrl('ace/mode/tex', __webpack_require__(349))
+ace.config.setModuleUrl('ace/mode/text', __webpack_require__(350))
+ace.config.setModuleUrl('ace/mode/textile', __webpack_require__(351))
+ace.config.setModuleUrl('ace/mode/toml', __webpack_require__(352))
+ace.config.setModuleUrl('ace/mode/tsx', __webpack_require__(353))
+ace.config.setModuleUrl('ace/mode/turtle', __webpack_require__(354))
+ace.config.setModuleUrl('ace/mode/twig', __webpack_require__(355))
+ace.config.setModuleUrl('ace/mode/typescript', __webpack_require__(356))
+ace.config.setModuleUrl('ace/mode/vala', __webpack_require__(357))
+ace.config.setModuleUrl('ace/mode/vbscript', __webpack_require__(358))
+ace.config.setModuleUrl('ace/mode/velocity', __webpack_require__(359))
+ace.config.setModuleUrl('ace/mode/verilog', __webpack_require__(360))
+ace.config.setModuleUrl('ace/mode/vhdl', __webpack_require__(361))
+ace.config.setModuleUrl('ace/mode/visualforce', __webpack_require__(362))
+ace.config.setModuleUrl('ace/mode/wollok', __webpack_require__(363))
+ace.config.setModuleUrl('ace/mode/xml', __webpack_require__(364))
+ace.config.setModuleUrl('ace/mode/xquery', __webpack_require__(365))
+ace.config.setModuleUrl('ace/mode/yaml', __webpack_require__(366))
+ace.config.setModuleUrl('ace/mode/zeek', __webpack_require__(367))
 
-ace.config.setModuleUrl('ace/theme/ambiance', __webpack_require__(370))
-ace.config.setModuleUrl('ace/theme/chaos', __webpack_require__(371))
-ace.config.setModuleUrl('ace/theme/chrome', __webpack_require__(372))
-ace.config.setModuleUrl('ace/theme/clouds', __webpack_require__(373))
-ace.config.setModuleUrl('ace/theme/clouds_midnight', __webpack_require__(374))
-ace.config.setModuleUrl('ace/theme/cobalt', __webpack_require__(375))
-ace.config.setModuleUrl('ace/theme/crimson_editor', __webpack_require__(376))
-ace.config.setModuleUrl('ace/theme/dawn', __webpack_require__(377))
-ace.config.setModuleUrl('ace/theme/dracula', __webpack_require__(378))
-ace.config.setModuleUrl('ace/theme/dreamweaver', __webpack_require__(379))
-ace.config.setModuleUrl('ace/theme/eclipse', __webpack_require__(380))
-ace.config.setModuleUrl('ace/theme/github', __webpack_require__(381))
-ace.config.setModuleUrl('ace/theme/gob', __webpack_require__(382))
-ace.config.setModuleUrl('ace/theme/gruvbox', __webpack_require__(383))
-ace.config.setModuleUrl('ace/theme/idle_fingers', __webpack_require__(384))
-ace.config.setModuleUrl('ace/theme/iplastic', __webpack_require__(385))
-ace.config.setModuleUrl('ace/theme/katzenmilch', __webpack_require__(386))
-ace.config.setModuleUrl('ace/theme/kr_theme', __webpack_require__(387))
-ace.config.setModuleUrl('ace/theme/kuroir', __webpack_require__(388))
-ace.config.setModuleUrl('ace/theme/merbivore', __webpack_require__(389))
-ace.config.setModuleUrl('ace/theme/merbivore_soft', __webpack_require__(390))
-ace.config.setModuleUrl('ace/theme/monokai', __webpack_require__(391))
-ace.config.setModuleUrl('ace/theme/mono_industrial', __webpack_require__(392))
-ace.config.setModuleUrl('ace/theme/pastel_on_dark', __webpack_require__(393))
-ace.config.setModuleUrl('ace/theme/solarized_dark', __webpack_require__(394))
-ace.config.setModuleUrl('ace/theme/solarized_light', __webpack_require__(395))
-ace.config.setModuleUrl('ace/theme/sqlserver', __webpack_require__(396))
-ace.config.setModuleUrl('ace/theme/terminal', __webpack_require__(397))
-ace.config.setModuleUrl('ace/theme/textmate', __webpack_require__(398))
-ace.config.setModuleUrl('ace/theme/tomorrow', __webpack_require__(399))
-ace.config.setModuleUrl('ace/theme/tomorrow_night', __webpack_require__(400))
-ace.config.setModuleUrl('ace/theme/tomorrow_night_blue', __webpack_require__(401))
-ace.config.setModuleUrl('ace/theme/tomorrow_night_bright', __webpack_require__(402))
-ace.config.setModuleUrl('ace/theme/tomorrow_night_eighties', __webpack_require__(403))
-ace.config.setModuleUrl('ace/theme/twilight', __webpack_require__(404))
-ace.config.setModuleUrl('ace/theme/vibrant_ink', __webpack_require__(405))
-ace.config.setModuleUrl('ace/theme/xcode', __webpack_require__(406))
-ace.config.setModuleUrl('ace/mode/coffee_worker', __webpack_require__(407))
-ace.config.setModuleUrl('ace/mode/css_worker', __webpack_require__(408))
-ace.config.setModuleUrl('ace/mode/html_worker', __webpack_require__(409))
-ace.config.setModuleUrl('ace/mode/javascript_worker', __webpack_require__(410))
-ace.config.setModuleUrl('ace/mode/json_worker', __webpack_require__(411))
-ace.config.setModuleUrl('ace/mode/lua_worker', __webpack_require__(412))
-ace.config.setModuleUrl('ace/mode/php_worker', __webpack_require__(413))
-ace.config.setModuleUrl('ace/mode/xml_worker', __webpack_require__(414))
-ace.config.setModuleUrl('ace/mode/xquery_worker', __webpack_require__(415))
-ace.config.setModuleUrl('ace/snippets/abap', __webpack_require__(416))
-ace.config.setModuleUrl('ace/snippets/abc', __webpack_require__(417))
-ace.config.setModuleUrl('ace/snippets/actionscript', __webpack_require__(418))
-ace.config.setModuleUrl('ace/snippets/ada', __webpack_require__(419))
-ace.config.setModuleUrl('ace/snippets/apache_conf', __webpack_require__(420))
-ace.config.setModuleUrl('ace/snippets/apex', __webpack_require__(421))
-ace.config.setModuleUrl('ace/snippets/applescript', __webpack_require__(422))
-ace.config.setModuleUrl('ace/snippets/aql', __webpack_require__(423))
-ace.config.setModuleUrl('ace/snippets/asciidoc', __webpack_require__(424))
-ace.config.setModuleUrl('ace/snippets/asl', __webpack_require__(425))
-ace.config.setModuleUrl('ace/snippets/assembly_x86', __webpack_require__(426))
-ace.config.setModuleUrl('ace/snippets/autohotkey', __webpack_require__(427))
-ace.config.setModuleUrl('ace/snippets/batchfile', __webpack_require__(428))
-ace.config.setModuleUrl('ace/snippets/bro', __webpack_require__(429))
-ace.config.setModuleUrl('ace/snippets/c9search', __webpack_require__(430))
-ace.config.setModuleUrl('ace/snippets/cirru', __webpack_require__(431))
-ace.config.setModuleUrl('ace/snippets/clojure', __webpack_require__(432))
-ace.config.setModuleUrl('ace/snippets/cobol', __webpack_require__(433))
-ace.config.setModuleUrl('ace/snippets/coffee', __webpack_require__(434))
-ace.config.setModuleUrl('ace/snippets/coldfusion', __webpack_require__(435))
-ace.config.setModuleUrl('ace/snippets/crystal', __webpack_require__(436))
-ace.config.setModuleUrl('ace/snippets/csharp', __webpack_require__(437))
-ace.config.setModuleUrl('ace/snippets/csound_document', __webpack_require__(438))
-ace.config.setModuleUrl('ace/snippets/csound_orchestra', __webpack_require__(439))
-ace.config.setModuleUrl('ace/snippets/csound_score', __webpack_require__(440))
-ace.config.setModuleUrl('ace/snippets/csp', __webpack_require__(441))
-ace.config.setModuleUrl('ace/snippets/css', __webpack_require__(442))
-ace.config.setModuleUrl('ace/snippets/curly', __webpack_require__(443))
-ace.config.setModuleUrl('ace/snippets/c_cpp', __webpack_require__(444))
-ace.config.setModuleUrl('ace/snippets/d', __webpack_require__(445))
-ace.config.setModuleUrl('ace/snippets/dart', __webpack_require__(446))
-ace.config.setModuleUrl('ace/snippets/diff', __webpack_require__(447))
-ace.config.setModuleUrl('ace/snippets/django', __webpack_require__(448))
-ace.config.setModuleUrl('ace/snippets/dockerfile', __webpack_require__(449))
-ace.config.setModuleUrl('ace/snippets/dot', __webpack_require__(450))
-ace.config.setModuleUrl('ace/snippets/drools', __webpack_require__(451))
-ace.config.setModuleUrl('ace/snippets/edifact', __webpack_require__(452))
-ace.config.setModuleUrl('ace/snippets/eiffel', __webpack_require__(453))
-ace.config.setModuleUrl('ace/snippets/ejs', __webpack_require__(454))
-ace.config.setModuleUrl('ace/snippets/elixir', __webpack_require__(455))
-ace.config.setModuleUrl('ace/snippets/elm', __webpack_require__(456))
-ace.config.setModuleUrl('ace/snippets/erlang', __webpack_require__(457))
-ace.config.setModuleUrl('ace/snippets/forth', __webpack_require__(458))
-ace.config.setModuleUrl('ace/snippets/fortran', __webpack_require__(459))
-ace.config.setModuleUrl('ace/snippets/fsharp', __webpack_require__(460))
-ace.config.setModuleUrl('ace/snippets/fsl', __webpack_require__(461))
-ace.config.setModuleUrl('ace/snippets/ftl', __webpack_require__(462))
-ace.config.setModuleUrl('ace/snippets/gcode', __webpack_require__(463))
-ace.config.setModuleUrl('ace/snippets/gherkin', __webpack_require__(464))
-ace.config.setModuleUrl('ace/snippets/gitignore', __webpack_require__(465))
-ace.config.setModuleUrl('ace/snippets/glsl', __webpack_require__(466))
-ace.config.setModuleUrl('ace/snippets/gobstones', __webpack_require__(467))
-ace.config.setModuleUrl('ace/snippets/golang', __webpack_require__(468))
-ace.config.setModuleUrl('ace/snippets/graphqlschema', __webpack_require__(469))
-ace.config.setModuleUrl('ace/snippets/groovy', __webpack_require__(470))
-ace.config.setModuleUrl('ace/snippets/haml', __webpack_require__(471))
-ace.config.setModuleUrl('ace/snippets/handlebars', __webpack_require__(472))
-ace.config.setModuleUrl('ace/snippets/haskell', __webpack_require__(473))
-ace.config.setModuleUrl('ace/snippets/haskell_cabal', __webpack_require__(474))
-ace.config.setModuleUrl('ace/snippets/haxe', __webpack_require__(475))
-ace.config.setModuleUrl('ace/snippets/hjson', __webpack_require__(476))
-ace.config.setModuleUrl('ace/snippets/html', __webpack_require__(477))
-ace.config.setModuleUrl('ace/snippets/html_elixir', __webpack_require__(478))
-ace.config.setModuleUrl('ace/snippets/html_ruby', __webpack_require__(479))
-ace.config.setModuleUrl('ace/snippets/ini', __webpack_require__(480))
-ace.config.setModuleUrl('ace/snippets/io', __webpack_require__(481))
-ace.config.setModuleUrl('ace/snippets/jack', __webpack_require__(482))
-ace.config.setModuleUrl('ace/snippets/jade', __webpack_require__(483))
-ace.config.setModuleUrl('ace/snippets/java', __webpack_require__(484))
-ace.config.setModuleUrl('ace/snippets/javascript', __webpack_require__(485))
-ace.config.setModuleUrl('ace/snippets/json', __webpack_require__(486))
-ace.config.setModuleUrl('ace/snippets/jsoniq', __webpack_require__(487))
-ace.config.setModuleUrl('ace/snippets/jsp', __webpack_require__(488))
-ace.config.setModuleUrl('ace/snippets/jssm', __webpack_require__(489))
-ace.config.setModuleUrl('ace/snippets/jsx', __webpack_require__(490))
-ace.config.setModuleUrl('ace/snippets/julia', __webpack_require__(491))
-ace.config.setModuleUrl('ace/snippets/kotlin', __webpack_require__(492))
-ace.config.setModuleUrl('ace/snippets/latex', __webpack_require__(493))
-ace.config.setModuleUrl('ace/snippets/less', __webpack_require__(494))
-ace.config.setModuleUrl('ace/snippets/liquid', __webpack_require__(495))
-ace.config.setModuleUrl('ace/snippets/lisp', __webpack_require__(496))
-ace.config.setModuleUrl('ace/snippets/livescript', __webpack_require__(497))
-ace.config.setModuleUrl('ace/snippets/logiql', __webpack_require__(498))
-ace.config.setModuleUrl('ace/snippets/logtalk', __webpack_require__(499))
-ace.config.setModuleUrl('ace/snippets/lsl', __webpack_require__(500))
-ace.config.setModuleUrl('ace/snippets/lua', __webpack_require__(501))
-ace.config.setModuleUrl('ace/snippets/luapage', __webpack_require__(502))
-ace.config.setModuleUrl('ace/snippets/lucene', __webpack_require__(503))
-ace.config.setModuleUrl('ace/snippets/makefile', __webpack_require__(504))
-ace.config.setModuleUrl('ace/snippets/markdown', __webpack_require__(505))
-ace.config.setModuleUrl('ace/snippets/mask', __webpack_require__(506))
-ace.config.setModuleUrl('ace/snippets/matlab', __webpack_require__(507))
-ace.config.setModuleUrl('ace/snippets/maze', __webpack_require__(508))
-ace.config.setModuleUrl('ace/snippets/mel', __webpack_require__(509))
-ace.config.setModuleUrl('ace/snippets/mixal', __webpack_require__(510))
-ace.config.setModuleUrl('ace/snippets/mushcode', __webpack_require__(511))
-ace.config.setModuleUrl('ace/snippets/mysql', __webpack_require__(512))
-ace.config.setModuleUrl('ace/snippets/nginx', __webpack_require__(513))
-ace.config.setModuleUrl('ace/snippets/nim', __webpack_require__(514))
-ace.config.setModuleUrl('ace/snippets/nix', __webpack_require__(515))
-ace.config.setModuleUrl('ace/snippets/nsis', __webpack_require__(516))
-ace.config.setModuleUrl('ace/snippets/objectivec', __webpack_require__(517))
-ace.config.setModuleUrl('ace/snippets/ocaml', __webpack_require__(518))
-ace.config.setModuleUrl('ace/snippets/pascal', __webpack_require__(519))
-ace.config.setModuleUrl('ace/snippets/perl', __webpack_require__(520))
-ace.config.setModuleUrl('ace/snippets/perl6', __webpack_require__(521))
-ace.config.setModuleUrl('ace/snippets/pgsql', __webpack_require__(522))
-ace.config.setModuleUrl('ace/snippets/php', __webpack_require__(523))
-ace.config.setModuleUrl('ace/snippets/php_laravel_blade', __webpack_require__(524))
-ace.config.setModuleUrl('ace/snippets/pig', __webpack_require__(525))
-ace.config.setModuleUrl('ace/snippets/plain_text', __webpack_require__(526))
-ace.config.setModuleUrl('ace/snippets/powershell', __webpack_require__(527))
-ace.config.setModuleUrl('ace/snippets/praat', __webpack_require__(528))
-ace.config.setModuleUrl('ace/snippets/prolog', __webpack_require__(529))
-ace.config.setModuleUrl('ace/snippets/properties', __webpack_require__(530))
-ace.config.setModuleUrl('ace/snippets/protobuf', __webpack_require__(531))
-ace.config.setModuleUrl('ace/snippets/puppet', __webpack_require__(532))
-ace.config.setModuleUrl('ace/snippets/python', __webpack_require__(533))
-ace.config.setModuleUrl('ace/snippets/r', __webpack_require__(534))
-ace.config.setModuleUrl('ace/snippets/razor', __webpack_require__(535))
-ace.config.setModuleUrl('ace/snippets/rdoc', __webpack_require__(536))
-ace.config.setModuleUrl('ace/snippets/red', __webpack_require__(537))
-ace.config.setModuleUrl('ace/snippets/redshift', __webpack_require__(538))
-ace.config.setModuleUrl('ace/snippets/rhtml', __webpack_require__(539))
-ace.config.setModuleUrl('ace/snippets/rst', __webpack_require__(540))
-ace.config.setModuleUrl('ace/snippets/ruby', __webpack_require__(541))
-ace.config.setModuleUrl('ace/snippets/rust', __webpack_require__(542))
-ace.config.setModuleUrl('ace/snippets/sass', __webpack_require__(543))
-ace.config.setModuleUrl('ace/snippets/scad', __webpack_require__(544))
-ace.config.setModuleUrl('ace/snippets/scala', __webpack_require__(545))
-ace.config.setModuleUrl('ace/snippets/scheme', __webpack_require__(546))
-ace.config.setModuleUrl('ace/snippets/scss', __webpack_require__(547))
-ace.config.setModuleUrl('ace/snippets/sh', __webpack_require__(548))
-ace.config.setModuleUrl('ace/snippets/sjs', __webpack_require__(549))
-ace.config.setModuleUrl('ace/snippets/slim', __webpack_require__(550))
-ace.config.setModuleUrl('ace/snippets/smarty', __webpack_require__(551))
-ace.config.setModuleUrl('ace/snippets/snippets', __webpack_require__(552))
-ace.config.setModuleUrl('ace/snippets/soy_template', __webpack_require__(553))
-ace.config.setModuleUrl('ace/snippets/space', __webpack_require__(554))
-ace.config.setModuleUrl('ace/snippets/sparql', __webpack_require__(555))
-ace.config.setModuleUrl('ace/snippets/sql', __webpack_require__(556))
-ace.config.setModuleUrl('ace/snippets/sqlserver', __webpack_require__(557))
-ace.config.setModuleUrl('ace/snippets/stylus', __webpack_require__(558))
-ace.config.setModuleUrl('ace/snippets/svg', __webpack_require__(559))
-ace.config.setModuleUrl('ace/snippets/swift', __webpack_require__(560))
-ace.config.setModuleUrl('ace/snippets/tcl', __webpack_require__(561))
-ace.config.setModuleUrl('ace/snippets/terraform', __webpack_require__(562))
-ace.config.setModuleUrl('ace/snippets/tex', __webpack_require__(563))
-ace.config.setModuleUrl('ace/snippets/text', __webpack_require__(564))
-ace.config.setModuleUrl('ace/snippets/textile', __webpack_require__(565))
-ace.config.setModuleUrl('ace/snippets/toml', __webpack_require__(566))
-ace.config.setModuleUrl('ace/snippets/tsx', __webpack_require__(567))
-ace.config.setModuleUrl('ace/snippets/turtle', __webpack_require__(568))
-ace.config.setModuleUrl('ace/snippets/twig', __webpack_require__(569))
-ace.config.setModuleUrl('ace/snippets/typescript', __webpack_require__(570))
-ace.config.setModuleUrl('ace/snippets/vala', __webpack_require__(571))
-ace.config.setModuleUrl('ace/snippets/vbscript', __webpack_require__(572))
-ace.config.setModuleUrl('ace/snippets/velocity', __webpack_require__(573))
-ace.config.setModuleUrl('ace/snippets/verilog', __webpack_require__(574))
-ace.config.setModuleUrl('ace/snippets/vhdl', __webpack_require__(575))
-ace.config.setModuleUrl('ace/snippets/visualforce', __webpack_require__(576))
-ace.config.setModuleUrl('ace/snippets/wollok', __webpack_require__(577))
-ace.config.setModuleUrl('ace/snippets/xml', __webpack_require__(578))
-ace.config.setModuleUrl('ace/snippets/xquery', __webpack_require__(579))
-ace.config.setModuleUrl('ace/snippets/yaml', __webpack_require__(580))
-ace.config.setModuleUrl('ace/snippets/zeek', __webpack_require__(581))
+ace.config.setModuleUrl('ace/theme/ambiance', __webpack_require__(368))
+ace.config.setModuleUrl('ace/theme/chaos', __webpack_require__(369))
+ace.config.setModuleUrl('ace/theme/chrome', __webpack_require__(370))
+ace.config.setModuleUrl('ace/theme/clouds', __webpack_require__(371))
+ace.config.setModuleUrl('ace/theme/clouds_midnight', __webpack_require__(372))
+ace.config.setModuleUrl('ace/theme/cobalt', __webpack_require__(373))
+ace.config.setModuleUrl('ace/theme/crimson_editor', __webpack_require__(374))
+ace.config.setModuleUrl('ace/theme/dawn', __webpack_require__(375))
+ace.config.setModuleUrl('ace/theme/dracula', __webpack_require__(376))
+ace.config.setModuleUrl('ace/theme/dreamweaver', __webpack_require__(377))
+ace.config.setModuleUrl('ace/theme/eclipse', __webpack_require__(378))
+ace.config.setModuleUrl('ace/theme/github', __webpack_require__(379))
+ace.config.setModuleUrl('ace/theme/gob', __webpack_require__(380))
+ace.config.setModuleUrl('ace/theme/gruvbox', __webpack_require__(381))
+ace.config.setModuleUrl('ace/theme/idle_fingers', __webpack_require__(382))
+ace.config.setModuleUrl('ace/theme/iplastic', __webpack_require__(383))
+ace.config.setModuleUrl('ace/theme/katzenmilch', __webpack_require__(384))
+ace.config.setModuleUrl('ace/theme/kr_theme', __webpack_require__(385))
+ace.config.setModuleUrl('ace/theme/kuroir', __webpack_require__(386))
+ace.config.setModuleUrl('ace/theme/merbivore', __webpack_require__(387))
+ace.config.setModuleUrl('ace/theme/merbivore_soft', __webpack_require__(388))
+ace.config.setModuleUrl('ace/theme/monokai', __webpack_require__(389))
+ace.config.setModuleUrl('ace/theme/mono_industrial', __webpack_require__(390))
+ace.config.setModuleUrl('ace/theme/pastel_on_dark', __webpack_require__(391))
+ace.config.setModuleUrl('ace/theme/solarized_dark', __webpack_require__(392))
+ace.config.setModuleUrl('ace/theme/solarized_light', __webpack_require__(393))
+ace.config.setModuleUrl('ace/theme/sqlserver', __webpack_require__(394))
+ace.config.setModuleUrl('ace/theme/terminal', __webpack_require__(395))
+ace.config.setModuleUrl('ace/theme/textmate', __webpack_require__(396))
+ace.config.setModuleUrl('ace/theme/tomorrow', __webpack_require__(397))
+ace.config.setModuleUrl('ace/theme/tomorrow_night', __webpack_require__(398))
+ace.config.setModuleUrl('ace/theme/tomorrow_night_blue', __webpack_require__(399))
+ace.config.setModuleUrl('ace/theme/tomorrow_night_bright', __webpack_require__(400))
+ace.config.setModuleUrl('ace/theme/tomorrow_night_eighties', __webpack_require__(401))
+ace.config.setModuleUrl('ace/theme/twilight', __webpack_require__(402))
+ace.config.setModuleUrl('ace/theme/vibrant_ink', __webpack_require__(403))
+ace.config.setModuleUrl('ace/theme/xcode', __webpack_require__(404))
+ace.config.setModuleUrl('ace/mode/coffee_worker', __webpack_require__(405))
+ace.config.setModuleUrl('ace/mode/css_worker', __webpack_require__(406))
+ace.config.setModuleUrl('ace/mode/html_worker', __webpack_require__(407))
+ace.config.setModuleUrl('ace/mode/javascript_worker', __webpack_require__(408))
+ace.config.setModuleUrl('ace/mode/json_worker', __webpack_require__(409))
+ace.config.setModuleUrl('ace/mode/lua_worker', __webpack_require__(410))
+ace.config.setModuleUrl('ace/mode/php_worker', __webpack_require__(411))
+ace.config.setModuleUrl('ace/mode/xml_worker', __webpack_require__(412))
+ace.config.setModuleUrl('ace/mode/xquery_worker', __webpack_require__(413))
+ace.config.setModuleUrl('ace/snippets/abap', __webpack_require__(414))
+ace.config.setModuleUrl('ace/snippets/abc', __webpack_require__(415))
+ace.config.setModuleUrl('ace/snippets/actionscript', __webpack_require__(416))
+ace.config.setModuleUrl('ace/snippets/ada', __webpack_require__(417))
+ace.config.setModuleUrl('ace/snippets/apache_conf', __webpack_require__(418))
+ace.config.setModuleUrl('ace/snippets/apex', __webpack_require__(419))
+ace.config.setModuleUrl('ace/snippets/applescript', __webpack_require__(420))
+ace.config.setModuleUrl('ace/snippets/aql', __webpack_require__(421))
+ace.config.setModuleUrl('ace/snippets/asciidoc', __webpack_require__(422))
+ace.config.setModuleUrl('ace/snippets/asl', __webpack_require__(423))
+ace.config.setModuleUrl('ace/snippets/assembly_x86', __webpack_require__(424))
+ace.config.setModuleUrl('ace/snippets/autohotkey', __webpack_require__(425))
+ace.config.setModuleUrl('ace/snippets/batchfile', __webpack_require__(426))
+ace.config.setModuleUrl('ace/snippets/bro', __webpack_require__(427))
+ace.config.setModuleUrl('ace/snippets/c9search', __webpack_require__(428))
+ace.config.setModuleUrl('ace/snippets/cirru', __webpack_require__(429))
+ace.config.setModuleUrl('ace/snippets/clojure', __webpack_require__(430))
+ace.config.setModuleUrl('ace/snippets/cobol', __webpack_require__(431))
+ace.config.setModuleUrl('ace/snippets/coffee', __webpack_require__(432))
+ace.config.setModuleUrl('ace/snippets/coldfusion', __webpack_require__(433))
+ace.config.setModuleUrl('ace/snippets/crystal', __webpack_require__(434))
+ace.config.setModuleUrl('ace/snippets/csharp', __webpack_require__(435))
+ace.config.setModuleUrl('ace/snippets/csound_document', __webpack_require__(436))
+ace.config.setModuleUrl('ace/snippets/csound_orchestra', __webpack_require__(437))
+ace.config.setModuleUrl('ace/snippets/csound_score', __webpack_require__(438))
+ace.config.setModuleUrl('ace/snippets/csp', __webpack_require__(439))
+ace.config.setModuleUrl('ace/snippets/css', __webpack_require__(440))
+ace.config.setModuleUrl('ace/snippets/curly', __webpack_require__(441))
+ace.config.setModuleUrl('ace/snippets/c_cpp', __webpack_require__(442))
+ace.config.setModuleUrl('ace/snippets/d', __webpack_require__(443))
+ace.config.setModuleUrl('ace/snippets/dart', __webpack_require__(444))
+ace.config.setModuleUrl('ace/snippets/diff', __webpack_require__(445))
+ace.config.setModuleUrl('ace/snippets/django', __webpack_require__(446))
+ace.config.setModuleUrl('ace/snippets/dockerfile', __webpack_require__(447))
+ace.config.setModuleUrl('ace/snippets/dot', __webpack_require__(448))
+ace.config.setModuleUrl('ace/snippets/drools', __webpack_require__(449))
+ace.config.setModuleUrl('ace/snippets/edifact', __webpack_require__(450))
+ace.config.setModuleUrl('ace/snippets/eiffel', __webpack_require__(451))
+ace.config.setModuleUrl('ace/snippets/ejs', __webpack_require__(452))
+ace.config.setModuleUrl('ace/snippets/elixir', __webpack_require__(453))
+ace.config.setModuleUrl('ace/snippets/elm', __webpack_require__(454))
+ace.config.setModuleUrl('ace/snippets/erlang', __webpack_require__(455))
+ace.config.setModuleUrl('ace/snippets/forth', __webpack_require__(456))
+ace.config.setModuleUrl('ace/snippets/fortran', __webpack_require__(457))
+ace.config.setModuleUrl('ace/snippets/fsharp', __webpack_require__(458))
+ace.config.setModuleUrl('ace/snippets/fsl', __webpack_require__(459))
+ace.config.setModuleUrl('ace/snippets/ftl', __webpack_require__(460))
+ace.config.setModuleUrl('ace/snippets/gcode', __webpack_require__(461))
+ace.config.setModuleUrl('ace/snippets/gherkin', __webpack_require__(462))
+ace.config.setModuleUrl('ace/snippets/gitignore', __webpack_require__(463))
+ace.config.setModuleUrl('ace/snippets/glsl', __webpack_require__(464))
+ace.config.setModuleUrl('ace/snippets/gobstones', __webpack_require__(465))
+ace.config.setModuleUrl('ace/snippets/golang', __webpack_require__(466))
+ace.config.setModuleUrl('ace/snippets/graphqlschema', __webpack_require__(467))
+ace.config.setModuleUrl('ace/snippets/groovy', __webpack_require__(468))
+ace.config.setModuleUrl('ace/snippets/haml', __webpack_require__(469))
+ace.config.setModuleUrl('ace/snippets/handlebars', __webpack_require__(470))
+ace.config.setModuleUrl('ace/snippets/haskell', __webpack_require__(471))
+ace.config.setModuleUrl('ace/snippets/haskell_cabal', __webpack_require__(472))
+ace.config.setModuleUrl('ace/snippets/haxe', __webpack_require__(473))
+ace.config.setModuleUrl('ace/snippets/hjson', __webpack_require__(474))
+ace.config.setModuleUrl('ace/snippets/html', __webpack_require__(475))
+ace.config.setModuleUrl('ace/snippets/html_elixir', __webpack_require__(476))
+ace.config.setModuleUrl('ace/snippets/html_ruby', __webpack_require__(477))
+ace.config.setModuleUrl('ace/snippets/ini', __webpack_require__(478))
+ace.config.setModuleUrl('ace/snippets/io', __webpack_require__(479))
+ace.config.setModuleUrl('ace/snippets/jack', __webpack_require__(480))
+ace.config.setModuleUrl('ace/snippets/jade', __webpack_require__(481))
+ace.config.setModuleUrl('ace/snippets/java', __webpack_require__(482))
+ace.config.setModuleUrl('ace/snippets/javascript', __webpack_require__(483))
+ace.config.setModuleUrl('ace/snippets/json', __webpack_require__(484))
+ace.config.setModuleUrl('ace/snippets/jsoniq', __webpack_require__(485))
+ace.config.setModuleUrl('ace/snippets/jsp', __webpack_require__(486))
+ace.config.setModuleUrl('ace/snippets/jssm', __webpack_require__(487))
+ace.config.setModuleUrl('ace/snippets/jsx', __webpack_require__(488))
+ace.config.setModuleUrl('ace/snippets/julia', __webpack_require__(489))
+ace.config.setModuleUrl('ace/snippets/kotlin', __webpack_require__(490))
+ace.config.setModuleUrl('ace/snippets/latex', __webpack_require__(491))
+ace.config.setModuleUrl('ace/snippets/less', __webpack_require__(492))
+ace.config.setModuleUrl('ace/snippets/liquid', __webpack_require__(493))
+ace.config.setModuleUrl('ace/snippets/lisp', __webpack_require__(494))
+ace.config.setModuleUrl('ace/snippets/livescript', __webpack_require__(495))
+ace.config.setModuleUrl('ace/snippets/logiql', __webpack_require__(496))
+ace.config.setModuleUrl('ace/snippets/logtalk', __webpack_require__(497))
+ace.config.setModuleUrl('ace/snippets/lsl', __webpack_require__(498))
+ace.config.setModuleUrl('ace/snippets/lua', __webpack_require__(499))
+ace.config.setModuleUrl('ace/snippets/luapage', __webpack_require__(500))
+ace.config.setModuleUrl('ace/snippets/lucene', __webpack_require__(501))
+ace.config.setModuleUrl('ace/snippets/makefile', __webpack_require__(502))
+ace.config.setModuleUrl('ace/snippets/markdown', __webpack_require__(503))
+ace.config.setModuleUrl('ace/snippets/mask', __webpack_require__(504))
+ace.config.setModuleUrl('ace/snippets/matlab', __webpack_require__(505))
+ace.config.setModuleUrl('ace/snippets/maze', __webpack_require__(506))
+ace.config.setModuleUrl('ace/snippets/mel', __webpack_require__(507))
+ace.config.setModuleUrl('ace/snippets/mixal', __webpack_require__(508))
+ace.config.setModuleUrl('ace/snippets/mushcode', __webpack_require__(509))
+ace.config.setModuleUrl('ace/snippets/mysql', __webpack_require__(510))
+ace.config.setModuleUrl('ace/snippets/nginx', __webpack_require__(511))
+ace.config.setModuleUrl('ace/snippets/nim', __webpack_require__(512))
+ace.config.setModuleUrl('ace/snippets/nix', __webpack_require__(513))
+ace.config.setModuleUrl('ace/snippets/nsis', __webpack_require__(514))
+ace.config.setModuleUrl('ace/snippets/objectivec', __webpack_require__(515))
+ace.config.setModuleUrl('ace/snippets/ocaml', __webpack_require__(516))
+ace.config.setModuleUrl('ace/snippets/pascal', __webpack_require__(517))
+ace.config.setModuleUrl('ace/snippets/perl', __webpack_require__(518))
+ace.config.setModuleUrl('ace/snippets/perl6', __webpack_require__(519))
+ace.config.setModuleUrl('ace/snippets/pgsql', __webpack_require__(520))
+ace.config.setModuleUrl('ace/snippets/php', __webpack_require__(521))
+ace.config.setModuleUrl('ace/snippets/php_laravel_blade', __webpack_require__(522))
+ace.config.setModuleUrl('ace/snippets/pig', __webpack_require__(523))
+ace.config.setModuleUrl('ace/snippets/plain_text', __webpack_require__(524))
+ace.config.setModuleUrl('ace/snippets/powershell', __webpack_require__(525))
+ace.config.setModuleUrl('ace/snippets/praat', __webpack_require__(526))
+ace.config.setModuleUrl('ace/snippets/prolog', __webpack_require__(527))
+ace.config.setModuleUrl('ace/snippets/properties', __webpack_require__(528))
+ace.config.setModuleUrl('ace/snippets/protobuf', __webpack_require__(529))
+ace.config.setModuleUrl('ace/snippets/puppet', __webpack_require__(530))
+ace.config.setModuleUrl('ace/snippets/python', __webpack_require__(531))
+ace.config.setModuleUrl('ace/snippets/r', __webpack_require__(532))
+ace.config.setModuleUrl('ace/snippets/razor', __webpack_require__(533))
+ace.config.setModuleUrl('ace/snippets/rdoc', __webpack_require__(534))
+ace.config.setModuleUrl('ace/snippets/red', __webpack_require__(535))
+ace.config.setModuleUrl('ace/snippets/redshift', __webpack_require__(536))
+ace.config.setModuleUrl('ace/snippets/rhtml', __webpack_require__(537))
+ace.config.setModuleUrl('ace/snippets/rst', __webpack_require__(538))
+ace.config.setModuleUrl('ace/snippets/ruby', __webpack_require__(539))
+ace.config.setModuleUrl('ace/snippets/rust', __webpack_require__(540))
+ace.config.setModuleUrl('ace/snippets/sass', __webpack_require__(541))
+ace.config.setModuleUrl('ace/snippets/scad', __webpack_require__(542))
+ace.config.setModuleUrl('ace/snippets/scala', __webpack_require__(543))
+ace.config.setModuleUrl('ace/snippets/scheme', __webpack_require__(544))
+ace.config.setModuleUrl('ace/snippets/scss', __webpack_require__(545))
+ace.config.setModuleUrl('ace/snippets/sh', __webpack_require__(546))
+ace.config.setModuleUrl('ace/snippets/sjs', __webpack_require__(547))
+ace.config.setModuleUrl('ace/snippets/slim', __webpack_require__(548))
+ace.config.setModuleUrl('ace/snippets/smarty', __webpack_require__(549))
+ace.config.setModuleUrl('ace/snippets/snippets', __webpack_require__(550))
+ace.config.setModuleUrl('ace/snippets/soy_template', __webpack_require__(551))
+ace.config.setModuleUrl('ace/snippets/space', __webpack_require__(552))
+ace.config.setModuleUrl('ace/snippets/sparql', __webpack_require__(553))
+ace.config.setModuleUrl('ace/snippets/sql', __webpack_require__(554))
+ace.config.setModuleUrl('ace/snippets/sqlserver', __webpack_require__(555))
+ace.config.setModuleUrl('ace/snippets/stylus', __webpack_require__(556))
+ace.config.setModuleUrl('ace/snippets/svg', __webpack_require__(557))
+ace.config.setModuleUrl('ace/snippets/swift', __webpack_require__(558))
+ace.config.setModuleUrl('ace/snippets/tcl', __webpack_require__(559))
+ace.config.setModuleUrl('ace/snippets/terraform', __webpack_require__(560))
+ace.config.setModuleUrl('ace/snippets/tex', __webpack_require__(561))
+ace.config.setModuleUrl('ace/snippets/text', __webpack_require__(562))
+ace.config.setModuleUrl('ace/snippets/textile', __webpack_require__(563))
+ace.config.setModuleUrl('ace/snippets/toml', __webpack_require__(564))
+ace.config.setModuleUrl('ace/snippets/tsx', __webpack_require__(565))
+ace.config.setModuleUrl('ace/snippets/turtle', __webpack_require__(566))
+ace.config.setModuleUrl('ace/snippets/twig', __webpack_require__(567))
+ace.config.setModuleUrl('ace/snippets/typescript', __webpack_require__(568))
+ace.config.setModuleUrl('ace/snippets/vala', __webpack_require__(569))
+ace.config.setModuleUrl('ace/snippets/vbscript', __webpack_require__(570))
+ace.config.setModuleUrl('ace/snippets/velocity', __webpack_require__(571))
+ace.config.setModuleUrl('ace/snippets/verilog', __webpack_require__(572))
+ace.config.setModuleUrl('ace/snippets/vhdl', __webpack_require__(573))
+ace.config.setModuleUrl('ace/snippets/visualforce', __webpack_require__(574))
+ace.config.setModuleUrl('ace/snippets/wollok', __webpack_require__(575))
+ace.config.setModuleUrl('ace/snippets/xml', __webpack_require__(576))
+ace.config.setModuleUrl('ace/snippets/xquery', __webpack_require__(577))
+ace.config.setModuleUrl('ace/snippets/yaml', __webpack_require__(578))
+ace.config.setModuleUrl('ace/snippets/zeek', __webpack_require__(579))
 
 /***/ }),
-/* 181 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ad7f90d7bdcd39232e4743c5f73ebd9c.js";
 
 /***/ }),
-/* 182 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1f03c9a69a8b9f79bcb7a338963f80c8.js";
 
 /***/ }),
-/* 183 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3c1a8b6b658a45de52eb5caeb7a27d7e.js";
 
 /***/ }),
-/* 184 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bbd62124f6d03e01eb4332f55ead999d.js";
 
 /***/ }),
-/* 185 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b7117d7002875d2596342661685667b8.js";
 
 /***/ }),
-/* 186 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "52861123187aab7f68db8d1ce0b385d8.js";
 
 /***/ }),
-/* 187 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "19a2b55271f405d0b97fad53c9d5ec2d.js";
 
 /***/ }),
-/* 188 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6fd20e95846deade86d1162f678cba98.js";
 
 /***/ }),
-/* 189 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8be2acb1704b3e42e9398c51f34c9c7e.js";
 
 /***/ }),
-/* 190 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f661a2af5e09b6ca455428497ad4a3ae.js";
 
 /***/ }),
-/* 191 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a5cb31cfb4711ef14999198f0d35eaf3.js";
 
 /***/ }),
-/* 192 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "84d3403e422e4697e86914f183a60a13.js";
 
 /***/ }),
-/* 193 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "37472e9a28a958229bc6bd5bfd9995bb.js";
 
 /***/ }),
-/* 194 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "16d2899be426bd265925b9479c5ab602.js";
 
 /***/ }),
-/* 195 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f457edce8a9809fa16aab3c8e695bf38.js";
 
 /***/ }),
-/* 196 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f3b6993cd8f9bbdd1d5ad68a5e1cdf70.js";
 
 /***/ }),
-/* 197 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "43dab3876e6402fc9ae359a033683cc4.js";
 
 /***/ }),
-/* 198 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "280ba139ff95428f262adbf81b77aeb4.js";
 
 /***/ }),
-/* 199 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0fb66b5df979aa54298b32e978f97734.js";
 
 /***/ }),
-/* 200 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d08030a8f6057b63643bacf4cee162b0.js";
 
 /***/ }),
-/* 201 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f32154b77b84cad3d5a02acfc1025486.js";
 
 /***/ }),
-/* 202 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "eb1ac224a4c3877e776c10e407b8cd54.js";
 
 /***/ }),
-/* 203 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "843a5632aa128cd49f76022ffc7fd454.js";
 
 /***/ }),
-/* 204 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1d837e2c9de35cbb09a85208da4a0d8a.js";
 
 /***/ }),
-/* 205 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c71f680a7b7d316139d2cce70e62e30f.js";
 
 /***/ }),
-/* 206 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "75286494cc641014ccffd03008f296c6.js";
 
 /***/ }),
-/* 207 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4190490a8257bdfcce6e2bd4f0634086.js";
 
 /***/ }),
-/* 208 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "de581fe10be3ac282fa6abc2f8171551.js";
 
 /***/ }),
-/* 209 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "40ba797ae7e4433f9847cd2c68bfbdf7.js";
 
 /***/ }),
-/* 210 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6dafd4eb9102ea47229a42a24d40f457.js";
 
 /***/ }),
-/* 211 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c0b4cd50c3fcc1292b34cedf813a16dd.js";
 
 /***/ }),
-/* 212 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "983ddc3115fae8e0dfd108d799662892.js";
 
 /***/ }),
-/* 213 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2713cf58a182cbabbc2538f42ce83a58.js";
 
 /***/ }),
-/* 214 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1084edaced97872890c9d87a9944cdcd.js";
 
 /***/ }),
-/* 215 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "72d23326220bc76ce06b4c1c68efb378.js";
 
 /***/ }),
-/* 216 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "223593fe8dd78b83f22808f9aad86ae9.js";
 
 /***/ }),
-/* 217 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "61dc94007930f92b3c27ff68d448b4f3.js";
 
 /***/ }),
-/* 218 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "57c7c145c720f31f3749b658e3769833.js";
 
 /***/ }),
-/* 219 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "61cc56da80a76731283878abc3b13761.js";
 
 /***/ }),
-/* 220 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e72569f3e8710b5048959f4bdac6d38f.js";
 
 /***/ }),
-/* 221 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8afcf3a037a7f37f9c0bbad01507d73b.js";
 
 /***/ }),
-/* 222 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "90e2c31775b8fa92e98a59f26f1865e8.js";
 
 /***/ }),
-/* 223 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6afe1b97aa244cedbc2cc50122a87a41.js";
 
 /***/ }),
-/* 224 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b518725b1ee5b4ba27eec173687966f0.js";
 
 /***/ }),
-/* 225 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "dcb084d6aacfa517923dd3a94e3b9af5.js";
 
 /***/ }),
-/* 226 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "486bef4eb8df0f4cb3665a228575b8fa.js";
 
 /***/ }),
-/* 227 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "47c2b899e3796981c749cd5abea5b8d3.js";
 
 /***/ }),
-/* 228 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0f3cd0b987731ff00389c0377f60607e.js";
 
 /***/ }),
-/* 229 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d70ab0885fcc546aaf5eee0c5fca6278.js";
 
 /***/ }),
-/* 230 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2bb9c671685b452f979fb277ec2fe6aa.js";
 
 /***/ }),
-/* 231 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "056e7e730f7cd5fb264cc4ddb8f1cfa9.js";
 
 /***/ }),
-/* 232 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ad6b56181363cbf96ddaaf6aeaea2a24.js";
 
 /***/ }),
-/* 233 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8090b9684b48e3c94193c31e346e06f5.js";
 
 /***/ }),
-/* 234 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "50eeb828262568282a21d6fb27523560.js";
 
 /***/ }),
-/* 235 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "aec5942aac0ba9ffef3afa54ecf3defe.js";
 
 /***/ }),
-/* 236 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "855b3fbe07a539efcbd4097aa3c9b43e.js";
 
 /***/ }),
-/* 237 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "48f2efaa42dd02a72894359ca3528060.js";
 
 /***/ }),
-/* 238 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "85f71b723441bcf428b8abed1fc8f56f.js";
 
 /***/ }),
-/* 239 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1628a9542b90bd525fe8d6707dab77af.js";
 
 /***/ }),
-/* 240 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c0026b5092f03fc85c50c7fe34119e98.js";
 
 /***/ }),
-/* 241 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ce73c3243f61524d76000c4ace94f2bb.js";
 
 /***/ }),
-/* 242 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "69681df00ba384c7927ddde57053ca3a.js";
 
 /***/ }),
-/* 243 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "da06d4429e8bccd9ef90b16ebe49354b.js";
 
 /***/ }),
-/* 244 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "15abe309c5ecbc579dccc79beb041fd8.js";
 
 /***/ }),
-/* 245 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "27b0610b05b99da6573eb4f329c7c3f5.js";
 
 /***/ }),
-/* 246 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8a7d1e82245ba58033df533faadfbaf4.js";
 
 /***/ }),
-/* 247 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d7cdf8e31755f70cd564c742feec3be0.js";
 
 /***/ }),
-/* 248 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "29a4e3548d286388c4d5e8f0670a4381.js";
 
 /***/ }),
-/* 249 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "de7a63468508bb9017ba5ef4da2bde55.js";
 
 /***/ }),
-/* 250 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2839e845bd0cf60f35f3a8ca90a5ee22.js";
 
 /***/ }),
-/* 251 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "47ecd829f86e48857a05b2189ee9c097.js";
 
 /***/ }),
-/* 252 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2dea096a03cd8f864db5f06e9f0113e5.js";
 
 /***/ }),
-/* 253 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f913332fa21973f354fcb5b680811e56.js";
 
 /***/ }),
-/* 254 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d7b502cd2fc93bfe081ff7b00b443672.js";
 
 /***/ }),
-/* 255 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ca2fe643fc0ac94e23d7f43ac379fc2c.js";
 
 /***/ }),
-/* 256 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fe4de7aeda3abed04c238956a8565de4.js";
 
 /***/ }),
-/* 257 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6527ef1b992fe62b2f4d2530ec2785fb.js";
 
 /***/ }),
-/* 258 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fe8b425cd362809b17f5d36b06c81c7f.js";
 
 /***/ }),
-/* 259 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "189beba20287c2735ecb81efdd67d66c.js";
 
 /***/ }),
-/* 260 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ba2676613dffba90190b556a24802c32.js";
 
 /***/ }),
-/* 261 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c1060e957d85467466a8b682be93794a.js";
 
 /***/ }),
-/* 262 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "85fe85850b026b668c10d2c9e0e5e8c6.js";
 
 /***/ }),
-/* 263 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0a5adf8110dfa37b8a75edf8cafb1dd7.js";
 
 /***/ }),
-/* 264 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fe58209a4ef163863b95ab289a69cdaf.js";
 
 /***/ }),
-/* 265 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "63835414c4ed0a8819051be05e400d5a.js";
 
 /***/ }),
-/* 266 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "56e12cbd9c52c46876dbb46537152a0e.js";
 
 /***/ }),
-/* 267 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0d8622362380916298250eff48a1ec03.js";
 
 /***/ }),
-/* 268 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "100f9b1846c1e1ecae19e0ca2fc8224c.js";
 
 /***/ }),
-/* 269 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4912d045c65b16daa176a711f9f2434c.js";
 
 /***/ }),
-/* 270 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5540bb93f39dcb670a0f9b4e4b793d02.js";
 
 /***/ }),
-/* 271 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f87604748196a6bdd16c584d88408daf.js";
 
 /***/ }),
-/* 272 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "abd6f315c01614802df5303aba7a8d0d.js";
 
 /***/ }),
-/* 273 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1997c82a11999e021909406a6e634fbb.js";
 
 /***/ }),
-/* 274 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "02c061acfcb17cb0413eb1e190d33cbb.js";
 
 /***/ }),
-/* 275 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f73986fa84fef38a875c4cf09542b564.js";
 
 /***/ }),
-/* 276 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "56b2667feae224aa570e7989124cf63d.js";
 
 /***/ }),
-/* 277 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8bdbab2f0d58195a7d509ad6fbe02966.js";
 
 /***/ }),
-/* 278 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "79701bbf8c5436771916d9af708ae8ec.js";
 
 /***/ }),
-/* 279 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e393bf5358fc198ca07e518900b24311.js";
 
 /***/ }),
-/* 280 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "edb819e7714a62ebe92b7272942da1fc.js";
 
 /***/ }),
-/* 281 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f52e2798c3b260592cf35f3a20958d87.js";
 
 /***/ }),
-/* 282 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "dcf8b9b721cab79d285ab33fe2154a58.js";
 
 /***/ }),
-/* 283 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0c6e7075d7bf5bc86a9cf07e9874df85.js";
 
 /***/ }),
-/* 284 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "78999d905693a14a2c4677977ba222fb.js";
 
 /***/ }),
-/* 285 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1e33cb44dfab039b4a7e88a3ee1bbfe7.js";
 
 /***/ }),
-/* 286 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0cbaf3ecc6b20dbc83c2164e9a1eac02.js";
 
 /***/ }),
-/* 287 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fb4580529d9585e912b7142f6b62cae4.js";
 
 /***/ }),
-/* 288 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5840cca8419b74fa36b217f7d705802a.js";
 
 /***/ }),
-/* 289 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f58946f5097f25e986f17ca542931d1a.js";
 
 /***/ }),
-/* 290 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "647b0ce3cee23a2f6988f18a2efdc796.js";
 
 /***/ }),
-/* 291 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "628b24103fca421515ec8724d12f026f.js";
 
 /***/ }),
-/* 292 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7f3b69a9f3625fe6d43ae16a95794b19.js";
 
 /***/ }),
-/* 293 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5403e41e03d6e94609b84bd5e5a33709.js";
 
 /***/ }),
-/* 294 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b937c7b120b194794bac2638e00cba18.js";
 
 /***/ }),
-/* 295 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c0f91d067bd4f665ec7b85a632e3168d.js";
 
 /***/ }),
-/* 296 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d9e8c265bee810922243aaf4ba2b115a.js";
 
 /***/ }),
-/* 297 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "38a696bcfe6021b6442e70b6d3017b93.js";
 
 /***/ }),
-/* 298 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "99b756405f919e9022e6a4e3579dd5ee.js";
 
 /***/ }),
-/* 299 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "cf1f6c842a1ec0af6b00ce1859dce6d5.js";
 
 /***/ }),
-/* 300 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9cf3be7669b89ac4036cd07c9baf7e13.js";
 
 /***/ }),
-/* 301 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a477d7b35783dd10040a243a84c86a0c.js";
 
 /***/ }),
-/* 302 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2a7b2ac7dc47105609001b93c25190b8.js";
 
 /***/ }),
-/* 303 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "be91b3597e0d3df50a047a48788acb7c.js";
 
 /***/ }),
-/* 304 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0a6ff8061a6e0aeb5dc28187493d9193.js";
 
 /***/ }),
-/* 305 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8468b2aa5fbe665b49784c30b4a908f7.js";
 
 /***/ }),
-/* 306 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a65a0bae3e5b73407d15ea6bbb08e515.js";
 
 /***/ }),
-/* 307 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0536af8c74f6fdf2d45e5e8990ee60cc.js";
 
 /***/ }),
-/* 308 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b2a3c7a7f9c3d3b11e8bcd08283b6a15.js";
 
 /***/ }),
-/* 309 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b25d5064a26eda70aa3d2bae3a1122cc.js";
 
 /***/ }),
-/* 310 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c858d804d048236fd104269716261fa8.js";
 
 /***/ }),
-/* 311 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8b910a9794d44d4398b1698a55a9f4ab.js";
 
 /***/ }),
-/* 312 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6fe0e7789d8c76d415aa3e31f53fe80c.js";
 
 /***/ }),
-/* 313 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "22b1c8bf4c2bdd7e438f832b888c75e4.js";
 
 /***/ }),
-/* 314 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "51e6918f996813eafa4b1491d9dd343b.js";
 
 /***/ }),
-/* 315 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3a969f15f742add3d383e55d0ceb3d25.js";
 
 /***/ }),
-/* 316 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "eb6f00b565c6441d02346354a0ef64ce.js";
 
 /***/ }),
-/* 317 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8e81f51d2e7be98e9e45fe93239c7e99.js";
 
 /***/ }),
-/* 318 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6f783ca6efdcb90ccde9175312f6558d.js";
 
 /***/ }),
-/* 319 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2f3b06310488c10c780b7d3ddd5978d2.js";
 
 /***/ }),
-/* 320 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ec11fafda0cb8f327579e7f1ca1be3bc.js";
 
 /***/ }),
-/* 321 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "da2f32f50df8618f18d7eaefb348d799.js";
 
 /***/ }),
-/* 322 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "509903d9380e0dd525a67a6dfaccd64d.js";
 
 /***/ }),
-/* 323 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "280d070b7341f44fc31e3a55a26e4c6c.js";
 
 /***/ }),
-/* 324 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e6c2b11f457b5aa71fd08de4ae738c3f.js";
 
 /***/ }),
-/* 325 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "94a5c40baab0f2df8b43889ed5fb6b8a.js";
 
 /***/ }),
-/* 326 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a07f2b025030bd4f277803aea0e6a539.js";
 
 /***/ }),
-/* 327 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e9300679eea54434e21c749a2701057a.js";
 
 /***/ }),
-/* 328 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fc43768786e3b6a4d43bf2f4f9603761.js";
 
 /***/ }),
-/* 329 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2af30a763bb650347df49c35832b56d6.js";
 
 /***/ }),
-/* 330 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "694ecaffc8977f2610c65df53f93f925.js";
 
 /***/ }),
-/* 331 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c8bdb139ff462c0e7dc4ba2f56a49318.js";
 
 /***/ }),
-/* 332 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4e9e0e943cacfdf9d350ba0c59bfb53b.js";
 
 /***/ }),
-/* 333 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7d9d9847be22a3f2e8b44ce7df62160a.js";
 
 /***/ }),
-/* 334 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7bdb2e4d3bc51d15863aa7be6e0a23a9.js";
 
 /***/ }),
-/* 335 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "66670f2c1f5e7c4e531007e89bb85355.js";
 
 /***/ }),
-/* 336 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6bc13a9df3f6c9d9b57847f62bbf883c.js";
 
 /***/ }),
-/* 337 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4bc334f8bbb887cb9b2436309d9e5772.js";
 
 /***/ }),
-/* 338 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "871636b2852efaaf0ce57e395fb9521e.js";
 
 /***/ }),
-/* 339 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1d8029568c9bfaedfede011b11b582dd.js";
 
 /***/ }),
-/* 340 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "da8ac6d7830bed6f979e63f2622297d6.js";
 
 /***/ }),
-/* 341 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d71f7542d1fa41a3b95d52307b8a2721.js";
 
 /***/ }),
-/* 342 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5e9314c1c0d4e5f4cb7a3f80fc01530c.js";
 
 /***/ }),
-/* 343 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fe51d45583c0425b00c9a784727072e0.js";
 
 /***/ }),
-/* 344 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "cb1505a51fe14d2d2f563f58622f8d49.js";
 
 /***/ }),
-/* 345 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4b730063831e789913041026d226797f.js";
 
 /***/ }),
-/* 346 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0b56e82ae05b7ec2022e1cb35b8b6e10.js";
 
 /***/ }),
-/* 347 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d38c97a7b5dc3fbb819bda6cb81f5084.js";
 
 /***/ }),
-/* 348 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3c54f236e4f2dbcbfb4dd485a25e2a15.js";
 
 /***/ }),
-/* 349 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a2aba6f6d445976c1175446a081d3ddb.js";
 
 /***/ }),
-/* 350 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ce7ee0aa2aa03d5d30cf3627261ffd85.js";
 
 /***/ }),
-/* 351 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a8ba202c681defcdc8a39376dd39adc4.js";
 
 /***/ }),
-/* 352 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f3a0f6e7e442de2ae51eddbf4eb98d97.js";
 
 /***/ }),
-/* 353 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f0a872cb9d974c958b5ef95b0122b242.js";
 
 /***/ }),
-/* 354 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7982ae381c10e501e9a46d8693deddf6.js";
 
 /***/ }),
-/* 355 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2888585c64276b0aa21da59f6a638343.js";
 
 /***/ }),
-/* 356 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8043595ccf704fc61e7e3e4c7c7e77a5.js";
 
 /***/ }),
-/* 357 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "cbf7c8da4a1050736f9164a7ebc1855c.js";
 
 /***/ }),
-/* 358 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6140f5bedc9513e7195b455816d6ecfe.js";
 
 /***/ }),
-/* 359 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f8595ad10c92ed3c62ed9c38354a2985.js";
 
 /***/ }),
-/* 360 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "276cc30bcf58182e7a4f893e0f8e1326.js";
 
 /***/ }),
-/* 361 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "605f48b304be0d81e8e4968da45e6d61.js";
 
 /***/ }),
-/* 362 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "82ce99851e7fc39e91603bc3320fe6d2.js";
 
 /***/ }),
-/* 363 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0ec5fd3cff31303d324fc853798b66e6.js";
 
 /***/ }),
-/* 364 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7743fcee83dc61f0a664b5239c0fff02.js";
 
 /***/ }),
-/* 365 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "85a17f1272296cefbd6bf7de186651f2.js";
 
 /***/ }),
-/* 366 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "dde12e6c2c05d17c95ed0a94da234b3b.js";
 
 /***/ }),
-/* 367 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e8bbb800ba35ed8c06d9024cdc61cb05.js";
 
 /***/ }),
-/* 368 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "852f3a4ec9ee58d75bd55c85161bb68f.js";
 
 /***/ }),
-/* 369 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c806ba4f0026195e7907bfb62d00b502.js";
 
 /***/ }),
-/* 370 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fedeaa497e12a1bc0d662f9e5657ac7a.js";
 
 /***/ }),
-/* 371 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2f0a14537d449d02e05ac0d76249c830.js";
 
 /***/ }),
-/* 372 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1afbeca385b131cfc3ae515b89e552c7.js";
 
 /***/ }),
-/* 373 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3c0ec12aff6e148d235875bfed4ca421.js";
 
 /***/ }),
-/* 374 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ae5d4d6eea08ccfac67e44bfe11da4ed.js";
 
 /***/ }),
-/* 375 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "85e246a36ca53e3f767608542dcd26b3.js";
 
 /***/ }),
-/* 376 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "10bc79414b62df132421027bbf5e5c3e.js";
 
 /***/ }),
-/* 377 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c033d0cf791d80ef14327c1ade637578.js";
 
 /***/ }),
-/* 378 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f6cfc0e0566a350632db32ece39b649d.js";
 
 /***/ }),
-/* 379 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "19573d26f286762809b86f935516c1ac.js";
 
 /***/ }),
-/* 380 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e7a892eff1dd4ac60e8201386497b66b.js";
 
 /***/ }),
-/* 381 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f4b747bf296f21fcf6d59357e92f948d.js";
 
 /***/ }),
-/* 382 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0ab67a107deacf1d9b22eb0b706486db.js";
 
 /***/ }),
-/* 383 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d2b533a0128ef6edfaf153c0fa19e432.js";
 
 /***/ }),
-/* 384 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d5a596705e8b1c50832d29b25f4ffb0a.js";
 
 /***/ }),
-/* 385 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8536514f6ace9c40d36020af05e067fe.js";
 
 /***/ }),
-/* 386 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9588381016bdc5e88634572e630b4551.js";
 
 /***/ }),
-/* 387 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a5cd4d965591278c0519bdfa761ea3aa.js";
 
 /***/ }),
-/* 388 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "400622a60e8e3194e3d666d073e3c7db.js";
 
 /***/ }),
-/* 389 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d9e70caae42a8f91d34536f0d7941673.js";
 
 /***/ }),
-/* 390 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "30f5b57295dfda4eafc7f8c098160582.js";
 
 /***/ }),
-/* 391 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7da5aafe24e626f9bced82fe40567386.js";
 
 /***/ }),
-/* 392 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d7e8066668f05d83f86a128d7dbd45a2.js";
 
 /***/ }),
-/* 393 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "dcf82c5c24de859d74953010a3bf7f11.js";
 
 /***/ }),
-/* 394 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f29286fc7d5663eb11457f48664f324d.js";
 
 /***/ }),
-/* 395 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "476880245318ad211000fa55cb15d83f.js";
 
 /***/ }),
-/* 396 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b1ff2cb4863b8ed961d815393cfe246d.js";
 
 /***/ }),
-/* 397 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "44b4462224957b51234691dacc5dd4c8.js";
 
 /***/ }),
-/* 398 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2f6f1f6753d430190cb38411a9112f08.js";
 
 /***/ }),
-/* 399 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c8c48c73e7d7dd2c142badc913ab26fe.js";
 
 /***/ }),
-/* 400 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4f0436f3850202d127036b38729c6861.js";
 
 /***/ }),
-/* 401 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2208705283adad817bb4a5af647f77ab.js";
 
 /***/ }),
-/* 402 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0ebc6c9681e409f2bf3bb6d8ce64e28e.js";
 
 /***/ }),
-/* 403 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b225cb9e753bd0a8ca508ccb2637bf91.js";
 
 /***/ }),
-/* 404 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7f97ea63879ac5f3a2b491a651a1a82f.js";
 
 /***/ }),
-/* 405 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "42837f940cb1b7ef3aacf38a45916320.js";
 
 /***/ }),
-/* 406 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0cab51dee983721ec757e7e209a67c1d.js";
 
 /***/ }),
-/* 407 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5639547cd21c08cbc1681d6328459f73.js";
 
 /***/ }),
-/* 408 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2bfb58d5489d8d17dbc2cff3d43bed1d.js";
 
 /***/ }),
-/* 409 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "31d41d6496fa8bb51798efce8a49626d.js";
 
 /***/ }),
-/* 410 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8c303cac1194334d0457aa6b16b3911d.js";
 
 /***/ }),
-/* 411 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "df0a3c1950eab957c210661f530d8662.js";
 
 /***/ }),
-/* 412 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "45446feb988b7dd3ee26aadccd022c0a.js";
 
 /***/ }),
-/* 413 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c41a2553f4cc7b7fe9de6146a31dcb2f.js";
 
 /***/ }),
-/* 414 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "110d938fcc0c48d4aa3078e74ea1d177.js";
 
 /***/ }),
-/* 415 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "cdebe922de95cc9e4ebe1de74ac48190.js";
 
 /***/ }),
-/* 416 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b041dbc078ff4c44294022569c7e1fda.js";
 
 /***/ }),
-/* 417 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "37e37aa178d97ffcd94eeee1e1a25967.js";
 
 /***/ }),
-/* 418 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b4bd28ac3a7935d0c52a6cb19c89aced.js";
 
 /***/ }),
-/* 419 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "06dd700316770ac2bafb9202be298dcc.js";
 
 /***/ }),
-/* 420 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b72b274cae51085e3d09f54fbfa6c20c.js";
 
 /***/ }),
-/* 421 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d15bf311e74a25fa9c40053c3336eab1.js";
 
 /***/ }),
-/* 422 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8369703a12bca7fe68cc1e73cc3b43de.js";
 
 /***/ }),
-/* 423 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c4c6bdfa4274e17eedb2755685158242.js";
 
 /***/ }),
-/* 424 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "863966b0f8f6f0e5777fcf8ba2f72217.js";
 
 /***/ }),
-/* 425 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6fffb9f1dd0b4a1c805a7c5e7678d8e1.js";
 
 /***/ }),
-/* 426 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f829c90f48ef0234876f9e325ff04478.js";
 
 /***/ }),
-/* 427 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d793665bc912409fba00de31ec38f078.js";
 
 /***/ }),
-/* 428 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "861eca236c1025d1fd3bfb61a287e4be.js";
 
 /***/ }),
-/* 429 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e814f61cd2aa98bd748b50413a3c63c3.js";
 
 /***/ }),
-/* 430 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "82641ab6d720341c411a8e723c518395.js";
 
 /***/ }),
-/* 431 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ab03e0295a4fb6e86bbb24af6fdf2a34.js";
 
 /***/ }),
-/* 432 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "86dfc095a8bb97b2b6d94b798ebcdc61.js";
 
 /***/ }),
-/* 433 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "84396caa48ae12acce7dc5f743330628.js";
 
 /***/ }),
-/* 434 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "243d8101969c933d25388b5287bb3425.js";
 
 /***/ }),
-/* 435 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b5cf565ba84271f8dcfb6132b032a2be.js";
 
 /***/ }),
-/* 436 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "61fadb1e620315af4973e9beee66f1b4.js";
 
 /***/ }),
-/* 437 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5683c8e2b4781ac5373747e5e6268216.js";
 
 /***/ }),
-/* 438 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "06d453ace473034cd357edb758d539ab.js";
 
 /***/ }),
-/* 439 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bd98610e395f3b4c7915cf3fbe854f6f.js";
 
 /***/ }),
-/* 440 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "64e0bdef3d222c8d85b006d237204914.js";
 
 /***/ }),
-/* 441 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "03fde970c4a49be262f82a2ba54b7831.js";
 
 /***/ }),
-/* 442 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "88d5efab68c7526ad2ad4196932adb03.js";
 
 /***/ }),
-/* 443 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "12fcb95361de9251f1be9f0689a14453.js";
 
 /***/ }),
-/* 444 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4474c9775d04684871043fae3501ec66.js";
 
 /***/ }),
-/* 445 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9db2ee95c6bd343410c6e51b2470fafd.js";
 
 /***/ }),
-/* 446 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e8250271e7641960341ae2ac170af4ac.js";
 
 /***/ }),
-/* 447 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7af5865535fb306e7d0364a9ff81f389.js";
 
 /***/ }),
-/* 448 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4037e6d4b18e3e286dec455cc63c1d17.js";
 
 /***/ }),
-/* 449 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9cc943893664c6bd450c099a2b0c8b7e.js";
 
 /***/ }),
-/* 450 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bd0f4d8761b0b7ec064f3aceb69cc92c.js";
 
 /***/ }),
-/* 451 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0dc486b4415f7cbd7ddde8f32b6f12f1.js";
 
 /***/ }),
-/* 452 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "294fbc5b00264d6215dd8ff838dc2999.js";
 
 /***/ }),
-/* 453 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8d9ab03ad891997ec1b12b718a69b855.js";
 
 /***/ }),
-/* 454 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c6845f5ab9b3d7b55d4119b8a207bb0b.js";
 
 /***/ }),
-/* 455 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ed5d6ade3c083e0fb348726e9d5a4829.js";
 
 /***/ }),
-/* 456 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "29a6c0d9c964e02cab82d9b68890324e.js";
 
 /***/ }),
-/* 457 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9360974ffacadb05145e2f6c1458f35b.js";
 
 /***/ }),
-/* 458 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "279a6baa1089231c58d050c4c4182590.js";
 
 /***/ }),
-/* 459 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f8219bf4097e53987f2cab95f8ed2fb9.js";
 
 /***/ }),
-/* 460 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d2d3e8d6fe7bb1625674d81075e49626.js";
 
 /***/ }),
-/* 461 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "47cd5c7d174e6b624e55510c4e503600.js";
 
 /***/ }),
-/* 462 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c3ec16e3e59164dd3cbef365b8fe3620.js";
 
 /***/ }),
-/* 463 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "16f4439a0d344c68357e63c24719dfc2.js";
 
 /***/ }),
-/* 464 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7587c99e77660465e5d9c7311d41e514.js";
 
 /***/ }),
-/* 465 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "697c7efe64d99e8389a6f2ad9784f105.js";
 
 /***/ }),
-/* 466 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9392e8f68c7946a14e10547df6f0dea6.js";
 
 /***/ }),
-/* 467 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "58d885ab56201085ce55e8eb5d3f2ac2.js";
 
 /***/ }),
-/* 468 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ef6556c4b58c8fd5ddf71610712b210e.js";
 
 /***/ }),
-/* 469 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c7fb0ccebacccfb5c2f7b2f6023ebe4a.js";
 
 /***/ }),
-/* 470 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "124d60d8a09f472321bb9a02878bc8a2.js";
 
 /***/ }),
-/* 471 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "74973bbb728e661679e49a16773535a4.js";
 
 /***/ }),
-/* 472 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5f36c529684a07a9edd15a9219712583.js";
 
 /***/ }),
-/* 473 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1570e695c448e6a4f3a6bdf0372b58f0.js";
 
 /***/ }),
-/* 474 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a335711560ec0ed6dfa0c4de8a381e9a.js";
 
 /***/ }),
-/* 475 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6774595acd68fb2e874d812c4067d0cc.js";
 
 /***/ }),
-/* 476 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "92da0f0094807604e8ee166add5b4c8b.js";
 
 /***/ }),
-/* 477 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "63999023068dcbebee417ac354fe4e78.js";
 
 /***/ }),
-/* 478 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3497c161c30d19381330bad5ccffc91e.js";
 
 /***/ }),
-/* 479 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e3c98100442ffaafdb150f31e514b019.js";
 
 /***/ }),
-/* 480 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "02f9e1083a8b03ae4f83fa79c1a4a08e.js";
 
 /***/ }),
-/* 481 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3e6cde7f6a3d84c5cff5127be1c019f3.js";
 
 /***/ }),
-/* 482 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "67aa7d199d87faa231a278e753da1a5a.js";
 
 /***/ }),
-/* 483 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4a4234685007dd9236a440750c1d320e.js";
 
 /***/ }),
-/* 484 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9e875d25eb6d80340adac0cfc35700c1.js";
 
 /***/ }),
-/* 485 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4263ed179f5b2268965e1157074583e8.js";
 
 /***/ }),
-/* 486 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "be49208cc359a87152c752b0ea41d609.js";
 
 /***/ }),
-/* 487 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fe5fd32b764aa22fde63925ac549a9c9.js";
 
 /***/ }),
-/* 488 */
+/* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6e4d1075690c1f17775f02251592ac60.js";
 
 /***/ }),
-/* 489 */
+/* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b3a101d0edbf04b3879b5e76bdde1ea3.js";
 
 /***/ }),
-/* 490 */
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0d00a50d1d38185cd5ae6fbbf13ed127.js";
 
 /***/ }),
-/* 491 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1dc321da606125ce0592e274e01c728d.js";
 
 /***/ }),
-/* 492 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b49c70bf5635caccc9b20ea803357cb4.js";
 
 /***/ }),
-/* 493 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4a5221411f26f95ac1712b172c9e65c5.js";
 
 /***/ }),
-/* 494 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "76f1c23a8b5915860d0fcd83d2f6ec34.js";
 
 /***/ }),
-/* 495 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a026164ca1f6f157fcb0f5f6bfd4abce.js";
 
 /***/ }),
-/* 496 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "194e7c1e6dc06bec6fb0178f3fd90e24.js";
 
 /***/ }),
-/* 497 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "2b925862cf75380c5db0ea4e9f525eaa.js";
 
 /***/ }),
-/* 498 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "70490ee4f92bec1a900f840c7bbd0395.js";
 
 /***/ }),
-/* 499 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "099a08f3a796b92b7599ffde3c10c70c.js";
 
 /***/ }),
-/* 500 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "63ccb1f1a27a2bf6271f40d3082186f4.js";
 
 /***/ }),
-/* 501 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "aa2f98073a8d9f266f3928b5d9c457d1.js";
 
 /***/ }),
-/* 502 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "34bfb804dde47824b1f3f4292afc3669.js";
 
 /***/ }),
-/* 503 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "232ec126b4babd38fc463222ffeeafa4.js";
 
 /***/ }),
-/* 504 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b26738d581e044c69f7a4392906e6843.js";
 
 /***/ }),
-/* 505 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4750f0ff62cbd59f35aac31b996194e6.js";
 
 /***/ }),
-/* 506 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5ffe6036955225e3811a2f79d4cfc9ad.js";
 
 /***/ }),
-/* 507 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0ce085f9290d691fe3ec63e475d1867a.js";
 
 /***/ }),
-/* 508 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1295d4470d348d3ff8ea442b1dcef3d3.js";
 
 /***/ }),
-/* 509 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bd31647feb59f240e6c02a3b4ece9194.js";
 
 /***/ }),
-/* 510 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ba4c03e8665597d9a60281eba5a7f4cc.js";
 
 /***/ }),
-/* 511 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "79f59a5fa9dc76c6f39b2e59cc629aa9.js";
 
 /***/ }),
-/* 512 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "115ab67b3f87b1c843ea1543b9559a72.js";
 
 /***/ }),
-/* 513 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d02420d139c1d5e5f55f20b9b5de1745.js";
 
 /***/ }),
-/* 514 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1ee926929d9ed8bdec3590b47752486e.js";
 
 /***/ }),
-/* 515 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f08ee90c055c58684f8f371367156cba.js";
 
 /***/ }),
-/* 516 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c87208f97f8f1e90f13f95515ade8e0b.js";
 
 /***/ }),
-/* 517 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8b0a028adcf89579ab64902ed9c82ce3.js";
 
 /***/ }),
-/* 518 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b531361385eccab30c8c82d0d07975df.js";
 
 /***/ }),
-/* 519 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1810046f2f3e963af7edc12bdd0f5982.js";
 
 /***/ }),
-/* 520 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c2c0e5fa8323e2c5c1f54f20afda51b8.js";
 
 /***/ }),
-/* 521 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0bc694c68cb6c8f60f1605c7e3f8f284.js";
 
 /***/ }),
-/* 522 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "1517d7a249c47eaf819aa1fcca0d9f1e.js";
 
 /***/ }),
-/* 523 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0a4b12234fd7cba4d7c62207e4835f4c.js";
 
 /***/ }),
-/* 524 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "835463665498ec7fc4b0e297f316ae3c.js";
 
 /***/ }),
-/* 525 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c3854e9250665ca1762d854028663453.js";
 
 /***/ }),
-/* 526 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "78ac9df80ff1079a3b9805fdef1346ec.js";
 
 /***/ }),
-/* 527 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ae8ef91c47351a3b457142908804ddee.js";
 
 /***/ }),
-/* 528 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f1a4f9fa2839f32bf511a7a94552cd10.js";
 
 /***/ }),
-/* 529 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ca5a4993e1b540cb126c33a065618710.js";
 
 /***/ }),
-/* 530 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0ce1238464e3ffdc94507b661c65f4b6.js";
 
 /***/ }),
-/* 531 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bbba373303ed08ad9d879c910b7d4c52.js";
 
 /***/ }),
-/* 532 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "24344120218dd5c1a38ac2ccd534ed49.js";
 
 /***/ }),
-/* 533 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "30314e1b4a51b1aed3766eadecde2a42.js";
 
 /***/ }),
-/* 534 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c24de6963d7d00c269db34091059e06d.js";
 
 /***/ }),
-/* 535 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e1dbe800b2d3f5d74b2b5480ea2b897a.js";
 
 /***/ }),
-/* 536 */
+/* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0c3615fc194682bd2043624d19f6352e.js";
 
 /***/ }),
-/* 537 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "042a0929611f7e1e7513258ec70ebdf5.js";
 
 /***/ }),
-/* 538 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8f711670286d836c87f053eba3155ae3.js";
 
 /***/ }),
-/* 539 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bd3fe0cb02f91716423087b47b28b82c.js";
 
 /***/ }),
-/* 540 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4705b919138245a5b454d25f8e418435.js";
 
 /***/ }),
-/* 541 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5e4dd0452f14cf5dbb02a7dc7d9dda76.js";
 
 /***/ }),
-/* 542 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9751c3ba21e5579961186c1b62448f0e.js";
 
 /***/ }),
-/* 543 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "c9e65eaaba31f7810b70a3c83da126b8.js";
 
 /***/ }),
-/* 544 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "760d3c7148086eee1748e6c79ad0ec3c.js";
 
 /***/ }),
-/* 545 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f4a289a80719015c317663b24b247c87.js";
 
 /***/ }),
-/* 546 */
+/* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0fcfed328afda56a1dd4ca6c43cfae47.js";
 
 /***/ }),
-/* 547 */
+/* 545 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "528a3090b1df1ea3c80e351f32564d05.js";
 
 /***/ }),
-/* 548 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "43bd62d6b50d1253f782c9ae5be1593d.js";
 
 /***/ }),
-/* 549 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9de3efe1c10db748055833e85b84bf6d.js";
 
 /***/ }),
-/* 550 */
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "24dba425022a2cc94cb07980b04f60b8.js";
 
 /***/ }),
-/* 551 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d16f522ad0e550a350806bec108a54c4.js";
 
 /***/ }),
-/* 552 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0870bcf868f8d64dc9a6226a6c8b341d.js";
 
 /***/ }),
-/* 553 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3d4857cb734b986828b117a81f6bf14b.js";
 
 /***/ }),
-/* 554 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e98622ae0885350f586d342baeb8bb72.js";
 
 /***/ }),
-/* 555 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a7a8954ebdda0bd61e004955cdb79bfd.js";
 
 /***/ }),
-/* 556 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "144991c48dbba89bfe10e886aaaed32a.js";
 
 /***/ }),
-/* 557 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "0768225f873adf5f103dcb714f17783d.js";
 
 /***/ }),
-/* 558 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ab2c1db619f8721ba22987d9c71f5e1d.js";
 
 /***/ }),
-/* 559 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "9f438a1f2c25e723ea81abe0e79a1849.js";
 
 /***/ }),
-/* 560 */
+/* 558 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "aae854c65b0dda243a618fc2b9fb0ca1.js";
 
 /***/ }),
-/* 561 */
+/* 559 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8120c57dbca7501da3ecf702c811f16f.js";
 
 /***/ }),
-/* 562 */
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "63208c820c4046f8374189255b5dd7f4.js";
 
 /***/ }),
-/* 563 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "451c3753fb6dfc1f2de25cb7524f4bb2.js";
 
 /***/ }),
-/* 564 */
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5b8f7d64aca3cf7fe59c8a035868b3e0.js";
 
 /***/ }),
-/* 565 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8681f562786fa45bebe8ee7ed2461026.js";
 
 /***/ }),
-/* 566 */
+/* 564 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3be3e31b3decff384801f14329554a9c.js";
 
 /***/ }),
-/* 567 */
+/* 565 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "7eb2bdfcd9aad382b243167fe130f18d.js";
 
 /***/ }),
-/* 568 */
+/* 566 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a97b36e84118cdf617d96b3338182518.js";
 
 /***/ }),
-/* 569 */
+/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "73a5ec171b6c3cbf69069a762aee934d.js";
 
 /***/ }),
-/* 570 */
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "38ec644b492741cce581c3fe271917d6.js";
 
 /***/ }),
-/* 571 */
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3f9e3ae9d4ee540b9fb067b6fd29d529.js";
 
 /***/ }),
-/* 572 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "11bf0f7ed4a8973f585ee98239613ebc.js";
 
 /***/ }),
-/* 573 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "be2fbe775b19bdc18e4f78de18beb433.js";
 
 /***/ }),
-/* 574 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ed7f5ed687afb9af0c34eff3df121dc8.js";
 
 /***/ }),
-/* 575 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b35ea3b0b73c16e1623b4820fbe2e105.js";
 
 /***/ }),
-/* 576 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "3196e77163eef23bd214e00b4505b1b8.js";
 
 /***/ }),
-/* 577 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "acc4ded8b9debce27f884c9cce5bf63c.js";
 
 /***/ }),
-/* 578 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "614659dcc6738ffbd6e8ca379768549b.js";
 
 /***/ }),
-/* 579 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "646c9322233a0ba128268dee916e5719.js";
 
 /***/ }),
-/* 580 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b0f618b1a155de1495030d31facf6692.js";
 
 /***/ }),
-/* 581 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "03543be4e522860a625fbe3ee88155b7.js";
 
 /***/ }),
-/* 582 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {ace.define("ace/theme/idle_fingers",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
@@ -52711,7 +46985,7 @@ dom.importCssString(exports.cssText, exports.cssClass);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(40)(module)))
 
 /***/ }),
-/* 583 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
@@ -55223,3133 +49497,7 @@ exports.Mode = Mode;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(40)(module)))
 
 /***/ }),
-/* 584 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* AUTO-GENERATED. DO NOT MODIFY. */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-
-
- Style HTML
----------------
-
-  Written by Nochum Sossonko, (nsossonko@hotmail.com)
-
-  Based on code initially developed by: Einar Lielmanis, <einar@beautifier.io>
-    https://beautifier.io/
-
-  Usage:
-    style_html(html_source);
-
-    style_html(html_source, options);
-
-  The options are:
-    indent_inner_html (default false)  — indent <head> and <body> sections,
-    indent_size (default 4)          — indentation size,
-    indent_char (default space)      — character to indent with,
-    wrap_line_length (default 250)            -  maximum amount of characters per line (0 = disable)
-    brace_style (default "collapse") - "collapse" | "expand" | "end-expand" | "none"
-            put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are.
-    inline (defaults to inline tags) - list of tags to be considered inline tags
-    unformatted (defaults to inline tags) - list of tags, that shouldn't be reformatted
-    content_unformatted (defaults to ["pre", "textarea"] tags) - list of tags, whose content shouldn't be reformatted
-    indent_scripts (default normal)  - "keep"|"separate"|"normal"
-    preserve_newlines (default true) - whether existing line breaks before elements should be preserved
-                                        Only works before elements, not inside tags or for text.
-    max_preserve_newlines (default unlimited) - maximum number of line breaks to be preserved in one chunk
-    indent_handlebars (default false) - format and indent {{#foo}} and {{/foo}}
-    end_with_newline (false)          - end with a newline
-    extra_liners (default [head,body,/html]) -List of tags that should have an extra newline before them.
-
-    e.g.
-
-    style_html(html_source, {
-      'indent_inner_html': false,
-      'indent_size': 2,
-      'indent_char': ' ',
-      'wrap_line_length': 78,
-      'brace_style': 'expand',
-      'preserve_newlines': true,
-      'max_preserve_newlines': 5,
-      'indent_handlebars': false,
-      'extra_liners': ['/html']
-    });
-*/
-
-(function() {
-
-/* GENERATED_BUILD_OUTPUT */
-var legacy_beautify_html =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function OutputLine(parent) {
-  this.__parent = parent;
-  this.__character_count = 0;
-  // use indent_count as a marker for this.__lines that have preserved indentation
-  this.__indent_count = -1;
-  this.__alignment_count = 0;
-  this.__wrap_point_index = 0;
-  this.__wrap_point_character_count = 0;
-  this.__wrap_point_indent_count = -1;
-  this.__wrap_point_alignment_count = 0;
-
-  this.__items = [];
-}
-
-OutputLine.prototype.clone_empty = function() {
-  var line = new OutputLine(this.__parent);
-  line.set_indent(this.__indent_count, this.__alignment_count);
-  return line;
-};
-
-OutputLine.prototype.item = function(index) {
-  if (index < 0) {
-    return this.__items[this.__items.length + index];
-  } else {
-    return this.__items[index];
-  }
-};
-
-OutputLine.prototype.has_match = function(pattern) {
-  for (var lastCheckedOutput = this.__items.length - 1; lastCheckedOutput >= 0; lastCheckedOutput--) {
-    if (this.__items[lastCheckedOutput].match(pattern)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-OutputLine.prototype.set_indent = function(indent, alignment) {
-  if (this.is_empty()) {
-    this.__indent_count = indent || 0;
-    this.__alignment_count = alignment || 0;
-    this.__character_count = this.__parent.get_indent_size(this.__indent_count, this.__alignment_count);
-  }
-};
-
-OutputLine.prototype._set_wrap_point = function() {
-  if (this.__parent.wrap_line_length) {
-    this.__wrap_point_index = this.__items.length;
-    this.__wrap_point_character_count = this.__character_count;
-    this.__wrap_point_indent_count = this.__parent.next_line.__indent_count;
-    this.__wrap_point_alignment_count = this.__parent.next_line.__alignment_count;
-  }
-};
-
-OutputLine.prototype._should_wrap = function() {
-  return this.__wrap_point_index &&
-    this.__character_count > this.__parent.wrap_line_length &&
-    this.__wrap_point_character_count > this.__parent.next_line.__character_count;
-};
-
-OutputLine.prototype._allow_wrap = function() {
-  if (this._should_wrap()) {
-    this.__parent.add_new_line();
-    var next = this.__parent.current_line;
-    next.set_indent(this.__wrap_point_indent_count, this.__wrap_point_alignment_count);
-    next.__items = this.__items.slice(this.__wrap_point_index);
-    this.__items = this.__items.slice(0, this.__wrap_point_index);
-
-    next.__character_count += this.__character_count - this.__wrap_point_character_count;
-    this.__character_count = this.__wrap_point_character_count;
-
-    if (next.__items[0] === " ") {
-      next.__items.splice(0, 1);
-      next.__character_count -= 1;
-    }
-    return true;
-  }
-  return false;
-};
-
-OutputLine.prototype.is_empty = function() {
-  return this.__items.length === 0;
-};
-
-OutputLine.prototype.last = function() {
-  if (!this.is_empty()) {
-    return this.__items[this.__items.length - 1];
-  } else {
-    return null;
-  }
-};
-
-OutputLine.prototype.push = function(item) {
-  this.__items.push(item);
-  var last_newline_index = item.lastIndexOf('\n');
-  if (last_newline_index !== -1) {
-    this.__character_count = item.length - last_newline_index;
-  } else {
-    this.__character_count += item.length;
-  }
-};
-
-OutputLine.prototype.pop = function() {
-  var item = null;
-  if (!this.is_empty()) {
-    item = this.__items.pop();
-    this.__character_count -= item.length;
-  }
-  return item;
-};
-
-
-OutputLine.prototype._remove_indent = function() {
-  if (this.__indent_count > 0) {
-    this.__indent_count -= 1;
-    this.__character_count -= this.__parent.indent_size;
-  }
-};
-
-OutputLine.prototype._remove_wrap_indent = function() {
-  if (this.__wrap_point_indent_count > 0) {
-    this.__wrap_point_indent_count -= 1;
-  }
-};
-OutputLine.prototype.trim = function() {
-  while (this.last() === ' ') {
-    this.__items.pop();
-    this.__character_count -= 1;
-  }
-};
-
-OutputLine.prototype.toString = function() {
-  var result = '';
-  if (this.is_empty()) {
-    if (this.__parent.indent_empty_lines) {
-      result = this.__parent.get_indent_string(this.__indent_count);
-    }
-  } else {
-    result = this.__parent.get_indent_string(this.__indent_count, this.__alignment_count);
-    result += this.__items.join('');
-  }
-  return result;
-};
-
-function IndentStringCache(options, baseIndentString) {
-  this.__cache = [''];
-  this.__indent_size = options.indent_size;
-  this.__indent_string = options.indent_char;
-  if (!options.indent_with_tabs) {
-    this.__indent_string = new Array(options.indent_size + 1).join(options.indent_char);
-  }
-
-  // Set to null to continue support for auto detection of base indent
-  baseIndentString = baseIndentString || '';
-  if (options.indent_level > 0) {
-    baseIndentString = new Array(options.indent_level + 1).join(this.__indent_string);
-  }
-
-  this.__base_string = baseIndentString;
-  this.__base_string_length = baseIndentString.length;
-}
-
-IndentStringCache.prototype.get_indent_size = function(indent, column) {
-  var result = this.__base_string_length;
-  column = column || 0;
-  if (indent < 0) {
-    result = 0;
-  }
-  result += indent * this.__indent_size;
-  result += column;
-  return result;
-};
-
-IndentStringCache.prototype.get_indent_string = function(indent_level, column) {
-  var result = this.__base_string;
-  column = column || 0;
-  if (indent_level < 0) {
-    indent_level = 0;
-    result = '';
-  }
-  column += indent_level * this.__indent_size;
-  this.__ensure_cache(column);
-  result += this.__cache[column];
-  return result;
-};
-
-IndentStringCache.prototype.__ensure_cache = function(column) {
-  while (column >= this.__cache.length) {
-    this.__add_column();
-  }
-};
-
-IndentStringCache.prototype.__add_column = function() {
-  var column = this.__cache.length;
-  var indent = 0;
-  var result = '';
-  if (this.__indent_size && column >= this.__indent_size) {
-    indent = Math.floor(column / this.__indent_size);
-    column -= indent * this.__indent_size;
-    result = new Array(indent + 1).join(this.__indent_string);
-  }
-  if (column) {
-    result += new Array(column + 1).join(' ');
-  }
-
-  this.__cache.push(result);
-};
-
-function Output(options, baseIndentString) {
-  this.__indent_cache = new IndentStringCache(options, baseIndentString);
-  this.raw = false;
-  this._end_with_newline = options.end_with_newline;
-  this.indent_size = options.indent_size;
-  this.wrap_line_length = options.wrap_line_length;
-  this.indent_empty_lines = options.indent_empty_lines;
-  this.__lines = [];
-  this.previous_line = null;
-  this.current_line = null;
-  this.next_line = new OutputLine(this);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-  // initialize
-  this.__add_outputline();
-}
-
-Output.prototype.__add_outputline = function() {
-  this.previous_line = this.current_line;
-  this.current_line = this.next_line.clone_empty();
-  this.__lines.push(this.current_line);
-};
-
-Output.prototype.get_line_number = function() {
-  return this.__lines.length;
-};
-
-Output.prototype.get_indent_string = function(indent, column) {
-  return this.__indent_cache.get_indent_string(indent, column);
-};
-
-Output.prototype.get_indent_size = function(indent, column) {
-  return this.__indent_cache.get_indent_size(indent, column);
-};
-
-Output.prototype.is_empty = function() {
-  return !this.previous_line && this.current_line.is_empty();
-};
-
-Output.prototype.add_new_line = function(force_newline) {
-  // never newline at the start of file
-  // otherwise, newline only if we didn't just add one or we're forced
-  if (this.is_empty() ||
-    (!force_newline && this.just_added_newline())) {
-    return false;
-  }
-
-  // if raw output is enabled, don't print additional newlines,
-  // but still return True as though you had
-  if (!this.raw) {
-    this.__add_outputline();
-  }
-  return true;
-};
-
-Output.prototype.get_code = function(eol) {
-  this.trim(true);
-
-  // handle some edge cases where the last tokens
-  // has text that ends with newline(s)
-  var last_item = this.current_line.pop();
-  if (last_item) {
-    if (last_item[last_item.length - 1] === '\n') {
-      last_item = last_item.replace(/\n+$/g, '');
-    }
-    this.current_line.push(last_item);
-  }
-
-  if (this._end_with_newline) {
-    this.__add_outputline();
-  }
-
-  var sweet_code = this.__lines.join('\n');
-
-  if (eol !== '\n') {
-    sweet_code = sweet_code.replace(/[\n]/g, eol);
-  }
-  return sweet_code;
-};
-
-Output.prototype.set_wrap_point = function() {
-  this.current_line._set_wrap_point();
-};
-
-Output.prototype.set_indent = function(indent, alignment) {
-  indent = indent || 0;
-  alignment = alignment || 0;
-
-  // Next line stores alignment values
-  this.next_line.set_indent(indent, alignment);
-
-  // Never indent your first output indent at the start of the file
-  if (this.__lines.length > 1) {
-    this.current_line.set_indent(indent, alignment);
-    return true;
-  }
-
-  this.current_line.set_indent();
-  return false;
-};
-
-Output.prototype.add_raw_token = function(token) {
-  for (var x = 0; x < token.newlines; x++) {
-    this.__add_outputline();
-  }
-  this.current_line.set_indent(-1);
-  this.current_line.push(token.whitespace_before);
-  this.current_line.push(token.text);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = false;
-};
-
-Output.prototype.add_token = function(printable_token) {
-  this.__add_space_before_token();
-  this.current_line.push(printable_token);
-  this.space_before_token = false;
-  this.non_breaking_space = false;
-  this.previous_token_wrapped = this.current_line._allow_wrap();
-};
-
-Output.prototype.__add_space_before_token = function() {
-  if (this.space_before_token && !this.just_added_newline()) {
-    if (!this.non_breaking_space) {
-      this.set_wrap_point();
-    }
-    this.current_line.push(' ');
-  }
-};
-
-Output.prototype.remove_indent = function(index) {
-  var output_length = this.__lines.length;
-  while (index < output_length) {
-    this.__lines[index]._remove_indent();
-    index++;
-  }
-  this.current_line._remove_wrap_indent();
-};
-
-Output.prototype.trim = function(eat_newlines) {
-  eat_newlines = (eat_newlines === undefined) ? false : eat_newlines;
-
-  this.current_line.trim();
-
-  while (eat_newlines && this.__lines.length > 1 &&
-    this.current_line.is_empty()) {
-    this.__lines.pop();
-    this.current_line = this.__lines[this.__lines.length - 1];
-    this.current_line.trim();
-  }
-
-  this.previous_line = this.__lines.length > 1 ?
-    this.__lines[this.__lines.length - 2] : null;
-};
-
-Output.prototype.just_added_newline = function() {
-  return this.current_line.is_empty();
-};
-
-Output.prototype.just_added_blankline = function() {
-  return this.is_empty() ||
-    (this.current_line.is_empty() && this.previous_line.is_empty());
-};
-
-Output.prototype.ensure_empty_line_above = function(starts_with, ends_with) {
-  var index = this.__lines.length - 2;
-  while (index >= 0) {
-    var potentialEmptyLine = this.__lines[index];
-    if (potentialEmptyLine.is_empty()) {
-      break;
-    } else if (potentialEmptyLine.item(0).indexOf(starts_with) !== 0 &&
-      potentialEmptyLine.item(-1) !== ends_with) {
-      this.__lines.splice(index + 1, 0, new OutputLine(this));
-      this.previous_line = this.__lines[this.__lines.length - 2];
-      break;
-    }
-    index--;
-  }
-};
-
-module.exports.Output = Output;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Token(type, text, newlines, whitespace_before) {
-  this.type = type;
-  this.text = text;
-
-  // comments_before are
-  // comments that have a new line before them
-  // and may or may not have a newline after
-  // this is a set of comments before
-  this.comments_before = null; /* inline comment*/
-
-
-  // this.comments_after =  new TokenStream(); // no new line before and newline after
-  this.newlines = newlines || 0;
-  this.whitespace_before = whitespace_before || '';
-  this.parent = null;
-  this.next = null;
-  this.previous = null;
-  this.opened = null;
-  this.closed = null;
-  this.directives = null;
-}
-
-
-module.exports.Token = Token;
-
-
-/***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Options(options, merge_child_field) {
-  this.raw_options = _mergeOpts(options, merge_child_field);
-
-  // Support passing the source text back with no change
-  this.disabled = this._get_boolean('disabled');
-
-  this.eol = this._get_characters('eol', 'auto');
-  this.end_with_newline = this._get_boolean('end_with_newline');
-  this.indent_size = this._get_number('indent_size', 4);
-  this.indent_char = this._get_characters('indent_char', ' ');
-  this.indent_level = this._get_number('indent_level');
-
-  this.preserve_newlines = this._get_boolean('preserve_newlines', true);
-  this.max_preserve_newlines = this._get_number('max_preserve_newlines', 32786);
-  if (!this.preserve_newlines) {
-    this.max_preserve_newlines = 0;
-  }
-
-  this.indent_with_tabs = this._get_boolean('indent_with_tabs', this.indent_char === '\t');
-  if (this.indent_with_tabs) {
-    this.indent_char = '\t';
-
-    // indent_size behavior changed after 1.8.6
-    // It used to be that indent_size would be
-    // set to 1 for indent_with_tabs. That is no longer needed and
-    // actually doesn't make sense - why not use spaces? Further,
-    // that might produce unexpected behavior - tabs being used
-    // for single-column alignment. So, when indent_with_tabs is true
-    // and indent_size is 1, reset indent_size to 4.
-    if (this.indent_size === 1) {
-      this.indent_size = 4;
-    }
-  }
-
-  // Backwards compat with 1.3.x
-  this.wrap_line_length = this._get_number('wrap_line_length', this._get_number('max_char'));
-
-  this.indent_empty_lines = this._get_boolean('indent_empty_lines');
-
-  // valid templating languages ['django', 'erb', 'handlebars', 'php']
-  // For now, 'auto' = all off for javascript, all on for html (and inline javascript).
-  // other values ignored
-  this.templating = this._get_selection_list('templating', ['auto', 'none', 'django', 'erb', 'handlebars', 'php'], ['auto']);
-}
-
-Options.prototype._get_array = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || [];
-  if (typeof option_value === 'object') {
-    if (option_value !== null && typeof option_value.concat === 'function') {
-      result = option_value.concat();
-    }
-  } else if (typeof option_value === 'string') {
-    result = option_value.split(/[^a-zA-Z0-9_\/\-]+/);
-  }
-  return result;
-};
-
-Options.prototype._get_boolean = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = option_value === undefined ? !!default_value : !!option_value;
-  return result;
-};
-
-Options.prototype._get_characters = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  var result = default_value || '';
-  if (typeof option_value === 'string') {
-    result = option_value.replace(/\\r/, '\r').replace(/\\n/, '\n').replace(/\\t/, '\t');
-  }
-  return result;
-};
-
-Options.prototype._get_number = function(name, default_value) {
-  var option_value = this.raw_options[name];
-  default_value = parseInt(default_value, 10);
-  if (isNaN(default_value)) {
-    default_value = 0;
-  }
-  var result = parseInt(option_value, 10);
-  if (isNaN(result)) {
-    result = default_value;
-  }
-  return result;
-};
-
-Options.prototype._get_selection = function(name, selection_list, default_value) {
-  var result = this._get_selection_list(name, selection_list, default_value);
-  if (result.length !== 1) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can only be one of the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result[0];
-};
-
-
-Options.prototype._get_selection_list = function(name, selection_list, default_value) {
-  if (!selection_list || selection_list.length === 0) {
-    throw new Error("Selection list cannot be empty.");
-  }
-
-  default_value = default_value || [selection_list[0]];
-  if (!this._is_valid_selection(default_value, selection_list)) {
-    throw new Error("Invalid Default Value!");
-  }
-
-  var result = this._get_array(name, default_value);
-  if (!this._is_valid_selection(result, selection_list)) {
-    throw new Error(
-      "Invalid Option Value: The option '" + name + "' can contain only the following values:\n" +
-      selection_list + "\nYou passed in: '" + this.raw_options[name] + "'");
-  }
-
-  return result;
-};
-
-Options.prototype._is_valid_selection = function(result, selection_list) {
-  return result.length && selection_list.length &&
-    !result.some(function(item) { return selection_list.indexOf(item) === -1; });
-};
-
-
-// merges child options up with the parent options object
-// Example: obj = {a: 1, b: {a: 2}}
-//          mergeOpts(obj, 'b')
-//
-//          Returns: {a: 2}
-function _mergeOpts(allOptions, childFieldName) {
-  var finalOpts = {};
-  allOptions = _normalizeOpts(allOptions);
-  var name;
-
-  for (name in allOptions) {
-    if (name !== childFieldName) {
-      finalOpts[name] = allOptions[name];
-    }
-  }
-
-  //merge in the per type settings for the childFieldName
-  if (childFieldName && allOptions[childFieldName]) {
-    for (name in allOptions[childFieldName]) {
-      finalOpts[name] = allOptions[childFieldName][name];
-    }
-  }
-  return finalOpts;
-}
-
-function _normalizeOpts(options) {
-  var convertedOpts = {};
-  var key;
-
-  for (key in options) {
-    var newKey = key.replace(/-/g, "_");
-    convertedOpts[newKey] = options[key];
-  }
-  return convertedOpts;
-}
-
-module.exports.Options = Options;
-module.exports.normalizeOpts = _normalizeOpts;
-module.exports.mergeOpts = _mergeOpts;
-
-
-/***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var regexp_has_sticky = RegExp.prototype.hasOwnProperty('sticky');
-
-function InputScanner(input_string) {
-  this.__input = input_string || '';
-  this.__input_length = this.__input.length;
-  this.__position = 0;
-}
-
-InputScanner.prototype.restart = function() {
-  this.__position = 0;
-};
-
-InputScanner.prototype.back = function() {
-  if (this.__position > 0) {
-    this.__position -= 1;
-  }
-};
-
-InputScanner.prototype.hasNext = function() {
-  return this.__position < this.__input_length;
-};
-
-InputScanner.prototype.next = function() {
-  var val = null;
-  if (this.hasNext()) {
-    val = this.__input.charAt(this.__position);
-    this.__position += 1;
-  }
-  return val;
-};
-
-InputScanner.prototype.peek = function(index) {
-  var val = null;
-  index = index || 0;
-  index += this.__position;
-  if (index >= 0 && index < this.__input_length) {
-    val = this.__input.charAt(index);
-  }
-  return val;
-};
-
-// This is a JavaScript only helper function (not in python)
-// Javascript doesn't have a match method
-// and not all implementation support "sticky" flag.
-// If they do not support sticky then both this.match() and this.test() method
-// must get the match and check the index of the match.
-// If sticky is supported and set, this method will use it.
-// Otherwise it will check that global is set, and fall back to the slower method.
-InputScanner.prototype.__match = function(pattern, index) {
-  pattern.lastIndex = index;
-  var pattern_match = pattern.exec(this.__input);
-
-  if (pattern_match && !(regexp_has_sticky && pattern.sticky)) {
-    if (pattern_match.index !== index) {
-      pattern_match = null;
-    }
-  }
-
-  return pattern_match;
-};
-
-InputScanner.prototype.test = function(pattern, index) {
-  index = index || 0;
-  index += this.__position;
-
-  if (index >= 0 && index < this.__input_length) {
-    return !!this.__match(pattern, index);
-  } else {
-    return false;
-  }
-};
-
-InputScanner.prototype.testChar = function(pattern, index) {
-  // test one character regex match
-  var val = this.peek(index);
-  pattern.lastIndex = 0;
-  return val !== null && pattern.test(val);
-};
-
-InputScanner.prototype.match = function(pattern) {
-  var pattern_match = this.__match(pattern, this.__position);
-  if (pattern_match) {
-    this.__position += pattern_match[0].length;
-  } else {
-    pattern_match = null;
-  }
-  return pattern_match;
-};
-
-InputScanner.prototype.read = function(starting_pattern, until_pattern, until_after) {
-  var val = '';
-  var match;
-  if (starting_pattern) {
-    match = this.match(starting_pattern);
-    if (match) {
-      val += match[0];
-    }
-  }
-  if (until_pattern && (match || !starting_pattern)) {
-    val += this.readUntil(until_pattern, until_after);
-  }
-  return val;
-};
-
-InputScanner.prototype.readUntil = function(pattern, until_after) {
-  var val = '';
-  var match_index = this.__position;
-  pattern.lastIndex = this.__position;
-  var pattern_match = pattern.exec(this.__input);
-  if (pattern_match) {
-    match_index = pattern_match.index;
-    if (until_after) {
-      match_index += pattern_match[0].length;
-    }
-  } else {
-    match_index = this.__input_length;
-  }
-
-  val = this.__input.substring(this.__position, match_index);
-  this.__position = match_index;
-  return val;
-};
-
-InputScanner.prototype.readUntilAfter = function(pattern) {
-  return this.readUntil(pattern, true);
-};
-
-InputScanner.prototype.get_regexp = function(pattern, match_from) {
-  var result = null;
-  var flags = 'g';
-  if (match_from && regexp_has_sticky) {
-    flags = 'y';
-  }
-  // strings are converted to regexp
-  if (typeof pattern === "string" && pattern !== '') {
-    // result = new RegExp(pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), flags);
-    result = new RegExp(pattern, flags);
-  } else if (pattern) {
-    result = new RegExp(pattern.source, flags);
-  }
-  return result;
-};
-
-InputScanner.prototype.get_literal_regexp = function(literal_string) {
-  return RegExp(literal_string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-};
-
-/* css beautifier legacy helpers */
-InputScanner.prototype.peekUntilAfter = function(pattern) {
-  var start = this.__position;
-  var val = this.readUntilAfter(pattern);
-  this.__position = start;
-  return val;
-};
-
-InputScanner.prototype.lookBack = function(testVal) {
-  var start = this.__position - 1;
-  return start >= testVal.length && this.__input.substring(start - testVal.length, start)
-    .toLowerCase() === testVal;
-};
-
-module.exports.InputScanner = InputScanner;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var InputScanner = __webpack_require__(8).InputScanner;
-var Token = __webpack_require__(3).Token;
-var TokenStream = __webpack_require__(10).TokenStream;
-var WhitespacePattern = __webpack_require__(11).WhitespacePattern;
-
-var TOKEN = {
-  START: 'TK_START',
-  RAW: 'TK_RAW',
-  EOF: 'TK_EOF'
-};
-
-var Tokenizer = function(input_string, options) {
-  this._input = new InputScanner(input_string);
-  this._options = options || {};
-  this.__tokens = null;
-
-  this._patterns = {};
-  this._patterns.whitespace = new WhitespacePattern(this._input);
-};
-
-Tokenizer.prototype.tokenize = function() {
-  this._input.restart();
-  this.__tokens = new TokenStream();
-
-  this._reset();
-
-  var current;
-  var previous = new Token(TOKEN.START, '');
-  var open_token = null;
-  var open_stack = [];
-  var comments = new TokenStream();
-
-  while (previous.type !== TOKEN.EOF) {
-    current = this._get_next_token(previous, open_token);
-    while (this._is_comment(current)) {
-      comments.add(current);
-      current = this._get_next_token(previous, open_token);
-    }
-
-    if (!comments.isEmpty()) {
-      current.comments_before = comments;
-      comments = new TokenStream();
-    }
-
-    current.parent = open_token;
-
-    if (this._is_opening(current)) {
-      open_stack.push(open_token);
-      open_token = current;
-    } else if (open_token && this._is_closing(current, open_token)) {
-      current.opened = open_token;
-      open_token.closed = current;
-      open_token = open_stack.pop();
-      current.parent = open_token;
-    }
-
-    current.previous = previous;
-    previous.next = current;
-
-    this.__tokens.add(current);
-    previous = current;
-  }
-
-  return this.__tokens;
-};
-
-
-Tokenizer.prototype._is_first_token = function() {
-  return this.__tokens.isEmpty();
-};
-
-Tokenizer.prototype._reset = function() {};
-
-Tokenizer.prototype._get_next_token = function(previous_token, open_token) { // jshint unused:false
-  this._readWhitespace();
-  var resulting_string = this._input.read(/.+/g);
-  if (resulting_string) {
-    return this._create_token(TOKEN.RAW, resulting_string);
-  } else {
-    return this._create_token(TOKEN.EOF, '');
-  }
-};
-
-Tokenizer.prototype._is_comment = function(current_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._is_opening = function(current_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._is_closing = function(current_token, open_token) { // jshint unused:false
-  return false;
-};
-
-Tokenizer.prototype._create_token = function(type, text) {
-  var token = new Token(type, text,
-    this._patterns.whitespace.newline_count,
-    this._patterns.whitespace.whitespace_before_token);
-  return token;
-};
-
-Tokenizer.prototype._readWhitespace = function() {
-  return this._patterns.whitespace.read();
-};
-
-
-
-module.exports.Tokenizer = Tokenizer;
-module.exports.TOKEN = TOKEN;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function TokenStream(parent_token) {
-  // private
-  this.__tokens = [];
-  this.__tokens_length = this.__tokens.length;
-  this.__position = 0;
-  this.__parent_token = parent_token;
-}
-
-TokenStream.prototype.restart = function() {
-  this.__position = 0;
-};
-
-TokenStream.prototype.isEmpty = function() {
-  return this.__tokens_length === 0;
-};
-
-TokenStream.prototype.hasNext = function() {
-  return this.__position < this.__tokens_length;
-};
-
-TokenStream.prototype.next = function() {
-  var val = null;
-  if (this.hasNext()) {
-    val = this.__tokens[this.__position];
-    this.__position += 1;
-  }
-  return val;
-};
-
-TokenStream.prototype.peek = function(index) {
-  var val = null;
-  index = index || 0;
-  index += this.__position;
-  if (index >= 0 && index < this.__tokens_length) {
-    val = this.__tokens[index];
-  }
-  return val;
-};
-
-TokenStream.prototype.add = function(token) {
-  if (this.__parent_token) {
-    token.parent = this.__parent_token;
-  }
-  this.__tokens.push(token);
-  this.__tokens_length += 1;
-};
-
-module.exports.TokenStream = TokenStream;
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Pattern = __webpack_require__(12).Pattern;
-
-function WhitespacePattern(input_scanner, parent) {
-  Pattern.call(this, input_scanner, parent);
-  if (parent) {
-    this._line_regexp = this._input.get_regexp(parent._line_regexp);
-  } else {
-    this.__set_whitespace_patterns('', '');
-  }
-
-  this.newline_count = 0;
-  this.whitespace_before_token = '';
-}
-WhitespacePattern.prototype = new Pattern();
-
-WhitespacePattern.prototype.__set_whitespace_patterns = function(whitespace_chars, newline_chars) {
-  whitespace_chars += '\\t ';
-  newline_chars += '\\n\\r';
-
-  this._match_pattern = this._input.get_regexp(
-    '[' + whitespace_chars + newline_chars + ']+', true);
-  this._newline_regexp = this._input.get_regexp(
-    '\\r\\n|[' + newline_chars + ']');
-};
-
-WhitespacePattern.prototype.read = function() {
-  this.newline_count = 0;
-  this.whitespace_before_token = '';
-
-  var resulting_string = this._input.read(this._match_pattern);
-  if (resulting_string === ' ') {
-    this.whitespace_before_token = ' ';
-  } else if (resulting_string) {
-    var matches = this.__split(this._newline_regexp, resulting_string);
-    this.newline_count = matches.length - 1;
-    this.whitespace_before_token = matches[this.newline_count];
-  }
-
-  return resulting_string;
-};
-
-WhitespacePattern.prototype.matching = function(whitespace_chars, newline_chars) {
-  var result = this._create();
-  result.__set_whitespace_patterns(whitespace_chars, newline_chars);
-  result._update();
-  return result;
-};
-
-WhitespacePattern.prototype._create = function() {
-  return new WhitespacePattern(this._input, this);
-};
-
-WhitespacePattern.prototype.__split = function(regexp, input_string) {
-  regexp.lastIndex = 0;
-  var start_index = 0;
-  var result = [];
-  var next_match = regexp.exec(input_string);
-  while (next_match) {
-    result.push(input_string.substring(start_index, next_match.index));
-    start_index = next_match.index + next_match[0].length;
-    next_match = regexp.exec(input_string);
-  }
-
-  if (start_index < input_string.length) {
-    result.push(input_string.substring(start_index, input_string.length));
-  } else {
-    result.push('');
-  }
-
-  return result;
-};
-
-
-
-module.exports.WhitespacePattern = WhitespacePattern;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Pattern(input_scanner, parent) {
-  this._input = input_scanner;
-  this._starting_pattern = null;
-  this._match_pattern = null;
-  this._until_pattern = null;
-  this._until_after = false;
-
-  if (parent) {
-    this._starting_pattern = this._input.get_regexp(parent._starting_pattern, true);
-    this._match_pattern = this._input.get_regexp(parent._match_pattern, true);
-    this._until_pattern = this._input.get_regexp(parent._until_pattern);
-    this._until_after = parent._until_after;
-  }
-}
-
-Pattern.prototype.read = function() {
-  var result = this._input.read(this._starting_pattern);
-  if (!this._starting_pattern || result) {
-    result += this._input.read(this._match_pattern, this._until_pattern, this._until_after);
-  }
-  return result;
-};
-
-Pattern.prototype.read_match = function() {
-  return this._input.match(this._match_pattern);
-};
-
-Pattern.prototype.until_after = function(pattern) {
-  var result = this._create();
-  result._until_after = true;
-  result._until_pattern = this._input.get_regexp(pattern);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.until = function(pattern) {
-  var result = this._create();
-  result._until_after = false;
-  result._until_pattern = this._input.get_regexp(pattern);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.starting_with = function(pattern) {
-  var result = this._create();
-  result._starting_pattern = this._input.get_regexp(pattern, true);
-  result._update();
-  return result;
-};
-
-Pattern.prototype.matching = function(pattern) {
-  var result = this._create();
-  result._match_pattern = this._input.get_regexp(pattern, true);
-  result._update();
-  return result;
-};
-
-Pattern.prototype._create = function() {
-  return new Pattern(this._input, this);
-};
-
-Pattern.prototype._update = function() {};
-
-module.exports.Pattern = Pattern;
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-function Directives(start_block_pattern, end_block_pattern) {
-  start_block_pattern = typeof start_block_pattern === 'string' ? start_block_pattern : start_block_pattern.source;
-  end_block_pattern = typeof end_block_pattern === 'string' ? end_block_pattern : end_block_pattern.source;
-  this.__directives_block_pattern = new RegExp(start_block_pattern + / beautify( \w+[:]\w+)+ /.source + end_block_pattern, 'g');
-  this.__directive_pattern = / (\w+)[:](\w+)/g;
-
-  this.__directives_end_ignore_pattern = new RegExp(start_block_pattern + /\sbeautify\signore:end\s/.source + end_block_pattern, 'g');
-}
-
-Directives.prototype.get_directives = function(text) {
-  if (!text.match(this.__directives_block_pattern)) {
-    return null;
-  }
-
-  var directives = {};
-  this.__directive_pattern.lastIndex = 0;
-  var directive_match = this.__directive_pattern.exec(text);
-
-  while (directive_match) {
-    directives[directive_match[1]] = directive_match[2];
-    directive_match = this.__directive_pattern.exec(text);
-  }
-
-  return directives;
-};
-
-Directives.prototype.readIgnored = function(input) {
-  return input.readUntilAfter(this.__directives_end_ignore_pattern);
-};
-
-
-module.exports.Directives = Directives;
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Pattern = __webpack_require__(12).Pattern;
-
-
-var template_names = {
-  django: false,
-  erb: false,
-  handlebars: false,
-  php: false
-};
-
-// This lets templates appear anywhere we would do a readUntil
-// The cost is higher but it is pay to play.
-function TemplatablePattern(input_scanner, parent) {
-  Pattern.call(this, input_scanner, parent);
-  this.__template_pattern = null;
-  this._disabled = Object.assign({}, template_names);
-  this._excluded = Object.assign({}, template_names);
-
-  if (parent) {
-    this.__template_pattern = this._input.get_regexp(parent.__template_pattern);
-    this._excluded = Object.assign(this._excluded, parent._excluded);
-    this._disabled = Object.assign(this._disabled, parent._disabled);
-  }
-  var pattern = new Pattern(input_scanner);
-  this.__patterns = {
-    handlebars_comment: pattern.starting_with(/{{!--/).until_after(/--}}/),
-    handlebars_unescaped: pattern.starting_with(/{{{/).until_after(/}}}/),
-    handlebars: pattern.starting_with(/{{/).until_after(/}}/),
-    php: pattern.starting_with(/<\?(?:[=]|php)/).until_after(/\?>/),
-    erb: pattern.starting_with(/<%[^%]/).until_after(/[^%]%>/),
-    // django coflicts with handlebars a bit.
-    django: pattern.starting_with(/{%/).until_after(/%}/),
-    django_value: pattern.starting_with(/{{/).until_after(/}}/),
-    django_comment: pattern.starting_with(/{#/).until_after(/#}/)
-  };
-}
-TemplatablePattern.prototype = new Pattern();
-
-TemplatablePattern.prototype._create = function() {
-  return new TemplatablePattern(this._input, this);
-};
-
-TemplatablePattern.prototype._update = function() {
-  this.__set_templated_pattern();
-};
-
-TemplatablePattern.prototype.disable = function(language) {
-  var result = this._create();
-  result._disabled[language] = true;
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.read_options = function(options) {
-  var result = this._create();
-  for (var language in template_names) {
-    result._disabled[language] = options.templating.indexOf(language) === -1;
-  }
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.exclude = function(language) {
-  var result = this._create();
-  result._excluded[language] = true;
-  result._update();
-  return result;
-};
-
-TemplatablePattern.prototype.read = function() {
-  var result = '';
-  if (this._match_pattern) {
-    result = this._input.read(this._starting_pattern);
-  } else {
-    result = this._input.read(this._starting_pattern, this.__template_pattern);
-  }
-  var next = this._read_template();
-  while (next) {
-    if (this._match_pattern) {
-      next += this._input.read(this._match_pattern);
-    } else {
-      next += this._input.readUntil(this.__template_pattern);
-    }
-    result += next;
-    next = this._read_template();
-  }
-
-  if (this._until_after) {
-    result += this._input.readUntilAfter(this._until_pattern);
-  }
-  return result;
-};
-
-TemplatablePattern.prototype.__set_templated_pattern = function() {
-  var items = [];
-
-  if (!this._disabled.php) {
-    items.push(this.__patterns.php._starting_pattern.source);
-  }
-  if (!this._disabled.handlebars) {
-    items.push(this.__patterns.handlebars._starting_pattern.source);
-  }
-  if (!this._disabled.erb) {
-    items.push(this.__patterns.erb._starting_pattern.source);
-  }
-  if (!this._disabled.django) {
-    items.push(this.__patterns.django._starting_pattern.source);
-    items.push(this.__patterns.django_value._starting_pattern.source);
-    items.push(this.__patterns.django_comment._starting_pattern.source);
-  }
-
-  if (this._until_pattern) {
-    items.push(this._until_pattern.source);
-  }
-  this.__template_pattern = this._input.get_regexp('(?:' + items.join('|') + ')');
-};
-
-TemplatablePattern.prototype._read_template = function() {
-  var resulting_string = '';
-  var c = this._input.peek();
-  if (c === '<') {
-    var peek1 = this._input.peek(1);
-    //if we're in a comment, do something special
-    // We treat all comments as literals, even more than preformatted tags
-    // we just look for the appropriate close tag
-    if (!this._disabled.php && !this._excluded.php && peek1 === '?') {
-      resulting_string = resulting_string ||
-        this.__patterns.php.read();
-    }
-    if (!this._disabled.erb && !this._excluded.erb && peek1 === '%') {
-      resulting_string = resulting_string ||
-        this.__patterns.erb.read();
-    }
-  } else if (c === '{') {
-    if (!this._disabled.handlebars && !this._excluded.handlebars) {
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars_comment.read();
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars_unescaped.read();
-      resulting_string = resulting_string ||
-        this.__patterns.handlebars.read();
-    }
-    if (!this._disabled.django) {
-      // django coflicts with handlebars a bit.
-      if (!this._excluded.django && !this._excluded.handlebars) {
-        resulting_string = resulting_string ||
-          this.__patterns.django_value.read();
-      }
-      if (!this._excluded.django) {
-        resulting_string = resulting_string ||
-          this.__patterns.django_comment.read();
-        resulting_string = resulting_string ||
-          this.__patterns.django.read();
-      }
-    }
-  }
-  return resulting_string;
-};
-
-
-module.exports.TemplatablePattern = TemplatablePattern;
-
-
-/***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Beautifier = __webpack_require__(19).Beautifier,
-  Options = __webpack_require__(20).Options;
-
-function style_html(html_source, options, js_beautify, css_beautify) {
-  var beautifier = new Beautifier(html_source, options, js_beautify, css_beautify);
-  return beautifier.beautify();
-}
-
-module.exports = style_html;
-module.exports.defaultOptions = function() {
-  return new Options();
-};
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var Options = __webpack_require__(20).Options;
-var Output = __webpack_require__(2).Output;
-var Tokenizer = __webpack_require__(21).Tokenizer;
-var TOKEN = __webpack_require__(21).TOKEN;
-
-var lineBreak = /\r\n|[\r\n]/;
-var allLineBreaks = /\r\n|[\r\n]/g;
-
-var Printer = function(options, base_indent_string) { //handles input/output and some other printing functions
-
-  this.indent_level = 0;
-  this.alignment_size = 0;
-  this.max_preserve_newlines = options.max_preserve_newlines;
-  this.preserve_newlines = options.preserve_newlines;
-
-  this._output = new Output(options, base_indent_string);
-
-};
-
-Printer.prototype.current_line_has_match = function(pattern) {
-  return this._output.current_line.has_match(pattern);
-};
-
-Printer.prototype.set_space_before_token = function(value, non_breaking) {
-  this._output.space_before_token = value;
-  this._output.non_breaking_space = non_breaking;
-};
-
-Printer.prototype.set_wrap_point = function() {
-  this._output.set_indent(this.indent_level, this.alignment_size);
-  this._output.set_wrap_point();
-};
-
-
-Printer.prototype.add_raw_token = function(token) {
-  this._output.add_raw_token(token);
-};
-
-Printer.prototype.print_preserved_newlines = function(raw_token) {
-  var newlines = 0;
-  if (raw_token.type !== TOKEN.TEXT && raw_token.previous.type !== TOKEN.TEXT) {
-    newlines = raw_token.newlines ? 1 : 0;
-  }
-
-  if (this.preserve_newlines) {
-    newlines = raw_token.newlines < this.max_preserve_newlines + 1 ? raw_token.newlines : this.max_preserve_newlines + 1;
-  }
-  for (var n = 0; n < newlines; n++) {
-    this.print_newline(n > 0);
-  }
-
-  return newlines !== 0;
-};
-
-Printer.prototype.traverse_whitespace = function(raw_token) {
-  if (raw_token.whitespace_before || raw_token.newlines) {
-    if (!this.print_preserved_newlines(raw_token)) {
-      this._output.space_before_token = true;
-    }
-    return true;
-  }
-  return false;
-};
-
-Printer.prototype.previous_token_wrapped = function() {
-  return this._output.previous_token_wrapped;
-};
-
-Printer.prototype.print_newline = function(force) {
-  this._output.add_new_line(force);
-};
-
-Printer.prototype.print_token = function(token) {
-  if (token.text) {
-    this._output.set_indent(this.indent_level, this.alignment_size);
-    this._output.add_token(token.text);
-  }
-};
-
-Printer.prototype.indent = function() {
-  this.indent_level++;
-};
-
-Printer.prototype.get_full_indent = function(level) {
-  level = this.indent_level + (level || 0);
-  if (level < 1) {
-    return '';
-  }
-
-  return this._output.get_indent_string(level);
-};
-
-var get_type_attribute = function(start_token) {
-  var result = null;
-  var raw_token = start_token.next;
-
-  // Search attributes for a type attribute
-  while (raw_token.type !== TOKEN.EOF && start_token.closed !== raw_token) {
-    if (raw_token.type === TOKEN.ATTRIBUTE && raw_token.text === 'type') {
-      if (raw_token.next && raw_token.next.type === TOKEN.EQUALS &&
-        raw_token.next.next && raw_token.next.next.type === TOKEN.VALUE) {
-        result = raw_token.next.next.text;
-      }
-      break;
-    }
-    raw_token = raw_token.next;
-  }
-
-  return result;
-};
-
-var get_custom_beautifier_name = function(tag_check, raw_token) {
-  var typeAttribute = null;
-  var result = null;
-
-  if (!raw_token.closed) {
-    return null;
-  }
-
-  if (tag_check === 'script') {
-    typeAttribute = 'text/javascript';
-  } else if (tag_check === 'style') {
-    typeAttribute = 'text/css';
-  }
-
-  typeAttribute = get_type_attribute(raw_token) || typeAttribute;
-
-  // For script and style tags that have a type attribute, only enable custom beautifiers for matching values
-  // For those without a type attribute use default;
-  if (typeAttribute.search('text/css') > -1) {
-    result = 'css';
-  } else if (typeAttribute.search(/(text|application|dojo)\/(x-)?(javascript|ecmascript|jscript|livescript|(ld\+)?json|method|aspect)/) > -1) {
-    result = 'javascript';
-  } else if (typeAttribute.search(/(text|application|dojo)\/(x-)?(html)/) > -1) {
-    result = 'html';
-  } else if (typeAttribute.search(/test\/null/) > -1) {
-    // Test only mime-type for testing the beautifier when null is passed as beautifing function
-    result = 'null';
-  }
-
-  return result;
-};
-
-function in_array(what, arr) {
-  return arr.indexOf(what) !== -1;
-}
-
-function TagFrame(parent, parser_token, indent_level) {
-  this.parent = parent || null;
-  this.tag = parser_token ? parser_token.tag_name : '';
-  this.indent_level = indent_level || 0;
-  this.parser_token = parser_token || null;
-}
-
-function TagStack(printer) {
-  this._printer = printer;
-  this._current_frame = null;
-}
-
-TagStack.prototype.get_parser_token = function() {
-  return this._current_frame ? this._current_frame.parser_token : null;
-};
-
-TagStack.prototype.record_tag = function(parser_token) { //function to record a tag and its parent in this.tags Object
-  var new_frame = new TagFrame(this._current_frame, parser_token, this._printer.indent_level);
-  this._current_frame = new_frame;
-};
-
-TagStack.prototype._try_pop_frame = function(frame) { //function to retrieve the opening tag to the corresponding closer
-  var parser_token = null;
-
-  if (frame) {
-    parser_token = frame.parser_token;
-    this._printer.indent_level = frame.indent_level;
-    this._current_frame = frame.parent;
-  }
-
-  return parser_token;
-};
-
-TagStack.prototype._get_frame = function(tag_list, stop_list) { //function to retrieve the opening tag to the corresponding closer
-  var frame = this._current_frame;
-
-  while (frame) { //till we reach '' (the initial value);
-    if (tag_list.indexOf(frame.tag) !== -1) { //if this is it use it
-      break;
-    } else if (stop_list && stop_list.indexOf(frame.tag) !== -1) {
-      frame = null;
-      break;
-    }
-    frame = frame.parent;
-  }
-
-  return frame;
-};
-
-TagStack.prototype.try_pop = function(tag, stop_list) { //function to retrieve the opening tag to the corresponding closer
-  var frame = this._get_frame([tag], stop_list);
-  return this._try_pop_frame(frame);
-};
-
-TagStack.prototype.indent_to_tag = function(tag_list) {
-  var frame = this._get_frame(tag_list);
-  if (frame) {
-    this._printer.indent_level = frame.indent_level;
-  }
-};
-
-function Beautifier(source_text, options, js_beautify, css_beautify) {
-  //Wrapper function to invoke all the necessary constructors and deal with the output.
-  this._source_text = source_text || '';
-  options = options || {};
-  this._js_beautify = js_beautify;
-  this._css_beautify = css_beautify;
-  this._tag_stack = null;
-
-  // Allow the setting of language/file-type specific options
-  // with inheritance of overall settings
-  var optionHtml = new Options(options, 'html');
-
-  this._options = optionHtml;
-
-  this._is_wrap_attributes_force = this._options.wrap_attributes.substr(0, 'force'.length) === 'force';
-  this._is_wrap_attributes_force_expand_multiline = (this._options.wrap_attributes === 'force-expand-multiline');
-  this._is_wrap_attributes_force_aligned = (this._options.wrap_attributes === 'force-aligned');
-  this._is_wrap_attributes_aligned_multiple = (this._options.wrap_attributes === 'aligned-multiple');
-  this._is_wrap_attributes_preserve = this._options.wrap_attributes.substr(0, 'preserve'.length) === 'preserve';
-  this._is_wrap_attributes_preserve_aligned = (this._options.wrap_attributes === 'preserve-aligned');
-}
-
-Beautifier.prototype.beautify = function() {
-
-  // if disabled, return the input unchanged.
-  if (this._options.disabled) {
-    return this._source_text;
-  }
-
-  var source_text = this._source_text;
-  var eol = this._options.eol;
-  if (this._options.eol === 'auto') {
-    eol = '\n';
-    if (source_text && lineBreak.test(source_text)) {
-      eol = source_text.match(lineBreak)[0];
-    }
-  }
-
-  // HACK: newline parsing inconsistent. This brute force normalizes the input.
-  source_text = source_text.replace(allLineBreaks, '\n');
-
-  var baseIndentString = source_text.match(/^[\t ]*/)[0];
-
-  var last_token = {
-    text: '',
-    type: ''
-  };
-
-  var last_tag_token = new TagOpenParserToken();
-
-  var printer = new Printer(this._options, baseIndentString);
-  var tokens = new Tokenizer(source_text, this._options).tokenize();
-
-  this._tag_stack = new TagStack(printer);
-
-  var parser_token = null;
-  var raw_token = tokens.next();
-  while (raw_token.type !== TOKEN.EOF) {
-
-    if (raw_token.type === TOKEN.TAG_OPEN || raw_token.type === TOKEN.COMMENT) {
-      parser_token = this._handle_tag_open(printer, raw_token, last_tag_token, last_token);
-      last_tag_token = parser_token;
-    } else if ((raw_token.type === TOKEN.ATTRIBUTE || raw_token.type === TOKEN.EQUALS || raw_token.type === TOKEN.VALUE) ||
-      (raw_token.type === TOKEN.TEXT && !last_tag_token.tag_complete)) {
-      parser_token = this._handle_inside_tag(printer, raw_token, last_tag_token, tokens);
-    } else if (raw_token.type === TOKEN.TAG_CLOSE) {
-      parser_token = this._handle_tag_close(printer, raw_token, last_tag_token);
-    } else if (raw_token.type === TOKEN.TEXT) {
-      parser_token = this._handle_text(printer, raw_token, last_tag_token);
-    } else {
-      // This should never happen, but if it does. Print the raw token
-      printer.add_raw_token(raw_token);
-    }
-
-    last_token = parser_token;
-
-    raw_token = tokens.next();
-  }
-  var sweet_code = printer._output.get_code(eol);
-
-  return sweet_code;
-};
-
-Beautifier.prototype._handle_tag_close = function(printer, raw_token, last_tag_token) {
-  var parser_token = {
-    text: raw_token.text,
-    type: raw_token.type
-  };
-  printer.alignment_size = 0;
-  last_tag_token.tag_complete = true;
-
-  printer.set_space_before_token(raw_token.newlines || raw_token.whitespace_before !== '', true);
-  if (last_tag_token.is_unformatted) {
-    printer.add_raw_token(raw_token);
-  } else {
-    if (last_tag_token.tag_start_char === '<') {
-      printer.set_space_before_token(raw_token.text[0] === '/', true); // space before />, no space before >
-      if (this._is_wrap_attributes_force_expand_multiline && last_tag_token.has_wrapped_attrs) {
-        printer.print_newline(false);
-      }
-    }
-    printer.print_token(raw_token);
-
-  }
-
-  if (last_tag_token.indent_content &&
-    !(last_tag_token.is_unformatted || last_tag_token.is_content_unformatted)) {
-    printer.indent();
-
-    // only indent once per opened tag
-    last_tag_token.indent_content = false;
-  }
-
-  if (!last_tag_token.is_inline_element &&
-    !(last_tag_token.is_unformatted || last_tag_token.is_content_unformatted)) {
-    printer.set_wrap_point();
-  }
-
-  return parser_token;
-};
-
-Beautifier.prototype._handle_inside_tag = function(printer, raw_token, last_tag_token, tokens) {
-  var wrapped = last_tag_token.has_wrapped_attrs;
-  var parser_token = {
-    text: raw_token.text,
-    type: raw_token.type
-  };
-
-  printer.set_space_before_token(raw_token.newlines || raw_token.whitespace_before !== '', true);
-  if (last_tag_token.is_unformatted) {
-    printer.add_raw_token(raw_token);
-  } else if (last_tag_token.tag_start_char === '{' && raw_token.type === TOKEN.TEXT) {
-    // For the insides of handlebars allow newlines or a single space between open and contents
-    if (printer.print_preserved_newlines(raw_token)) {
-      raw_token.newlines = 0;
-      printer.add_raw_token(raw_token);
-    } else {
-      printer.print_token(raw_token);
-    }
-  } else {
-    if (raw_token.type === TOKEN.ATTRIBUTE) {
-      printer.set_space_before_token(true);
-      last_tag_token.attr_count += 1;
-    } else if (raw_token.type === TOKEN.EQUALS) { //no space before =
-      printer.set_space_before_token(false);
-    } else if (raw_token.type === TOKEN.VALUE && raw_token.previous.type === TOKEN.EQUALS) { //no space before value
-      printer.set_space_before_token(false);
-    }
-
-    if (raw_token.type === TOKEN.ATTRIBUTE && last_tag_token.tag_start_char === '<') {
-      if (this._is_wrap_attributes_preserve || this._is_wrap_attributes_preserve_aligned) {
-        printer.traverse_whitespace(raw_token);
-        wrapped = wrapped || raw_token.newlines !== 0;
-      }
-
-
-      if (this._is_wrap_attributes_force) {
-        var force_attr_wrap = last_tag_token.attr_count > 1;
-        if (this._is_wrap_attributes_force_expand_multiline && last_tag_token.attr_count === 1) {
-          var is_only_attribute = true;
-          var peek_index = 0;
-          var peek_token;
-          do {
-            peek_token = tokens.peek(peek_index);
-            if (peek_token.type === TOKEN.ATTRIBUTE) {
-              is_only_attribute = false;
-              break;
-            }
-            peek_index += 1;
-          } while (peek_index < 4 && peek_token.type !== TOKEN.EOF && peek_token.type !== TOKEN.TAG_CLOSE);
-
-          force_attr_wrap = !is_only_attribute;
-        }
-
-        if (force_attr_wrap) {
-          printer.print_newline(false);
-          wrapped = true;
-        }
-      }
-    }
-    printer.print_token(raw_token);
-    wrapped = wrapped || printer.previous_token_wrapped();
-    last_tag_token.has_wrapped_attrs = wrapped;
-  }
-  return parser_token;
-};
-
-Beautifier.prototype._handle_text = function(printer, raw_token, last_tag_token) {
-  var parser_token = {
-    text: raw_token.text,
-    type: 'TK_CONTENT'
-  };
-  if (last_tag_token.custom_beautifier_name) { //check if we need to format javascript
-    this._print_custom_beatifier_text(printer, raw_token, last_tag_token);
-  } else if (last_tag_token.is_unformatted || last_tag_token.is_content_unformatted) {
-    printer.add_raw_token(raw_token);
-  } else {
-    printer.traverse_whitespace(raw_token);
-    printer.print_token(raw_token);
-  }
-  return parser_token;
-};
-
-Beautifier.prototype._print_custom_beatifier_text = function(printer, raw_token, last_tag_token) {
-  var local = this;
-  if (raw_token.text !== '') {
-
-    var text = raw_token.text,
-      _beautifier,
-      script_indent_level = 1,
-      pre = '',
-      post = '';
-    if (last_tag_token.custom_beautifier_name === 'javascript' && typeof this._js_beautify === 'function') {
-      _beautifier = this._js_beautify;
-    } else if (last_tag_token.custom_beautifier_name === 'css' && typeof this._css_beautify === 'function') {
-      _beautifier = this._css_beautify;
-    } else if (last_tag_token.custom_beautifier_name === 'html') {
-      _beautifier = function(html_source, options) {
-        var beautifier = new Beautifier(html_source, options, local._js_beautify, local._css_beautify);
-        return beautifier.beautify();
-      };
-    }
-
-    if (this._options.indent_scripts === "keep") {
-      script_indent_level = 0;
-    } else if (this._options.indent_scripts === "separate") {
-      script_indent_level = -printer.indent_level;
-    }
-
-    var indentation = printer.get_full_indent(script_indent_level);
-
-    // if there is at least one empty line at the end of this text, strip it
-    // we'll be adding one back after the text but before the containing tag.
-    text = text.replace(/\n[ \t]*$/, '');
-
-    // Handle the case where content is wrapped in a comment or cdata.
-    if (last_tag_token.custom_beautifier_name !== 'html' &&
-      text[0] === '<' && text.match(/^(<!--|<!\[CDATA\[)/)) {
-      var matched = /^(<!--[^\n]*|<!\[CDATA\[)(\n?)([ \t\n]*)([\s\S]*)(-->|]]>)$/.exec(text);
-
-      // if we start to wrap but don't finish, print raw
-      if (!matched) {
-        printer.add_raw_token(raw_token);
-        return;
-      }
-
-      pre = indentation + matched[1] + '\n';
-      text = matched[4];
-      if (matched[5]) {
-        post = indentation + matched[5];
-      }
-
-      // if there is at least one empty line at the end of this text, strip it
-      // we'll be adding one back after the text but before the containing tag.
-      text = text.replace(/\n[ \t]*$/, '');
-
-      if (matched[2] || matched[3].indexOf('\n') !== -1) {
-        // if the first line of the non-comment text has spaces
-        // use that as the basis for indenting in null case.
-        matched = matched[3].match(/[ \t]+$/);
-        if (matched) {
-          raw_token.whitespace_before = matched[0];
-        }
-      }
-    }
-
-    if (text) {
-      if (_beautifier) {
-
-        // call the Beautifier if avaliable
-        var Child_options = function() {
-          this.eol = '\n';
-        };
-        Child_options.prototype = this._options.raw_options;
-        var child_options = new Child_options();
-        text = _beautifier(indentation + text, child_options);
-      } else {
-        // simply indent the string otherwise
-        var white = raw_token.whitespace_before;
-        if (white) {
-          text = text.replace(new RegExp('\n(' + white + ')?', 'g'), '\n');
-        }
-
-        text = indentation + text.replace(/\n/g, '\n' + indentation);
-      }
-    }
-
-    if (pre) {
-      if (!text) {
-        text = pre + post;
-      } else {
-        text = pre + text + '\n' + post;
-      }
-    }
-
-    printer.print_newline(false);
-    if (text) {
-      raw_token.text = text;
-      raw_token.whitespace_before = '';
-      raw_token.newlines = 0;
-      printer.add_raw_token(raw_token);
-      printer.print_newline(true);
-    }
-  }
-};
-
-Beautifier.prototype._handle_tag_open = function(printer, raw_token, last_tag_token, last_token) {
-  var parser_token = this._get_tag_open_token(raw_token);
-
-  if ((last_tag_token.is_unformatted || last_tag_token.is_content_unformatted) &&
-    raw_token.type === TOKEN.TAG_OPEN && raw_token.text.indexOf('</') === 0) {
-    // End element tags for unformatted or content_unformatted elements
-    // are printed raw to keep any newlines inside them exactly the same.
-    printer.add_raw_token(raw_token);
-  } else {
-    printer.traverse_whitespace(raw_token);
-    this._set_tag_position(printer, raw_token, parser_token, last_tag_token, last_token);
-    if (!parser_token.is_inline_element) {
-      printer.set_wrap_point();
-    }
-    printer.print_token(raw_token);
-  }
-
-  //indent attributes an auto, forced, aligned or forced-align line-wrap
-  if (this._is_wrap_attributes_force_aligned || this._is_wrap_attributes_aligned_multiple || this._is_wrap_attributes_preserve_aligned) {
-    parser_token.alignment_size = raw_token.text.length + 1;
-  }
-
-  if (!parser_token.tag_complete && !parser_token.is_unformatted) {
-    printer.alignment_size = parser_token.alignment_size;
-  }
-
-  return parser_token;
-};
-
-var TagOpenParserToken = function(parent, raw_token) {
-  this.parent = parent || null;
-  this.text = '';
-  this.type = 'TK_TAG_OPEN';
-  this.tag_name = '';
-  this.is_inline_element = false;
-  this.is_unformatted = false;
-  this.is_content_unformatted = false;
-  this.is_empty_element = false;
-  this.is_start_tag = false;
-  this.is_end_tag = false;
-  this.indent_content = false;
-  this.multiline_content = false;
-  this.custom_beautifier_name = null;
-  this.start_tag_token = null;
-  this.attr_count = 0;
-  this.has_wrapped_attrs = false;
-  this.alignment_size = 0;
-  this.tag_complete = false;
-  this.tag_start_char = '';
-  this.tag_check = '';
-
-  if (!raw_token) {
-    this.tag_complete = true;
-  } else {
-    var tag_check_match;
-
-    this.tag_start_char = raw_token.text[0];
-    this.text = raw_token.text;
-
-    if (this.tag_start_char === '<') {
-      tag_check_match = raw_token.text.match(/^<([^\s>]*)/);
-      this.tag_check = tag_check_match ? tag_check_match[1] : '';
-    } else {
-      tag_check_match = raw_token.text.match(/^{{[#\^]?([^\s}]+)/);
-      this.tag_check = tag_check_match ? tag_check_match[1] : '';
-    }
-    this.tag_check = this.tag_check.toLowerCase();
-
-    if (raw_token.type === TOKEN.COMMENT) {
-      this.tag_complete = true;
-    }
-
-    this.is_start_tag = this.tag_check.charAt(0) !== '/';
-    this.tag_name = !this.is_start_tag ? this.tag_check.substr(1) : this.tag_check;
-    this.is_end_tag = !this.is_start_tag ||
-      (raw_token.closed && raw_token.closed.text === '/>');
-
-    // handlebars tags that don't start with # or ^ are single_tags, and so also start and end.
-    this.is_end_tag = this.is_end_tag ||
-      (this.tag_start_char === '{' && (this.text.length < 3 || (/[^#\^]/.test(this.text.charAt(2)))));
-  }
-};
-
-Beautifier.prototype._get_tag_open_token = function(raw_token) { //function to get a full tag and parse its type
-  var parser_token = new TagOpenParserToken(this._tag_stack.get_parser_token(), raw_token);
-
-  parser_token.alignment_size = this._options.wrap_attributes_indent_size;
-
-  parser_token.is_end_tag = parser_token.is_end_tag ||
-    in_array(parser_token.tag_check, this._options.void_elements);
-
-  parser_token.is_empty_element = parser_token.tag_complete ||
-    (parser_token.is_start_tag && parser_token.is_end_tag);
-
-  parser_token.is_unformatted = !parser_token.tag_complete && in_array(parser_token.tag_check, this._options.unformatted);
-  parser_token.is_content_unformatted = !parser_token.is_empty_element && in_array(parser_token.tag_check, this._options.content_unformatted);
-  parser_token.is_inline_element = in_array(parser_token.tag_name, this._options.inline) || parser_token.tag_start_char === '{';
-
-  return parser_token;
-};
-
-Beautifier.prototype._set_tag_position = function(printer, raw_token, parser_token, last_tag_token, last_token) {
-
-  if (!parser_token.is_empty_element) {
-    if (parser_token.is_end_tag) { //this tag is a double tag so check for tag-ending
-      parser_token.start_tag_token = this._tag_stack.try_pop(parser_token.tag_name); //remove it and all ancestors
-    } else { // it's a start-tag
-      // check if this tag is starting an element that has optional end element
-      // and do an ending needed
-      if (this._do_optional_end_element(parser_token)) {
-        if (!parser_token.is_inline_element) {
-          if (parser_token.parent) {
-            parser_token.parent.multiline_content = true;
-          }
-          printer.print_newline(false);
-        }
-
-      }
-
-      this._tag_stack.record_tag(parser_token); //push it on the tag stack
-
-      if ((parser_token.tag_name === 'script' || parser_token.tag_name === 'style') &&
-        !(parser_token.is_unformatted || parser_token.is_content_unformatted)) {
-        parser_token.custom_beautifier_name = get_custom_beautifier_name(parser_token.tag_check, raw_token);
-      }
-    }
-  }
-
-  if (in_array(parser_token.tag_check, this._options.extra_liners)) { //check if this double needs an extra line
-    printer.print_newline(false);
-    if (!printer._output.just_added_blankline()) {
-      printer.print_newline(true);
-    }
-  }
-
-  if (parser_token.is_empty_element) { //if this tag name is a single tag type (either in the list or has a closing /)
-
-    // if you hit an else case, reset the indent level if you are inside an:
-    // 'if', 'unless', or 'each' block.
-    if (parser_token.tag_start_char === '{' && parser_token.tag_check === 'else') {
-      this._tag_stack.indent_to_tag(['if', 'unless', 'each']);
-      parser_token.indent_content = true;
-      // Don't add a newline if opening {{#if}} tag is on the current line
-      var foundIfOnCurrentLine = printer.current_line_has_match(/{{#if/);
-      if (!foundIfOnCurrentLine) {
-        printer.print_newline(false);
-      }
-    }
-
-    // Don't add a newline before elements that should remain where they are.
-    if (parser_token.tag_name === '!--' && last_token.type === TOKEN.TAG_CLOSE &&
-      last_tag_token.is_end_tag && parser_token.text.indexOf('\n') === -1) {
-      //Do nothing. Leave comments on same line.
-    } else if (!parser_token.is_inline_element && !parser_token.is_unformatted) {
-      printer.print_newline(false);
-    }
-  } else if (parser_token.is_unformatted || parser_token.is_content_unformatted) {
-    if (!parser_token.is_inline_element && !parser_token.is_unformatted) {
-      printer.print_newline(false);
-    }
-  } else if (parser_token.is_end_tag) { //this tag is a double tag so check for tag-ending
-    if ((parser_token.start_tag_token && parser_token.start_tag_token.multiline_content) ||
-      !(parser_token.is_inline_element ||
-        (last_tag_token.is_inline_element) ||
-        (last_token.type === TOKEN.TAG_CLOSE &&
-          parser_token.start_tag_token === last_tag_token) ||
-        (last_token.type === 'TK_CONTENT')
-      )) {
-      printer.print_newline(false);
-    }
-  } else { // it's a start-tag
-    parser_token.indent_content = !parser_token.custom_beautifier_name;
-
-    if (parser_token.tag_start_char === '<') {
-      if (parser_token.tag_name === 'html') {
-        parser_token.indent_content = this._options.indent_inner_html;
-      } else if (parser_token.tag_name === 'head') {
-        parser_token.indent_content = this._options.indent_head_inner_html;
-      } else if (parser_token.tag_name === 'body') {
-        parser_token.indent_content = this._options.indent_body_inner_html;
-      }
-    }
-
-    if (!parser_token.is_inline_element && last_token.type !== 'TK_CONTENT') {
-      if (parser_token.parent) {
-        parser_token.parent.multiline_content = true;
-      }
-      printer.print_newline(false);
-    }
-  }
-};
-
-//To be used for <p> tag special case:
-//var p_closers = ['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'];
-
-Beautifier.prototype._do_optional_end_element = function(parser_token) {
-  var result = null;
-  // NOTE: cases of "if there is no more content in the parent element"
-  // are handled automatically by the beautifier.
-  // It assumes parent or ancestor close tag closes all children.
-  // https://www.w3.org/TR/html5/syntax.html#optional-tags
-  if (parser_token.is_empty_element || !parser_token.is_start_tag || !parser_token.parent) {
-    return;
-
-  } else if (parser_token.tag_name === 'body') {
-    // A head element’s end tag may be omitted if the head element is not immediately followed by a space character or a comment.
-    result = result || this._tag_stack.try_pop('head');
-
-    //} else if (parser_token.tag_name === 'body') {
-    // DONE: A body element’s end tag may be omitted if the body element is not immediately followed by a comment.
-
-  } else if (parser_token.tag_name === 'li') {
-    // An li element’s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
-    result = result || this._tag_stack.try_pop('li', ['ol', 'ul']);
-
-  } else if (parser_token.tag_name === 'dd' || parser_token.tag_name === 'dt') {
-    // A dd element’s end tag may be omitted if the dd element is immediately followed by another dd element or a dt element, or if there is no more content in the parent element.
-    // A dt element’s end tag may be omitted if the dt element is immediately followed by another dt element or a dd element.
-    result = result || this._tag_stack.try_pop('dt', ['dl']);
-    result = result || this._tag_stack.try_pop('dd', ['dl']);
-
-    //} else if (p_closers.indexOf(parser_token.tag_name) !== -1) {
-    //TODO: THIS IS A BUG FARM. We are not putting this into 1.8.0 as it is likely to blow up.
-    //A p element’s end tag may be omitted if the p element is immediately followed by an address, article, aside, blockquote, details, div, dl, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, main, nav, ol, p, pre, section, table, or ul element, or if there is no more content in the parent element and the parent element is an HTML element that is not an a, audio, del, ins, map, noscript, or video element, or an autonomous custom element.
-    //result = result || this._tag_stack.try_pop('p', ['body']);
-
-  } else if (parser_token.tag_name === 'rp' || parser_token.tag_name === 'rt') {
-    // An rt element’s end tag may be omitted if the rt element is immediately followed by an rt or rp element, or if there is no more content in the parent element.
-    // An rp element’s end tag may be omitted if the rp element is immediately followed by an rt or rp element, or if there is no more content in the parent element.
-    result = result || this._tag_stack.try_pop('rt', ['ruby', 'rtc']);
-    result = result || this._tag_stack.try_pop('rp', ['ruby', 'rtc']);
-
-  } else if (parser_token.tag_name === 'optgroup') {
-    // An optgroup element’s end tag may be omitted if the optgroup element is immediately followed by another optgroup element, or if there is no more content in the parent element.
-    // An option element’s end tag may be omitted if the option element is immediately followed by another option element, or if it is immediately followed by an optgroup element, or if there is no more content in the parent element.
-    result = result || this._tag_stack.try_pop('optgroup', ['select']);
-    //result = result || this._tag_stack.try_pop('option', ['select']);
-
-  } else if (parser_token.tag_name === 'option') {
-    // An option element’s end tag may be omitted if the option element is immediately followed by another option element, or if it is immediately followed by an optgroup element, or if there is no more content in the parent element.
-    result = result || this._tag_stack.try_pop('option', ['select', 'datalist', 'optgroup']);
-
-  } else if (parser_token.tag_name === 'colgroup') {
-    // DONE: A colgroup element’s end tag may be omitted if the colgroup element is not immediately followed by a space character or a comment.
-    // A caption element's end tag may be ommitted if a colgroup, thead, tfoot, tbody, or tr element is started.
-    result = result || this._tag_stack.try_pop('caption', ['table']);
-
-  } else if (parser_token.tag_name === 'thead') {
-    // A colgroup element's end tag may be ommitted if a thead, tfoot, tbody, or tr element is started.
-    // A caption element's end tag may be ommitted if a colgroup, thead, tfoot, tbody, or tr element is started.
-    result = result || this._tag_stack.try_pop('caption', ['table']);
-    result = result || this._tag_stack.try_pop('colgroup', ['table']);
-
-    //} else if (parser_token.tag_name === 'caption') {
-    // DONE: A caption element’s end tag may be omitted if the caption element is not immediately followed by a space character or a comment.
-
-  } else if (parser_token.tag_name === 'tbody' || parser_token.tag_name === 'tfoot') {
-    // A thead element’s end tag may be omitted if the thead element is immediately followed by a tbody or tfoot element.
-    // A tbody element’s end tag may be omitted if the tbody element is immediately followed by a tbody or tfoot element, or if there is no more content in the parent element.
-    // A colgroup element's end tag may be ommitted if a thead, tfoot, tbody, or tr element is started.
-    // A caption element's end tag may be ommitted if a colgroup, thead, tfoot, tbody, or tr element is started.
-    result = result || this._tag_stack.try_pop('caption', ['table']);
-    result = result || this._tag_stack.try_pop('colgroup', ['table']);
-    result = result || this._tag_stack.try_pop('thead', ['table']);
-    result = result || this._tag_stack.try_pop('tbody', ['table']);
-
-    //} else if (parser_token.tag_name === 'tfoot') {
-    // DONE: A tfoot element’s end tag may be omitted if there is no more content in the parent element.
-
-  } else if (parser_token.tag_name === 'tr') {
-    // A tr element’s end tag may be omitted if the tr element is immediately followed by another tr element, or if there is no more content in the parent element.
-    // A colgroup element's end tag may be ommitted if a thead, tfoot, tbody, or tr element is started.
-    // A caption element's end tag may be ommitted if a colgroup, thead, tfoot, tbody, or tr element is started.
-    result = result || this._tag_stack.try_pop('caption', ['table']);
-    result = result || this._tag_stack.try_pop('colgroup', ['table']);
-    result = result || this._tag_stack.try_pop('tr', ['table', 'thead', 'tbody', 'tfoot']);
-
-  } else if (parser_token.tag_name === 'th' || parser_token.tag_name === 'td') {
-    // A td element’s end tag may be omitted if the td element is immediately followed by a td or th element, or if there is no more content in the parent element.
-    // A th element’s end tag may be omitted if the th element is immediately followed by a td or th element, or if there is no more content in the parent element.
-    result = result || this._tag_stack.try_pop('td', ['table', 'thead', 'tbody', 'tfoot', 'tr']);
-    result = result || this._tag_stack.try_pop('th', ['table', 'thead', 'tbody', 'tfoot', 'tr']);
-  }
-
-  // Start element omission not handled currently
-  // A head element’s start tag may be omitted if the element is empty, or if the first thing inside the head element is an element.
-  // A tbody element’s start tag may be omitted if the first thing inside the tbody element is a tr element, and if the element is not immediately preceded by a tbody, thead, or tfoot element whose end tag has been omitted. (It can’t be omitted if the element is empty.)
-  // A colgroup element’s start tag may be omitted if the first thing inside the colgroup element is a col element, and if the element is not immediately preceded by another colgroup element whose end tag has been omitted. (It can’t be omitted if the element is empty.)
-
-  // Fix up the parent of the parser token
-  parser_token.parent = this._tag_stack.get_parser_token();
-
-  return result;
-};
-
-module.exports.Beautifier = Beautifier;
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var BaseOptions = __webpack_require__(6).Options;
-
-function Options(options) {
-  BaseOptions.call(this, options, 'html');
-  if (this.templating.length === 1 && this.templating[0] === 'auto') {
-    this.templating = ['django', 'erb', 'handlebars', 'php'];
-  }
-
-  this.indent_inner_html = this._get_boolean('indent_inner_html');
-  this.indent_body_inner_html = this._get_boolean('indent_body_inner_html', true);
-  this.indent_head_inner_html = this._get_boolean('indent_head_inner_html', true);
-
-  this.indent_handlebars = this._get_boolean('indent_handlebars', true);
-  this.wrap_attributes = this._get_selection('wrap_attributes',
-    ['auto', 'force', 'force-aligned', 'force-expand-multiline', 'aligned-multiple', 'preserve', 'preserve-aligned']);
-  this.wrap_attributes_indent_size = this._get_number('wrap_attributes_indent_size', this.indent_size);
-  this.extra_liners = this._get_array('extra_liners', ['head', 'body', '/html']);
-
-  // Block vs inline elements
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements
-  // https://www.w3.org/TR/html5/dom.html#phrasing-content
-  this.inline = this._get_array('inline', [
-    'a', 'abbr', 'area', 'audio', 'b', 'bdi', 'bdo', 'br', 'button', 'canvas', 'cite',
-    'code', 'data', 'datalist', 'del', 'dfn', 'em', 'embed', 'i', 'iframe', 'img',
-    'input', 'ins', 'kbd', 'keygen', 'label', 'map', 'mark', 'math', 'meter', 'noscript',
-    'object', 'output', 'progress', 'q', 'ruby', 's', 'samp', /* 'script', */ 'select', 'small',
-    'span', 'strong', 'sub', 'sup', 'svg', 'template', 'textarea', 'time', 'u', 'var',
-    'video', 'wbr', 'text',
-    // obsolete inline tags
-    'acronym', 'big', 'strike', 'tt'
-  ]);
-  this.void_elements = this._get_array('void_elements', [
-    // HTLM void elements - aka self-closing tags - aka singletons
-    // https://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
-    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen',
-    'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr',
-    // NOTE: Optional tags are too complex for a simple list
-    // they are hard coded in _do_optional_end_element
-
-    // Doctype and xml elements
-    '!doctype', '?xml',
-
-    // obsolete tags
-    // basefont: https://www.computerhope.com/jargon/h/html-basefont-tag.htm
-    // isndex: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/isindex
-    'basefont', 'isindex'
-  ]);
-  this.unformatted = this._get_array('unformatted', []);
-  this.content_unformatted = this._get_array('content_unformatted', [
-    'pre', 'textarea'
-  ]);
-  this.unformatted_content_delimiter = this._get_characters('unformatted_content_delimiter');
-  this.indent_scripts = this._get_selection('indent_scripts', ['normal', 'keep', 'separate']);
-
-}
-Options.prototype = new BaseOptions();
-
-
-
-module.exports.Options = Options;
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*jshint node:true */
-/*
-
-  The MIT License (MIT)
-
-  Copyright (c) 2007-2018 Einar Lielmanis, Liam Newman, and contributors.
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/
-
-
-
-var BaseTokenizer = __webpack_require__(9).Tokenizer;
-var BASETOKEN = __webpack_require__(9).TOKEN;
-var Directives = __webpack_require__(13).Directives;
-var TemplatablePattern = __webpack_require__(14).TemplatablePattern;
-var Pattern = __webpack_require__(12).Pattern;
-
-var TOKEN = {
-  TAG_OPEN: 'TK_TAG_OPEN',
-  TAG_CLOSE: 'TK_TAG_CLOSE',
-  ATTRIBUTE: 'TK_ATTRIBUTE',
-  EQUALS: 'TK_EQUALS',
-  VALUE: 'TK_VALUE',
-  COMMENT: 'TK_COMMENT',
-  TEXT: 'TK_TEXT',
-  UNKNOWN: 'TK_UNKNOWN',
-  START: BASETOKEN.START,
-  RAW: BASETOKEN.RAW,
-  EOF: BASETOKEN.EOF
-};
-
-var directives_core = new Directives(/<\!--/, /-->/);
-
-var Tokenizer = function(input_string, options) {
-  BaseTokenizer.call(this, input_string, options);
-  this._current_tag_name = '';
-
-  // Words end at whitespace or when a tag starts
-  // if we are indenting handlebars, they are considered tags
-  var templatable_reader = new TemplatablePattern(this._input).read_options(this._options);
-  var pattern_reader = new Pattern(this._input);
-
-  this.__patterns = {
-    word: templatable_reader.until(/[\n\r\t <]/),
-    single_quote: templatable_reader.until_after(/'/),
-    double_quote: templatable_reader.until_after(/"/),
-    attribute: templatable_reader.until(/[\n\r\t =\/>]/),
-    element_name: templatable_reader.until(/[\n\r\t >\/]/),
-
-    handlebars_comment: pattern_reader.starting_with(/{{!--/).until_after(/--}}/),
-    handlebars: pattern_reader.starting_with(/{{/).until_after(/}}/),
-    handlebars_open: pattern_reader.until(/[\n\r\t }]/),
-    handlebars_raw_close: pattern_reader.until(/}}/),
-    comment: pattern_reader.starting_with(/<!--/).until_after(/-->/),
-    cdata: pattern_reader.starting_with(/<!\[CDATA\[/).until_after(/]]>/),
-    // https://en.wikipedia.org/wiki/Conditional_comment
-    conditional_comment: pattern_reader.starting_with(/<!\[/).until_after(/]>/),
-    processing: pattern_reader.starting_with(/<\?/).until_after(/\?>/)
-  };
-
-  if (this._options.indent_handlebars) {
-    this.__patterns.word = this.__patterns.word.exclude('handlebars');
-  }
-
-  this._unformatted_content_delimiter = null;
-
-  if (this._options.unformatted_content_delimiter) {
-    var literal_regexp = this._input.get_literal_regexp(this._options.unformatted_content_delimiter);
-    this.__patterns.unformatted_content_delimiter =
-      pattern_reader.matching(literal_regexp)
-      .until_after(literal_regexp);
-  }
-};
-Tokenizer.prototype = new BaseTokenizer();
-
-Tokenizer.prototype._is_comment = function(current_token) { // jshint unused:false
-  return false; //current_token.type === TOKEN.COMMENT || current_token.type === TOKEN.UNKNOWN;
-};
-
-Tokenizer.prototype._is_opening = function(current_token) {
-  return current_token.type === TOKEN.TAG_OPEN;
-};
-
-Tokenizer.prototype._is_closing = function(current_token, open_token) {
-  return current_token.type === TOKEN.TAG_CLOSE &&
-    (open_token && (
-      ((current_token.text === '>' || current_token.text === '/>') && open_token.text[0] === '<') ||
-      (current_token.text === '}}' && open_token.text[0] === '{' && open_token.text[1] === '{')));
-};
-
-Tokenizer.prototype._reset = function() {
-  this._current_tag_name = '';
-};
-
-Tokenizer.prototype._get_next_token = function(previous_token, open_token) { // jshint unused:false
-  var token = null;
-  this._readWhitespace();
-  var c = this._input.peek();
-
-  if (c === null) {
-    return this._create_token(TOKEN.EOF, '');
-  }
-
-  token = token || this._read_open_handlebars(c, open_token);
-  token = token || this._read_attribute(c, previous_token, open_token);
-  token = token || this._read_raw_content(c, previous_token, open_token);
-  token = token || this._read_close(c, open_token);
-  token = token || this._read_content_word(c);
-  token = token || this._read_comment_or_cdata(c);
-  token = token || this._read_processing(c);
-  token = token || this._read_open(c, open_token);
-  token = token || this._create_token(TOKEN.UNKNOWN, this._input.next());
-
-  return token;
-};
-
-Tokenizer.prototype._read_comment_or_cdata = function(c) { // jshint unused:false
-  var token = null;
-  var resulting_string = null;
-  var directives = null;
-
-  if (c === '<') {
-    var peek1 = this._input.peek(1);
-    // We treat all comments as literals, even more than preformatted tags
-    // we only look for the appropriate closing marker
-    if (peek1 === '!') {
-      resulting_string = this.__patterns.comment.read();
-
-      // only process directive on html comments
-      if (resulting_string) {
-        directives = directives_core.get_directives(resulting_string);
-        if (directives && directives.ignore === 'start') {
-          resulting_string += directives_core.readIgnored(this._input);
-        }
-      } else {
-        resulting_string = this.__patterns.cdata.read();
-      }
-    }
-
-    if (resulting_string) {
-      token = this._create_token(TOKEN.COMMENT, resulting_string);
-      token.directives = directives;
-    }
-  }
-
-  return token;
-};
-
-Tokenizer.prototype._read_processing = function(c) { // jshint unused:false
-  var token = null;
-  var resulting_string = null;
-  var directives = null;
-
-  if (c === '<') {
-    var peek1 = this._input.peek(1);
-    if (peek1 === '!' || peek1 === '?') {
-      resulting_string = this.__patterns.conditional_comment.read();
-      resulting_string = resulting_string || this.__patterns.processing.read();
-    }
-
-    if (resulting_string) {
-      token = this._create_token(TOKEN.COMMENT, resulting_string);
-      token.directives = directives;
-    }
-  }
-
-  return token;
-};
-
-Tokenizer.prototype._read_open = function(c, open_token) {
-  var resulting_string = null;
-  var token = null;
-  if (!open_token) {
-    if (c === '<') {
-
-      resulting_string = this._input.next();
-      if (this._input.peek() === '/') {
-        resulting_string += this._input.next();
-      }
-      resulting_string += this.__patterns.element_name.read();
-      token = this._create_token(TOKEN.TAG_OPEN, resulting_string);
-    }
-  }
-  return token;
-};
-
-Tokenizer.prototype._read_open_handlebars = function(c, open_token) {
-  var resulting_string = null;
-  var token = null;
-  if (!open_token) {
-    if (this._options.indent_handlebars && c === '{' && this._input.peek(1) === '{') {
-      if (this._input.peek(2) === '!') {
-        resulting_string = this.__patterns.handlebars_comment.read();
-        resulting_string = resulting_string || this.__patterns.handlebars.read();
-        token = this._create_token(TOKEN.COMMENT, resulting_string);
-      } else {
-        resulting_string = this.__patterns.handlebars_open.read();
-        token = this._create_token(TOKEN.TAG_OPEN, resulting_string);
-      }
-    }
-  }
-  return token;
-};
-
-
-Tokenizer.prototype._read_close = function(c, open_token) {
-  var resulting_string = null;
-  var token = null;
-  if (open_token) {
-    if (open_token.text[0] === '<' && (c === '>' || (c === '/' && this._input.peek(1) === '>'))) {
-      resulting_string = this._input.next();
-      if (c === '/') { //  for close tag "/>"
-        resulting_string += this._input.next();
-      }
-      token = this._create_token(TOKEN.TAG_CLOSE, resulting_string);
-    } else if (open_token.text[0] === '{' && c === '}' && this._input.peek(1) === '}') {
-      this._input.next();
-      this._input.next();
-      token = this._create_token(TOKEN.TAG_CLOSE, '}}');
-    }
-  }
-
-  return token;
-};
-
-Tokenizer.prototype._read_attribute = function(c, previous_token, open_token) {
-  var token = null;
-  var resulting_string = '';
-  if (open_token && open_token.text[0] === '<') {
-
-    if (c === '=') {
-      token = this._create_token(TOKEN.EQUALS, this._input.next());
-    } else if (c === '"' || c === "'") {
-      var content = this._input.next();
-      if (c === '"') {
-        content += this.__patterns.double_quote.read();
-      } else {
-        content += this.__patterns.single_quote.read();
-      }
-      token = this._create_token(TOKEN.VALUE, content);
-    } else {
-      resulting_string = this.__patterns.attribute.read();
-
-      if (resulting_string) {
-        if (previous_token.type === TOKEN.EQUALS) {
-          token = this._create_token(TOKEN.VALUE, resulting_string);
-        } else {
-          token = this._create_token(TOKEN.ATTRIBUTE, resulting_string);
-        }
-      }
-    }
-  }
-  return token;
-};
-
-Tokenizer.prototype._is_content_unformatted = function(tag_name) {
-  // void_elements have no content and so cannot have unformatted content
-  // script and style tags should always be read as unformatted content
-  // finally content_unformatted and unformatted element contents are unformatted
-  return this._options.void_elements.indexOf(tag_name) === -1 &&
-    (this._options.content_unformatted.indexOf(tag_name) !== -1 ||
-      this._options.unformatted.indexOf(tag_name) !== -1);
-};
-
-
-Tokenizer.prototype._read_raw_content = function(c, previous_token, open_token) { // jshint unused:false
-  var resulting_string = '';
-  if (open_token && open_token.text[0] === '{') {
-    resulting_string = this.__patterns.handlebars_raw_close.read();
-  } else if (previous_token.type === TOKEN.TAG_CLOSE && (previous_token.opened.text[0] === '<')) {
-    var tag_name = previous_token.opened.text.substr(1).toLowerCase();
-    if (tag_name === 'script' || tag_name === 'style') {
-      // Script and style tags are allowed to have comments wrapping their content
-      // or just have regular content.
-      var token = this._read_comment_or_cdata(c);
-      if (token) {
-        token.type = TOKEN.TEXT;
-        return token;
-      }
-      resulting_string = this._input.readUntil(new RegExp('</' + tag_name + '[\\n\\r\\t ]*?>', 'ig'));
-    } else if (this._is_content_unformatted(tag_name)) {
-      resulting_string = this._input.readUntil(new RegExp('</' + tag_name + '[\\n\\r\\t ]*?>', 'ig'));
-    }
-  }
-
-  if (resulting_string) {
-    return this._create_token(TOKEN.TEXT, resulting_string);
-  }
-
-  return null;
-};
-
-Tokenizer.prototype._read_content_word = function(c) {
-  var resulting_string = '';
-  if (this._options.unformatted_content_delimiter) {
-    if (c === this._options.unformatted_content_delimiter[0]) {
-      resulting_string = this.__patterns.unformatted_content_delimiter.read();
-    }
-  }
-
-  if (!resulting_string) {
-    resulting_string = this.__patterns.word.read();
-  }
-  if (resulting_string) {
-    return this._create_token(TOKEN.TEXT, resulting_string);
-  }
-};
-
-module.exports.Tokenizer = Tokenizer;
-module.exports.TOKEN = TOKEN;
-
-
-/***/ })
-/******/ ]);
-var style_html = legacy_beautify_html;
-/* Footer */
-if (true) {
-    // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, __webpack_require__(41), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(requireamd) {
-        var js_beautify = __webpack_require__(41);
-        var css_beautify = __webpack_require__(42);
-
-        return {
-            html_beautify: function(html_source, options) {
-                return style_html(html_source, options, js_beautify.js_beautify, css_beautify.css_beautify);
-            }
-        };
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-} else { var css_beautify, js_beautify; }
-
-}());
-
-
-/***/ }),
-/* 585 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58703,7 +49851,7 @@ exports.symbols = symbols;
 
 
 /***/ }),
-/* 586 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58863,7 +50011,7 @@ exports.hotkeys = hotkeys;
 
 
 /***/ }),
-/* 587 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59461,7 +50609,7 @@ exports.TableProcessor = TableProcessor;
 
 
 /***/ }),
-/* 588 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59597,7 +50745,7 @@ exports.tableKeyboardNavigation = tableKeyboardNavigation;
 
 
 /***/ }),
-/* 589 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60060,7 +51208,7 @@ exports.search = search;
 
 
 /***/ }),
-/* 590 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60160,7 +51308,7 @@ exports.sticky = sticky;
 
 
 /***/ }),
-/* 591 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60227,7 +51375,7 @@ exports.stat = stat;
 
 
 /***/ }),
-/* 592 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60412,7 +51560,7 @@ exports.xpath = xpath;
 
 
 /***/ }),
-/* 593 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60550,7 +51698,7 @@ exports.DragAndDropElement = DragAndDropElement;
 
 
 /***/ }),
-/* 594 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60722,7 +51870,7 @@ exports.DragAndDrop = DragAndDrop;
 
 
 /***/ }),
-/* 595 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60905,7 +52053,7 @@ exports.pasteStorage = pasteStorage;
 
 
 /***/ }),
-/* 596 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60919,612 +52067,612 @@ exports.pasteStorage = pasteStorage;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var about = __webpack_require__(597);
+var about = __webpack_require__(594);
 exports.about = about;
-var addcolumn = __webpack_require__(598);
+var addcolumn = __webpack_require__(595);
 exports.addcolumn = addcolumn;
-var addrow = __webpack_require__(599);
+var addrow = __webpack_require__(596);
 exports.addrow = addrow;
-var angle_down = __webpack_require__(600);
+var angle_down = __webpack_require__(597);
 exports.angle_down = angle_down;
-var angle_left = __webpack_require__(601);
+var angle_left = __webpack_require__(598);
 exports.angle_left = angle_left;
-var angle_right = __webpack_require__(602);
+var angle_right = __webpack_require__(599);
 exports.angle_right = angle_right;
-var angle_up = __webpack_require__(603);
+var angle_up = __webpack_require__(600);
 exports.angle_up = angle_up;
-var arrows_alt = __webpack_require__(604);
+var arrows_alt = __webpack_require__(601);
 exports.arrows_alt = arrows_alt;
-var arrows_h = __webpack_require__(605);
+var arrows_h = __webpack_require__(602);
 exports.arrows_h = arrows_h;
-var attachment = __webpack_require__(606);
+var attachment = __webpack_require__(603);
 exports.attachment = attachment;
-var bin = __webpack_require__(607);
+var bin = __webpack_require__(604);
 exports.bin = bin;
-var bold = __webpack_require__(608);
+var bold = __webpack_require__(605);
 exports.bold = bold;
-var brush = __webpack_require__(609);
+var brush = __webpack_require__(606);
 exports.brush = brush;
-var cancel = __webpack_require__(610);
+var cancel = __webpack_require__(607);
 exports.cancel = cancel;
-var center = __webpack_require__(611);
+var center = __webpack_require__(608);
 exports.center = center;
-var chain_broken = __webpack_require__(612);
+var chain_broken = __webpack_require__(609);
 exports.chain_broken = chain_broken;
-var check = __webpack_require__(613);
+var check = __webpack_require__(610);
 exports.check = check;
-var check_square = __webpack_require__(614);
+var check_square = __webpack_require__(611);
 exports.check_square = check_square;
-var copyformat = __webpack_require__(615);
+var copyformat = __webpack_require__(612);
 exports.copyformat = copyformat;
-var crop = __webpack_require__(616);
+var crop = __webpack_require__(613);
 exports.crop = crop;
-var cut = __webpack_require__(617);
+var cut = __webpack_require__(614);
 exports.cut = cut;
-var dedent = __webpack_require__(618);
+var dedent = __webpack_require__(615);
 exports.dedent = dedent;
-var dots = __webpack_require__(619);
+var dots = __webpack_require__(616);
 exports.dots = dots;
-var dropdown_arrow = __webpack_require__(620);
+var dropdown_arrow = __webpack_require__(617);
 exports.dropdown_arrow = dropdown_arrow;
-var enter = __webpack_require__(621);
+var enter = __webpack_require__(618);
 exports.enter = enter;
-var eraser = __webpack_require__(622);
+var eraser = __webpack_require__(619);
 exports.eraser = eraser;
-var eye = __webpack_require__(623);
+var eye = __webpack_require__(620);
 exports.eye = eye;
-var file = __webpack_require__(624);
+var file = __webpack_require__(621);
 exports.file = file;
-var folder = __webpack_require__(625);
+var folder = __webpack_require__(622);
 exports.folder = folder;
-var font = __webpack_require__(626);
+var font = __webpack_require__(623);
 exports.font = font;
-var fontsize = __webpack_require__(627);
+var fontsize = __webpack_require__(624);
 exports.fontsize = fontsize;
-var fullsize = __webpack_require__(628);
+var fullsize = __webpack_require__(625);
 exports.fullsize = fullsize;
-var hr = __webpack_require__(629);
+var hr = __webpack_require__(626);
 exports.hr = hr;
-var image = __webpack_require__(630);
+var image = __webpack_require__(627);
 exports.image = image;
-var indent = __webpack_require__(631);
+var indent = __webpack_require__(628);
 exports.indent = indent;
-var info_circle = __webpack_require__(632);
+var info_circle = __webpack_require__(629);
 exports.info_circle = info_circle;
-var italic = __webpack_require__(633);
+var italic = __webpack_require__(630);
 exports.italic = italic;
-var justify = __webpack_require__(634);
+var justify = __webpack_require__(631);
 exports.justify = justify;
-var left = __webpack_require__(635);
+var left = __webpack_require__(632);
 exports.left = left;
-var link = __webpack_require__(636);
+var link = __webpack_require__(633);
 exports.link = link;
-var lock = __webpack_require__(637);
+var lock = __webpack_require__(634);
 exports.lock = lock;
-var menu = __webpack_require__(638);
+var menu = __webpack_require__(635);
 exports.menu = menu;
-var merge = __webpack_require__(639);
+var merge = __webpack_require__(636);
 exports.merge = merge;
-var ol = __webpack_require__(640);
+var ol = __webpack_require__(637);
 exports.ol = ol;
-var omega = __webpack_require__(641);
+var omega = __webpack_require__(638);
 exports.omega = omega;
-var outdent = __webpack_require__(642);
+var outdent = __webpack_require__(639);
 exports.outdent = outdent;
-var palette = __webpack_require__(643);
+var palette = __webpack_require__(640);
 exports.palette = palette;
-var paragraph = __webpack_require__(644);
+var paragraph = __webpack_require__(641);
 exports.paragraph = paragraph;
-var pencil = __webpack_require__(645);
+var pencil = __webpack_require__(642);
 exports.pencil = pencil;
-var plus = __webpack_require__(646);
+var plus = __webpack_require__(643);
 exports.plus = plus;
-var print = __webpack_require__(647);
+var print = __webpack_require__(644);
 exports.print = print;
-var redo = __webpack_require__(648);
+var redo = __webpack_require__(645);
 exports.redo = redo;
-var resize = __webpack_require__(649);
+var resize = __webpack_require__(646);
 exports.resize = resize;
-var resizer = __webpack_require__(650);
+var resizer = __webpack_require__(647);
 exports.resizer = resizer;
-var right = __webpack_require__(651);
+var right = __webpack_require__(648);
 exports.right = right;
-var save = __webpack_require__(652);
+var save = __webpack_require__(649);
 exports.save = save;
-var select_all = __webpack_require__(653);
+var select_all = __webpack_require__(650);
 exports.select_all = select_all;
-var shrink = __webpack_require__(654);
+var shrink = __webpack_require__(651);
 exports.shrink = shrink;
-var source = __webpack_require__(655);
+var source = __webpack_require__(652);
 exports.source = source;
-var splitg = __webpack_require__(656);
+var splitg = __webpack_require__(653);
 exports.splitg = splitg;
-var splitv = __webpack_require__(657);
+var splitv = __webpack_require__(654);
 exports.splitv = splitv;
-var strikethrough = __webpack_require__(658);
+var strikethrough = __webpack_require__(655);
 exports.strikethrough = strikethrough;
-var subscript = __webpack_require__(659);
+var subscript = __webpack_require__(656);
 exports.subscript = subscript;
-var superscript = __webpack_require__(660);
+var superscript = __webpack_require__(657);
 exports.superscript = superscript;
-var table = __webpack_require__(661);
+var table = __webpack_require__(658);
 exports.table = table;
-var th = __webpack_require__(662);
+var th = __webpack_require__(659);
 exports.th = th;
-var th_list = __webpack_require__(663);
+var th_list = __webpack_require__(660);
 exports.th_list = th_list;
-var ul = __webpack_require__(664);
+var ul = __webpack_require__(661);
 exports.ul = ul;
-var underline = __webpack_require__(665);
+var underline = __webpack_require__(662);
 exports.underline = underline;
-var undo = __webpack_require__(666);
+var undo = __webpack_require__(663);
 exports.undo = undo;
-var unlink = __webpack_require__(667);
+var unlink = __webpack_require__(664);
 exports.unlink = unlink;
-var unlock = __webpack_require__(668);
+var unlock = __webpack_require__(665);
 exports.unlock = unlock;
-var update = __webpack_require__(669);
+var update = __webpack_require__(666);
 exports.update = update;
-var upload = __webpack_require__(670);
+var upload = __webpack_require__(667);
 exports.upload = upload;
-var valign = __webpack_require__(671);
+var valign = __webpack_require__(668);
 exports.valign = valign;
-var video = __webpack_require__(672);
+var video = __webpack_require__(669);
 exports.video = video;
 
 
 /***/ }),
-/* 597 */
+/* 594 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path d=\"M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z\"/>\n</svg>\n"
 
 /***/ }),
-/* 598 */
+/* 595 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 18.151 18.151\">\n<g>\n\t<g>\n\t\t<path d=\"M6.237,16.546H3.649V1.604h5.916v5.728c0.474-0.122,0.968-0.194,1.479-0.194\n\t\t\tc0.042,0,0.083,0.006,0.125,0.006V0H2.044v18.15h5.934C7.295,17.736,6.704,17.19,6.237,16.546z\"/>\n\t\t<path d=\"M11.169,8.275c-2.723,0-4.938,2.215-4.938,4.938s2.215,4.938,4.938,4.938s4.938-2.215,4.938-4.938\n\t\t\tS13.892,8.275,11.169,8.275z M11.169,16.81c-1.983,0-3.598-1.612-3.598-3.598c0-1.983,1.614-3.597,3.598-3.597\n\t\t\ts3.597,1.613,3.597,3.597C14.766,15.198,13.153,16.81,11.169,16.81z\"/>\n\t\t<polygon  points=\"11.792,11.073 10.502,11.073 10.502,12.578 9.03,12.578 9.03,13.868 10.502,13.868\n\t\t\t10.502,15.352 11.792,15.352 11.792,13.868 13.309,13.868 13.309,12.578 11.792,12.578 \t\t\"/>\n\t</g>\n</g>\n</svg>\n"
 
 /***/ }),
-/* 599 */
+/* 596 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 432 432\">\n<g>\n\t<g>\n\t\t<polygon points=\"203.688,96 0,96 0,144 155.688,144 \t\t\"/>\n\t\t<polygon points=\"155.719,288 0,288 0,336 203.719,336 \t\t\"/>\n\t\t<rect x=\"252\" y=\"96\"/>\n\t\t<rect/>\n\t\t<rect x=\"252\" y=\"288\"/>\n\t\t<rect y=\"384\"/>\n\t\t<path d=\"M97.844,230.125c-3.701-3.703-5.856-8.906-5.856-14.141s2.154-10.438,5.856-14.141l9.844-9.844H0v48h107.719\n\t\t\tL97.844,230.125z\"/>\n\t\t<polygon points=\"232,176 232,96 112,216 232,336 232,256 432,256 432,176 \t\t\"/>\n\t</g>\n</g>\n</svg>\n"
 
 /***/ }),
-/* 600 */
+/* 597 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg  viewBox=\"0 0 1792 1792\">\n    <path d=\"M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z\"/>\n</svg>"
 
 /***/ }),
-/* 601 */
+/* 598 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z\"/></svg>"
 
 /***/ }),
-/* 602 */
+/* 599 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z\"/></svg>"
 
 /***/ }),
-/* 603 */
+/* 600 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1395 1184q0 13-10 23l-50 50q-10 10-23 10t-23-10l-393-393-393 393q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l466 466q10 10 10 23z\"/></svg>"
 
 /***/ }),
-/* 604 */
+/* 601 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1411 541l-355 355 355 355 144-144q29-31 70-14 39 17 39 59v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l144-144-355-355-355 355 144 144q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l144 144 355-355-355-355-144 144q-19 19-45 19-12 0-24-5-40-17-40-59v-448q0-26 19-45t45-19h448q42 0 59 40 17 39-14 69l-144 144 355 355 355-355-144-144q-31-30-14-69 17-40 59-40h448q26 0 45 19t19 45v448q0 42-39 59-13 5-25 5-26 0-45-19z\"/></svg>"
 
 /***/ }),
-/* 605 */
+/* 602 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 896q0 26-19 45l-256 256q-19 19-45 19t-45-19-19-45v-128h-1024v128q0 26-19 45t-45 19-45-19l-256-256q-19-19-19-45t19-45l256-256q19-19 45-19t45 19 19 45v128h1024v-128q0-26 19-45t45-19 45 19l256 256q19 19 19 45z\"/></svg>"
 
 /***/ }),
-/* 606 */
+/* 603 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1596 1385q0 117-79 196t-196 79q-135 0-235-100l-777-776q-113-115-113-271 0-159 110-270t269-111q158 0 273 113l605 606q10 10 10 22 0 16-30.5 46.5t-46.5 30.5q-13 0-23-10l-606-607q-79-77-181-77-106 0-179 75t-73 181q0 105 76 181l776 777q63 63 145 63 64 0 106-42t42-106q0-82-63-145l-581-581q-26-24-60-24-29 0-48 19t-19 48q0 32 25 59l410 410q10 10 10 22 0 16-31 47t-47 31q-12 0-22-10l-410-410q-63-61-63-149 0-82 57-139t139-57q88 0 149 63l581 581q100 98 100 235z\"/></svg>"
 
 /***/ }),
-/* 607 */
+/* 604 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M704 1376v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm-544-992h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z\"/></svg>"
 
 /***/ }),
-/* 608 */
+/* 605 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M747 1521q74 32 140 32 376 0 376-335 0-114-41-180-27-44-61.5-74t-67.5-46.5-80.5-25-84-10.5-94.5-2q-73 0-101 10 0 53-.5 159t-.5 158q0 8-1 67.5t-.5 96.5 4.5 83.5 12 66.5zm-14-746q42 7 109 7 82 0 143-13t110-44.5 74.5-89.5 25.5-142q0-70-29-122.5t-79-82-108-43.5-124-14q-50 0-130 13 0 50 4 151t4 152q0 27-.5 80t-.5 79q0 46 1 69zm-541 889l2-94q15-4 85-16t106-27q7-12 12.5-27t8.5-33.5 5.5-32.5 3-37.5.5-34v-65.5q0-982-22-1025-4-8-22-14.5t-44.5-11-49.5-7-48.5-4.5-30.5-3l-4-83q98-2 340-11.5t373-9.5q23 0 68.5.5t67.5.5q70 0 136.5 13t128.5 42 108 71 74 104.5 28 137.5q0 52-16.5 95.5t-39 72-64.5 57.5-73 45-84 40q154 35 256.5 134t102.5 248q0 100-35 179.5t-93.5 130.5-138 85.5-163.5 48.5-176 14q-44 0-132-3t-132-3q-106 0-307 11t-231 12z\"/></svg>"
 
 /***/ }),
-/* 609 */
+/* 606 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M896 1152q0-36-20-69-1-1-15.5-22.5t-25.5-38-25-44-21-50.5q-4-16-21-16t-21 16q-7 23-21 50.5t-25 44-25.5 38-15.5 22.5q-20 33-20 69 0 53 37.5 90.5t90.5 37.5 90.5-37.5 37.5-90.5zm512-128q0 212-150 362t-362 150-362-150-150-362q0-145 81-275 6-9 62.5-90.5t101-151 99.5-178 83-201.5q9-30 34-47t51-17 51.5 17 33.5 47q28 93 83 201.5t99.5 178 101 151 62.5 90.5q81 127 81 275z\"/></svg>"
 
 /***/ }),
-/* 610 */
+/* 607 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 16 16\" style=\"stroke: #000000;\">\n    <g transform=\"translate(0,-1036.3622)\">\n        <path d=\"m 2,1050.3622 12,-12\"\n              style=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n        <path d=\"m 2,1038.3622 12,12\"\n              style=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n    </g>\n</svg>\n"
 
 /***/ }),
-/* 611 */
+/* 608 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h896q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-640q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h640q26 0 45 19t19 45z\"/></svg>"
 
 /***/ }),
-/* 612 */
+/* 609 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/></svg>"
 
 /***/ }),
-/* 613 */
+/* 610 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1472 930v318q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-10 10-23 10-3 0-9-2-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-254q0-13 9-22l64-64q10-10 23-10 6 0 12 3 20 8 20 29zm231-489l-814 814q-24 24-57 24t-57-24l-430-430q-24-24-24-57t24-57l110-110q24-24 57-24t57 24l263 263 647-647q24-24 57-24t57 24l110 110q24 24 24 57t-24 57z\"/></svg>"
 
 /***/ }),
-/* 614 */
+/* 611 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M813 1299l614-614q19-19 19-45t-19-45l-102-102q-19-19-45-19t-45 19l-467 467-211-211q-19-19-45-19t-45 19l-102 102q-19 19-19 45t19 45l358 358q19 19 45 19t45-19zm851-883v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z\"/></svg>"
 
 /***/ }),
-/* 615 */
+/* 612 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 16 16\"><path d=\"M16 9v-6h-3v-1c0-0.55-0.45-1-1-1h-11c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1h11c0.55 0 1-0.45 1-1v-1h2v4h-9v2h-0.5c-0.276 0-0.5 0.224-0.5 0.5v5c0 0.276 0.224 0.5 0.5 0.5h2c0.276 0 0.5-0.224 0.5-0.5v-5c0-0.276-0.224-0.5-0.5-0.5h-0.5v-1h9zM12 3h-11v-1h11v1z\"/></svg>\n"
 
 /***/ }),
-/* 616 */
+/* 613 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M621 1280h595v-595zm-45-45l595-595h-595v595zm1152 77v192q0 14-9 23t-23 9h-224v224q0 14-9 23t-23 9h-192q-14 0-23-9t-9-23v-224h-864q-14 0-23-9t-9-23v-864h-224q-14 0-23-9t-9-23v-192q0-14 9-23t23-9h224v-224q0-14 9-23t23-9h192q14 0 23 9t9 23v224h851l246-247q10-9 23-9t23 9q9 10 9 23t-9 23l-247 246v851h224q14 0 23 9t9 23z\"/>\n</svg>"
 
 /***/ }),
-/* 617 */
+/* 614 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M960 896q26 0 45 19t19 45-19 45-45 19-45-19-19-45 19-45 45-19zm300 64l507 398q28 20 25 56-5 35-35 51l-128 64q-13 7-29 7-17 0-31-8l-690-387-110 66q-8 4-12 5 14 49 10 97-7 77-56 147.5t-132 123.5q-132 84-277 84-136 0-222-78-90-84-79-207 7-76 56-147t131-124q132-84 278-84 83 0 151 31 9-13 22-22l122-73-122-73q-13-9-22-22-68 31-151 31-146 0-278-84-82-53-131-124t-56-147q-5-59 15.5-113t63.5-93q85-79 222-79 145 0 277 84 83 52 132 123t56 148q4 48-10 97 4 1 12 5l110 66 690-387q14-8 31-8 16 0 29 7l128 64q30 16 35 51 3 36-25 56zm-681-260q46-42 21-108t-106-117q-92-59-192-59-74 0-113 36-46 42-21 108t106 117q92 59 192 59 74 0 113-36zm-85 745q81-51 106-117t-21-108q-39-36-113-36-100 0-192 59-81 51-106 117t21 108q39 36 113 36 100 0 192-59zm178-613l96 58v-11q0-36 33-56l14-8-79-47-26 26q-3 3-10 11t-12 12q-2 2-4 3.5t-3 2.5zm224 224l96 32 736-576-128-64-768 431v113l-160 96 9 8q2 2 7 6 4 4 11 12t11 12l26 26zm704 416l128-64-520-408-177 138q-2 3-13 7z\"/>\n</svg>"
 
 /***/ }),
-/* 618 */
+/* 615 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/></svg>"
 
 /***/ }),
-/* 619 */
+/* 616 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg\n        enable-background=\"new 0 0 24 24\"\n        viewBox=\"0 0 24 24\"\n        xml:space=\"preserve\"\n\n       >\n    <circle cx=\"12\" cy=\"12\" r=\"2.2\"/>\n    <circle cx=\"12\" cy=\"5\" r=\"2.2\"/>\n    <circle cx=\"12\" cy=\"19\" r=\"2.2\"/>\n</svg>"
 
 /***/ }),
-/* 620 */
+/* 617 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 10 10\">\n\t<path\n\t\td=\"M.941 4.523a.75.75 0 1 1 1.06-1.06l3.006 3.005 3.005-3.005a.75.75 0 1 1 1.06 1.06l-3.549 3.55a.75.75 0 0 1-1.168-.136L.941 4.523z\"></path>\n</svg>\n"
 
 /***/ }),
-/* 621 */
+/* 618 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 128 128\" xml:space=\"preserve\">\n    <g>\n        <polygon points=\"112.4560547,23.3203125 112.4560547,75.8154297 31.4853516,75.8154297 31.4853516,61.953125     16.0131836,72.6357422 0.5410156,83.3164063 16.0131836,93.9990234 31.4853516,104.6796875 31.4853516,90.8183594     112.4560547,90.8183594 112.4560547,90.8339844 127.4589844,90.8339844 127.4589844,23.3203125   \"/>\n    </g>\n</svg>"
 
 /***/ }),
-/* 622 */
+/* 619 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M832 1408l336-384h-768l-336 384h768zm1013-1077q15 34 9.5 71.5t-30.5 65.5l-896 1024q-38 44-96 44h-768q-38 0-69.5-20.5t-47.5-54.5q-15-34-9.5-71.5t30.5-65.5l896-1024q38-44 96-44h768q38 0 69.5 20.5t47.5 54.5z\"/></svg>"
 
 /***/ }),
-/* 623 */
+/* 620 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z\"/></svg>"
 
 /***/ }),
-/* 624 */
+/* 621 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1152 512v-472q22 14 36 28l408 408q14 14 28 36h-472zm-128 32q0 40 28 68t68 28h544v1056q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1600q0-40 28-68t68-28h800v544z\"/>\n</svg>"
 
 /***/ }),
-/* 625 */
+/* 622 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1728 608v704q0 92-66 158t-158 66h-1216q-92 0-158-66t-66-158v-960q0-92 66-158t158-66h320q92 0 158 66t66 158v32h672q92 0 158 66t66 158z\"/></svg>"
 
 /***/ }),
-/* 626 */
+/* 623 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M789 559l-170 450q33 0 136.5 2t160.5 2q19 0 57-2-87-253-184-452zm-725 1105l2-79q23-7 56-12.5t57-10.5 49.5-14.5 44.5-29 31-50.5l237-616 280-724h128q8 14 11 21l205 480q33 78 106 257.5t114 274.5q15 34 58 144.5t72 168.5q20 45 35 57 19 15 88 29.5t84 20.5q6 38 6 57 0 4-.5 13t-.5 13q-63 0-190-8t-191-8q-76 0-215 7t-178 8q0-43 4-78l131-28q1 0 12.5-2.5t15.5-3.5 14.5-4.5 15-6.5 11-8 9-11 2.5-14q0-16-31-96.5t-72-177.5-42-100l-450-2q-26 58-76.5 195.5t-50.5 162.5q0 22 14 37.5t43.5 24.5 48.5 13.5 57 8.5 41 4q1 19 1 58 0 9-2 27-58 0-174.5-10t-174.5-10q-8 0-26.5 4t-21.5 4q-80 14-188 14z\"/></svg>"
 
 /***/ }),
-/* 627 */
+/* 624 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1744 1408q33 0 42 18.5t-11 44.5l-126 162q-20 26-49 26t-49-26l-126-162q-20-26-11-44.5t42-18.5h80v-1024h-80q-33 0-42-18.5t11-44.5l126-162q20-26 49-26t49 26l126 162q20 26 11 44.5t-42 18.5h-80v1024h80zm-1663-1279l54 27q12 5 211 5 44 0 132-2t132-2q36 0 107.5.5t107.5.5h293q6 0 21 .5t20.5 0 16-3 17.5-9 15-17.5l42-1q4 0 14 .5t14 .5q2 112 2 336 0 80-5 109-39 14-68 18-25-44-54-128-3-9-11-48t-14.5-73.5-7.5-35.5q-6-8-12-12.5t-15.5-6-13-2.5-18-.5-16.5.5q-17 0-66.5-.5t-74.5-.5-64 2-71 6q-9 81-8 136 0 94 2 388t2 455q0 16-2.5 71.5t0 91.5 12.5 69q40 21 124 42.5t120 37.5q5 40 5 50 0 14-3 29l-34 1q-76 2-218-8t-207-10q-50 0-151 9t-152 9q-3-51-3-52v-9q17-27 61.5-43t98.5-29 78-27q19-42 19-383 0-101-3-303t-3-303v-117q0-2 .5-15.5t.5-25-1-25.5-3-24-5-14q-11-12-162-12-33 0-93 12t-80 26q-19 13-34 72.5t-31.5 111-42.5 53.5q-42-26-56-44v-383z\"/></svg>"
 
 /***/ }),
-/* 628 */
+/* 625 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 24 24\" >\n\t<path d=\"M22,20.6L3.4,2H8V0H0v8h2V3.4L20.6,22H16v2h8v-8h-2V20.6z M16,0v2h4.7l-6.3,6.3l1.4,1.4L22,3.5V8h2V0H16z   M8.3,14.3L2,20.6V16H0v8h8v-2H3.5l6.3-6.3L8.3,14.3z\"/>\n</svg>"
 
 /***/ }),
-/* 629 */
+/* 626 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1600 736v192q0 40-28 68t-68 28h-1216q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h1216q40 0 68 28t28 68z\"/></svg>"
 
 /***/ }),
-/* 630 */
+/* 627 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M576 576q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1024 384v448h-1408v-192l320-320 160 160 512-512zm96-704h-1600q-13 0-22.5 9.5t-9.5 22.5v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5v-1216q0-13-9.5-22.5t-22.5-9.5zm160 32v1216q0 66-47 113t-113 47h-1600q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1600q66 0 113 47t47 113z\"/></svg>"
 
 /***/ }),
-/* 631 */
+/* 628 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M352 832q0 14-9 23l-288 288q-9 9-23 9-13 0-22.5-9.5t-9.5-22.5v-576q0-13 9.5-22.5t22.5-9.5q14 0 23 9l288 288q9 9 9 23zm1440 480v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
 
 /***/ }),
-/* 632 */
+/* 629 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1152 1376v-160q0-14-9-23t-23-9h-96v-512q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v160q0 14 9 23t23 9h96v320h-96q-14 0-23 9t-9 23v160q0 14 9 23t23 9h448q14 0 23-9t9-23zm-128-896v-160q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v160q0 14 9 23t23 9h192q14 0 23-9t9-23zm640 416q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z\"/></svg>"
 
 /***/ }),
-/* 633 */
+/* 630 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 1662l17-85q6-2 81.5-21.5t111.5-37.5q28-35 41-101 1-7 62-289t114-543.5 52-296.5v-25q-24-13-54.5-18.5t-69.5-8-58-5.5l19-103q33 2 120 6.5t149.5 7 120.5 2.5q48 0 98.5-2.5t121-7 98.5-6.5q-5 39-19 89-30 10-101.5 28.5t-108.5 33.5q-8 19-14 42.5t-9 40-7.5 45.5-6.5 42q-27 148-87.5 419.5t-77.5 355.5q-2 9-13 58t-20 90-16 83.5-6 57.5l1 18q17 4 185 31-3 44-16 99-11 0-32.5 1.5t-32.5 1.5q-29 0-87-10t-86-10q-138-2-206-2-51 0-143 9t-121 11z\"/></svg>"
 
 /***/ }),
-/* 634 */
+/* 631 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45z\"/></svg>"
 
 /***/ }),
-/* 635 */
+/* 632 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/></svg>"
 
 /***/ }),
-/* 636 */
+/* 633 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z\"/></svg>"
 
 /***/ }),
-/* 637 */
+/* 634 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M640 768h512v-192q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-192q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z\"/></svg>"
 
 /***/ }),
-/* 638 */
+/* 635 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z\"/></svg>"
 
 /***/ }),
-/* 639 */
+/* 636 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg\n     viewBox=\"0 0 312 312\">\n    <g transform=\"translate(0.000000,312.000000) scale(0.100000,-0.100000)\" stroke=\"none\">\n        <path d=\"M50 3109 c0 -7 -11 -22 -25 -35 l-25 -23 0 -961 0 -961 32 -29 32\n-30 501 -2 500 -3 3 -502 2 -502 31 -30 31 -31 958 0 958 0 23 25 c13 13 30\n25 37 25 9 0 12 199 12 960 0 686 -3 960 -11 960 -6 0 -24 12 -40 28 l-29 27\n-503 5 -502 5 -5 502 -5 503 -28 29 c-15 16 -27 34 -27 40 0 8 -274 11 -960\n11 -710 0 -960 -3 -960 -11z m1738 -698 l2 -453 -40 -40 c-22 -22 -40 -43 -40\n-47 0 -4 36 -42 79 -85 88 -87 82 -87 141 -23 l26 27 455 -2 454 -3 0 -775 0\n-775 -775 0 -775 0 -3 450 -2 449 47 48 47 48 -82 80 c-44 44 -84 80 -87 80\n-3 0 -25 -18 -48 -40 l-41 -40 -456 2 -455 3 -3 765 c-1 421 0 771 3 778 3 10\n164 12 777 10 l773 -3 3 -454z\"/>\n        <path d=\"M607 2492 c-42 -42 -77 -82 -77 -87 0 -6 86 -96 190 -200 105 -104\n190 -197 190 -205 0 -8 -41 -56 -92 -107 -65 -65 -87 -94 -77 -98 8 -3 138 -4\n289 -3 l275 3 3 275 c1 151 0 281 -3 289 -4 10 -35 -14 -103 -82 -54 -53 -103\n-97 -109 -97 -7 0 -99 88 -206 195 -107 107 -196 195 -198 195 -3 0 -39 -35\n-82 -78z\"/>\n        <path d=\"M1470 1639 c-47 -49 -87 -91 -89 -94 -5 -6 149 -165 160 -165 9 0\n189 179 189 188 0 12 -154 162 -165 161 -6 0 -48 -41 -95 -90z\"/>\n        <path d=\"M1797 1303 c-9 -8 -9 -568 0 -576 4 -4 50 36 103 88 54 52 101 95\n106 95 5 0 95 -85 199 -190 104 -104 194 -190 200 -190 6 0 46 36 90 80 l79\n79 -197 196 c-108 108 -197 199 -197 203 0 4 45 52 99 106 55 55 98 103 95\n108 -6 10 -568 11 -577 1z\"/>\n    </g>\n</svg>\n"
 
 /***/ }),
-/* 640 */
+/* 637 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg role=\"img\" viewBox=\"0 0 1792 1792\">\n    <path d=\"M381 1620q0 80-54.5 126t-135.5 46q-106 0-172-66l57-88q49 45 106 45 29 0 50.5-14.5t21.5-42.5q0-64-105-56l-26-56q8-10 32.5-43.5t42.5-54 37-38.5v-1q-16 0-48.5 1t-48.5 1v53h-106v-152h333v88l-95 115q51 12 81 49t30 88zm2-627v159h-362q-6-36-6-54 0-51 23.5-93t56.5-68 66-47.5 56.5-43.5 23.5-45q0-25-14.5-38.5t-39.5-13.5q-46 0-81 58l-85-59q24-51 71.5-79.5t105.5-28.5q73 0 123 41.5t50 112.5q0 50-34 91.5t-75 64.5-75.5 50.5-35.5 52.5h127v-60h105zm1409 319v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm-1408-899v99h-335v-99h107q0-41 .5-122t.5-121v-12h-2q-8 17-50 54l-71-76 136-127h106v404h108zm1408 387v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
 
 /***/ }),
-/* 641 */
+/* 638 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 270 270\">\n\t<path d=\"m240.443652,220.45085l-47.410809,0l0,-10.342138c13.89973,-8.43655 25.752896,-19.844464 34.686646,-33.469923c11.445525,-17.455846 17.496072,-37.709239 17.496072,-58.570077c0,-59.589197 -49.208516,-108.068714 -109.693558,-108.068714s-109.69263,48.479517 -109.69263,108.069628c0,20.860839 6.050547,41.113316 17.497001,58.570077c8.93375,13.625459 20.787845,25.032458 34.686646,33.469008l0,10.342138l-47.412666,0c-10.256959,0 -18.571354,8.191376 -18.571354,18.296574c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.98402,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574l0,-39.496814c0,-7.073455 -4.137698,-13.51202 -10.626529,-16.537358c-25.24497,-11.772016 -41.557118,-37.145704 -41.557118,-64.643625c0,-39.411735 32.545369,-71.476481 72.549922,-71.476481c40.004553,0 72.550851,32.064746 72.550851,71.476481c0,27.497006 -16.312149,52.87161 -41.557118,64.643625c-6.487902,3.026253 -10.6256,9.464818 -10.6256,16.537358l0,39.496814c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.982163,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574c0,-10.105198 -8.314395,-18.296574 -18.571354,-18.296574z\"/>\n</svg>"
 
 /***/ }),
-/* 642 */
+/* 639 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
 
 /***/ }),
-/* 643 */
+/* 640 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg x=\"0px\" y=\"0px\" viewBox=\"0 0 459 459\">\n<g>\n\t<g>\n\t\t<path d=\"M229.5,0C102,0,0,102,0,229.5S102,459,229.5,459c20.4,0,38.25-17.85,38.25-38.25c0-10.2-2.55-17.85-10.2-25.5\n\t\t\tc-5.1-7.65-10.2-15.3-10.2-25.5c0-20.4,17.851-38.25,38.25-38.25h45.9c71.4,0,127.5-56.1,127.5-127.5C459,91.8,357,0,229.5,0z\n\t\t\t M89.25,229.5c-20.4,0-38.25-17.85-38.25-38.25S68.85,153,89.25,153s38.25,17.85,38.25,38.25S109.65,229.5,89.25,229.5z\n\t\t\t M165.75,127.5c-20.4,0-38.25-17.85-38.25-38.25S145.35,51,165.75,51S204,68.85,204,89.25S186.15,127.5,165.75,127.5z\n\t\t\t M293.25,127.5c-20.4,0-38.25-17.85-38.25-38.25S272.85,51,293.25,51s38.25,17.85,38.25,38.25S313.65,127.5,293.25,127.5z\n\t\t\t M369.75,229.5c-20.4,0-38.25-17.85-38.25-38.25S349.35,153,369.75,153S408,170.85,408,191.25S390.15,229.5,369.75,229.5z\"\n\t\t/>\n\t</g>\n</g>\n</svg>\n"
 
 /***/ }),
-/* 644 */
+/* 641 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1534 189v73q0 29-18.5 61t-42.5 32q-50 0-54 1-26 6-32 31-3 11-3 64v1152q0 25-18 43t-43 18h-108q-25 0-43-18t-18-43v-1218h-143v1218q0 25-17.5 43t-43.5 18h-108q-26 0-43.5-18t-17.5-43v-496q-147-12-245-59-126-58-192-179-64-117-64-259 0-166 88-286 88-118 209-159 111-37 417-37h479q25 0 43 18t18 43z\"/></svg>"
 
 /***/ }),
-/* 645 */
+/* 642 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z\"/></svg>"
 
 /***/ }),
-/* 646 */
+/* 643 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1600 736v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z\"/></svg>"
 
 /***/ }),
-/* 647 */
+/* 644 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M448 1536h896v-256h-896v256zm0-640h896v-384h-160q-40 0-68-28t-28-68v-160h-640v640zm1152 64q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128 0v416q0 13-9.5 22.5t-22.5 9.5h-224v160q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-160h-224q-13 0-22.5-9.5t-9.5-22.5v-416q0-79 56.5-135.5t135.5-56.5h64v-544q0-40 28-68t68-28h672q40 0 88 20t76 48l152 152q28 28 48 76t20 88v256h64q79 0 135.5 56.5t56.5 135.5z\"/>\n</svg>"
 
 /***/ }),
-/* 648 */
+/* 645 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1664 256v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l138-138q-148-137-349-137-104 0-198.5 40.5t-163.5 109.5-109.5 163.5-40.5 198.5 40.5 198.5 109.5 163.5 163.5 109.5 198.5 40.5q119 0 225-52t179-147q7-10 23-12 14 0 25 9l137 138q9 8 9.5 20.5t-7.5 22.5q-109 132-264 204.5t-327 72.5q-156 0-298-61t-245-164-164-245-61-298 61-298 164-245 245-164 298-61q147 0 284.5 55.5t244.5 156.5l130-129q29-31 70-14 39 17 39 59z\"/>\n</svg>"
 
 /***/ }),
-/* 649 */
+/* 646 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 24 24\"\n    >\n    <g>\n        <g transform=\"translate(-251.000000, -443.000000)\">\n            <g transform=\"translate(215.000000, 119.000000)\"/>\n            <path d=\"M252,448 L256,448 L256,444 L252,444 L252,448 Z M257,448 L269,448 L269,446 L257,446 L257,448 Z M257,464 L269,464 L269,462 L257,462 L257,464 Z M270,444 L270,448 L274,448 L274,444 L270,444 Z M252,462 L252,466 L256,466 L256,462 L252,462 Z M270,462 L270,466 L274,466 L274,462 L270,462 Z M254,461 L256,461 L256,449 L254,449 L254,461 Z M270,461 L272,461 L272,449 L270,449 L270,461 Z\"/>\n        </g>\n    </g>\n</svg>"
 
 /***/ }),
-/* 650 */
+/* 647 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M844 472q0 60-19 113.5t-63 92.5-105 39q-76 0-138-57.5t-92-135.5-30-151q0-60 19-113.5t63-92.5 105-39q77 0 138.5 57.5t91.5 135 30 151.5zm-342 483q0 80-42 139t-119 59q-76 0-141.5-55.5t-100.5-133.5-35-152q0-80 42-139.5t119-59.5q76 0 141.5 55.5t100.5 134 35 152.5zm394-27q118 0 255 97.5t229 237 92 254.5q0 46-17 76.5t-48.5 45-64.5 20-76 5.5q-68 0-187.5-45t-182.5-45q-66 0-192.5 44.5t-200.5 44.5q-183 0-183-146 0-86 56-191.5t139.5-192.5 187.5-146 193-59zm239-211q-61 0-105-39t-63-92.5-19-113.5q0-74 30-151.5t91.5-135 138.5-57.5q61 0 105 39t63 92.5 19 113.5q0 73-30 151t-92 135.5-138 57.5zm432-104q77 0 119 59.5t42 139.5q0 74-35 152t-100.5 133.5-141.5 55.5q-77 0-119-59t-42-139q0-74 35-152.5t100.5-134 141.5-55.5z\"/>\n</svg>"
 
 /***/ }),
-/* 651 */
+/* 648 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/>\n</svg>"
 
 /***/ }),
-/* 652 */
+/* 649 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M512 1536h768v-384h-768v384zm896 0h128v-896q0-14-10-38.5t-20-34.5l-281-281q-10-10-34-20t-39-10v416q0 40-28 68t-68 28h-576q-40 0-68-28t-28-68v-416h-128v1280h128v-416q0-40 28-68t68-28h832q40 0 68 28t28 68v416zm-384-928v-320q0-13-9.5-22.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 22.5v320q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5zm640 32v928q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1344q0-40 28-68t68-28h928q40 0 88 20t76 48l280 280q28 28 48 76t20 88z\"/>\n</svg>"
 
 /***/ }),
-/* 653 */
+/* 650 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 18 18\">\n    <g fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n        <g transform=\"translate(-381.000000, -381.000000)\">\n            <g transform=\"translate(381.000000, 381.000000)\">\n                <path d=\"M0,2 L2,2 L2,0 C0.9,0 0,0.9 0,2 L0,2 Z M0,10 L2,10 L2,8 L0,8 L0,10 L0,10 Z M4,18 L6,18 L6,16 L4,16 L4,18 L4,18 Z M0,6 L2,6 L2,4 L0,4 L0,6 L0,6 Z M10,0 L8,0 L8,2 L10,2 L10,0 L10,0 Z M16,0 L16,2 L18,2 C18,0.9 17.1,0 16,0 L16,0 Z M2,18 L2,16 L0,16 C0,17.1 0.9,18 2,18 L2,18 Z M0,14 L2,14 L2,12 L0,12 L0,14 L0,14 Z M6,0 L4,0 L4,2 L6,2 L6,0 L6,0 Z M8,18 L10,18 L10,16 L8,16 L8,18 L8,18 Z M16,10 L18,10 L18,8 L16,8 L16,10 L16,10 Z M16,18 C17.1,18 18,17.1 18,16 L16,16 L16,18 L16,18 Z M16,6 L18,6 L18,4 L16,4 L16,6 L16,6 Z M16,14 L18,14 L18,12 L16,12 L16,14 L16,14 Z M12,18 L14,18 L14,16 L12,16 L12,18 L12,18 Z M12,2 L14,2 L14,0 L12,0 L12,2 L12,2 Z M4,14 L14,14 L14,4 L4,4 L4,14 L4,14 Z M6,6 L12,6 L12,12 L6,12 L6,6 L6,6 Z\"/>\n            </g>\n        </g>\n    </g>\n</svg>"
 
 /***/ }),
-/* 654 */
+/* 651 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M896 960v448q0 26-19 45t-45 19-45-19l-144-144-332 332q-10 10-23 10t-23-10l-114-114q-10-10-10-23t10-23l332-332-144-144q-19-19-19-45t19-45 45-19h448q26 0 45 19t19 45zm755-672q0 13-10 23l-332 332 144 144q19 19 19 45t-19 45-45 19h-448q-26 0-45-19t-19-45v-448q0-26 19-45t45-19 45 19l144 144 332-332q10-10 23-10t23 10l114 114q10 10 10 23z\"/>\n</svg>"
 
 /***/ }),
-/* 655 */
+/* 652 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M553 1399l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23t-10 23l-393 393 393 393q10 10 10 23t-10 23zm591-1067l-373 1291q-4 13-15.5 19.5t-23.5 2.5l-62-17q-13-4-19.5-15.5t-2.5-24.5l373-1291q4-13 15.5-19.5t23.5-2.5l62 17q13 4 19.5 15.5t2.5 24.5zm657 651l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23t-10 23z\"/>\n</svg>"
 
 /***/ }),
-/* 656 */
+/* 653 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 48 48\">\n    <path d=\"M6 42h4v-4h-4v4zm4-28h-4v4h4v-4zm-4 20h4v-4h-4v4zm8 8h4v-4h-4v4zm-4-36h-4v4h4v-4zm8 0h-4v4h4v-4zm16 0h-4v4h4v-4zm-8 8h-4v4h4v-4zm0-8h-4v4h4v-4zm12 28h4v-4h-4v4zm-16 8h4v-4h-4v4zm-16-16h36v-4h-36v4zm32-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-16 16h4v-4h-4v4zm8 8h4v-4h-4v4zm8 0h4v-4h-4v4z\"/><path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>"
 
 /***/ }),
-/* 657 */
+/* 654 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 48 48\">\n    <path d=\"M6 18h4v-4h-4v4zm0-8h4v-4h-4v4zm8 32h4v-4h-4v4zm0-16h4v-4h-4v4zm-8 0h4v-4h-4v4zm0 16h4v-4h-4v4zm0-8h4v-4h-4v4zm8-24h4v-4h-4v4zm24 24h4v-4h-4v4zm-16 8h4v-36h-4v36zm16 0h4v-4h-4v4zm0-16h4v-4h-4v4zm0-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-8-8h4v-4h-4v4zm0 32h4v-4h-4v4zm0-16h4v-4h-4v4z\"/>\n    <path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>"
 
 /***/ }),
-/* 658 */
+/* 655 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1760 896q14 0 23 9t9 23v64q0 14-9 23t-23 9h-1728q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h1728zm-1277-64q-28-35-51-80-48-97-48-188 0-181 134-309 133-127 393-127 50 0 167 19 66 12 177 48 10 38 21 118 14 123 14 183 0 18-5 45l-12 3-84-6-14-2q-50-149-103-205-88-91-210-91-114 0-182 59-67 58-67 146 0 73 66 140t279 129q69 20 173 66 58 28 95 52h-743zm507 256h411q7 39 7 92 0 111-41 212-23 55-71 104-37 35-109 81-80 48-153 66-80 21-203 21-114 0-195-23l-140-40q-57-16-72-28-8-8-8-22v-13q0-108-2-156-1-30 0-68l2-37v-44l102-2q15 34 30 71t22.5 56 12.5 27q35 57 80 94 43 36 105 57 59 22 132 22 64 0 139-27 77-26 122-86 47-61 47-129 0-84-81-157-34-29-137-71z\"/></svg>"
 
 /***/ }),
-/* 659 */
+/* 656 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm639 217v206h-514l-4-27q-3-45-3-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 80-65 188-65 110 0 178 59.5t68 158.5q0 66-34.5 118.5t-84 86-99.5 62.5-87 63-41 73h232v-80h126z\"/>\n</svg>"
 
 /***/ }),
-/* 660 */
+/* 657 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm637-679v206h-514l-3-27q-4-28-4-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 83-65 188-65 110 0 178 59.5t68 158.5q0 56-24.5 103t-62 76.5-81.5 58.5-82 50.5-65.5 51.5-30.5 63h232v-80h126z\"/>\n</svg>"
 
 /***/ }),
-/* 661 */
+/* 658 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z\"/></svg>"
 
 /***/ }),
-/* 662 */
+/* 659 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68z\"/></svg>"
 
 /***/ }),
-/* 663 */
+/* 660 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm-1280-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68z\"/></svg>"
 
 /***/ }),
-/* 664 */
+/* 661 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 1408q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm0-512q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm-1408-928q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/></svg>"
 
 /***/ }),
-/* 665 */
+/* 662 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M176 223q-37-2-45-4l-3-88q13-1 40-1 60 0 112 4 132 7 166 7 86 0 168-3 116-4 146-5 56 0 86-2l-1 14 2 64v9q-60 9-124 9-60 0-79 25-13 14-13 132 0 13 .5 32.5t.5 25.5l1 229 14 280q6 124 51 202 35 59 96 92 88 47 177 47 104 0 191-28 56-18 99-51 48-36 65-64 36-56 53-114 21-73 21-229 0-79-3.5-128t-11-122.5-13.5-159.5l-4-59q-5-67-24-88-34-35-77-34l-100 2-14-3 2-86h84l205 10q76 3 196-10l18 2q6 38 6 51 0 7-4 31-45 12-84 13-73 11-79 17-15 15-15 41 0 7 1.5 27t1.5 31q8 19 22 396 6 195-15 304-15 76-41 122-38 65-112 123-75 57-182 89-109 33-255 33-167 0-284-46-119-47-179-122-61-76-83-195-16-80-16-237v-333q0-188-17-213-25-36-147-39zm1488 1409v-64q0-14-9-23t-23-9h-1472q-14 0-23 9t-9 23v64q0 14 9 23t23 9h1472q14 0 23-9t9-23z\"/></svg>"
 
 /***/ }),
-/* 666 */
+/* 663 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 896q0 156-61 298t-164 245-245 164-298 61q-172 0-327-72.5t-264-204.5q-7-10-6.5-22.5t8.5-20.5l137-138q10-9 25-9 16 2 23 12 73 95 179 147t225 52q104 0 198.5-40.5t163.5-109.5 109.5-163.5 40.5-198.5-40.5-198.5-109.5-163.5-163.5-109.5-198.5-40.5q-98 0-188 35.5t-160 101.5l137 138q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l130 129q107-101 244.5-156.5t284.5-55.5q156 0 298 61t245 164 164 245 61 298z\"/></svg>"
 
 /***/ }),
-/* 667 */
+/* 664 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/></svg>"
 
 /***/ }),
-/* 668 */
+/* 665 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1728 576v256q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45v-256q0-106-75-181t-181-75-181 75-75 181v192h96q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h672v-192q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5z\"/></svg>"
 
 /***/ }),
-/* 669 */
+/* 666 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1639 1056q0 5-1 7-64 268-268 434.5t-478 166.5q-146 0-282.5-55t-243.5-157l-129 129q-19 19-45 19t-45-19-19-45v-448q0-26 19-45t45-19h448q26 0 45 19t19 45-19 45l-137 137q71 66 161 102t187 36q134 0 250-65t186-179q11-17 53-117 8-23 30-23h192q13 0 22.5 9.5t9.5 22.5zm25-800v448q0 26-19 45t-45 19h-448q-26 0-45-19t-19-45 19-45l138-138q-148-137-349-137-134 0-250 65t-186 179q-11 17-53 117-8 23-30 23h-199q-13 0-22.5-9.5t-9.5-22.5v-7q65-268 270-434.5t480-166.5q146 0 284 55.5t245 156.5l130-129q19-19 45-19t45 19 19 45z\"/></svg>"
 
 /***/ }),
-/* 670 */
+/* 667 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z\"/></svg>"
 
 /***/ }),
-/* 671 */
+/* 668 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1216 320q0 26-19 45t-45 19h-128v1024h128q26 0 45 19t19 45-19 45l-256 256q-19 19-45 19t-45-19l-256-256q-19-19-19-45t19-45 45-19h128v-1024h-128q-26 0-45-19t-19-45 19-45l256-256q19-19 45-19t45 19l256 256q19 19 19 45z\"/></svg>"
 
 /***/ }),
-/* 672 */
+/* 669 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 352v1088q0 42-39 59-13 5-25 5-27 0-45-19l-403-403v166q0 119-84.5 203.5t-203.5 84.5h-704q-119 0-203.5-84.5t-84.5-203.5v-704q0-119 84.5-203.5t203.5-84.5h704q119 0 203.5 84.5t84.5 203.5v165l403-402q18-19 45-19 12 0 25 5 39 17 39 59z\"/></svg>"

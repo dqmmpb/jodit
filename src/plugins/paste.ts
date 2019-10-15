@@ -443,16 +443,6 @@ export function paste(editor: IJodit) {
 									(agree: boolean | number) => {
 										if (agree === true) {
 											html = applyStyles(html);
-
-											if (
-												editor.options.beautifyHTML &&
-												(editor.ownerWindow as any)
-													.html_beautify
-											) {
-												html = (editor.ownerWindow as any).html_beautify(
-													html
-												);
-											}
 										}
 
 										if (agree === false) {

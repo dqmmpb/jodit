@@ -25,9 +25,6 @@ import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/webpack-resolver';
 import 'ace-builds/src-noconflict/theme-idle_fingers';
 import 'ace-builds/src-noconflict/mode-html';
-import 'js-beautify/js/lib/beautify';
-import 'js-beautify/js/lib/beautify-css';
-import 'js-beautify/js/lib/beautify-html';
 
 declare module '../Config' {
 	interface Config {
@@ -46,15 +43,6 @@ declare module '../Config' {
 			wrap: string | boolean | number;
 			highlightActiveLine: boolean;
 		};
-		/**
-		 * Beautify HTML then it possible
-		 */
-		beautifyHTML: boolean;
-
-		/**
-		 * CDN URLs for HTML Beautifier
-		 */
-		beautifyHTMLCDNUrlsJS: string[];
 
 		/**
 		 * CDN URLs for ACE editor
@@ -63,7 +51,6 @@ declare module '../Config' {
 	}
 }
 
-Config.prototype.beautifyHTML = true;
 Config.prototype.useAceEditor = true;
 
 Config.prototype.sourceEditorNativeOptions = {
@@ -94,11 +81,6 @@ Config.prototype.sourceEditorNativeOptions = {
 
 Config.prototype.sourceEditorCDNUrlsJS = [
 	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
-];
-
-Config.prototype.beautifyHTMLCDNUrlsJS = [
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
 ];
 
 Config.prototype.controls.source = {
@@ -372,13 +354,6 @@ export class source extends Plugin {
 				);
 			}
 
-			if (
-				(this.jodit.ownerWindow as any).html_beautify &&
-				this.jodit.options.beautifyHTML
-			) {
-				value = (this.jodit.ownerWindow as any).html_beautify(value);
-			}
-
 			selectionStart = value.indexOf(this.tempMarkerStart);
 			selectionEnd = selectionStart;
 
@@ -543,17 +518,7 @@ export class source extends Plugin {
 					undoManager = aceEditor.getSession().getUndoManager();
 
 					this.setMirrorValue = (value: string) => {
-						if (
-							editor.options.beautifyHTML &&
-							(editor.ownerWindow as any).html_beautify
-						) {
-							aceEditor.setValue(
-								(editor.ownerWindow as any).html_beautify(value)
-							);
-						} else {
-							aceEditor.setValue(value);
-						}
-
+						aceEditor.setValue(value);
 						aceEditor.clearSelection();
 						updateButtons();
 					};
@@ -764,20 +729,6 @@ export class source extends Plugin {
 		this.mirrorContainer.appendChild(this.mirror);
 		editor.workplace.appendChild(this.mirrorContainer);
 		this.autosize();
-
-		const className = 'beutyfy_html_jodit_helper';
-
-		if (
-			editor.options.beautifyHTML &&
-			(editor.ownerWindow as any).html_beautify === undefined
-		) {
-			this.loadNext(
-				0,
-				editor.options.beautifyHTMLCDNUrlsJS,
-				false,
-				className
-			);
-		}
 
 		if (editor.options.useAceEditor) {
 			this.replaceMirrorToACE();
