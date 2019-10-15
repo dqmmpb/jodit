@@ -13,17 +13,19 @@ import { MODE_SOURCE } from '../constants';
 import { Plugin } from '../modules/Plugin';
 import { IJodit, markerInfo } from '../types';
 import { IControlType } from '../types/toolbar';
-import {
-	appendScript,
-	CallbackAndElement
-} from '../modules/helpers/appendScript';
+// import {
+// 	appendScript,
+// 	CallbackAndElement
+// } from '../modules/helpers/appendScript';
 import { debounce } from '../modules/helpers/async';
 // import { $$ } from '../modules/helpers/selector';
 import { css } from '../modules/helpers/css';
 import { Dom } from '../modules/Dom';
-import 'ace-builds';
+import 'ace-builds/src-noconflict/ace';
 import 'js-beautify';
 import 'ace-builds/webpack-resolver';
+import 'ace-builds/src-noconflict/theme-idle_fingers';
+import 'ace-builds/src-noconflict/mode-html';
 
 declare module '../Config' {
 	interface Config {
@@ -88,14 +90,14 @@ Config.prototype.sourceEditorNativeOptions = {
 	highlightActiveLine: true
 };
 
-// Config.prototype.sourceEditorCDNUrlsJS = [
-// 	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
-// ];
-//
-// Config.prototype.beautifyHTMLCDNUrlsJS = [
-// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
-// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
-// ];
+Config.prototype.sourceEditorCDNUrlsJS = [
+	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
+];
+
+Config.prototype.beautifyHTMLCDNUrlsJS = [
+	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
+	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
+];
 
 Config.prototype.controls.source = {
 	mode: consts.MODE_SPLIT,
@@ -136,7 +138,7 @@ export class source extends Plugin {
 
 	private selInfo: markerInfo[] = [];
 
-	private lastTuple: null | CallbackAndElement = null;
+	// private lastTuple: null | CallbackAndElement = null;
 	private loadNext = (
 		i: number,
 		urls: string[],
@@ -155,23 +157,23 @@ export class source extends Plugin {
 		}
 
 		if (urls[i] !== undefined) {
-			if (this.lastTuple) {
-				this.lastTuple.element.removeEventListener(
-					'load',
-					this.lastTuple.callback
-				);
+			// if (this.lastTuple) {
+			// 	this.lastTuple.element.removeEventListener(
+			// 		'load',
+			// 		this.lastTuple.callback
+			// 	);
+			// }
+			//
+			// this.lastTuple = appendScript(
+			// 	urls[i],
+			// 	() => {
+			if (!this.isDestructed) {
+				this.loadNext(i + 1, urls, eventOnFinalize, className);
 			}
-
-			this.lastTuple = appendScript(
-				urls[i],
-				() => {
-					if (!this.isDestructed) {
-						this.loadNext(i + 1, urls, eventOnFinalize, className);
-					}
-				},
-				className,
-				this.jodit.ownerDocument
-			);
+			// 	},
+			// 	className,
+			// 	this.jodit.ownerDocument
+			// );
 		}
 	};
 
@@ -656,18 +658,14 @@ export class source extends Plugin {
 		tryInitAceEditor();
 
 		// global add ace editor in browser
-		// if (
-		// 	(this.jodit.ownerWindow as any).ace === undefined &&
-		// 	!$$('script.' + this.className, this.jodit.ownerDocument.body)
-		// 		.length
-		// ) {
-		// 	this.loadNext(
-		// 		0,
-		// 		editor.options.sourceEditorCDNUrlsJS,
-		// 		'aceReady',
-		// 		this.className
-		// 	);
-		// }
+		if ((this.jodit.ownerWindow as any).ace === undefined) {
+			this.loadNext(
+				0,
+				editor.options.sourceEditorCDNUrlsJS,
+				'aceReady',
+				this.className
+			);
+		}
 	}
 
 	public mirror: HTMLTextAreaElement;
@@ -765,20 +763,19 @@ export class source extends Plugin {
 		editor.workplace.appendChild(this.mirrorContainer);
 		this.autosize();
 
-		// const className = 'beutyfy_html_jodit_helper';
-		//
-		// if (
-		// 	editor.options.beautifyHTML &&
-		// 	(editor.ownerWindow as any).html_beautify === undefined &&
-		// 	!$$('script.' + className, editor.ownerDocument.body).length
-		// ) {
-		// 	this.loadNext(
-		// 		0,
-		// 		editor.options.beautifyHTMLCDNUrlsJS,
-		// 		false,
-		// 		className
-		// 	);
-		// }
+		const className = 'beutyfy_html_jodit_helper';
+
+		if (
+			editor.options.beautifyHTML &&
+			(editor.ownerWindow as any).html_beautify === undefined
+		) {
+			this.loadNext(
+				0,
+				editor.options.beautifyHTMLCDNUrlsJS,
+				false,
+				className
+			);
+		}
 
 		if (editor.options.useAceEditor) {
 			this.replaceMirrorToACE();
@@ -805,11 +802,11 @@ export class source extends Plugin {
 			delete this.aceEditor;
 		}
 
-		if (this.lastTuple) {
-			this.lastTuple.element.removeEventListener(
-				'load',
-				this.lastTuple.callback
-			);
-		}
+		// if (this.lastTuple) {
+		// 	this.lastTuple.element.removeEventListener(
+		// 		'load',
+		// 		this.lastTuple.callback
+		// 	);
+		// }
 	}
 }

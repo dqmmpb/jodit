@@ -104,7 +104,7 @@ module.exports = (env, argv) => {
 
         output: {
             path: path.join(__dirname, 'build'),
-            filename: (uglify || mode === 'development') ? 'jodit.min.js' : 'jodit.js',
+            filename: (uglify && mode === 'production') ? 'jodit.min.js' : 'jodit.js',
             publicPath: '/build/',
             libraryTarget: "umd"
         },
