@@ -18,9 +18,12 @@ import {
 	CallbackAndElement
 } from '../modules/helpers/appendScript';
 import { debounce } from '../modules/helpers/async';
-import { $$ } from '../modules/helpers/selector';
+// import { $$ } from '../modules/helpers/selector';
 import { css } from '../modules/helpers/css';
 import { Dom } from '../modules/Dom';
+import 'ace-builds';
+import 'js-beautify';
+import 'ace-builds/webpack-resolver';
 
 declare module '../Config' {
 	interface Config {
@@ -85,14 +88,14 @@ Config.prototype.sourceEditorNativeOptions = {
 	highlightActiveLine: true
 };
 
-Config.prototype.sourceEditorCDNUrlsJS = [
-	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
-];
-
-Config.prototype.beautifyHTMLCDNUrlsJS = [
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
-];
+// Config.prototype.sourceEditorCDNUrlsJS = [
+// 	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js'
+// ];
+//
+// Config.prototype.beautifyHTMLCDNUrlsJS = [
+// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.min.js',
+// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify-html.min.js'
+// ];
 
 Config.prototype.controls.source = {
 	mode: consts.MODE_SPLIT,
@@ -653,18 +656,18 @@ export class source extends Plugin {
 		tryInitAceEditor();
 
 		// global add ace editor in browser
-		if (
-			(this.jodit.ownerWindow as any).ace === undefined &&
-			!$$('script.' + this.className, this.jodit.ownerDocument.body)
-				.length
-		) {
-			this.loadNext(
-				0,
-				editor.options.sourceEditorCDNUrlsJS,
-				'aceReady',
-				this.className
-			);
-		}
+		// if (
+		// 	(this.jodit.ownerWindow as any).ace === undefined &&
+		// 	!$$('script.' + this.className, this.jodit.ownerDocument.body)
+		// 		.length
+		// ) {
+		// 	this.loadNext(
+		// 		0,
+		// 		editor.options.sourceEditorCDNUrlsJS,
+		// 		'aceReady',
+		// 		this.className
+		// 	);
+		// }
 	}
 
 	public mirror: HTMLTextAreaElement;
@@ -762,20 +765,20 @@ export class source extends Plugin {
 		editor.workplace.appendChild(this.mirrorContainer);
 		this.autosize();
 
-		const className = 'beutyfy_html_jodit_helper';
-
-		if (
-			editor.options.beautifyHTML &&
-			(editor.ownerWindow as any).html_beautify === undefined &&
-			!$$('script.' + className, editor.ownerDocument.body).length
-		) {
-			this.loadNext(
-				0,
-				editor.options.beautifyHTMLCDNUrlsJS,
-				false,
-				className
-			);
-		}
+		// const className = 'beutyfy_html_jodit_helper';
+		//
+		// if (
+		// 	editor.options.beautifyHTML &&
+		// 	(editor.ownerWindow as any).html_beautify === undefined &&
+		// 	!$$('script.' + className, editor.ownerDocument.body).length
+		// ) {
+		// 	this.loadNext(
+		// 		0,
+		// 		editor.options.beautifyHTMLCDNUrlsJS,
+		// 		false,
+		// 		className
+		// 	);
+		// }
 
 		if (editor.options.useAceEditor) {
 			this.replaceMirrorToACE();
@@ -792,7 +795,9 @@ export class source extends Plugin {
 		}
 
 		if (this.aceEditor) {
-			this.setFocusToMirror = () => {};
+			this.setFocusToMirror = () => {
+				// TODO
+			};
 			this.aceEditor.off('change', this.toWYSIWYG);
 			this.aceEditor.off('focus', this.__proxyOnFocus);
 			this.aceEditor.off('mousedown', this.__proxyOnMouseDown);

@@ -103,5 +103,9 @@
 			"prettier --write",
 			"git add"
 		]
+	},
+	"dependencies": {
+		"ace-builds": "^1.4.6",
+		"js-beautify": "^1.10.2"
 	}
 }
