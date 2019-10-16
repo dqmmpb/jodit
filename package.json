@@ -108,7 +108,7 @@
 		]
 	},
 	"dependencies": {
-		"ace-builds": "^1.4.6",
+		"ace-builds": "git+http://qn@git.izaiqi.com/scm/qndms/ace-builds.git",
 		"js-beautify": "^1.10.2"
 	}
 }
