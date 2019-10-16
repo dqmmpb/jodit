@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { trim } from '../string';
+import {trim} from '../string';
 
 /**
  * Replaces back slashes and correctly concatenates several parts of the path.

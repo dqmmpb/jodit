@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { INVISIBLE_SPACE_REG_EXP, SPACE_REG_EXP } from '../constants';
-import { throttle } from '../modules/helpers/async';
-import { Plugin } from '../modules/Plugin';
-import { Dom } from '../modules/Dom';
+import {Config} from '../Config';
+import {INVISIBLE_SPACE_REG_EXP, SPACE_REG_EXP} from '../constants';
+import {throttle} from '../modules/helpers/async';
+import {Plugin} from '../modules/Plugin';
+import {Dom} from '../modules/Dom';
 
 declare module '../Config' {
 	interface Config {

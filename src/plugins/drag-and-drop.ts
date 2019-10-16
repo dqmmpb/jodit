@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { TEXT_HTML, TEXT_PLAIN } from '../constants';
-import { Dom } from '../modules/Dom';
-import { css, ctrlKey, dataBind } from '../modules/helpers';
-import { Plugin } from '../modules/Plugin';
-import { IPoint } from '../types/types';
+import {TEXT_HTML, TEXT_PLAIN} from '../constants';
+import {Dom} from '../modules/Dom';
+import {css, ctrlKey, dataBind} from '../modules/helpers';
+import {Plugin} from '../modules/Plugin';
+import {IPoint} from '../types/types';
 
 /**
  * Process drag and drop image from FileBrowser and movev image inside the editor
@@ -20,10 +20,26 @@ export class DragAndDrop extends Plugin {
 	private isFragmentFromEditor: boolean = false;
 	private isCopyMode: boolean = false;
 
-	private startDragPoint: IPoint = { x: 0, y: 0 };
+	private startDragPoint: IPoint = {x: 0, y: 0};
 	private draggable: HTMLElement | null = null;
 
 	private bufferRange: Range | null = null;
+
+	public afterInit() {
+		this.jodit.events
+			.on(window, 'dragover', this.onDrag)
+			.on(
+				[window, this.jodit.editorDocument, this.jodit.editor],
+				'dragstart',
+				this.onDragStart
+			)
+			.on('drop', this.onDrop)
+			.on(window, 'dragend drop mouseup', this.onDragEnd);
+	}
+
+	public beforeDestruct() {
+		this.onDragEnd();
+	}
 
 	private onDragEnd = () => {
 		if (this.draggable) {
@@ -90,8 +106,8 @@ export class DragAndDrop extends Plugin {
 					fragment.setAttribute(
 						attr,
 						this.draggable.getAttribute('data-src') ||
-							this.draggable.getAttribute('src') ||
-							''
+						this.draggable.getAttribute('src') ||
+						''
 					);
 					if (tagName === 'a') {
 						fragment.innerText = fragment.getAttribute(attr) || '';
@@ -190,20 +206,4 @@ export class DragAndDrop extends Plugin {
 		const dt: DataTransfer = this.getDataTransfer(event);
 		return dt.getData(TEXT_HTML) || dt.getData(TEXT_PLAIN);
 	};
-
-	public afterInit() {
-		this.jodit.events
-			.on(window, 'dragover', this.onDrag)
-			.on(
-				[window, this.jodit.editorDocument, this.jodit.editor],
-				'dragstart',
-				this.onDragStart
-			)
-			.on('drop', this.onDrop)
-			.on(window, 'dragend drop mouseup', this.onDragEnd);
-	}
-
-	public beforeDestruct() {
-		this.onDragEnd();
-	}
 }

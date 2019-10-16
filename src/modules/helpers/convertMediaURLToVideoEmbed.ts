@@ -7,8 +7,8 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { isURL } from './checker/isURL';
-import { parseQuery } from './parseQuery';
+import {isURL} from './checker/isURL';
+import {parseQuery} from './parseQuery';
 
 /**
  *  Javascript url pattern converter replace youtube/vimeo url in embed code.
@@ -46,15 +46,15 @@ export const convertMediaURLToVideoEmbed = (
 		case 'vimeo.com':
 			return pattern1.test(url)
 				? url.replace(
-						pattern1,
-						'<iframe width="' +
-							width +
-							'" height="' +
-							height +
-							'" src="' +
-							protocol +
-							'//player.vimeo.com/video/$1" frameborder="0" allowfullscreen></iframe>'
-				  )
+					pattern1,
+					'<iframe width="' +
+					width +
+					'" height="' +
+					height +
+					'" src="' +
+					protocol +
+					'//player.vimeo.com/video/$1" frameborder="0" allowfullscreen></iframe>'
+				)
 				: url;
 		case 'youtube.com':
 		case 'www.youtube.com':
@@ -62,17 +62,17 @@ export const convertMediaURLToVideoEmbed = (
 		case 'www.youtu.be':
 			const query: any = parser.search
 				? parseQuery(parser.search)
-				: { v: parser.pathname.substr(1) };
+				: {v: parser.pathname.substr(1)};
 			return query.v
 				? '<iframe width="' +
-						width +
-						'" height="' +
-						height +
-						'" src="' +
-						protocol +
-						'//www.youtube.com/embed/' +
-						query.v +
-						'" frameborder="0" allowfullscreen></iframe>'
+				width +
+				'" height="' +
+				height +
+				'" src="' +
+				protocol +
+				'//www.youtube.com/embed/' +
+				query.v +
+				'" frameborder="0" allowfullscreen></iframe>'
 				: url;
 	}
 

@@ -6,15 +6,15 @@
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-import { Config } from '../Config';
+import {Config} from '../Config';
 import {
 	COMMAND_KEYS,
 	INVISIBLE_SPACE_REG_EXP,
 	SPACE_REG_EXP
 } from '../constants';
-import { debounce } from '../modules/helpers/async';
-import { IJodit, SnapshotType } from '../types';
-import { stripTags } from '../modules/helpers/html';
+import {debounce} from '../modules/helpers/async';
+import {IJodit, SnapshotType} from '../types';
+import {stripTags} from '../modules/helpers/html';
 
 declare module '../Config' {
 	interface Config {

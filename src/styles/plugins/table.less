@@ -26,6 +26,7 @@
 
 	&-moved {
 		z-index: 2;
+
 		&:after {
 			border-color: @color-border-moved;
 		}
@@ -43,12 +44,14 @@
 
 		tr {
 			user-select: none;
+
 			th,
 			td {
 				border: 1px solid #ddd;
 				text-align: left;
 				vertical-align: middle;
 				user-select: text;
+
 				&[data-jodit-selected-cell] {
 					border: 1px double @color-border-selected;
 				}
@@ -60,6 +63,7 @@
 .jodit_form_inserter {
 	.jodit_form-table-creator-box {
 		font-size: 0;
+
 		.jodit_form-container {
 			display: inline-block;
 			vertical-align: top;
@@ -67,6 +71,7 @@
 			margin: 0;
 			min-width: 180px;
 			font-size: 0;
+
 			> div {
 				width: @width_element_default;
 				height: @height_element_default;
@@ -74,6 +79,7 @@
 				display: inline-block;
 				position: relative;
 				vertical-align: top;
+
 				&:after {
 					content: '';
 					position: absolute;
@@ -84,19 +90,23 @@
 					height: 12px;
 					border: 1px solid #ccc;
 				}
+
 				&.hovered:after {
 					background: @color-background-hover;
 					border: solid 1px @color-border-active;
 				}
 			}
 		}
+
 		.jodit_form-options {
 			font-size: @font-size-default;
 			display: inline-block;
 			vertical-align: top;
+
 			label {
 				text-align: left;
 				padding-top: 0;
+
 				input {
 					margin-right: @padding-default;
 				}

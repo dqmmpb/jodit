@@ -8,9 +8,9 @@
  */
 
 import * as consts from '../constants';
-import { Dom } from '../modules/Dom';
-import { Table } from '../modules/Table';
-import { IJodit } from '../types';
+import {Dom} from '../modules/Dom';
+import {Table} from '../modules/Table';
+import {IJodit} from '../types';
 
 /**
  * Process navigate keypressing in table cell
@@ -56,7 +56,7 @@ export function tableKeyboardNavigation(editor: IJodit) {
 										? elm && elm.nodeName === 'BR'
 										: !!elm,
 								block
-							) ||
+								) ||
 								(event.which !== consts.KEY_UP &&
 									current.nodeType === Node.TEXT_NODE &&
 									range.startOffset !== 0))) ||
@@ -69,12 +69,12 @@ export function tableKeyboardNavigation(editor: IJodit) {
 										? elm && elm.nodeName === 'BR'
 										: !!elm,
 								block
-							) ||
+								) ||
 								(event.which !== consts.KEY_DOWN &&
 									current.nodeType === Node.TEXT_NODE &&
 									current.nodeValue &&
 									range.startOffset !==
-										current.nodeValue.length)))
+									current.nodeValue.length)))
 					) {
 						return;
 					}
@@ -113,8 +113,8 @@ export function tableKeyboardNavigation(editor: IJodit) {
 							sibling === 'next'
 								? false
 								: (table.querySelector(
-										'tr'
-								  ) as HTMLTableRowElement),
+								'tr'
+								) as HTMLTableRowElement),
 							sibling === 'next'
 						);
 						next = (Dom as any)[sibling](
@@ -126,30 +126,29 @@ export function tableKeyboardNavigation(editor: IJodit) {
 					}
 					break;
 				case consts.KEY_UP:
-				case consts.KEY_DOWN:
-					{
-						let i = 0,
-							j = 0;
+				case consts.KEY_DOWN: {
+					let i = 0,
+						j = 0;
 
-						const matrix = Table.formalMatrix(
-							table,
-							(elm, _i, _j) => {
-								if (elm === block) {
-									i = _i;
-									j = _j;
-								}
-							}
-						);
-						if (event.which === consts.KEY_UP) {
-							if (matrix[i - 1] !== undefined) {
-								next = matrix[i - 1][j];
-							}
-						} else {
-							if (matrix[i + 1] !== undefined) {
-								next = matrix[i + 1][j];
+					const matrix = Table.formalMatrix(
+						table,
+						(elm, _i, _j) => {
+							if (elm === block) {
+								i = _i;
+								j = _j;
 							}
 						}
+					);
+					if (event.which === consts.KEY_UP) {
+						if (matrix[i - 1] !== undefined) {
+							next = matrix[i - 1][j];
+						}
+					} else {
+						if (matrix[i + 1] !== undefined) {
+							next = matrix[i + 1][j];
+						}
 					}
+				}
 					break;
 			}
 
@@ -167,7 +166,7 @@ export function tableKeyboardNavigation(editor: IJodit) {
 						editor.selection.setCursorIn(
 							next,
 							event.which === consts.KEY_RIGHT ||
-								event.which === consts.KEY_DOWN
+							event.which === consts.KEY_DOWN
 						);
 					}
 				}

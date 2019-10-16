@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { css } from '../modules/helpers/css';
-import { debounce } from '../modules/helpers/async';
-import { Dom } from '../modules/Dom';
-import { IJodit } from '../types';
+import {css} from '../modules/helpers/css';
+import {debounce} from '../modules/helpers/async';
+import {Dom} from '../modules/Dom';
+import {IJodit} from '../types';
 
 /**
  * Show placeholder
@@ -152,8 +152,8 @@ export function placeholder(this: any, editor: IJodit) {
 
 	const placeholderElm: HTMLElement = editor.create.fromHTML(
 		'<span style="display: none;" class="jodit_placeholder">' +
-			editor.i18n(editor.options.placeholder) +
-			'</span>'
+		editor.i18n(editor.options.placeholder) +
+		'</span>'
 	);
 
 	if (editor.options.direction === 'rtl') {

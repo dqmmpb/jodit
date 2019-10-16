@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary, IToolbarCollection } from '../../types';
+import {IDictionary, IToolbarCollection} from '../../types';
 import {
 	Buttons,
 	Controls,
@@ -15,78 +15,36 @@ import {
 	IControlTypeStrong
 } from '../../types/toolbar';
 
-import { IViewBased } from '../../types/view';
-import { debounce } from '../helpers/async';
-import { ToolbarBreak } from './break';
-import { ToolbarButton } from './button';
-import { ToolbarElement } from './element';
-import { ToolbarSeparator } from './separator';
-import { Dom } from '../Dom';
-import { Component } from '../Component';
-import { Config } from '../../Config';
+import {IViewBased} from '../../types/view';
+import {debounce} from '../helpers/async';
+import {ToolbarBreak} from './break';
+import {ToolbarButton} from './button';
+import {ToolbarElement} from './element';
+import {ToolbarSeparator} from './separator';
+import {Dom} from '../Dom';
+import {Component} from '../Component';
+import {Config} from '../../Config';
 
 export class ToolbarCollection<T extends IViewBased = IViewBased>
 	extends Component<T>
 	implements IToolbarCollection {
-	private __buttons: ToolbarElement[] = [];
-
-	private __getControlType = (
-		button: IControlType | string
-	): IControlTypeStrong => {
-		let buttonControl: IControlTypeStrong;
-		const controls: Controls =
-			this.jodit.options.controls || Config.defaultOptions.controls;
-
-		if (typeof button !== 'string') {
-			buttonControl = { name: 'empty', ...button };
-			if (controls[buttonControl.name] !== undefined) {
-				buttonControl = <IControlTypeStrong>{
-					...controls[buttonControl.name],
-					...buttonControl
-				};
-			}
-		} else {
-			const list: string[] = button.split(/\./);
-
-			let store: IDictionary<IControlType> = controls;
-
-			if (list.length > 1) {
-				if (controls[list[0]] !== undefined) {
-					store = controls[list[0]] as IDictionary<IControlType>;
-					button = list[1];
-				}
-			}
-
-			if (store[button] !== undefined) {
-				buttonControl = { name: button, ...store[button] };
-			} else {
-				buttonControl = {
-					name: button,
-					command: button,
-					tooltip: button
-				};
-			}
-		}
-
-		return buttonControl;
-	};
-
-	private closeAll = () => {
-		this.jodit &&
-			this.jodit.events &&
-			this.jodit.events.fire('closeAllPopups');
-	};
-
-	private initEvents = () => {
-		this.jodit.events
-			.on(this.jodit.ownerWindow, 'mousedown touchend', this.closeAll)
-			.on(this.listenEvents, this.checkActiveButtons)
-			.on('afterSetMode focus', this.immedateCheckActiveButtons);
-	};
-
 	public readonly listenEvents: string =
 		'changeStack mousedown mouseup keydown change afterInit readonly afterResize ' +
 		'selectionchange changeSelection focus afterSetMode touchstart';
+	container: HTMLElement;
+	private __buttons: ToolbarElement[] = [];
+
+	constructor(jodit: IViewBased) {
+		super(<T>jodit);
+		this.container = this.jodit.create.element('ul');
+		this.container.classList.add('jodit_toolbar');
+
+		this.initEvents();
+	}
+
+	get firstButton(): ToolbarElement {
+		return this.__buttons[0];
+	}
 
 	public getButtonsList(): string[] {
 		return this.__buttons
@@ -99,10 +57,6 @@ export class ToolbarCollection<T extends IViewBased = IViewBased>
 	appendChild(button: ToolbarElement) {
 		this.__buttons.push(button);
 		this.container.appendChild(button.container);
-	}
-
-	get firstButton(): ToolbarElement {
-		return this.__buttons[0];
 	}
 
 	removeChild(button: ToolbarElement) {
@@ -194,6 +148,11 @@ export class ToolbarCollection<T extends IViewBased = IViewBased>
 		this.jodit.events && this.jodit.events.fire('updateToolbar');
 	};
 
+	checkActiveButtons = debounce(
+		this.immedateCheckActiveButtons,
+		this.jodit.defaultTimeout
+	);
+
 	buttonIsActive(button: ToolbarButton): boolean | void {
 		if (typeof button.control.isActive === 'function') {
 			return button.control.isActive(this.jodit, button.control, button);
@@ -237,13 +196,6 @@ export class ToolbarCollection<T extends IViewBased = IViewBased>
 		return button.target;
 	}
 
-	checkActiveButtons = debounce(
-		this.immedateCheckActiveButtons,
-		this.jodit.defaultTimeout
-	);
-
-	container: HTMLElement;
-
 	/**
 	 * Set direction
 	 * @param direction
@@ -251,14 +203,6 @@ export class ToolbarCollection<T extends IViewBased = IViewBased>
 	setDirection(direction: 'rtl' | 'ltr'): void {
 		this.container.style.direction = direction;
 		this.container.setAttribute('dir', direction);
-	}
-
-	constructor(jodit: IViewBased) {
-		super(<T>jodit);
-		this.container = this.jodit.create.element('ul');
-		this.container.classList.add('jodit_toolbar');
-
-		this.initEvents();
 	}
 
 	destruct() {
@@ -277,4 +221,58 @@ export class ToolbarCollection<T extends IViewBased = IViewBased>
 		delete this.container;
 		super.destruct();
 	}
+
+	private __getControlType = (
+		button: IControlType | string
+	): IControlTypeStrong => {
+		let buttonControl: IControlTypeStrong;
+		const controls: Controls =
+			this.jodit.options.controls || Config.defaultOptions.controls;
+
+		if (typeof button !== 'string') {
+			buttonControl = {name: 'empty', ...button};
+			if (controls[buttonControl.name] !== undefined) {
+				buttonControl = <IControlTypeStrong>{
+					...controls[buttonControl.name],
+					...buttonControl
+				};
+			}
+		} else {
+			const list: string[] = button.split(/\./);
+
+			let store: IDictionary<IControlType> = controls;
+
+			if (list.length > 1) {
+				if (controls[list[0]] !== undefined) {
+					store = controls[list[0]] as IDictionary<IControlType>;
+					button = list[1];
+				}
+			}
+
+			if (store[button] !== undefined) {
+				buttonControl = {name: button, ...store[button]};
+			} else {
+				buttonControl = {
+					name: button,
+					command: button,
+					tooltip: button
+				};
+			}
+		}
+
+		return buttonControl;
+	};
+
+	private closeAll = () => {
+		this.jodit &&
+		this.jodit.events &&
+		this.jodit.events.fire('closeAllPopups');
+	};
+
+	private initEvents = () => {
+		this.jodit.events
+			.on(this.jodit.ownerWindow, 'mousedown touchend', this.closeAll)
+			.on(this.listenEvents, this.checkActiveButtons)
+			.on('afterSetMode focus', this.immedateCheckActiveButtons);
+	};
 }

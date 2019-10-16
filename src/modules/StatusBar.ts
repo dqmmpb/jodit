@@ -7,16 +7,24 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Component } from './Component';
-import { Dom } from './Dom';
-import { IJodit } from '../types';
+import {Component} from './Component';
+import {Dom} from './Dom';
+import {IJodit} from '../types';
 
 export class StatusBar extends Component {
 	public container: HTMLElement;
 
+	constructor(jodit: IJodit, readonly target: HTMLElement) {
+		super(jodit);
+		this.container = jodit.create.div('jodit_statusbar');
+		target.appendChild(this.container);
+		this.hide();
+	}
+
 	public hide() {
 		this.container && (this.container.style.display = 'none');
 	}
+
 	public show() {
 		this.container && (this.container.style.display = 'block');
 	}
@@ -35,13 +43,6 @@ export class StatusBar extends Component {
 		this.container.appendChild(wrapper);
 		this.show();
 		this.jodit.events.fire('resize');
-	}
-
-	constructor(jodit: IJodit, readonly target: HTMLElement) {
-		super(jodit);
-		this.container = jodit.create.div('jodit_statusbar');
-		target.appendChild(this.container);
-		this.hide();
 	}
 
 	destruct() {

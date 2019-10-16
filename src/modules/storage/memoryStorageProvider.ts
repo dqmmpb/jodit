@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary, IStorage } from '../../types';
+import {IDictionary, IStorage} from '../../types';
 
 export class MemoryStorageProvider implements IStorage {
 	data: IDictionary<string> = {};

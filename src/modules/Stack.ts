@@ -7,15 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Command } from './observer/command';
+import {Command} from './observer/command';
 
 export class Stack {
 	private commands: Command[] = [];
 	private stackPosition: number = -1;
-
-	private clearRedo() {
-		this.commands.length = this.stackPosition + 1;
-	}
 
 	public clear() {
 		this.commands.length = 0;
@@ -62,5 +58,9 @@ export class Stack {
 
 	public canRedo(): boolean {
 		return this.stackPosition < this.commands.length - 1;
+	}
+
+	private clearRedo() {
+		this.commands.length = this.stackPosition + 1;
 	}
 }

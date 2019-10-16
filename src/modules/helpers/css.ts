@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary } from '../../types';
-import { isPlainObject } from './checker/isPlainObject';
-import { isNumeric } from './checker/isNumeric';
-import { normilizeCSSValue } from './normalize/normilizeCSSValue';
-import { camelCase } from './string/camelCase';
-import { fromCamelCase } from './string/fromCamelCase';
+import {IDictionary} from '../../types';
+import {isPlainObject} from './checker/isPlainObject';
+import {isNumeric} from './checker/isNumeric';
+import {normilizeCSSValue} from './normalize/normilizeCSSValue';
+import {camelCase} from './string/camelCase';
+import {fromCamelCase} from './string/fromCamelCase';
 
 /**
  * Get the value of a computed style property for the first element in the set of matched elements or set one or
@@ -71,7 +71,7 @@ export const css = (
 
 	const currentValue: string | undefined = (element.style as any)[
 		key as string
-	];
+		];
 
 	let result: string | number =
 		currentValue !== undefined && currentValue !== ''

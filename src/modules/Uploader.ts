@@ -6,8 +6,8 @@
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-import { Config } from '../Config';
-import { IS_IE, TEXT_PLAIN } from '../constants';
+import {Config} from '../Config';
+import {IS_IE, TEXT_PLAIN} from '../constants';
 import {
 	BuildDataResult,
 	HandlerError,
@@ -20,11 +20,11 @@ import {
 	IUploaderOptions,
 	IViewBased
 } from '../types/';
-import { Ajax } from './Ajax';
-import { browser, extend, isPlainObject } from './helpers/';
-import { Dom } from './Dom';
-import { isJoditObject } from './helpers/checker/isJoditObject';
-import { Component } from './Component';
+import {Ajax} from './Ajax';
+import {browser, extend, isPlainObject} from './helpers/';
+import {Dom} from './Dom';
+import {isJoditObject} from './helpers/checker/isJoditObject';
+import {Component} from './Component';
 
 declare module '../Config' {
 	interface Config {
@@ -134,6 +134,25 @@ Config.prototype.uploader = {
 } as IUploaderOptions<Uploader>;
 
 export class Uploader extends Component implements IUploader {
+	jodit: IViewBased;
+	private path: string = '';
+	private source: string = 'default';
+
+	private options: IUploaderOptions<Uploader>;
+	private ajaxInstances: Ajax[] = [];
+
+	constructor(editor: IViewBased, options?: IUploaderOptions<Uploader>) {
+		super(editor);
+
+		this.options = extend(
+			true,
+			{},
+			Config.defaultOptions.uploader,
+			isJoditObject(editor) ? editor.options.uploader : null,
+			options
+		) as IUploaderOptions<Uploader>;
+	}
+
 	/**
 	 * Convert dataURI to Blob
 	 *
@@ -160,15 +179,8 @@ export class Uploader extends Component implements IUploader {
 
 		// write the ArrayBuffer toWYSIWYG a blob, and you're done
 
-		return new Blob([ia], { type: mimeString });
+		return new Blob([ia], {type: mimeString});
 	}
-
-	private path: string = '';
-	private source: string = 'default';
-
-	private options: IUploaderOptions<Uploader>;
-
-	jodit: IViewBased;
 
 	buildData(data: FormData | IDictionary<string> | string): BuildDataResult {
 		if (
@@ -200,8 +212,6 @@ export class Uploader extends Component implements IUploader {
 
 		return data;
 	}
-
-	private ajaxInstances: Ajax[] = [];
 
 	send(
 		data: FormData | IDictionary<string>,
@@ -691,7 +701,7 @@ export class Uploader extends Component implements IUploader {
 		);
 
 		if (inputFile) {
-			self.jodit.events.on(inputFile, 'change', function(
+			self.jodit.events.on(inputFile, 'change', function (
 				this: HTMLInputElement
 			) {
 				self.sendFiles(this.files, handlerSuccess, handlerError).then(
@@ -756,18 +766,6 @@ export class Uploader extends Component implements IUploader {
 				}
 			}
 		);
-	}
-
-	constructor(editor: IViewBased, options?: IUploaderOptions<Uploader>) {
-		super(editor);
-
-		this.options = extend(
-			true,
-			{},
-			Config.defaultOptions.uploader,
-			isJoditObject(editor) ? editor.options.uploader : null,
-			options
-		) as IUploaderOptions<Uploader>;
 	}
 
 	destruct(): any {

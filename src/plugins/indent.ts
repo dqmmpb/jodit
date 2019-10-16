@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { BR, PARAGRAPH } from '../constants';
-import { Dom } from '../modules/Dom';
-import { IControlType } from '../types/toolbar';
-import { HTMLTagNames, IJodit } from '../types';
+import {Config} from '../Config';
+import {BR, PARAGRAPH} from '../constants';
+import {Dom} from '../modules/Dom';
+import {IControlType} from '../types/toolbar';
+import {HTMLTagNames, IJodit} from '../types';
 
 Config.prototype.controls.indent = {
 	tooltip: 'Increase Indent'
@@ -61,10 +61,10 @@ export function indent(editor: IJodit) {
 				const selectionInfo = editor.selection.save();
 				let currentBox: HTMLElement | false = current
 					? (Dom.up(
-							current,
-							node => Dom.isBlock(node, editor.editorWindow),
-							editor.editor
-					  ) as HTMLElement)
+						current,
+						node => Dom.isBlock(node, editor.editorWindow),
+						editor.editor
+					) as HTMLElement)
 					: false;
 
 				const enter: string = editor.options.enter;

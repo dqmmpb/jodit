@@ -6,7 +6,6 @@
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-
 @import (reference) '../variables';
 
 .jodit_dialog_box {
@@ -17,6 +16,7 @@
 	}
 
 	box-sizing: border-box;
+
 	* {
 		box-sizing: border-box;
 	}
@@ -166,6 +166,7 @@
 			cursor: move;
 			height: 48px;
 			overflow: hidden;
+
 			.jodit_dialog_header-toolbar,
 			.jodit_dialog_header-title {
 				flex-shrink: 3;
@@ -212,6 +213,7 @@
 
 				> li.jodit_toolbar_btn {
 					vertical-align: middle;
+
 					select,
 					input[type='text'],
 					input[type='number'],
@@ -221,6 +223,7 @@
 					}
 				}
 			}
+
 			//.jodit_close svg {
 			//    width: 18px;
 			//    height: 18px;
@@ -228,21 +231,26 @@
 			//    vertical-align: top;
 			//}
 		}
+
 		.jodit_dialog_content {
 			height: calc(~'100% - 48px');
 			overflow: auto;
+
 			.jodit_form_group {
 				margin-bottom: 10px;
 				padding: 0 10px;
+
 				&:first-child {
 					margin-top: 10px;
 				}
+
 				label {
 					display: inline-block;
 					max-width: 100%;
 					margin-bottom: 5px;
 					font-weight: 700;
 				}
+
 				select,
 				input {
 					&.select,
@@ -262,42 +270,51 @@
 						box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 						transition: border-color ease-in-out 0.15s,
 							box-shadow ease-in-out 0.15s;
+
 						&:focus {
 							border-color: #66afe9;
 							outline: 0;
 							box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
 								0 0 8px rgba(102, 175, 233, 0.6);
 						}
+
 						&[disabled] {
 							background-color: #f0f0f0;
 							color: #ccc;
 						}
+
 						&:not([class*='col-']) {
 							width: 100%;
 						}
 					}
 				}
+
 				.jodit_input_group {
 					display: table;
 					border-collapse: separate;
 					width: 100%;
+
 					> * {
 						vertical-align: middle;
 						display: table-cell;
 						height: 34px;
 					}
+
 					> input {
 						float: left;
 						margin: 0 !important;
+
 						&:not([class*='col-']) {
 							width: 100%;
 						}
 					}
+
 					&-buttons {
 						width: 1%;
 						font-size: 0;
 						white-space: nowrap;
 						vertical-align: middle;
+
 						> a {
 							text-align: center;
 							display: inline-block;
@@ -311,11 +328,13 @@
 				}
 			}
 		}
+
 		.jodit_dialog_footer {
 			padding: 10px 10px 0;
 			text-align: center;
 			height: 48px;
 			display: none;
+
 			.jodit_button {
 				width: auto;
 				margin-bottom: 10px;
@@ -326,39 +345,47 @@
 				border: 1px solid #ccc;
 				color: #000;
 				font-size: 0;
+
 				&:before {
 					content: '';
 					display: inline-block;
 					vertical-align: middle;
 					height: 100%;
 				}
+
 				svg {
 					display: inline-block;
 					width: 24px;
 					height: 24px;
 					vertical-align: middle;
 				}
+
 				span {
 					display: inline-block;
 					vertical-align: middle;
 					font-size: 14px;
 					margin-left: 5px;
 				}
+
 				&:focus {
 					border: 1px solid #8bade4;
 					outline: 1px solid #82b2e8;
 				}
 			}
+
 			.jodit_button:nth-child(n + 2) {
 				margin-left: 10px;
 			}
 		}
+
 		&.with_footer .jodit_dialog_content {
 			height: calc(~'100% - 96px');
 		}
+
 		&.with_footer .jodit_dialog_footer {
 			display: block;
 		}
+
 		.jodit_dialog_resizer {
 			position: absolute;
 			bottom: 0;
@@ -385,16 +412,19 @@
                 border-top: 3px solid rgba(0, 0, 0, 0);
                 border-left: 3px solid rgba(0,0,0,0);
             }*/
+
 			&:hover {
 				border-color: rgba(0, 0, 0, 0.6);
 			}
 		}
+
 		@media (max-width: @screen-xs) {
 			.jodit_dialog_resizer {
 				display: none;
 			}
 		}
 	}
+
 	&.jodit_fullsize .jodit_dialog {
 		top: 0 !important;
 		bottom: 0 !important;
@@ -402,6 +432,7 @@
 		right: 0 !important;
 		width: 100% !important;
 		height: 100% !important;
+
 		.jodit_dialog_resizer {
 			display: none;
 		}

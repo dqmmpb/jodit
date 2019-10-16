@@ -7,25 +7,22 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Component } from '../Component';
-import { IPanel, IViewBased } from '../../types/view';
-import { Dom } from '../Dom';
-import { Create } from '../Create';
-import { isJoditObject } from '../helpers/checker/isJoditObject';
+import {Component} from '../Component';
+import {IPanel, IViewBased} from '../../types/view';
+import {Dom} from '../Dom';
+import {Create} from '../Create';
+import {isJoditObject} from '../helpers/checker/isJoditObject';
 
 export class Panel extends Component implements IPanel {
-	protected __whoLocked: string | false = '';
-	protected __isFullSize: boolean = false;
-
 	public ownerDocument: Document = document;
 	public ownerWindow: Window = window;
-
 	public container: HTMLDivElement;
-
 	/**
 	 * @property {Create} Native DOM element creator
 	 */
 	public create: Create;
+	protected __whoLocked: string | false = '';
+	protected __isFullSize: boolean = false;
 
 	constructor(jodit?: IViewBased) {
 		super(jodit);

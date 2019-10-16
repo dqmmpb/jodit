@@ -1363,16 +1363,16 @@ var Config = /** @class */ (function () {
          * Delay before show tooltip
          */
         this.showTooltipDelay = 500;
-        /**
-         * Instead of create custop tooltip - use native title tooltips
-         * @type {boolean}
-         */
-        this.useNativeTooltip = false;
         // TODO
         // autosave: false, // false or url
         // autosaveCallback: false, // function
         // interval: 60, // seconds
         // TODO
+        /**
+         * Instead of create custop tooltip - use native title tooltips
+         * @type {boolean}
+         */
+        this.useNativeTooltip = false;
         /**
          * Element that will be created when you press Enter
          */
@@ -2367,11 +2367,6 @@ var Jodit = /** @class */ (function (_super) {
      */
     function Jodit(element, options) {
         var _this = _super.call(this) || this;
-        _this.__defaultStyleDisplayKey = 'data-jodit-default-style-display';
-        _this.__defaultClassesKey = 'data-jodit-default-classes';
-        _this.commands = {};
-        _this.__selectionLocked = null;
-        _this.__wasReadOnly = false;
         /**
          * Container for set/get value
          * @type {Storage}
@@ -2383,8 +2378,13 @@ var Jodit = /** @class */ (function (_super) {
         _this.iframe = null;
         _this.__plugins = {};
         _this.mode = consts.MODE_WYSIWYG;
-        _this.__callChangeCount = 0;
         _this.isInited = false;
+        _this.__defaultStyleDisplayKey = 'data-jodit-default-style-display';
+        _this.__defaultClassesKey = 'data-jodit-default-classes';
+        _this.commands = {};
+        _this.__selectionLocked = null;
+        _this.__wasReadOnly = false;
+        _this.__callChangeCount = 0;
         _this.options = new Config_1.OptionsDefault(options);
         // in iframe it can be changed
         _this.editorDocument = _this.options.ownerDocument;
@@ -2407,9 +2407,7 @@ var Jodit = /** @class */ (function (_super) {
             typeof _this.element !== 'object' ||
             _this.element.nodeType !== Node.ELEMENT_NODE ||
             !_this.element.cloneNode) {
-            throw new Error('Element "' +
-                element +
-                '" should be string or HTMLElement instance');
+            throw new Error("Element \"" + element + "\" should be string or HTMLElement instance");
         }
         if (_this.element.attributes) {
             Array.from(_this.element.attributes).forEach(function (attr) {
@@ -2471,7 +2469,7 @@ var Jodit = /** @class */ (function (_super) {
             _this.toolbar.build(helpers_1.splitArray(_this.options.buttons).concat(_this.options.extraButtons), _this.container);
         }
         var bs = _this.options.toolbarButtonSize.toLowerCase();
-        _this.container.classList.add('jodit_toolbar_size-' + (['middle', 'large', 'small'].indexOf(bs) !== -1 ? bs : 'middle'));
+        _this.container.classList.add("jodit_toolbar_size-" + (['middle', 'large', 'small'].indexOf(bs) !== -1 ? bs : 'middle'));
         if (_this.options.textIcons) {
             _this.container.classList.add('jodit_text_icons');
         }
@@ -2508,9 +2506,7 @@ var Jodit = /** @class */ (function (_super) {
                         try {
                             this.__initPlugines();
                         }
-                        catch (e) {
-                            console.error(e);
-                        }
+                        catch (e) { }
                         return [4 /*yield*/, this.__initEditor(buffer)];
                     case 3:
                         _a.sent();
@@ -2564,25 +2560,6 @@ var Jodit = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Jodit.Array = function (array) {
-        return new JoditArray_1.JoditArray(array);
-    };
-    Jodit.Object = function (object) {
-        return new JoditObject_1.JoditObject(object);
-    };
-    Jodit.fireEach = function (events) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        Object.keys(Jodit.instances).forEach(function (key) {
-            var _a;
-            var editor = Jodit.instances[key];
-            if (!editor.isDestructed && editor.events) {
-                (_a = editor.events).fire.apply(_a, [events].concat(args));
-            }
-        });
-    };
     Object.defineProperty(Jodit.prototype, "uploader", {
         /**
          * @property {Uploader} uploader
@@ -2603,6 +2580,25 @@ var Jodit = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Jodit.Array = function (array) {
+        return new JoditArray_1.JoditArray(array);
+    };
+    Jodit.Object = function (object) {
+        return new JoditObject_1.JoditObject(object);
+    };
+    Jodit.fireEach = function (events) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        Object.keys(Jodit.instances).forEach(function (key) {
+            var _a;
+            var editor = Jodit.instances[key];
+            if (!editor.isDestructed && editor.events) {
+                (_a = editor.events).fire.apply(_a, [events].concat(args));
+            }
+        });
+    };
     /**
      * Return source element value
      */
@@ -2907,32 +2903,6 @@ var Jodit = /** @class */ (function (_super) {
         this.setEditorValue(); // synchrony
         return result;
     };
-    Jodit.prototype.execCustomCommands = function (commandName, second, third) {
-        var _this = this;
-        if (second === void 0) { second = false; }
-        if (third === void 0) { third = null; }
-        commandName = commandName.toLowerCase();
-        if (this.commands[commandName] !== undefined) {
-            var result_1;
-            var exec = function (command) {
-                var callback;
-                if (typeof command === 'function') {
-                    callback = command;
-                }
-                else {
-                    callback = command.exec;
-                }
-                var resultCurrent = callback.call(_this, commandName, second, third);
-                if (resultCurrent !== undefined) {
-                    result_1 = resultCurrent;
-                }
-            };
-            for (var i = 0; i < this.commands[commandName].length; i += 1) {
-                exec(this.commands[commandName][i]);
-            }
-            return result_1;
-        }
-    };
     /**
      * Disable selecting
      */
@@ -3218,138 +3188,6 @@ var Jodit = /** @class */ (function (_super) {
     Jodit.prototype.afterInitHook = function () {
         // do nothing
     };
-    Jodit.prototype.__initPlugines = function () {
-        var _this = this;
-        var dp = this.options.disablePlugins;
-        var disable = Array.isArray(dp)
-            ? dp.map(function (name) { return name.toLowerCase(); })
-            : dp.toLowerCase().split(/[\s,]+/);
-        Object.keys(Jodit.plugins).forEach(function (key) {
-            if (disable.indexOf(key.toLowerCase()) === -1) {
-                _this.__plugins[key] = new Jodit.plugins[key](_this);
-            }
-        });
-    };
-    Jodit.prototype.__initEditor = function (buffer) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var mode, localMode;
-            return tslib_1.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.__createEditor()];
-                    case 1:
-                        _a.sent();
-                        if (this.isDestructed) {
-                            return [2 /*return*/];
-                        }
-                        // syncro
-                        if (this.element !== this.container) {
-                            this.setElementValue();
-                        }
-                        else {
-                            buffer !== null && this.setEditorValue(buffer); // inline mode
-                        }
-                        Jodit.instances[this.id] = this;
-                        mode = this.options.defaultMode;
-                        if (this.options.saveModeInStorage) {
-                            localMode = this.storage.get('jodit_default_mode');
-                            if (localMode !== null) {
-                                mode = parseInt(localMode, 10);
-                            }
-                        }
-                        this.setMode(mode);
-                        if (this.options.readonly) {
-                            this.setReadOnly(true);
-                        }
-                        if (this.options.disabled) {
-                            this.setDisabled(true);
-                        }
-                        // if enter plugin not installed
-                        try {
-                            this.editorDocument.execCommand('defaultParagraphSeparator', false, this.options.enter.toLowerCase());
-                        }
-                        catch (_b) {
-                        }
-                        // fix for native resizing
-                        try {
-                            this.editorDocument.execCommand('enableObjectResizing', false, 'false');
-                        }
-                        catch (_c) { }
-                        try {
-                            this.editorDocument.execCommand('enableInlineTableEditing', false, 'false');
-                        }
-                        catch (_d) { }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * Create main DIV element and replace source textarea
-     *
-     * @private
-     */
-    Jodit.prototype.__createEditor = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var defaultEditorAreae, stayDefault, direction;
-            var _this = this;
-            return tslib_1.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        defaultEditorAreae = this.editor;
-                        return [4 /*yield*/, this.events.fire('createEditor', this)];
-                    case 1:
-                        stayDefault = _a.sent();
-                        if (this.isDestructed) {
-                            return [2 /*return*/];
-                        }
-                        if (stayDefault === false) {
-                            Dom_1.Dom.safeRemove(defaultEditorAreae);
-                        }
-                        if (this.options.editorCssClass) {
-                            this.editor.classList.add(this.options.editorCssClass);
-                        }
-                        if (this.options.style) {
-                            helpers_1.css(this.editor, this.options.style);
-                        }
-                        // proxy events
-                        this.events
-                            .on('synchro', function () {
-                            _this.setEditorValue();
-                        })
-                            .on(this.editor, 'selectionchange selectionstart keydown keyup keypress mousedown mouseup mousepress ' +
-                            'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur', function (event) {
-                            if (_this.options.readonly) {
-                                return;
-                            }
-                            if (_this.events && _this.events.fire) {
-                                if (_this.events.fire(event.type, event) === false) {
-                                    return false;
-                                }
-                                _this.setEditorValue();
-                            }
-                        });
-                        if (this.options.spellcheck) {
-                            this.editor.setAttribute('spellcheck', 'true');
-                        }
-                        // direction
-                        if (this.options.direction) {
-                            direction = this.options.direction.toLowerCase() === 'rtl' ? 'rtl' : 'ltr';
-                            this.editor.style.direction = direction;
-                            this.container.style.direction = direction;
-                            this.editor.setAttribute('dir', direction);
-                            this.container.setAttribute('dir', direction);
-                            this.toolbar.setDirection(direction);
-                        }
-                        if (this.options.triggerChangeEvent) {
-                            this.events.on('change', helpers_1.debounce(function () {
-                                _this.events && _this.events.fire(_this.element, 'change');
-                            }, this.defaultTimeout));
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     /**
      * Jodit's Destructor. Remove editor, and return source input
      */
@@ -3445,6 +3283,163 @@ var Jodit = /** @class */ (function (_super) {
         delete Jodit.instances[this.id];
         _super.prototype.destruct.call(this);
         delete this.container;
+    };
+    Jodit.prototype.execCustomCommands = function (commandName, second, third) {
+        var _this = this;
+        if (second === void 0) { second = false; }
+        if (third === void 0) { third = null; }
+        commandName = commandName.toLowerCase();
+        if (this.commands[commandName] !== undefined) {
+            var result_1;
+            var exec = function (command) {
+                var callback;
+                if (typeof command === 'function') {
+                    callback = command;
+                }
+                else {
+                    callback = command.exec;
+                }
+                var resultCurrent = callback.call(_this, commandName, second, third);
+                if (resultCurrent !== undefined) {
+                    result_1 = resultCurrent;
+                }
+            };
+            for (var i = 0; i < this.commands[commandName].length; i += 1) {
+                exec(this.commands[commandName][i]);
+            }
+            return result_1;
+        }
+    };
+    Jodit.prototype.__initPlugines = function () {
+        var _this = this;
+        var dp = this.options.disablePlugins;
+        var disable = Array.isArray(dp)
+            ? dp.map(function (name) { return name.toLowerCase(); })
+            : dp.toLowerCase().split(/[\s,]+/);
+        Object.keys(Jodit.plugins).forEach(function (key) {
+            if (disable.indexOf(key.toLowerCase()) === -1) {
+                _this.__plugins[key] = new Jodit.plugins[key](_this);
+            }
+        });
+    };
+    Jodit.prototype.__initEditor = function (buffer) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var mode, localMode;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.__createEditor()];
+                    case 1:
+                        _a.sent();
+                        if (this.isDestructed) {
+                            return [2 /*return*/];
+                        }
+                        // syncro
+                        if (this.element !== this.container) {
+                            this.setElementValue();
+                        }
+                        else {
+                            buffer !== null && this.setEditorValue(buffer); // inline mode
+                        }
+                        Jodit.instances[this.id] = this;
+                        mode = this.options.defaultMode;
+                        if (this.options.saveModeInStorage) {
+                            localMode = this.storage.get('jodit_default_mode');
+                            if (localMode !== null) {
+                                mode = parseInt(localMode, 10);
+                            }
+                        }
+                        this.setMode(mode);
+                        if (this.options.readonly) {
+                            this.setReadOnly(true);
+                        }
+                        if (this.options.disabled) {
+                            this.setDisabled(true);
+                        }
+                        // if enter plugin not installed
+                        try {
+                            this.editorDocument.execCommand('defaultParagraphSeparator', false, this.options.enter.toLowerCase());
+                        }
+                        catch (_b) { }
+                        // fix for native resizing
+                        try {
+                            this.editorDocument.execCommand('enableObjectResizing', false, 'false');
+                        }
+                        catch (_c) { }
+                        try {
+                            this.editorDocument.execCommand('enableInlineTableEditing', false, 'false');
+                        }
+                        catch (_d) { }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * Create main DIV element and replace source textarea
+     *
+     * @private
+     */
+    Jodit.prototype.__createEditor = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var defaultEditorAreae, stayDefault, direction;
+            var _this = this;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        defaultEditorAreae = this.editor;
+                        return [4 /*yield*/, this.events.fire('createEditor', this)];
+                    case 1:
+                        stayDefault = _a.sent();
+                        if (this.isDestructed) {
+                            return [2 /*return*/];
+                        }
+                        if (stayDefault === false) {
+                            Dom_1.Dom.safeRemove(defaultEditorAreae);
+                        }
+                        if (this.options.editorCssClass) {
+                            this.editor.classList.add(this.options.editorCssClass);
+                        }
+                        if (this.options.style) {
+                            helpers_1.css(this.editor, this.options.style);
+                        }
+                        // proxy events
+                        this.events
+                            .on('synchro', function () {
+                            _this.setEditorValue();
+                        })
+                            .on(this.editor, 'selectionchange selectionstart keydown keyup keypress mousedown mouseup mousepress ' +
+                            'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur', function (event) {
+                            if (_this.options.readonly) {
+                                return;
+                            }
+                            if (_this.events && _this.events.fire) {
+                                if (_this.events.fire(event.type, event) === false) {
+                                    return false;
+                                }
+                                _this.setEditorValue();
+                            }
+                        });
+                        if (this.options.spellcheck) {
+                            this.editor.setAttribute('spellcheck', 'true');
+                        }
+                        // direction
+                        if (this.options.direction) {
+                            direction = this.options.direction.toLowerCase() === 'rtl' ? 'rtl' : 'ltr';
+                            this.editor.style.direction = direction;
+                            this.container.style.direction = direction;
+                            this.editor.setAttribute('dir', direction);
+                            this.container.setAttribute('dir', direction);
+                            this.toolbar.setDirection(direction);
+                        }
+                        if (this.options.triggerChangeEvent) {
+                            this.events.on('change', helpers_1.debounce(function () {
+                                _this.events && _this.events.fire(_this.element, 'change');
+                            }, this.defaultTimeout));
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Jodit.plugins = {};
     Jodit.modules = {};
@@ -3715,6 +3710,8 @@ var Dialog = /** @class */ (function (_super) {
     function Dialog(jodit, options) {
         if (options === void 0) { options = Config_1.Config.prototype.dialog; }
         var _this = _super.call(this, jodit, options) || this;
+        _this.document = document;
+        _this.window = window;
         _this.destination = document.body;
         _this.destroyAfterClose = false;
         _this.moved = false;
@@ -3724,6 +3721,66 @@ var Dialog = /** @class */ (function (_super) {
         _this.startX = 0;
         _this.startY = 0;
         _this.startPoint = { x: 0, y: 0, w: 0, h: 0 };
+        /**
+         * Closes the dialog box , if you want to call the method {@link Dialog~destruct|destruct}
+         *
+         * @see destroy
+         * @method close
+         * @fires beforeClose
+         * @fires afterClose
+         * @example
+         * ```javascript
+         * //You can close dialog two ways
+         * var dialog = new Jodit.modules.Dialog();
+         * dialog.open('Hello world!', 'Title');
+         * var $close = Jodit.modules.helper.dom('<a href="javascript:void(0)" style="float:left;" class="jodit_button">
+         *     <i class="icon icon-check"></i>&nbsp;' + Jodit.prototype.i18n('Ok') + '</a>');
+         * $close.addEventListener('click', function () {
+         *     dialog.close();
+         * });
+         * dialog.setFooter($close);
+         * // and second way, you can close dialog from content
+         * dialog.open('<a onclick="var event = doc.createEvent('HTMLEvents'); event.initEvent('close_dialog', true, true);
+         * this.dispatchEvent(event)">Close</a>', 'Title');
+         * ```
+         */
+        _this.close = function (e) {
+            if (_this.isDestructed) {
+                return;
+            }
+            if (e) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+            /**
+             * Called up to close the window
+             *
+             * @event beforeClose
+             * @this {Dialog} current dialog
+             */
+            if (_this.jodit && _this.jodit.events) {
+                _this.jodit.events.fire('beforeClose', _this);
+            }
+            _this.container &&
+                _this.container.classList &&
+                _this.container.classList.remove('active');
+            if (_this.iSetMaximization) {
+                _this.maximization(false);
+            }
+            if (_this.destroyAfterClose) {
+                _this.destruct();
+            }
+            /**
+             * It called after the window is closed
+             *
+             * @event afterClose
+             * @this {Dialog} current dialog
+             */
+            if (_this.jodit && _this.jodit.events) {
+                _this.jodit.events.fire(_this, 'afterClose');
+                _this.jodit.events.fire(_this.ownerWindow, 'jodit_close_dialog');
+            }
+        };
         _this.lockSelect = function () {
             _this.container.classList.add('jodit_dialog_box-moved');
         };
@@ -3826,68 +3883,6 @@ var Dialog = /** @class */ (function (_super) {
                 _this.setPosition();
             }
         };
-        _this.document = document;
-        _this.window = window;
-        /**
-         * Closes the dialog box , if you want to call the method {@link Dialog~destruct|destruct}
-         *
-         * @see destroy
-         * @method close
-         * @fires beforeClose
-         * @fires afterClose
-         * @example
-         * ```javascript
-         * //You can close dialog two ways
-         * var dialog = new Jodit.modules.Dialog();
-         * dialog.open('Hello world!', 'Title');
-         * var $close = Jodit.modules.helper.dom('<a href="javascript:void(0)" style="float:left;" class="jodit_button">
-         *     <i class="icon icon-check"></i>&nbsp;' + Jodit.prototype.i18n('Ok') + '</a>');
-         * $close.addEventListener('click', function () {
-         *     dialog.close();
-         * });
-         * dialog.setFooter($close);
-         * // and second way, you can close dialog from content
-         * dialog.open('<a onclick="var event = doc.createEvent('HTMLEvents'); event.initEvent('close_dialog', true, true);
-         * this.dispatchEvent(event)">Close</a>', 'Title');
-         * ```
-         */
-        _this.close = function (e) {
-            if (_this.isDestructed) {
-                return;
-            }
-            if (e) {
-                e.stopImmediatePropagation();
-                e.preventDefault();
-            }
-            /**
-             * Called up to close the window
-             *
-             * @event beforeClose
-             * @this {Dialog} current dialog
-             */
-            if (_this.jodit && _this.jodit.events) {
-                _this.jodit.events.fire('beforeClose', _this);
-            }
-            _this.container &&
-                _this.container.classList &&
-                _this.container.classList.remove('active');
-            if (_this.iSetMaximization) {
-                _this.maximization(false);
-            }
-            if (_this.destroyAfterClose) {
-                _this.destruct();
-            }
-            /**
-             * It called after the window is closed
-             *
-             * @event afterClose
-             * @this {Dialog} current dialog
-             */
-            if (_this.jodit && _this.jodit.events) {
-                _this.jodit.events.fire(_this, 'afterClose');
-                _this.jodit.events.fire(_this.ownerWindow, 'jodit_close_dialog');
-            }
-        };
         if (isJoditObject_1.isJoditObject(jodit)) {
             _this.window = jodit.ownerWindow;
             _this.document = jodit.ownerDocument;
@@ -3949,37 +3944,6 @@ var Dialog = /** @class */ (function (_super) {
         Jodit_1.Jodit.plugins.fullsize(self);
         return _this;
     }
-    Dialog.prototype.setElements = function (root, elements) {
-        var _this = this;
-        var elements_list = [];
-        helpers_1.asArray(elements).forEach(function (elm) {
-            var element = typeof elm === 'string' ? _this.create.fromHTML(elm) : elm;
-            elements_list.push(element);
-            if (element.parentNode !== root) {
-                root.appendChild(element);
-            }
-        });
-        Array.from(root.childNodes).forEach(function (elm) {
-            if (elements_list.indexOf(elm) === -1) {
-                root.removeChild(elm);
-            }
-        });
-    };
-    Dialog.prototype.onResizerMouseDown = function (e) {
-        this.resizable = true;
-        this.startX = e.clientX;
-        this.startY = e.clientY;
-        this.startPoint.w = this.dialog.offsetWidth;
-        this.startPoint.h = this.dialog.offsetHeight;
-        this.lockSelect();
-        if (this.jodit.events) {
-            /**
-             * Fired when dialog box is started resizing
-             * @event startResize
-             */
-            this.jodit.events.fire(this, 'startResize');
-        }
-    };
     /**
      * Specifies the size of the window
      *
@@ -4212,6 +4176,37 @@ var Dialog = /** @class */ (function (_super) {
             delete this.container;
         }
         _super.prototype.destruct.call(this);
+    };
+    Dialog.prototype.setElements = function (root, elements) {
+        var _this = this;
+        var elements_list = [];
+        helpers_1.asArray(elements).forEach(function (elm) {
+            var element = typeof elm === 'string' ? _this.create.fromHTML(elm) : elm;
+            elements_list.push(element);
+            if (element.parentNode !== root) {
+                root.appendChild(element);
+            }
+        });
+        Array.from(root.childNodes).forEach(function (elm) {
+            if (elements_list.indexOf(elm) === -1) {
+                root.removeChild(elm);
+            }
+        });
+    };
+    Dialog.prototype.onResizerMouseDown = function (e) {
+        this.resizable = true;
+        this.startX = e.clientX;
+        this.startY = e.clientY;
+        this.startPoint.w = this.dialog.offsetWidth;
+        this.startPoint.h = this.dialog.offsetHeight;
+        this.lockSelect();
+        if (this.jodit.events) {
+            /**
+             * Fired when dialog box is started resizing
+             * @event startResize
+             */
+            this.jodit.events.fire(this, 'startResize');
+        }
     };
     return Dialog;
 }(view_1.View));
@@ -4669,6 +4664,15 @@ var JoditToolbarCollection = /** @class */ (function (_super) {
         };
         return _this;
     }
+    JoditToolbarCollection.makeCollection = function (jodit) {
+        var collection = isJoditObject_1.isJoditObject(jodit)
+            ? new JoditToolbarCollection(jodit)
+            : new collection_1.ToolbarCollection(jodit);
+        if (jodit.options.textIcons) {
+            collection.container.classList.add('jodit_text_icons');
+        }
+        return collection;
+    };
     /**
      * @override
      */
@@ -4735,15 +4739,6 @@ var JoditToolbarCollection = /** @class */ (function (_super) {
      */
     JoditToolbarCollection.prototype.getTarget = function (button) {
         return button.target || this.jodit.selection.current() || undefined;
-    };
-    JoditToolbarCollection.makeCollection = function (jodit) {
-        var collection = isJoditObject_1.isJoditObject(jodit)
-            ? new JoditToolbarCollection(jodit)
-            : new collection_1.ToolbarCollection(jodit);
-        if (jodit.options.textIcons) {
-            collection.container.classList.add('jodit_text_icons');
-        }
-        return collection;
     };
     return JoditToolbarCollection;
 }(collection_1.ToolbarCollection));
@@ -5149,12 +5144,6 @@ var ToolbarButton = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    ToolbarButton.prototype.isDisable = function () {
-        return Boolean(this.parentToolbar && this.parentToolbar.buttonIsDisabled(this));
-    };
-    ToolbarButton.prototype.isActive = function () {
-        return Boolean(this.parentToolbar && this.parentToolbar.buttonIsActive(this));
-    };
     Object.defineProperty(ToolbarButton.prototype, "tooltipText", {
         get: function () {
             if (!this.control.tooltip) {
@@ -5166,6 +5155,12 @@ var ToolbarButton = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ToolbarButton.prototype.isDisable = function () {
+        return Boolean(this.parentToolbar && this.parentToolbar.buttonIsDisabled(this));
+    };
+    ToolbarButton.prototype.isActive = function () {
+        return Boolean(this.parentToolbar && this.parentToolbar.buttonIsActive(this));
+    };
     ToolbarButton.prototype.focus = function () {
         this.anchor.focus();
     };
@@ -5211,8 +5206,8 @@ var Popup = /** @class */ (function (_super) {
         _this.target = target;
         _this.current = current;
         _this.className = className;
-        _this.throttleCalcPosition = helpers_1.throttle(_this.calcPosition, _this.jodit.defaultTimeout);
         _this.isOpened = false;
+        _this.throttleCalcPosition = helpers_1.throttle(_this.calcPosition, _this.jodit.defaultTimeout);
         _this.close = function (current) {
             if (!_this.isOpened && !_this.isDestructed) {
                 return;
@@ -5237,6 +5232,56 @@ var Popup = /** @class */ (function (_super) {
             .on([_this.jodit.ownerWindow, _this.jodit.events], 'resize', _this.throttleCalcPosition);
         return _this;
     }
+    /**
+     * @param {HTMLElement} content
+     * @param {boolean} [rightAlign=false] Open popup on right side
+     * @param {boolean} [noStandartActions=false] No call standarts action
+     */
+    Popup.prototype.open = function (content, rightAlign, noStandartActions) {
+        if (noStandartActions === void 0) { noStandartActions = false; }
+        Jodit_1.Jodit.fireEach('beforeOpenPopup closeAllPopups', this, content); // close popups in another editors too
+        noStandartActions || this.jodit.events.on('closeAllPopups', this.close);
+        this.container.classList.add(this.className + '-open');
+        this.doOpen(content);
+        this.target.appendChild(this.container);
+        if (this.jodit.options.textIcons) {
+            this.firstInFocus();
+        }
+        if (rightAlign !== undefined) {
+            this.container.classList.toggle('jodit_right', rightAlign);
+        }
+        if (!noStandartActions && this.container.parentNode) {
+            this.jodit.events.fire(this.container.parentNode, 'afterOpenPopup', this.container);
+        }
+        this.isOpened = true;
+        !noStandartActions && this.calcPosition();
+    };
+    Popup.prototype.firstInFocus = function () {
+    };
+    Popup.prototype.destruct = function () {
+        if (this.isDestructed) {
+            return;
+        }
+        this.jodit.events.off([this.jodit.ownerWindow, this.jodit.events], 'resize', this.throttleCalcPosition);
+        Dom_1.Dom.safeRemove(this.container);
+        delete this.container;
+        _super.prototype.destruct.call(this);
+    };
+    Popup.prototype.doOpen = function (content) {
+        if (!content) {
+            return;
+        }
+        Dom_1.Dom.detach(this.container);
+        this.container.innerHTML = '<span class="jodit_popup_triangle"></span>';
+        this.container.appendChild(Dom_1.Dom.isNode(content, this.jodit.ownerWindow)
+            ? content
+            : this.jodit.create.fromHTML(content.toString()));
+        this.container.style.display = 'block';
+        this.container.style.marginLeft = null;
+    };
+    Popup.prototype.doClose = function () {
+        // do nothing
+    };
     Popup.prototype.calcPosition = function () {
         if (!this.isOpened || this.isDestructed) {
             return;
@@ -5277,55 +5322,6 @@ var Popup = /** @class */ (function (_super) {
             triangle.style.marginLeft = -diffLeft + 'px';
         }
         helpers_1.css(popup, 'width', width);
-    };
-    Popup.prototype.doOpen = function (content) {
-        if (!content) {
-            return;
-        }
-        Dom_1.Dom.detach(this.container);
-        this.container.innerHTML = '<span class="jodit_popup_triangle"></span>';
-        this.container.appendChild(Dom_1.Dom.isNode(content, this.jodit.ownerWindow)
-            ? content
-            : this.jodit.create.fromHTML(content.toString()));
-        this.container.style.display = 'block';
-        this.container.style.marginLeft = null;
-    };
-    Popup.prototype.doClose = function () {
-        // do nothing
-    };
-    /**
-     * @param {HTMLElement} content
-     * @param {boolean} [rightAlign=false] Open popup on right side
-     * @param {boolean} [noStandartActions=false] No call standarts action
-     */
-    Popup.prototype.open = function (content, rightAlign, noStandartActions) {
-        if (noStandartActions === void 0) { noStandartActions = false; }
-        Jodit_1.Jodit.fireEach('beforeOpenPopup closeAllPopups', this, content); // close popups in another editors too
-        noStandartActions || this.jodit.events.on('closeAllPopups', this.close);
-        this.container.classList.add(this.className + '-open');
-        this.doOpen(content);
-        this.target.appendChild(this.container);
-        if (this.jodit.options.textIcons) {
-            this.firstInFocus();
-        }
-        if (rightAlign !== undefined) {
-            this.container.classList.toggle('jodit_right', rightAlign);
-        }
-        if (!noStandartActions && this.container.parentNode) {
-            this.jodit.events.fire(this.container.parentNode, 'afterOpenPopup', this.container);
-        }
-        this.isOpened = true;
-        !noStandartActions && this.calcPosition();
-    };
-    Popup.prototype.firstInFocus = function () { };
-    Popup.prototype.destruct = function () {
-        if (this.isDestructed) {
-            return;
-        }
-        this.jodit.events.off([this.jodit.ownerWindow, this.jodit.events], 'resize', this.throttleCalcPosition);
-        Dom_1.Dom.safeRemove(this.container);
-        delete this.container;
-        _super.prototype.destruct.call(this);
     };
     return Popup;
 }(Component_1.Component));
@@ -6208,7 +6204,25 @@ var ToolbarCollection = /** @class */ (function (_super) {
     tslib_1.__extends(ToolbarCollection, _super);
     function ToolbarCollection(jodit) {
         var _this = _super.call(this, jodit) || this;
+        _this.listenEvents = 'changeStack mousedown mouseup keydown change afterInit readonly afterResize ' +
+            'selectionchange changeSelection focus afterSetMode touchstart';
         _this.__buttons = [];
+        _this.immedateCheckActiveButtons = function () {
+            if (_this.isDestructed || _this.jodit.isLocked()) {
+                return;
+            }
+            _this.__buttons.filter(function (button) { return button instanceof button_1.ToolbarButton; }).forEach(function (button) {
+                button.disable = button.isDisable();
+                if (!button.disable) {
+                    button.active = button.isActive();
+                }
+                if (typeof button.control.getLabel === 'function') {
+                    button.control.getLabel(_this.jodit, button.control, button);
+                }
+            });
+            _this.jodit.events && _this.jodit.events.fire('updateToolbar');
+        };
+        _this.checkActiveButtons = async_1.debounce(_this.immedateCheckActiveButtons, _this.jodit.defaultTimeout);
         _this.__getControlType = function (button) {
             var buttonControl;
             var controls = _this.jodit.options.controls || Config_1.Config.defaultOptions.controls;
@@ -6251,29 +6265,18 @@ var ToolbarCollection = /** @class */ (function (_super) {
                 .on(_this.listenEvents, _this.checkActiveButtons)
                 .on('afterSetMode focus', _this.immedateCheckActiveButtons);
         };
-        _this.listenEvents = 'changeStack mousedown mouseup keydown change afterInit readonly afterResize ' +
-            'selectionchange changeSelection focus afterSetMode touchstart';
-        _this.immedateCheckActiveButtons = function () {
-            if (_this.isDestructed || _this.jodit.isLocked()) {
-                return;
-            }
-            _this.__buttons.filter(function (button) { return button instanceof button_1.ToolbarButton; }).forEach(function (button) {
-                button.disable = button.isDisable();
-                if (!button.disable) {
-                    button.active = button.isActive();
-                }
-                if (typeof button.control.getLabel === 'function') {
-                    button.control.getLabel(_this.jodit, button.control, button);
-                }
-            });
-            _this.jodit.events && _this.jodit.events.fire('updateToolbar');
-        };
-        _this.checkActiveButtons = async_1.debounce(_this.immedateCheckActiveButtons, _this.jodit.defaultTimeout);
         _this.container = _this.jodit.create.element('ul');
         _this.container.classList.add('jodit_toolbar');
         _this.initEvents();
         return _this;
     }
+    Object.defineProperty(ToolbarCollection.prototype, "firstButton", {
+        get: function () {
+            return this.__buttons[0];
+        },
+        enumerable: true,
+        configurable: true
+    });
     ToolbarCollection.prototype.getButtonsList = function () {
         return this.__buttons
             .map(function (a) {
@@ -6285,13 +6288,6 @@ var ToolbarCollection = /** @class */ (function (_super) {
         this.__buttons.push(button);
         this.container.appendChild(button.container);
     };
-    Object.defineProperty(ToolbarCollection.prototype, "firstButton", {
-        get: function () {
-            return this.__buttons[0];
-        },
-        enumerable: true,
-        configurable: true
-    });
     ToolbarCollection.prototype.removeChild = function (button) {
         var index = this.__buttons.indexOf(button);
         if (index !== -1) {
@@ -6516,36 +6512,12 @@ var Ajax = /** @class */ (function () {
                 _this.abort();
             });
     }
-    Ajax.prototype.__buildParams = function (obj, prefix) {
-        if (this.options.queryBuild &&
-            typeof this.options.queryBuild === 'function') {
-            return this.options.queryBuild.call(this, obj, prefix);
-        }
-        if (typeof obj === 'string' ||
-            (this.jodit.ownerWindow.FormData &&
-                obj instanceof this.jodit.ownerWindow.FormData)) {
-            return obj;
-        }
-        var str = [];
-        var p, k, v;
-        for (p in obj) {
-            if (obj.hasOwnProperty(p)) {
-                k = prefix ? prefix + '[' + p + ']' : p;
-                v = obj[p];
-                str.push(typeof v === 'object'
-                    ? this.__buildParams(v, k)
-                    : encodeURIComponent(k) +
-                        '=' +
-                        encodeURIComponent(v));
-            }
-        }
-        return str.join('&');
-    };
     Ajax.prototype.abort = function () {
         try {
             this.xhr.abort();
         }
-        catch (_a) { }
+        catch (_a) {
+        }
         return this;
     };
     Ajax.prototype.send = function () {
@@ -6612,6 +6584,31 @@ var Ajax = /** @class */ (function () {
                     : undefined);
             }, 0);
         });
+    };
+    Ajax.prototype.__buildParams = function (obj, prefix) {
+        if (this.options.queryBuild &&
+            typeof this.options.queryBuild === 'function') {
+            return this.options.queryBuild.call(this, obj, prefix);
+        }
+        if (typeof obj === 'string' ||
+            (this.jodit.ownerWindow.FormData &&
+                obj instanceof this.jodit.ownerWindow.FormData)) {
+            return obj;
+        }
+        var str = [];
+        var p, k, v;
+        for (p in obj) {
+            if (obj.hasOwnProperty(p)) {
+                k = prefix ? prefix + '[' + p + ']' : p;
+                v = obj[p];
+                str.push(typeof v === 'object'
+                    ? this.__buildParams(v, k)
+                    : encodeURIComponent(k) +
+                        '=' +
+                        encodeURIComponent(v));
+            }
+        }
+        return str.join('&');
     };
     return Ajax;
 }());
@@ -6769,11 +6766,6 @@ var FileBrowser = /** @class */ (function (_super) {
     tslib_1.__extends(FileBrowser, _super);
     function FileBrowser(editor, options) {
         var _this = _super.call(this, editor, options) || this;
-        _this.loader = _this.create.div(exports.F_CLASS + '_loader', exports.ICON_LOADER);
-        _this.browser = _this.create.div(exports.F_CLASS + ' non-selected');
-        _this.status_line = _this.create.div(exports.F_CLASS + '_status');
-        _this.tree = _this.create.div(exports.F_CLASS + '_tree');
-        _this.files = _this.create.div(exports.F_CLASS + '_files');
         _this.state = observeObject_1.ObserveObject.create({
             activeElements: [],
             elements: [],
@@ -6783,14 +6775,12 @@ var FileBrowser = /** @class */ (function (_super) {
             filterWord: '',
             onlyImages: false
         });
-        _this.errorHandler = function (resp) {
-            if (resp instanceof Error) {
-                _this.status(_this.i18n(resp.message));
-            }
-            else {
-                _this.status(_this.options.getMessage(resp));
-            }
-        };
+        _this.loader = _this.create.div(exports.F_CLASS + '_loader', exports.ICON_LOADER);
+        _this.browser = _this.create.div(exports.F_CLASS + ' non-selected');
+        _this.status_line = _this.create.div(exports.F_CLASS + '_status');
+        _this.tree = _this.create.div(exports.F_CLASS + '_tree');
+        _this.files = _this.create.div(exports.F_CLASS + '_files');
+        _this.elementsMap = {};
         /**
          * It displays a message in the status bar of filebrowser
          *
@@ -6913,7 +6903,14 @@ var FileBrowser = /** @class */ (function (_super) {
                 });
             });
         };
-        _this.elementsMap = {};
+        _this.errorHandler = function (resp) {
+            if (resp instanceof Error) {
+                _this.status(_this.i18n(resp.message));
+            }
+            else {
+                _this.status(_this.options.getMessage(resp));
+            }
+        };
         var self = _this, doc = editor ? editor.ownerDocument : document, editorDoc = editor ? editor.editorDocument : doc;
         if (editor) {
             _this.id = editor.id;
@@ -7077,6 +7074,21 @@ var FileBrowser = /** @class */ (function (_super) {
             });
         });
     };
+    /**
+     *
+     * @return {boolean}
+     */
+    FileBrowser.prototype.isOpened = function () {
+        return this.dialog.isOpened() && this.browser.style.display !== 'none';
+    };
+    FileBrowser.prototype.destruct = function () {
+        this.dialog.destruct();
+        delete this.dialog;
+        this.events && this.events.off('.filebrowser');
+        this.uploader && this.uploader.destruct();
+        delete this.uploader;
+        _super.prototype.destruct.call(this);
+    };
     FileBrowser.prototype.generateFolderTree = function (sources) {
         var folders = [];
         each_1.each(sources, function (source_name, source) {
@@ -7133,13 +7145,6 @@ var FileBrowser = /** @class */ (function (_super) {
             }
             return false;
         };
-    };
-    /**
-     *
-     * @return {boolean}
-     */
-    FileBrowser.prototype.isOpened = function () {
-        return this.dialog.isOpened() && this.browser.style.display !== 'none';
     };
     FileBrowser.prototype.elementToItem = function (elm) {
         var key = elm.dataset.key, item = this.elementsMap[key || ''].item;
@@ -7487,14 +7492,6 @@ var FileBrowser = /** @class */ (function (_super) {
         self.events.on('bindUploader.filebrowser', function (button) {
             self.uploader.bind(button, uploadHandler, self.errorHandler);
         });
-    };
-    FileBrowser.prototype.destruct = function () {
-        this.dialog.destruct();
-        delete this.dialog;
-        this.events && this.events.off('.filebrowser');
-        this.uploader && this.uploader.destruct();
-        delete this.uploader;
-        _super.prototype.destruct.call(this);
     };
     return FileBrowser;
 }(viewWithToolbar_1.ViewWithToolbar));
@@ -8161,35 +8158,6 @@ var Snapshot = /** @class */ (function (_super) {
         return offset;
     };
     /**
-     * Calc whole hierarchy path before some element in editor's tree
-     *
-     * @param {Node | null} elm
-     * @return {number[]}
-     * @private
-     */
-    Snapshot.prototype.calcHierarchyLadder = function (elm) {
-        var counts = [];
-        if (!elm ||
-            !elm.parentNode ||
-            !Dom_1.Dom.isOrContains(this.jodit.editor, elm)) {
-            return [];
-        }
-        while (elm && elm !== this.jodit.editor) {
-            if (elm) {
-                counts.push(Snapshot.countNodesBeforeInParent(elm));
-            }
-            elm = elm.parentNode;
-        }
-        return counts.reverse();
-    };
-    Snapshot.prototype.getElementByLadder = function (ladder) {
-        var n = this.jodit.editor, i;
-        for (i = 0; n && i < ladder.length; i += 1) {
-            n = n.childNodes[ladder[i]];
-        }
-        return n;
-    };
-    /**
      * Creates object a snapshot of editor: html and the current selection. Current selection calculate by
      * offset by start document
      *
@@ -8255,6 +8223,35 @@ var Snapshot = /** @class */ (function (_super) {
         this.isBlocked = false;
         _super.prototype.destruct.call(this);
     };
+    /**
+     * Calc whole hierarchy path before some element in editor's tree
+     *
+     * @param {Node | null} elm
+     * @return {number[]}
+     * @private
+     */
+    Snapshot.prototype.calcHierarchyLadder = function (elm) {
+        var counts = [];
+        if (!elm ||
+            !elm.parentNode ||
+            !Dom_1.Dom.isOrContains(this.jodit.editor, elm)) {
+            return [];
+        }
+        while (elm && elm !== this.jodit.editor) {
+            if (elm) {
+                counts.push(Snapshot.countNodesBeforeInParent(elm));
+            }
+            elm = elm.parentNode;
+        }
+        return counts.reverse();
+    };
+    Snapshot.prototype.getElementByLadder = function (ladder) {
+        var n = this.jodit.editor, i;
+        for (i = 0; n && i < ladder.length; i += 1) {
+            n = n.childNodes[ladder[i]];
+        }
+        return n;
+    };
     return Snapshot;
 }(Component_1.Component));
 exports.Snapshot = Snapshot;
@@ -8280,9 +8277,6 @@ var Stack = /** @class */ (function () {
         this.commands = [];
         this.stackPosition = -1;
     }
-    Stack.prototype.clearRedo = function () {
-        this.commands.length = this.stackPosition + 1;
-    };
     Stack.prototype.clear = function () {
         this.commands.length = 0;
         this.stackPosition = -1;
@@ -8317,6 +8311,9 @@ var Stack = /** @class */ (function () {
     };
     Stack.prototype.canRedo = function () {
         return this.stackPosition < this.commands.length - 1;
+    };
+    Stack.prototype.clearRedo = function () {
+        this.commands.length = this.stackPosition + 1;
     };
     return Stack;
 }());
@@ -8426,15 +8423,6 @@ var Select = /** @class */ (function () {
             }
         };
     }
-    /**
-     * Throw Error exception if parameter is not Node
-     * @param node
-     */
-    Select.prototype.errorNode = function (node) {
-        if (!Dom_1.Dom.isNode(node, this.win)) {
-            throw new Error('Parameter node must be instance of Node');
-        }
-    };
     Object.defineProperty(Select.prototype, "area", {
         /**
          * Return current work place - for Jodit is Editor
@@ -9327,6 +9315,15 @@ var Select = /** @class */ (function () {
             }
         }
     };
+    /**
+     * Throw Error exception if parameter is not Node
+     * @param node
+     */
+    Select.prototype.errorNode = function (node) {
+        if (!Dom_1.Dom.isNode(node, this.win)) {
+            throw new Error('Parameter node must be instance of Node');
+        }
+    };
     return Select;
 }());
 exports.Select = Select;
@@ -9363,7 +9360,8 @@ var LocalStorageProvider = /** @class */ (function () {
         try {
             return localStorage.getItem(key);
         }
-        catch (_a) { }
+        catch (_a) {
+        }
         return this.data[key] || null;
     };
     return LocalStorageProvider;
@@ -9429,7 +9427,6 @@ var View = /** @class */ (function (_super) {
     function View(jodit, options) {
         var _this = _super.call(this, jodit) || this;
         _this.version = "3.2.55"; // from webpack.config.js
-        _this.__modulesInstances = {};
         /**
          * progress_bar Progress bar
          */
@@ -9444,6 +9441,7 @@ var View = /** @class */ (function (_super) {
             globalFullsize: true
         };
         _this.components = [];
+        _this.__modulesInstances = {};
         /**
          * Return current version
          *
@@ -9538,9 +9536,25 @@ var store_1 = __webpack_require__(111);
 var EventsNative = /** @class */ (function () {
     function EventsNative(doc) {
         var _this = this;
+        /**
+         * Get current event name
+         *
+         * @example
+         * ```javascript
+         * parent.events.on('openDialog closeDialog', function () {
+         *     if (parent.events.current === 'closeDialog') {
+         *         alert('Dialog was closed');
+         *     } else {
+         *         alert('Dialog was opened');
+         *     }
+         * });
+         * ```
+         */
+        this.current = [];
         this.__key = '__JoditEventsNativeNamespaces';
         this.doc = document;
         this.__stopped = [];
+        this.isDestructed = false;
         this.prepareEvent = function (event) {
             if (event.cancelBubble) {
                 return;
@@ -9571,93 +9585,11 @@ var EventsNative = /** @class */ (function () {
                 });
             }
         };
-        /**
-         * Get current event name
-         *
-         * @example
-         * ```javascript
-         * parent.events.on('openDialog closeDialog', function () {
-         *     if (parent.events.current === 'closeDialog') {
-         *         alert('Dialog was closed');
-         *     } else {
-         *         alert('Dialog was opened');
-         *     }
-         * });
-         * ```
-         */
-        this.current = [];
-        this.isDestructed = false;
         if (doc) {
             this.doc = doc;
         }
         this.__key += new Date().getTime();
     }
-    EventsNative.prototype.eachEvent = function (events, callback) {
-        var _this = this;
-        var eventParts = events.split(/[\s,]+/);
-        eventParts.forEach(function (eventNameSpace) {
-            var eventAndNameSpace = eventNameSpace.split('.');
-            var namespace = eventAndNameSpace[1] || store_1.defaultNameSpace;
-            callback.call(_this, eventAndNameSpace[0], namespace);
-        });
-    };
-    EventsNative.prototype.getStore = function (subject) {
-        if (subject[this.__key] === undefined) {
-            var store = new store_1.EventHandlersStore();
-            Object.defineProperty(subject, this.__key, {
-                enumerable: false,
-                configurable: true,
-                value: store
-            });
-        }
-        return subject[this.__key];
-    };
-    EventsNative.prototype.clearStore = function (subject) {
-        if (subject[this.__key] !== undefined) {
-            delete subject[this.__key];
-        }
-    };
-    EventsNative.prototype.triggerNativeEvent = function (element, event) {
-        var evt = this.doc.createEvent('HTMLEvents');
-        if (typeof event === 'string') {
-            evt.initEvent(event, true, true);
-        }
-        else {
-            evt.initEvent(event.type, event.bubbles, event.cancelable);
-            [
-                'screenX',
-                'screenY',
-                'clientX',
-                'clientY',
-                'target',
-                'srcElement',
-                'currentTarget',
-                'timeStamp',
-                'which',
-                'keyCode'
-            ].forEach(function (property) {
-                Object.defineProperty(evt, property, {
-                    value: event[property],
-                    enumerable: true
-                });
-            });
-            Object.defineProperty(evt, 'originalEvent', {
-                value: event,
-                enumerable: true
-            });
-        }
-        element.dispatchEvent(evt);
-    };
-    EventsNative.prototype.removeStop = function (currentBlocks) {
-        if (currentBlocks) {
-            var index = this.__stopped.indexOf(currentBlocks);
-            index !== -1 && this.__stopped.splice(index, 1);
-        }
-    };
-    EventsNative.prototype.isStopped = function (currentBlocks) {
-        return (currentBlocks !== undefined &&
-            this.__stopped.indexOf(currentBlocks) !== -1);
-    };
     EventsNative.prototype.on = function (subjectOrEvents, eventsOrCallback, handlerOrSelector, selector, onTop) {
         var _this = this;
         if (onTop === void 0) { onTop = false; }
@@ -9893,6 +9825,72 @@ var EventsNative = /** @class */ (function () {
         this.off(this);
         this.getStore(this).clear();
         delete this[this.__key];
+    };
+    EventsNative.prototype.eachEvent = function (events, callback) {
+        var _this = this;
+        var eventParts = events.split(/[\s,]+/);
+        eventParts.forEach(function (eventNameSpace) {
+            var eventAndNameSpace = eventNameSpace.split('.');
+            var namespace = eventAndNameSpace[1] || store_1.defaultNameSpace;
+            callback.call(_this, eventAndNameSpace[0], namespace);
+        });
+    };
+    EventsNative.prototype.getStore = function (subject) {
+        if (subject[this.__key] === undefined) {
+            var store = new store_1.EventHandlersStore();
+            Object.defineProperty(subject, this.__key, {
+                enumerable: false,
+                configurable: true,
+                value: store
+            });
+        }
+        return subject[this.__key];
+    };
+    EventsNative.prototype.clearStore = function (subject) {
+        if (subject[this.__key] !== undefined) {
+            delete subject[this.__key];
+        }
+    };
+    EventsNative.prototype.triggerNativeEvent = function (element, event) {
+        var evt = this.doc.createEvent('HTMLEvents');
+        if (typeof event === 'string') {
+            evt.initEvent(event, true, true);
+        }
+        else {
+            evt.initEvent(event.type, event.bubbles, event.cancelable);
+            [
+                'screenX',
+                'screenY',
+                'clientX',
+                'clientY',
+                'target',
+                'srcElement',
+                'currentTarget',
+                'timeStamp',
+                'which',
+                'keyCode'
+            ].forEach(function (property) {
+                Object.defineProperty(evt, property, {
+                    value: event[property],
+                    enumerable: true
+                });
+            });
+            Object.defineProperty(evt, 'originalEvent', {
+                value: event,
+                enumerable: true
+            });
+        }
+        element.dispatchEvent(evt);
+    };
+    EventsNative.prototype.removeStop = function (currentBlocks) {
+        if (currentBlocks) {
+            var index = this.__stopped.indexOf(currentBlocks);
+            index !== -1 && this.__stopped.splice(index, 1);
+        }
+    };
+    EventsNative.prototype.isStopped = function (currentBlocks) {
+        return (currentBlocks !== undefined &&
+            this.__stopped.indexOf(currentBlocks) !== -1);
     };
     return EventsNative;
 }());
@@ -12402,7 +12400,8 @@ exports.cleanFromWord = function (html) {
         marks_1.forEach(Dom_1.Dom.safeRemove);
         convertedString = div.innerHTML;
     }
-    catch (e) { }
+    catch (e) {
+    }
     if (convertedString) {
         html = convertedString;
     }
@@ -13537,10 +13536,10 @@ var Panel = /** @class */ (function (_super) {
     tslib_1.__extends(Panel, _super);
     function Panel(jodit) {
         var _this = _super.call(this, jodit) || this;
-        _this.__whoLocked = '';
-        _this.__isFullSize = false;
         _this.ownerDocument = document;
         _this.ownerWindow = window;
+        _this.__whoLocked = '';
+        _this.__isFullSize = false;
         _this.isLocked = function () {
             return _this.__whoLocked !== '';
         };
@@ -13663,12 +13662,6 @@ var PopupList = /** @class */ (function (_super) {
         };
         return _this;
     }
-    PopupList.prototype.doClose = function () {
-        if (this.toolbar) {
-            this.toolbar.destruct();
-            delete this.toolbar;
-        }
-    };
     PopupList.prototype.doOpen = function (control) {
         var _this = this;
         this.toolbar = joditToolbarCollection_1.JoditToolbarCollection.makeCollection(this.jodit);
@@ -13718,6 +13711,12 @@ var PopupList = /** @class */ (function (_super) {
         }
         this.doClose();
         _super.prototype.destruct.call(this);
+    };
+    PopupList.prototype.doClose = function () {
+        if (this.toolbar) {
+            this.toolbar.destruct();
+            delete this.toolbar;
+        }
     };
     return PopupList;
 }(popup_1.Popup));
@@ -14519,10 +14518,10 @@ var dataProvider = /** @class */ (function () {
         var _this = this;
         this.options = options;
         this.parent = parent;
-        this.__currentPermissions = null;
         this.currentPath = '';
         this.currentSource = exports.DEFAULT_SOURCE_NAME;
         this.currentBaseUrl = '';
+        this.__currentPermissions = null;
         /**
          * Get path by url. You can use this method in another modules
          *
@@ -14553,30 +14552,6 @@ var dataProvider = /** @class */ (function () {
         return (this.__currentPermissions === null ||
             (this.__currentPermissions[rule] === undefined ||
                 this.__currentPermissions[rule]));
-    };
-    /**
-     *
-     * @param {string} name
-     * @param {Function} success
-     * @param {Function} error
-     * @return {Promise}
-     */
-    dataProvider.prototype.get = function (name, success, error) {
-        var opts = helpers_1.extend(true, {}, this.options.ajax, this.options[name] !== undefined
-            ? this.options[name]
-            : this.options.ajax);
-        if (opts.prepareData) {
-            opts.data = opts.prepareData.call(this, opts.data);
-        }
-        var ajax = new Ajax_1.Ajax(this.parent, opts);
-        var promise = ajax.send();
-        if (success) {
-            promise.then(success);
-        }
-        if (error) {
-            promise.catch(error);
-        }
-        return promise;
     };
     /**
      * Load permissions for path and source
@@ -14825,6 +14800,30 @@ var dataProvider = /** @class */ (function () {
         this.options.resize.data.source = source;
         return this.get('resize');
     };
+    /**
+     *
+     * @param {string} name
+     * @param {Function} success
+     * @param {Function} error
+     * @return {Promise}
+     */
+    dataProvider.prototype.get = function (name, success, error) {
+        var opts = helpers_1.extend(true, {}, this.options.ajax, this.options[name] !== undefined
+            ? this.options[name]
+            : this.options.ajax);
+        if (opts.prepareData) {
+            opts.data = opts.prepareData.call(this, opts.data);
+        }
+        var ajax = new Ajax_1.Ajax(this.parent, opts);
+        var promise = ajax.send();
+        if (success) {
+            promise.then(success);
+        }
+        if (error) {
+            promise.catch(error);
+        }
+        return promise;
+    };
     return dataProvider;
 }());
 exports.default = dataProvider;
@@ -15002,6 +15001,9 @@ var ObserveObject = /** @class */ (function () {
             });
         });
     }
+    ObserveObject.create = function (data) {
+        return (new ObserveObject(data));
+    };
     ObserveObject.prototype.on = function (event, callback) {
         var _this = this;
         if (Array.isArray(event)) {
@@ -15030,13 +15032,11 @@ var ObserveObject = /** @class */ (function () {
                 this.__onEvents[event].forEach(function (clb) { return clb.call.apply(clb, [_this].concat(attr)); });
             }
         }
-        catch (_a) { }
+        catch (_a) {
+        }
         finally {
             this.__lockEvent[event] = false;
         }
-    };
-    ObserveObject.create = function (data) {
-        return (new ObserveObject(data));
     };
     return ObserveObject;
 }());
@@ -15057,9 +15057,6 @@ var FileBrowserItem = /** @class */ (function () {
         this.data = data;
         extend_1.extend(this, data);
     }
-    FileBrowserItem.create = function (data) {
-        return (new FileBrowserItem(data));
-    };
     Object.defineProperty(FileBrowserItem.prototype, "path", {
         get: function () {
             return normalize_1.normalizePath(this.data.source.path ? this.data.source.path + '/' : '/');
@@ -15107,6 +15104,9 @@ var FileBrowserItem = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    FileBrowserItem.create = function (data) {
+        return (new FileBrowserItem(data));
+    };
     return FileBrowserItem;
 }());
 exports.FileBrowserItem = FileBrowserItem;
@@ -15262,6 +15262,95 @@ var ImageEditor = /** @class */ (function (_super) {
         _this.resizeBox = {
             w: 0,
             h: 0
+        };
+        /**
+         * Hide image editor
+         *
+         * @method hide
+         */
+        _this.hide = function () {
+            _this.dialog.close();
+        };
+        /**
+         * Open image editor
+         *
+         * @method open
+         * @param {string} url
+         * @param {function} save
+         * @param {string} [save.name] new filename
+         * @param {object} save.data Bound box for resize and crop operation
+         * @param {string} save.data.action resize or crop
+         * @param {object} save.data.box Bound box
+         * @param {function} save.success called after success operation
+         * @param {function} save.failed called after failed operation
+         * @example
+         * ```javascript
+         * var jodit = new Jodit('.editor', {
+         *     imageeditor: {
+         *         crop: false,
+         *         closeAfterSave: true,
+         *         width: 500
+         *     }
+         * });
+         * jodit.imageeditor.open('http://xdsoft.net/jodit/images/test.png', function (name, data, success, failed) {
+         *     var img = jodit.node.create('img');
+         *     img.setAttribute('src', 'http://xdsoft.net/jodit/images/test.png');
+         *     if (box.action !== 'resize') {
+         *          return failed('Sorry it is work only in resize mode. For croping use FileBrowser');
+         *     }
+         *     img.style.width = data.w;
+         *     img.style.height = data.h;
+         *     jodit.selection.insertNode(img);
+         *     success();
+         * });
+         * ```
+         */
+        _this.open = function (url, save) {
+            return new Promise(function (resolve) {
+                var timestamp = new Date().getTime();
+                _this.image = _this.jodit.create.element('img');
+                helpers_1.$$('img,.jodit_icon-loader', _this.resize_box).forEach(Dom_1.Dom.safeRemove);
+                helpers_1.$$('img,.jodit_icon-loader', _this.crop_box).forEach(Dom_1.Dom.safeRemove);
+                helpers_1.css(_this.cropHandler, 'background', 'transparent');
+                _this.onSave = save;
+                _this.resize_box.appendChild(_this.jodit.create.element('i', { class: 'jodit_icon-loader' }));
+                _this.crop_box.appendChild(_this.jodit.create.element('i', { class: 'jodit_icon-loader' }));
+                if (/\?/.test(url)) {
+                    url += '&_tst=' + timestamp;
+                }
+                else {
+                    url += '?_tst=' + timestamp;
+                }
+                _this.image.setAttribute('src', url);
+                _this.dialog.open();
+                var onload = function () {
+                    if (_this.isDestructed) {
+                        return;
+                    }
+                    _this.image.removeEventListener('load', onload);
+                    _this.naturalWidth = _this.image.naturalWidth;
+                    _this.naturalHeight = _this.image.naturalHeight;
+                    _this.widthInput.value = _this.naturalWidth.toString();
+                    _this.heightInput.value = _this.naturalHeight.toString();
+                    _this.ratio = _this.naturalWidth / _this.naturalHeight;
+                    _this.resize_box.appendChild(_this.image);
+                    _this.cropImage = _this.image.cloneNode();
+                    _this.crop_box.appendChild(_this.cropImage);
+                    helpers_1.$$('.jodit_icon-loader', _this.editor).forEach(Dom_1.Dom.safeRemove);
+                    if (_this.activeTab === 'crop') {
+                        _this.showCrop();
+                    }
+                    _this.jodit.events.fire(_this.resizeHandler, 'updatesize');
+                    _this.jodit.events.fire(_this.cropHandler, 'updatesize');
+                    _this.dialog.setPosition();
+                    _this.jodit.events.fire('afterImageEditor');
+                    resolve(_this.dialog);
+                };
+                _this.image.addEventListener('load', onload);
+                if (_this.image.complete) {
+                    onload();
+                }
+            });
         };
         _this.calcValueByPercent = function (value, percent) {
             var percentStr = percent.toString();
@@ -15621,95 +15710,6 @@ var ImageEditor = /** @class */ (function (_super) {
                 });
             });
         };
-        /**
-         * Hide image editor
-         *
-         * @method hide
-         */
-        _this.hide = function () {
-            _this.dialog.close();
-        };
-        /**
-         * Open image editor
-         *
-         * @method open
-         * @param {string} url
-         * @param {function} save
-         * @param {string} [save.name] new filename
-         * @param {object} save.data Bound box for resize and crop operation
-         * @param {string} save.data.action resize or crop
-         * @param {object} save.data.box Bound box
-         * @param {function} save.success called after success operation
-         * @param {function} save.failed called after failed operation
-         * @example
-         * ```javascript
-         * var jodit = new Jodit('.editor', {
-         *     imageeditor: {
-         *         crop: false,
-         *         closeAfterSave: true,
-         *         width: 500
-         *     }
-         * });
-         * jodit.imageeditor.open('http://xdsoft.net/jodit/images/test.png', function (name, data, success, failed) {
-         *     var img = jodit.node.create('img');
-         *     img.setAttribute('src', 'http://xdsoft.net/jodit/images/test.png');
-         *     if (box.action !== 'resize') {
-         *          return failed('Sorry it is work only in resize mode. For croping use FileBrowser');
-         *     }
-         *     img.style.width = data.w;
-         *     img.style.height = data.h;
-         *     jodit.selection.insertNode(img);
-         *     success();
-         * });
-         * ```
-         */
-        _this.open = function (url, save) {
-            return new Promise(function (resolve) {
-                var timestamp = new Date().getTime();
-                _this.image = _this.jodit.create.element('img');
-                helpers_1.$$('img,.jodit_icon-loader', _this.resize_box).forEach(Dom_1.Dom.safeRemove);
-                helpers_1.$$('img,.jodit_icon-loader', _this.crop_box).forEach(Dom_1.Dom.safeRemove);
-                helpers_1.css(_this.cropHandler, 'background', 'transparent');
-                _this.onSave = save;
-                _this.resize_box.appendChild(_this.jodit.create.element('i', { class: 'jodit_icon-loader' }));
-                _this.crop_box.appendChild(_this.jodit.create.element('i', { class: 'jodit_icon-loader' }));
-                if (/\?/.test(url)) {
-                    url += '&_tst=' + timestamp;
-                }
-                else {
-                    url += '?_tst=' + timestamp;
-                }
-                _this.image.setAttribute('src', url);
-                _this.dialog.open();
-                var onload = function () {
-                    if (_this.isDestructed) {
-                        return;
-                    }
-                    _this.image.removeEventListener('load', onload);
-                    _this.naturalWidth = _this.image.naturalWidth;
-                    _this.naturalHeight = _this.image.naturalHeight;
-                    _this.widthInput.value = _this.naturalWidth.toString();
-                    _this.heightInput.value = _this.naturalHeight.toString();
-                    _this.ratio = _this.naturalWidth / _this.naturalHeight;
-                    _this.resize_box.appendChild(_this.image);
-                    _this.cropImage = _this.image.cloneNode();
-                    _this.crop_box.appendChild(_this.cropImage);
-                    helpers_1.$$('.jodit_icon-loader', _this.editor).forEach(Dom_1.Dom.safeRemove);
-                    if (_this.activeTab === 'crop') {
-                        _this.showCrop();
-                    }
-                    _this.jodit.events.fire(_this.resizeHandler, 'updatesize');
-                    _this.jodit.events.fire(_this.cropHandler, 'updatesize');
-                    _this.dialog.setPosition();
-                    _this.jodit.events.fire('afterImageEditor');
-                    resolve(_this.dialog);
-                };
-                _this.image.addEventListener('load', onload);
-                if (_this.image.complete) {
-                    onload();
-                }
-            });
-        };
         _this.options =
             editor && editor.options
                 ? editor.options.imageeditor
@@ -15749,13 +15749,13 @@ var ImageEditor = /** @class */ (function (_super) {
                 ? '<div class="jodit_image_editor_area jodit_image_editor_area_crop' +
                     (!_this.options.resize ? ' active' : '') +
                     '">\
-                                <div class="jodit_image_editor_box">\
-                                    <div class="jodit_image_editor_croper">\
-                                        <i class="jodit_bottomright"></i>\
-                                        <i class="jodit_sizes"></i>\
-                                    </div>\
+                            <div class="jodit_image_editor_box">\
+                                <div class="jodit_image_editor_croper">\
+                                    <i class="jodit_bottomright"></i>\
+                                    <i class="jodit_sizes"></i>\
                                 </div>\
-                            </div>'
+                            </div>\
+                        </div>'
                 : '') +
             '</div>' +
             '<div class="jodit_col-lg-1-4">' +
@@ -15765,75 +15765,75 @@ var ImageEditor = /** @class */ (function (_super) {
                     icon_1.ToolbarIcon.getIcon('resize') +
                     editor.i18n('Resize') +
                     '</div>\
-                                <div class="jodit_image_editor_slider-content">\
-                                    <div class="jodit_form_group">\
-                                        <label for="jodit_image_editor_width">' +
+                            <div class="jodit_image_editor_slider-content">\
+                                <div class="jodit_form_group">\
+                                    <label for="jodit_image_editor_width">' +
                     editor.i18n('Width') +
                     '</label>\
-                                        <input type="number" class="jodit_image_editor_width"/>\
-                                    </div>\
-                                    <div class="jodit_form_group">\
-                                        <label for="jodit_image_editor_height">' +
+                                    <input type="number" class="jodit_image_editor_width"/>\
+                                </div>\
+                                <div class="jodit_form_group">\
+                                    <label for="jodit_image_editor_height">' +
                     editor.i18n('Height') +
                     '</label>\
-                                        <input type="number" class="jodit_image_editor_height"/>\
-                                    </div>\
-                                    <div class="jodit_form_group">\
-                                        <label>' +
+                                    <input type="number" class="jodit_image_editor_height"/>\
+                                </div>\
+                                <div class="jodit_form_group">\
+                                    <label>' +
                     editor.i18n('Keep Aspect Ratio') +
                     '</label>\
-                                        <div class="jodit_btn_group jodit_btn_radio_group">\
-                                            <input ' +
+                                    <div class="jodit_btn_group jodit_btn_radio_group">\
+                                        <input ' +
                     (_this.resizeUseRatio ? 'checked' : '') +
                     ' type="checkbox" class="jodit_image_editor_keep_spect_ratio"/>\
-                                            <button type="button"  data-yes="1" \
-                                                class="jodit_col6 jodit_btn jodit_btn_success ' +
+                                        <button type="button"  data-yes="1" \
+                                            class="jodit_col6 jodit_btn jodit_btn_success ' +
                     (_this.resizeUseRatio ? 'active' : '') +
                     '">' +
                     editor.i18n('Yes') +
                     '</button>\
-                                            <button type="button" class="jodit_col6 jodit_btn' +
+                                        <button type="button" class="jodit_col6 jodit_btn' +
                     (!_this.resizeUseRatio ? 'active' : '') +
                     '">' +
                     editor.i18n('No') +
                     '</button>\
-                                        </div>\
                                     </div>\
                                 </div>\
-                            </div>'
+                            </div>\
+                        </div>'
                 : '') +
             (_this.options.crop
                 ? '<div data-area="crop" class="jodit_image_editor_slider' +
                     (!_this.options.resize ? ' active' : '') +
                     '">\
-                                <div class="jodit_image_editor_slider-title">' +
+                            <div class="jodit_image_editor_slider-title">' +
                     icon_1.ToolbarIcon.getIcon('crop') +
                     editor.i18n('Crop') +
                     '</div>\
-                                <div class="jodit_image_editor_slider-content">\
-                                    <div class="jodit_form_group">\
-                                        <label>' +
+                            <div class="jodit_image_editor_slider-content">\
+                                <div class="jodit_form_group">\
+                                    <label>' +
                     editor.i18n('Keep Aspect Ratio') +
                     '</label>\
-                                        <div class="jodit_btn_group jodit_btn_radio_group">\
-                                            <input ' +
+                                    <div class="jodit_btn_group jodit_btn_radio_group">\
+                                        <input ' +
                     (_this.cropUseRatio ? 'checked' : '') +
                     ' type="checkbox" class="jodit_image_editor_keep_spect_ratio_crop"/>\
-                                            <button type="button" data-yes="1" \
-                                                class="jodit_col6 jodit_btn jodit_btn_success ' +
+                                        <button type="button" data-yes="1" \
+                                            class="jodit_col6 jodit_btn jodit_btn_success ' +
                     (_this.cropUseRatio ? 'active' : '') +
                     '">' +
                     editor.i18n('Yes') +
                     '</button>\
-                                            <button type="button" class="jodit_col6 jodit_btn ' +
+                                        <button type="button" class="jodit_col6 jodit_btn ' +
                     (!_this.cropUseRatio ? 'active' : '') +
                     '">' +
                     editor.i18n('No') +
                     '</button>\
-                                        </div>\
                                     </div>\
                                 </div>\
-                            </div>'
+                            </div>\
+                        </div>'
                 : '') +
             '</div>' +
             '</div>' +
@@ -19735,9 +19735,32 @@ var inlinePopup = /** @class */ (function (_super) {
     tslib_1.__extends(inlinePopup, _super);
     function inlinePopup() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.isShown = false;
         _this._hiddenClass = 'jodit_toolbar_popup-inline-target-hidden';
         // was started selection
         _this.isSelectionStarted = false;
+        _this.isTargetAction = false;
+        /**
+         * Popup was opened for some selection text (not for image or link)
+         * @type {boolean}
+         */
+        _this.isSelectionPopup = false;
+        _this.onChangeSelection = function () {
+            if (!_this.jodit.options.toolbarInline || !_this.jodit.isEditorMode()) {
+                return;
+            }
+            if (_this.hideIfCollapsed()) {
+                return;
+            }
+            if (_this.jodit.options.popup.selection !== undefined) {
+                var sel = _this.jodit.selection.sel;
+                if (sel && sel.rangeCount) {
+                    _this.isSelectionPopup = true;
+                    var range_1 = sel.getRangeAt(0);
+                    _this.showPopup(function () { return helpers_1.offset(range_1, _this.jodit, _this.jodit.editorDocument); }, 'selection');
+                }
+            }
+        };
         _this.onSelectionEnd = helpers_1.debounce(function () {
             if (_this.isDestructed || !_this.jodit.isEditorMode()) {
                 return;
@@ -19750,12 +19773,6 @@ var inlinePopup = /** @class */ (function (_super) {
             _this.isSelectionStarted = false;
             _this.isTargetAction = false;
         }, _this.jodit.defaultTimeout);
-        _this.isTargetAction = false;
-        /**
-         * Popup was opened for some selection text (not for image or link)
-         * @type {boolean}
-         */
-        _this.isSelectionPopup = false;
         _this.calcWindSizes = function () {
             var win = _this.jodit.ownerWindow;
             var docElement = _this.jodit.ownerDocument
@@ -19881,37 +19898,8 @@ var inlinePopup = /** @class */ (function (_super) {
                 _this.isTargetAction = false;
             }
         };
-        _this.isShown = false;
-        _this.onChangeSelection = function () {
-            if (!_this.jodit.options.toolbarInline || !_this.jodit.isEditorMode()) {
-                return;
-            }
-            if (_this.hideIfCollapsed()) {
-                return;
-            }
-            if (_this.jodit.options.popup.selection !== undefined) {
-                var sel = _this.jodit.selection.sel;
-                if (sel && sel.rangeCount) {
-                    _this.isSelectionPopup = true;
-                    var range_1 = sel.getRangeAt(0);
-                    _this.showPopup(function () { return helpers_1.offset(range_1, _this.jodit, _this.jodit.editorDocument); }, 'selection');
-                }
-            }
-        };
         return _this;
     }
-    inlinePopup.prototype.isExcludedTarget = function (type) {
-        return (helpers_1.splitArray(this.jodit.options.toolbarInlineDisableFor)
-            .map(function (a) { return a.toLowerCase(); })
-            .indexOf(type.toLowerCase()) !== -1);
-    };
-    inlinePopup.prototype.hideIfCollapsed = function () {
-        if (this.jodit.selection.isCollapsed()) {
-            this.hidePopup();
-            return true;
-        }
-        return false;
-    };
     inlinePopup.prototype.afterInit = function (editor) {
         var _this = this;
         this.toolbar = joditToolbarCollection_1.JoditToolbarCollection.makeCollection(editor);
@@ -19965,6 +19953,18 @@ var inlinePopup = /** @class */ (function (_super) {
                 .off([editor.ownerWindow], 'scroll resize', this.reCalcPosition)
                 .off([editor.ownerWindow], 'mouseup keyup touchend', this.onSelectionEnd)
                 .off([editor.ownerWindow], 'mousedown keydown touchstart', this.checkIsTargetEvent);
+    };
+    inlinePopup.prototype.isExcludedTarget = function (type) {
+        return (helpers_1.splitArray(this.jodit.options.toolbarInlineDisableFor)
+            .map(function (a) { return a.toLowerCase(); })
+            .indexOf(type.toLowerCase()) !== -1);
+    };
+    inlinePopup.prototype.hideIfCollapsed = function () {
+        if (this.jodit.selection.isCollapsed()) {
+            this.hidePopup();
+            return true;
+        }
+        return false;
     };
     return inlinePopup;
 }(Plugin_1.Plugin));
@@ -21825,6 +21825,9 @@ var source = /** @class */ (function (_super) {
         _this.tempMarkerEnd = '{end-jodit-selection}';
         _this.tempMarkerEndReg = /{end-jodit-selection}/g;
         _this.selInfo = [];
+        _this.setMirrorSelectionRange = function (start, end) {
+            _this.mirror.setSelectionRange(start, end);
+        };
         // private lastTuple: null | CallbackAndElement = null;
         _this.loadNext = function (i, urls, eventOnFinalize, className) {
             if (eventOnFinalize === void 0) { eventOnFinalize = 'aceReady'; }
@@ -22023,9 +22026,6 @@ var source = /** @class */ (function (_super) {
         _this.__proxyOnMouseDown = function (e) {
             _this.jodit.events.fire('mousedown', e);
         };
-        _this.setMirrorSelectionRange = function (start, end) {
-            _this.mirror.setSelectionRange(start, end);
-        };
         _this.onReadonlyReact = function () {
             var isReadOnly = _this.jodit.options.readonly;
             if (isReadOnly) {
@@ -22040,6 +22040,78 @@ var source = /** @class */ (function (_super) {
         };
         return _this;
     }
+    source.prototype.afterInit = function (editor) {
+        var _this = this;
+        this.mirrorContainer = editor.create.div('jodit_source');
+        this.mirror = editor.create.fromHTML('<textarea class="jodit_source_mirror"/>');
+        var addListeners = function () {
+            // save restore selection
+            editor.events
+                .off('beforeSetMode.source afterSetMode.source')
+                .on('beforeSetMode.source', _this.saveSelection)
+                .on('afterSetMode.source', _this.restoreSelection);
+        };
+        addListeners();
+        this.onReadonlyReact();
+        editor.events
+            .on(this.mirror, 'mousedown keydown touchstart input', async_1.debounce(this.toWYSIWYG, editor.defaultTimeout))
+            .on(this.mirror, 'change keydown mousedown touchstart input', this.autosize)
+            .on('afterSetMode.source', this.autosize)
+            .on(this.mirror, 'mousedown focus', function (e) {
+            editor.events.fire(e.type, e);
+        });
+        editor.events
+            .on('setMinHeight.source', function (minHeightD) {
+            _this.mirror && css_1.css(_this.mirror, 'minHeight', minHeightD);
+        })
+            .on('insertHTML.source', function (html) {
+            if (!editor.options.readonly &&
+                !_this.jodit.isEditorMode()) {
+                _this.insertHTML(html);
+                return false;
+            }
+        })
+            .on('aceInited', function () {
+            _this.onReadonlyReact();
+            addListeners();
+        }, void 0, void 0, true)
+            .on('readonly.source', this.onReadonlyReact)
+            .on('placeholder.source', function (text) {
+            _this.mirror.setAttribute('placeholder', text);
+        })
+            .on('beforeCommand.source', this.onSelectAll)
+            .on('change.source', this.fromWYSIWYG);
+        this.mirrorContainer.appendChild(this.mirror);
+        editor.workplace.appendChild(this.mirrorContainer);
+        this.autosize();
+        if (editor.options.useAceEditor) {
+            this.replaceMirrorToACE();
+        }
+        this.fromWYSIWYG();
+    };
+    source.prototype.beforeDestruct = function (jodit) {
+        Dom_1.Dom.safeRemove(this.mirrorContainer);
+        Dom_1.Dom.safeRemove(this.mirror);
+        if (jodit && jodit.events) {
+            jodit.events.off('aceInited.source');
+        }
+        if (this.aceEditor) {
+            this.setFocusToMirror = function () {
+                // TODO
+            };
+            this.aceEditor.off('change', this.toWYSIWYG);
+            this.aceEditor.off('focus', this.__proxyOnFocus);
+            this.aceEditor.off('mousedown', this.__proxyOnMouseDown);
+            this.aceEditor.destroy();
+            delete this.aceEditor;
+        }
+        // if (this.lastTuple) {
+        // 	this.lastTuple.element.removeEventListener(
+        // 		'load',
+        // 		this.lastTuple.callback
+        // 	);
+        // }
+    };
     source.prototype.getMirrorValue = function () {
         return this.mirror.value;
     };
@@ -22197,78 +22269,6 @@ var source = /** @class */ (function (_super) {
         if (this.jodit.ownerWindow.ace === undefined) {
             this.loadNext(0, editor.options.sourceEditorCDNUrlsJS, 'aceReady', this.className);
         }
-    };
-    source.prototype.afterInit = function (editor) {
-        var _this = this;
-        this.mirrorContainer = editor.create.div('jodit_source');
-        this.mirror = editor.create.fromHTML('<textarea class="jodit_source_mirror"/>');
-        var addListeners = function () {
-            // save restore selection
-            editor.events
-                .off('beforeSetMode.source afterSetMode.source')
-                .on('beforeSetMode.source', _this.saveSelection)
-                .on('afterSetMode.source', _this.restoreSelection);
-        };
-        addListeners();
-        this.onReadonlyReact();
-        editor.events
-            .on(this.mirror, 'mousedown keydown touchstart input', async_1.debounce(this.toWYSIWYG, editor.defaultTimeout))
-            .on(this.mirror, 'change keydown mousedown touchstart input', this.autosize)
-            .on('afterSetMode.source', this.autosize)
-            .on(this.mirror, 'mousedown focus', function (e) {
-            editor.events.fire(e.type, e);
-        });
-        editor.events
-            .on('setMinHeight.source', function (minHeightD) {
-            _this.mirror && css_1.css(_this.mirror, 'minHeight', minHeightD);
-        })
-            .on('insertHTML.source', function (html) {
-            if (!editor.options.readonly &&
-                !_this.jodit.isEditorMode()) {
-                _this.insertHTML(html);
-                return false;
-            }
-        })
-            .on('aceInited', function () {
-            _this.onReadonlyReact();
-            addListeners();
-        }, void 0, void 0, true)
-            .on('readonly.source', this.onReadonlyReact)
-            .on('placeholder.source', function (text) {
-            _this.mirror.setAttribute('placeholder', text);
-        })
-            .on('beforeCommand.source', this.onSelectAll)
-            .on('change.source', this.fromWYSIWYG);
-        this.mirrorContainer.appendChild(this.mirror);
-        editor.workplace.appendChild(this.mirrorContainer);
-        this.autosize();
-        if (editor.options.useAceEditor) {
-            this.replaceMirrorToACE();
-        }
-        this.fromWYSIWYG();
-    };
-    source.prototype.beforeDestruct = function (jodit) {
-        Dom_1.Dom.safeRemove(this.mirrorContainer);
-        Dom_1.Dom.safeRemove(this.mirror);
-        if (jodit && jodit.events) {
-            jodit.events.off('aceInited.source');
-        }
-        if (this.aceEditor) {
-            this.setFocusToMirror = function () {
-                // TODO
-            };
-            this.aceEditor.off('change', this.toWYSIWYG);
-            this.aceEditor.off('focus', this.__proxyOnFocus);
-            this.aceEditor.off('mousedown', this.__proxyOnMouseDown);
-            this.aceEditor.destroy();
-            delete this.aceEditor;
-        }
-        // if (this.lastTuple) {
-        // 	this.lastTuple.element.removeEventListener(
-        // 		'load',
-        // 		this.lastTuple.callback
-        // 	);
-        // }
     };
     return source;
 }(Plugin_1.Plugin));
@@ -50543,16 +50543,6 @@ var hotkeys = /** @class */ (function (_super) {
     tslib_1.__extends(hotkeys, _super);
     function hotkeys() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.onKeyPress = function (event) {
-            var special = _this.specialKeys[event.which], character = (event.key || String.fromCharCode(event.which)).toLowerCase();
-            var modif = [special || character];
-            ['alt', 'ctrl', 'shift', 'meta'].forEach(function (specialKey) {
-                if (event[specialKey + 'Key'] && special !== specialKey) {
-                    modif.push(specialKey);
-                }
-            });
-            return normalize_1.normalizeKeyAliases(modif.join('+'));
-        };
         _this.specialKeys = {
             8: 'backspace',
             9: 'tab',
@@ -50619,6 +50609,16 @@ var hotkeys = /** @class */ (function (_super) {
             220: '\\',
             221: ']',
             222: "'"
+        };
+        _this.onKeyPress = function (event) {
+            var special = _this.specialKeys[event.which], character = (event.key || String.fromCharCode(event.which)).toLowerCase();
+            var modif = [special || character];
+            ['alt', 'ctrl', 'shift', 'meta'].forEach(function (specialKey) {
+                if (event[specialKey + 'Key'] && special !== specialKey) {
+                    modif.push(specialKey);
+                }
+            });
+            return normalize_1.normalizeKeyAliases(modif.join('+'));
         };
         return _this;
     }
@@ -50985,82 +50985,6 @@ var TableProcessor = /** @class */ (function (_super) {
             _this.__resizerHandler.style.display = 'none';
         }, this.jodit.defaultTimeout);
     };
-    /**
-     *
-     * @param {HTMLTableElement} [table]
-     * @param {HTMLTableCellElement} [currentCell]
-     * @private
-     */
-    TableProcessor.prototype.__deSelectAll = function (table, currentCell) {
-        var cells = table
-            ? Table_1.Table.getAllSelectedCells(table)
-            : Table_1.Table.getAllSelectedCells(this.jodit.editor);
-        if (cells.length) {
-            cells.forEach(function (cell) {
-                if (!currentCell || currentCell !== cell) {
-                    Table_1.Table.restoreSelection(cell);
-                }
-            });
-        }
-    };
-    /**
-     *
-     * @param {HTMLTableCellElement} cell
-     * @param {boolean|null} [wholeTable=null] true - resize whole table by left side,
-     * false - resize whole table by right side, null - resize column
-     * @private
-     */
-    TableProcessor.prototype.__setWorkCell = function (cell, wholeTable) {
-        if (wholeTable === void 0) { wholeTable = null; }
-        this.__wholeTable = wholeTable;
-        this.__workCell = cell;
-        this.__workTable = Dom_1.Dom.up(cell, function (elm) { return elm && elm.nodeName === 'TABLE'; }, this.jodit.editor);
-    };
-    /**
-     * Calc helper resizer position
-     *
-     * @param {HTMLTableElement} table
-     * @param {HTMLTableCellElement} cell
-     * @param {int} [offsetX=0]
-     * @param {int} [delta=0]
-     *
-     * @private
-     */
-    TableProcessor.prototype.__calcResizerPosition = function (table, cell, offsetX, delta) {
-        if (offsetX === void 0) { offsetX = 0; }
-        if (delta === void 0) { delta = 0; }
-        var box = helpers_1.offset(cell, this.jodit, this.jodit.editorDocument);
-        if (offsetX <= consts.NEARBY || box.width - offsetX <= consts.NEARBY) {
-            var workplacePosition = helpers_1.offset((this.__resizerHandler.parentNode ||
-                this.jodit.ownerDocument
-                    .documentElement), this.jodit, this.jodit.ownerDocument, true), parentBox = helpers_1.offset(table, this.jodit, this.jodit.editorDocument);
-            this.__resizerHandler.style.left =
-                (offsetX <= consts.NEARBY ? box.left : box.left + box.width) -
-                    workplacePosition.left +
-                    delta +
-                    'px';
-            this.__resizerHandler.style.height = parentBox.height + 'px';
-            this.__resizerHandler.style.top =
-                parentBox.top - workplacePosition.top + 'px';
-            this.showResizer();
-            if (offsetX <= consts.NEARBY) {
-                var prevTD = Dom_1.Dom.prev(cell, TableProcessor.isCell, cell.parentNode);
-                if (prevTD) {
-                    this.__setWorkCell(prevTD);
-                }
-                else {
-                    this.__setWorkCell(cell, true);
-                }
-            }
-            else {
-                var nextTD = Dom_1.Dom.next(cell, TableProcessor.isCell, cell.parentNode);
-                this.__setWorkCell(cell, !nextTD ? false : null);
-            }
-        }
-        else {
-            this.hideResizer();
-        }
-    };
     TableProcessor.prototype.observe = function (table) {
         var _this = this;
         table[this.__key] = true;
@@ -51251,6 +51175,82 @@ var TableProcessor = /** @class */ (function (_super) {
         if (jodit.events) {
             jodit.events.off(this.jodit.ownerWindow, '.table');
             jodit.events.off('.table');
+        }
+    };
+    /**
+     *
+     * @param {HTMLTableElement} [table]
+     * @param {HTMLTableCellElement} [currentCell]
+     * @private
+     */
+    TableProcessor.prototype.__deSelectAll = function (table, currentCell) {
+        var cells = table
+            ? Table_1.Table.getAllSelectedCells(table)
+            : Table_1.Table.getAllSelectedCells(this.jodit.editor);
+        if (cells.length) {
+            cells.forEach(function (cell) {
+                if (!currentCell || currentCell !== cell) {
+                    Table_1.Table.restoreSelection(cell);
+                }
+            });
+        }
+    };
+    /**
+     *
+     * @param {HTMLTableCellElement} cell
+     * @param {boolean|null} [wholeTable=null] true - resize whole table by left side,
+     * false - resize whole table by right side, null - resize column
+     * @private
+     */
+    TableProcessor.prototype.__setWorkCell = function (cell, wholeTable) {
+        if (wholeTable === void 0) { wholeTable = null; }
+        this.__wholeTable = wholeTable;
+        this.__workCell = cell;
+        this.__workTable = Dom_1.Dom.up(cell, function (elm) { return elm && elm.nodeName === 'TABLE'; }, this.jodit.editor);
+    };
+    /**
+     * Calc helper resizer position
+     *
+     * @param {HTMLTableElement} table
+     * @param {HTMLTableCellElement} cell
+     * @param {int} [offsetX=0]
+     * @param {int} [delta=0]
+     *
+     * @private
+     */
+    TableProcessor.prototype.__calcResizerPosition = function (table, cell, offsetX, delta) {
+        if (offsetX === void 0) { offsetX = 0; }
+        if (delta === void 0) { delta = 0; }
+        var box = helpers_1.offset(cell, this.jodit, this.jodit.editorDocument);
+        if (offsetX <= consts.NEARBY || box.width - offsetX <= consts.NEARBY) {
+            var workplacePosition = helpers_1.offset((this.__resizerHandler.parentNode ||
+                this.jodit.ownerDocument
+                    .documentElement), this.jodit, this.jodit.ownerDocument, true), parentBox = helpers_1.offset(table, this.jodit, this.jodit.editorDocument);
+            this.__resizerHandler.style.left =
+                (offsetX <= consts.NEARBY ? box.left : box.left + box.width) -
+                    workplacePosition.left +
+                    delta +
+                    'px';
+            this.__resizerHandler.style.height = parentBox.height + 'px';
+            this.__resizerHandler.style.top =
+                parentBox.top - workplacePosition.top + 'px';
+            this.showResizer();
+            if (offsetX <= consts.NEARBY) {
+                var prevTD = Dom_1.Dom.prev(cell, TableProcessor.isCell, cell.parentNode);
+                if (prevTD) {
+                    this.__setWorkCell(prevTD);
+                }
+                else {
+                    this.__setWorkCell(cell, true);
+                }
+            }
+            else {
+                var nextTD = Dom_1.Dom.next(cell, TableProcessor.isCell, cell.parentNode);
+                this.__setWorkCell(cell, !nextTD ? false : null);
+            }
+        }
+        else {
+            this.hideResizer();
         }
     };
     return TableProcessor;
@@ -51470,21 +51470,6 @@ var search = /** @class */ (function (_super) {
         _this.isOpened = false;
         _this.selInfo = null;
         _this.current = false;
-        _this.eachMap = function (node, callback, next) {
-            Dom_1.Dom.findWithCurrent(node, function (child) {
-                return !!child && callback(child);
-            }, _this.jodit.editor, next ? 'nextSibling' : 'previousSibling', next ? 'firstChild' : 'lastChild');
-        };
-        _this.updateCounters = function () {
-            if (!_this.isOpened) {
-                return;
-            }
-            _this.counterBox.style.display = _this.queryInput.value.length
-                ? 'inline-block'
-                : 'none';
-            var range = _this.jodit.selection.range, counts = _this.calcCounts(_this.queryInput.value, range);
-            _this.counterBox.innerText = counts.join('/');
-        };
         _this.calcCounts = function (query, current) {
             if (current === void 0) { current = false; }
             var bounds = [];
@@ -51523,7 +51508,8 @@ var search = /** @class */ (function (_super) {
                         _this.tryScrollToElement(textNode);
                     }
                 }
-                catch (_a) { }
+                catch (_a) {
+                }
                 return true;
             }
             return false;
@@ -51543,7 +51529,8 @@ var search = /** @class */ (function (_super) {
                     rng.setEnd(bound.endContainer, bound.endOffset);
                     _this.jodit.selection.selectRange(rng);
                 }
-                catch (e) { }
+                catch (e) {
+                }
                 _this.tryScrollToElement(bound.startContainer);
                 _this.current = bound.startContainer;
                 _this.updateCounters();
@@ -51670,6 +51657,21 @@ var search = /** @class */ (function (_super) {
             _this.searchBox.classList.remove('jodit_search-active');
             _this.isOpened = false;
         };
+        _this.eachMap = function (node, callback, next) {
+            Dom_1.Dom.findWithCurrent(node, function (child) {
+                return !!child && callback(child);
+            }, _this.jodit.editor, next ? 'nextSibling' : 'previousSibling', next ? 'firstChild' : 'lastChild');
+        };
+        _this.updateCounters = function () {
+            if (!_this.isOpened) {
+                return;
+            }
+            _this.counterBox.style.display = _this.queryInput.value.length
+                ? 'inline-block'
+                : 'none';
+            var range = _this.jodit.selection.range, counts = _this.calcCounts(_this.queryInput.value, range);
+            _this.counterBox.innerText = counts.join('/');
+        };
         return _this;
     }
     search.getSomePartOfStringIndex = function (needle, haystack, start) {
@@ -51716,24 +51718,6 @@ var search = /** @class */ (function (_super) {
                     ? tmp.join('')
                     : tmp.reverse().join('')
                 : false;
-    };
-    search.prototype.boundAlreadyWas = function (current, bounds) {
-        return bounds.some(function (bound) {
-            return (bound.startContainer === current.startContainer &&
-                bound.endContainer === current.endContainer &&
-                bound.startOffset === current.startOffset &&
-                bound.endOffset === current.endOffset);
-        }, false);
-    };
-    search.prototype.tryScrollToElement = function (startContainer) {
-        // find scrollable element
-        var parentBox = Dom_1.Dom.closest(startContainer, function (elm) { return elm && elm.nodeType === Node.ELEMENT_NODE; }, this.jodit.editor);
-        if (!parentBox) {
-            parentBox = Dom_1.Dom.prev(startContainer, function (elm) { return elm && elm.nodeType === Node.ELEMENT_NODE; }, this.jodit.editor);
-        }
-        parentBox &&
-            parentBox !== this.jodit.editor &&
-            parentBox.scrollIntoView();
     };
     search.prototype.afterInit = function (editor) {
         var _this = this;
@@ -51852,6 +51836,24 @@ var search = /** @class */ (function (_super) {
         jodit.events && jodit.events.off('.search');
         jodit.events && jodit.events.off(jodit.container, '.search');
     };
+    search.prototype.boundAlreadyWas = function (current, bounds) {
+        return bounds.some(function (bound) {
+            return (bound.startContainer === current.startContainer &&
+                bound.endContainer === current.endContainer &&
+                bound.startOffset === current.startOffset &&
+                bound.endOffset === current.endOffset);
+        }, false);
+    };
+    search.prototype.tryScrollToElement = function (startContainer) {
+        // find scrollable element
+        var parentBox = Dom_1.Dom.closest(startContainer, function (elm) { return elm && elm.nodeType === Node.ELEMENT_NODE; }, this.jodit.editor);
+        if (!parentBox) {
+            parentBox = Dom_1.Dom.prev(startContainer, function (elm) { return elm && elm.nodeType === Node.ELEMENT_NODE; }, this.jodit.editor);
+        }
+        parentBox &&
+            parentBox !== this.jodit.editor &&
+            parentBox.scrollIntoView();
+    };
     return search;
 }(Plugin_1.Plugin));
 exports.search = search;
@@ -51887,13 +51889,6 @@ var sticky = /** @class */ (function (_super) {
     function sticky() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.isToolbarSticked = false;
-        _this.createDummy = function (toolbar) {
-            if (!_this.dummyBox) {
-                _this.dummyBox = _this.jodit.create.div();
-                _this.dummyBox.classList.add('jodit_sticky-dummy_toolbar');
-                _this.jodit.container.insertBefore(_this.dummyBox, toolbar);
-            }
-        };
         _this.addSticky = function (toolbar) {
             if (!_this.isToolbarSticked) {
                 _this.createDummy(toolbar);
@@ -51919,14 +51914,15 @@ var sticky = /** @class */ (function (_super) {
                 _this.isToolbarSticked = false;
             }
         };
+        _this.createDummy = function (toolbar) {
+            if (!_this.dummyBox) {
+                _this.dummyBox = _this.jodit.create.div();
+                _this.dummyBox.classList.add('jodit_sticky-dummy_toolbar');
+                _this.jodit.container.insertBefore(_this.dummyBox, toolbar);
+            }
+        };
         return _this;
     }
-    sticky.prototype.isMobile = function () {
-        return (this.jodit &&
-            this.jodit.options &&
-            this.jodit.container &&
-            this.jodit.options.sizeSM >= this.jodit.container.offsetWidth);
-    };
     sticky.prototype.afterInit = function (jodit) {
         var _this = this;
         jodit.events.on(jodit.ownerWindow, 'scroll wheel mousewheel resize', function () {
@@ -51951,6 +51947,12 @@ var sticky = /** @class */ (function (_super) {
     };
     sticky.prototype.beforeDestruct = function (jodit) {
         Dom_1.Dom.safeRemove(this.dummyBox);
+    };
+    sticky.prototype.isMobile = function () {
+        return (this.jodit &&
+            this.jodit.options &&
+            this.jodit.container &&
+            this.jodit.options.sizeSM >= this.jodit.container.offsetWidth);
     };
     return sticky;
 }(Plugin_1.Plugin));
@@ -52061,6 +52063,8 @@ var xpath = /** @class */ (function (_super) {
     tslib_1.__extends(xpath, _super);
     function xpath() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.container = null;
+        _this.menu = null;
         _this.onContext = function (bindElement, event) {
             if (!_this.menu) {
                 _this.menu = new ContextMenu_1.ContextMenu(_this.jodit);
@@ -52105,7 +52109,8 @@ var xpath = /** @class */ (function (_super) {
                     return false;
                 }
             }
-            catch (_a) { }
+            catch (_a) {
+            }
             _this.jodit.selection.select(bindElement);
             return false;
         };
@@ -52168,8 +52173,6 @@ var xpath = /** @class */ (function (_super) {
             _this.appendSelectAll();
         };
         _this.calcPath = async_1.debounce(_this.calcPathImd, _this.jodit.defaultTimeout * 2);
-        _this.container = null;
-        _this.menu = null;
         return _this;
     }
     xpath.prototype.afterInit = function () {
@@ -52635,6 +52638,33 @@ var pasteStorage = /** @class */ (function (_super) {
         };
         return _this;
     }
+    pasteStorage.prototype.afterInit = function () {
+        var _this = this;
+        this.jodit.events.on('afterCopy', function (html) {
+            if (_this.list.indexOf(html) !== -1) {
+                _this.list.splice(_this.list.indexOf(html), 1);
+            }
+            _this.list.unshift(html);
+            if (_this.list.length > 5) {
+                _this.list.length = 5;
+            }
+        });
+        this.jodit.registerCommand('showPasteStorage', {
+            exec: this.showDialog,
+            hotkeys: ['ctrl+shift+v', 'cmd+shift+v']
+        });
+    };
+    pasteStorage.prototype.beforeDestruct = function () {
+        this.dialog && this.dialog.destruct();
+        Dom_1.Dom.safeRemove(this.previewBox);
+        Dom_1.Dom.safeRemove(this.listBox);
+        Dom_1.Dom.safeRemove(this.container);
+        this.container = null;
+        this.listBox = null;
+        this.previewBox = null;
+        this.dialog = null;
+        this.list = [];
+    };
     pasteStorage.prototype.createDialog = function () {
         var _this = this;
         this.dialog = new dialog_1.Dialog(this.jodit);
@@ -52669,33 +52699,6 @@ var pasteStorage = /** @class */ (function (_super) {
             }
             return false;
         }, 'a');
-    };
-    pasteStorage.prototype.afterInit = function () {
-        var _this = this;
-        this.jodit.events.on('afterCopy', function (html) {
-            if (_this.list.indexOf(html) !== -1) {
-                _this.list.splice(_this.list.indexOf(html), 1);
-            }
-            _this.list.unshift(html);
-            if (_this.list.length > 5) {
-                _this.list.length = 5;
-            }
-        });
-        this.jodit.registerCommand('showPasteStorage', {
-            exec: this.showDialog,
-            hotkeys: ['ctrl+shift+v', 'cmd+shift+v']
-        });
-    };
-    pasteStorage.prototype.beforeDestruct = function () {
-        this.dialog && this.dialog.destruct();
-        Dom_1.Dom.safeRemove(this.previewBox);
-        Dom_1.Dom.safeRemove(this.listBox);
-        Dom_1.Dom.safeRemove(this.container);
-        this.container = null;
-        this.listBox = null;
-        this.previewBox = null;
-        this.dialog = null;
-        this.list = [];
     };
     return pasteStorage;
 }(Plugin_1.Plugin));
@@ -52875,139 +52878,139 @@ exports.video = video;
 /* 594 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path d=\"M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z\"/>\n</svg>\n"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 595 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 18.151 18.151\">\n<g>\n\t<g>\n\t\t<path d=\"M6.237,16.546H3.649V1.604h5.916v5.728c0.474-0.122,0.968-0.194,1.479-0.194\n\t\t\tc0.042,0,0.083,0.006,0.125,0.006V0H2.044v18.15h5.934C7.295,17.736,6.704,17.19,6.237,16.546z\"/>\n\t\t<path d=\"M11.169,8.275c-2.723,0-4.938,2.215-4.938,4.938s2.215,4.938,4.938,4.938s4.938-2.215,4.938-4.938\n\t\t\tS13.892,8.275,11.169,8.275z M11.169,16.81c-1.983,0-3.598-1.612-3.598-3.598c0-1.983,1.614-3.597,3.598-3.597\n\t\t\ts3.597,1.613,3.597,3.597C14.766,15.198,13.153,16.81,11.169,16.81z\"/>\n\t\t<polygon  points=\"11.792,11.073 10.502,11.073 10.502,12.578 9.03,12.578 9.03,13.868 10.502,13.868\n\t\t\t10.502,15.352 11.792,15.352 11.792,13.868 13.309,13.868 13.309,12.578 11.792,12.578 \t\t\"/>\n\t</g>\n</g>\n</svg>\n"
+module.exports = "<svg viewBox=\"0 0 18.151 18.151\">\n\t<g>\n\t\t<g>\n\t\t\t<path d=\"M6.237,16.546H3.649V1.604h5.916v5.728c0.474-0.122,0.968-0.194,1.479-0.194\n\t\t\tc0.042,0,0.083,0.006,0.125,0.006V0H2.044v18.15h5.934C7.295,17.736,6.704,17.19,6.237,16.546z\"/>\n\t\t\t<path d=\"M11.169,8.275c-2.723,0-4.938,2.215-4.938,4.938s2.215,4.938,4.938,4.938s4.938-2.215,4.938-4.938\n\t\t\tS13.892,8.275,11.169,8.275z M11.169,16.81c-1.983,0-3.598-1.612-3.598-3.598c0-1.983,1.614-3.597,3.598-3.597\n\t\t\ts3.597,1.613,3.597,3.597C14.766,15.198,13.153,16.81,11.169,16.81z\"/>\n\t\t\t<polygon points=\"11.792,11.073 10.502,11.073 10.502,12.578 9.03,12.578 9.03,13.868 10.502,13.868\n\t\t\t10.502,15.352 11.792,15.352 11.792,13.868 13.309,13.868 13.309,12.578 11.792,12.578 \t\t\"/>\n\t\t</g>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 596 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 432 432\">\n<g>\n\t<g>\n\t\t<polygon points=\"203.688,96 0,96 0,144 155.688,144 \t\t\"/>\n\t\t<polygon points=\"155.719,288 0,288 0,336 203.719,336 \t\t\"/>\n\t\t<rect x=\"252\" y=\"96\"/>\n\t\t<rect/>\n\t\t<rect x=\"252\" y=\"288\"/>\n\t\t<rect y=\"384\"/>\n\t\t<path d=\"M97.844,230.125c-3.701-3.703-5.856-8.906-5.856-14.141s2.154-10.438,5.856-14.141l9.844-9.844H0v48h107.719\n\t\t\tL97.844,230.125z\"/>\n\t\t<polygon points=\"232,176 232,96 112,216 232,336 232,256 432,256 432,176 \t\t\"/>\n\t</g>\n</g>\n</svg>\n"
+module.exports = "<svg viewBox=\"0 0 432 432\">\n\t<g>\n\t\t<g>\n\t\t\t<polygon points=\"203.688,96 0,96 0,144 155.688,144 \t\t\"/>\n\t\t\t<polygon points=\"155.719,288 0,288 0,336 203.719,336 \t\t\"/>\n\t\t\t<rect x=\"252\" y=\"96\"/>\n\t\t\t<rect/>\n\t\t\t<rect x=\"252\" y=\"288\"/>\n\t\t\t<rect y=\"384\"/>\n\t\t\t<path d=\"M97.844,230.125c-3.701-3.703-5.856-8.906-5.856-14.141s2.154-10.438,5.856-14.141l9.844-9.844H0v48h107.719\n\t\t\tL97.844,230.125z\"/>\n\t\t\t<polygon points=\"232,176 232,96 112,216 232,336 232,256 432,256 432,176 \t\t\"/>\n\t\t</g>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 597 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg  viewBox=\"0 0 1792 1792\">\n    <path d=\"M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 598 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 599 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 600 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1395 1184q0 13-10 23l-50 50q-10 10-23 10t-23-10l-393-393-393 393q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l466 466q10 10 10 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1395 1184q0 13-10 23l-50 50q-10 10-23 10t-23-10l-393-393-393 393q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l466 466q10 10 10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 601 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1411 541l-355 355 355 355 144-144q29-31 70-14 39 17 39 59v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l144-144-355-355-355 355 144 144q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l144 144 355-355-355-355-144 144q-19 19-45 19-12 0-24-5-40-17-40-59v-448q0-26 19-45t45-19h448q42 0 59 40 17 39-14 69l-144 144 355 355 355-355-144-144q-31-30-14-69 17-40 59-40h448q26 0 45 19t19 45v448q0 42-39 59-13 5-25 5-26 0-45-19z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1411 541l-355 355 355 355 144-144q29-31 70-14 39 17 39 59v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l144-144-355-355-355 355 144 144q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l144 144 355-355-355-355-144 144q-19 19-45 19-12 0-24-5-40-17-40-59v-448q0-26 19-45t45-19h448q42 0 59 40 17 39-14 69l-144 144 355 355 355-355-144-144q-31-30-14-69 17-40 59-40h448q26 0 45 19t19 45v448q0 42-39 59-13 5-25 5-26 0-45-19z\"/>\n</svg>\n"
 
 /***/ }),
 /* 602 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 896q0 26-19 45l-256 256q-19 19-45 19t-45-19-19-45v-128h-1024v128q0 26-19 45t-45 19-45-19l-256-256q-19-19-19-45t19-45l256-256q19-19 45-19t45 19 19 45v128h1024v-128q0-26 19-45t45-19 45 19l256 256q19 19 19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 896q0 26-19 45l-256 256q-19 19-45 19t-45-19-19-45v-128h-1024v128q0 26-19 45t-45 19-45-19l-256-256q-19-19-19-45t19-45l256-256q19-19 45-19t45 19 19 45v128h1024v-128q0-26 19-45t45-19 45 19l256 256q19 19 19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 603 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1596 1385q0 117-79 196t-196 79q-135 0-235-100l-777-776q-113-115-113-271 0-159 110-270t269-111q158 0 273 113l605 606q10 10 10 22 0 16-30.5 46.5t-46.5 30.5q-13 0-23-10l-606-607q-79-77-181-77-106 0-179 75t-73 181q0 105 76 181l776 777q63 63 145 63 64 0 106-42t42-106q0-82-63-145l-581-581q-26-24-60-24-29 0-48 19t-19 48q0 32 25 59l410 410q10 10 10 22 0 16-31 47t-47 31q-12 0-22-10l-410-410q-63-61-63-149 0-82 57-139t139-57q88 0 149 63l581 581q100 98 100 235z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1596 1385q0 117-79 196t-196 79q-135 0-235-100l-777-776q-113-115-113-271 0-159 110-270t269-111q158 0 273 113l605 606q10 10 10 22 0 16-30.5 46.5t-46.5 30.5q-13 0-23-10l-606-607q-79-77-181-77-106 0-179 75t-73 181q0 105 76 181l776 777q63 63 145 63 64 0 106-42t42-106q0-82-63-145l-581-581q-26-24-60-24-29 0-48 19t-19 48q0 32 25 59l410 410q10 10 10 22 0 16-31 47t-47 31q-12 0-22-10l-410-410q-63-61-63-149 0-82 57-139t139-57q88 0 149 63l581 581q100 98 100 235z\"/>\n</svg>\n"
 
 /***/ }),
 /* 604 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M704 1376v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm-544-992h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M704 1376v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm256 0v-704q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v704q0 14 9 23t23 9h64q14 0 23-9t9-23zm-544-992h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 605 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M747 1521q74 32 140 32 376 0 376-335 0-114-41-180-27-44-61.5-74t-67.5-46.5-80.5-25-84-10.5-94.5-2q-73 0-101 10 0 53-.5 159t-.5 158q0 8-1 67.5t-.5 96.5 4.5 83.5 12 66.5zm-14-746q42 7 109 7 82 0 143-13t110-44.5 74.5-89.5 25.5-142q0-70-29-122.5t-79-82-108-43.5-124-14q-50 0-130 13 0 50 4 151t4 152q0 27-.5 80t-.5 79q0 46 1 69zm-541 889l2-94q15-4 85-16t106-27q7-12 12.5-27t8.5-33.5 5.5-32.5 3-37.5.5-34v-65.5q0-982-22-1025-4-8-22-14.5t-44.5-11-49.5-7-48.5-4.5-30.5-3l-4-83q98-2 340-11.5t373-9.5q23 0 68.5.5t67.5.5q70 0 136.5 13t128.5 42 108 71 74 104.5 28 137.5q0 52-16.5 95.5t-39 72-64.5 57.5-73 45-84 40q154 35 256.5 134t102.5 248q0 100-35 179.5t-93.5 130.5-138 85.5-163.5 48.5-176 14q-44 0-132-3t-132-3q-106 0-307 11t-231 12z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M747 1521q74 32 140 32 376 0 376-335 0-114-41-180-27-44-61.5-74t-67.5-46.5-80.5-25-84-10.5-94.5-2q-73 0-101 10 0 53-.5 159t-.5 158q0 8-1 67.5t-.5 96.5 4.5 83.5 12 66.5zm-14-746q42 7 109 7 82 0 143-13t110-44.5 74.5-89.5 25.5-142q0-70-29-122.5t-79-82-108-43.5-124-14q-50 0-130 13 0 50 4 151t4 152q0 27-.5 80t-.5 79q0 46 1 69zm-541 889l2-94q15-4 85-16t106-27q7-12 12.5-27t8.5-33.5 5.5-32.5 3-37.5.5-34v-65.5q0-982-22-1025-4-8-22-14.5t-44.5-11-49.5-7-48.5-4.5-30.5-3l-4-83q98-2 340-11.5t373-9.5q23 0 68.5.5t67.5.5q70 0 136.5 13t128.5 42 108 71 74 104.5 28 137.5q0 52-16.5 95.5t-39 72-64.5 57.5-73 45-84 40q154 35 256.5 134t102.5 248q0 100-35 179.5t-93.5 130.5-138 85.5-163.5 48.5-176 14q-44 0-132-3t-132-3q-106 0-307 11t-231 12z\"/>\n</svg>\n"
 
 /***/ }),
 /* 606 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M896 1152q0-36-20-69-1-1-15.5-22.5t-25.5-38-25-44-21-50.5q-4-16-21-16t-21 16q-7 23-21 50.5t-25 44-25.5 38-15.5 22.5q-20 33-20 69 0 53 37.5 90.5t90.5 37.5 90.5-37.5 37.5-90.5zm512-128q0 212-150 362t-362 150-362-150-150-362q0-145 81-275 6-9 62.5-90.5t101-151 99.5-178 83-201.5q9-30 34-47t51-17 51.5 17 33.5 47q28 93 83 201.5t99.5 178 101 151 62.5 90.5q81 127 81 275z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M896 1152q0-36-20-69-1-1-15.5-22.5t-25.5-38-25-44-21-50.5q-4-16-21-16t-21 16q-7 23-21 50.5t-25 44-25.5 38-15.5 22.5q-20 33-20 69 0 53 37.5 90.5t90.5 37.5 90.5-37.5 37.5-90.5zm512-128q0 212-150 362t-362 150-362-150-150-362q0-145 81-275 6-9 62.5-90.5t101-151 99.5-178 83-201.5q9-30 34-47t51-17 51.5 17 33.5 47q28 93 83 201.5t99.5 178 101 151 62.5 90.5q81 127 81 275z\"/>\n</svg>\n"
 
 /***/ }),
 /* 607 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 16 16\" style=\"stroke: #000000;\">\n    <g transform=\"translate(0,-1036.3622)\">\n        <path d=\"m 2,1050.3622 12,-12\"\n              style=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n        <path d=\"m 2,1038.3622 12,12\"\n              style=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n    </g>\n</svg>\n"
+module.exports = "<svg viewBox=\"0 0 16 16\" style=\"stroke: #000000;\">\n\t<g transform=\"translate(0,-1036.3622)\">\n\t\t<path d=\"m 2,1050.3622 12,-12\"\n\t\t\t\t\tstyle=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n\t\t<path d=\"m 2,1038.3622 12,12\"\n\t\t\t\t\tstyle=\"fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none\"/>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 608 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h896q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-640q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h640q26 0 45 19t19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-896q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h896q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-640q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h640q26 0 45 19t19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 609 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 610 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1472 930v318q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-10 10-23 10-3 0-9-2-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-254q0-13 9-22l64-64q10-10 23-10 6 0 12 3 20 8 20 29zm231-489l-814 814q-24 24-57 24t-57-24l-430-430q-24-24-24-57t24-57l110-110q24-24 57-24t57 24l263 263 647-647q24-24 57-24t57 24l110 110q24 24 24 57t-24 57z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1472 930v318q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-10 10-23 10-3 0-9-2-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-254q0-13 9-22l64-64q10-10 23-10 6 0 12 3 20 8 20 29zm231-489l-814 814q-24 24-57 24t-57-24l-430-430q-24-24-24-57t24-57l110-110q24-24 57-24t57 24l263 263 647-647q24-24 57-24t57 24l110 110q24 24 24 57t-24 57z\"/>\n</svg>\n"
 
 /***/ }),
 /* 611 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M813 1299l614-614q19-19 19-45t-19-45l-102-102q-19-19-45-19t-45 19l-467 467-211-211q-19-19-45-19t-45 19l-102 102q-19 19-19 45t19 45l358 358q19 19 45 19t45-19zm851-883v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M813 1299l614-614q19-19 19-45t-19-45l-102-102q-19-19-45-19t-45 19l-467 467-211-211q-19-19-45-19t-45 19l-102 102q-19 19-19 45t19 45l358 358q19 19 45 19t45-19zm851-883v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 612 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 16 16\"><path d=\"M16 9v-6h-3v-1c0-0.55-0.45-1-1-1h-11c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1h11c0.55 0 1-0.45 1-1v-1h2v4h-9v2h-0.5c-0.276 0-0.5 0.224-0.5 0.5v5c0 0.276 0.224 0.5 0.5 0.5h2c0.276 0 0.5-0.224 0.5-0.5v-5c0-0.276-0.224-0.5-0.5-0.5h-0.5v-1h9zM12 3h-11v-1h11v1z\"/></svg>\n"
+module.exports = "<svg viewBox=\"0 0 16 16\">\n\t<path\n\t\td=\"M16 9v-6h-3v-1c0-0.55-0.45-1-1-1h-11c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1h11c0.55 0 1-0.45 1-1v-1h2v4h-9v2h-0.5c-0.276 0-0.5 0.224-0.5 0.5v5c0 0.276 0.224 0.5 0.5 0.5h2c0.276 0 0.5-0.224 0.5-0.5v-5c0-0.276-0.224-0.5-0.5-0.5h-0.5v-1h9zM12 3h-11v-1h11v1z\"/>\n</svg>\n"
 
 /***/ }),
 /* 613 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M621 1280h595v-595zm-45-45l595-595h-595v595zm1152 77v192q0 14-9 23t-23 9h-224v224q0 14-9 23t-23 9h-192q-14 0-23-9t-9-23v-224h-864q-14 0-23-9t-9-23v-864h-224q-14 0-23-9t-9-23v-192q0-14 9-23t23-9h224v-224q0-14 9-23t23-9h192q14 0 23 9t9 23v224h851l246-247q10-9 23-9t23 9q9 10 9 23t-9 23l-247 246v851h224q14 0 23 9t9 23z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M621 1280h595v-595zm-45-45l595-595h-595v595zm1152 77v192q0 14-9 23t-23 9h-224v224q0 14-9 23t-23 9h-192q-14 0-23-9t-9-23v-224h-864q-14 0-23-9t-9-23v-864h-224q-14 0-23-9t-9-23v-192q0-14 9-23t23-9h224v-224q0-14 9-23t23-9h192q14 0 23 9t9 23v224h851l246-247q10-9 23-9t23 9q9 10 9 23t-9 23l-247 246v851h224q14 0 23 9t9 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 614 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M960 896q26 0 45 19t19 45-19 45-45 19-45-19-19-45 19-45 45-19zm300 64l507 398q28 20 25 56-5 35-35 51l-128 64q-13 7-29 7-17 0-31-8l-690-387-110 66q-8 4-12 5 14 49 10 97-7 77-56 147.5t-132 123.5q-132 84-277 84-136 0-222-78-90-84-79-207 7-76 56-147t131-124q132-84 278-84 83 0 151 31 9-13 22-22l122-73-122-73q-13-9-22-22-68 31-151 31-146 0-278-84-82-53-131-124t-56-147q-5-59 15.5-113t63.5-93q85-79 222-79 145 0 277 84 83 52 132 123t56 148q4 48-10 97 4 1 12 5l110 66 690-387q14-8 31-8 16 0 29 7l128 64q30 16 35 51 3 36-25 56zm-681-260q46-42 21-108t-106-117q-92-59-192-59-74 0-113 36-46 42-21 108t106 117q92 59 192 59 74 0 113-36zm-85 745q81-51 106-117t-21-108q-39-36-113-36-100 0-192 59-81 51-106 117t21 108q39 36 113 36 100 0 192-59zm178-613l96 58v-11q0-36 33-56l14-8-79-47-26 26q-3 3-10 11t-12 12q-2 2-4 3.5t-3 2.5zm224 224l96 32 736-576-128-64-768 431v113l-160 96 9 8q2 2 7 6 4 4 11 12t11 12l26 26zm704 416l128-64-520-408-177 138q-2 3-13 7z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M960 896q26 0 45 19t19 45-19 45-45 19-45-19-19-45 19-45 45-19zm300 64l507 398q28 20 25 56-5 35-35 51l-128 64q-13 7-29 7-17 0-31-8l-690-387-110 66q-8 4-12 5 14 49 10 97-7 77-56 147.5t-132 123.5q-132 84-277 84-136 0-222-78-90-84-79-207 7-76 56-147t131-124q132-84 278-84 83 0 151 31 9-13 22-22l122-73-122-73q-13-9-22-22-68 31-151 31-146 0-278-84-82-53-131-124t-56-147q-5-59 15.5-113t63.5-93q85-79 222-79 145 0 277 84 83 52 132 123t56 148q4 48-10 97 4 1 12 5l110 66 690-387q14-8 31-8 16 0 29 7l128 64q30 16 35 51 3 36-25 56zm-681-260q46-42 21-108t-106-117q-92-59-192-59-74 0-113 36-46 42-21 108t106 117q92 59 192 59 74 0 113-36zm-85 745q81-51 106-117t-21-108q-39-36-113-36-100 0-192 59-81 51-106 117t21 108q39 36 113 36 100 0 192-59zm178-613l96 58v-11q0-36 33-56l14-8-79-47-26 26q-3 3-10 11t-12 12q-2 2-4 3.5t-3 2.5zm224 224l96 32 736-576-128-64-768 431v113l-160 96 9 8q2 2 7 6 4 4 11 12t11 12l26 26zm704 416l128-64-520-408-177 138q-2 3-13 7z\"/>\n</svg>\n"
 
 /***/ }),
 /* 615 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 616 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg\n        enable-background=\"new 0 0 24 24\"\n        viewBox=\"0 0 24 24\"\n        xml:space=\"preserve\"\n\n       >\n    <circle cx=\"12\" cy=\"12\" r=\"2.2\"/>\n    <circle cx=\"12\" cy=\"5\" r=\"2.2\"/>\n    <circle cx=\"12\" cy=\"19\" r=\"2.2\"/>\n</svg>"
+module.exports = "<svg\n\tenable-background=\"new 0 0 24 24\"\n\tviewBox=\"0 0 24 24\"\n\txml:space=\"preserve\"\n\n>\n    <circle cx=\"12\" cy=\"12\" r=\"2.2\"/>\n\t<circle cx=\"12\" cy=\"5\" r=\"2.2\"/>\n\t<circle cx=\"12\" cy=\"19\" r=\"2.2\"/>\n</svg>\n"
 
 /***/ }),
 /* 617 */
@@ -53019,313 +53022,313 @@ module.exports = "<svg viewBox=\"0 0 10 10\">\n\t<path\n\t\td=\"M.941 4.523a.75.
 /* 618 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 128 128\" xml:space=\"preserve\">\n    <g>\n        <polygon points=\"112.4560547,23.3203125 112.4560547,75.8154297 31.4853516,75.8154297 31.4853516,61.953125     16.0131836,72.6357422 0.5410156,83.3164063 16.0131836,93.9990234 31.4853516,104.6796875 31.4853516,90.8183594     112.4560547,90.8183594 112.4560547,90.8339844 127.4589844,90.8339844 127.4589844,23.3203125   \"/>\n    </g>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 128 128\" xml:space=\"preserve\">\n    <g>\n        <polygon\n\t\t\t\t\tpoints=\"112.4560547,23.3203125 112.4560547,75.8154297 31.4853516,75.8154297 31.4853516,61.953125     16.0131836,72.6357422 0.5410156,83.3164063 16.0131836,93.9990234 31.4853516,104.6796875 31.4853516,90.8183594     112.4560547,90.8183594 112.4560547,90.8339844 127.4589844,90.8339844 127.4589844,23.3203125   \"/>\n    </g>\n</svg>\n"
 
 /***/ }),
 /* 619 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M832 1408l336-384h-768l-336 384h768zm1013-1077q15 34 9.5 71.5t-30.5 65.5l-896 1024q-38 44-96 44h-768q-38 0-69.5-20.5t-47.5-54.5q-15-34-9.5-71.5t30.5-65.5l896-1024q38-44 96-44h768q38 0 69.5 20.5t47.5 54.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M832 1408l336-384h-768l-336 384h768zm1013-1077q15 34 9.5 71.5t-30.5 65.5l-896 1024q-38 44-96 44h-768q-38 0-69.5-20.5t-47.5-54.5q-15-34-9.5-71.5t30.5-65.5l896-1024q38-44 96-44h768q38 0 69.5 20.5t47.5 54.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 620 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z\"/>\n</svg>\n"
 
 /***/ }),
 /* 621 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1152 512v-472q22 14 36 28l408 408q14 14 28 36h-472zm-128 32q0 40 28 68t68 28h544v1056q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1600q0-40 28-68t68-28h800v544z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1152 512v-472q22 14 36 28l408 408q14 14 28 36h-472zm-128 32q0 40 28 68t68 28h544v1056q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1600q0-40 28-68t68-28h800v544z\"/>\n</svg>\n"
 
 /***/ }),
 /* 622 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1728 608v704q0 92-66 158t-158 66h-1216q-92 0-158-66t-66-158v-960q0-92 66-158t158-66h320q92 0 158 66t66 158v32h672q92 0 158 66t66 158z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1728 608v704q0 92-66 158t-158 66h-1216q-92 0-158-66t-66-158v-960q0-92 66-158t158-66h320q92 0 158 66t66 158v32h672q92 0 158 66t66 158z\"/>\n</svg>\n"
 
 /***/ }),
 /* 623 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M789 559l-170 450q33 0 136.5 2t160.5 2q19 0 57-2-87-253-184-452zm-725 1105l2-79q23-7 56-12.5t57-10.5 49.5-14.5 44.5-29 31-50.5l237-616 280-724h128q8 14 11 21l205 480q33 78 106 257.5t114 274.5q15 34 58 144.5t72 168.5q20 45 35 57 19 15 88 29.5t84 20.5q6 38 6 57 0 4-.5 13t-.5 13q-63 0-190-8t-191-8q-76 0-215 7t-178 8q0-43 4-78l131-28q1 0 12.5-2.5t15.5-3.5 14.5-4.5 15-6.5 11-8 9-11 2.5-14q0-16-31-96.5t-72-177.5-42-100l-450-2q-26 58-76.5 195.5t-50.5 162.5q0 22 14 37.5t43.5 24.5 48.5 13.5 57 8.5 41 4q1 19 1 58 0 9-2 27-58 0-174.5-10t-174.5-10q-8 0-26.5 4t-21.5 4q-80 14-188 14z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M789 559l-170 450q33 0 136.5 2t160.5 2q19 0 57-2-87-253-184-452zm-725 1105l2-79q23-7 56-12.5t57-10.5 49.5-14.5 44.5-29 31-50.5l237-616 280-724h128q8 14 11 21l205 480q33 78 106 257.5t114 274.5q15 34 58 144.5t72 168.5q20 45 35 57 19 15 88 29.5t84 20.5q6 38 6 57 0 4-.5 13t-.5 13q-63 0-190-8t-191-8q-76 0-215 7t-178 8q0-43 4-78l131-28q1 0 12.5-2.5t15.5-3.5 14.5-4.5 15-6.5 11-8 9-11 2.5-14q0-16-31-96.5t-72-177.5-42-100l-450-2q-26 58-76.5 195.5t-50.5 162.5q0 22 14 37.5t43.5 24.5 48.5 13.5 57 8.5 41 4q1 19 1 58 0 9-2 27-58 0-174.5-10t-174.5-10q-8 0-26.5 4t-21.5 4q-80 14-188 14z\"/>\n</svg>\n"
 
 /***/ }),
 /* 624 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1744 1408q33 0 42 18.5t-11 44.5l-126 162q-20 26-49 26t-49-26l-126-162q-20-26-11-44.5t42-18.5h80v-1024h-80q-33 0-42-18.5t11-44.5l126-162q20-26 49-26t49 26l126 162q20 26 11 44.5t-42 18.5h-80v1024h80zm-1663-1279l54 27q12 5 211 5 44 0 132-2t132-2q36 0 107.5.5t107.5.5h293q6 0 21 .5t20.5 0 16-3 17.5-9 15-17.5l42-1q4 0 14 .5t14 .5q2 112 2 336 0 80-5 109-39 14-68 18-25-44-54-128-3-9-11-48t-14.5-73.5-7.5-35.5q-6-8-12-12.5t-15.5-6-13-2.5-18-.5-16.5.5q-17 0-66.5-.5t-74.5-.5-64 2-71 6q-9 81-8 136 0 94 2 388t2 455q0 16-2.5 71.5t0 91.5 12.5 69q40 21 124 42.5t120 37.5q5 40 5 50 0 14-3 29l-34 1q-76 2-218-8t-207-10q-50 0-151 9t-152 9q-3-51-3-52v-9q17-27 61.5-43t98.5-29 78-27q19-42 19-383 0-101-3-303t-3-303v-117q0-2 .5-15.5t.5-25-1-25.5-3-24-5-14q-11-12-162-12-33 0-93 12t-80 26q-19 13-34 72.5t-31.5 111-42.5 53.5q-42-26-56-44v-383z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1744 1408q33 0 42 18.5t-11 44.5l-126 162q-20 26-49 26t-49-26l-126-162q-20-26-11-44.5t42-18.5h80v-1024h-80q-33 0-42-18.5t11-44.5l126-162q20-26 49-26t49 26l126 162q20 26 11 44.5t-42 18.5h-80v1024h80zm-1663-1279l54 27q12 5 211 5 44 0 132-2t132-2q36 0 107.5.5t107.5.5h293q6 0 21 .5t20.5 0 16-3 17.5-9 15-17.5l42-1q4 0 14 .5t14 .5q2 112 2 336 0 80-5 109-39 14-68 18-25-44-54-128-3-9-11-48t-14.5-73.5-7.5-35.5q-6-8-12-12.5t-15.5-6-13-2.5-18-.5-16.5.5q-17 0-66.5-.5t-74.5-.5-64 2-71 6q-9 81-8 136 0 94 2 388t2 455q0 16-2.5 71.5t0 91.5 12.5 69q40 21 124 42.5t120 37.5q5 40 5 50 0 14-3 29l-34 1q-76 2-218-8t-207-10q-50 0-151 9t-152 9q-3-51-3-52v-9q17-27 61.5-43t98.5-29 78-27q19-42 19-383 0-101-3-303t-3-303v-117q0-2 .5-15.5t.5-25-1-25.5-3-24-5-14q-11-12-162-12-33 0-93 12t-80 26q-19 13-34 72.5t-31.5 111-42.5 53.5q-42-26-56-44v-383z\"/>\n</svg>\n"
 
 /***/ }),
 /* 625 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 24 24\" >\n\t<path d=\"M22,20.6L3.4,2H8V0H0v8h2V3.4L20.6,22H16v2h8v-8h-2V20.6z M16,0v2h4.7l-6.3,6.3l1.4,1.4L22,3.5V8h2V0H16z   M8.3,14.3L2,20.6V16H0v8h8v-2H3.5l6.3-6.3L8.3,14.3z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 24 24\">\n\t<path\n\t\td=\"M22,20.6L3.4,2H8V0H0v8h2V3.4L20.6,22H16v2h8v-8h-2V20.6z M16,0v2h4.7l-6.3,6.3l1.4,1.4L22,3.5V8h2V0H16z   M8.3,14.3L2,20.6V16H0v8h8v-2H3.5l6.3-6.3L8.3,14.3z\"/>\n</svg>\n"
 
 /***/ }),
 /* 626 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1600 736v192q0 40-28 68t-68 28h-1216q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h1216q40 0 68 28t28 68z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path d=\"M1600 736v192q0 40-28 68t-68 28h-1216q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h1216q40 0 68 28t28 68z\"/>\n</svg>\n"
 
 /***/ }),
 /* 627 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M576 576q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1024 384v448h-1408v-192l320-320 160 160 512-512zm96-704h-1600q-13 0-22.5 9.5t-9.5 22.5v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5v-1216q0-13-9.5-22.5t-22.5-9.5zm160 32v1216q0 66-47 113t-113 47h-1600q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1600q66 0 113 47t47 113z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M576 576q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1024 384v448h-1408v-192l320-320 160 160 512-512zm96-704h-1600q-13 0-22.5 9.5t-9.5 22.5v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5v-1216q0-13-9.5-22.5t-22.5-9.5zm160 32v1216q0 66-47 113t-113 47h-1600q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1600q66 0 113 47t47 113z\"/>\n</svg>\n"
 
 /***/ }),
 /* 628 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M352 832q0 14-9 23l-288 288q-9 9-23 9-13 0-22.5-9.5t-9.5-22.5v-576q0-13 9.5-22.5t22.5-9.5q14 0 23 9l288 288q9 9 9 23zm1440 480v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M352 832q0 14-9 23l-288 288q-9 9-23 9-13 0-22.5-9.5t-9.5-22.5v-576q0-13 9.5-22.5t22.5-9.5q14 0 23 9l288 288q9 9 9 23zm1440 480v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 629 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1152 1376v-160q0-14-9-23t-23-9h-96v-512q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v160q0 14 9 23t23 9h96v320h-96q-14 0-23 9t-9 23v160q0 14 9 23t23 9h448q14 0 23-9t9-23zm-128-896v-160q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v160q0 14 9 23t23 9h192q14 0 23-9t9-23zm640 416q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1152 1376v-160q0-14-9-23t-23-9h-96v-512q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v160q0 14 9 23t23 9h96v320h-96q-14 0-23 9t-9 23v160q0 14 9 23t23 9h448q14 0 23-9t9-23zm-128-896v-160q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v160q0 14 9 23t23 9h192q14 0 23-9t9-23zm640 416q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 630 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 1662l17-85q6-2 81.5-21.5t111.5-37.5q28-35 41-101 1-7 62-289t114-543.5 52-296.5v-25q-24-13-54.5-18.5t-69.5-8-58-5.5l19-103q33 2 120 6.5t149.5 7 120.5 2.5q48 0 98.5-2.5t121-7 98.5-6.5q-5 39-19 89-30 10-101.5 28.5t-108.5 33.5q-8 19-14 42.5t-9 40-7.5 45.5-6.5 42q-27 148-87.5 419.5t-77.5 355.5q-2 9-13 58t-20 90-16 83.5-6 57.5l1 18q17 4 185 31-3 44-16 99-11 0-32.5 1.5t-32.5 1.5q-29 0-87-10t-86-10q-138-2-206-2-51 0-143 9t-121 11z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M384 1662l17-85q6-2 81.5-21.5t111.5-37.5q28-35 41-101 1-7 62-289t114-543.5 52-296.5v-25q-24-13-54.5-18.5t-69.5-8-58-5.5l19-103q33 2 120 6.5t149.5 7 120.5 2.5q48 0 98.5-2.5t121-7 98.5-6.5q-5 39-19 89-30 10-101.5 28.5t-108.5 33.5q-8 19-14 42.5t-9 40-7.5 45.5-6.5 42q-27 148-87.5 419.5t-77.5 355.5q-2 9-13 58t-20 90-16 83.5-6 57.5l1 18q17 4 185 31-3 44-16 99-11 0-32.5 1.5t-32.5 1.5q-29 0-87-10t-86-10q-138-2-206-2-51 0-143 9t-121 11z\"/>\n</svg>\n"
 
 /***/ }),
 /* 631 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 632 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm256-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm-384-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 633 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z\"/>\n</svg>\n"
 
 /***/ }),
 /* 634 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M640 768h512v-192q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-192q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M640 768h512v-192q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-192q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z\"/>\n</svg>\n"
 
 /***/ }),
 /* 635 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 636 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg\n     viewBox=\"0 0 312 312\">\n    <g transform=\"translate(0.000000,312.000000) scale(0.100000,-0.100000)\" stroke=\"none\">\n        <path d=\"M50 3109 c0 -7 -11 -22 -25 -35 l-25 -23 0 -961 0 -961 32 -29 32\n-30 501 -2 500 -3 3 -502 2 -502 31 -30 31 -31 958 0 958 0 23 25 c13 13 30\n25 37 25 9 0 12 199 12 960 0 686 -3 960 -11 960 -6 0 -24 12 -40 28 l-29 27\n-503 5 -502 5 -5 502 -5 503 -28 29 c-15 16 -27 34 -27 40 0 8 -274 11 -960\n11 -710 0 -960 -3 -960 -11z m1738 -698 l2 -453 -40 -40 c-22 -22 -40 -43 -40\n-47 0 -4 36 -42 79 -85 88 -87 82 -87 141 -23 l26 27 455 -2 454 -3 0 -775 0\n-775 -775 0 -775 0 -3 450 -2 449 47 48 47 48 -82 80 c-44 44 -84 80 -87 80\n-3 0 -25 -18 -48 -40 l-41 -40 -456 2 -455 3 -3 765 c-1 421 0 771 3 778 3 10\n164 12 777 10 l773 -3 3 -454z\"/>\n        <path d=\"M607 2492 c-42 -42 -77 -82 -77 -87 0 -6 86 -96 190 -200 105 -104\n190 -197 190 -205 0 -8 -41 -56 -92 -107 -65 -65 -87 -94 -77 -98 8 -3 138 -4\n289 -3 l275 3 3 275 c1 151 0 281 -3 289 -4 10 -35 -14 -103 -82 -54 -53 -103\n-97 -109 -97 -7 0 -99 88 -206 195 -107 107 -196 195 -198 195 -3 0 -39 -35\n-82 -78z\"/>\n        <path d=\"M1470 1639 c-47 -49 -87 -91 -89 -94 -5 -6 149 -165 160 -165 9 0\n189 179 189 188 0 12 -154 162 -165 161 -6 0 -48 -41 -95 -90z\"/>\n        <path d=\"M1797 1303 c-9 -8 -9 -568 0 -576 4 -4 50 36 103 88 54 52 101 95\n106 95 5 0 95 -85 199 -190 104 -104 194 -190 200 -190 6 0 46 36 90 80 l79\n79 -197 196 c-108 108 -197 199 -197 203 0 4 45 52 99 106 55 55 98 103 95\n108 -6 10 -568 11 -577 1z\"/>\n    </g>\n</svg>\n"
+module.exports = "<svg\n\tviewBox=\"0 0 312 312\">\n\t<g transform=\"translate(0.000000,312.000000) scale(0.100000,-0.100000)\" stroke=\"none\">\n\t\t<path d=\"M50 3109 c0 -7 -11 -22 -25 -35 l-25 -23 0 -961 0 -961 32 -29 32\n-30 501 -2 500 -3 3 -502 2 -502 31 -30 31 -31 958 0 958 0 23 25 c13 13 30\n25 37 25 9 0 12 199 12 960 0 686 -3 960 -11 960 -6 0 -24 12 -40 28 l-29 27\n-503 5 -502 5 -5 502 -5 503 -28 29 c-15 16 -27 34 -27 40 0 8 -274 11 -960\n11 -710 0 -960 -3 -960 -11z m1738 -698 l2 -453 -40 -40 c-22 -22 -40 -43 -40\n-47 0 -4 36 -42 79 -85 88 -87 82 -87 141 -23 l26 27 455 -2 454 -3 0 -775 0\n-775 -775 0 -775 0 -3 450 -2 449 47 48 47 48 -82 80 c-44 44 -84 80 -87 80\n-3 0 -25 -18 -48 -40 l-41 -40 -456 2 -455 3 -3 765 c-1 421 0 771 3 778 3 10\n164 12 777 10 l773 -3 3 -454z\"/>\n\t\t<path d=\"M607 2492 c-42 -42 -77 -82 -77 -87 0 -6 86 -96 190 -200 105 -104\n190 -197 190 -205 0 -8 -41 -56 -92 -107 -65 -65 -87 -94 -77 -98 8 -3 138 -4\n289 -3 l275 3 3 275 c1 151 0 281 -3 289 -4 10 -35 -14 -103 -82 -54 -53 -103\n-97 -109 -97 -7 0 -99 88 -206 195 -107 107 -196 195 -198 195 -3 0 -39 -35\n-82 -78z\"/>\n\t\t<path d=\"M1470 1639 c-47 -49 -87 -91 -89 -94 -5 -6 149 -165 160 -165 9 0\n189 179 189 188 0 12 -154 162 -165 161 -6 0 -48 -41 -95 -90z\"/>\n\t\t<path d=\"M1797 1303 c-9 -8 -9 -568 0 -576 4 -4 50 36 103 88 54 52 101 95\n106 95 5 0 95 -85 199 -190 104 -104 194 -190 200 -190 6 0 46 36 90 80 l79\n79 -197 196 c-108 108 -197 199 -197 203 0 4 45 52 99 106 55 55 98 103 95\n108 -6 10 -568 11 -577 1z\"/>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 637 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg role=\"img\" viewBox=\"0 0 1792 1792\">\n    <path d=\"M381 1620q0 80-54.5 126t-135.5 46q-106 0-172-66l57-88q49 45 106 45 29 0 50.5-14.5t21.5-42.5q0-64-105-56l-26-56q8-10 32.5-43.5t42.5-54 37-38.5v-1q-16 0-48.5 1t-48.5 1v53h-106v-152h333v88l-95 115q51 12 81 49t30 88zm2-627v159h-362q-6-36-6-54 0-51 23.5-93t56.5-68 66-47.5 56.5-43.5 23.5-45q0-25-14.5-38.5t-39.5-13.5q-46 0-81 58l-85-59q24-51 71.5-79.5t105.5-28.5q73 0 123 41.5t50 112.5q0 50-34 91.5t-75 64.5-75.5 50.5-35.5 52.5h127v-60h105zm1409 319v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm-1408-899v99h-335v-99h107q0-41 .5-122t.5-121v-12h-2q-8 17-50 54l-71-76 136-127h106v404h108zm1408 387v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
+module.exports = "<svg role=\"img\" viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M381 1620q0 80-54.5 126t-135.5 46q-106 0-172-66l57-88q49 45 106 45 29 0 50.5-14.5t21.5-42.5q0-64-105-56l-26-56q8-10 32.5-43.5t42.5-54 37-38.5v-1q-16 0-48.5 1t-48.5 1v53h-106v-152h333v88l-95 115q51 12 81 49t30 88zm2-627v159h-362q-6-36-6-54 0-51 23.5-93t56.5-68 66-47.5 56.5-43.5 23.5-45q0-25-14.5-38.5t-39.5-13.5q-46 0-81 58l-85-59q24-51 71.5-79.5t105.5-28.5q73 0 123 41.5t50 112.5q0 50-34 91.5t-75 64.5-75.5 50.5-35.5 52.5h127v-60h105zm1409 319v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm-1408-899v99h-335v-99h107q0-41 .5-122t.5-121v-12h-2q-8 17-50 54l-71-76 136-127h106v404h108zm1408 387v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-14 9-23t23-9h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 638 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 270 270\">\n\t<path d=\"m240.443652,220.45085l-47.410809,0l0,-10.342138c13.89973,-8.43655 25.752896,-19.844464 34.686646,-33.469923c11.445525,-17.455846 17.496072,-37.709239 17.496072,-58.570077c0,-59.589197 -49.208516,-108.068714 -109.693558,-108.068714s-109.69263,48.479517 -109.69263,108.069628c0,20.860839 6.050547,41.113316 17.497001,58.570077c8.93375,13.625459 20.787845,25.032458 34.686646,33.469008l0,10.342138l-47.412666,0c-10.256959,0 -18.571354,8.191376 -18.571354,18.296574c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.98402,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574l0,-39.496814c0,-7.073455 -4.137698,-13.51202 -10.626529,-16.537358c-25.24497,-11.772016 -41.557118,-37.145704 -41.557118,-64.643625c0,-39.411735 32.545369,-71.476481 72.549922,-71.476481c40.004553,0 72.550851,32.064746 72.550851,71.476481c0,27.497006 -16.312149,52.87161 -41.557118,64.643625c-6.487902,3.026253 -10.6256,9.464818 -10.6256,16.537358l0,39.496814c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.982163,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574c0,-10.105198 -8.314395,-18.296574 -18.571354,-18.296574z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 270 270\">\n\t<path\n\t\td=\"m240.443652,220.45085l-47.410809,0l0,-10.342138c13.89973,-8.43655 25.752896,-19.844464 34.686646,-33.469923c11.445525,-17.455846 17.496072,-37.709239 17.496072,-58.570077c0,-59.589197 -49.208516,-108.068714 -109.693558,-108.068714s-109.69263,48.479517 -109.69263,108.069628c0,20.860839 6.050547,41.113316 17.497001,58.570077c8.93375,13.625459 20.787845,25.032458 34.686646,33.469008l0,10.342138l-47.412666,0c-10.256959,0 -18.571354,8.191376 -18.571354,18.296574c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.98402,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574l0,-39.496814c0,-7.073455 -4.137698,-13.51202 -10.626529,-16.537358c-25.24497,-11.772016 -41.557118,-37.145704 -41.557118,-64.643625c0,-39.411735 32.545369,-71.476481 72.549922,-71.476481c40.004553,0 72.550851,32.064746 72.550851,71.476481c0,27.497006 -16.312149,52.87161 -41.557118,64.643625c-6.487902,3.026253 -10.6256,9.464818 -10.6256,16.537358l0,39.496814c0,10.105198 8.314395,18.296574 18.571354,18.296574l65.982163,0c10.256959,0 18.571354,-8.191376 18.571354,-18.296574c0,-10.105198 -8.314395,-18.296574 -18.571354,-18.296574z\"/>\n</svg>\n"
 
 /***/ }),
 /* 639 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M384 544v576q0 13-9.5 22.5t-22.5 9.5q-14 0-23-9l-288-288q-9-9-9-23t9-23l288-288q9-9 23-9 13 0 22.5 9.5t9.5 22.5zm1408 768v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1088q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1088q13 0 22.5 9.5t9.5 22.5zm0-384v192q0 13-9.5 22.5t-22.5 9.5h-1728q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1728q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 640 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg x=\"0px\" y=\"0px\" viewBox=\"0 0 459 459\">\n<g>\n\t<g>\n\t\t<path d=\"M229.5,0C102,0,0,102,0,229.5S102,459,229.5,459c20.4,0,38.25-17.85,38.25-38.25c0-10.2-2.55-17.85-10.2-25.5\n\t\t\tc-5.1-7.65-10.2-15.3-10.2-25.5c0-20.4,17.851-38.25,38.25-38.25h45.9c71.4,0,127.5-56.1,127.5-127.5C459,91.8,357,0,229.5,0z\n\t\t\t M89.25,229.5c-20.4,0-38.25-17.85-38.25-38.25S68.85,153,89.25,153s38.25,17.85,38.25,38.25S109.65,229.5,89.25,229.5z\n\t\t\t M165.75,127.5c-20.4,0-38.25-17.85-38.25-38.25S145.35,51,165.75,51S204,68.85,204,89.25S186.15,127.5,165.75,127.5z\n\t\t\t M293.25,127.5c-20.4,0-38.25-17.85-38.25-38.25S272.85,51,293.25,51s38.25,17.85,38.25,38.25S313.65,127.5,293.25,127.5z\n\t\t\t M369.75,229.5c-20.4,0-38.25-17.85-38.25-38.25S349.35,153,369.75,153S408,170.85,408,191.25S390.15,229.5,369.75,229.5z\"\n\t\t/>\n\t</g>\n</g>\n</svg>\n"
+module.exports = "<svg x=\"0px\" y=\"0px\" viewBox=\"0 0 459 459\">\n\t<g>\n\t\t<g>\n\t\t\t<path d=\"M229.5,0C102,0,0,102,0,229.5S102,459,229.5,459c20.4,0,38.25-17.85,38.25-38.25c0-10.2-2.55-17.85-10.2-25.5\n\t\t\tc-5.1-7.65-10.2-15.3-10.2-25.5c0-20.4,17.851-38.25,38.25-38.25h45.9c71.4,0,127.5-56.1,127.5-127.5C459,91.8,357,0,229.5,0z\n\t\t\t M89.25,229.5c-20.4,0-38.25-17.85-38.25-38.25S68.85,153,89.25,153s38.25,17.85,38.25,38.25S109.65,229.5,89.25,229.5z\n\t\t\t M165.75,127.5c-20.4,0-38.25-17.85-38.25-38.25S145.35,51,165.75,51S204,68.85,204,89.25S186.15,127.5,165.75,127.5z\n\t\t\t M293.25,127.5c-20.4,0-38.25-17.85-38.25-38.25S272.85,51,293.25,51s38.25,17.85,38.25,38.25S313.65,127.5,293.25,127.5z\n\t\t\t M369.75,229.5c-20.4,0-38.25-17.85-38.25-38.25S349.35,153,369.75,153S408,170.85,408,191.25S390.15,229.5,369.75,229.5z\"\n\t\t\t/>\n\t\t</g>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 641 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1534 189v73q0 29-18.5 61t-42.5 32q-50 0-54 1-26 6-32 31-3 11-3 64v1152q0 25-18 43t-43 18h-108q-25 0-43-18t-18-43v-1218h-143v1218q0 25-17.5 43t-43.5 18h-108q-26 0-43.5-18t-17.5-43v-496q-147-12-245-59-126-58-192-179-64-117-64-259 0-166 88-286 88-118 209-159 111-37 417-37h479q25 0 43 18t18 43z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1534 189v73q0 29-18.5 61t-42.5 32q-50 0-54 1-26 6-32 31-3 11-3 64v1152q0 25-18 43t-43 18h-108q-25 0-43-18t-18-43v-1218h-143v1218q0 25-17.5 43t-43.5 18h-108q-26 0-43.5-18t-17.5-43v-496q-147-12-245-59-126-58-192-179-64-117-64-259 0-166 88-286 88-118 209-159 111-37 417-37h479q25 0 43 18t18 43z\"/>\n</svg>\n"
 
 /***/ }),
 /* 642 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z\"/>\n</svg>\n"
 
 /***/ }),
 /* 643 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1600 736v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1600 736v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z\"/>\n</svg>\n"
 
 /***/ }),
 /* 644 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M448 1536h896v-256h-896v256zm0-640h896v-384h-160q-40 0-68-28t-28-68v-160h-640v640zm1152 64q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128 0v416q0 13-9.5 22.5t-22.5 9.5h-224v160q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-160h-224q-13 0-22.5-9.5t-9.5-22.5v-416q0-79 56.5-135.5t135.5-56.5h64v-544q0-40 28-68t68-28h672q40 0 88 20t76 48l152 152q28 28 48 76t20 88v256h64q79 0 135.5 56.5t56.5 135.5z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M448 1536h896v-256h-896v256zm0-640h896v-384h-160q-40 0-68-28t-28-68v-160h-640v640zm1152 64q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128 0v416q0 13-9.5 22.5t-22.5 9.5h-224v160q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-160h-224q-13 0-22.5-9.5t-9.5-22.5v-416q0-79 56.5-135.5t135.5-56.5h64v-544q0-40 28-68t68-28h672q40 0 88 20t76 48l152 152q28 28 48 76t20 88v256h64q79 0 135.5 56.5t56.5 135.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 645 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1664 256v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l138-138q-148-137-349-137-104 0-198.5 40.5t-163.5 109.5-109.5 163.5-40.5 198.5 40.5 198.5 109.5 163.5 163.5 109.5 198.5 40.5q119 0 225-52t179-147q7-10 23-12 14 0 25 9l137 138q9 8 9.5 20.5t-7.5 22.5q-109 132-264 204.5t-327 72.5q-156 0-298-61t-245-164-164-245-61-298 61-298 164-245 245-164 298-61q147 0 284.5 55.5t244.5 156.5l130-129q29-31 70-14 39 17 39 59z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1664 256v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l138-138q-148-137-349-137-104 0-198.5 40.5t-163.5 109.5-109.5 163.5-40.5 198.5 40.5 198.5 109.5 163.5 163.5 109.5 198.5 40.5q119 0 225-52t179-147q7-10 23-12 14 0 25 9l137 138q9 8 9.5 20.5t-7.5 22.5q-109 132-264 204.5t-327 72.5q-156 0-298-61t-245-164-164-245-61-298 61-298 164-245 245-164 298-61q147 0 284.5 55.5t244.5 156.5l130-129q29-31 70-14 39 17 39 59z\"/>\n</svg>\n"
 
 /***/ }),
 /* 646 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 24 24\"\n    >\n    <g>\n        <g transform=\"translate(-251.000000, -443.000000)\">\n            <g transform=\"translate(215.000000, 119.000000)\"/>\n            <path d=\"M252,448 L256,448 L256,444 L252,444 L252,448 Z M257,448 L269,448 L269,446 L257,446 L257,448 Z M257,464 L269,464 L269,462 L257,462 L257,464 Z M270,444 L270,448 L274,448 L274,444 L270,444 Z M252,462 L252,466 L256,466 L256,462 L252,462 Z M270,462 L270,466 L274,466 L274,462 L270,462 Z M254,461 L256,461 L256,449 L254,449 L254,461 Z M270,461 L272,461 L272,449 L270,449 L270,461 Z\"/>\n        </g>\n    </g>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 24 24\"\n>\n\t<g>\n\t\t<g transform=\"translate(-251.000000, -443.000000)\">\n\t\t\t<g transform=\"translate(215.000000, 119.000000)\"/>\n\t\t\t<path\n\t\t\t\td=\"M252,448 L256,448 L256,444 L252,444 L252,448 Z M257,448 L269,448 L269,446 L257,446 L257,448 Z M257,464 L269,464 L269,462 L257,462 L257,464 Z M270,444 L270,448 L274,448 L274,444 L270,444 Z M252,462 L252,466 L256,466 L256,462 L252,462 Z M270,462 L270,466 L274,466 L274,462 L270,462 Z M254,461 L256,461 L256,449 L254,449 L254,461 Z M270,461 L272,461 L272,449 L270,449 L270,461 Z\"/>\n\t\t</g>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 647 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M844 472q0 60-19 113.5t-63 92.5-105 39q-76 0-138-57.5t-92-135.5-30-151q0-60 19-113.5t63-92.5 105-39q77 0 138.5 57.5t91.5 135 30 151.5zm-342 483q0 80-42 139t-119 59q-76 0-141.5-55.5t-100.5-133.5-35-152q0-80 42-139.5t119-59.5q76 0 141.5 55.5t100.5 134 35 152.5zm394-27q118 0 255 97.5t229 237 92 254.5q0 46-17 76.5t-48.5 45-64.5 20-76 5.5q-68 0-187.5-45t-182.5-45q-66 0-192.5 44.5t-200.5 44.5q-183 0-183-146 0-86 56-191.5t139.5-192.5 187.5-146 193-59zm239-211q-61 0-105-39t-63-92.5-19-113.5q0-74 30-151.5t91.5-135 138.5-57.5q61 0 105 39t63 92.5 19 113.5q0 73-30 151t-92 135.5-138 57.5zm432-104q77 0 119 59.5t42 139.5q0 74-35 152t-100.5 133.5-141.5 55.5q-77 0-119-59t-42-139q0-74 35-152.5t100.5-134 141.5-55.5z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M844 472q0 60-19 113.5t-63 92.5-105 39q-76 0-138-57.5t-92-135.5-30-151q0-60 19-113.5t63-92.5 105-39q77 0 138.5 57.5t91.5 135 30 151.5zm-342 483q0 80-42 139t-119 59q-76 0-141.5-55.5t-100.5-133.5-35-152q0-80 42-139.5t119-59.5q76 0 141.5 55.5t100.5 134 35 152.5zm394-27q118 0 255 97.5t229 237 92 254.5q0 46-17 76.5t-48.5 45-64.5 20-76 5.5q-68 0-187.5-45t-182.5-45q-66 0-192.5 44.5t-200.5 44.5q-183 0-183-146 0-86 56-191.5t139.5-192.5 187.5-146 193-59zm239-211q-61 0-105-39t-63-92.5-19-113.5q0-74 30-151.5t91.5-135 138.5-57.5q61 0 105 39t63 92.5 19 113.5q0 73-30 151t-92 135.5-138 57.5zm432-104q77 0 119 59.5t42 139.5q0 74-35 152t-100.5 133.5-141.5 55.5q-77 0-119-59t-42-139q0-74 35-152.5t100.5-134 141.5-55.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 648 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 1344v128q0 26-19 45t-45 19h-1664q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1664q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1280q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1280q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1536q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1536q26 0 45 19t19 45zm0-384v128q0 26-19 45t-45 19h-1152q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1152q26 0 45 19t19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 649 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M512 1536h768v-384h-768v384zm896 0h128v-896q0-14-10-38.5t-20-34.5l-281-281q-10-10-34-20t-39-10v416q0 40-28 68t-68 28h-576q-40 0-68-28t-28-68v-416h-128v1280h128v-416q0-40 28-68t68-28h832q40 0 68 28t28 68v416zm-384-928v-320q0-13-9.5-22.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 22.5v320q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5zm640 32v928q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1344q0-40 28-68t68-28h928q40 0 88 20t76 48l280 280q28 28 48 76t20 88z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M512 1536h768v-384h-768v384zm896 0h128v-896q0-14-10-38.5t-20-34.5l-281-281q-10-10-34-20t-39-10v416q0 40-28 68t-68 28h-576q-40 0-68-28t-28-68v-416h-128v1280h128v-416q0-40 28-68t68-28h832q40 0 68 28t28 68v416zm-384-928v-320q0-13-9.5-22.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 22.5v320q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5zm640 32v928q0 40-28 68t-68 28h-1344q-40 0-68-28t-28-68v-1344q0-40 28-68t68-28h928q40 0 88 20t76 48l280 280q28 28 48 76t20 88z\"/>\n</svg>\n"
 
 /***/ }),
 /* 650 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 18 18\">\n    <g fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n        <g transform=\"translate(-381.000000, -381.000000)\">\n            <g transform=\"translate(381.000000, 381.000000)\">\n                <path d=\"M0,2 L2,2 L2,0 C0.9,0 0,0.9 0,2 L0,2 Z M0,10 L2,10 L2,8 L0,8 L0,10 L0,10 Z M4,18 L6,18 L6,16 L4,16 L4,18 L4,18 Z M0,6 L2,6 L2,4 L0,4 L0,6 L0,6 Z M10,0 L8,0 L8,2 L10,2 L10,0 L10,0 Z M16,0 L16,2 L18,2 C18,0.9 17.1,0 16,0 L16,0 Z M2,18 L2,16 L0,16 C0,17.1 0.9,18 2,18 L2,18 Z M0,14 L2,14 L2,12 L0,12 L0,14 L0,14 Z M6,0 L4,0 L4,2 L6,2 L6,0 L6,0 Z M8,18 L10,18 L10,16 L8,16 L8,18 L8,18 Z M16,10 L18,10 L18,8 L16,8 L16,10 L16,10 Z M16,18 C17.1,18 18,17.1 18,16 L16,16 L16,18 L16,18 Z M16,6 L18,6 L18,4 L16,4 L16,6 L16,6 Z M16,14 L18,14 L18,12 L16,12 L16,14 L16,14 Z M12,18 L14,18 L14,16 L12,16 L12,18 L12,18 Z M12,2 L14,2 L14,0 L12,0 L12,2 L12,2 Z M4,14 L14,14 L14,4 L4,4 L4,14 L4,14 Z M6,6 L12,6 L12,12 L6,12 L6,6 L6,6 Z\"/>\n            </g>\n        </g>\n    </g>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 18 18\">\n\t<g fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n\t\t<g transform=\"translate(-381.000000, -381.000000)\">\n\t\t\t<g transform=\"translate(381.000000, 381.000000)\">\n\t\t\t\t<path\n\t\t\t\t\td=\"M0,2 L2,2 L2,0 C0.9,0 0,0.9 0,2 L0,2 Z M0,10 L2,10 L2,8 L0,8 L0,10 L0,10 Z M4,18 L6,18 L6,16 L4,16 L4,18 L4,18 Z M0,6 L2,6 L2,4 L0,4 L0,6 L0,6 Z M10,0 L8,0 L8,2 L10,2 L10,0 L10,0 Z M16,0 L16,2 L18,2 C18,0.9 17.1,0 16,0 L16,0 Z M2,18 L2,16 L0,16 C0,17.1 0.9,18 2,18 L2,18 Z M0,14 L2,14 L2,12 L0,12 L0,14 L0,14 Z M6,0 L4,0 L4,2 L6,2 L6,0 L6,0 Z M8,18 L10,18 L10,16 L8,16 L8,18 L8,18 Z M16,10 L18,10 L18,8 L16,8 L16,10 L16,10 Z M16,18 C17.1,18 18,17.1 18,16 L16,16 L16,18 L16,18 Z M16,6 L18,6 L18,4 L16,4 L16,6 L16,6 Z M16,14 L18,14 L18,12 L16,12 L16,14 L16,14 Z M12,18 L14,18 L14,16 L12,16 L12,18 L12,18 Z M12,2 L14,2 L14,0 L12,0 L12,2 L12,2 Z M4,14 L14,14 L14,4 L4,4 L4,14 L4,14 Z M6,6 L12,6 L12,12 L6,12 L6,6 L6,6 Z\"/>\n\t\t\t</g>\n\t\t</g>\n\t</g>\n</svg>\n"
 
 /***/ }),
 /* 651 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M896 960v448q0 26-19 45t-45 19-45-19l-144-144-332 332q-10 10-23 10t-23-10l-114-114q-10-10-10-23t10-23l332-332-144-144q-19-19-19-45t19-45 45-19h448q26 0 45 19t19 45zm755-672q0 13-10 23l-332 332 144 144q19 19 19 45t-19 45-45 19h-448q-26 0-45-19t-19-45v-448q0-26 19-45t45-19 45 19l144 144 332-332q10-10 23-10t23 10l114 114q10 10 10 23z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M896 960v448q0 26-19 45t-45 19-45-19l-144-144-332 332q-10 10-23 10t-23-10l-114-114q-10-10-10-23t10-23l332-332-144-144q-19-19-19-45t19-45 45-19h448q26 0 45 19t19 45zm755-672q0 13-10 23l-332 332 144 144q19 19 19 45t-19 45-45 19h-448q-26 0-45-19t-19-45v-448q0-26 19-45t45-19 45 19l144 144 332-332q10-10 23-10t23 10l114 114q10 10 10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 652 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M553 1399l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23t-10 23l-393 393 393 393q10 10 10 23t-10 23zm591-1067l-373 1291q-4 13-15.5 19.5t-23.5 2.5l-62-17q-13-4-19.5-15.5t-2.5-24.5l373-1291q4-13 15.5-19.5t23.5-2.5l62 17q13 4 19.5 15.5t2.5 24.5zm657 651l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23t-10 23z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M553 1399l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23t-10 23l-393 393 393 393q10 10 10 23t-10 23zm591-1067l-373 1291q-4 13-15.5 19.5t-23.5 2.5l-62-17q-13-4-19.5-15.5t-2.5-24.5l373-1291q4-13 15.5-19.5t23.5-2.5l62 17q13 4 19.5 15.5t2.5 24.5zm657 651l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23t-10 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 653 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 48 48\">\n    <path d=\"M6 42h4v-4h-4v4zm4-28h-4v4h4v-4zm-4 20h4v-4h-4v4zm8 8h4v-4h-4v4zm-4-36h-4v4h4v-4zm8 0h-4v4h4v-4zm16 0h-4v4h4v-4zm-8 8h-4v4h4v-4zm0-8h-4v4h4v-4zm12 28h4v-4h-4v4zm-16 8h4v-4h-4v4zm-16-16h36v-4h-36v4zm32-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-16 16h4v-4h-4v4zm8 8h4v-4h-4v4zm8 0h4v-4h-4v4z\"/><path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 48 48\">\n\t<path\n\t\td=\"M6 42h4v-4h-4v4zm4-28h-4v4h4v-4zm-4 20h4v-4h-4v4zm8 8h4v-4h-4v4zm-4-36h-4v4h4v-4zm8 0h-4v4h4v-4zm16 0h-4v4h4v-4zm-8 8h-4v4h4v-4zm0-8h-4v4h4v-4zm12 28h4v-4h-4v4zm-16 8h4v-4h-4v4zm-16-16h36v-4h-36v4zm32-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-16 16h4v-4h-4v4zm8 8h4v-4h-4v4zm8 0h4v-4h-4v4z\"/>\n\t<path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>\n"
 
 /***/ }),
 /* 654 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 48 48\">\n    <path d=\"M6 18h4v-4h-4v4zm0-8h4v-4h-4v4zm8 32h4v-4h-4v4zm0-16h4v-4h-4v4zm-8 0h4v-4h-4v4zm0 16h4v-4h-4v4zm0-8h4v-4h-4v4zm8-24h4v-4h-4v4zm24 24h4v-4h-4v4zm-16 8h4v-36h-4v36zm16 0h4v-4h-4v4zm0-16h4v-4h-4v4zm0-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-8-8h4v-4h-4v4zm0 32h4v-4h-4v4zm0-16h4v-4h-4v4z\"/>\n    <path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 48 48\">\n\t<path\n\t\td=\"M6 18h4v-4h-4v4zm0-8h4v-4h-4v4zm8 32h4v-4h-4v4zm0-16h4v-4h-4v4zm-8 0h4v-4h-4v4zm0 16h4v-4h-4v4zm0-8h4v-4h-4v4zm8-24h4v-4h-4v4zm24 24h4v-4h-4v4zm-16 8h4v-36h-4v36zm16 0h4v-4h-4v4zm0-16h4v-4h-4v4zm0-20v4h4v-4h-4zm0 12h4v-4h-4v4zm-8-8h4v-4h-4v4zm0 32h4v-4h-4v4zm0-16h4v-4h-4v4z\"/>\n\t<path d=\"M0 0h48v48h-48z\" fill=\"none\"/>\n</svg>\n"
 
 /***/ }),
 /* 655 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1760 896q14 0 23 9t9 23v64q0 14-9 23t-23 9h-1728q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h1728zm-1277-64q-28-35-51-80-48-97-48-188 0-181 134-309 133-127 393-127 50 0 167 19 66 12 177 48 10 38 21 118 14 123 14 183 0 18-5 45l-12 3-84-6-14-2q-50-149-103-205-88-91-210-91-114 0-182 59-67 58-67 146 0 73 66 140t279 129q69 20 173 66 58 28 95 52h-743zm507 256h411q7 39 7 92 0 111-41 212-23 55-71 104-37 35-109 81-80 48-153 66-80 21-203 21-114 0-195-23l-140-40q-57-16-72-28-8-8-8-22v-13q0-108-2-156-1-30 0-68l2-37v-44l102-2q15 34 30 71t22.5 56 12.5 27q35 57 80 94 43 36 105 57 59 22 132 22 64 0 139-27 77-26 122-86 47-61 47-129 0-84-81-157-34-29-137-71z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1760 896q14 0 23 9t9 23v64q0 14-9 23t-23 9h-1728q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h1728zm-1277-64q-28-35-51-80-48-97-48-188 0-181 134-309 133-127 393-127 50 0 167 19 66 12 177 48 10 38 21 118 14 123 14 183 0 18-5 45l-12 3-84-6-14-2q-50-149-103-205-88-91-210-91-114 0-182 59-67 58-67 146 0 73 66 140t279 129q69 20 173 66 58 28 95 52h-743zm507 256h411q7 39 7 92 0 111-41 212-23 55-71 104-37 35-109 81-80 48-153 66-80 21-203 21-114 0-195-23l-140-40q-57-16-72-28-8-8-8-22v-13q0-108-2-156-1-30 0-68l2-37v-44l102-2q15 34 30 71t22.5 56 12.5 27q35 57 80 94 43 36 105 57 59 22 132 22 64 0 139-27 77-26 122-86 47-61 47-129 0-84-81-157-34-29-137-71z\"/>\n</svg>\n"
 
 /***/ }),
 /* 656 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm639 217v206h-514l-4-27q-3-45-3-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 80-65 188-65 110 0 178 59.5t68 158.5q0 66-34.5 118.5t-84 86-99.5 62.5-87 63-41 73h232v-80h126z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm639 217v206h-514l-4-27q-3-45-3-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 80-65 188-65 110 0 178 59.5t68 158.5q0 66-34.5 118.5t-84 86-99.5 62.5-87 63-41 73h232v-80h126z\"/>\n</svg>\n"
 
 /***/ }),
 /* 657 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\">\n    <path d=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm637-679v206h-514l-3-27q-4-28-4-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 83-65 188-65 110 0 178 59.5t68 158.5q0 56-24.5 103t-62 76.5-81.5 58.5-82 50.5-65.5 51.5-30.5 63h232v-80h126z\"/>\n</svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1025 1369v167h-248l-159-252-24-42q-8-9-11-21h-3l-9 21q-10 20-25 44l-155 250h-258v-167h128l197-291-185-272h-137v-168h276l139 228q2 4 23 42 8 9 11 21h3q3-9 11-21l25-42 140-228h257v168h-125l-184 267 204 296h109zm637-679v206h-514l-3-27q-4-28-4-46 0-64 26-117t65-86.5 84-65 84-54.5 65-54 26-64q0-38-29.5-62.5t-70.5-24.5q-51 0-97 39-14 11-36 38l-105-92q26-37 63-66 83-65 188-65 110 0 178 59.5t68 158.5q0 56-24.5 103t-62 76.5-81.5 58.5-82 50.5-65.5 51.5-30.5 63h232v-80h126z\"/>\n</svg>\n"
 
 /***/ }),
 /* 658 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M576 1376v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm-512-768v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm512 384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm0-384v-192q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v192q0 14 9 23t23 9h320q14 0 23-9t9-23zm128-320v1088q0 66-47 113t-113 47h-1344q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1344q66 0 113 47t47 113z\"/>\n</svg>\n"
 
 /***/ }),
 /* 659 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm-640-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm640 512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68z\"/>\n</svg>\n"
 
 /***/ }),
 /* 660 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm-1280-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M512 1248v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm-1280-1024v192q0 40-28 68t-68 28h-320q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h320q40 0 68 28t28 68zm1280 512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h960q40 0 68 28t28 68z\"/>\n</svg>\n"
 
 /***/ }),
 /* 661 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M384 1408q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm0-512q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm-1408-928q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M384 1408q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm0-512q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm-1408-928q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm1408 416v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5zm0-512v192q0 13-9.5 22.5t-22.5 9.5h-1216q-13 0-22.5-9.5t-9.5-22.5v-192q0-13 9.5-22.5t22.5-9.5h1216q13 0 22.5 9.5t9.5 22.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 662 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M176 223q-37-2-45-4l-3-88q13-1 40-1 60 0 112 4 132 7 166 7 86 0 168-3 116-4 146-5 56 0 86-2l-1 14 2 64v9q-60 9-124 9-60 0-79 25-13 14-13 132 0 13 .5 32.5t.5 25.5l1 229 14 280q6 124 51 202 35 59 96 92 88 47 177 47 104 0 191-28 56-18 99-51 48-36 65-64 36-56 53-114 21-73 21-229 0-79-3.5-128t-11-122.5-13.5-159.5l-4-59q-5-67-24-88-34-35-77-34l-100 2-14-3 2-86h84l205 10q76 3 196-10l18 2q6 38 6 51 0 7-4 31-45 12-84 13-73 11-79 17-15 15-15 41 0 7 1.5 27t1.5 31q8 19 22 396 6 195-15 304-15 76-41 122-38 65-112 123-75 57-182 89-109 33-255 33-167 0-284-46-119-47-179-122-61-76-83-195-16-80-16-237v-333q0-188-17-213-25-36-147-39zm1488 1409v-64q0-14-9-23t-23-9h-1472q-14 0-23 9t-9 23v64q0 14 9 23t23 9h1472q14 0 23-9t9-23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M176 223q-37-2-45-4l-3-88q13-1 40-1 60 0 112 4 132 7 166 7 86 0 168-3 116-4 146-5 56 0 86-2l-1 14 2 64v9q-60 9-124 9-60 0-79 25-13 14-13 132 0 13 .5 32.5t.5 25.5l1 229 14 280q6 124 51 202 35 59 96 92 88 47 177 47 104 0 191-28 56-18 99-51 48-36 65-64 36-56 53-114 21-73 21-229 0-79-3.5-128t-11-122.5-13.5-159.5l-4-59q-5-67-24-88-34-35-77-34l-100 2-14-3 2-86h84l205 10q76 3 196-10l18 2q6 38 6 51 0 7-4 31-45 12-84 13-73 11-79 17-15 15-15 41 0 7 1.5 27t1.5 31q8 19 22 396 6 195-15 304-15 76-41 122-38 65-112 123-75 57-182 89-109 33-255 33-167 0-284-46-119-47-179-122-61-76-83-195-16-80-16-237v-333q0-188-17-213-25-36-147-39zm1488 1409v-64q0-14-9-23t-23-9h-1472q-14 0-23 9t-9 23v64q0 14 9 23t23 9h1472q14 0 23-9t9-23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 663 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1664 896q0 156-61 298t-164 245-245 164-298 61q-172 0-327-72.5t-264-204.5q-7-10-6.5-22.5t8.5-20.5l137-138q10-9 25-9 16 2 23 12 73 95 179 147t225 52q104 0 198.5-40.5t163.5-109.5 109.5-163.5 40.5-198.5-40.5-198.5-109.5-163.5-163.5-109.5-198.5-40.5q-98 0-188 35.5t-160 101.5l137 138q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l130 129q107-101 244.5-156.5t284.5-55.5q156 0 298 61t245 164 164 245 61 298z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1664 896q0 156-61 298t-164 245-245 164-298 61q-172 0-327-72.5t-264-204.5q-7-10-6.5-22.5t8.5-20.5l137-138q10-9 25-9 16 2 23 12 73 95 179 147t225 52q104 0 198.5-40.5t163.5-109.5 109.5-163.5 40.5-198.5-40.5-198.5-109.5-163.5-163.5-109.5-198.5-40.5q-98 0-188 35.5t-160 101.5l137 138q31 30 14 69-17 40-59 40h-448q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l130 129q107-101 244.5-156.5t284.5-55.5q156 0 298 61t245 164 164 245 61 298z\"/>\n</svg>\n"
 
 /***/ }),
 /* 664 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M503 1271l-256 256q-10 9-23 9-12 0-23-9-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23zm169 41v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm-224-224q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm1264 128q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-334-335q-21-21-42-56l239-18 273 274q27 27 68 27.5t68-26.5l147-146q28-28 28-67 0-40-28-68l-274-275 18-239q35 21 56 42l336 336q84 86 84 204zm-617-724l-239 18-273-274q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l274 274-18 240q-35-21-56-42l-336-336q-84-86-84-204 0-120 85-203l147-146q83-83 203-83 121 0 204 85l334 335q21 21 42 56zm633 84q0 14-9 23t-23 9h-320q-14 0-23-9t-9-23 9-23 23-9h320q14 0 23 9t9 23zm-544-544v320q0 14-9 23t-23 9-23-9-9-23v-320q0-14 9-23t23-9 23 9 9 23zm407 151l-256 256q-11 9-23 9t-23-9q-9-10-9-23t9-23l256-256q10-9 23-9t23 9q9 10 9 23t-9 23z\"/>\n</svg>\n"
 
 /***/ }),
 /* 665 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1728 576v256q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45v-256q0-106-75-181t-181-75-181 75-75 181v192h96q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h672v-192q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1728 576v256q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45v-256q0-106-75-181t-181-75-181 75-75 181v192h96q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h672v-192q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5z\"/>\n</svg>\n"
 
 /***/ }),
 /* 666 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1639 1056q0 5-1 7-64 268-268 434.5t-478 166.5q-146 0-282.5-55t-243.5-157l-129 129q-19 19-45 19t-45-19-19-45v-448q0-26 19-45t45-19h448q26 0 45 19t19 45-19 45l-137 137q71 66 161 102t187 36q134 0 250-65t186-179q11-17 53-117 8-23 30-23h192q13 0 22.5 9.5t9.5 22.5zm25-800v448q0 26-19 45t-45 19h-448q-26 0-45-19t-19-45 19-45l138-138q-148-137-349-137-134 0-250 65t-186 179q-11 17-53 117-8 23-30 23h-199q-13 0-22.5-9.5t-9.5-22.5v-7q65-268 270-434.5t480-166.5q146 0 284 55.5t245 156.5l130-129q19-19 45-19t45 19 19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1639 1056q0 5-1 7-64 268-268 434.5t-478 166.5q-146 0-282.5-55t-243.5-157l-129 129q-19 19-45 19t-45-19-19-45v-448q0-26 19-45t45-19h448q26 0 45 19t19 45-19 45l-137 137q71 66 161 102t187 36q134 0 250-65t186-179q11-17 53-117 8-23 30-23h192q13 0 22.5 9.5t9.5 22.5zm25-800v448q0 26-19 45t-45 19h-448q-26 0-45-19t-19-45 19-45l138-138q-148-137-349-137-134 0-250 65t-186 179q-11 17-53 117-8 23-30 23h-199q-13 0-22.5-9.5t-9.5-22.5v-7q65-268 270-434.5t480-166.5q146 0 284 55.5t245 156.5l130-129q19-19 45-19t45 19 19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 667 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z\"/>\n</svg>\n"
 
 /***/ }),
 /* 668 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1216 320q0 26-19 45t-45 19h-128v1024h128q26 0 45 19t19 45-19 45l-256 256q-19 19-45 19t-45-19l-256-256q-19-19-19-45t19-45 45-19h128v-1024h-128q-26 0-45-19t-19-45 19-45l256-256q19-19 45-19t45 19l256 256q19 19 19 45z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1216 320q0 26-19 45t-45 19h-128v1024h128q26 0 45 19t19 45-19 45l-256 256q-19 19-45 19t-45-19l-256-256q-19-19-19-45t19-45 45-19h128v-1024h-128q-26 0-45-19t-19-45 19-45l256-256q19-19 45-19t45 19l256 256q19 19 19 45z\"/>\n</svg>\n"
 
 /***/ }),
 /* 669 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 352v1088q0 42-39 59-13 5-25 5-27 0-45-19l-403-403v166q0 119-84.5 203.5t-203.5 84.5h-704q-119 0-203.5-84.5t-84.5-203.5v-704q0-119 84.5-203.5t203.5-84.5h704q119 0 203.5 84.5t84.5 203.5v165l403-402q18-19 45-19 12 0 25 5 39 17 39 59z\"/></svg>"
+module.exports = "<svg viewBox=\"0 0 1792 1792\">\n\t<path\n\t\td=\"M1792 352v1088q0 42-39 59-13 5-25 5-27 0-45-19l-403-403v166q0 119-84.5 203.5t-203.5 84.5h-704q-119 0-203.5-84.5t-84.5-203.5v-704q0-119 84.5-203.5t203.5-84.5h704q119 0 203.5 84.5t84.5 203.5v165l403-402q18-19 45-19 12 0 25 5 39 17 39 59z\"/>\n</svg>\n"
 
 /***/ })
 /******/ ]);

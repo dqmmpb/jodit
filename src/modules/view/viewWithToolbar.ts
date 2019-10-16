@@ -7,9 +7,9 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewWithToolbar } from '../../types/view';
-import { IToolbarCollection } from '../../types/toolbar';
-import { View } from './view';
+import {IViewWithToolbar} from '../../types/view';
+import {IToolbarCollection} from '../../types/toolbar';
+import {View} from './view';
 
 export class ViewWithToolbar extends View implements IViewWithToolbar {
 	toolbar: IToolbarCollection = JoditToolbarCollection.makeCollection(this);
@@ -20,4 +20,5 @@ export class ViewWithToolbar extends View implements IViewWithToolbar {
 		super.destruct();
 	}
 }
-import { JoditToolbarCollection } from '../toolbar/joditToolbarCollection';
+
+import {JoditToolbarCollection} from '../toolbar/joditToolbarCollection';

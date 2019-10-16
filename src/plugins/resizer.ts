@@ -7,16 +7,16 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { IS_IE } from '../constants';
-import { IBound } from '../types/types';
-import { Dom } from '../modules/Dom';
-import { $$ } from '../modules/helpers/selector';
-import { debounce, setTimeout } from '../modules/helpers/async';
-import { offset, innerWidth } from '../modules/helpers/size';
-import { css } from '../modules/helpers';
-import { IJodit } from '../types';
+import {IS_IE} from '../constants';
+import {IBound} from '../types/types';
+import {Dom} from '../modules/Dom';
+import {$$} from '../modules/helpers/selector';
+import {debounce, setTimeout} from '../modules/helpers/async';
+import {offset, innerWidth} from '../modules/helpers/size';
+import {css} from '../modules/helpers';
+import {IJodit} from '../types';
 
 /**
  * The module creates a supporting frame for resizing of the elements img and table
@@ -92,14 +92,14 @@ export function resizer(editor: IJodit) {
 	const
 		resizerElm: HTMLElement = editor.create.fromHTML(
 			'<div data-editor_id="' +
-				editor.id +
-				'" style="display:none" class="jodit_resizer">' +
-				'<i class="jodit_resizer-topleft"></i>' +
-				'<i class="jodit_resizer-topright"></i>' +
-				'<i class="jodit_resizer-bottomright"></i>' +
-				'<i class="jodit_resizer-bottomleft"></i>' +
-				'<span>100x100</span>' +
-				'</div>'
+			editor.id +
+			'" style="display:none" class="jodit_resizer">' +
+			'<i class="jodit_resizer-topleft"></i>' +
+			'<i class="jodit_resizer-topright"></i>' +
+			'<i class="jodit_resizer-bottomright"></i>' +
+			'<i class="jodit_resizer-bottomleft"></i>' +
+			'<span>100x100</span>' +
+			'</div>'
 		),
 
 		sizeViewer: HTMLSpanElement = resizerElm.getElementsByTagName(
@@ -229,11 +229,11 @@ export function resizer(editor: IJodit) {
 				} else {
 					wrapper = editor.create.inside.fromHTML(
 						'<jodit ' +
-							'data-jodit-temp="1" ' +
-							'contenteditable="false" ' +
-							'draggable="true" ' +
-							'data-jodit_iframe_wrapper="1"' +
-							'></jodit>'
+						'data-jodit-temp="1" ' +
+						'contenteditable="false" ' +
+						'draggable="true" ' +
+						'data-jodit_iframe_wrapper="1"' +
+						'></jodit>'
 					);
 
 					wrapper.style.display =
@@ -397,13 +397,13 @@ export function resizer(editor: IJodit) {
 									new_w =
 										width +
 										(className.match(/left/) ? -1 : 1) *
-											diff_x;
+										diff_x;
 									new_h = Math.round(new_w / ratio);
 								} else {
 									new_h =
 										height +
 										(className.match(/top/) ? -1 : 1) *
-											diff_y;
+										diff_y;
 									new_w = Math.round(new_h * ratio);
 								}
 

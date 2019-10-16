@@ -1,4 +1,4 @@
-import { IDictionary } from '../types';
+import {IDictionary} from '../types';
 
 export default {
 	'Type something': 'Begin met typen..',

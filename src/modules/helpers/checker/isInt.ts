@@ -8,16 +8,16 @@
  */
 
 
-import { isNumeric } from './isNumeric';
+import {isNumeric} from './isNumeric';
 
 /**
  * Check value is Int
  * @param value
  */
 export const isInt = (value: number | string): boolean => {
-    if (typeof value === 'string' && isNumeric(value)) {
-        value = parseFloat(value);
-    }
+	if (typeof value === 'string' && isNumeric(value)) {
+		value = parseFloat(value);
+	}
 
-    return typeof value === 'number' && Number.isFinite(value) && !(value % 1);
+	return typeof value === 'number' && Number.isFinite(value) && !(value % 1);
 };

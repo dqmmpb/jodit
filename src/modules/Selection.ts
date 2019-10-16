@@ -14,29 +14,19 @@ import {
 	INVISIBLE_SPACE_REG_EXP_START
 } from '../constants';
 
-import { HTMLTagNames, IDictionary, IJodit, markerInfo } from '../types';
-import { Dom } from './Dom';
-import { css } from './helpers/css';
-import { normalizeNode, normilizeCSSValue } from './helpers/normalize';
-import { $$ } from './helpers/selector';
-import { isPlainObject } from './helpers/checker';
-import { each } from './helpers/each';
-import { trim } from './helpers/string';
+import {HTMLTagNames, IDictionary, IJodit, markerInfo} from '../types';
+import {Dom} from './Dom';
+import {css} from './helpers/css';
+import {normalizeNode, normilizeCSSValue} from './helpers/normalize';
+import {$$} from './helpers/selector';
+import {isPlainObject} from './helpers/checker';
+import {each} from './helpers/each';
+import {trim} from './helpers/string';
 
 type WindowSelection = Selection | null;
 
 export class Select {
 	constructor(readonly jodit: IJodit) {
-	}
-
-	/**
-	 * Throw Error exception if parameter is not Node
-	 * @param node
-	 */
-	private errorNode(node: unknown) {
-		if (!Dom.isNode(node, this.win)) {
-			throw new Error('Parameter node must be instance of Node');
-		}
 	}
 
 	/**
@@ -1364,6 +1354,16 @@ export class Select {
 
 				this.setCursorIn(node);
 			}
+		}
+	}
+
+	/**
+	 * Throw Error exception if parameter is not Node
+	 * @param node
+	 */
+	private errorNode(node: unknown) {
+		if (!Dom.isNode(node, this.win)) {
+			throw new Error('Parameter node must be instance of Node');
 		}
 	}
 }

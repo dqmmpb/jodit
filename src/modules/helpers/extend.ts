@@ -7,10 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { JoditObject } from './JoditObject';
-import { JoditArray } from './JoditArray';
-import { type } from './type';
-import { isPlainObject } from './checker/isPlainObject';
+import {JoditObject} from './JoditObject';
+import {JoditArray} from './JoditArray';
+import {type} from './type';
+import {isPlainObject} from './checker/isPlainObject';
 
 /**
  * Copy the values of all of the enumerable own properties from one or more source objects to a

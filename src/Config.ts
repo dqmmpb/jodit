@@ -8,10 +8,10 @@
  */
 
 import * as consts from './constants';
-import { Widget } from './modules/Widget';
+import {Widget} from './modules/Widget';
 import TabsWidget = Widget.TabsWidget;
 import FileSelectorWidget = Widget.FileSelectorWidget;
-import { Dom } from './modules/Dom';
+import {Dom} from './modules/Dom';
 import {
 	$$,
 	convertMediaURLToVideoEmbed,
@@ -22,16 +22,17 @@ import {
 	trim,
 	val
 } from './modules/helpers/';
-import { ToolbarIcon } from './modules/toolbar/icon';
-import { IDictionary, IJodit, IViewOptions } from './types';
-import { IFileBrowserCallBackData } from './types/fileBrowser';
-import { Buttons, Controls, IControlType } from './types/toolbar';
-import { extend } from './modules/helpers/extend';
+import {ToolbarIcon} from './modules/toolbar/icon';
+import {IDictionary, IJodit, IViewOptions} from './types';
+import {IFileBrowserCallBackData} from './types/fileBrowser';
+import {Buttons, Controls, IControlType} from './types/toolbar';
+import {extend} from './modules/helpers/extend';
 
 /**
  * Default Editor's Configuration
  */
 export class Config implements IViewOptions {
+	private static __defaultOptions: Config;
 	/**
 	 * When this option is enabled, the editor's content will be placed in an iframe and isolated from the rest of the page.
 	 *
@@ -45,13 +46,9 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	iframe: boolean = false;
-
 	commandToHotkeys: IDictionary<string | string[]>;
-
 	license: string = '';
-
 	preset: string = 'custom';
-
 	presets: IDictionary<any> = {
 		inline: {
 			inline: true,
@@ -82,31 +79,26 @@ export class Config implements IViewOptions {
 			showPlaceholder: false
 		}
 	};
-
 	ownerDocument: Document = (typeof document !== 'undefined'
 		? document
 		: null) as Document;
 	ownerWindow: Window = (typeof window !== 'undefined'
 		? window
 		: null) as Window;
-
 	/**
 	 * z-index For editor
 	 */
 	zIndex: number = 0;
-
 	/**
 	 * Change the read-only state of the editor
 	 * @type {boolean}
 	 */
 	readonly: boolean = false;
-
 	/**
 	 * Change the disabled state of the editor
 	 * @type {boolean}
 	 */
 	disabled: boolean = false;
-
 	activeButtonsInReadOnly: string[] = [
 		'source',
 		'fullsize',
@@ -115,7 +107,6 @@ export class Config implements IViewOptions {
 		'dots',
 		'selectall'
 	];
-
 	/**
 	 * Size of icons in the toolbar (can be "small", "middle", "large")
 	 *
@@ -127,19 +118,16 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	toolbarButtonSize: 'small' | 'middle' | 'large' = 'middle';
-
 	/**
 	 * Allow navigation in the toolbar of the editor by Tab key
 	 */
 	allowTabNavigation: boolean = false;
-
 	/**
 	 * Inline editing mode
 	 *
 	 * @type {boolean}
 	 */
 	inline: boolean = false;
-
 	/**
 	 * Theme (can be "dark")
 	 * @example
@@ -150,23 +138,19 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	theme: string = 'default';
-
 	/**
 	 * if set true then the current mode is saved in a cookie , and is restored after a reload of the page
 	 */
 	saveModeInStorage: boolean = false;
-
 	/**
 	 * if set true and height !== auto then after reload editor will be have latest height
 	 */
 	saveHeightInStorage: boolean = false;
-
 	/**
 	 * Options specifies whether the editor is to have its spelling and grammar checked or not
 	 * @see {@link http://www.w3schools.com/tags/att_global_spellcheck.asp}
 	 */
 	spellcheck: boolean = true;
-
 	/**
 	 * Class name that can be appended to the editor
 	 *
@@ -188,7 +172,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	editorCssClass: false | string = false;
-
 	/**
 	 * The font of editor
 	 *
@@ -202,7 +185,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	style: false | IDictionary = false;
-
 	/**
 	 * After all changes in editors for textarea will call change trigger
 	 *
@@ -215,7 +197,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	triggerChangeEvent: boolean = true;
-
 	/**
 	 * Editor's width
 	 *
@@ -242,7 +223,6 @@ export class Config implements IViewOptions {
 	width: number | string = 'auto';
 	minWidth: number | string = '200px';
 	maxWidth: number | string = '100%';
-
 	/**
 	 * Editor's height
 	 *
@@ -266,7 +246,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	height: string | number = 'auto';
-
 	/**
 	 * Editor's min-height
 	 *
@@ -284,7 +263,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	minHeight: number | string = 200;
-
 	/**
 	 * The writing direction of the language which is used to create editor content. Allowed values are: ''
 	 * (an empty string) – Indicates that content direction will be the same as either the editor UI direction or
@@ -298,7 +276,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	direction: string = '';
-
 	/**
 	 * Language by default. if `auto` language set by document.documentElement.lang ||
 	 * (navigator.language && navigator.language.substr(0, 2)) ||
@@ -316,7 +293,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	language: string = 'auto';
-
 	/**
 	 * if true all Lang.i18n(key) return `{key}`
 	 *
@@ -332,7 +308,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	debugLanguage: boolean = false;
-
 	/**
 	 * Collection of language pack data {en: {'Type something': 'Type something', ...}}
 	 *
@@ -350,52 +325,44 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	i18n: IDictionary | string = 'en';
-
 	/**
 	 * The tabindex global attribute is an integer indicating if the element can take
 	 * input focus (is focusable), if it should participate to sequential keyboard navigation,
 	 * and if so, at what position. It can take several values
 	 */
 	tabIndex: number = -1;
-
 	/**
 	 * Show toolbar
 	 */
 	toolbar: boolean = true;
-
 	/**
 	 * Show tooltip after mouse enter on the button
 	 */
 	showTooltip: boolean = true;
-
 	/**
 	 * Delay before show tooltip
 	 */
 	showTooltipDelay: number = 500;
-
-	/**
-	 * Instead of create custop tooltip - use native title tooltips
-	 * @type {boolean}
-	 */
-	useNativeTooltip: boolean = false;
 
 	// TODO
 	// autosave: false, // false or url
 	// autosaveCallback: false, // function
 	// interval: 60, // seconds
 	// TODO
-
+	/**
+	 * Instead of create custop tooltip - use native title tooltips
+	 * @type {boolean}
+	 */
+	useNativeTooltip: boolean = false;
 	/**
 	 * Element that will be created when you press Enter
 	 */
 	enter: 'p' | 'div' | 'br' = consts.PARAGRAPH;
-
 	/**
 	 * Use when you need insert new block element
 	 * use enter option if not set
 	 */
 	enterBlock: 'p' | 'div' = consts.PARAGRAPH;
-
 	/**
 	 * Jodit.MODE_WYSIWYG The HTML editor allows you to write like MSWord,
 	 * Jodit.MODE_AREA syntax highlighting source editor
@@ -408,14 +375,12 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	defaultMode: number = consts.MODE_WYSIWYG;
-
 	/**
 	 * Use split mode
 	 *
 	 * @type {boolean}
 	 */
 	useSplitMode: boolean = false;
-
 	/**
 	 * The colors in HEX representation to select a color for the background and for the text in colorpicker
 	 * @example
@@ -513,7 +478,6 @@ export class Config implements IViewOptions {
 			'#4C1130'
 		]
 	};
-
 	/**
 	 * The default tab color picker
 	 * @example
@@ -524,12 +488,10 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	colorPickerDefaultTab: 'background' | 'color' = 'background';
-
 	/**
 	 * Image size defaults to a larger image
 	 */
 	imageDefaultWidth: number = 300;
-
 	/**
 	 * Do not display these buttons that are on the list
 	 * @example
@@ -540,7 +502,6 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	removeButtons: string[] = [];
-
 	/**
 	 * Do not init these plugins
 	 * @example
@@ -555,27 +516,22 @@ export class Config implements IViewOptions {
 	 * ```
 	 */
 	disablePlugins: string[] | string = [];
-
 	/**
 	 * This buttons list will be added to option.buttons
 	 */
 	extraButtons: Array<string | IControlType> = [];
-
 	/**
 	 * The width of the editor, accepted as the biggest. Used to the responsive version of the editor
 	 */
 	sizeLG: number = 900;
-
 	/**
 	 * The width of the editor, accepted as the medium. Used to the responsive version of the editor
 	 */
 	sizeMD: number = 700;
-
 	/**
 	 * The width of the editor, accepted as the small. Used to the responsive version of the editor
 	 */
 	sizeSM: number = 400;
-
 	/**
 	 * The list of buttons that appear in the editor's toolbar on large places (≥ options.sizeLG).
 	 * Note - this is not the width of the device, the width of the editor
@@ -682,7 +638,6 @@ export class Config implements IViewOptions {
 		'print',
 		'about'
 	];
-
 	/**
 	 * The list of buttons that appear in the editor's toolbar on medium places (≥ options.sizeMD).
 	 */
@@ -715,7 +670,6 @@ export class Config implements IViewOptions {
 		'fullsize',
 		'dots'
 	];
-
 	/**
 	 * The list of buttons that appear in the editor's toolbar on small places (≥ options.sizeSM).
 	 */
@@ -746,7 +700,6 @@ export class Config implements IViewOptions {
 		'fullsize',
 		'dots'
 	];
-
 	/**
 	 * The list of buttons that appear in the editor's toolbar on extra small places (< options.sizeSM).
 	 */
@@ -765,27 +718,22 @@ export class Config implements IViewOptions {
 		'eraser',
 		'dots'
 	];
-
 	/**
 	 * Behavior for buttons
 	 */
 	controls: Controls;
-
 	events: IDictionary<(...args: any[]) => any> = {};
-
 	/**
 	 * Buttons in toolbat without SVG - only texts
 	 * @type {boolean}
 	 */
 	textIcons: boolean = false;
-
 	/**
 	 * shows a INPUT[type=color] to open the browser color picker, on the right bottom of widget color picker
 	 * @type {boolean}
 	 */
 	showBrowserColorPicker: boolean = false;
 
-	private static __defaultOptions: Config;
 	static get defaultOptions(): Config {
 		if (!Config.__defaultOptions) {
 			Config.__defaultOptions = new Config();
@@ -795,7 +743,7 @@ export class Config implements IViewOptions {
 	}
 }
 
-export const OptionsDefault: any = function(this: any, options: any) {
+export const OptionsDefault: any = function (this: any, options: any) {
 	const
 		def = Config.defaultOptions,
 		self: any = this;
@@ -859,11 +807,11 @@ Config.prototype.controls = {
 				} else {
 					mywindow.document.write(
 						'<!doctype html><html lang="' +
-							defaultLanguage(editor.options.language) +
-							'"><head><title></title></head>' +
-							'<body>' +
-							editor.value +
-							'</body></html>'
+						defaultLanguage(editor.options.language) +
+						'"><head><title></title></head>' +
+						'<body>' +
+						editor.value +
+						'</body></html>'
 					);
 					mywindow.document.close();
 				}
@@ -884,36 +832,36 @@ Config.prototype.controls = {
 			dialog.setContent(
 				'<div class="jodit_about">\
 										<div>' +
-					editor.i18n('Jodit Editor') +
-					' v.' +
-					editor.getVersion() +
-					' ' +
-					'</div>' +
-					'<div>' +
-					editor.i18n(
-						'License: %s',
-						!isLicense(editor.options.license)
-							? editor.i18n(
-									'GNU General Public License, version 2 or later'
-							  )
-							: normalizeLicense(editor.options.license)
-					) +
-					'</div>' +
-					'<div>' +
-					'<a href="https://xdsoft.net/jodit/" target="_blank">http://xdsoft.net/jodit/</a>' +
-					'</div>' +
-					'<div>' +
-					'<a href="https://xdsoft.net/jodit/doc/" target="_blank">' +
-					editor.i18n("Jodit User's Guide") +
-					'</a> ' +
-					editor.i18n('contains detailed help for using') +
-					'</div>' +
-					'<div>' +
-					editor.i18n(
-						'Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.'
-					) +
-					'</div>' +
-					'</div>'
+				editor.i18n('Jodit Editor') +
+				' v.' +
+				editor.getVersion() +
+				' ' +
+				'</div>' +
+				'<div>' +
+				editor.i18n(
+					'License: %s',
+					!isLicense(editor.options.license)
+						? editor.i18n(
+						'GNU General Public License, version 2 or later'
+						)
+						: normalizeLicense(editor.options.license)
+				) +
+				'</div>' +
+				'<div>' +
+				'<a href="https://xdsoft.net/jodit/" target="_blank">http://xdsoft.net/jodit/</a>' +
+				'</div>' +
+				'<div>' +
+				'<a href="https://xdsoft.net/jodit/doc/" target="_blank">' +
+				editor.i18n("Jodit User's Guide") +
+				'</a> ' +
+				editor.i18n('contains detailed help for using') +
+				'</div>' +
+				'<div>' +
+				editor.i18n(
+					'Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.'
+				) +
+				'</div>' +
+				'</div>'
 			);
 			dialog.open();
 		},
@@ -1012,12 +960,12 @@ Config.prototype.controls = {
 				editor.selection.insertNode(
 					editor.create.inside.fromHTML(
 						'<a href="' +
-							url +
-							'" title="' +
-							title +
-							'">' +
-							(title || url) +
-							'</a>'
+						url +
+						'" title="' +
+						title +
+						'">' +
+						(title || url) +
+						'</a>'
 					)
 				);
 			};
@@ -1033,10 +981,10 @@ Config.prototype.controls = {
 					current.nodeName === 'A'
 						? (current as HTMLAnchorElement)
 						: (Dom.closest(
-								current,
-								'A',
-								editor.editor
-						  ) as HTMLAnchorElement);
+						current,
+						'A',
+						editor.editor
+						) as HTMLAnchorElement);
 			}
 
 			return FileSelectorWidget(
@@ -1081,7 +1029,7 @@ Config.prototype.controls = {
 	video: {
 		popup: (editor: IJodit, current, control, close) => {
 			const bylink: HTMLFormElement = editor.create.fromHTML(
-					`<form class="jodit_form">
+				`<form class="jodit_form">
 												<input required name="code" placeholder="http://" type="url"/>
 												<button type="submit">${editor.i18n('Insert')}</button>
 												</form>`
@@ -1089,8 +1037,8 @@ Config.prototype.controls = {
 				bycode: HTMLFormElement = editor.create.fromHTML(
 					`<form class="jodit_form">
 												<textarea required name="code" placeholder="${editor.i18n(
-													'Embed code'
-												)}"></textarea>
+						'Embed code'
+					)}"></textarea>
 												<button type="submit">${editor.i18n('Insert')}</button>
 												</form>`
 				) as HTMLFormElement,
@@ -1107,13 +1055,13 @@ Config.prototype.controls = {
 				tab[editor.i18n('Code')] = bycode;
 			} else {
 				tab[
-					ToolbarIcon.getIcon('link') + '&nbsp;' + editor.i18n('Link')
-				] = bylink;
+				ToolbarIcon.getIcon('link') + '&nbsp;' + editor.i18n('Link')
+					] = bylink;
 				tab[
-					ToolbarIcon.getIcon('source') +
-						'&nbsp;' +
-						editor.i18n('Code')
-				] = bycode;
+				ToolbarIcon.getIcon('source') +
+				'&nbsp;' +
+				editor.i18n('Code')
+					] = bycode;
 			}
 
 			bycode.addEventListener('submit', event => {

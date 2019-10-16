@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { Plugin } from '../modules/Plugin';
-import { IControlType } from '../types/toolbar';
-import { IJodit } from '../types';
+import {Plugin} from '../modules/Plugin';
+import {IControlType} from '../types/toolbar';
+import {IJodit} from '../types';
 
 Config.prototype.controls.redo = {
 	mode: consts.MODE_SPLIT,
@@ -32,6 +32,7 @@ export class redoundo extends Plugin {
 	beforeDestruct() {
 		// do nothing
 	}
+
 	afterInit(editor: IJodit) {
 		const callback = (command: string): void | false => {
 			if (editor.getRealMode() === consts.MODE_WYSIWYG) {

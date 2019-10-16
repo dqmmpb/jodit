@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { Dom } from '../modules/Dom';
-import { HTMLTagNames, IJodit, markerInfo } from '../types';
-import { IControlType } from '../types/toolbar';
+import {Dom} from '../modules/Dom';
+import {HTMLTagNames, IJodit, markerInfo} from '../types';
+import {IControlType} from '../types/toolbar';
 
 Config.prototype.controls.paragraph = {
 	command: 'formatBlock',
@@ -20,11 +20,11 @@ Config.prototype.controls.paragraph = {
 
 		if (current && editor.options.textIcons) {
 			const currentBox: HTMLElement =
-					(Dom.closest(
-						current,
-						node => Dom.isBlock(node, editor.editorWindow),
-						editor.editor
-					) as HTMLElement) || editor.editor,
+				(Dom.closest(
+					current,
+					node => Dom.isBlock(node, editor.editorWindow),
+					editor.editor
+				) as HTMLElement) || editor.editor,
 				currentValue: string = currentBox.nodeName.toLowerCase(),
 				list = (btn.list as any);
 
@@ -37,7 +37,7 @@ Config.prototype.controls.paragraph = {
 			) {
 				button.textBox.innerHTML = `<span>${
 					editor.i18n(list[currentValue])
-				}</span>`;
+					}</span>`;
 
 				(button.textBox.firstChild as HTMLElement).classList.add(
 					'jodit_icon'
@@ -104,7 +104,7 @@ Config.prototype.controls.paragraph = {
 				currentBpx.nodeName.toLowerCase() !== 'p' &&
 				((control.list as any)[
 					currentBpx.nodeName.toLowerCase()
-				] as any) !== undefined
+					] as any) !== undefined
 			);
 		}
 
@@ -140,10 +140,10 @@ export function formatBlock(editor: IJodit) {
 				const selectionInfo: markerInfo[] = editor.selection.save();
 				let currentBox: HTMLElement | false = current
 					? (Dom.up(
-							current,
-							node => Dom.isBlock(node, editor.editorWindow),
-							editor.editor
-					  ) as HTMLElement)
+						current,
+						node => Dom.isBlock(node, editor.editorWindow),
+						editor.editor
+					) as HTMLElement)
 					: false;
 
 				if ((!currentBox || currentBox.nodeName === 'LI') && current) {

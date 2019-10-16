@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewOptions } from './view';
+import {IViewOptions} from './view';
 
 export interface IDialogOptions extends IViewOptions {
 	resizable?: boolean;

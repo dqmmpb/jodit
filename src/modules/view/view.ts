@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary, IEventsNative } from '../../types';
-import { IViewBased, IViewOptions } from '../../types/view';
-import { Component } from '../Component';
-import { EventsNative } from '../events/eventsNative';
-import { Panel } from './panel';
+import {IDictionary, IEventsNative} from '../../types';
+import {IViewBased, IViewOptions} from '../../types/view';
+import {Component} from '../Component';
+import {EventsNative} from '../events/eventsNative';
+import {Panel} from './panel';
 
 declare let appVersion: string;
 
@@ -21,8 +21,49 @@ export class View extends Panel implements IViewBased {
 	 */
 	public id: string;
 	public version: string = appVersion; // from webpack.config.js
-
+	/**
+	 * Some extra data inside editor
+	 *
+	 * @type {{}}
+	 * @see copyformat plugin
+	 */
+	public buffer: IDictionary;
+	/**
+	 * progress_bar Progress bar
+	 */
+	public progress_bar: HTMLDivElement = this.create.div(
+		'jodit_progress_bar',
+		this.create.div()
+	);
+	public options: IViewOptions = {
+		removeButtons: [],
+		zIndex: 100002,
+		fullsize: false,
+		showTooltip: true,
+		useNativeTooltip: false,
+		buttons: [],
+		globalFullsize: true
+	};
+	public events: IEventsNative;
+	public components: any = [];
 	private __modulesInstances: IDictionary<Component> = {};
+
+	constructor(jodit?: IViewBased, options?: IViewOptions) {
+		super(jodit);
+
+		this.id =
+			jodit && jodit.id ? jodit.id : new Date().getTime().toString();
+
+		this.jodit = jodit || this;
+
+		this.events =
+			jodit && jodit.events
+				? jodit.events
+				: new EventsNative(this.ownerDocument);
+		this.buffer = jodit && jodit.buffer ? jodit.buffer : {};
+
+		this.options = {...this.options, ...options};
+	}
 
 	/**
 	 * Return default timeout period in milliseconds for some debounce or throttle functions.
@@ -33,36 +74,6 @@ export class View extends Panel implements IViewBased {
 	get defaultTimeout(): number {
 		return 100;
 	}
-
-	/**
-	 * Some extra data inside editor
-	 *
-	 * @type {{}}
-	 * @see copyformat plugin
-	 */
-	public buffer: IDictionary;
-
-	/**
-	 * progress_bar Progress bar
-	 */
-	public progress_bar: HTMLDivElement = this.create.div(
-		'jodit_progress_bar',
-		this.create.div()
-	);
-
-	public options: IViewOptions = {
-		removeButtons: [],
-		zIndex: 100002,
-		fullsize: false,
-		showTooltip: true,
-		useNativeTooltip: false,
-		buttons: [],
-		globalFullsize: true
-	};
-
-	public events: IEventsNative;
-
-	public components: any = [];
 
 	i18n(text: string, ...params: Array<string | number>): string {
 		return this.jodit && this.jodit !== this
@@ -107,23 +118,6 @@ export class View extends Panel implements IViewBased {
 		return this.version;
 	};
 
-	constructor(jodit?: IViewBased, options?: IViewOptions) {
-		super(jodit);
-
-		this.id =
-			jodit && jodit.id ? jodit.id : new Date().getTime().toString();
-
-		this.jodit = jodit || this;
-
-		this.events =
-			jodit && jodit.events
-				? jodit.events
-				: new EventsNative(this.ownerDocument);
-		this.buffer = jodit && jodit.buffer ? jodit.buffer : {};
-
-		this.options = { ...this.options, ...options };
-	}
-
 	destruct() {
 		if (this.isDestructed) {
 			return;
@@ -140,4 +134,4 @@ export class View extends Panel implements IViewBased {
 	}
 }
 
-import { Jodit } from '../../Jodit';
+import {Jodit} from '../../Jodit';

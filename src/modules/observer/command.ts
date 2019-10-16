@@ -7,21 +7,13 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { SnapshotType } from '../../types';
-import { Observer } from './observer';
+import {SnapshotType} from '../../types';
+import {Observer} from './observer';
 
 export class Command {
-	private observer: Observer;
-
 	readonly oldValue: SnapshotType;
 	readonly newValue: SnapshotType;
-
-	public undo() {
-		this.observer.snapshot.restore(this.oldValue);
-	}
-	public redo() {
-		this.observer.snapshot.restore(this.newValue);
-	}
+	private observer: Observer;
 
 	constructor(
 		oldValue: SnapshotType,
@@ -31,5 +23,13 @@ export class Command {
 		this.observer = observer;
 		this.oldValue = oldValue;
 		this.newValue = newValue;
+	}
+
+	public undo() {
+		this.observer.snapshot.restore(this.oldValue);
+	}
+
+	public redo() {
+		this.observer.snapshot.restore(this.newValue);
 	}
 }

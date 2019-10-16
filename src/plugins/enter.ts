@@ -8,9 +8,9 @@
  */
 
 import * as consts from '../constants';
-import { Dom } from '../modules/Dom';
-import { $$, scrollIntoView } from '../modules/helpers/';
-import { HTMLTagNames, IJodit } from '../types';
+import {Dom} from '../modules/Dom';
+import {$$, scrollIntoView} from '../modules/helpers/';
+import {HTMLTagNames, IJodit} from '../types';
 
 /**
  * Insert default paragraph
@@ -118,10 +118,10 @@ export function enter(editor: IJodit) {
 
 				let currentBox: HTMLElement | false = current
 					? (Dom.up(
-							current,
-							node => Dom.isBlock(node, editor.editorWindow),
-							editor.editor
-					  ) as HTMLElement)
+						current,
+						node => Dom.isBlock(node, editor.editorWindow),
+						editor.editor
+					) as HTMLElement)
 					: false;
 				const isLi: boolean =
 					currentBox && currentBox.nodeName === 'LI';
@@ -281,7 +281,7 @@ export function enter(editor: IJodit) {
 						);
 
 						currentBox &&
-							editor.selection.setCursorIn(currentBox, true);
+						editor.selection.setCursorIn(currentBox, true);
 
 						return false;
 					}

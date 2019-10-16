@@ -12,6 +12,7 @@
 	clear: both;
 	user-select: none;
 	position: relative;
+
 	&:after {
 		position: absolute;
 		content: '';
@@ -25,6 +26,7 @@
 		background: rgba(0, 0, 0, 0);
 	}
 }
+
 .jodit_resizer {
 	width: 100px;
 	height: 100px;
@@ -35,11 +37,14 @@
 	display: none;
 	pointer-events: none;
 	font-size: 0;
+
 	* {
 		box-sizing: border-box;
 	}
+
 	@viewer_width: 70px;
 	@viewer_height: 24px;
+
 	> span {
 		position: absolute;
 		display: inline-block;
@@ -59,6 +64,7 @@
 		background-color: @color-placeholder;
 		max-width: 100%;
 	}
+
 	> i {
 		position: absolute;
 		display: inline-block;

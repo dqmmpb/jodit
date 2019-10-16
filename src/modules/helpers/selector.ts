@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IS_IE } from '../../constants';
+import {IS_IE} from '../../constants';
 
 let $$temp: number = 1;
 

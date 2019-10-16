@@ -6,8 +6,8 @@
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-import { Dialog } from './dialog';
-import { ToolbarIcon } from '../toolbar/icon';
+import {Dialog} from './dialog';
+import {ToolbarIcon} from '../toolbar/icon';
 
 /**
  * Show `promt` dialog. Work without Jodit object
@@ -38,18 +38,18 @@ export const Promt = (
 	const dialog: Dialog = new Dialog(),
 		cancelButton: HTMLAnchorElement = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:right;" class="jodit_button">' +
-				ToolbarIcon.getIcon('cancel') +
-				'<span>' +
-				Jodit.prototype.i18n('Cancel') +
-				'</span></a>'
+			ToolbarIcon.getIcon('cancel') +
+			'<span>' +
+			Jodit.prototype.i18n('Cancel') +
+			'</span></a>'
 		) as HTMLAnchorElement,
 
 		okButton: HTMLAnchorElement = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-				ToolbarIcon.getIcon('check') +
-				'<span>' +
-				Jodit.prototype.i18n('Ok') +
-				'</span></a>'
+			ToolbarIcon.getIcon('check') +
+			'<span>' +
+			Jodit.prototype.i18n('Ok') +
+			'</span></a>'
 		) as HTMLAnchorElement,
 
 		form: HTMLFormElement = dialog.create.element('form', {
@@ -111,4 +111,4 @@ export const Promt = (
 	return dialog;
 };
 
-import { Jodit } from '../../Jodit';
+import {Jodit} from '../../Jodit';

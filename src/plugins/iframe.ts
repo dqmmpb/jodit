@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { defaultLanguage } from '../modules/helpers/defaultLanguage';
-import { throttle } from '../modules/helpers/async';
-import { css } from '../modules/helpers/css';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {defaultLanguage} from '../modules/helpers/defaultLanguage';
+import {throttle} from '../modules/helpers/async';
+import {css} from '../modules/helpers/css';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {

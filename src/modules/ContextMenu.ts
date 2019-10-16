@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewBased } from '../types/view';
-import { Component } from './Component';
-import { css } from './helpers/css';
-import { ToolbarIcon } from './toolbar/icon';
-import { Dom } from './Dom';
+import {IViewBased} from '../types/view';
+import {Component} from './Component';
+import {css} from './helpers/css';
+import {ToolbarIcon} from './toolbar/icon';
+import {Dom} from './Dom';
 
 export interface Action {
 	icon?: string;
@@ -27,6 +27,16 @@ export interface Action {
  */
 export class ContextMenu extends Component {
 	private context: HTMLElement;
+
+	constructor(editor: IViewBased) {
+		super(editor);
+
+		this.context = editor.create.div('jodit_context_menu', {
+			'data-editor_id': this.jodit.id
+		});
+
+		editor.ownerDocument.body.appendChild(this.context);
+	}
 
 	/**
 	 * Hide context menu
@@ -75,8 +85,8 @@ export class ContextMenu extends Component {
 
 			const action: HTMLAnchorElement = this.jodit.create.fromHTML(
 				'<a href="javascript:void(0)">' +
-					(item.icon ? ToolbarIcon.getIcon(item.icon) : '') +
-					'<span></span></a>'
+				(item.icon ? ToolbarIcon.getIcon(item.icon) : '') +
+				'<span></span></a>'
 			) as HTMLAnchorElement;
 
 			const span: HTMLSpanElement = action.querySelector(
@@ -101,16 +111,6 @@ export class ContextMenu extends Component {
 		this.jodit.events.on(this.jodit.ownerWindow, 'mouseup jodit_close_dialog', self.hide);
 
 		this.context.classList.add('jodit_context_menu-show');
-	}
-
-	constructor(editor: IViewBased) {
-		super(editor);
-
-		this.context = editor.create.div('jodit_context_menu', {
-			'data-editor_id': this.jodit.id
-		});
-
-		editor.ownerDocument.body.appendChild(this.context);
 	}
 
 	destruct() {

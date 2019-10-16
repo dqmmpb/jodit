@@ -8,10 +8,10 @@
  */
 
 import * as consts from '../constants';
-import { MAY_BE_REMOVED_WITH_KEY } from '../constants';
-import { Dom } from '../modules/Dom';
-import { normalizeNode, trim } from '../modules/helpers/';
-import { IJodit } from '../types';
+import {MAY_BE_REMOVED_WITH_KEY} from '../constants';
+import {Dom} from '../modules/Dom';
+import {normalizeNode, trim} from '../modules/helpers/';
+import {IJodit} from '../types';
 
 /**
  * Plug-in process entering Backspace key
@@ -68,8 +68,8 @@ export function backspace(editor: IJodit) {
 				startOffset >= 0 &&
 				startOffset <= value.length &&
 				value[startOffset + (toLeft ? -1 : 0)] ===
-					consts.INVISIBLE_SPACE
-			) {
+				consts.INVISIBLE_SPACE
+				) {
 				startOffset += increment;
 			}
 
@@ -187,7 +187,7 @@ export function backspace(editor: IJodit) {
 				node.nodeType === Node.TEXT_NODE &&
 				node.nodeValue &&
 				node.nodeValue.match(/^[\n\r]+$/)
-			) {
+				) {
 				node = toLeft ? node.previousSibling : node.nextSibling;
 			}
 
@@ -327,17 +327,17 @@ export function backspace(editor: IJodit) {
 
 						let prevBox: Node | false | null = toLeft
 							? Dom.prev(
-									box.node || fakeNode,
-									node =>
-										Dom.isBlock(node, editor.editorWindow),
-									editor.editor
-							  )
+								box.node || fakeNode,
+								node =>
+									Dom.isBlock(node, editor.editorWindow),
+								editor.editor
+							)
 							: Dom.next(
-									box.node || fakeNode,
-									node =>
-										Dom.isBlock(node, editor.editorWindow),
-									editor.editor
-							  );
+								box.node || fakeNode,
+								node =>
+									Dom.isBlock(node, editor.editorWindow),
+								editor.editor
+							);
 
 						if (!prevBox && container && container.parentNode) {
 							prevBox = editor.create.inside.element(
@@ -349,15 +349,15 @@ export function backspace(editor: IJodit) {
 								boxNode &&
 								boxNode.parentNode &&
 								boxNode.parentNode !== editor.editor
-							) {
+								) {
 								boxNode = boxNode.parentNode;
 							}
 
 							boxNode.parentNode &&
-								boxNode.parentNode.insertBefore(
-									prevBox,
-									boxNode
-								);
+							boxNode.parentNode.insertBefore(
+								prevBox,
+								boxNode
+							);
 						} else {
 							if (prevBox && isEmpty(prevBox)) {
 								Dom.safeRemove(prevBox);
@@ -392,9 +392,9 @@ export function backspace(editor: IJodit) {
 									container.parentNode !== editor.editor &&
 									prevBox.parentNode !== editor.editor &&
 									container.parentNode !==
-										prevBox.parentNode &&
+									prevBox.parentNode &&
 									container.parentNode.nodeName ===
-										prevBox.parentNode.nodeName
+									prevBox.parentNode.nodeName
 								) {
 									container = container.parentNode as HTMLElement;
 									prevBox = prevBox.parentNode as HTMLElement;
@@ -463,7 +463,7 @@ export function backspace(editor: IJodit) {
 									tmpNode,
 									true,
 									tmpNode.parentNode
-								) ||
+									) ||
 									Dom.findInline(
 										tmpNode,
 										true,

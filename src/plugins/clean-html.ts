@@ -7,18 +7,18 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { IS_INLINE } from '../constants';
-import { Dom } from '../modules/Dom';
+import {IS_INLINE} from '../constants';
+import {Dom} from '../modules/Dom';
 import {
 	cleanFromWord,
 	debounce,
 	normalizeNode,
 	trim
 } from '../modules/helpers/';
-import { Select } from '../modules/Selection';
-import { IDictionary, IJodit } from '../types';
+import {Select} from '../modules/Selection';
+import {IDictionary, IJodit} from '../types';
 
 /**
  * @property {object} cleanHTML {@link cleanHtml|cleanHtml}'s options
@@ -209,11 +209,11 @@ export function cleanHtml(editor: IJodit) {
 				node => Dom.isBlock(node, editor.editorWindow),
 				editor.editor
 			) !==
-				Dom.up(
-					current,
-					node => Dom.isBlock(node, editor.editorWindow),
-					editor.editor
-				)
+			Dom.up(
+				current,
+				node => Dom.isBlock(node, editor.editorWindow),
+				editor.editor
+			)
 		) {
 			return true;
 		}
@@ -263,7 +263,7 @@ export function cleanHtml(editor: IJodit) {
 									tagName: string =
 										replaceOldTags[
 											oldParent.nodeName.toLowerCase()
-										] || replaceOldTags[oldParent.nodeName];
+											] || replaceOldTags[oldParent.nodeName];
 
 								Dom.replace(
 									oldParent as HTMLElement,
@@ -313,13 +313,13 @@ export function cleanHtml(editor: IJodit) {
 										if (
 											!allowTagsHash[nodeElm.nodeName][
 												attributes[i].name
-											] ||
+												] ||
 											(allowTagsHash[nodeElm.nodeName][
-												attributes[i].name
-											] !== true &&
+													attributes[i].name
+													] !== true &&
 												allowTagsHash[nodeElm.nodeName][
 													attributes[i].name
-												] !== attributes[i].value)
+													] !== attributes[i].value)
 										) {
 											removeAttrs.push(
 												attributes[i].name
@@ -489,7 +489,7 @@ export function cleanHtml(editor: IJodit) {
 							node &&
 							node.nodeType !== Node.ELEMENT_NODE &&
 							node !== editor.editor
-						) {
+							) {
 							clean(node);
 							if (node) {
 								node = node.parentNode;

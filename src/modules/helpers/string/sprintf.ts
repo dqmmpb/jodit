@@ -68,7 +68,7 @@ export const sprintf = (...args: Array<string | number>): string => {
 		prefix =
 			(prefix &&
 				number &&
-				({ 2: '0b', 8: '0', 16: '0x' } as any)[base]) ||
+				({2: '0b', 8: '0', 16: '0x'} as any)[base]) ||
 			'';
 		const
 			newValue: string = prefix + pad(number.toString(base), precision || 0, '0', false);

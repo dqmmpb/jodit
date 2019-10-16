@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import {
 	INSERT_AS_HTML,
 	INSERT_AS_TEXT,
@@ -18,7 +18,7 @@ import {
 	TEXT_PLAIN
 } from '../constants';
 
-import { Confirm, Dialog } from '../modules/dialog/';
+import {Confirm, Dialog} from '../modules/dialog/';
 
 import {
 	applyStyles,
@@ -33,10 +33,10 @@ import {
 	stripTags
 } from '../modules/helpers/';
 
-import { IControlType } from '../types/toolbar';
-import { Dom } from '../modules/Dom';
-import { IJodit } from '../types';
-import { nl2br } from '../modules/helpers/html/nl2br';
+import {IControlType} from '../types/toolbar';
+import {Dom} from '../modules/Dom';
+import {IJodit} from '../types';
+import {nl2br} from '../modules/helpers/html/nl2br';
 
 declare module '../Config' {
 	interface Config {
@@ -109,34 +109,34 @@ export function paste(editor: IJodit) {
 
 		const keep = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-				'<span>' +
-				editor.i18n('Keep') +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			editor.i18n('Keep') +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		const clear = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-				'<span>' +
-				editor.i18n(clearButton) +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			editor.i18n(clearButton) +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		const clear2 = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-				'<span>' +
-				editor.i18n(clear2Button) +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			editor.i18n(clear2Button) +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		const cancel = dialog.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:right;" class="jodit_button">' +
-				'<span>' +
-				editor.i18n('Cancel') +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			editor.i18n('Cancel') +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		editor.events.on(keep, 'click', () => {
@@ -160,15 +160,15 @@ export function paste(editor: IJodit) {
 		dialog.setFooter([keep, clear, clear2Button ? clear2 : '', cancel]);
 
 		editor.events &&
-			editor.events.fire(
-				'afterOpenPasteDialog',
-				dialog,
-				msg,
-				title,
-				callback,
-				clearButton,
-				clear2Button
-			);
+		editor.events.fire(
+			'afterOpenPasteDialog',
+			dialog,
+			msg,
+			title,
+			callback,
+			clearButton,
+			clear2Button
+		);
 
 		return dialog;
 	};
@@ -341,7 +341,7 @@ export function paste(editor: IJodit) {
 
 					if (
 						clipboard_html instanceof
-							(editor.editorWindow as any).Node ||
+						(editor.editorWindow as any).Node ||
 						trim(clipboard_html) !== ''
 					) {
 						/**
@@ -436,7 +436,7 @@ export function paste(editor: IJodit) {
 								clearOrKeep(
 									editor.i18n(
 										'The pasted content is coming from a Microsoft Word/Excel document. ' +
-											'Do you want to keep the format or clean it up?'
+										'Do you want to keep the format or clean it up?'
 									),
 
 									editor.i18n('Word Paste Detected'),

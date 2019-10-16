@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { css } from '../modules/helpers/';
-import { IDictionary, IJodit } from '../types';
-import { IControlType } from '../types/toolbar';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {css} from '../modules/helpers/';
+import {IDictionary, IJodit} from '../types';
+import {IControlType} from '../types/toolbar';
 
 const pluginKey: string = 'copyformat';
 
@@ -112,9 +112,7 @@ Config.prototype.controls.copyformat = {
 					Dom.safeRemove(ideal);
 				}
 
-				const format: IDictionary<
-					string | number | undefined
-				> = getStyles(editor, box, defaultStyles);
+				const format: IDictionary<string | number | undefined> = getStyles(editor, box, defaultStyles);
 
 				const onMouseDown = () => {
 					editor.buffer[pluginKey] = false;

@@ -7,9 +7,9 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { IDictionary, IJodit } from '../types';
-import { IControlType } from '../types/toolbar';
+import {Config} from '../Config';
+import {IDictionary, IJodit} from '../types';
+import {IControlType} from '../types/toolbar';
 
 Config.prototype.controls.subscript = {
 	tags: ['sub'],
@@ -63,7 +63,7 @@ export function bold(editor: IJodit) {
 	const callBack = (command: string): false => {
 		const control: IControlType = Config.defaultOptions.controls[
 				command
-			] as IControlType,
+				] as IControlType,
 			cssOptions:
 				| IDictionary<string | string[]>
 				| IDictionary<(editor: IJodit, value: string) => boolean> = {

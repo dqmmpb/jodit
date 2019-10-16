@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IJodit } from '../types/jodit';
+import {IJodit} from '../types/jodit';
 
 import {
 	IDictionary,
@@ -18,7 +18,7 @@ import {
 	IUploaderData
 } from '../types/';
 
-import { Dom } from './Dom';
+import {Dom} from './Dom';
 import {
 	$$,
 	each,
@@ -28,7 +28,7 @@ import {
 	val,
 	hasBrowserColorPicker
 } from './helpers/';
-import { ToolbarIcon } from './toolbar/icon';
+import {ToolbarIcon} from './toolbar/icon';
 
 export namespace Widget {
 	/**
@@ -87,8 +87,8 @@ export namespace Widget {
 					Object.keys(colors).forEach(key => {
 						stack.push(
 							'<div class="jodit_colorpicker_group jodit_colorpicker_group-' +
-								key +
-								'">'
+							key +
+							'">'
 						);
 						stack.push(eachColor((colors as any)[key]));
 						stack.push('</div>');
@@ -97,16 +97,16 @@ export namespace Widget {
 					colors.forEach(color => {
 						stack.push(
 							'<a ' +
-								(valueHex === color ? ' class="active" ' : '') +
-								' title="' +
-								color +
-								'" style="background-color:' +
-								color +
-								'" data-color="' +
-								color +
-								'" href="javascript:void(0)">' +
-								(valueHex === color ? iconEye : '') +
-								'</a>'
+							(valueHex === color ? ' class="active" ' : '') +
+							' title="' +
+							color +
+							'" style="background-color:' +
+							color +
+							'" data-color="' +
+							color +
+							'" href="javascript:void(0)">' +
+							(valueHex === color ? iconEye : '') +
+							'</a>'
 						);
 					});
 				}
@@ -122,12 +122,12 @@ export namespace Widget {
 		form.appendChild(
 			editor.create.fromHTML(
 				'<a ' +
-					(editor.options.textIcons
-						? 'class="jodit_text_icon"'
-						: '') +
-					' data-color="" href="javascript:void(0)">' +
-					iconEraser +
-					'</a>'
+				(editor.options.textIcons
+					? 'class="jodit_text_icon"'
+					: '') +
+				' data-color="" href="javascript:void(0)">' +
+				iconEraser +
+				'</a>'
 			)
 		);
 
@@ -135,15 +135,15 @@ export namespace Widget {
 			form.appendChild(
 				editor.create.fromHTML(
 					'<span>' +
-						'<em ' +
-						(editor.options.textIcons
-							? 'class="jodit_text_icon"'
-							: '') +
-						'>' +
-						iconPalette +
-						'</em>' +
-						'<input type="color" value=""/>' +
-						'</span>'
+					'<em ' +
+					(editor.options.textIcons
+						? 'class="jodit_text_icon"'
+						: '') +
+					'>' +
+					iconPalette +
+					'</em>' +
+					'<input type="color" value=""/>' +
+					'</span>'
 				)
 			);
 
@@ -398,16 +398,16 @@ export namespace Widget {
 		) {
 			const dragbox: HTMLElement = editor.create.fromHTML(
 				'<div class="jodit_draganddrop_file_box">' +
-					'<strong>' +
-					editor.i18n(isImage ? 'Drop image' : 'Drop file') +
-					'</strong>' +
-					'<span><br> ' +
-					editor.i18n('or click') +
-					'</span>' +
-					'<input type="file" accept="' +
-					(isImage ? 'image/*' : '*') +
-					'image/*" tabindex="-1" dir="auto" multiple=""/>' +
-					'</div>'
+				'<strong>' +
+				editor.i18n(isImage ? 'Drop image' : 'Drop file') +
+				'</strong>' +
+				'<span><br> ' +
+				editor.i18n('or click') +
+				'</span>' +
+				'<input type="file" accept="' +
+				(isImage ? 'image/*' : '*') +
+				'image/*" tabindex="-1" dir="auto" multiple=""/>' +
+				'</div>'
 			);
 
 			editor.getInstance<IUploader>('Uploader').bind(
@@ -451,17 +451,17 @@ export namespace Widget {
 
 		if (callbacks.url) {
 			const form: HTMLFormElement = editor.create.fromHTML(
-					'<form onsubmit="return false;" class="jodit_form">' +
-						'<input type="text" required name="url" placeholder="http://"/>' +
-						'<input type="text" name="text" placeholder="' +
-						editor.i18n('Alternative text') +
-						'"/>' +
-						'<div style="text-align: right">' +
-						'<button>' +
-						editor.i18n('Insert') +
-						'</button>' +
-						'</div>' +
-						'</form>'
+				'<form onsubmit="return false;" class="jodit_form">' +
+				'<input type="text" required name="url" placeholder="http://"/>' +
+				'<input type="text" name="text" placeholder="' +
+				editor.i18n('Alternative text') +
+				'"/>' +
+				'<div style="text-align: right">' +
+				'<button>' +
+				editor.i18n('Insert') +
+				'</button>' +
+				'</div>' +
+				'</form>'
 				) as HTMLFormElement,
 				button: HTMLButtonElement = form.querySelector(
 					'button'

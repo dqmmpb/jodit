@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Buttons } from './toolbar';
-import { IDictionary, ImageBox, IPermissions } from './types';
-import { IUploader, IUploaderOptions } from './uploader';
-import { IViewOptions, IViewWithToolbar } from './view';
-import { Dialog } from '../modules/dialog';
-import { Storage } from '../modules';
+import {Buttons} from './toolbar';
+import {IDictionary, ImageBox, IPermissions} from './types';
+import {IUploader, IUploaderOptions} from './uploader';
+import {IViewOptions, IViewWithToolbar} from './view';
+import {Dialog} from '../modules/dialog';
+import {Storage} from '../modules';
 
 /**
  * The module creates a web browser dialog box. In a Web browser ,you can select an image, remove, drag it. Upload new
@@ -235,10 +235,9 @@ export interface IFileBrowser extends IViewWithToolbar<IFileBrowserOptions> {
 
 	storage: Storage;
 	dialog: Dialog;
+	close: () => void;
 
 	isOpened(): boolean;
-
-	close: () => void;
 
 	openImageEditor(
 		href: string,

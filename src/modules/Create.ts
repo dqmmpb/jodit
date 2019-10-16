@@ -7,17 +7,17 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary } from '../types';
-import { isPlainObject } from './helpers/checker/isPlainObject';
-import { each } from './helpers/each';
-import { asArray } from './helpers/array/asArray';
-import { Dom } from './Dom';
-import { css } from './helpers';
-import { Attributes, Children, ICreate } from '../types/create';
+import {IDictionary} from '../types';
+import {isPlainObject} from './helpers/checker/isPlainObject';
+import {each} from './helpers/each';
+import {asArray} from './helpers/array/asArray';
+import {Dom} from './Dom';
+import {css} from './helpers';
+import {Attributes, Children, ICreate} from '../types/create';
 
 export class Create implements ICreate {
-	private doc: Document;
 	public inside: Create;
+	private doc: Document;
 
 	constructor(ownerDocument: Document, editorDocument?: Document | null) {
 		this.doc = ownerDocument;

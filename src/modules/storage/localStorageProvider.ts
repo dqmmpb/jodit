@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary, IStorage } from '../../types';
+import {IDictionary, IStorage} from '../../types';
 
 export class LocalStorageProvider implements IStorage {
 	data: IDictionary<string> = {};
@@ -23,7 +23,8 @@ export class LocalStorageProvider implements IStorage {
 	public get(key: string): string | null {
 		try {
 			return localStorage.getItem(key);
-		} catch {}
+		} catch {
+		}
 
 		return this.data[key] || null;
 	}

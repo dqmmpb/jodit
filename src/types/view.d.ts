@@ -7,10 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Buttons, Controls, IToolbarCollection } from './toolbar';
-import { IComponent, IDictionary } from './types';
-import { ICreate } from './create';
-import { IEventsNative } from './events';
+import {Buttons, Controls, IToolbarCollection} from './toolbar';
+import {IComponent, IDictionary} from './types';
+import {ICreate} from './create';
+import {IEventsNative} from './events';
 
 interface IViewOptions {
 	disabled?: boolean;
@@ -40,14 +40,16 @@ interface IPanel extends IComponent {
 
 	ownerDocument: Document;
 	ownerWindow: Window;
+	isFullSize: () => boolean;
 
 	isLockedNotBy(name: string): boolean;
+
 	isLocked(): boolean;
 
 	lock(name?: string): boolean;
+
 	unlock(): boolean;
 
-	isFullSize: () => boolean;
 	toggleFullSize(isFullSize?: boolean): void;
 }
 
@@ -71,12 +73,10 @@ interface IViewBased<T = IViewOptions> extends IPanel {
 	defaultTimeout: number;
 
 	iframe?: HTMLIFrameElement | null;
+	getVersion: () => string;
+	components: IComponent[];
 
 	getInstance<T = IComponent>(moduleName: string, options?: object): T;
-
-	getVersion: () => string;
-
-	components: IComponent[];
 }
 
 interface IViewWithToolbar<T = IViewOptions> extends IViewBased<T> {

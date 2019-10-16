@@ -7,8 +7,8 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Dialog } from './dialog';
-import { ToolbarIcon } from '../toolbar/icon';
+import {Dialog} from './dialog';
+import {ToolbarIcon} from '../toolbar/icon';
 
 /**
  * Show `confirm` dialog. Work without Jodit object
@@ -47,11 +47,11 @@ export const Confirm = (
 
 	const $cancel: HTMLAnchorElement = dialog.create.fromHTML(
 		'<a href="javascript:void(0)" style="float:right;" class="jodit_button">' +
-			ToolbarIcon.getIcon('cancel') +
-			'<span>' +
-			Jodit.prototype.i18n('Cancel') +
-			'</span>' +
-			'</a>'
+		ToolbarIcon.getIcon('cancel') +
+		'<span>' +
+		Jodit.prototype.i18n('Cancel') +
+		'</span>' +
+		'</a>'
 	) as HTMLAnchorElement;
 
 	$cancel.addEventListener('click', () => {
@@ -70,11 +70,11 @@ export const Confirm = (
 
 	const $ok: HTMLAnchorElement = dialog.create.fromHTML(
 		'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-			ToolbarIcon.getIcon('check') +
-			'<span>' +
-			Jodit.prototype.i18n('Yes') +
-			'</span>' +
-			'</a>'
+		ToolbarIcon.getIcon('check') +
+		'<span>' +
+		Jodit.prototype.i18n('Yes') +
+		'</span>' +
+		'</a>'
 	) as HTMLAnchorElement;
 
 	$ok.addEventListener('click', onok);
@@ -92,4 +92,4 @@ export const Confirm = (
 	return dialog;
 };
 
-import { Jodit } from '../../Jodit';
+import {Jodit} from '../../Jodit';

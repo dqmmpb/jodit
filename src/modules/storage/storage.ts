@@ -7,11 +7,14 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IStorage } from '../../types';
-import { camelCase } from '../helpers/string';
+import {IStorage} from '../../types';
+import {camelCase} from '../helpers/string';
 
 export class Storage {
 	public prefix: string = 'Jodit_';
+
+	constructor(readonly provider: IStorage) {
+	}
 
 	public set(key: string, value: string | number) {
 		this.provider.set(camelCase(this.prefix + key), value);
@@ -20,5 +23,4 @@ export class Storage {
 	public get(key: string): string | null {
 		return this.provider.get(camelCase(this.prefix + key));
 	}
-	constructor(readonly provider: IStorage) {}
 }

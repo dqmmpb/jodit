@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IStorage } from '../types';
+import {IStorage} from '../types';
 
 export class Cookie implements IStorage {
 	/**

@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary } from '../../types';
+import {IDictionary} from '../../types';
 
 type eachCallback<T, N> = ((this: T, key: N, value: T) => boolean | void);
 

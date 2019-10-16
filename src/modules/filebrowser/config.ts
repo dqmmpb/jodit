@@ -7,8 +7,8 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../../Config';
-import { ToolbarIcon } from '../toolbar/icon';
+import {Config} from '../../Config';
+import {ToolbarIcon} from '../toolbar/icon';
 
 import {
 	IFileBrowser,
@@ -18,13 +18,13 @@ import {
 	ISourceFile
 } from '../../types/fileBrowser';
 
-import { IControlType } from '../../types/toolbar';
-import { IDictionary } from '../../types/types';
-import { IUploader } from '../../types/uploader';
-import { IViewBased } from '../../types/view';
-import { debounce } from '../helpers/async/debounce';
-import { humanSizeToBytes } from '../helpers';
-import { ITEM_CLASS as IC } from './fileBrowser';
+import {IControlType} from '../../types/toolbar';
+import {IDictionary} from '../../types/types';
+import {IUploader} from '../../types/uploader';
+import {IViewBased} from '../../types/view';
+import {debounce} from '../helpers/async/debounce';
+import {humanSizeToBytes} from '../helpers';
+import {ITEM_CLASS as IC} from './fileBrowser';
 
 declare module '../../Config' {
 	interface Config {
@@ -479,43 +479,43 @@ Config.prototype.filebrowser = {
 		}
 	},
 	create: {
-		data: { action: 'folderCreate' }
+		data: {action: 'folderCreate'}
 	},
 	getLocalFileByUrl: {
-		data: { action: 'getLocalFileByUrl' }
+		data: {action: 'getLocalFileByUrl'}
 	},
 	resize: {
-		data: { action: 'imageResize' }
+		data: {action: 'imageResize'}
 	},
 	crop: {
-		data: { action: 'imageCrop' }
+		data: {action: 'imageCrop'}
 	},
 	fileMove: {
-		data: { action: 'fileMove' }
+		data: {action: 'fileMove'}
 	},
 	folderMove: {
-		data: { action: 'folderMove' }
+		data: {action: 'folderMove'}
 	},
 	fileRename: {
-		data: { action: 'fileRename' }
+		data: {action: 'fileRename'}
 	},
 	folderRename: {
-		data: { action: 'folderRename' }
+		data: {action: 'folderRename'}
 	},
 	fileRemove: {
-		data: { action: 'fileRemove' }
+		data: {action: 'fileRemove'}
 	},
 	folderRemove: {
-		data: { action: 'folderRemove' }
+		data: {action: 'folderRemove'}
 	},
 	items: {
-		data: { action: 'files' }
+		data: {action: 'files'}
 	},
 	folder: {
-		data: { action: 'folders' }
+		data: {action: 'folders'}
 	},
 	permissions: {
-		data: { action: 'permissions' }
+		data: {action: 'permissions'}
 	},
 
 	uploader: null // use default Uploader's settings

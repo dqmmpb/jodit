@@ -7,14 +7,13 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { HTMLTagNames, IComponent, IDictionary, Modes } from './types';
-import { IViewBased } from './view';
-import { IJodit } from './jodit';
-import { IFileBrowser } from './fileBrowser';
-interface IControlType<
-	T = IJodit | IViewBased | IFileBrowser,
-	Button = IToolbarButton
-> {
+import {HTMLTagNames, IComponent, IDictionary, Modes} from './types';
+import {IViewBased} from './view';
+import {IJodit} from './jodit';
+import {IFileBrowser} from './fileBrowser';
+
+interface IControlType<T = IJodit | IViewBased | IFileBrowser,
+	Button = IToolbarButton> {
 	controlName?: string;
 	name?: string;
 	mode?: Modes;
@@ -271,14 +270,18 @@ interface IToolbarButton extends IToolbarElement {
 	tooltipText: string;
 
 	isDisable(): boolean;
+
 	isActive(): boolean;
 }
 
 interface IToolbarCollection extends IComponent {
 	readonly listenEvents: string;
+	firstButton: IToolbarElement;
+	immedateCheckActiveButtons: () => void;
+	checkActiveButtons: () => void;
+	container: HTMLElement;
 
 	getButtonsList(): string[];
-	firstButton: IToolbarElement;
 
 	appendChild(button: IToolbarElement): void;
 
@@ -288,21 +291,16 @@ interface IToolbarCollection extends IComponent {
 
 	clear(): void;
 
-	immedateCheckActiveButtons: () => void;
-
 	buttonIsActive(button: IToolbarButton): boolean | void;
 
 	buttonIsDisabled(button: IToolbarButton): boolean | void;
+
 	/**
 	 * Target for button element
 	 *
 	 * @param button
 	 */
 	getTarget(button: IToolbarButton): Node | void;
-
-	checkActiveButtons: () => void;
-
-	container: HTMLElement;
 
 	setDirection(direction: 'rtl' | 'ltr'): void;
 

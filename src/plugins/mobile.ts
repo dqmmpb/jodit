@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { IControlType, IToolbarCollection } from '../types/toolbar';
-import { splitArray } from '../modules/helpers/array';
-import { JoditToolbarCollection } from '../modules/toolbar/joditToolbarCollection';
-import { IJodit } from '../types';
+import {IControlType, IToolbarCollection} from '../types/toolbar';
+import {splitArray} from '../modules/helpers/array';
+import {JoditToolbarCollection} from '../modules/toolbar/joditToolbarCollection';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -44,10 +44,10 @@ Config.prototype.controls.dots = {
 	) => {
 		let store:
 			| {
-					container: HTMLDivElement;
-					toolbar: IToolbarCollection;
-					rebuild: () => void;
-			  }
+			container: HTMLDivElement;
+			toolbar: IToolbarCollection;
+			rebuild: () => void;
+		}
 			| undefined = control.data as any;
 
 		if (store === undefined) {

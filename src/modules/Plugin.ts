@@ -7,14 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IJodit, IPlugin } from '../types';
-import { Component } from './Component';
+import {IJodit, IPlugin} from '../types';
+import {Component} from './Component';
 
 export abstract class Plugin extends Component<IJodit> implements IPlugin {
-	public abstract afterInit(jodit: IJodit): void;
-
-	public abstract beforeDestruct(jodit: IJodit): void;
-
 	constructor(jodit: IJodit) {
 		super(jodit);
 
@@ -23,10 +19,14 @@ export abstract class Plugin extends Component<IJodit> implements IPlugin {
 			.on('beforeDestruct', this.destruct);
 	}
 
+	public abstract afterInit(jodit: IJodit): void;
+
+	public abstract beforeDestruct(jodit: IJodit): void;
+
 	destruct = () => {
 		if (!this.isDestructed) {
 			this.jodit.events &&
-				this.jodit.events.off('beforeDestruct', this.destruct);
+			this.jodit.events.off('beforeDestruct', this.destruct);
 
 			this.beforeDestruct(this.jodit);
 

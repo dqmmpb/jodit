@@ -7,17 +7,17 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IJodit } from '../../../types';
+import {IJodit} from '../../../types';
 
 /**
  * Check if element is instance of Jodit
  *
  *
  */
-export const isJoditObject = (jodit: unknown): jodit is IJodit  => {
-    if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit.constructor.name === 'Jodit') {
-        return true;
-    }
+export const isJoditObject = (jodit: unknown): jodit is IJodit => {
+	if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit.constructor.name === 'Jodit') {
+		return true;
+	}
 
-    return false;
+	return false;
 };

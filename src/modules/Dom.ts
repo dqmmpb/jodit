@@ -5,9 +5,9 @@
  */
 
 import * as consts from '../constants';
-import { HTMLTagNames, IJodit, NodeCondition } from '../types';
-import { css } from './helpers/';
-import { trim } from './helpers/string';
+import {HTMLTagNames, IJodit, NodeCondition} from '../types';
+import {css} from './helpers/';
+import {trim} from './helpers/string';
 
 export class Dom {
 	/**
@@ -540,7 +540,7 @@ export class Dom {
 			nextElement &&
 			Dom.isInlineBlock(nextElement) &&
 			(!toLeft ? nextElement.firstChild : nextElement.lastChild)
-		) {
+			) {
 			nextElement = !toLeft
 				? nextElement.firstChild
 				: nextElement.lastChild;

@@ -16,7 +16,7 @@ if (typeof window !== 'undefined') {
 	require('./polyfills');
 }
 
-import { Jodit as DefaultJodit } from './Jodit';
+import {Jodit as DefaultJodit} from './Jodit';
 
 import * as consts from './constants';
 import * as Languages from './langs/index';
@@ -24,8 +24,8 @@ import * as Modules from './modules/index';
 import * as Plugins from './plugins/index';
 import * as Icons from './styles/icons/index';
 
-import { Config, OptionsDefault } from './Config';
-import { ToolbarIcon } from './modules/toolbar/icon';
+import {Config, OptionsDefault} from './Config';
+import {ToolbarIcon} from './modules/toolbar/icon';
 
 // copy constants in Jodit
 Object.keys(consts).forEach((key: string) => {

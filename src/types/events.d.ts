@@ -4,7 +4,7 @@
  * Copyright 2013-2019 Valeriy Chupurnov https://xdsoft.net
  */
 
-import { CallbackFunction } from './types';
+import {CallbackFunction} from './types';
 
 interface IEventsNative {
 	/**
@@ -106,11 +106,13 @@ interface IEventsNative {
 		subjectOrEvents: string,
 		eventsOrCallback?: CallbackFunction
 	): IEventsNative;
+
 	off(
 		subjectOrEvents: object,
 		eventsOrCallback?: string,
 		handler?: CallbackFunction
 	): IEventsNative;
+
 	off(
 		subjectOrEvents: object | string,
 		eventsOrCallback?: string | (() => void),
@@ -148,11 +150,13 @@ interface IEventsNative {
 	 *
 	 */
 	fire(subjectOrEvents: string, eventsList?: any, ...args: any[]): any;
+
 	fire(
 		subjectOrEvents: object,
 		eventsList: string | Event,
 		...args: any[]
 	): any;
+
 	fire(
 		subjectOrEvents: object | string,
 		eventsList?: string | any | Event,

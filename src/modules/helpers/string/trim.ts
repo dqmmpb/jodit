@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { SPACE_REG_EXP_END, SPACE_REG_EXP_START } from '../../../constants';
+import {SPACE_REG_EXP_END, SPACE_REG_EXP_START} from '../../../constants';
 
 /**
  * It clears the line of all auxiliary invisible characters , from the spaces and line breaks , tabs
@@ -17,7 +17,7 @@ import { SPACE_REG_EXP_END, SPACE_REG_EXP_START } from '../../../constants';
  * @return {string}
  */
 export const trim = (value: string): string => {
-    return value
-        .replace(SPACE_REG_EXP_START, '')
-        .replace(SPACE_REG_EXP_END, '');
+	return value
+		.replace(SPACE_REG_EXP_START, '')
+		.replace(SPACE_REG_EXP_END, '');
 };

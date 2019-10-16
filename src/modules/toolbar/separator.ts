@@ -6,9 +6,9 @@
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-import { IViewBased } from '../../types/view';
-import { ToolbarElement } from './element';
-import { IToolbarCollection } from '../../types';
+import {IViewBased} from '../../types/view';
+import {ToolbarElement} from './element';
+import {IToolbarCollection} from '../../types';
 
 export class ToolbarSeparator extends ToolbarElement {
 	constructor(jodit: IToolbarCollection | IViewBased) {

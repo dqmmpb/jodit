@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewBased } from './view';
+import {IViewBased} from './view';
 
 export interface IDictionary<T = any> {
 	[key: string]: T;
@@ -16,6 +16,7 @@ export interface IDictionary<T = any> {
 interface IComponent<T extends IViewBased = IViewBased> {
 	jodit: T;
 	isDestructed: boolean;
+
 	destruct(): any;
 }
 
@@ -38,7 +39,7 @@ export interface IPoint {
 	y: number;
 }
 
-export interface IPointBound extends IPoint{
+export interface IPointBound extends IPoint {
 	w: number;
 	h: number;
 }
@@ -70,6 +71,7 @@ export interface IPermissions {
 	allowFolderRename: boolean;
 	allowImageResize: boolean;
 	allowImageCrop: boolean;
+
 	[key: string]: boolean;
 }
 
@@ -77,17 +79,17 @@ export type CallbackFunction<T = any> = (this: T, ...args: any[]) => any | void;
 
 export type ExecCommandCallback<T> =
 	| ((
-			this: T,
-			command: string,
-			value?: string,
-			next?: boolean
-	  ) => void | boolean | Promise<void | boolean>)
+	this: T,
+	command: string,
+	value?: string,
+	next?: boolean
+) => void | boolean | Promise<void | boolean>)
 	| ((
-			this: T,
-			command: string,
-			value: string,
-			next: string
-	  ) => void | boolean | Promise<void | boolean>);
+	this: T,
+	command: string,
+	value: string,
+	next: string
+) => void | boolean | Promise<void | boolean>);
 
 export interface ICommandType<T> {
 	exec: ExecCommandCallback<T>;
@@ -105,6 +107,7 @@ export interface IHasScroll {
 
 export interface IStorage {
 	set(key: string, value: string | number): void;
+
 	get(key: string): string | null;
 }
 
@@ -130,8 +133,11 @@ export interface markerInfo {
 
 export interface IPlugin {
 	jodit: IViewBased;
+
 	destruct(): void;
+
 	afterInit(jodit?: IViewBased): void;
+
 	beforeDestruct(jodit?: IViewBased): void;
 }
 

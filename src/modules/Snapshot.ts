@@ -7,14 +7,16 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IJodit, SnapshotType } from '../types';
-import { Component } from './Component';
-import { Dom } from './Dom';
+import {IJodit, SnapshotType} from '../types';
+import {Component} from './Component';
+import {Dom} from './Dom';
 
 /**
  * Module for creating snapshot of editor which includes html content and the current selection
  */
 export class Snapshot extends Component<IJodit> {
+	isBlocked: boolean = false;
+
 	/**
 	 * Compare two snapshotes, if and htmls and selections match, then return true
 	 *
@@ -28,6 +30,7 @@ export class Snapshot extends Component<IJodit> {
 			JSON.stringify(first.range) === JSON.stringify(second.range)
 		);
 	}
+
 	/**
 	 * Calc count element before some node in parentNode. All text nodes are joined
 	 *
@@ -48,9 +51,9 @@ export class Snapshot extends Component<IJodit> {
 			if (
 				last &&
 				(!(
-					elms[j].nodeType === Node.TEXT_NODE &&
-					elms[j].textContent === ''
-				) &&
+						elms[j].nodeType === Node.TEXT_NODE &&
+						elms[j].textContent === ''
+					) &&
 					!(
 						last.nodeType === Node.TEXT_NODE &&
 						elms[j].nodeType === Node.TEXT_NODE
@@ -90,47 +93,6 @@ export class Snapshot extends Component<IJodit> {
 
 		return offset;
 	}
-
-	/**
-	 * Calc whole hierarchy path before some element in editor's tree
-	 *
-	 * @param {Node | null} elm
-	 * @return {number[]}
-	 * @private
-	 */
-	private calcHierarchyLadder(elm: Node | null): number[] {
-		const counts: number[] = [];
-
-		if (
-			!elm ||
-			!elm.parentNode ||
-			!Dom.isOrContains(this.jodit.editor, elm)
-		) {
-			return [];
-		}
-
-		while (elm && elm !== this.jodit.editor) {
-			if (elm) {
-				counts.push(Snapshot.countNodesBeforeInParent(elm));
-			}
-			elm = elm.parentNode;
-		}
-
-		return counts.reverse();
-	}
-
-	private getElementByLadder(ladder: number[]): Node {
-		let n: Node = this.jodit.editor as Node,
-			i: number;
-
-		for (i = 0; n && i < ladder.length; i += 1) {
-			n = n.childNodes[ladder[i]];
-		}
-
-		return n;
-	}
-
-	isBlocked: boolean = false;
 
 	/**
 	 * Creates object a snapshot of editor: html and the current selection. Current selection calculate by
@@ -233,5 +195,44 @@ export class Snapshot extends Component<IJodit> {
 	destruct(): any {
 		this.isBlocked = false;
 		super.destruct();
+	}
+
+	/**
+	 * Calc whole hierarchy path before some element in editor's tree
+	 *
+	 * @param {Node | null} elm
+	 * @return {number[]}
+	 * @private
+	 */
+	private calcHierarchyLadder(elm: Node | null): number[] {
+		const counts: number[] = [];
+
+		if (
+			!elm ||
+			!elm.parentNode ||
+			!Dom.isOrContains(this.jodit.editor, elm)
+		) {
+			return [];
+		}
+
+		while (elm && elm !== this.jodit.editor) {
+			if (elm) {
+				counts.push(Snapshot.countNodesBeforeInParent(elm));
+			}
+			elm = elm.parentNode;
+		}
+
+		return counts.reverse();
+	}
+
+	private getElementByLadder(ladder: number[]): Node {
+		let n: Node = this.jodit.editor as Node,
+			i: number;
+
+		for (i = 0; n && i < ladder.length; i += 1) {
+			n = n.childNodes[ladder[i]];
+		}
+
+		return n;
 	}
 }

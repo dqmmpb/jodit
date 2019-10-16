@@ -7,16 +7,16 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { MODE_WYSIWYG } from '../constants';
-import { Dom } from '../modules/Dom';
-import { ToolbarIcon } from '../modules/toolbar/icon';
-import { Plugin } from '../modules/Plugin';
-import { debounce } from '../modules/helpers/async';
-import { trim } from '../modules/helpers/string';
-import { ISelectionRange, markerInfo } from '../types/types';
-import { IJodit } from '../types';
+import {MODE_WYSIWYG} from '../constants';
+import {Dom} from '../modules/Dom';
+import {ToolbarIcon} from '../modules/toolbar/icon';
+import {Plugin} from '../modules/Plugin';
+import {debounce} from '../modules/helpers/async';
+import {trim} from '../modules/helpers/string';
+import {ISelectionRange, markerInfo} from '../types/types';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -47,6 +47,48 @@ Config.prototype.useSearch = true;
  * ```
  */
 export class search extends Plugin {
+	public searchBox: HTMLDivElement;
+	public queryInput: HTMLInputElement;
+	public replaceInput: HTMLInputElement;
+	public closeButton: HTMLButtonElement;
+	public nextButton: HTMLButtonElement;
+	public prevButton: HTMLButtonElement;
+	public replaceButton: HTMLButtonElement;
+	public counterBox: HTMLSpanElement;
+	private template: string =
+		'<div class="jodit_search">' +
+		'<div class="jodit_search_box">' +
+		'<div class="jodit_search_inputs">' +
+		'<input tabindex="0" class="jodit_search-query" placeholder="' +
+		this.jodit.i18n('Search for') +
+		'" type="text"/>' +
+		'<input tabindex="0" class="jodit_search-replace" placeholder="' +
+		this.jodit.i18n('Replace with') +
+		'" type="text"/>' +
+		'</div>' +
+		'<div class="jodit_search_counts">' +
+		'<span>0/0</span>' +
+		'</div>' +
+		'<div class="jodit_search_buttons">' +
+		'<button tabindex="0" type="button" class="jodit_search_buttons-next">' +
+		ToolbarIcon.getIcon('angle-down') +
+		'</button>' +
+		'<button tabindex="0" type="button" class="jodit_search_buttons-prev">' +
+		ToolbarIcon.getIcon('angle-up') +
+		'</button>' +
+		'<button tabindex="0" type="button" class="jodit_search_buttons-cancel">' +
+		ToolbarIcon.getIcon('cancel') +
+		'</button>' +
+		'<button tabindex="0" type="button" class="jodit_search_buttons-replace">' +
+		this.jodit.i18n('Replace') +
+		'</button>' +
+		'</div>' +
+		'</div>' +
+		'</div>';
+	private isOpened: boolean = false;
+	private selInfo: markerInfo[] | null = null;
+	private current: Node | false = false;
+
 	public static getSomePartOfStringIndex(
 		needle: string,
 		haystack: string,
@@ -108,125 +150,11 @@ export class search extends Plugin {
 				? startAtIndex
 				: false
 			: tmp.length
-			? start
-				? tmp.join('')
-				: tmp.reverse().join('')
-			: false;
+				? start
+					? tmp.join('')
+					: tmp.reverse().join('')
+				: false;
 	}
-
-	private template: string =
-		'<div class="jodit_search">' +
-		'<div class="jodit_search_box">' +
-		'<div class="jodit_search_inputs">' +
-		'<input tabindex="0" class="jodit_search-query" placeholder="' +
-		this.jodit.i18n('Search for') +
-		'" type="text"/>' +
-		'<input tabindex="0" class="jodit_search-replace" placeholder="' +
-		this.jodit.i18n('Replace with') +
-		'" type="text"/>' +
-		'</div>' +
-		'<div class="jodit_search_counts">' +
-		'<span>0/0</span>' +
-		'</div>' +
-		'<div class="jodit_search_buttons">' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-next">' +
-		ToolbarIcon.getIcon('angle-down') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-prev">' +
-		ToolbarIcon.getIcon('angle-up') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-cancel">' +
-		ToolbarIcon.getIcon('cancel') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-replace">' +
-		this.jodit.i18n('Replace') +
-		'</button>' +
-		'</div>' +
-		'</div>' +
-		'</div>';
-
-	private isOpened: boolean = false;
-
-	private selInfo: markerInfo[] | null = null;
-	private current: Node | false = false;
-
-	private eachMap = (
-		node: Node,
-		callback: (elm: Node) => boolean,
-		next: boolean
-	) => {
-		Dom.findWithCurrent(
-			node,
-			(child: Node | null): boolean => {
-				return !!child && callback(child);
-			},
-			this.jodit.editor,
-			next ? 'nextSibling' : 'previousSibling',
-			next ? 'firstChild' : 'lastChild'
-		);
-	};
-
-	private updateCounters = () => {
-		if (!this.isOpened) {
-			return;
-		}
-
-		this.counterBox.style.display = this.queryInput.value.length
-			? 'inline-block'
-			: 'none';
-
-		const range = this.jodit.selection.range,
-			counts: [number, number] = this.calcCounts(
-				this.queryInput.value,
-				range
-			);
-
-		this.counterBox.innerText = counts.join('/');
-	};
-
-	private boundAlreadyWas(
-		current: ISelectionRange,
-		bounds: ISelectionRange[]
-	): boolean {
-		return bounds.some((bound: ISelectionRange) => {
-			return (
-				bound.startContainer === current.startContainer &&
-				bound.endContainer === current.endContainer &&
-				bound.startOffset === current.startOffset &&
-				bound.endOffset === current.endOffset
-			);
-		}, false);
-	}
-
-	private tryScrollToElement(startContainer: Node) {
-		// find scrollable element
-		let parentBox: HTMLElement | false = Dom.closest(
-			startContainer,
-			elm => elm && elm.nodeType === Node.ELEMENT_NODE,
-			this.jodit.editor
-		) as HTMLElement | false;
-
-		if (!parentBox) {
-			parentBox = Dom.prev(
-				startContainer,
-				(elm: Node | null) => elm && elm.nodeType === Node.ELEMENT_NODE,
-				this.jodit.editor
-			) as HTMLElement | false;
-		}
-
-		parentBox &&
-			parentBox !== this.jodit.editor &&
-			parentBox.scrollIntoView();
-	}
-
-	public searchBox: HTMLDivElement;
-	public queryInput: HTMLInputElement;
-	public replaceInput: HTMLInputElement;
-	public closeButton: HTMLButtonElement;
-	public nextButton: HTMLButtonElement;
-	public prevButton: HTMLButtonElement;
-	public replaceButton: HTMLButtonElement;
-	public counterBox: HTMLSpanElement;
 
 	public calcCounts = (
 		query: string,
@@ -264,6 +192,7 @@ export class search extends Plugin {
 
 		return [currentIndex, count];
 	};
+
 	public findAndReplace = (start: Node | null, query: string): boolean => {
 		const
 			range = this.jodit.selection.range,
@@ -296,7 +225,8 @@ export class search extends Plugin {
 					this.jodit.selection.select(textNode);
 					this.tryScrollToElement(textNode);
 				}
-			} catch {}
+			} catch {
+			}
 
 			return true;
 		}
@@ -331,7 +261,8 @@ export class search extends Plugin {
 				rng.setStart(bound.startContainer, bound.startOffset as number);
 				rng.setEnd(bound.endContainer, bound.endOffset as number);
 				this.jodit.selection.selectRange(rng);
-			} catch (e) {}
+			} catch (e) {
+			}
 
 			this.tryScrollToElement(bound.startContainer);
 
@@ -581,7 +512,7 @@ export class search extends Plugin {
 					e.preventDefault();
 					e.stopImmediatePropagation();
 				})
-				.on([self.nextButton, self.prevButton], 'click', function(
+				.on([self.nextButton, self.prevButton], 'click', function (
 					this: HTMLButtonElement,
 					e: MouseEvent
 				) {
@@ -654,8 +585,8 @@ export class search extends Plugin {
 						editor.selection.current() || editor.editor.firstChild,
 						self.queryInput.value,
 						editor.events.current[
-							editor.events.current.length - 1
-						] === 'searchNext'
+						editor.events.current.length - 1
+							] === 'searchNext'
 					);
 				})
 				.on('search.search', (value: string, next: boolean = true) => {
@@ -700,5 +631,74 @@ export class search extends Plugin {
 		Dom.safeRemove(this.searchBox);
 		jodit.events && jodit.events.off('.search');
 		jodit.events && jodit.events.off(jodit.container, '.search');
+	}
+
+	private eachMap = (
+		node: Node,
+		callback: (elm: Node) => boolean,
+		next: boolean
+	) => {
+		Dom.findWithCurrent(
+			node,
+			(child: Node | null): boolean => {
+				return !!child && callback(child);
+			},
+			this.jodit.editor,
+			next ? 'nextSibling' : 'previousSibling',
+			next ? 'firstChild' : 'lastChild'
+		);
+	};
+
+	private updateCounters = () => {
+		if (!this.isOpened) {
+			return;
+		}
+
+		this.counterBox.style.display = this.queryInput.value.length
+			? 'inline-block'
+			: 'none';
+
+		const range = this.jodit.selection.range,
+			counts: [number, number] = this.calcCounts(
+				this.queryInput.value,
+				range
+			);
+
+		this.counterBox.innerText = counts.join('/');
+	};
+
+	private boundAlreadyWas(
+		current: ISelectionRange,
+		bounds: ISelectionRange[]
+	): boolean {
+		return bounds.some((bound: ISelectionRange) => {
+			return (
+				bound.startContainer === current.startContainer &&
+				bound.endContainer === current.endContainer &&
+				bound.startOffset === current.startOffset &&
+				bound.endOffset === current.endOffset
+			);
+		}, false);
+	}
+
+	private tryScrollToElement(startContainer: Node) {
+		// find scrollable element
+		let parentBox: HTMLElement | false = Dom.closest(
+			startContainer,
+			elm => elm && elm.nodeType === Node.ELEMENT_NODE,
+			this.jodit.editor
+		) as HTMLElement | false;
+
+		if (!parentBox) {
+			parentBox = Dom.prev(
+				startContainer,
+				(elm: Node | null) => elm && elm.nodeType === Node.ELEMENT_NODE,
+				this.jodit.editor
+			) as HTMLElement | false;
+		}
+
+		parentBox &&
+		parentBox !== this.jodit.editor &&
+		parentBox.scrollIntoView();
 	}
 }

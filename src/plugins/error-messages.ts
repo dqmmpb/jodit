@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { setTimeout } from '../modules/helpers/async';
-import { css } from '../modules/helpers';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {setTimeout} from '../modules/helpers/async';
+import {css} from '../modules/helpers';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -43,7 +43,7 @@ export function errorMessages(editor: IJodit) {
 		let height: number;
 
 		const messagesBox: HTMLDivElement = editor.create.div(
-				'jodit_error_box_for_messages'
+			'jodit_error_box_for_messages'
 			),
 			recalcOffsets = () => {
 				height = 5;

@@ -7,14 +7,14 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { MODE_WYSIWYG } from '../constants';
-import { Plugin } from '../modules/Plugin';
-import { css } from '../modules/helpers/css';
-import { offset } from '../modules/helpers/size';
-import { IBound } from '../types/types';
-import { Dom } from '../modules/Dom';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {MODE_WYSIWYG} from '../constants';
+import {Plugin} from '../modules/Plugin';
+import {css} from '../modules/helpers/css';
+import {offset} from '../modules/helpers/size';
+import {IBound} from '../types/types';
+import {Dom} from '../modules/Dom';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -51,23 +51,6 @@ Config.prototype.toolbarStickyOffset = 0;
 export class sticky extends Plugin {
 	private isToolbarSticked: boolean = false;
 	private dummyBox: HTMLElement;
-
-	private createDummy = (toolbar: HTMLElement) => {
-		if (!this.dummyBox) {
-			this.dummyBox = this.jodit.create.div();
-			this.dummyBox.classList.add('jodit_sticky-dummy_toolbar');
-			this.jodit.container.insertBefore(this.dummyBox, toolbar);
-		}
-	};
-
-	private isMobile(): boolean {
-		return (
-			this.jodit &&
-			this.jodit.options &&
-			this.jodit.container &&
-			this.jodit.options.sizeSM >= this.jodit.container.offsetWidth
-		);
-	}
 
 	public addSticky = (toolbar: HTMLElement) => {
 		if (!this.isToolbarSticked) {
@@ -106,10 +89,10 @@ export class sticky extends Plugin {
 			'scroll wheel mousewheel resize',
 			() => {
 				const scrollWindowTop: number =
-						jodit.ownerWindow.pageYOffset ||
-						(jodit.ownerDocument.documentElement &&
-							jodit.ownerDocument.documentElement.scrollTop) ||
-						0,
+					jodit.ownerWindow.pageYOffset ||
+					(jodit.ownerDocument.documentElement &&
+						jodit.ownerDocument.documentElement.scrollTop) ||
+					0,
 					offsetEditor: IBound = offset(
 						jodit.container,
 						jodit,
@@ -121,8 +104,8 @@ export class sticky extends Plugin {
 						(scrollWindowTop + jodit.options.toolbarStickyOffset >
 							offsetEditor.top &&
 							scrollWindowTop +
-								jodit.options.toolbarStickyOffset <
-								offsetEditor.top + offsetEditor.height) &&
+							jodit.options.toolbarStickyOffset <
+							offsetEditor.top + offsetEditor.height) &&
 						!(
 							jodit.options.toolbarDisableStickyForMobile &&
 							this.isMobile()
@@ -141,5 +124,22 @@ export class sticky extends Plugin {
 
 	beforeDestruct(jodit?: IJodit): void {
 		Dom.safeRemove(this.dummyBox);
+	}
+
+	private createDummy = (toolbar: HTMLElement) => {
+		if (!this.dummyBox) {
+			this.dummyBox = this.jodit.create.div();
+			this.dummyBox.classList.add('jodit_sticky-dummy_toolbar');
+			this.jodit.container.insertBefore(this.dummyBox, toolbar);
+		}
+	};
+
+	private isMobile(): boolean {
+		return (
+			this.jodit &&
+			this.jodit.options &&
+			this.jodit.container &&
+			this.jodit.options.sizeSM >= this.jodit.container.offsetWidth
+		);
 	}
 }

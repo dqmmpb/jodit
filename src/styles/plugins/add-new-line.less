@@ -13,9 +13,11 @@
 
 .jodit-add-new-line {
 	box-sizing: border-box;
+
 	* {
 		box-sizing: border-box;
 	}
+
 	z-index: 1;
 	position: absolute;
 	height: @height-icon;
@@ -34,6 +36,7 @@
 		vertical-align: middle;
 		content: '';
 	}
+
 	&:after {
 		box-sizing: border-box;
 		vertical-align: middle;
@@ -44,6 +47,7 @@
 		display: inline-block;
 		width: ~'calc(100% - @{width-icon})';
 	}
+
 	span {
 		right: 0;
 		position: absolute;
@@ -55,6 +59,7 @@
 		border: 1px solid @color-new-line;
 		padding: 0 5px;
 		cursor: pointer;
+
 		&:hover {
 			background: fade(@color-background-button-hover, 100%);
 		}

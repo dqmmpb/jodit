@@ -18,13 +18,14 @@
  */
 
 import * as consts from '../constants';
-import { Dom } from './Dom';
-import { $$, each, trim } from './helpers/';
+import {Dom} from './Dom';
+import {$$, each, trim} from './helpers/';
 
 export class Table {
 	public static addSelected(td: HTMLTableCellElement) {
 		td.setAttribute(consts.JODIT_SELECTED_CELL_MARKER, '1');
 	}
+
 	public static restoreSelection(td: HTMLTableCellElement) {
 		td.removeAttribute(consts.JODIT_SELECTED_CELL_MARKER);
 	}
@@ -39,11 +40,11 @@ export class Table {
 	): HTMLTableCellElement[] {
 		return table
 			? ($$(
-					`td[${consts.JODIT_SELECTED_CELL_MARKER}],th[${
-						consts.JODIT_SELECTED_CELL_MARKER
+				`td[${consts.JODIT_SELECTED_CELL_MARKER}],th[${
+					consts.JODIT_SELECTED_CELL_MARKER
 					}]`,
-					table
-			  ) as HTMLTableCellElement[])
+				table
+			) as HTMLTableCellElement[])
 			: [];
 	}
 
@@ -199,7 +200,7 @@ export class Table {
 
 		if (after && line && line.nextSibling) {
 			line.parentNode &&
-				line.parentNode.insertBefore(row, line.nextSibling);
+			line.parentNode.insertBefore(row, line.nextSibling);
 		} else if (!after && line) {
 			line.parentNode && line.parentNode.insertBefore(row, line);
 		} else {
@@ -302,7 +303,7 @@ export class Table {
 				) {
 					if (td.nextSibling) {
 						td.parentNode &&
-							td.parentNode.insertBefore(cell, td.nextSibling);
+						td.parentNode.insertBefore(cell, td.nextSibling);
 					} else {
 						td.parentNode && td.parentNode.appendChild(cell);
 					}
@@ -314,7 +315,7 @@ export class Table {
 					(box[i][j] !== box[i][j - 1] && box[i][j].parentNode)
 				) {
 					td.parentNode &&
-						td.parentNode.insertBefore(cell, box[i][j]);
+					td.parentNode.insertBefore(cell, box[i][j]);
 					added = true;
 				}
 			}

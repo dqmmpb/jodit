@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IDictionary } from '../../types';
+import {IDictionary} from '../../types';
 
 export class ToolbarIcon {
 	static icons: IDictionary<string> = {};

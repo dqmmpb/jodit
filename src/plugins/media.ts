@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { debounce } from '../modules/helpers/async';
-import { $$ } from '../modules/helpers/selector';
-import { IJodit } from '../types';
+import {debounce} from '../modules/helpers/async';
+import {$$} from '../modules/helpers/selector';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -39,7 +39,7 @@ Config.prototype.mediaBlocks = ['video', 'audio'];
 export function media(editor: IJodit) {
 	const keyFake: string = 'jodit_fake_wrapper';
 
-	const { mediaFakeTag, mediaBlocks, mediaInFakeBlock } = editor.options;
+	const {mediaFakeTag, mediaBlocks, mediaInFakeBlock} = editor.options;
 
 	const wrap = (element: HTMLElement) => {
 		if (
@@ -54,16 +54,16 @@ export function media(editor: IJodit) {
 
 			wrapper = editor.create.inside.fromHTML(
 				'<' +
-					mediaFakeTag +
-					' data-jodit-temp="1" ' +
-					'contenteditable="false" ' +
-					'draggable="true" ' +
-					'data-' +
-					keyFake +
-					'="1">' +
-					'</' +
-					mediaFakeTag +
-					'>'
+				mediaFakeTag +
+				' data-jodit-temp="1" ' +
+				'contenteditable="false" ' +
+				'draggable="true" ' +
+				'data-' +
+				keyFake +
+				'="1">' +
+				'</' +
+				mediaFakeTag +
+				'>'
 			);
 
 			wrapper.style.display =

@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { KEY_DOWN, KEY_ENTER, KEY_UP, SPACE_REG_EXP } from '../constants';
-import { Dialog } from '../modules/dialog/dialog';
-import { Plugin } from '../modules/Plugin';
-import { Dom } from '../modules/Dom';
-import { setTimeout } from '../modules/helpers/async/setTimeout';
+import {KEY_DOWN, KEY_ENTER, KEY_UP, SPACE_REG_EXP} from '../constants';
+import {Dialog} from '../modules/dialog/dialog';
+import {Plugin} from '../modules/Plugin';
+import {Dom} from '../modules/Dom';
+import {setTimeout} from '../modules/helpers/async/setTimeout';
 
 /**
  * Show dialog choose content to paste
@@ -26,6 +26,40 @@ export class pasteStorage extends Plugin {
 	private previewBox: HTMLElement | null = null;
 
 	private dialog: Dialog | null = null;
+
+	public afterInit() {
+		this.jodit.events.on('afterCopy', (html: string) => {
+			if (this.list.indexOf(html) !== -1) {
+				this.list.splice(this.list.indexOf(html), 1);
+			}
+
+			this.list.unshift(html);
+			if (this.list.length > 5) {
+				this.list.length = 5;
+			}
+		});
+
+		this.jodit.registerCommand('showPasteStorage', {
+			exec: this.showDialog,
+			hotkeys: ['ctrl+shift+v', 'cmd+shift+v']
+		});
+	}
+
+	public beforeDestruct(): void {
+		this.dialog && this.dialog.destruct();
+
+		Dom.safeRemove(this.previewBox);
+		Dom.safeRemove(this.listBox);
+		Dom.safeRemove(this.container);
+
+		this.container = null;
+		this.listBox = null;
+		this.previewBox = null;
+		this.dialog = null;
+
+		this.list = [];
+	}
+
 	private paste = () => {
 		this.jodit.selection.focus();
 		this.jodit.selection.insertHTML(this.list[this.currentIndex]);
@@ -90,6 +124,7 @@ export class pasteStorage extends Plugin {
 
 		this.currentIndex = index;
 	};
+
 	private showDialog = () => {
 		if (this.list.length < 2) {
 			return;
@@ -124,25 +159,26 @@ export class pasteStorage extends Plugin {
 			this.selectIndex(0);
 		}, 100);
 	};
+
 	private createDialog() {
 		this.dialog = new Dialog(this.jodit);
 
 		const pasteButton: HTMLAnchorElement = this.jodit.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:right;" class="jodit_button">' +
-				'<span>' +
-				this.jodit.i18n('Paste') +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			this.jodit.i18n('Paste') +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		pasteButton.addEventListener('click', this.paste);
 
 		const cancelButton: HTMLAnchorElement = this.jodit.create.fromHTML(
 			'<a href="javascript:void(0)" style="float:right; margin-right: 10px;" class="jodit_button">' +
-				'<span>' +
-				this.jodit.i18n('Cancel') +
-				'</span>' +
-				'</a>'
+			'<span>' +
+			this.jodit.i18n('Cancel') +
+			'</span>' +
+			'</a>'
 		) as HTMLAnchorElement;
 
 		cancelButton.addEventListener('click', this.dialog.close);
@@ -178,37 +214,5 @@ export class pasteStorage extends Plugin {
 			},
 			'a'
 		);
-	}
-
-	public afterInit() {
-		this.jodit.events.on('afterCopy', (html: string) => {
-			if (this.list.indexOf(html) !== -1) {
-				this.list.splice(this.list.indexOf(html), 1);
-			}
-
-			this.list.unshift(html);
-			if (this.list.length > 5) {
-				this.list.length = 5;
-			}
-		});
-
-		this.jodit.registerCommand('showPasteStorage', {
-			exec: this.showDialog,
-			hotkeys: ['ctrl+shift+v', 'cmd+shift+v']
-		});
-	}
-	public beforeDestruct(): void {
-		this.dialog && this.dialog.destruct();
-
-		Dom.safeRemove(this.previewBox);
-		Dom.safeRemove(this.listBox);
-		Dom.safeRemove(this.container);
-
-		this.container = null;
-		this.listBox = null;
-		this.previewBox = null;
-		this.dialog = null;
-
-		this.list = [];
 	}
 }

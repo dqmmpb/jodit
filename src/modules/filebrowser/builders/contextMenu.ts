@@ -1,9 +1,9 @@
-import { ContextMenu } from '../../ContextMenu';
-import { setTimeout } from '../../helpers/async';
-import { Dialog } from '../../dialog';
-import { Dom } from '../../Dom';
-import { F_CLASS, FileBrowser, ICON_LOADER, ITEM_CLASS } from '../fileBrowser';
-import { ToolbarIcon } from '../..';
+import {ContextMenu} from '../../ContextMenu';
+import {setTimeout} from '../../helpers/async';
+import {Dialog} from '../../dialog';
+import {Dom} from '../../Dom';
+import {F_CLASS, FileBrowser, ICON_LOADER, ITEM_CLASS} from '../fileBrowser';
+import {ToolbarIcon} from '../..';
 
 const
 	CLASS_PREVIEW = F_CLASS + 'preview_',
@@ -22,7 +22,7 @@ export default (self: FileBrowser) => {
 	const
 		contextmenu = new ContextMenu(self.jodit || self);
 
-	return function(
+	return function (
 		this: HTMLElement,
 		e: DragEvent
 	): boolean | void {
@@ -179,7 +179,7 @@ export default (self: FileBrowser) => {
 								self.events.on(
 									[next, prev],
 									'click',
-									function(this: HTMLElement) {
+									function (this: HTMLElement) {
 										if (
 											this.classList.contains(
 												CLASS_PREVIEW +

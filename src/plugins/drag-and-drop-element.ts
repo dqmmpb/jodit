@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import {
 	css,
 	ctrlKey,
@@ -16,8 +16,8 @@ import {
 	splitArray,
 	throttle
 } from '../modules/helpers/';
-import { Plugin } from '../modules/Plugin';
-import { Dom } from '../modules/Dom';
+import {Plugin} from '../modules/Plugin';
+import {Dom} from '../modules/Dom';
 
 declare module '../Config' {
 	interface Config {
@@ -60,6 +60,32 @@ export class DragAndDropElement extends Plugin {
 
 		this.jodit.selection.insertCursorAtPoint(event.clientX, event.clientY);
 	}, this.jodit.defaultTimeout);
+
+	public afterInit() {
+		this.dragList = this.jodit.options.draggableTags
+			? splitArray(this.jodit.options.draggableTags)
+				.filter(item => item)
+				.map((item: string) => item.toLowerCase())
+			: [];
+
+		if (!this.dragList.length) {
+			return;
+		}
+
+		this.jodit.events
+			.on(this.jodit.editor, 'mousemove touchmove', this.onDrag)
+			.on(
+				this.jodit.editor,
+				'mousedown touchstart dragstart',
+				this.onDragStart
+			)
+			.on('mouseup touchend', this.onDrop)
+			.on(window, 'mouseup touchend', this.onDragEnd);
+	}
+
+	public beforeDestruct() {
+		this.onDragEnd();
+	}
 
 	private onDragStart = (event: DragEvent) => {
 		let target: Node | null = event.target as Node,
@@ -149,30 +175,4 @@ export class DragAndDropElement extends Plugin {
 
 		this.jodit.events.fire('synchro');
 	};
-
-	public afterInit() {
-		this.dragList = this.jodit.options.draggableTags
-			? splitArray(this.jodit.options.draggableTags)
-					.filter(item => item)
-					.map((item: string) => item.toLowerCase())
-			: [];
-
-		if (!this.dragList.length) {
-			return;
-		}
-
-		this.jodit.events
-			.on(this.jodit.editor, 'mousemove touchmove', this.onDrag)
-			.on(
-				this.jodit.editor,
-				'mousedown touchstart dragstart',
-				this.onDragStart
-			)
-			.on('mouseup touchend', this.onDrop)
-			.on(window, 'mouseup touchend', this.onDragEnd);
-	}
-
-	public beforeDestruct() {
-		this.onDragEnd();
-	}
 }

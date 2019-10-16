@@ -7,8 +7,8 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { $$, debounce } from '../modules/helpers/';
-import { IJodit } from '../types';
+import {$$, debounce} from '../modules/helpers/';
+import {IJodit} from '../types';
 
 const JODIT_IMAGE_PROCESSOR_BINDED = '__jodit_imageprocessor_binded';
 
@@ -30,8 +30,8 @@ export function imageProcessor(editor: IJodit) {
 								'load',
 								function ElementOnLoad() {
 									editor.events &&
-										editor.events.fire &&
-										editor.events.fire('resize');
+									editor.events.fire &&
+									editor.events.fire('resize');
 									elm.removeEventListener(
 										'load',
 										ElementOnLoad

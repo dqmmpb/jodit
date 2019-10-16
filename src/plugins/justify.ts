@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { $$, css } from '../modules/helpers/';
-import { ToolbarIcon } from '../modules/toolbar/icon';
-import { IControlType } from '../types/toolbar';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {$$, css} from '../modules/helpers/';
+import {ToolbarIcon} from '../modules/toolbar/icon';
+import {IControlType} from '../types/toolbar';
+import {IJodit} from '../types';
 
 Config.prototype.controls.align = {
 	name: 'left',
@@ -156,10 +156,10 @@ export function justify(editor: IJodit) {
 
 				let currentBox: HTMLElement | false | null = current
 					? (Dom.up(
-							current,
-							node => Dom.isBlock(node, editor.editorWindow),
-							editor.editor
-					  ) as HTMLElement)
+						current,
+						node => Dom.isBlock(node, editor.editorWindow),
+						editor.editor
+					) as HTMLElement)
 					: false;
 
 				if (!currentBox && current) {

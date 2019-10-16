@@ -7,11 +7,11 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { css, normalizeSize } from '../modules/helpers/';
-import { IControlType } from '../types/toolbar';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {css, normalizeSize} from '../modules/helpers/';
+import {IControlType} from '../types/toolbar';
+import {IJodit} from '../types';
 
 Config.prototype.controls.fontsize = (<IControlType<IJodit>>{
 	command: 'fontSize',
@@ -55,8 +55,8 @@ Config.prototype.controls.fontsize = (<IControlType<IJodit>>{
 			const fontSize: number = css(currentBpx, 'font-size') as number;
 			return Boolean(
 				fontSize &&
-					control.args &&
-					control.args[1].toString() === fontSize.toString()
+				control.args &&
+				control.args[1].toString() === fontSize.toString()
 			);
 		}
 
@@ -146,9 +146,9 @@ Config.prototype.controls.font = (<IControlType<IJodit>>{
 
 			return Boolean(
 				fontFamily &&
-					control.args &&
-					normFonts(control.args[0].toString()) ===
-						normFonts(fontFamily)
+				control.args &&
+				normFonts(control.args[0].toString()) ===
+				normFonts(fontFamily)
 			);
 		}
 

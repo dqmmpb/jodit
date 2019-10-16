@@ -7,23 +7,23 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { default as ar } from './ar';
-import { default as cs_cz } from './cs_cz';
-import { default as de } from './de';
-import { default as es } from './es';
-import { default as fr } from './fr';
-import { default as he } from './he';
-import { default as hu } from './hu';
-import { default as id } from './id';
-import { default as it } from './it';
-import { default as nl } from './nl';
-import { default as pt_br } from './pt_br';
-import { default as ru } from './ru';
-import { default as tr } from './tr';
-import { default as zh_cn } from './zh_cn';
-import { default as zh_tw } from './zh_tw';
+import {default as ar} from './ar';
+import {default as cs_cz} from './cs_cz';
+import {default as de} from './de';
+import {default as es} from './es';
+import {default as fr} from './fr';
+import {default as he} from './he';
+import {default as hu} from './hu';
+import {default as id} from './id';
+import {default as it} from './it';
+import {default as nl} from './nl';
+import {default as pt_br} from './pt_br';
+import {default as ru} from './ru';
+import {default as tr} from './tr';
+import {default as zh_cn} from './zh_cn';
+import {default as zh_tw} from './zh_tw';
 
-import { default as en } from './en';
+import {default as en} from './en';
 
 
 const exp: any = {

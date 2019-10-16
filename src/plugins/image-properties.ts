@@ -7,15 +7,15 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Alert, Confirm, Dialog } from '../modules/dialog/';
-import { Dom } from '../modules/Dom';
-import { $$, css, trim, val, setTimeout } from '../modules/helpers/';
-import { ToolbarIcon } from '../modules/toolbar/icon';
-import { Widget } from '../modules/Widget';
+import {Config} from '../Config';
+import {Alert, Confirm, Dialog} from '../modules/dialog/';
+import {Dom} from '../modules/Dom';
+import {$$, css, trim, val, setTimeout} from '../modules/helpers/';
+import {ToolbarIcon} from '../modules/toolbar/icon';
+import {Widget} from '../modules/Widget';
 import TabsWidget = Widget.TabsWidget;
 import FileSelectorWidget = Widget.FileSelectorWidget;
-import { Popup } from '../modules/popup/popup';
+import {Popup} from '../modules/popup/popup';
 import {
 	IDictionary,
 	IFileBrowser,
@@ -115,7 +115,7 @@ export function imageProperties(editor: IJodit) {
 	 * editor.plugins.image.open.call(img); // `this` must be HTMLImageElement
 	 * ```
 	 */
-	const open = function(this: HTMLImageElement, e?: MouseEvent) {
+	const open = function (this: HTMLImageElement, e?: MouseEvent) {
 		if (editor.options.readonly) {
 			return;
 		}
@@ -127,197 +127,197 @@ export function imageProperties(editor: IJodit) {
 			dialog: Dialog = new Dialog(editor),
 			cancel: HTMLElement = dom(
 				'<a href="javascript:void(0)" style="float:right;" class="jodit_button">' +
-					ToolbarIcon.getIcon('cancel') +
-					'<span>' +
-					editor.i18n('Cancel') +
-					'</span></a>'
+				ToolbarIcon.getIcon('cancel') +
+				'<span>' +
+				editor.i18n('Cancel') +
+				'</span></a>'
 			),
 			check: HTMLElement = dom(
 				'<a href="javascript:void(0)" style="float:left;" class="jodit_button">' +
-					ToolbarIcon.getIcon('check') +
-					'<span>' +
-					editor.i18n('Ok') +
-					'</span></a>'
+				ToolbarIcon.getIcon('check') +
+				'<span>' +
+				editor.i18n('Ok') +
+				'</span></a>'
 			),
 			buttons = {
 				remove: dom(
 					'<a href="javascript:void(0)" class="jodit_button">' +
-						ToolbarIcon.getIcon('bin') +
-						' ' +
-						editor.i18n('Delete') +
-						'</a>'
+					ToolbarIcon.getIcon('bin') +
+					' ' +
+					editor.i18n('Delete') +
+					'</a>'
 				)
 			},
 			prop: HTMLDivElement = dom(
 				'<form class="jodit_properties">' +
-					'<div class="jodit_grid">' +
-					'<div class="jodit_col-lg-2-5">' +
-					'<div class="jodit_properties_view_box">' +
-					'<div style="' +
-					(!editor.options.image.showPreview ? 'display:none' : '') +
-					'" ' +
-					'class="jodit_properties_image_view"' +
-					'>' +
-					'<img class="imageViewSrc" src="" alt=""/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editSize ? 'display:none' : '') +
-					'" ' +
-					'class="jodit_form_group jodit_properties_image_sizes"' +
-					'>' +
-					'<input type="number" class="imageWidth"/>' +
-					'<a class="jodit_lock_helper jodit_lock_size" href="javascript:void(0)">' +
-					ToolbarIcon.getIcon('lock') +
-					'</a>' +
-					'<input type="number" class="imageHeight"/>' +
-					'</div>' +
-					'</div>' +
-					'</div>' +
-					'<div class="jodit_col-lg-3-5 tabsbox"></div>' +
-					'</div>' +
-					'</form>'
+				'<div class="jodit_grid">' +
+				'<div class="jodit_col-lg-2-5">' +
+				'<div class="jodit_properties_view_box">' +
+				'<div style="' +
+				(!editor.options.image.showPreview ? 'display:none' : '') +
+				'" ' +
+				'class="jodit_properties_image_view"' +
+				'>' +
+				'<img class="imageViewSrc" src="" alt=""/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editSize ? 'display:none' : '') +
+				'" ' +
+				'class="jodit_form_group jodit_properties_image_sizes"' +
+				'>' +
+				'<input type="number" class="imageWidth"/>' +
+				'<a class="jodit_lock_helper jodit_lock_size" href="javascript:void(0)">' +
+				ToolbarIcon.getIcon('lock') +
+				'</a>' +
+				'<input type="number" class="imageHeight"/>' +
+				'</div>' +
+				'</div>' +
+				'</div>' +
+				'<div class="jodit_col-lg-3-5 tabsbox"></div>' +
+				'</div>' +
+				'</form>'
 			) as HTMLDivElement,
 			positionTab: HTMLDivElement = dom(
 				'<div ' +
-					'style="' +
-					(!editor.options.image.editMargins ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label>' +
-					editor.i18n('Margins') +
-					'</label>' +
-					'<div class="jodit_grid">' +
-					'<input class="jodit_col-lg-1-5 margins marginTop" data-id="marginTop" type="text" placeholder="' +
-					editor.i18n('top') +
-					'"/>' +
-					'<a style="text-align: center;" class="jodit_lock_helper jodit_lock_margin jodit_col-lg-1-5" ' +
-					'href="javascript:void(0)">' +
-					ToolbarIcon.getIcon('lock') +
-					'</a>' +
-					'<input disabled="true" class="jodit_col-lg-1-5 margins marginRight" data-id="marginRight" ' +
-					'type="text" placeholder="' +
-					editor.i18n('right') +
-					'"/>' +
-					'<input disabled="true" class="jodit_col-lg-1-5 margins marginBottom" data-id="marginBottom" ' +
-					'type="text" placeholder="' +
-					editor.i18n('bottom') +
-					'"/>' +
-					'<input disabled="true" class="jodit_col-lg-1-5 margins marginLeft" data-id="marginLeft" ' +
-					'type="text" placeholder="' +
-					editor.i18n('left') +
-					'"/>' +
-					'</div>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editStyle ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label>' +
-					editor.i18n('Styles') +
-					'</label>' +
-					'<input type="text" class="style"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editClass ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="classes">' +
-					editor.i18n('Classes') +
-					'</label>' +
-					'<input type="text" class="classes"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editId ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="id">Id</label>' +
-					'<input type="text" class="id"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editBorderRadius
-						? 'display:none'
-						: '') +
-					'" class="jodit_form_group">' +
-					'<label for="border_radius">Border radius</label>' +
-					'<input type="number" class="border_radius"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editAlign ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="align">' +
-					editor.i18n('Align') +
-					'</label>' +
-					'<select class="select align">' +
-					'<option value="">' +
-					editor.i18n('--Not Set--') +
-					'</option>' +
-					'<option value="left">' +
-					editor.i18n('Left') +
-					'</option>' +
-					'<option value="center">' +
-					editor.i18n('Center') +
-					'</option>' +
-					'<option value="right">' +
-					editor.i18n('Right') +
-					'</option>' +
-					'</optgroup>' +
-					'</select>' +
-					'</div>'
+				'style="' +
+				(!editor.options.image.editMargins ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label>' +
+				editor.i18n('Margins') +
+				'</label>' +
+				'<div class="jodit_grid">' +
+				'<input class="jodit_col-lg-1-5 margins marginTop" data-id="marginTop" type="text" placeholder="' +
+				editor.i18n('top') +
+				'"/>' +
+				'<a style="text-align: center;" class="jodit_lock_helper jodit_lock_margin jodit_col-lg-1-5" ' +
+				'href="javascript:void(0)">' +
+				ToolbarIcon.getIcon('lock') +
+				'</a>' +
+				'<input disabled="true" class="jodit_col-lg-1-5 margins marginRight" data-id="marginRight" ' +
+				'type="text" placeholder="' +
+				editor.i18n('right') +
+				'"/>' +
+				'<input disabled="true" class="jodit_col-lg-1-5 margins marginBottom" data-id="marginBottom" ' +
+				'type="text" placeholder="' +
+				editor.i18n('bottom') +
+				'"/>' +
+				'<input disabled="true" class="jodit_col-lg-1-5 margins marginLeft" data-id="marginLeft" ' +
+				'type="text" placeholder="' +
+				editor.i18n('left') +
+				'"/>' +
+				'</div>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editStyle ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label>' +
+				editor.i18n('Styles') +
+				'</label>' +
+				'<input type="text" class="style"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editClass ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="classes">' +
+				editor.i18n('Classes') +
+				'</label>' +
+				'<input type="text" class="classes"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editId ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="id">Id</label>' +
+				'<input type="text" class="id"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editBorderRadius
+					? 'display:none'
+					: '') +
+				'" class="jodit_form_group">' +
+				'<label for="border_radius">Border radius</label>' +
+				'<input type="number" class="border_radius"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editAlign ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="align">' +
+				editor.i18n('Align') +
+				'</label>' +
+				'<select class="select align">' +
+				'<option value="">' +
+				editor.i18n('--Not Set--') +
+				'</option>' +
+				'<option value="left">' +
+				editor.i18n('Left') +
+				'</option>' +
+				'<option value="center">' +
+				editor.i18n('Center') +
+				'</option>' +
+				'<option value="right">' +
+				editor.i18n('Right') +
+				'</option>' +
+				'</optgroup>' +
+				'</select>' +
+				'</div>'
 			) as HTMLDivElement,
 			mainTab: HTMLDivElement = dom(
 				'<div style="' +
-					(!editor.options.image.editSrc ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label>' +
-					editor.i18n('Src') +
-					'</label>' +
-					'<div class="jodit_input_group">' +
-					'<input type="text" class="imageSrc"/>' +
+				(!editor.options.image.editSrc ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label>' +
+				editor.i18n('Src') +
+				'</label>' +
+				'<div class="jodit_input_group">' +
+				'<input type="text" class="imageSrc"/>' +
+				(editor.options.filebrowser.ajax.url ||
+				editor.options.uploader.url
+					? '<div class="jodit_input_group-buttons">' +
 					(editor.options.filebrowser.ajax.url ||
 					editor.options.uploader.url
-						? '<div class="jodit_input_group-buttons">' +
-						  (editor.options.filebrowser.ajax.url ||
-						  editor.options.uploader.url
-								? '<a class="jodit_button jodit_rechange" href="javascript:void(0)">' +
-								  ToolbarIcon.getIcon('image') +
-								  '</a>'
-								: '') +
-						  (editor.options.image.useImageEditor &&
-						  editor.options.filebrowser.ajax.url
-								? '<a class="jodit_button jodit_use_image_editor" href="javascript:void(0)">' +
-								  ToolbarIcon.getIcon('crop') +
-								  '</a>'
-								: '') +
-						  '</div>'
+						? '<a class="jodit_button jodit_rechange" href="javascript:void(0)">' +
+						ToolbarIcon.getIcon('image') +
+						'</a>'
 						: '') +
-					'</div>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editTitle ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="imageTitle">' +
-					editor.i18n('Title') +
-					'</label>' +
-					'<input type="text" class="imageTitle"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editAlt ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="imageAlt">' +
-					editor.i18n('Alternative') +
-					'</label>' +
-					'<input type="text" class="imageAlt"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editLink ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<label for="imageLink">' +
-					editor.i18n('Link') +
-					'</label>' +
-					'<input type="text" class="imageLink"/>' +
-					'</div>' +
-					'<div style="' +
-					(!editor.options.image.editLink ? 'display:none' : '') +
-					'" class="jodit_form_group">' +
-					'<input type="checkbox" class="imageLinkOpenInNewTab"/> ' +
-					editor.i18n('Open link in new tab') +
+					(editor.options.image.useImageEditor &&
+					editor.options.filebrowser.ajax.url
+						? '<a class="jodit_button jodit_use_image_editor" href="javascript:void(0)">' +
+						ToolbarIcon.getIcon('crop') +
+						'</a>'
+						: '') +
 					'</div>'
+					: '') +
+				'</div>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editTitle ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="imageTitle">' +
+				editor.i18n('Title') +
+				'</label>' +
+				'<input type="text" class="imageTitle"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editAlt ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="imageAlt">' +
+				editor.i18n('Alternative') +
+				'</label>' +
+				'<input type="text" class="imageAlt"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editLink ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<label for="imageLink">' +
+				editor.i18n('Link') +
+				'</label>' +
+				'<input type="text" class="imageLink"/>' +
+				'</div>' +
+				'<div style="' +
+				(!editor.options.image.editLink ? 'display:none' : '') +
+				'" class="jodit_form_group">' +
+				'<input type="checkbox" class="imageLinkOpenInNewTab"/> ' +
+				editor.i18n('Open link in new tab') +
+				'</div>'
 			) as HTMLDivElement,
 			ratio: number = image.naturalWidth / image.naturalHeight || 1,
 			$w: HTMLInputElement = prop.querySelector(
@@ -380,7 +380,7 @@ export function imageProperties(editor: IJodit) {
 					const id: string = elm.getAttribute('data-id') || '';
 					let value: number | string = (image.style as any)[
 						id
-					] as string;
+						] as string;
 
 					if (!value) {
 						return;
@@ -396,7 +396,7 @@ export function imageProperties(editor: IJodit) {
 						!notequal &&
 						id !== 'marginTop' &&
 						(elm as HTMLInputElement).value !==
-							val(prop, '.marginTop')
+						val(prop, '.marginTop')
 					) {
 						notequal = true;
 					}
@@ -531,7 +531,7 @@ export function imageProperties(editor: IJodit) {
 																image.setAttribute(
 																	'src',
 																	resp.baseurl +
-																		resp.newfilename
+																	resp.newfilename
 																);
 																updateSrc();
 															}
@@ -573,11 +573,11 @@ export function imageProperties(editor: IJodit) {
 									image.setAttribute(
 										'src',
 										url +
-											(url.indexOf('?') !== -1
-												? ''
-												: '?') +
-											'&_tmp=' +
-											timestamp.toString()
+										(url.indexOf('?') !== -1
+											? ''
+											: '?') +
+										'&_tmp=' +
+										timestamp.toString()
 									);
 									updateSrc();
 								},
@@ -644,14 +644,14 @@ export function imageProperties(editor: IJodit) {
 		);
 
 		const jodit_lock_size: HTMLAnchorElement | null = prop.querySelector(
-				'.jodit_lock_helper.jodit_lock_size'
+			'.jodit_lock_helper.jodit_lock_size'
 			),
 			jodit_lock_margin: HTMLAnchorElement | null = prop.querySelector(
 				'.jodit_lock_helper.jodit_lock_margin'
 			);
 
 		if (jodit_lock_size) {
-			jodit_lock_size.addEventListener('click', function() {
+			jodit_lock_size.addEventListener('click', function () {
 				lockSize = !lockSize;
 				this.innerHTML = ToolbarIcon.getIcon(
 					lockSize ? 'lock' : 'unlock'
@@ -661,7 +661,7 @@ export function imageProperties(editor: IJodit) {
 		}
 
 		if (jodit_lock_margin) {
-			jodit_lock_margin.addEventListener('click', function() {
+			jodit_lock_margin.addEventListener('click', function () {
 				lockMargin = !lockMargin;
 
 				this.innerHTML = ToolbarIcon.getIcon(
@@ -911,7 +911,7 @@ export function imageProperties(editor: IJodit) {
 				editor.events.on(
 					editor.editor,
 					'dblclick',
-					function(this: HTMLImageElement, event: MouseEvent) {
+					function (this: HTMLImageElement, event: MouseEvent) {
 						event.stopImmediatePropagation();
 						editor.selection.select(this);
 					},

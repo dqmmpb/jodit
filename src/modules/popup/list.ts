@@ -13,23 +13,26 @@ import {
 	IControlTypeStrong,
 	IToolbarCollection
 } from '../../types/toolbar';
-import { IViewBased } from '../../types/view';
-import { each } from '../helpers/';
-import { ToolbarButton } from '../toolbar/button';
-import { Popup } from './popup';
-import { JoditToolbarCollection } from '../toolbar/joditToolbarCollection';
+import {IViewBased} from '../../types/view';
+import {each} from '../helpers/';
+import {ToolbarButton} from '../toolbar/button';
+import {Popup} from './popup';
+import {JoditToolbarCollection} from '../toolbar/joditToolbarCollection';
 
 export class PopupList extends Popup {
+	public toolbar: IToolbarCollection;
 	private defaultControl = {
 		template: (editor: IViewBased, key: string, value: string) =>
 			this.jodit.i18n(value)
 	};
 
-	protected doClose() {
-		if (this.toolbar) {
-			this.toolbar.destruct();
-			delete this.toolbar;
-		}
+	constructor(
+		jodit: IViewBased,
+		readonly target: HTMLElement,
+		readonly current?: HTMLElement,
+		readonly className: string = 'jodit_toolbar_list'
+	) {
+		super(jodit, target, current, className);
 	}
 
 	doOpen(control: IControlTypeStrong) {
@@ -106,20 +109,10 @@ export class PopupList extends Popup {
 		this.toolbar.checkActiveButtons();
 	}
 
-	public toolbar: IToolbarCollection;
-
 	firstInFocus() {
 		this.toolbar.firstButton.focus();
 	}
 
-	constructor(
-		jodit: IViewBased,
-		readonly target: HTMLElement,
-		readonly current?: HTMLElement,
-		readonly className: string = 'jodit_toolbar_list'
-	) {
-		super(jodit, target, current, className);
-	}
 	destruct() {
 		if (this.isDestructed) {
 			return;
@@ -128,5 +121,12 @@ export class PopupList extends Popup {
 		this.doClose();
 
 		super.destruct();
+	}
+
+	protected doClose() {
+		if (this.toolbar) {
+			this.toolbar.destruct();
+			delete this.toolbar;
+		}
 	}
 }

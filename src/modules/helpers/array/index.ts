@@ -7,6 +7,6 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-export { asArray } from './asArray';
-export { inArray } from './inArray';
-export { splitArray } from './splitArray';
+export {asArray} from './asArray';
+export {inArray} from './inArray';
+export {splitArray} from './splitArray';

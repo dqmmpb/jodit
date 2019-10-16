@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { debounce, setTimeout } from '../modules/helpers/async';
-import { offset } from '../modules/helpers/size';
-import { ToolbarIcon } from '../modules/toolbar/icon';
-import { IBound, IJodit } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {debounce, setTimeout} from '../modules/helpers/async';
+import {offset} from '../modules/helpers/size';
+import {ToolbarIcon} from '../modules/toolbar/icon';
+import {IBound, IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -59,10 +59,10 @@ export function addNewLine(editor: IJodit) {
 
 	const line: HTMLDivElement = editor.create.fromHTML(
 		'<div role="button" tabIndex="-1" title="' +
-			editor.i18n('Break') +
-			'" class="jodit-add-new-line"><span>' +
-			ToolbarIcon.getIcon('enter') +
-			'</span></div>'
+		editor.i18n('Break') +
+		'" class="jodit-add-new-line"><span>' +
+		ToolbarIcon.getIcon('enter') +
+		'</span></div>'
 	) as HTMLDivElement;
 
 	const delta = 10;
@@ -178,9 +178,9 @@ export function addNewLine(editor: IJodit) {
 
 						if (
 							Math.abs(top - editorBound.top) <
-								Math.abs(
-									top - (editorBound.height + editorBound.top)
-								) &&
+							Math.abs(
+								top - (editorBound.height + editorBound.top)
+							) &&
 							editor.editor.firstChild
 						) {
 							editor.editor.insertBefore(

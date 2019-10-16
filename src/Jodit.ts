@@ -49,6 +49,277 @@ const SAFE_COUNT_CHANGE_CALL = 10;
  * Class Jodit. Main class
  */
 export class Jodit extends ViewWithToolbar implements IJodit {
+	static defaultOptions: Config;
+	static plugins: any = {};
+	static modules: any = {};
+	static instances: IDictionary<Jodit> = {};
+	static lang: any = {};
+	/**
+	 * @property {HTMLDocument} editorDocument
+	 */
+	editorDocument: HTMLDocument;
+	/**
+	 * @property {Window} editorWindow
+	 */
+	editorWindow: Window;
+	/**
+	 * Container for set/get value
+	 * @type {Storage}
+	 */
+	storage: Storage = new Storage(new LocalStorageProvider());
+	/**
+	 * workplace It contains source and wysiwyg editors
+	 */
+	workplace: HTMLDivElement;
+	statusbar: StatusBar;
+	observer: Observer;
+	/**
+	 * element It contains source element
+	 */
+	element: HTMLElement;
+	/**
+	 * editor It contains the root element editor
+	 */
+	editor: HTMLDivElement | HTMLBodyElement;
+	/**
+	 * iframe Iframe for iframe mode
+	 */
+	iframe: HTMLIFrameElement | null = null;
+	/**
+	 * options All Jodit settings default + second arguments of constructor
+	 */
+	options: Config;
+	/**
+	 * @property {Select} selection
+	 */
+	selection: Select;
+	helper: any;
+	__plugins: IDictionary<IPlugin> = {};
+	mode: Modes = consts.MODE_WYSIWYG;
+	isInited: boolean = false;
+	private __defaultStyleDisplayKey = 'data-jodit-default-style-display';
+	private __defaultClassesKey = 'data-jodit-default-classes';
+	private commands: IDictionary<Array<CustomCommand<IJodit>>> = {};
+	private __selectionLocked: markerInfo[] | null = null;
+	private __wasReadOnly: boolean = false;
+	private __callChangeCount = 0;
+
+	/**
+	 * Create instance of Jodit
+	 * @constructor
+	 *
+	 * @param {HTMLInputElement | string} element Selector or HTMLElement
+	 * @param {object} options Editor's options
+	 */
+	constructor(element: HTMLInputElement | string, options?: object) {
+		super();
+
+		this.options = new OptionsDefault(options) as Config;
+
+		// in iframe it can be changed
+		this.editorDocument = this.options.ownerDocument;
+		this.editorWindow = this.options.ownerWindow;
+
+		this.ownerDocument = this.options.ownerDocument;
+		this.ownerWindow = this.options.ownerWindow;
+
+		if (typeof element === 'string') {
+			try {
+				this.element = this.ownerDocument.querySelector(
+					element
+				) as HTMLInputElement;
+			} catch {
+				throw new Error(
+					'String "' + element + '" should be valid HTML selector'
+				);
+			}
+		} else {
+			this.element = element;
+		}
+
+		// Duck checking
+		if (
+			!this.element ||
+			typeof this.element !== 'object' ||
+			this.element.nodeType !== Node.ELEMENT_NODE ||
+			!this.element.cloneNode
+		) {
+			throw new Error(
+				`Element "${element}" should be string or HTMLElement instance`
+			);
+		}
+
+		if (this.element.attributes) {
+			Array.from(this.element.attributes).forEach((attr: Attr) => {
+				const name: string = attr.name;
+				let value: string | boolean | number = attr.value;
+
+				if (
+					(Jodit.defaultOptions as any)[name] !== undefined &&
+					(!options || (options as any)[name] === undefined)
+				) {
+					if (['readonly', 'disabled'].indexOf(name) !== -1) {
+						value = value === '' || value === 'true';
+					}
+
+					if (/^[0-9]+(\.)?([0-9]+)?$/.test(value.toString())) {
+						value = Number(value);
+					}
+
+					(this.options as any)[name] = value;
+				}
+			});
+		}
+
+		if (this.options.events) {
+			Object.keys(this.options.events).forEach((key: string) => {
+				this.events.on(key, this.options.events[key]);
+			});
+		}
+
+		this.container.classList.add('jodit_container');
+		this.container.setAttribute('contenteditable', 'false');
+
+		this.selection = new Select(this);
+		this.events.on('removeMarkers', () => {
+			if (this.selection) {
+				this.selection.removeMarkers();
+			}
+		});
+
+		this.observer = new Observer(this);
+
+		let buffer: null | string = null;
+
+		if (this.options.inline) {
+			if (['TEXTAREA', 'INPUT'].indexOf(this.element.nodeName) === -1) {
+				this.container = this.element as HTMLDivElement;
+				this.element.setAttribute(
+					this.__defaultClassesKey,
+					this.element.className.toString()
+				);
+
+				buffer = this.container.innerHTML;
+
+				this.container.innerHTML = '';
+			}
+
+			this.container.classList.add('jodit_inline');
+			this.container.classList.add('jodit_container');
+		}
+
+		// actual for inline mode
+		if (this.element !== this.container) {
+			// hide source element
+			if (this.element.style.display) {
+				this.element.setAttribute(
+					this.__defaultStyleDisplayKey,
+					this.element.style.display
+				);
+			}
+
+			this.element.style.display = 'none';
+		}
+
+		this.container.classList.add(
+			'jodit_' + (this.options.theme || 'default') + '_theme'
+		);
+
+		if (this.options.zIndex) {
+			this.container.style.zIndex = parseInt(
+				this.options.zIndex.toString(),
+				10
+			).toString();
+		}
+
+		this.workplace = this.create.div('jodit_workplace', {
+			contenteditable: false
+		});
+
+		if (this.options.toolbar) {
+			this.toolbar.build(
+				splitArray(this.options.buttons).concat(
+					this.options.extraButtons
+				),
+				this.container
+			);
+		}
+
+		const bs = this.options.toolbarButtonSize.toLowerCase();
+		this.container.classList.add(
+			`jodit_toolbar_size-${
+				['middle', 'large', 'small'].indexOf(bs) !== -1 ? bs : 'middle'
+			}`
+		);
+
+		if (this.options.textIcons) {
+			this.container.classList.add('jodit_text_icons');
+		}
+
+		this.events.on(this.ownerWindow, 'resize', () => {
+			if (this.events) {
+				this.events.fire('resize');
+			}
+		});
+
+		this.container.appendChild(this.workplace);
+		this.statusbar = new StatusBar(this, this.container);
+
+		this.workplace.appendChild(this.progress_bar);
+
+		if (this.element.parentNode && this.element !== this.container) {
+			this.element.parentNode.insertBefore(this.container, this.element);
+		}
+
+		this.id =
+			this.element.getAttribute('id') || new Date().getTime().toString();
+
+		this.editor = this.create.div('jodit_wysiwyg', {
+			contenteditable: true,
+			'aria-disabled': false,
+			tabindex: this.options.tabIndex
+		});
+
+		this.workplace.appendChild(this.editor);
+
+		this.setNativeEditorValue(this.getElementValue()); // Init value
+
+		(async () => {
+			await this.beforeInitHook();
+
+			await this.events.fire('beforeInit', this);
+
+			try {
+				this.__initPlugines();
+			} catch (e) {}
+
+			await this.__initEditor(buffer);
+
+			if (this.isDestructed) {
+				return;
+			}
+
+			const opt = this.options;
+
+			if (
+				opt.enableDragAndDropFileToEditor &&
+				opt.uploader &&
+				(opt.uploader.url || opt.uploader.insertImageAsBase64URI)
+			) {
+				this.uploader.bind(this.editor);
+			}
+
+			this.isInited = true;
+
+			if (this.events) {
+				await this.events.fire('afterInit', this);
+				this.events.fire('afterConstructor', this);
+			}
+
+			await this.afterInitHook();
+		})();
+	}
+
 	get value(): string {
 		return this.getEditorValue();
 	}
@@ -69,6 +340,20 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 			: Jodit.defaultOptions.observer.timeout;
 	}
 
+	/**
+	 * @property {Uploader} uploader
+	 */
+	get uploader(): IUploader {
+		return this.getInstance('Uploader');
+	}
+
+	/**
+	 * @property {FileBrowser} filebrowser
+	 */
+	get filebrowser(): IFileBrowser {
+		return this.getInstance('FileBrowser');
+	}
+
 	static Array(array: any[]): JoditArray {
 		return new JoditArray(array);
 	}
@@ -85,90 +370,6 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 			}
 		});
 	}
-
-	static defaultOptions: Config;
-	static plugins: any = {};
-	static modules: any = {};
-	static instances: IDictionary<Jodit> = {};
-	static lang: any = {};
-
-	private __defaultStyleDisplayKey = 'data-jodit-default-style-display';
-	private __defaultClassesKey = 'data-jodit-default-classes';
-
-	private commands: IDictionary<Array<CustomCommand<IJodit>>> = {};
-
-	private __selectionLocked: markerInfo[] | null = null;
-
-	private __wasReadOnly: boolean = false;
-
-	/**
-	 * @property {HTMLDocument} editorDocument
-	 */
-	editorDocument: HTMLDocument;
-
-	/**
-	 * @property {Window} editorWindow
-	 */
-	editorWindow: Window;
-
-	/**
-	 * Container for set/get value
-	 * @type {Storage}
-	 */
-	storage: Storage = new Storage(new LocalStorageProvider());
-
-	/**
-	 * workplace It contains source and wysiwyg editors
-	 */
-	workplace: HTMLDivElement;
-
-	statusbar: StatusBar;
-	observer: Observer;
-
-	/**
-	 * element It contains source element
-	 */
-	element: HTMLElement;
-
-	/**
-	 * editor It contains the root element editor
-	 */
-	editor: HTMLDivElement | HTMLBodyElement;
-
-	/**
-	 * iframe Iframe for iframe mode
-	 */
-	iframe: HTMLIFrameElement | null = null;
-
-	/**
-	 * options All Jodit settings default + second arguments of constructor
-	 */
-	options: Config;
-
-	/**
-	 * @property {Select} selection
-	 */
-	selection: Select;
-
-	/**
-	 * @property {Uploader} uploader
-	 */
-	get uploader(): IUploader {
-		return this.getInstance('Uploader');
-	}
-
-	/**
-	 * @property {FileBrowser} filebrowser
-	 */
-	get filebrowser(): IFileBrowser {
-		return this.getInstance('FileBrowser');
-	}
-
-	helper: any;
-
-	__plugins: IDictionary<IPlugin> = {};
-
-	mode: Modes = consts.MODE_WYSIWYG;
 
 	/**
 	 * Return source element value
@@ -303,8 +504,6 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		}
 	}
 
-	private __callChangeCount = 0;
-
 	/**
 	 * Set editor html value and if set sync fill source element value
 	 * When method was called without arguments - it is simple way to synchronize editor to element
@@ -357,8 +556,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 			this.setNativeEditorValue(value);
 		}
 
-		const
-			old_value = this.getElementValue(),
+		const old_value = this.getElementValue(),
 			new_value = this.getEditorValue();
 
 		if (
@@ -537,45 +735,6 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		return result;
 	}
 
-	private execCustomCommands(
-		commandName: string,
-		second: any = false,
-		third: null | any = null
-	): false | void {
-		commandName = commandName.toLowerCase();
-
-		if (this.commands[commandName] !== undefined) {
-			let result: any;
-
-			const exec = (command: CustomCommand<Jodit>) => {
-				let callback: ExecCommandCallback<Jodit>;
-
-				if (typeof command === 'function') {
-					callback = command;
-				} else {
-					callback = command.exec;
-				}
-
-				const resultCurrent: any = (callback as any).call(
-					this,
-					commandName,
-					second,
-					third
-				);
-
-				if (resultCurrent !== undefined) {
-					result = resultCurrent;
-				}
-			};
-
-			for (let i = 0; i < this.commands[commandName].length; i += 1) {
-				exec(this.commands[commandName][i]);
-			}
-
-			return result;
-		}
-	}
-
 	/**
 	 * Disable selecting
 	 */
@@ -656,7 +815,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	setMode(mode: number | string) {
 		const oldmode: Modes = this.getMode();
 		const data = {
-				mode: <Modes>parseInt(mode.toString(), 10)
+				mode: parseInt(mode.toString(), 10) as Modes
 			},
 			modeClasses = [
 				'jodit_wysiwyg_mode',
@@ -828,7 +987,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		}
 
 		if (process.env.NODE_ENV !== 'production' && language !== 'en') {
-				throw new Error(`i18n need "${key}" in "${language}"`);
+			throw new Error(`i18n need "${key}" in "${language}"`);
 		}
 
 		return parse(key);
@@ -907,383 +1066,6 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	 */
 	afterInitHook(): any {
 		// do nothing
-	}
-
-	/**
-	 * Create instance of Jodit
-	 * @constructor
-	 *
-	 * @param {HTMLInputElement | string} element Selector or HTMLElement
-	 * @param {object} options Editor's options
-	 */
-	constructor(element: HTMLInputElement | string, options?: object) {
-		super();
-
-		this.options = new OptionsDefault(options) as Config;
-
-		// in iframe it can be changed
-		this.editorDocument = this.options.ownerDocument;
-		this.editorWindow = this.options.ownerWindow;
-
-		this.ownerDocument = this.options.ownerDocument;
-		this.ownerWindow = this.options.ownerWindow;
-
-		if (typeof element === 'string') {
-			try {
-				this.element = this.ownerDocument.querySelector(
-					element
-				) as HTMLInputElement;
-			} catch {
-				throw new Error(
-					'String "' + element + '" should be valid HTML selector'
-				);
-			}
-		} else {
-			this.element = element;
-		}
-
-		// Duck checking
-		if (
-			!this.element ||
-			typeof this.element !== 'object' ||
-			this.element.nodeType !== Node.ELEMENT_NODE ||
-			!this.element.cloneNode
-		) {
-			throw new Error(
-				'Element "' +
-				element +
-				'" should be string or HTMLElement instance'
-			);
-		}
-
-		if (this.element.attributes) {
-			Array.from(this.element.attributes).forEach((attr: Attr) => {
-				const name: string = attr.name;
-				let value: string | boolean | number = attr.value;
-
-				if (
-					(Jodit.defaultOptions as any)[name] !== undefined &&
-					(!options || (options as any)[name] === undefined)
-				) {
-					if (['readonly', 'disabled'].indexOf(name) !== -1) {
-						value = value === '' || value === 'true';
-					}
-
-					if (/^[0-9]+(\.)?([0-9]+)?$/.test(value.toString())) {
-						value = Number(value);
-					}
-
-					(this.options as any)[name] = value;
-				}
-			});
-		}
-
-		if (this.options.events) {
-			Object.keys(this.options.events).forEach((key: string) => {
-				this.events.on(key, this.options.events[key]);
-			});
-		}
-
-		this.container.classList.add('jodit_container');
-		this.container.setAttribute('contenteditable', 'false');
-
-		this.selection = new Select(this);
-		this.events.on('removeMarkers', () => {
-			if (this.selection) {
-				this.selection.removeMarkers();
-			}
-		});
-
-		this.observer = new Observer(this);
-
-		let buffer: null | string = null;
-
-		if (this.options.inline) {
-			if (['TEXTAREA', 'INPUT'].indexOf(this.element.nodeName) === -1) {
-				this.container = this.element as HTMLDivElement;
-				this.element.setAttribute(
-					this.__defaultClassesKey,
-					this.element.className.toString()
-				);
-
-				buffer = this.container.innerHTML;
-
-				this.container.innerHTML = '';
-			}
-
-			this.container.classList.add('jodit_inline');
-			this.container.classList.add('jodit_container');
-		}
-
-		// actual for inline mode
-		if (this.element !== this.container) {
-			// hide source element
-			if (this.element.style.display) {
-				this.element.setAttribute(
-					this.__defaultStyleDisplayKey,
-					this.element.style.display
-				);
-			}
-
-			this.element.style.display = 'none';
-		}
-
-		this.container.classList.add(
-			'jodit_' + (this.options.theme || 'default') + '_theme'
-		);
-
-		if (this.options.zIndex) {
-			this.container.style.zIndex = parseInt(
-				this.options.zIndex.toString(),
-				10
-			).toString();
-		}
-
-		this.workplace = this.create.div('jodit_workplace', {
-			contenteditable: false
-		});
-
-		if (this.options.toolbar) {
-			this.toolbar.build(
-				splitArray(this.options.buttons).concat(
-					this.options.extraButtons
-				),
-				this.container
-			);
-		}
-
-		const bs = this.options.toolbarButtonSize.toLowerCase();
-		this.container.classList.add(
-			'jodit_toolbar_size-' + (['middle', 'large', 'small'].indexOf(bs) !== -1 ? bs : 'middle')
-		);
-
-		if (this.options.textIcons) {
-			this.container.classList.add('jodit_text_icons');
-		}
-
-		this.events.on(this.ownerWindow, 'resize', () => {
-			if (this.events) {
-				this.events.fire('resize');
-			}
-		});
-
-		this.container.appendChild(this.workplace);
-		this.statusbar = new StatusBar(this, this.container);
-
-		this.workplace.appendChild(this.progress_bar);
-
-		if (this.element.parentNode && this.element !== this.container) {
-			this.element.parentNode.insertBefore(this.container, this.element);
-		}
-
-		this.id =
-			this.element.getAttribute('id') || new Date().getTime().toString();
-
-		this.editor = this.create.div('jodit_wysiwyg', {
-			contenteditable: true,
-			'aria-disabled': false,
-			tabindex: this.options.tabIndex
-		});
-
-		this.workplace.appendChild(this.editor);
-
-		this.setNativeEditorValue(this.getElementValue()); // Init value
-
-		(async () => {
-			await this.beforeInitHook();
-
-			await this.events.fire('beforeInit', this);
-
-			try {
-				this.__initPlugines();
-			} catch (e) {
-				console.error(e);
-			}
-
-			await this.__initEditor(buffer);
-
-			if (this.isDestructed) {
-				return;
-			}
-
-			const opt = this.options;
-
-			if (
-				opt.enableDragAndDropFileToEditor &&
-				opt.uploader &&
-				(opt.uploader.url || opt.uploader.insertImageAsBase64URI)
-			) {
-				this.uploader.bind(this.editor);
-			}
-
-			this.isInited = true;
-
-			if (this.events) {
-				await this.events.fire('afterInit', this);
-				this.events.fire('afterConstructor', this);
-			}
-
-			await this.afterInitHook();
-		})();
-	}
-
-	isInited: boolean = false;
-
-	private __initPlugines() {
-		const dp = this.options.disablePlugins;
-		const disable = Array.isArray(dp)
-			? dp.map((name) => name.toLowerCase())
-			: dp.toLowerCase().split(/[\s,]+/);
-
-		Object.keys(Jodit.plugins).forEach((key: string) => {
-			if (disable.indexOf(key.toLowerCase()) === -1) {
-				this.__plugins[key] = new Jodit.plugins[key](this);
-			}
-		});
-	}
-
-	private async __initEditor(buffer: null | string) {
-		await this.__createEditor();
-
-		if (this.isDestructed) {
-			return;
-		}
-
-		// syncro
-		if (this.element !== this.container) {
-			this.setElementValue();
-		} else {
-			buffer !== null && this.setEditorValue(buffer); // inline mode
-		}
-
-		Jodit.instances[this.id] = this;
-
-		let mode: number = this.options.defaultMode;
-
-		if (this.options.saveModeInStorage) {
-			const localMode: string | null = this.storage.get(
-				'jodit_default_mode'
-			);
-			if (localMode !== null) {
-				mode = parseInt(localMode, 10);
-			}
-		}
-
-		this.setMode(mode);
-
-		if (this.options.readonly) {
-			this.setReadOnly(true);
-		}
-
-		if (this.options.disabled) {
-			this.setDisabled(true);
-		}
-
-		// if enter plugin not installed
-		try {
-			this.editorDocument.execCommand(
-				'defaultParagraphSeparator',
-				false,
-				this.options.enter.toLowerCase()
-			);
-		} catch {
-		}
-
-		// fix for native resizing
-		try {
-			this.editorDocument.execCommand(
-				'enableObjectResizing',
-				false,
-				'false'
-			);
-		} catch {}
-
-		try {
-			this.editorDocument.execCommand(
-				'enableInlineTableEditing',
-				false,
-				'false'
-			);
-		} catch {}
-	}
-
-	/**
-	 * Create main DIV element and replace source textarea
-	 *
-	 * @private
-	 */
-	private async __createEditor() {
-		const defaultEditorAreae: HTMLElement = this.editor;
-
-		const stayDefault: boolean | undefined = await this.events.fire(
-			'createEditor',
-			this
-		);
-
-		if (this.isDestructed) {
-			return;
-		}
-
-		if (stayDefault === false) {
-			Dom.safeRemove(defaultEditorAreae);
-		}
-
-		if (this.options.editorCssClass) {
-			this.editor.classList.add(this.options.editorCssClass);
-		}
-
-		if (this.options.style) {
-			css(this.editor, this.options.style);
-		}
-
-		// proxy events
-		this.events
-			.on('synchro', () => {
-				this.setEditorValue();
-			})
-			.on(
-				this.editor,
-				'selectionchange selectionstart keydown keyup keypress mousedown mouseup mousepress ' +
-				'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur',
-				(event: Event): false | void => {
-					if (this.options.readonly) {
-						return;
-					}
-					if (this.events && this.events.fire) {
-						if (this.events.fire(event.type, event) === false) {
-							return false;
-						}
-
-						this.setEditorValue();
-					}
-				}
-			);
-
-		if (this.options.spellcheck) {
-			this.editor.setAttribute('spellcheck', 'true');
-		}
-
-		// direction
-		if (this.options.direction) {
-			const direction =
-				this.options.direction.toLowerCase() === 'rtl' ? 'rtl' : 'ltr';
-
-			this.editor.style.direction = direction;
-			this.container.style.direction = direction;
-			this.editor.setAttribute('dir', direction);
-			this.container.setAttribute('dir', direction);
-
-			this.toolbar.setDirection(direction);
-		}
-
-		if (this.options.triggerChangeEvent) {
-			this.events.on(
-				'change',
-				debounce(() => {
-					this.events && this.events.fire(this.element, 'change');
-				}, this.defaultTimeout)
-			);
-		}
 	}
 
 	/**
@@ -1406,5 +1188,200 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		super.destruct();
 
 		delete this.container;
+	}
+
+	private execCustomCommands(
+		commandName: string,
+		second: any = false,
+		third: null | any = null
+	): false | void {
+		commandName = commandName.toLowerCase();
+
+		if (this.commands[commandName] !== undefined) {
+			let result: any;
+
+			const exec = (command: CustomCommand<Jodit>) => {
+				let callback: ExecCommandCallback<Jodit>;
+
+				if (typeof command === 'function') {
+					callback = command;
+				} else {
+					callback = command.exec;
+				}
+
+				const resultCurrent: any = (callback as any).call(
+					this,
+					commandName,
+					second,
+					third
+				);
+
+				if (resultCurrent !== undefined) {
+					result = resultCurrent;
+				}
+			};
+
+			for (let i = 0; i < this.commands[commandName].length; i += 1) {
+				exec(this.commands[commandName][i]);
+			}
+
+			return result;
+		}
+	}
+
+	private __initPlugines() {
+		const dp = this.options.disablePlugins;
+		const disable = Array.isArray(dp)
+			? dp.map(name => name.toLowerCase())
+			: dp.toLowerCase().split(/[\s,]+/);
+
+		Object.keys(Jodit.plugins).forEach((key: string) => {
+			if (disable.indexOf(key.toLowerCase()) === -1) {
+				this.__plugins[key] = new Jodit.plugins[key](this);
+			}
+		});
+	}
+
+	private async __initEditor(buffer: null | string) {
+		await this.__createEditor();
+
+		if (this.isDestructed) {
+			return;
+		}
+
+		// syncro
+		if (this.element !== this.container) {
+			this.setElementValue();
+		} else {
+			buffer !== null && this.setEditorValue(buffer); // inline mode
+		}
+
+		Jodit.instances[this.id] = this;
+
+		let mode: number = this.options.defaultMode;
+
+		if (this.options.saveModeInStorage) {
+			const localMode: string | null = this.storage.get(
+				'jodit_default_mode'
+			);
+			if (localMode !== null) {
+				mode = parseInt(localMode, 10);
+			}
+		}
+
+		this.setMode(mode);
+
+		if (this.options.readonly) {
+			this.setReadOnly(true);
+		}
+
+		if (this.options.disabled) {
+			this.setDisabled(true);
+		}
+
+		// if enter plugin not installed
+		try {
+			this.editorDocument.execCommand(
+				'defaultParagraphSeparator',
+				false,
+				this.options.enter.toLowerCase()
+			);
+		} catch {}
+
+		// fix for native resizing
+		try {
+			this.editorDocument.execCommand(
+				'enableObjectResizing',
+				false,
+				'false'
+			);
+		} catch {}
+
+		try {
+			this.editorDocument.execCommand(
+				'enableInlineTableEditing',
+				false,
+				'false'
+			);
+		} catch {}
+	}
+
+	/**
+	 * Create main DIV element and replace source textarea
+	 *
+	 * @private
+	 */
+	private async __createEditor() {
+		const defaultEditorAreae: HTMLElement = this.editor;
+
+		const stayDefault: boolean | undefined = await this.events.fire(
+			'createEditor',
+			this
+		);
+
+		if (this.isDestructed) {
+			return;
+		}
+
+		if (stayDefault === false) {
+			Dom.safeRemove(defaultEditorAreae);
+		}
+
+		if (this.options.editorCssClass) {
+			this.editor.classList.add(this.options.editorCssClass);
+		}
+
+		if (this.options.style) {
+			css(this.editor, this.options.style);
+		}
+
+		// proxy events
+		this.events
+			.on('synchro', () => {
+				this.setEditorValue();
+			})
+			.on(
+				this.editor,
+				'selectionchange selectionstart keydown keyup keypress mousedown mouseup mousepress ' +
+					'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur',
+				(event: Event): false | void => {
+					if (this.options.readonly) {
+						return;
+					}
+					if (this.events && this.events.fire) {
+						if (this.events.fire(event.type, event) === false) {
+							return false;
+						}
+
+						this.setEditorValue();
+					}
+				}
+			);
+
+		if (this.options.spellcheck) {
+			this.editor.setAttribute('spellcheck', 'true');
+		}
+
+		// direction
+		if (this.options.direction) {
+			const direction =
+				this.options.direction.toLowerCase() === 'rtl' ? 'rtl' : 'ltr';
+
+			this.editor.style.direction = direction;
+			this.container.style.direction = direction;
+			this.editor.setAttribute('dir', direction);
+			this.container.setAttribute('dir', direction);
+
+			this.toolbar.setDirection(direction);
+		}
+
+		if (this.options.triggerChangeEvent) {
+			this.events.on(
+				'change',
+				debounce(() => {
+					this.events && this.events.fire(this.element, 'change');
+				}, this.defaultTimeout)
+			);
+		}
 	}
 }

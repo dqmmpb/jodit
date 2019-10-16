@@ -7,14 +7,14 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Widget } from '../modules/Widget';
+import {Config} from '../Config';
+import {Widget} from '../modules/Widget';
 import TabsWidget = Widget.TabsWidget;
 import ColorPickerWidget = Widget.ColorPickerWidget;
-import { Dom } from '../modules/Dom';
-import { css, normalizeColor } from '../modules/helpers/';
-import { IDictionary, IJodit } from '../types';
-import { IControlType } from '../types/toolbar';
+import {Dom} from '../modules/Dom';
+import {css, normalizeColor} from '../modules/helpers/';
+import {IDictionary, IJodit} from '../types';
+import {IControlType} from '../types/toolbar';
 
 Config.prototype.controls.brush = {
 	isActive: (editor: IJodit, control: IControlType, button): boolean => {

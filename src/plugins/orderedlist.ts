@@ -7,9 +7,9 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { IJodit, markerInfo } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {IJodit, markerInfo} from '../types';
 
 Config.prototype.controls.ul = {
 	command: 'insertUnorderedList',

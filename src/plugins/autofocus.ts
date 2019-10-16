@@ -7,10 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { setTimeout } from '../modules/helpers/async';
-import { IJodit } from '../types';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {setTimeout} from '../modules/helpers/async';
+import {IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {

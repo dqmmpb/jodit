@@ -7,9 +7,9 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewBased } from '../../types/view';
-import { ToolbarElement } from './element';
-import { IToolbarCollection } from '../../types';
+import {IViewBased} from '../../types/view';
+import {ToolbarElement} from './element';
+import {IToolbarCollection} from '../../types';
 
 export class ToolbarBreak extends ToolbarElement {
 	constructor(jodit: IToolbarCollection | IViewBased) {

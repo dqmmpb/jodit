@@ -7,10 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Plugin } from '../modules/Plugin';
-import { normalizeKeyAliases } from '../modules/helpers/normalize';
-import { IDictionary, IJodit } from '../types';
+import {Config} from '../Config';
+import {Plugin} from '../modules/Plugin';
+import {normalizeKeyAliases} from '../modules/helpers/normalize';
+import {IDictionary, IJodit} from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -40,23 +40,6 @@ Config.prototype.commandToHotkeys = {
  * Allow set hotkey for command or button
  */
 export class hotkeys extends Plugin {
-	private onKeyPress = (event: KeyboardEvent): string => {
-		const special: string | false = this.specialKeys[event.which],
-			character: string = (
-				event.key || String.fromCharCode(event.which)
-			).toLowerCase();
-
-		const modif: string[] = [special || character];
-
-		['alt', 'ctrl', 'shift', 'meta'].forEach(specialKey => {
-			if ((event as any)[specialKey + 'Key'] && special !== specialKey) {
-				modif.push(specialKey);
-			}
-		});
-
-		return normalizeKeyAliases(modif.join('+'));
-	};
-
 	public specialKeys: { [key: number]: string } = {
 		8: 'backspace',
 		9: 'tab',
@@ -176,9 +159,27 @@ export class hotkeys extends Plugin {
 				true
 			);
 	}
+
 	beforeDestruct(jodit: IJodit): void {
 		if (jodit.events) {
 			jodit.events.off('.hotkeys');
 		}
 	}
+
+	private onKeyPress = (event: KeyboardEvent): string => {
+		const special: string | false = this.specialKeys[event.which],
+			character: string = (
+				event.key || String.fromCharCode(event.which)
+			).toLowerCase();
+
+		const modif: string[] = [special || character];
+
+		['alt', 'ctrl', 'shift', 'meta'].forEach(specialKey => {
+			if ((event as any)[specialKey + 'Key'] && special !== specialKey) {
+				modif.push(specialKey);
+			}
+		});
+
+		return normalizeKeyAliases(modif.join('+'));
+	};
 }

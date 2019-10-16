@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { Dom } from '../modules/Dom';
-import { convertMediaURLToVideoEmbed, isURL, val } from '../modules/helpers/';
-import { Select } from '../modules/Selection';
-import { IJodit, markerInfo } from '../types';
-import { IControlType } from '../types/toolbar';
+import {Config} from '../Config';
+import {Dom} from '../modules/Dom';
+import {convertMediaURLToVideoEmbed, isURL, val} from '../modules/helpers/';
+import {Select} from '../modules/Selection';
+import {IJodit, markerInfo} from '../types';
+import {IControlType} from '../types/toolbar';
 
 /**
  * @property {object}  link `{@link link|link}` plugin's options
@@ -76,29 +76,29 @@ Config.prototype.controls.link = {
 		const sel = editor.selection.sel,
 			form: HTMLFormElement = editor.create.fromHTML(
 				'<form class="jodit_form">' +
-					'<input required type="text" name="url" placeholder="http://" type="text"/>' +
-					'<input name="text" placeholder="' +
-					editor.i18n('Text') +
-					'" type="text"/>' +
-					(editor.options.link.openInNewTabCheckbox
-						? '<label>' +
-						  '<input name="target" type="checkbox"/> ' +
-						  editor.i18n('Open in new tab') +
-						  '</label>'
-						: '') +
-					(editor.options.link.noFollowCheckbox
-						? '<label>' +
-						  '<input name="nofollow" type="checkbox"/> ' +
-						  editor.i18n('No follow') +
-						  '</label>'
-						: '') +
-					'<div style="text-align: right">' +
-					'<button class="jodit_unlink_button" type="button">' +
-					editor.i18n('Unlink') +
-					'</button> &nbsp;&nbsp;' +
-					'<button class="jodit_link_insert_button" type="submit"></button>' +
-					'</div>' +
-					'<form/>'
+				'<input required type="text" name="url" placeholder="http://" type="text"/>' +
+				'<input name="text" placeholder="' +
+				editor.i18n('Text') +
+				'" type="text"/>' +
+				(editor.options.link.openInNewTabCheckbox
+					? '<label>' +
+					'<input name="target" type="checkbox"/> ' +
+					editor.i18n('Open in new tab') +
+					'</label>'
+					: '') +
+				(editor.options.link.noFollowCheckbox
+					? '<label>' +
+					'<input name="nofollow" type="checkbox"/> ' +
+					editor.i18n('No follow') +
+					'</label>'
+					: '') +
+				'<div style="text-align: right">' +
+				'<button class="jodit_unlink_button" type="button">' +
+				editor.i18n('Unlink') +
+				'</button> &nbsp;&nbsp;' +
+				'<button class="jodit_link_insert_button" type="submit"></button>' +
+				'</div>' +
+				'<form/>'
 			) as HTMLFormElement;
 
 		if (current && Dom.closest(current, 'A', editor.editor)) {
@@ -108,7 +108,7 @@ Config.prototype.controls.link = {
 		}
 
 		const lnk: HTMLAnchorElement | null = form.querySelector(
-				'.jodit_link_insert_button'
+			'.jodit_link_insert_button'
 			),
 			unlink: HTMLButtonElement | null = form.querySelector(
 				'.jodit_unlink_button'
@@ -228,7 +228,7 @@ export function link(jodit: IJodit) {
 			jodit.events.on(
 				jodit.editor,
 				'dblclick',
-				function(this: HTMLAnchorElement, e: MouseEvent) {
+				function (this: HTMLAnchorElement, e: MouseEvent) {
 					const href: string | null = this.getAttribute('href');
 					if (href) {
 						location.href = href;

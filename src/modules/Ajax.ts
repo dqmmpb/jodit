@@ -7,10 +7,10 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { IDictionary } from '../types';
-import { IViewBased } from '../types/view';
-import { each, extend } from './helpers/';
+import {Config} from '../Config';
+import {IDictionary} from '../types';
+import {IViewBased} from '../types/view';
+import {each, extend} from './helpers/';
 
 /**
  * @property {object} defaultAjaxOptions A set of key/value pairs that configure the Ajax request. All settings
@@ -101,57 +101,38 @@ Config.prototype.defaultAjaxOptions = {
 } as AjaxOptions;
 
 export class Ajax {
-	private readonly xhr: XMLHttpRequest;
-
-	private success_response_codes = [200, 201, 202];
-	private __buildParams(
-		obj: string | IDictionary<string | object> | FormData,
-		prefix?: string
-	): string | FormData {
-		if (
-			this.options.queryBuild &&
-			typeof this.options.queryBuild === 'function'
-		) {
-			return this.options.queryBuild.call(this, obj, prefix);
-		}
-
-		if (
-			typeof obj === 'string' ||
-			((this.jodit.ownerWindow as any).FormData &&
-				obj instanceof (this.jodit.ownerWindow as any).FormData)
-		) {
-			return obj as string | FormData;
-		}
-
-		const str: string[] = [];
-		let p: string, k: string, v: any;
-
-		for (p in obj) {
-			if (obj.hasOwnProperty(p)) {
-				k = prefix ? prefix + '[' + p + ']' : p;
-				v = (obj as IDictionary<string>)[p];
-				str.push(
-					typeof v === 'object'
-						? (this.__buildParams(v, k) as string)
-						: encodeURIComponent(k) +
-								'=' +
-								encodeURIComponent(v as string)
-				);
-			}
-		}
-
-		return str.join('&');
-	}
 	public status: number;
 	public response: string;
-
 	public options: AjaxOptions;
 	public jodit: IViewBased;
+	private readonly xhr: XMLHttpRequest;
+	private success_response_codes = [200, 201, 202];
+
+	constructor(editor: IViewBased, options: AjaxOptions) {
+		this.jodit = editor;
+		this.options = extend(
+			true,
+			{},
+			Config.prototype.defaultAjaxOptions,
+			options
+		) as AjaxOptions;
+
+		if (this.options.xhr) {
+			this.xhr = this.options.xhr();
+		}
+
+		editor &&
+		editor.events &&
+		editor.events.on('beforeDestruct', () => {
+			this.abort();
+		});
+	}
 
 	public abort(): Ajax {
 		try {
 			this.xhr.abort();
-		} catch {}
+		} catch {
+		}
 
 		return this;
 	}
@@ -209,7 +190,7 @@ export class Ajax {
 								this.xhr,
 								new Error(
 									this.xhr.statusText ||
-										this.jodit.i18n('Connection error!')
+									this.jodit.i18n('Connection error!')
 								)
 							);
 						}
@@ -254,23 +235,42 @@ export class Ajax {
 		);
 	}
 
-	constructor(editor: IViewBased, options: AjaxOptions) {
-		this.jodit = editor;
-		this.options = extend(
-			true,
-			{},
-			Config.prototype.defaultAjaxOptions,
-			options
-		) as AjaxOptions;
-
-		if (this.options.xhr) {
-			this.xhr = this.options.xhr();
+	private __buildParams(
+		obj: string | IDictionary<string | object> | FormData,
+		prefix?: string
+	): string | FormData {
+		if (
+			this.options.queryBuild &&
+			typeof this.options.queryBuild === 'function'
+		) {
+			return this.options.queryBuild.call(this, obj, prefix);
 		}
 
-		editor &&
-			editor.events &&
-			editor.events.on('beforeDestruct', () => {
-				this.abort();
-			});
+		if (
+			typeof obj === 'string' ||
+			((this.jodit.ownerWindow as any).FormData &&
+				obj instanceof (this.jodit.ownerWindow as any).FormData)
+		) {
+			return obj as string | FormData;
+		}
+
+		const str: string[] = [];
+		let p: string, k: string, v: any;
+
+		for (p in obj) {
+			if (obj.hasOwnProperty(p)) {
+				k = prefix ? prefix + '[' + p + ']' : p;
+				v = (obj as IDictionary<string>)[p];
+				str.push(
+					typeof v === 'object'
+						? (this.__buildParams(v, k) as string)
+						: encodeURIComponent(k) +
+						'=' +
+						encodeURIComponent(v as string)
+				);
+			}
+		}
+
+		return str.join('&');
 	}
 }

@@ -7,40 +7,48 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IViewWithToolbar } from './view';
-import { Config } from '../Config';
-import { Observer } from '../modules/observer/observer';
-import { Select } from '../modules/Selection';
-import { CustomCommand, IComponent, IStorage, Modes } from './types';
-import { StatusBar } from '../modules/StatusBar';
-import { IUploader } from './uploader';
-import { IFileBrowser } from './fileBrowser';
+import {IViewWithToolbar} from './view';
+import {Config} from '../Config';
+import {Observer} from '../modules/observer/observer';
+import {Select} from '../modules/Selection';
+import {CustomCommand, IComponent, IStorage, Modes} from './types';
+import {StatusBar} from '../modules/StatusBar';
+import {IUploader} from './uploader';
+import {IFileBrowser} from './fileBrowser';
 
 interface IJodit extends IViewWithToolbar {
 	options: Config;
 	observer: Observer;
 	editor: HTMLElement;
 	element: HTMLElement;
-
-	getNativeEditorValue(): string;
-	getEditorValue(removeSelectionMarkers?: boolean): string;
-	setEditorValue(value?: string): void;
 	value: string;
-
 	/**
 	 * @property {HTMLDocument} editorDocument
 	 */
 	editorDocument: HTMLDocument;
-
 	/**
 	 * @property {Window} editorWindow
 	 */
 	editorWindow: Window;
-
 	/**
 	 * @property {Select} selection
 	 */
 	selection: Select;
+	isInited: boolean;
+	/**
+	 * workplace It contains source and wysiwyg editors
+	 */
+	workplace: HTMLDivElement;
+	statusbar: StatusBar;
+	uploader: IUploader;
+	filebrowser: IFileBrowser;
+	storage: IStorage;
+
+	getNativeEditorValue(): string;
+
+	getEditorValue(removeSelectionMarkers?: boolean): string;
+
+	setEditorValue(value?: string): void;
 
 	/**
 	 * Return current real work mode. When editor in MODE_SOURCE or MODE_WYSIWYG it will
@@ -54,11 +62,12 @@ interface IJodit extends IViewWithToolbar {
 	 * ```
 	 */
 	getRealMode(): Modes;
-	getMode(): Modes;
-	isEditorMode(): boolean;
-	toggleMode(): void;
 
-	isInited: boolean;
+	getMode(): Modes;
+
+	isEditorMode(): boolean;
+
+	toggleMode(): void;
 
 	execCommand(command: string, showUI?: any, value?: null | any): any;
 
@@ -73,15 +82,4 @@ interface IJodit extends IViewWithToolbar {
 	): void;
 
 	getEditorText(): string;
-
-	/**
-	 * workplace It contains source and wysiwyg editors
-	 */
-	workplace: HTMLDivElement;
-
-	statusbar: StatusBar;
-
-	uploader: IUploader;
-	filebrowser: IFileBrowser;
-	storage: IStorage;
 }

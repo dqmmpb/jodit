@@ -7,39 +7,16 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Dom } from '../Dom';
-import { setTimeout } from '../helpers/async';
-import { ToolbarElement } from './element';
-import { IToolbarButton } from '../../types';
+import {Dom} from '../Dom';
+import {setTimeout} from '../helpers/async';
+import {ToolbarElement} from './element';
+import {IToolbarButton} from '../../types';
 
 /**
  * Class create tooltip for buttons in toolbar
  */
 export class ToolbarTooltip extends ToolbarElement {
 	private timeout: number = 0;
-
-	private show = () => {
-		const showElement = () => {
-				this.button.container.appendChild(this.container);
-
-				const diff: number =
-					this.container.offsetWidth -
-					this.button.container.offsetWidth;
-				this.container.style.marginLeft = -diff / 2 + 'px';
-			},
-			delay: number =
-				this.button.jodit.options.showTooltipDelay ||
-				this.button.jodit.defaultTimeout * 10;
-
-		this.button.jodit.events.fire('hideTooltip');
-
-		this.timeout = setTimeout(showElement, delay);
-	};
-
-	private hide = () => {
-		window.clearTimeout(this.timeout);
-		Dom.safeRemove(this.container);
-	};
 
 	constructor(readonly button: IToolbarButton) {
 		super(button.parentToolbar || button.jodit, 'div', 'jodit_tooltip');
@@ -69,4 +46,27 @@ export class ToolbarTooltip extends ToolbarElement {
 
 		return super.destruct();
 	}
+
+	private show = () => {
+		const showElement = () => {
+				this.button.container.appendChild(this.container);
+
+				const diff: number =
+					this.container.offsetWidth -
+					this.button.container.offsetWidth;
+				this.container.style.marginLeft = -diff / 2 + 'px';
+			},
+			delay: number =
+				this.button.jodit.options.showTooltipDelay ||
+				this.button.jodit.defaultTimeout * 10;
+
+		this.button.jodit.events.fire('hideTooltip');
+
+		this.timeout = setTimeout(showElement, delay);
+	};
+
+	private hide = () => {
+		window.clearTimeout(this.timeout);
+		Dom.safeRemove(this.container);
+	};
 }

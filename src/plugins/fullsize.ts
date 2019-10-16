@@ -7,12 +7,12 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
+import {Config} from '../Config';
 import * as consts from '../constants';
-import { css } from '../modules/helpers/';
-import { ToolbarIcon } from '../modules/toolbar/icon';
-import { IControlType } from '../types/toolbar';
-import { IJodit, IViewWithToolbar } from '../types';
+import {css} from '../modules/helpers/';
+import {ToolbarIcon} from '../modules/toolbar/icon';
+import {IControlType} from '../types/toolbar';
+import {IJodit, IViewWithToolbar} from '../types';
 
 /**
  * Fullsize plugin
@@ -147,6 +147,6 @@ export function fullsize(editor: IViewWithToolbar) {
 		})
 		.on('beforeDestruct', () => {
 			editor.events &&
-				editor.events.off(editor.ownerWindow, 'resize', resize);
+			editor.events.off(editor.ownerWindow, 'resize', resize);
 		});
 }

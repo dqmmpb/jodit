@@ -7,7 +7,7 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { IComponent, IDictionary } from './types';
+import {IComponent, IDictionary} from './types';
 
 interface IUploaderData {
 	messages?: string[];
@@ -172,7 +172,7 @@ export interface IUploaderOptions<T> {
 	format: string;
 	method: string;
 
-  filesVariableName: (i: number) => string;
+	filesVariableName: (i: number) => string;
 	pathVariableName: string;
 	withCredentials: boolean;
 
@@ -230,6 +230,7 @@ export interface IUploader extends IComponent {
 	 * @param {string} path
 	 */
 	setPath(path: string): void;
+
 	/**
 	 * It sets the source for connector
 	 *

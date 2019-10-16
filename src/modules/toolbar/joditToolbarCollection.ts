@@ -7,17 +7,29 @@
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { ToolbarCollection } from './collection';
-import { ToolbarButton } from './button';
-import { IDictionary } from '../../types/types';
-import { IJodit } from '../../types/jodit';
-import { IViewBased } from '../../types/view';
-import { Dom } from '../Dom';
-import { css } from '../helpers/css';
+import {ToolbarCollection} from './collection';
+import {ToolbarButton} from './button';
+import {IDictionary} from '../../types/types';
+import {IJodit} from '../../types/jodit';
+import {IViewBased} from '../../types/view';
+import {Dom} from '../Dom';
+import {css} from '../helpers/css';
 import * as consts from '../../constants';
-import { isJoditObject } from '../helpers/checker/isJoditObject';
+import {isJoditObject} from '../helpers/checker/isJoditObject';
 
 export class JoditToolbarCollection extends ToolbarCollection<IJodit> {
+	static makeCollection(jodit: IViewBased): ToolbarCollection<IViewBased> {
+		const collection = isJoditObject(jodit)
+			? new JoditToolbarCollection(jodit)
+			: new ToolbarCollection(jodit);
+
+		if (jodit.options.textIcons) {
+			collection.container.classList.add('jodit_text_icons');
+		}
+
+		return collection;
+	}
+
 	checkActiveStatus = (
 		cssObject:
 			| IDictionary<string | string[]>
@@ -152,17 +164,5 @@ export class JoditToolbarCollection extends ToolbarCollection<IJodit> {
 	 */
 	getTarget(button: ToolbarButton): Node | void {
 		return button.target || this.jodit.selection.current() || undefined;
-	}
-
-	static makeCollection(jodit: IViewBased): ToolbarCollection<IViewBased> {
-		const collection = isJoditObject(jodit)
-			? new JoditToolbarCollection(jodit)
-			: new ToolbarCollection(jodit);
-
-		if (jodit.options.textIcons) {
-			collection.container.classList.add('jodit_text_icons');
-		}
-
-		return collection;
 	}
 }
