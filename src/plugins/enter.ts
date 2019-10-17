@@ -37,7 +37,7 @@ export const insertParagraph = (
 	}
 
 	editor.selection.insertNode(p, false, false);
-	editor.selection.setCursorAfter(helper_node);
+	editor.selection.setCursorBefore(helper_node);
 
 	const range: Range = editor.editorDocument.createRange();
 
@@ -119,7 +119,7 @@ export function enter(editor: IJodit) {
 				let currentBox: HTMLElement | false = current
 					? (Dom.up(
 							current,
-							node => Dom.isBlock(node, editor.editorWindow),
+						node => Dom.isBlock(node, editor.editorWindow),
 							editor.editor
 					  ) as HTMLElement)
 					: false;
