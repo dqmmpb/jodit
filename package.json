@@ -2,7 +2,7 @@
 	"name": "jodit",
 	"version": "3.2.55",
 	"description": "Jodit is awesome and usefully wysiwyg editor with filebrowser",
-	"main": "build/jodit.min.js",
+	"main": "build/jodit.js",
 	"types": "src/types/index.d.ts",
 	"scripts": {
 		"newversion": "npm test && npm version patch --no-git-tag-version && npm run build && npm run newversiongit && npm publish ./",
@@ -34,7 +34,8 @@
 		"url": "https://github.com/xdan/jodit/issues"
 	},
 	"files": [
-		"build"
+		"build",
+		"src"
 	],
 	"homepage": "https://xdsoft.net/jodit/",
 	"devDependencies": {
