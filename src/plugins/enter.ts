@@ -119,7 +119,7 @@ export function enter(editor: IJodit) {
 				let currentBox: HTMLElement | false = current
 					? (Dom.up(
 							current,
-						node => Dom.isBlock(node, editor.editorWindow),
+							node => Dom.isBlock(node, editor.editorWindow),
 							editor.editor
 					  ) as HTMLElement)
 					: false;
