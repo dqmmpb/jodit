@@ -17762,7 +17762,7 @@ exports.insertParagraph = function (editor, fake, wrapperTag, style) {
         p.setAttribute('style', style.cssText);
     }
     editor.selection.insertNode(p, false, false);
-    editor.selection.setCursorBefore(helper_node);
+    editor.selection.setCursorAfter(helper_node);
     var range = editor.editorDocument.createRange();
     range.setStartBefore(wrapperTag.toLowerCase() !== 'br' ? helper_node : p);
     range.collapse(true);
