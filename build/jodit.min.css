@@ -221,7 +221,7 @@
  * For MIT see LICENSE-MIT.txt in the project root for license information.
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
- */.jodit_fullsize_box{z-index:100000!important;position:static!important;overflow:visible!important}body.jodit_fullsize_box,html.jodit_fullsize_box{height:0!important;width:0!important;overflow:initial!important}html.jodit_fullsize_box{position:fixed!important}.jodit_fullsize{position:absolute;top:0;left:0;right:0;bottom:0;z-index:100000;max-width:none!important}.jodit_fullsize .toolbar{width:100%!important}.jodit_fullsize .jodit_area,.jodit_fullsize .jodit_editor{height:100%}.jodit_fullsize .jodit_workflow{height:calc(100% - 24px);overflow:auto}.jodit_fullsize.jodit_toolbar_size-small .jodit_workflow{height:calc(100% - 18px)}.jodit_fullsize.jodit_toolbar_size-large .jodit_workflow{height:calc(100% - 27px)}
+ */.jodit_fullsize_box{z-index:100000!important;position:static!important;overflow:visible!important}body.jodit_fullsize_box,html.jodit_fullsize_box{height:0!important;width:0!important;overflow:initial!important}html.jodit_fullsize_box{position:fixed!important}.jodit_fullsize{position:absolute;top:0;left:0;right:0;bottom:0;z-index:100000;max-width:none!important}.jodit_fullsize .toolbar{width:100%!important}.jodit_fullsize .jodit,.jodit_fullsize .jodit_area{height:100%}.jodit_fullsize .jodit_workflow{height:calc(100% - 24px);overflow:auto}.jodit_fullsize.jodit_toolbar_size-small .jodit_workflow{height:calc(100% - 18px)}.jodit_fullsize.jodit_toolbar_size-large .jodit_workflow{height:calc(100% - 27px)}
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
  * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
@@ -253,7 +253,7 @@
  * For MIT see LICENSE-MIT.txt in the project root for license information.
  * For commercial licenses see https://xdsoft.net/jodit/commercial/
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
- */.jodit_container{min-height:100px}.jodit_container .jodit_workplace{display:-ms-flexbox;display:flex;height:auto;min-height:50px;overflow:hidden}.jodit_editor_resize{position:relative}.jodit_editor_resize a{position:absolute;bottom:0;right:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:0;height:0;overflow:hidden;border-color:transparent #ccc transparent transparent;border-style:dashed solid dashed dashed;border-width:7px 7px 0 0;cursor:se-resize}
+ */.jodit_container{min-height:100px}.jodit_container .jodit_workplace{display:-ms-flexbox;display:flex;height:auto;min-height:50px;overflow:hidden}.jodit_resize{position:relative}.jodit_resize a{position:absolute;bottom:0;right:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:0;height:0;overflow:hidden;border-color:transparent #ccc transparent transparent;border-style:dashed solid dashed dashed;border-width:7px 7px 0 0;cursor:se-resize}
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
  * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;

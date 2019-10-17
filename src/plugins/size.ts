@@ -48,7 +48,7 @@ export function size(editor: IJodit) {
 	) {
 		const
 			handle = editor.create.div(
-				'jodit_editor_resize',
+				'jodit_resize',
 				'<a tabindex="-1" href="javascript:void(0)"></a>'
 			),
 			start: IPointBound = {
