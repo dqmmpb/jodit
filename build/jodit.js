@@ -18493,14 +18493,14 @@ Config_1.Config.prototype.iframeStyle =
         'margin:0px;' +
         'overflow:auto;' +
         '}' +
-        'table{' +
+        '.jodit_editor table.jodit_table {' +
         'width:100%;' +
         'border: none;' +
         'border-collapse:collapse;' +
         'empty-cells: show;' +
         'max-width: 100%;' +
         '}' +
-        'th,td{' +
+        '.jodit_editor table.jodit_table th,.jodit_editor table.jodit_table td{' +
         'padding: 2px 5px;' +
         'border:1px solid #ccc;' +
         '-webkit-user-select:text;' +
@@ -18508,11 +18508,11 @@ Config_1.Config.prototype.iframeStyle =
         '-ms-user-select:text;' +
         'user-select:text' +
         '}' +
-        'td[data-jodit-selected-cell],' +
-        'th[data-jodit-selected-cell]{' +
+        '.jodit_editor table.jodit_table td[data-jodit-selected-cell],' +
+        '.jodit_editor table.jodit_table th[data-jodit-selected-cell]{' +
         'border: 1px double #1e88e5' +
         '}' +
-        'p{' +
+        '.jodit_editor p{' +
         'margin-top:0;' +
         '}' +
         '.jodit_editor .jodit_iframe_wrapper{' +
@@ -50777,6 +50777,7 @@ Config_1.Config.prototype.controls.table = {
             var rows_count = Math.ceil((k + 1) / default_cols_count), cols_count = (k % default_cols_count) + 1;
             var crt = editor.create.inside, tbody = crt.element('tbody'), table = crt.element('table');
             table.appendChild(tbody);
+            table.className = 'jodit_table';
             table.style.width = '100%';
             var first_td = null, tr, td;
             for (var i = 1; i <= rows_count; i += 1) {

@@ -78,14 +78,14 @@ Config.prototype.iframeStyle =
 	'margin:0px;' +
 	'overflow:auto;' +
 	'}' +
-	'table{' +
+	'.jodit_editor table.jodit_table {' +
 	'width:100%;' +
 	'border: none;' +
 	'border-collapse:collapse;' +
 	'empty-cells: show;' +
 	'max-width: 100%;' +
 	'}' +
-	'th,td{' +
+	'.jodit_editor table.jodit_table th,.jodit_editor table.jodit_table td{' +
 	'padding: 2px 5px;' +
 	'border:1px solid #ccc;' +
 	'-webkit-user-select:text;' +
@@ -93,11 +93,11 @@ Config.prototype.iframeStyle =
 	'-ms-user-select:text;' +
 	'user-select:text' +
 	'}' +
-	'td[data-jodit-selected-cell],' +
-	'th[data-jodit-selected-cell]{' +
+	'.jodit_editor table.jodit_table td[data-jodit-selected-cell],' +
+	'.jodit_editor table.jodit_table th[data-jodit-selected-cell]{' +
 	'border: 1px double #1e88e5' +
 	'}' +
-	'p{' +
+	'.jodit_editor p{' +
 	'margin-top:0;' +
 	'}' +
 	'.jodit_editor .jodit_iframe_wrapper{' +

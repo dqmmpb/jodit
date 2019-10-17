@@ -184,7 +184,7 @@ Config.prototype.controls.table = {
 					table: HTMLTableElement = crt.element('table');
 
 				table.appendChild(tbody);
-
+				table.className = 'jodit_table';
 				table.style.width = '100%';
 
 				let first_td: HTMLTableCellElement | null = null,
