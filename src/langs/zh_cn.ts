@@ -182,7 +182,7 @@ export default {
 	'Open link': '打开链接',
 	'Edit link': '编辑链接',
 	'No follow': '不要追踪此特定链接"',
-	Unlink: '去除超链接',
+	Unlink: '删除链接',
 	Eye: '回顧',
 	' URL': 'URL',
 	Reset: '重置',
