@@ -3637,13 +3637,14 @@ exports.extend = extend;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var Jodit_1 = __webpack_require__(11);
 /**
  * Check if element is instance of Jodit
  *
  *
  */
 exports.isJoditObject = function (jodit) {
-    if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit.constructor.name === 'Jodit') {
+    if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit instanceof Jodit_1.Jodit) {
         return true;
     }
     return false;
