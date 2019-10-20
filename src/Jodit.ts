@@ -680,6 +680,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		let result: any;
 		command = command.toLowerCase();
 
+		console.log('execcommand', command);
 		/**
 		 * Called before any command
 		 * @event beforeCommand

@@ -2857,6 +2857,7 @@ var Jodit = /** @class */ (function (_super) {
         }
         var result;
         command = command.toLowerCase();
+        console.log('execcommand', command);
         /**
          * Called before any command
          * @event beforeCommand
