@@ -15,7 +15,7 @@ import {Jodit} from '../../../Jodit';
  *
  */
 export const isJoditObject = (jodit: unknown): jodit is IJodit => {
-	if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit instanceof Jodit) {
+	if (jodit && jodit instanceof Object && jodit instanceof Jodit) {
 		return true;
 	}
 
