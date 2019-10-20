@@ -67,40 +67,40 @@ module.exports = (env, argv) => {
 			extensions: [".ts", ".d.ts", ".js", ".json", ".less", '.svg']
 		},
 
-		// optimization: {
-		// 	minimize: !debug && uglify,
-		// 	minimizer: [
-		// 		new UglifyJsPlugin({
-		// 			cache: true,
-		// 			parallel: true,
-		// 			extractComments: false,
-		// 			uglifyOptions: {
-		// 				ie8: false,
-		// 				// mangle: {
-		// 				// 	reserved: ['Jodit'],
-		// 				// },
-		// 				// compress: {
-		// 				//     if_return: true,
-		// 				//     unused: true,
-		// 				//     booleans: true,
-		// 				//     properties: true,
-		// 				//     dead_code: true,
-		// 				//     pure_getters: true,
-		// 				//     unsafe: true,
-		// 				//     unsafe_comps: true,
-		// 				//     drop_console: true,
-		// 				//     passes: 2
-		// 				// },
-		// 				output: {
-		// 					comments: false,
-		// 					beautify: false,
-		// 					preamble: banner,
-		// 				},
-		// 				minimize: true
-		// 			}
-		// 		}),
-		// 	],
-		// },
+		optimization: {
+			minimize: !debug && uglify,
+			minimizer: [
+				new UglifyJsPlugin({
+					cache: true,
+					parallel: true,
+					extractComments: false,
+					uglifyOptions: {
+						ie8: false,
+						mangle: {
+							reserved: ['Jodit'],
+						},
+						// compress: {
+						//     if_return: true,
+						//     unused: true,
+						//     booleans: true,
+						//     properties: true,
+						//     dead_code: true,
+						//     pure_getters: true,
+						//     unsafe: true,
+						//     unsafe_comps: true,
+						//     drop_console: true,
+						//     passes: 2
+						// },
+						output: {
+							comments: false,
+							beautify: false,
+							preamble: banner,
+						},
+						minimize: true
+					}
+				}),
+			],
+		},
 
 		output: {
 			path: path.join(__dirname, 'build'),
@@ -143,9 +143,6 @@ module.exports = (env, argv) => {
 					test: /\.svg$/i,
 					use: 'raw-loader'
 				},
-			],
-			noParse: [
-				/ace-builds.*/
 			]
 		},
 
@@ -166,15 +163,7 @@ module.exports = (env, argv) => {
 					'NODE_ENV': JSON.stringify(mode)
 				}
 			})
-		],
-		externals: {
-			"ace-builds": {
-				root: 'ace-builds',
-				commonjs2: 'ace-builds',
-				commonjs: 'ace-builds',
-				amd: 'ace-builds'
-			},
-		}
+		]
 	};
 
 	if (!debug) {
