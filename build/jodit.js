@@ -3644,7 +3644,7 @@ var Jodit_1 = __webpack_require__(11);
  *
  */
 exports.isJoditObject = function (jodit) {
-    if (jodit && jodit instanceof Object && typeof jodit.constructor === 'function' && jodit instanceof Jodit_1.Jodit) {
+    if (jodit && jodit instanceof Object && jodit instanceof Jodit_1.Jodit) {
         return true;
     }
     return false;
