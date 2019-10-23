@@ -87,28 +87,28 @@ Config.prototype.controls.center = {
 	css: {
 		'text-align': 'center'
 	},
-	// tooltip: 'Align Center'
+	tooltip: 'Align Center'
 };
 Config.prototype.controls.justify = {
 	command: 'justifyFull',
 	css: {
 		'text-align': 'justify'
 	},
-	// tooltip: 'Align Justify'
+	tooltip: 'Align Justify'
 };
 Config.prototype.controls.left = {
 	command: 'justifyLeft',
 	css: {
 		'text-align': 'left'
 	},
-	// tooltip: 'Align Left'
+	tooltip: 'Align Left'
 };
 Config.prototype.controls.right = {
 	command: 'justifyRight',
 	css: {
 		'text-align': 'right'
 	},
-	// tooltip: 'Align Right'
+	tooltip: 'Align Right'
 };
 
 /**
