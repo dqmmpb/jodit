@@ -502,7 +502,7 @@ export function resizer(editor: IJodit) {
 					}
 				}
 
-				if (!editor.isDestructed) {
+				if (!editor.isDestructed && editor.editor) {
 					$$('img, table, iframe', editor.editor).forEach(
 						(elm: HTMLElement) => {
 							if (editor.getMode() === consts.MODE_SOURCE) {

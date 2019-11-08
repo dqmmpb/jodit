@@ -7592,7 +7592,7 @@ exports.debounce = function (fn, timeout, invokeAsap, ctx) {
         if (timeout) {
             clearTimeout(timer);
             timer = setTimeout_1.setTimeout(function () {
-                if (!invokeAsap) {
+                if (!invokeAsap && context) {
                     fn.apply(context, args);
                 }
                 timer = 0;
@@ -21587,7 +21587,7 @@ function resizer(editor) {
                 updateSize();
             }
         }
-        if (!editor.isDestructed) {
+        if (!editor.isDestructed && editor.editor) {
             selector_1.$$('img, table, iframe', editor.editor).forEach(function (elm) {
                 if (editor.getMode() === consts.MODE_SOURCE) {
                     return;

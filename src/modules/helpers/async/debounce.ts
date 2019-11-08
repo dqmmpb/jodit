@@ -53,7 +53,7 @@ export const debounce = function <T>(
 		if (timeout) {
 			clearTimeout(timer);
 			timer = setTimeout(() => {
-				if (!invokeAsap) {
+				if (!invokeAsap && context) {
 					fn.apply(context, args as any);
 				}
 				timer = 0;
