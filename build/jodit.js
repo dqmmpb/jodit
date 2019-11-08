@@ -20487,7 +20487,8 @@ function media(editor) {
         })
             .on('change afterInit afterSetMode', async_1.debounce(function () {
             if (!editor.isDestructed &&
-                editor.getMode() !== consts.MODE_SOURCE) {
+                editor.getMode() !== consts.MODE_SOURCE &&
+                editor.editor) {
                 selector_1.$$(mediaBlocks.join(','), editor.editor).forEach(function (elm) {
                     if (!elm['__' + keyFake]) {
                         elm['__' + keyFake] = true;

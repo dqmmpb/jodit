@@ -106,7 +106,8 @@ export function media(editor: IJodit) {
 				debounce(() => {
 					if (
 						!editor.isDestructed &&
-						editor.getMode() !== consts.MODE_SOURCE
+						editor.getMode() !== consts.MODE_SOURCE &&
+						editor.editor
 					) {
 						$$(mediaBlocks.join(','), editor.editor).forEach(
 							(elm: HTMLElement) => {
