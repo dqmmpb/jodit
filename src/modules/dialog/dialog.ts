@@ -1,22 +1,17 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../../Config';
-import {IDialogOptions} from '../../types/dialog';
-import {KEY_ESC} from '../../constants';
-import {IDictionary, IJodit} from '../../types';
-import {IControlType} from '../../types/toolbar';
-import {IViewBased} from '../../types/view';
-import {$$, asArray, css} from '../helpers/';
-import {View} from '../view/view';
-import {Dom} from '../Dom';
-import {isJoditObject} from '../helpers/checker/isJoditObject';
+import { Config } from '../../Config';
+import { IDialogOptions } from '../../types/dialog';
+import { KEY_ESC } from '../../constants';
+import { IDictionary, IJodit, IToolbarCollection } from '../../types';
+import { IControlType } from '../../types/toolbar';
+import { IViewBased } from '../../types/view';
+import { $$, asArray, css, isJoditObject } from '../helpers/';
+import { ViewWithToolbar } from '../view/viewWithToolbar';
 
 /**
  * @property {object} dialog module settings {@link Dialog|Dialog}
@@ -34,6 +29,7 @@ declare module '../../Config' {
 }
 
 Config.prototype.dialog = {
+	extraButtons: [],
 	resizable: true,
 	draggable: true,
 	buttons: ['dialog.close'],
@@ -49,12 +45,12 @@ Config.prototype.controls.dialog = {
 	},
 	fullsize: {
 		icon: 'fullsize',
-		getLabel: (editor, btn: IControlType, button) => {
+		getLabel: (editor, btn: IControlType, button): boolean | void => {
 			if (
 				Config.prototype.controls.fullsize &&
 				Config.prototype.controls.fullsize.getLabel &&
 				typeof Config.prototype.controls.fullsize.getLabel ===
-				'function'
+					'function'
 			) {
 				return Config.prototype.controls.fullsize.getLabel(
 					editor,
@@ -62,6 +58,8 @@ Config.prototype.controls.dialog = {
 					button
 				);
 			}
+
+			return;
 		},
 		exec: dialog => {
 			dialog.toggleFullSize();
@@ -69,7 +67,8 @@ Config.prototype.controls.dialog = {
 	}
 } as IDictionary<IControlType>;
 
-type Content = string | HTMLElement | Array<string | HTMLElement>;
+type ContentItem = string | HTMLElement;
+type Content = ContentItem | ContentItem[] | Array<ContentItem | ContentItem[]>;
 
 /**
  * Module to generate dialog windows
@@ -77,508 +76,32 @@ type Content = string | HTMLElement | Array<string | HTMLElement>;
  * @param {Object} parent Jodit main object
  * @param {Object} [opt] Extend Options
  */
-export class Dialog extends View {
-	public toolbar: ToolbarCollection;
-	public options: IDialogOptions;
-	/**
-	 * @property {HTMLDivElement} dialog
-	 */
-	public dialog: HTMLDivElement;
-	public dialogbox_header: HTMLHeadingElement;
-	public dialogbox_content: HTMLDivElement;
-	public dialogbox_footer: HTMLDivElement;
-	public dialogbox_toolbar: HTMLDivElement;
-	public document: Document = document;
-	public window: Window = window;
+export class Dialog extends ViewWithToolbar {
 	/**
 	 * @property {HTMLDivElement} resizer
 	 */
 	private resizer: HTMLDivElement;
+	toolbar: IToolbarCollection;
+
 	private offsetX: number;
 	private offsetY: number;
+
 	private destination: HTMLElement = document.body;
 	private destroyAfterClose: boolean = false;
+
 	private moved: boolean = false;
+
 	private iSetMaximization: boolean = false;
+
 	private resizable: boolean = false;
 	private draggable: boolean = false;
 	private startX: number = 0;
 	private startY: number = 0;
-	private startPoint = {x: 0, y: 0, w: 0, h: 0};
-
-	constructor(jodit?: IViewBased, options: any = Config.prototype.dialog) {
-		super(jodit, options);
-
-		if (isJoditObject(jodit)) {
-			this.window = jodit.ownerWindow;
-			this.document = jodit.ownerDocument;
-
-			jodit.events.on('beforeDestruct', () => {
-				this.destruct();
-			});
-		}
-
-		const self: Dialog = this;
-
-		const opt =
-			jodit && (jodit as View).options
-				? (jodit as IJodit).options.dialog
-				: Config.prototype.dialog;
-
-		self.options = {...opt, ...self.options} as IDialogOptions;
-
-		self.container = this.create.fromHTML(
-			'<div style="z-index:' +
-			self.options.zIndex +
-			'" class="jodit jodit_dialog_box">' +
-			'<div class="jodit_dialog_overlay"></div>' +
-			'<div class="jodit_dialog">' +
-			'<div class="jodit_dialog_header non-selected">' +
-			'<div class="jodit_dialog_header-title"></div>' +
-			'<div class="jodit_dialog_header-toolbar"></div>' +
-			'</div>' +
-			'<div class="jodit_dialog_content"></div>' +
-			'<div class="jodit_dialog_footer"></div>' +
-			(self.options.resizable
-				? '<div class="jodit_dialog_resizer"></div>'
-				: '') +
-			'</div>' +
-			'</div>'
-		) as HTMLDivElement;
-
-		if (jodit && (<IViewBased>jodit).id) {
-			self.container.setAttribute(
-				'data-editor_id',
-				(<IViewBased>jodit).id
-			);
-		}
-
-		Object.defineProperty(self.container, '__jodit_dialog', {
-			value: self
-		});
-
-		self.dialog = self.container.querySelector(
-			'.jodit_dialog'
-		) as HTMLDivElement;
-		self.resizer = self.container.querySelector(
-			'.jodit_dialog_resizer'
-		) as HTMLDivElement;
-
-		if (self.jodit && self.jodit.options && self.jodit.options.textIcons) {
-			self.container.classList.add('jodit_text_icons');
-		}
-
-		self.dialogbox_header = self.container.querySelector(
-			'.jodit_dialog_header>.jodit_dialog_header-title'
-		) as HTMLHeadingElement;
-		self.dialogbox_content = self.container.querySelector(
-			'.jodit_dialog_content'
-		) as HTMLDivElement;
-		self.dialogbox_footer = self.container.querySelector(
-			'.jodit_dialog_footer'
-		) as HTMLDivElement;
-		self.dialogbox_toolbar = self.container.querySelector(
-			'.jodit_dialog_header>.jodit_dialog_header-toolbar'
-		) as HTMLDivElement;
-
-		self.destination.appendChild(self.container);
-
-		self.container.addEventListener('close_dialog', self.close as any);
-
-		self.toolbar = JoditToolbarCollection.makeCollection(self);
-		self.toolbar.build(self.options.buttons, self.dialogbox_toolbar);
-
-		self.events
-			.on(this.window, 'mousemove', self.onMouseMove)
-			.on(this.window, 'mouseup', self.onMouseUp)
-			.on(this.window, 'keydown', self.onKeyDown)
-			.on(this.window, 'resize', self.onResize);
-
-		const headerBox: HTMLDivElement | null = self.container.querySelector(
-			'.jodit_dialog_header'
-		);
-
-		headerBox &&
-		headerBox.addEventListener(
-			'mousedown',
-			self.onHeaderMouseDown.bind(self)
-		);
-
-		if (self.options.resizable) {
-			self.resizer.addEventListener(
-				'mousedown',
-				self.onResizerMouseDown.bind(self)
-			);
-		}
-
-		Jodit.plugins.fullsize(self);
-	}
-
-	/**
-	 * Specifies the size of the window
-	 *
-	 * @param {number} [w] - The width of the window
-	 * @param {number} [h] - The height of the window
-	 */
-	public setSize(w?: number | string, h?: number | string) {
-		if (w) {
-			css(this.dialog, 'width', w);
-		}
-		if (h) {
-			css(this.dialog, 'height', h);
-		}
-	}
-
-	/**
-	 * Specifies the position of the upper left corner of the window . If x and y are specified,
-	 * the window is centered on the center of the screen
-	 *
-	 * @param {Number} [x] - Position px Horizontal
-	 * @param {Number} [y] - Position px Vertical
-	 */
-	public setPosition(x?: number, y?: number) {
-		const
-			w: number = this.window.innerWidth,
-			h: number = this.window.innerHeight;
-
-		let
-			left: number = w / 2 - this.dialog.offsetWidth / 2,
-			top: number = h / 2 - this.dialog.offsetHeight / 2;
-
-		if (left < 0) {
-			left = 0;
-		}
-
-		if (top < 0) {
-			top = 0;
-		}
-
-		if (x !== undefined && y !== undefined) {
-			this.offsetX = x;
-			this.offsetY = y;
-			this.moved = Math.abs(x - left) > 100 || Math.abs(y - top) > 100;
-		}
-
-		this.dialog.style.left = (x || left) + 'px';
-		this.dialog.style.top = (y || top) + 'px';
-	}
-
-	/**
-	 * Specifies the dialog box title . It can take a string and an array of objects
-	 *
-	 * @param {string|string[]|Element|Element[]} content - A string or an HTML element ,
-	 * or an array of strings and elements
-	 * @example
-	 * ```javascript
-	 * var dialog = new Jodi.modules.Dialog(parent);
-	 * dialog.setTitle('Hello world');
-	 * dialog.setTitle(['Hello world', '<button>OK</button>', $('<div>some</div>')]);
-	 * dialog.open();
-	 * ```
-	 */
-	public setTitle(content: Content) {
-		this.setElements(this.dialogbox_header, content);
-	}
-
-	/**
-	 * It specifies the contents of the dialog box. It can take a string and an array of objects
-	 *
-	 * @param {string|string[]|Element|Element[]} content A string or an HTML element ,
-	 * or an array of strings and elements
-	 * @example
-	 * ```javascript
-	 * var dialog = new Jodi.modules.Dialog(parent);
-	 * dialog.setTitle('Hello world');
-	 * dialog.setContent('<form onsubmit="alert(1);"><input type="text" /></form>');
-	 * dialog.open();
-	 * ```
-	 */
-	public setContent(content: Content) {
-		this.setElements(this.dialogbox_content, content);
-	}
-
-	/**
-	 * Sets the bottom of the dialog. It can take a string and an array of objects
-	 *
-	 * @param {string|string[]|Element|Element[]} content - A string or an HTML element ,
-	 * or an array of strings and elements
-	 * @example
-	 * ```javascript
-	 * var dialog = new Jodi.modules.Dialog(parent);
-	 * dialog.setTitle('Hello world');
-	 * dialog.setContent('<form><input id="someText" type="text" /></form>');
-	 * dialog.setFooter([
-	 *  $('<a class="jodit_button">OK</a>').click(function () {
-	 *      alert($('someText').val())
-	 *      dialog.close();
-	 *  })
-	 * ]);
-	 * dialog.open();
-	 * ```
-	 */
-	public setFooter(content: Content) {
-		this.setElements(this.dialogbox_footer, content);
-		this.dialog.classList.toggle('with_footer', !!content);
-	}
-
-	/**
-	 * Return current Z-index
-	 * @return {number}
-	 */
-	public getZIndex(): number {
-		return parseInt(this.container.style.zIndex || '0', 10);
-	}
-
-	/**
-	 * Get dialog instance with maximum z-index displaying it on top of all the dialog boxes
-	 *
-	 * @return {Dialog}
-	 */
-	public getMaxZIndexDialog() {
-		let maxzi: number = 0,
-			dlg: Dialog,
-			zIndex: number,
-			res: Dialog = this;
-
-		$$('.jodit_dialog_box', this.destination).forEach(
-			(dialog: HTMLElement) => {
-				dlg = (dialog as any).__jodit_dialog as Dialog;
-				zIndex = parseInt(css(dialog, 'zIndex') as string, 10);
-				if (dlg.isOpened() && !isNaN(zIndex) && zIndex > maxzi) {
-					res = dlg;
-					maxzi = zIndex;
-				}
-			}
-		);
-
-		return res;
-	}
-
-	/**
-	 * Sets the maximum z-index dialog box, displaying it on top of all the dialog boxes
-	 */
-	public setMaxZIndex() {
-		let maxzi: number = 0,
-			zIndex: number = 0;
-
-		$$('.jodit_dialog_box', this.destination).forEach(dialog => {
-			zIndex = parseInt(css(dialog, 'zIndex') as string, 10);
-			maxzi = Math.max(isNaN(zIndex) ? 0 : zIndex, maxzi);
-		});
-
-		this.container.style.zIndex = (maxzi + 1).toString();
-	}
-
-	/**
-	 * Expands the dialog on full browser window
-	 *
-	 * @param {boolean} condition true - fullsize
-	 * @return {boolean} true - fullsize
-	 */
-	public maximization(condition?: boolean): boolean {
-		if (typeof condition !== 'boolean') {
-			condition = !this.container.classList.contains(
-				'jodit_dialog_box-fullsize'
-			);
-		}
-
-		this.container.classList.toggle('jodit_dialog_box-fullsize', condition);
-
-		[this.destination, this.destination.parentNode].forEach(
-			(box: Node | null) => {
-				box &&
-				(box as HTMLElement).classList &&
-				(box as HTMLElement).classList.toggle(
-					'jodit_fullsize_box',
-					condition
-				);
-			}
-		);
-
-		this.iSetMaximization = condition;
-
-		return condition;
-	}
-
-	/**
-	 * It opens a dialog box to center it, and causes the two event.
-	 *
-	 * @param {string|string[]|Element|Element[]} [content]  specifies the contents of the dialog box.
-	 * Can be false или undefined. see {@link Dialog~setContent|setContent}
-	 * @param {string|string[]|Element|Element[]} [title]  specifies the title of the dialog box, @see setTitle
-	 * @param {boolean} [destroyAfter] true - After closing the window , the destructor will be called.
-	 * see {@link Dialog~destruct|destruct}
-	 * @param {boolean} [modal] - true window will be opened in modal mode
-	 * @fires {@link event:beforeOpen} id returns 'false' then the window will not open
-	 * @fires {@link event:afterOpen}
-	 */
-	public open(
-		content?: Content,
-		title?: Content,
-		destroyAfter?: boolean,
-		modal?: boolean
-	) {
-		/**
-		 * Called before the opening of the dialog box
-		 *
-		 * @event beforeOpen
-		 */
-		if (this.jodit && this.jodit.events) {
-			if (this.jodit.events.fire(this, 'beforeOpen') === false) {
-				return;
-			}
-		}
-
-		this.destroyAfterClose = destroyAfter === true;
-
-		if (title !== undefined) {
-			this.setTitle(title);
-		}
-
-		if (content) {
-			this.setContent(content);
-		}
-
-		this.container.classList.add('active');
-		if (modal) {
-			this.container.classList.add('jodit_modal');
-		}
-
-		this.setPosition(this.offsetX, this.offsetY);
-		this.setMaxZIndex();
-
-		if (this.options.fullsize) {
-			this.maximization(true);
-		}
-
-		/**
-		 * Called after the opening of the dialog box
-		 *
-		 * @event afterOpen
-		 */
-		if (this.jodit && this.jodit.events) {
-			this.jodit.events.fire('afterOpen', this);
-		}
-	}
-
-	/**
-	 * Open if the current window
-	 *
-	 * @return {boolean} - true window open
-	 */
-	public isOpened(): boolean {
-		return (
-			!this.isDestructed &&
-			this.container &&
-			this.container.classList.contains('active')
-		);
-	}
-
-	/**
-	 * Closes the dialog box , if you want to call the method {@link Dialog~destruct|destruct}
-	 *
-	 * @see destroy
-	 * @method close
-	 * @fires beforeClose
-	 * @fires afterClose
-	 * @example
-	 * ```javascript
-	 * //You can close dialog two ways
-	 * var dialog = new Jodit.modules.Dialog();
-	 * dialog.open('Hello world!', 'Title');
-	 * var $close = Jodit.modules.helper.dom('<a href="javascript:void(0)" style="float:left;" class="jodit_button">
-	 *     <i class="icon icon-check"></i>&nbsp;' + Jodit.prototype.i18n('Ok') + '</a>');
-	 * $close.addEventListener('click', function () {
-	 *     dialog.close();
-	 * });
-	 * dialog.setFooter($close);
-	 * // and second way, you can close dialog from content
-	 * dialog.open('<a onclick="var event = doc.createEvent('HTMLEvents'); event.initEvent('close_dialog', true, true);
-	 * this.dispatchEvent(event)">Close</a>', 'Title');
-	 * ```
-	 */
-	public close = (e?: MouseEvent) => {
-		if (this.isDestructed) {
-			return;
-		}
-
-		if (e) {
-			e.stopImmediatePropagation();
-			e.preventDefault();
-		}
-
-		/**
-		 * Called up to close the window
-		 *
-		 * @event beforeClose
-		 * @this {Dialog} current dialog
-		 */
-		if (this.jodit && this.jodit.events) {
-			this.jodit.events.fire('beforeClose', this);
-		}
-
-		this.container &&
-		this.container.classList &&
-		this.container.classList.remove('active');
-
-		if (this.iSetMaximization) {
-			this.maximization(false);
-		}
-
-		if (this.destroyAfterClose) {
-			this.destruct();
-		}
-
-		/**
-		 * It called after the window is closed
-		 *
-		 * @event afterClose
-		 * @this {Dialog} current dialog
-		 */
-		if (this.jodit && this.jodit.events) {
-			this.jodit.events.fire(this, 'afterClose');
-			this.jodit.events.fire(this.ownerWindow, 'jodit_close_dialog');
-		}
-	};
-
-	/**
-	 * It destroys all objects created for the windows and also includes all the handlers for the window object
-	 */
-	destruct() {
-		if (this.isDestructed) {
-			return;
-		}
-
-		if (this.toolbar) {
-			this.toolbar.destruct();
-			delete this.toolbar;
-		}
-
-		if (this.events) {
-			this.events
-				.off(this.window, 'mousemove', this.onMouseMove)
-				.off(this.window, 'mouseup', this.onMouseUp)
-				.off(this.window, 'keydown', this.onKeyDown)
-				.off(this.window, 'resize', this.onResize);
-		}
-
-		if (!this.jodit && this.events) {
-			this.events.destruct();
-			delete this.events;
-		}
-
-		if (this.container) {
-			Dom.safeRemove(this.container);
-			delete this.container;
-		}
-
-		super.destruct();
-	}
+	private startPoint = { x: 0, y: 0, w: 0, h: 0 };
 
 	private lockSelect = () => {
 		this.container.classList.add('jodit_dialog_box-moved');
 	};
-
 	private unlockSelect = () => {
 		this.container.classList.remove('jodit_dialog_box-moved');
 	};
@@ -589,16 +112,27 @@ export class Dialog extends View {
 	) {
 		const elements_list: HTMLElement[] = [];
 
-		asArray(elements).forEach(elm => {
-			const element: HTMLElement =
-				typeof elm === 'string' ? this.create.fromHTML(elm) : elm;
+		asArray<ContentItem | ContentItem[]>(elements).forEach(
+			(elm: ContentItem | ContentItem[]): any => {
+				if (Array.isArray(elm)) {
+					const div = this.create.div('jodit_dialog_column');
 
-			elements_list.push(element);
+					elements_list.push(div);
+					root.appendChild(div);
 
-			if (element.parentNode !== root) {
-				root.appendChild(element);
+					return this.setElements(div, elm);
+				}
+
+				const element: HTMLElement =
+					typeof elm === 'string' ? this.create.fromHTML(elm) : elm;
+
+				elements_list.push(element);
+
+				if (element.parentNode !== root) {
+					root.appendChild(element);
+				}
 			}
-		});
+		);
 
 		Array.from(root.childNodes).forEach((elm: ChildNode) => {
 			if (elements_list.indexOf(elm as HTMLElement) === -1) {
@@ -703,7 +237,6 @@ export class Dialog extends View {
 			e.preventDefault();
 		}
 	};
-
 	/**
 	 *
 	 * @param {MouseEvent} e
@@ -752,7 +285,475 @@ export class Dialog extends View {
 			this.jodit.events.fire(this, 'startResize');
 		}
 	}
+
+	public options: IDialogOptions;
+
+	/**
+	 * @property {HTMLDivElement} dialog
+	 */
+	public dialog: HTMLDivElement;
+
+	public dialogbox_header: HTMLHeadingElement;
+	public dialogbox_content: HTMLDivElement;
+	public dialogbox_footer: HTMLDivElement;
+	public dialogbox_toolbar: HTMLDivElement;
+
+	document: Document = document;
+	window: Window = window;
+
+	/**
+	 * Specifies the size of the window
+	 *
+	 * @param {number} [w] - The width of the window
+	 * @param {number} [h] - The height of the window
+	 */
+	setSize(w?: number | string, h?: number | string) {
+		if (w) {
+			css(this.dialog, 'width', w);
+		}
+		if (h) {
+			css(this.dialog, 'height', h);
+		}
+	}
+
+	/**
+	 * Specifies the position of the upper left corner of the window . If x and y are specified,
+	 * the window is centered on the center of the screen
+	 *
+	 * @param {Number} [x] - Position px Horizontal
+	 * @param {Number} [y] - Position px Vertical
+	 */
+	setPosition(x?: number, y?: number) {
+		const w: number = this.window.innerWidth,
+			h: number = this.window.innerHeight;
+
+		let left: number = w / 2 - this.dialog.offsetWidth / 2,
+			top: number = h / 2 - this.dialog.offsetHeight / 2;
+
+		if (left < 0) {
+			left = 0;
+		}
+
+		if (top < 0) {
+			top = 0;
+		}
+
+		if (x !== undefined && y !== undefined) {
+			this.offsetX = x;
+			this.offsetY = y;
+			this.moved = Math.abs(x - left) > 100 || Math.abs(y - top) > 100;
+		}
+
+		this.dialog.style.left = (x || left) + 'px';
+		this.dialog.style.top = (y || top) + 'px';
+	}
+
+	/**
+	 * Specifies the dialog box title . It can take a string and an array of objects
+	 *
+	 * @param {string|string[]|Element|Element[]} content - A string or an HTML element ,
+	 * or an array of strings and elements
+	 * @example
+	 * ```javascript
+	 * var dialog = new Jodi.modules.Dialog(parent);
+	 * dialog.setTitle('Hello world');
+	 * dialog.setTitle(['Hello world', '<button>OK</button>', $('<div>some</div>')]);
+	 * dialog.open();
+	 * ```
+	 */
+	setTitle(content: Content) {
+		this.setElements(this.dialogbox_header, content);
+	}
+
+	/**
+	 * It specifies the contents of the dialog box. It can take a string and an array of objects
+	 *
+	 * @param {string|string[]|Element|Element[]} content A string or an HTML element ,
+	 * or an array of strings and elements
+	 * @example
+	 * ```javascript
+	 * var dialog = new Jodi.modules.Dialog(parent);
+	 * dialog.setTitle('Hello world');
+	 * dialog.setContent('<form onsubmit="alert(1);"><input type="text" /></form>');
+	 * dialog.open();
+	 * ```
+	 */
+	setContent(content: Content) {
+		this.setElements(this.dialogbox_content, content);
+	}
+
+	/**
+	 * Sets the bottom of the dialog. It can take a string and an array of objects
+	 *
+	 * @param {string|string[]|Element|Element[]} content - A string or an HTML element ,
+	 * or an array of strings and elements
+	 * @example
+	 * ```javascript
+	 * var dialog = new Jodi.modules.Dialog(parent);
+	 * dialog.setTitle('Hello world');
+	 * dialog.setContent('<form><input id="someText" type="text" /></form>');
+	 * dialog.setFooter([
+	 *  $('<a class="jodit_button">OK</a>').click(function () {
+	 *      alert($('someText').val())
+	 *      dialog.close();
+	 *  })
+	 * ]);
+	 * dialog.open();
+	 * ```
+	 */
+	setFooter(content: Content) {
+		this.setElements(this.dialogbox_footer, content);
+		this.dialog.classList.toggle('with_footer', !!content);
+	}
+
+	/**
+	 * Return current Z-index
+	 * @return {number}
+	 */
+	getZIndex(): number {
+		return parseInt(this.container.style.zIndex || '0', 10);
+	}
+
+	/**
+	 * Get dialog instance with maximum z-index displaying it on top of all the dialog boxes
+	 *
+	 * @return {Dialog}
+	 */
+	getMaxZIndexDialog() {
+		let maxzi: number = 0,
+			dlg: Dialog,
+			zIndex: number,
+			res: Dialog = this;
+
+		$$('.jodit_dialog_box', this.destination).forEach(
+			(dialog: HTMLElement) => {
+				dlg = (dialog as any).__jodit_dialog as Dialog;
+				zIndex = parseInt(css(dialog, 'zIndex') as string, 10);
+				if (dlg.isOpened() && !isNaN(zIndex) && zIndex > maxzi) {
+					res = dlg;
+					maxzi = zIndex;
+				}
+			}
+		);
+
+		return res;
+	}
+
+	/**
+	 * Sets the maximum z-index dialog box, displaying it on top of all the dialog boxes
+	 */
+	setMaxZIndex() {
+		let maxzi: number = 0,
+			zIndex: number = 0;
+
+		$$('.jodit_dialog_box', this.destination).forEach(dialog => {
+			zIndex = parseInt(css(dialog, 'zIndex') as string, 10);
+			maxzi = Math.max(isNaN(zIndex) ? 0 : zIndex, maxzi);
+		});
+
+		this.container.style.zIndex = (maxzi + 1).toString();
+	}
+
+	/**
+	 * Expands the dialog on full browser window
+	 *
+	 * @param {boolean} condition true - fullsize
+	 * @return {boolean} true - fullsize
+	 */
+	maximization(condition?: boolean): boolean {
+		if (typeof condition !== 'boolean') {
+			condition = !this.container.classList.contains(
+				'jodit_dialog_box-fullsize'
+			);
+		}
+
+		this.container.classList.toggle('jodit_dialog_box-fullsize', condition);
+
+		[this.destination, this.destination.parentNode].forEach(
+			(box: Node | null) => {
+				box &&
+					(box as HTMLElement).classList &&
+					(box as HTMLElement).classList.toggle(
+						'jodit_fullsize_box',
+						condition
+					);
+			}
+		);
+
+		this.iSetMaximization = condition;
+
+		return condition;
+	}
+
+	/**
+	 * It opens a dialog box to center it, and causes the two event.
+	 *
+	 * @param {string|string[]|Element|Element[]} [content]  specifies the contents of the dialog box.
+	 * Can be false или undefined. see {@link Dialog~setContent|setContent}
+	 * @param {string|string[]|Element|Element[]} [title]  specifies the title of the dialog box, @see setTitle
+	 * @param {boolean} [destroyAfter] true - After closing the window , the destructor will be called.
+	 * see {@link Dialog~destruct|destruct}
+	 * @param {boolean} [modal] - true window will be opened in modal mode
+	 * @fires {@link event:beforeOpen} id returns 'false' then the window will not open
+	 * @fires {@link event:afterOpen}
+	 */
+	open(
+		content?: Content,
+		title?: Content,
+		destroyAfter?: boolean,
+		modal?: boolean
+	) {
+		/**
+		 * Called before the opening of the dialog box
+		 *
+		 * @event beforeOpen
+		 */
+		if (this.jodit && this.jodit.events) {
+			if (this.jodit.events.fire(this, 'beforeOpen') === false) {
+				return;
+			}
+		}
+
+		this.destroyAfterClose = destroyAfter === true;
+
+		if (title !== undefined) {
+			this.setTitle(title);
+		}
+
+		if (content) {
+			this.setContent(content);
+		}
+
+		this.container.classList.add('active');
+		if (modal) {
+			this.container.classList.add('jodit_modal');
+		}
+
+		this.setPosition(this.offsetX, this.offsetY);
+		this.setMaxZIndex();
+
+		if (this.options.fullsize) {
+			this.maximization(true);
+		}
+
+		/**
+		 * Called after the opening of the dialog box
+		 *
+		 * @event afterOpen
+		 */
+		if (this.jodit && this.jodit.events) {
+			this.jodit.events.fire('afterOpen', this);
+		}
+	}
+
+	/**
+	 * Open if the current window
+	 *
+	 * @return {boolean} - true window open
+	 */
+	isOpened(): boolean {
+		return (
+			!this.isDestructed &&
+			this.container &&
+			this.container.classList.contains('active')
+		);
+	}
+
+	/**
+	 * Closes the dialog box , if you want to call the method {@link Dialog~destruct|destruct}
+	 *
+	 * @see destroy
+	 * @method close
+	 * @fires beforeClose
+	 * @fires afterClose
+	 * @example
+	 * ```javascript
+	 * //You can close dialog two ways
+	 * var dialog = new Jodit.modules.Dialog();
+	 * dialog.open('Hello world!', 'Title');
+	 * var $close = Jodit.modules.helper.dom('<a href="javascript:void(0)" style="float:left;" class="jodit_button">
+	 *     <i class="icon icon-check"></i>&nbsp;' + Jodit.prototype.i18n('Ok') + '</a>');
+	 * $close.addEventListener('click', function () {
+	 *     dialog.close();
+	 * });
+	 * dialog.setFooter($close);
+	 * // and second way, you can close dialog from content
+	 * dialog.open('<a onclick="var event = doc.createEvent('HTMLEvents'); event.initEvent('close_dialog', true, true);
+	 * this.dispatchEvent(event)">Close</a>', 'Title');
+	 * ```
+	 */
+	close = (e?: MouseEvent) => {
+		if (this.isDestructed) {
+			return;
+		}
+
+		if (e) {
+			e.stopImmediatePropagation();
+			e.preventDefault();
+		}
+
+		/**
+		 * Called up to close the window
+		 *
+		 * @event beforeClose
+		 * @this {Dialog} current dialog
+		 */
+		if (this.jodit && this.jodit.events) {
+			this.jodit.events.fire('beforeClose', this);
+		}
+
+		this.container &&
+			this.container.classList &&
+			this.container.classList.remove('active');
+
+		if (this.iSetMaximization) {
+			this.maximization(false);
+		}
+
+		if (this.destroyAfterClose) {
+			this.destruct();
+		}
+
+		/**
+		 * It called after the window is closed
+		 *
+		 * @event afterClose
+		 * @this {Dialog} current dialog
+		 */
+		if (this.jodit && this.jodit.events) {
+			this.jodit.events.fire(this, 'afterClose');
+			this.jodit.events.fire(this.ownerWindow, 'jodit_close_dialog');
+		}
+	};
+
+	constructor(jodit?: IViewBased, options: any = Config.prototype.dialog) {
+		super(jodit, options);
+
+		if (isJoditObject(jodit)) {
+			this.window = jodit.ownerWindow;
+			this.document = jodit.ownerDocument;
+
+			jodit.events.on('beforeDestruct', () => {
+				this.destruct();
+			});
+		}
+
+		const self: Dialog = this;
+
+		const opt =
+			jodit && jodit.options
+				? (jodit as IJodit).options.dialog
+				: Config.prototype.dialog;
+
+		self.options = { ...opt, ...self.options } as IDialogOptions;
+
+		self.container = this.create.fromHTML(
+			'<div style="z-index:' +
+				self.options.zIndex +
+				'" class="jodit jodit_dialog_box">' +
+				'<div class="jodit_dialog_overlay"></div>' +
+				'<div class="jodit_dialog">' +
+				'<div class="jodit_dialog_header non-selected">' +
+				'<div class="jodit_dialog_header-title"></div>' +
+				'<div class="jodit_dialog_header-toolbar"></div>' +
+				'</div>' +
+				'<div class="jodit_dialog_content"></div>' +
+				'<div class="jodit_dialog_footer"></div>' +
+				(self.options.resizable
+					? '<div class="jodit_dialog_resizer"></div>'
+					: '') +
+				'</div>' +
+				'</div>'
+		) as HTMLDivElement;
+
+		if (jodit && (<IJodit>jodit).options.theme) {
+			self.container.classList.add(
+				'jodit_' + (jodit.options.theme || 'default') + '_theme'
+			);
+		}
+
+		if (jodit && (<IViewBased>jodit).id) {
+			(<IViewBased>jodit).markOwner(self.container);
+		}
+
+		Object.defineProperty(self.container, '__jodit_dialog', {
+			value: self
+		});
+
+		self.dialog = self.container.querySelector(
+			'.jodit_dialog'
+		) as HTMLDivElement;
+		self.resizer = self.container.querySelector(
+			'.jodit_dialog_resizer'
+		) as HTMLDivElement;
+
+		if (self.jodit && self.jodit.options && self.jodit.options.textIcons) {
+			self.container.classList.add('jodit_text_icons');
+		}
+
+		self.dialogbox_header = self.container.querySelector(
+			'.jodit_dialog_header>.jodit_dialog_header-title'
+		) as HTMLHeadingElement;
+		self.dialogbox_content = self.container.querySelector(
+			'.jodit_dialog_content'
+		) as HTMLDivElement;
+		self.dialogbox_footer = self.container.querySelector(
+			'.jodit_dialog_footer'
+		) as HTMLDivElement;
+		self.dialogbox_toolbar = self.container.querySelector(
+			'.jodit_dialog_header>.jodit_dialog_header-toolbar'
+		) as HTMLDivElement;
+
+		self.destination.appendChild(self.container);
+
+		self.container.addEventListener('close_dialog', self.close as any);
+
+		self.toolbar.build(self.options.buttons, self.dialogbox_toolbar);
+
+		self.events
+			.on(this.window, 'mousemove', self.onMouseMove)
+			.on(this.window, 'mouseup', self.onMouseUp)
+			.on(this.window, 'keydown', self.onKeyDown)
+			.on(this.window, 'resize', self.onResize);
+
+		const headerBox: HTMLDivElement | null = self.container.querySelector(
+			'.jodit_dialog_header'
+		);
+
+		headerBox &&
+			headerBox.addEventListener(
+				'mousedown',
+				self.onHeaderMouseDown.bind(self)
+			);
+
+		if (self.options.resizable) {
+			self.resizer.addEventListener(
+				'mousedown',
+				self.onResizerMouseDown.bind(self)
+			);
+		}
+
+		fullsize(self);
+	}
+
+	/**
+	 * It destroys all objects created for the windows and also includes all the handlers for the window object
+	 */
+	destruct() {
+		if (this.isInDestruct) {
+			return;
+		}
+
+		if (this.events) {
+			this.events
+				.off(this.window, 'mousemove', this.onMouseMove)
+				.off(this.window, 'mouseup', this.onMouseUp)
+				.off(this.window, 'keydown', this.onKeyDown)
+				.off(this.window, 'resize', this.onResize);
+		}
+
+		super.destruct();
+	}
 }
 
-import {Jodit} from '../../Jodit';
-import {JoditToolbarCollection, ToolbarCollection} from '..';
+import { fullsize } from '../../plugins';

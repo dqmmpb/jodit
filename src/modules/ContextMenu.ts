@@ -1,17 +1,14 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IViewBased} from '../types/view';
-import {Component} from './Component';
-import {css} from './helpers/css';
-import {ToolbarIcon} from './toolbar/icon';
-import {Dom} from './Dom';
+import { IViewBased } from '../types/view';
+import { Component, STATUSES } from './Component';
+import { css } from './helpers/css';
+import { ToolbarIcon } from './toolbar/icon';
+import { Dom } from './Dom';
 
 export interface Action {
 	icon?: string;
@@ -27,16 +24,6 @@ export interface Action {
  */
 export class ContextMenu extends Component {
 	private context: HTMLElement;
-
-	constructor(editor: IViewBased) {
-		super(editor);
-
-		this.context = editor.create.div('jodit_context_menu', {
-			'data-editor_id': this.jodit.id
-		});
-
-		editor.ownerDocument.body.appendChild(this.context);
-	}
 
 	/**
 	 * Hide context menu
@@ -83,10 +70,12 @@ export class ContextMenu extends Component {
 				return;
 			}
 
-			const action: HTMLAnchorElement = this.jodit.create.fromHTML(
-				'<a href="javascript:void(0)">' +
-				(item.icon ? ToolbarIcon.getIcon(item.icon) : '') +
-				'<span></span></a>'
+			const title = self.jodit.i18n(item.title || '');
+
+			const action = this.jodit.create.fromHTML(
+				`<a title="${title}" data-icon="${item.icon}"  href="javascript:void(0)">` +
+					(item.icon ? ToolbarIcon.getIcon(item.icon) : '') +
+					'<span></span></a>'
 			) as HTMLAnchorElement;
 
 			const span: HTMLSpanElement = action.querySelector(
@@ -99,7 +88,7 @@ export class ContextMenu extends Component {
 				return false;
 			});
 
-			span.innerText = self.jodit.i18n(item.title || '');
+			span.textContent = title;
 			self.context.appendChild(action);
 		});
 
@@ -108,12 +97,27 @@ export class ContextMenu extends Component {
 			top: y
 		});
 
-		this.jodit.events.on(this.jodit.ownerWindow, 'mouseup jodit_close_dialog', self.hide);
+		this.jodit.events.on(
+			this.jodit.ownerWindow,
+			'mouseup jodit_close_dialog',
+			self.hide
+		);
 
 		this.context.classList.add('jodit_context_menu-show');
+		this.jodit.markOwner(this.context);
+	}
+
+	constructor(editor: IViewBased) {
+		super(editor);
+
+		this.context = editor.create.div('jodit_context_menu');
+
+		editor.ownerDocument.body.appendChild(this.context);
 	}
 
 	destruct() {
+		this.setStatus(STATUSES.beforeDestruct);
+
 		Dom.safeRemove(this.context);
 		delete this.context;
 		this.jodit.events.off(this.jodit.ownerWindow, 'mouseup', this.hide);

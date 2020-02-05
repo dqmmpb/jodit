@@ -1,22 +1,18 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
+import { Config } from '../Config';
 import * as consts from '../constants';
-import {MODE_WYSIWYG} from '../constants';
-import {Dom} from '../modules/Dom';
-import {ToolbarIcon} from '../modules/toolbar/icon';
-import {Plugin} from '../modules/Plugin';
-import {debounce} from '../modules/helpers/async';
-import {trim} from '../modules/helpers/string';
-import {ISelectionRange, markerInfo} from '../types/types';
-import {IJodit} from '../types';
+import { MODE_WYSIWYG } from '../constants';
+import { Dom } from '../modules/Dom';
+import { ToolbarIcon } from '../modules/toolbar/icon';
+import { Plugin } from '../modules/Plugin';
+import { trim } from '../modules/helpers/string';
+import { ISelectionRange, markerInfo } from '../types/types';
+import { IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -47,49 +43,7 @@ Config.prototype.useSearch = true;
  * ```
  */
 export class search extends Plugin {
-	public searchBox: HTMLDivElement;
-	public queryInput: HTMLInputElement;
-	public replaceInput: HTMLInputElement;
-	public closeButton: HTMLButtonElement;
-	public nextButton: HTMLButtonElement;
-	public prevButton: HTMLButtonElement;
-	public replaceButton: HTMLButtonElement;
-	public counterBox: HTMLSpanElement;
-	private template: string =
-		'<div class="jodit_search">' +
-		'<div class="jodit_search_box">' +
-		'<div class="jodit_search_inputs">' +
-		'<input tabindex="0" class="jodit_search-query" placeholder="' +
-		this.jodit.i18n('Search for') +
-		'" type="text"/>' +
-		'<input tabindex="0" class="jodit_search-replace" placeholder="' +
-		this.jodit.i18n('Replace with') +
-		'" type="text"/>' +
-		'</div>' +
-		'<div class="jodit_search_counts">' +
-		'<span>0/0</span>' +
-		'</div>' +
-		'<div class="jodit_search_buttons">' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-next">' +
-		ToolbarIcon.getIcon('angle-down') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-prev">' +
-		ToolbarIcon.getIcon('angle-up') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-cancel">' +
-		ToolbarIcon.getIcon('cancel') +
-		'</button>' +
-		'<button tabindex="0" type="button" class="jodit_search_buttons-replace">' +
-		this.jodit.i18n('Replace') +
-		'</button>' +
-		'</div>' +
-		'</div>' +
-		'</div>';
-	private isOpened: boolean = false;
-	private selInfo: markerInfo[] | null = null;
-	private current: Node | false = false;
-
-	public static getSomePartOfStringIndex(
+	static getSomePartOfStringIndex(
 		needle: string,
 		haystack: string,
 		start: boolean = true
@@ -99,7 +53,7 @@ export class search extends Plugin {
 			| false;
 	}
 
-	public static findSomePartOfString(
+	static findSomePartOfString(
 		needle: string,
 		haystack: string,
 		start: boolean = true,
@@ -113,7 +67,7 @@ export class search extends Plugin {
 			tmpEqualLength: number = 0,
 			startAtIndex: number | null = null;
 
-		const inc: number = start ? 1 : -1,
+		const inc = start ? 1 : -1,
 			tmp: string[] = [];
 
 		for (; haystack[i] !== undefined; i += inc) {
@@ -145,18 +99,131 @@ export class search extends Plugin {
 			}
 		}
 
-		return getIndex
-			? startAtIndex !== null
-				? startAtIndex
-				: false
-			: tmp.length
-				? start
-					? tmp.join('')
-					: tmp.reverse().join('')
-				: false;
+		if (getIndex) {
+			return startAtIndex ?? false;
+		}
+
+		if (tmp.length) {
+			return start ? tmp.join('') : tmp.reverse().join('');
+		}
+
+		return false;
 	}
 
-	public calcCounts = (
+	private template = `<div class="jodit_search">
+			<div class="jodit_search_box">
+				<div class="jodit_search_inputs">
+					<input tabindex="0" class="jodit_search-query" placeholder="${this.jodit.i18n(
+						'Search for'
+					)}" type="text"/>
+					<input tabindex="0" class="jodit_search-replace" placeholder="${this.jodit.i18n(
+						'Replace with'
+					)}" type="text"/>
+				</div>
+				<div class="jodit_search_counts">
+					<span>0/0</span>
+				</div>
+				<div class="jodit_search_buttons">
+					<button tabindex="0" type="button" class="jodit_search_buttons-next">${ToolbarIcon.getIcon(
+						'angle-down'
+					)}</button>
+					<button tabindex="0" type="button" class="jodit_search_buttons-prev">${ToolbarIcon.getIcon(
+						'angle-up'
+					)}</button>
+					<button tabindex="0" type="button" class="jodit_search_buttons-cancel">${ToolbarIcon.getIcon(
+						'cancel'
+					)}</button>
+					<button tabindex="0" type="button" class="jodit_search_buttons-replace">${this.jodit.i18n(
+						'Replace'
+					)}</button>
+				</div>
+			</div>
+		</div>`;
+
+	private isOpened: boolean = false;
+
+	private selInfo: markerInfo[] | null = null;
+	private current: Node | false = false;
+
+	private eachMap = (
+		node: Node,
+		callback: (elm: Node) => boolean,
+		next: boolean
+	) => {
+		Dom.findWithCurrent(
+			node,
+			(child: Node | null): boolean => {
+				return !!child && callback(child);
+			},
+			this.jodit.editor,
+			next ? 'nextSibling' : 'previousSibling',
+			next ? 'firstChild' : 'lastChild'
+		);
+	};
+
+	private updateCounters = () => {
+		if (!this.isOpened) {
+			return;
+		}
+
+		this.counterBox.style.display = this.queryInput.value.length
+			? 'inline-block'
+			: 'none';
+
+		const range = this.jodit.selection.range,
+			counts: [number, number] = this.calcCounts(
+				this.queryInput.value,
+				range
+			);
+
+		this.counterBox.textContent = counts.join('/');
+	};
+
+	private boundAlreadyWas(
+		current: ISelectionRange,
+		bounds: ISelectionRange[]
+	): boolean {
+		return bounds.some((bound: ISelectionRange) => {
+			return (
+				bound.startContainer === current.startContainer &&
+				bound.endContainer === current.endContainer &&
+				bound.startOffset === current.startOffset &&
+				bound.endOffset === current.endOffset
+			);
+		}, false);
+	}
+
+	private tryScrollToElement(startContainer: Node) {
+		// find scrollable element
+		let parentBox: HTMLElement | false = Dom.closest(
+			startContainer,
+			Dom.isElement,
+			this.jodit.editor
+		) as HTMLElement | false;
+
+		if (!parentBox) {
+			parentBox = Dom.prev(
+				startContainer,
+				Dom.isElement,
+				this.jodit.editor
+			) as HTMLElement | false;
+		}
+
+		parentBox &&
+			parentBox !== this.jodit.editor &&
+			parentBox.scrollIntoView();
+	}
+
+	searchBox: HTMLDivElement;
+	queryInput: HTMLInputElement;
+	replaceInput: HTMLInputElement;
+	closeButton: HTMLButtonElement;
+	nextButton: HTMLButtonElement;
+	prevButton: HTMLButtonElement;
+	replaceButton: HTMLButtonElement;
+	counterBox: HTMLSpanElement;
+
+	calcCounts = (
 		query: string,
 		current: ISelectionRange | false = false
 	): [number, number] => {
@@ -193,9 +260,8 @@ export class search extends Plugin {
 		return [currentIndex, count];
 	};
 
-	public findAndReplace = (start: Node | null, query: string): boolean => {
-		const
-			range = this.jodit.selection.range,
+	findAndReplace = (start: Node | null, query: string): boolean => {
+		const range = this.jodit.selection.range,
 			bound: ISelectionRange | false = this.find(
 				start,
 				query,
@@ -217,7 +283,7 @@ export class search extends Plugin {
 					rng.setEnd(bound.endContainer, bound.endOffset as number);
 					rng.deleteContents();
 
-					const textNode: Node = this.jodit.editorDocument.createTextNode(
+					const textNode: Node = this.jodit.create.inside.text(
 						this.replaceInput.value
 					);
 
@@ -225,8 +291,7 @@ export class search extends Plugin {
 					this.jodit.selection.select(textNode);
 					this.tryScrollToElement(textNode);
 				}
-			} catch {
-			}
+			} catch {}
 
 			return true;
 		}
@@ -240,7 +305,7 @@ export class search extends Plugin {
 	 * @param query
 	 * @param next
 	 */
-	public findAndSelect = (
+	findAndSelect = (
 		start: Node | null,
 		query: string,
 		next: boolean
@@ -261,8 +326,7 @@ export class search extends Plugin {
 				rng.setStart(bound.startContainer, bound.startOffset as number);
 				rng.setEnd(bound.endContainer, bound.endOffset as number);
 				this.jodit.selection.selectRange(rng);
-			} catch (e) {
-			}
+			} catch (e) {}
 
 			this.tryScrollToElement(bound.startContainer);
 
@@ -275,7 +339,7 @@ export class search extends Plugin {
 		return false;
 	};
 
-	public find = (
+	find = (
 		start: Node | null,
 		query: string,
 		next: boolean,
@@ -295,7 +359,7 @@ export class search extends Plugin {
 				start,
 				(elm: Node): boolean => {
 					if (
-						elm.nodeType === Node.TEXT_NODE &&
+						Dom.isText(elm) &&
 						elm.nodeValue !== null &&
 						elm.nodeValue.length
 					) {
@@ -409,7 +473,7 @@ export class search extends Plugin {
 		return false;
 	};
 
-	public open = (searchAndReplace: boolean = false) => {
+	open = (searchAndReplace: boolean = false) => {
 		if (!this.isOpened) {
 			this.searchBox.classList.add('jodit_search-active');
 			this.isOpened = true;
@@ -439,7 +503,7 @@ export class search extends Plugin {
 		}
 	};
 
-	public close = () => {
+	close = () => {
 		if (!this.isOpened) {
 			return;
 		}
@@ -491,9 +555,41 @@ export class search extends Plugin {
 				'.jodit_search_counts span'
 			) as HTMLButtonElement;
 
-			editor.workplace.appendChild(this.searchBox);
+			const onInit = () => {
+				editor.workplace.appendChild(this.searchBox);
+
+				editor.events
+					.off(this.jodit.container, 'keydown.search')
+					.on(
+						this.jodit.container,
+						'keydown.search',
+						(e: KeyboardEvent) => {
+							if (editor.getRealMode() !== MODE_WYSIWYG) {
+								return;
+							}
+
+							switch (e.which) {
+								case consts.KEY_ESC:
+									this.close();
+									break;
+								case consts.KEY_F3:
+									if (self.queryInput.value) {
+										editor.events.fire(
+											!e.shiftKey
+												? 'searchNext'
+												: 'searchPrevious'
+										);
+										e.preventDefault();
+									}
+									break;
+							}
+						}
+					);
+			};
+			onInit();
 
 			editor.events
+				.on('changePlace', onInit)
 				.on(self.closeButton, 'click', this.close)
 				.on(self.queryInput, 'mousedown', () => {
 					if (editor.selection.isFocused()) {
@@ -512,7 +608,7 @@ export class search extends Plugin {
 					e.preventDefault();
 					e.stopImmediatePropagation();
 				})
-				.on([self.nextButton, self.prevButton], 'click', function (
+				.on([self.nextButton, self.prevButton], 'click', function(
 					this: HTMLButtonElement,
 					e: MouseEvent
 				) {
@@ -527,7 +623,7 @@ export class search extends Plugin {
 				.on(
 					this.queryInput,
 					'keydown',
-					debounce((e: KeyboardEvent) => {
+					this.jodit.async.debounce((e: KeyboardEvent) => {
 						switch (e.which) {
 							case consts.KEY_ENTER:
 								e.preventDefault();
@@ -541,31 +637,6 @@ export class search extends Plugin {
 								break;
 						}
 					}, this.jodit.defaultTimeout)
-				)
-				.on(
-					this.jodit.container,
-					'keydown.search',
-					(e: KeyboardEvent) => {
-						if (editor.getRealMode() !== MODE_WYSIWYG) {
-							return;
-						}
-
-						switch (e.which) {
-							case consts.KEY_ESC:
-								this.close();
-								break;
-							case consts.KEY_F3:
-								if (self.queryInput.value) {
-									editor.events.fire(
-										!e.shiftKey
-											? 'searchNext'
-											: 'searchPrevious'
-									);
-									e.preventDefault();
-								}
-								break;
-						}
-					}
 				)
 				.on('beforeSetMode.search', () => {
 					this.close();
@@ -585,8 +656,8 @@ export class search extends Plugin {
 						editor.selection.current() || editor.editor.firstChild,
 						self.queryInput.value,
 						editor.events.current[
-						editor.events.current.length - 1
-							] === 'searchNext'
+							editor.events.current.length - 1
+						] === 'searchNext'
 					);
 				})
 				.on('search.search', (value: string, next: boolean = true) => {
@@ -629,76 +700,6 @@ export class search extends Plugin {
 
 	beforeDestruct(jodit: IJodit): void {
 		Dom.safeRemove(this.searchBox);
-		jodit.events && jodit.events.off('.search');
-		jodit.events && jodit.events.off(jodit.container, '.search');
-	}
-
-	private eachMap = (
-		node: Node,
-		callback: (elm: Node) => boolean,
-		next: boolean
-	) => {
-		Dom.findWithCurrent(
-			node,
-			(child: Node | null): boolean => {
-				return !!child && callback(child);
-			},
-			this.jodit.editor,
-			next ? 'nextSibling' : 'previousSibling',
-			next ? 'firstChild' : 'lastChild'
-		);
-	};
-
-	private updateCounters = () => {
-		if (!this.isOpened) {
-			return;
-		}
-
-		this.counterBox.style.display = this.queryInput.value.length
-			? 'inline-block'
-			: 'none';
-
-		const range = this.jodit.selection.range,
-			counts: [number, number] = this.calcCounts(
-				this.queryInput.value,
-				range
-			);
-
-		this.counterBox.innerText = counts.join('/');
-	};
-
-	private boundAlreadyWas(
-		current: ISelectionRange,
-		bounds: ISelectionRange[]
-	): boolean {
-		return bounds.some((bound: ISelectionRange) => {
-			return (
-				bound.startContainer === current.startContainer &&
-				bound.endContainer === current.endContainer &&
-				bound.startOffset === current.startOffset &&
-				bound.endOffset === current.endOffset
-			);
-		}, false);
-	}
-
-	private tryScrollToElement(startContainer: Node) {
-		// find scrollable element
-		let parentBox: HTMLElement | false = Dom.closest(
-			startContainer,
-			elm => elm && elm.nodeType === Node.ELEMENT_NODE,
-			this.jodit.editor
-		) as HTMLElement | false;
-
-		if (!parentBox) {
-			parentBox = Dom.prev(
-				startContainer,
-				(elm: Node | null) => elm && elm.nodeType === Node.ELEMENT_NODE,
-				this.jodit.editor
-			) as HTMLElement | false;
-		}
-
-		parentBox &&
-		parentBox !== this.jodit.editor &&
-		parentBox.scrollIntoView();
+		jodit.events?.off('.search');
 	}
 }

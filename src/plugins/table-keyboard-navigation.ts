@@ -1,16 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import * as consts from '../constants';
-import {Dom} from '../modules/Dom';
-import {Table} from '../modules/Table';
-import {IJodit} from '../types';
+import { Dom } from '../modules/Dom';
+import { Table } from '../modules/Table';
+import { IJodit } from '../types';
 
 /**
  * Process navigate keypressing in table cell
@@ -18,9 +15,11 @@ import {IJodit} from '../types';
  * @param {Jodit} editor
  */
 export function tableKeyboardNavigation(editor: IJodit) {
-	editor.events.on(
-		'keydown',
-		(event: KeyboardEvent): false | void => {
+	editor.events
+		.off('.tableKeyboardNavigation')
+		.on('keydown.tableKeyboardNavigation', (event: KeyboardEvent):
+			| false
+			| void => {
 			let current: Element, block: HTMLElement;
 
 			if (
@@ -56,9 +55,9 @@ export function tableKeyboardNavigation(editor: IJodit) {
 										? elm && elm.nodeName === 'BR'
 										: !!elm,
 								block
-								) ||
+							) ||
 								(event.which !== consts.KEY_UP &&
-									current.nodeType === Node.TEXT_NODE &&
+									Dom.isText(current) &&
 									range.startOffset !== 0))) ||
 						((event.which === consts.KEY_RIGHT ||
 							event.which === consts.KEY_DOWN) &&
@@ -69,12 +68,12 @@ export function tableKeyboardNavigation(editor: IJodit) {
 										? elm && elm.nodeName === 'BR'
 										: !!elm,
 								block
-								) ||
+							) ||
 								(event.which !== consts.KEY_DOWN &&
-									current.nodeType === Node.TEXT_NODE &&
+									Dom.isText(current) &&
 									current.nodeValue &&
 									range.startOffset !==
-									current.nodeValue.length)))
+										current.nodeValue.length)))
 					) {
 						return;
 					}
@@ -113,9 +112,10 @@ export function tableKeyboardNavigation(editor: IJodit) {
 							sibling === 'next'
 								? false
 								: (table.querySelector(
-								'tr'
-								) as HTMLTableRowElement),
-							sibling === 'next'
+										'tr'
+								  ) as HTMLTableRowElement),
+							sibling === 'next',
+							editor.create.inside
 						);
 						next = (Dom as any)[sibling](
 							block,
@@ -126,37 +126,36 @@ export function tableKeyboardNavigation(editor: IJodit) {
 					}
 					break;
 				case consts.KEY_UP:
-				case consts.KEY_DOWN: {
-					let i = 0,
-						j = 0;
+				case consts.KEY_DOWN:
+					{
+						let i = 0,
+							j = 0;
 
-					const matrix = Table.formalMatrix(
-						table,
-						(elm, _i, _j) => {
-							if (elm === block) {
-								i = _i;
-								j = _j;
+						const matrix = Table.formalMatrix(
+							table,
+							(elm, _i, _j) => {
+								if (elm === block) {
+									i = _i;
+									j = _j;
+								}
+							}
+						);
+						if (event.which === consts.KEY_UP) {
+							if (matrix[i - 1] !== undefined) {
+								next = matrix[i - 1][j];
+							}
+						} else {
+							if (matrix[i + 1] !== undefined) {
+								next = matrix[i + 1][j];
 							}
 						}
-					);
-					if (event.which === consts.KEY_UP) {
-						if (matrix[i - 1] !== undefined) {
-							next = matrix[i - 1][j];
-						}
-					} else {
-						if (matrix[i + 1] !== undefined) {
-							next = matrix[i + 1][j];
-						}
 					}
-				}
 					break;
 			}
 
 			if (next) {
 				if (!next.firstChild) {
-					const first: Node = editor.editorDocument.createElement(
-						'br'
-					);
+					const first = editor.create.inside.element('br');
 					next.appendChild(first);
 					editor.selection.setCursorBefore(first);
 				} else {
@@ -166,12 +165,11 @@ export function tableKeyboardNavigation(editor: IJodit) {
 						editor.selection.setCursorIn(
 							next,
 							event.which === consts.KEY_RIGHT ||
-							event.which === consts.KEY_DOWN
+								event.which === consts.KEY_DOWN
 						);
 					}
 				}
 				return false;
 			}
-		}
-	);
+		});
 }

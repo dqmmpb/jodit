@@ -1,13 +1,10 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IJodit} from '../types/jodit';
+import { IJodit } from '../types/jodit';
 
 import {
 	IDictionary,
@@ -18,17 +15,18 @@ import {
 	IUploaderData
 } from '../types/';
 
-import {Dom} from './Dom';
+import { Dom } from './Dom';
 import {
 	$$,
 	each,
 	hexToRgb,
 	isPlainObject,
+	isFunction,
 	normalizeColor,
 	val,
 	hasBrowserColorPicker
 } from './helpers/';
-import {ToolbarIcon} from './toolbar/icon';
+import { ToolbarIcon } from './toolbar/icon';
 
 export namespace Widget {
 	/**
@@ -81,32 +79,35 @@ export namespace Widget {
 						')';
 				}
 			},
+
 			eachColor = (colors: string[] | IDictionary<string[]>) => {
 				const stack: string[] = [];
+
 				if (isPlainObject(colors)) {
 					Object.keys(colors).forEach(key => {
 						stack.push(
 							'<div class="jodit_colorpicker_group jodit_colorpicker_group-' +
-							key +
-							'">'
+								key +
+								'">'
 						);
 						stack.push(eachColor((colors as any)[key]));
 						stack.push('</div>');
 					});
+
 				} else if (Array.isArray(colors)) {
 					colors.forEach(color => {
 						stack.push(
 							'<a ' +
-							(valueHex === color ? ' class="active" ' : '') +
-							' title="' +
-							color +
-							'" style="background-color:' +
-							color +
-							'" data-color="' +
-							color +
-							'" href="javascript:void(0)">' +
-							(valueHex === color ? iconEye : '') +
-							'</a>'
+								(valueHex === color ? ' class="active" ' : '') +
+								' title="' +
+								color +
+								'" style="background-color:' +
+								color +
+								'" data-color="' +
+								color +
+								'" href="javascript:void(0)">' +
+								(valueHex === color ? iconEye : '') +
+								'</a>'
 						);
 					});
 				}
@@ -122,12 +123,12 @@ export namespace Widget {
 		form.appendChild(
 			editor.create.fromHTML(
 				'<a ' +
-				(editor.options.textIcons
-					? 'class="jodit_text_icon"'
-					: '') +
-				' data-color="" href="javascript:void(0)">' +
-				iconEraser +
-				'</a>'
+					(editor.options.textIcons
+						? 'class="jodit_text_icon"'
+						: '') +
+					' data-color="" href="javascript:void(0)">' +
+					iconEraser +
+					'</a>'
 			)
 		);
 
@@ -135,15 +136,15 @@ export namespace Widget {
 			form.appendChild(
 				editor.create.fromHTML(
 					'<span>' +
-					'<em ' +
-					(editor.options.textIcons
-						? 'class="jodit_text_icon"'
-						: '') +
-					'>' +
-					iconPalette +
-					'</em>' +
-					'<input type="color" value=""/>' +
-					'</span>'
+						'<em ' +
+						(editor.options.textIcons
+							? 'class="jodit_text_icon"'
+							: '') +
+						'>' +
+						iconPalette +
+						'</em>' +
+						'<input type="color" value=""/>' +
+						'</span>'
 				)
 			);
 
@@ -250,16 +251,14 @@ export namespace Widget {
 				tab: HTMLElement;
 			}> = {};
 
-		let
-			firstTab: string = '',
+		let firstTab: string = '',
 			tabcount: number = 0;
 
 		box.appendChild(buttons);
 		box.appendChild(tabBox);
 
 		each<(() => void) | HTMLElement>(tabs, (name: string, tabOptions) => {
-			const
-				tab = editor.create.div('jodit_tab'),
+			const tab = editor.create.div('jodit_tab'),
 				button = editor.create.element('a', {
 					href: 'javascript:void(0);'
 				});
@@ -268,7 +267,9 @@ export namespace Widget {
 				firstTab = name.toString();
 			}
 
-			button.innerHTML = /<svg/.test(name.toString()) ? name : editor.i18n(name.toString());
+			button.innerHTML = /<svg/.test(name.toString())
+				? name
+				: editor.i18n(name.toString());
 			buttons.appendChild(button);
 
 			if (typeof tabOptions !== 'function') {
@@ -366,7 +367,7 @@ export namespace Widget {
 	interface ImageSelectorCallbacks {
 		url?: (this: IJodit, url: string, alt: string) => void;
 		filebrowser?: (data: IFileBrowserCallBackData) => void;
-		upload?: (this: IJodit, data: IFileBrowserCallBackData) => void;
+		upload?: ((this: IJodit, data: IFileBrowserCallBackData) => void) | true;
 	}
 
 	/**
@@ -396,34 +397,32 @@ export namespace Widget {
 			(editor.options.uploader.url ||
 				editor.options.uploader.insertImageAsBase64URI)
 		) {
-			const dragbox: HTMLElement = editor.create.fromHTML(
+			const dragbox = editor.create.fromHTML(
 				'<div class="jodit_draganddrop_file_box">' +
-				'<strong>' +
-				editor.i18n(isImage ? 'Drop image' : 'Drop file') +
-				'</strong>' +
-				'<span><br> ' +
-				editor.i18n('or click') +
-				'</span>' +
-				'<input type="file" accept="' +
-				(isImage ? 'image/*' : '*') +
-				'image/*" tabindex="-1" dir="auto" multiple=""/>' +
-				'</div>'
+					`<strong>${editor.i18n(
+						isImage ? 'Drop image' : 'Drop file'
+					)}</strong>` +
+					`<span><br>${editor.i18n('or click')}</span>` +
+					`<input type="file" accept="${
+						isImage ? 'image/*' : '*'
+					}" tabindex="-1" dir="auto" multiple=""/>` +
+					'</div>'
 			);
 
 			editor.getInstance<IUploader>('Uploader').bind(
 				dragbox,
 				(resp: IUploaderData) => {
-					if (typeof callbacks.upload === 'function') {
-						callbacks.upload.call(editor, {
-							baseurl: resp.baseurl,
-							files: resp.files
-						} as IFileBrowserCallBackData);
+					let handler = isFunction(callbacks.upload) ? callbacks.upload : editor.options.uploader.defaultHandlerSuccess;
+
+					if (typeof handler === 'function') {
+						handler.call(editor, resp);
 					}
 				},
 				(error: Error) => {
 					editor.events.fire('errorMessage', error.message);
 				}
 			);
+
 			const icon = editor.options.textIcons
 				? ''
 				: ToolbarIcon.getIcon('upload');
@@ -450,23 +449,21 @@ export namespace Widget {
 		}
 
 		if (callbacks.url) {
-			const form: HTMLFormElement = editor.create.fromHTML(
-				'<form onsubmit="return false;" class="jodit_form">' +
-				'<input type="text" required name="url" placeholder="http://"/>' +
-				'<input type="text" name="text" placeholder="' +
-				editor.i18n('Alternative text') +
-				'"/>' +
-				'<div style="text-align: right">' +
-				'<button>' +
-				editor.i18n('Insert') +
-				'</button>' +
-				'</div>' +
-				'</form>'
+			const form = editor.create.fromHTML(
+		`<form onsubmit="return false;" class="jodit_form">
+						<div class="jodit_form_group">
+							<input class="jodit_input" type="text" required name="url" placeholder="http://"/>
+						</div>
+						<div class="jodit_form_group">
+							<input class="jodit_input" type="text" name="text" placeholder="${editor.i18n('Alternative text')}"/>
+						</div>
+						<div style="text-align: right"><button class="jodit_button">${editor.i18n('Insert')}</button></div>
+					</form>`
 				) as HTMLFormElement,
-				button: HTMLButtonElement = form.querySelector(
+				button = form.querySelector(
 					'button'
 				) as HTMLButtonElement,
-				url: HTMLInputElement = form.querySelector(
+				url = form.querySelector(
 					'input[name=url]'
 				) as HTMLInputElement;
 
@@ -474,23 +471,23 @@ export namespace Widget {
 
 			if (
 				elm &&
-				elm.nodeType !== Node.TEXT_NODE &&
+				!Dom.isText(elm) &&
 				(elm.tagName === 'IMG' || $$('img', elm).length)
 			) {
 				currentImage = elm.tagName === 'IMG' ? elm : $$('img', elm)[0];
 				val(form, 'input[name=url]', currentImage.getAttribute('src'));
 				val(form, 'input[name=text]', currentImage.getAttribute('alt'));
-				button.innerText = editor.i18n('Update');
+				button.textContent = editor.i18n('Update');
 			}
 
 			if (
 				elm &&
-				elm.nodeType !== Node.TEXT_NODE &&
+				!Dom.isText(elm) &&
 				elm.nodeName === 'A'
 			) {
 				val(form, 'input[name=url]', elm.getAttribute('href') || '');
 				val(form, 'input[name=text]', elm.getAttribute('title') || '');
-				button.innerText = editor.i18n('Update');
+				button.textContent = editor.i18n('Update');
 			}
 
 			form.addEventListener(

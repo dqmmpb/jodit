@@ -1,17 +1,16 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IDictionary, IEventsNative} from '../../types';
-import {IViewBased, IViewOptions} from '../../types/view';
-import {Component} from '../Component';
-import {EventsNative} from '../events/eventsNative';
-import {Panel} from './panel';
+import { IAsync, IComponent, IDictionary, IEventsNative, IProgressBar } from '../../types';
+import { IViewBased, IViewOptions } from '../../types/view';
+import { Component } from '../Component';
+import { EventsNative } from '../events/eventsNative';
+import { Panel } from './panel';
+import { Storage } from '../storage';
+import { error, i18n } from '../../modules/helpers';
 
 declare let appVersion: string;
 
@@ -19,51 +18,31 @@ export class View extends Panel implements IViewBased {
 	/**
 	 * @property{string} ID attribute for source element, id add {id}_editor it's editor's id
 	 */
-	public id: string;
-	public version: string = appVersion; // from webpack.config.js
-	/**
-	 * Some extra data inside editor
-	 *
-	 * @type {{}}
-	 * @see copyformat plugin
-	 */
-	public buffer: IDictionary;
-	/**
-	 * progress_bar Progress bar
-	 */
-	public progress_bar: HTMLDivElement = this.create.div(
-		'jodit_progress_bar',
-		this.create.div()
-	);
-	public options: IViewOptions = {
-		removeButtons: [],
-		zIndex: 100002,
-		fullsize: false,
-		showTooltip: true,
-		useNativeTooltip: false,
-		buttons: [],
-		globalFullsize: true
-	};
-	public events: IEventsNative;
-	public components: any = [];
-	private __modulesInstances: IDictionary<Component> = {};
+	id: string;
 
-	constructor(jodit?: IViewBased, options?: IViewOptions) {
-		super(jodit);
-
-		this.id =
-			jodit && jodit.id ? jodit.id : new Date().getTime().toString();
-
-		this.jodit = jodit || this;
-
-		this.events =
-			jodit && jodit.events
-				? jodit.events
-				: new EventsNative(this.ownerDocument);
-		this.buffer = jodit && jodit.buffer ? jodit.buffer : {};
-
-		this.options = {...this.options, ...options};
+	markOwner(elm: HTMLElement): void {
+		elm.setAttribute('data-editor_id', this.id);
 	}
+
+
+	workplace: HTMLDivElement;
+
+	components: Set<IComponent> = new Set();
+
+	/**
+	 * Get path for loading extra staff
+	 */
+	get basePath(): string {
+		if (this.options.basePath) {
+			return this.options.basePath;
+		}
+
+		return BASE_PATH;
+	}
+
+	version: string = appVersion; // from webpack.config.js
+
+	private __modulesInstances: IDictionary<Component> = {};
 
 	/**
 	 * Return default timeout period in milliseconds for some debounce or throttle functions.
@@ -75,10 +54,32 @@ export class View extends Panel implements IViewBased {
 		return 100;
 	}
 
+	/**
+	 * Some extra data inside editor
+	 *
+	 * @type {{}}
+	 * @see copyformat plugin
+	 */
+	buffer = Storage.makeStorage();
+
+	/**
+	 * progress_bar Progress bar
+	 */
+	progressbar: IProgressBar = new ProgressBar(this);
+
+	options: IViewOptions;
+
+	events: IEventsNative;
+	async : IAsync = new Async();
+
+	/**
+	 * Internationalization method. Uses Jodit.lang object
+	 *
+	 * @param text
+	 * @param params
+	 */
 	i18n(text: string, ...params: Array<string | number>): string {
-		return this.jodit && this.jodit !== this
-			? this.jodit.i18n(text, ...params)
-			: Jodit.prototype.i18n(text, ...params);
+		return i18n(text, params, this?.jodit?.options || this?.options);
 	}
 
 	/**
@@ -93,9 +94,9 @@ export class View extends Panel implements IViewBased {
 		}
 	}
 
-	public getInstance<T = Component>(moduleName: string, options?: object): T {
+	getInstance<T = Component>(moduleName: string, options?: object): T {
 		if (typeof Jodit.modules[moduleName] !== 'function') {
-			throw new Error('Need real module name');
+			throw error('Need real module name');
 		}
 
 		if (this.__modulesInstances[moduleName] === undefined) {
@@ -114,13 +115,46 @@ export class View extends Panel implements IViewBased {
 	 * @method getVersion
 	 * @return {string}
 	 */
-	public getVersion = (): string => {
+	getVersion = (): string => {
 		return this.version;
 	};
+
+	/** @override */
+	protected initOptions(options?: IViewOptions): void {
+		super.initOptions({
+			extraButtons: [],
+			textIcons: false,
+			removeButtons: [],
+			zIndex: 100002,
+			fullsize: false,
+			showTooltip: true,
+			useNativeTooltip: false,
+			buttons: [],
+			globalFullsize: true,
+			...options
+		});
+	}
+
+	constructor(jodit?: IViewBased, options?: IViewOptions) {
+		super(jodit, options);
+
+		this.id = jodit?.id || new Date().getTime().toString();
+
+		this.jodit = jodit || this;
+
+		this.events = jodit?.events || new EventsNative(this.ownerDocument);
+
+		this.buffer = jodit?.buffer || Storage.makeStorage();
+	}
 
 	destruct() {
 		if (this.isDestructed) {
 			return;
+		}
+
+		if (this.async) {
+			this.async.destruct();
+			delete this.async;
 		}
 
 		if (this.events) {
@@ -128,10 +162,11 @@ export class View extends Panel implements IViewBased {
 			delete this.events;
 		}
 
-		delete this.options;
-
 		super.destruct();
 	}
 }
 
-import {Jodit} from '../../Jodit';
+import { Jodit } from '../../Jodit';
+import { BASE_PATH } from '../../constants';
+import { Async } from '../Async';
+import { ProgressBar } from '../ProgressBar';

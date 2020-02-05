@@ -1,22 +1,17 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IJodit, SnapshotType} from '../types';
-import {Component} from './Component';
-import {Dom} from './Dom';
+import { IJodit, SnapshotType } from '../types';
+import { Component } from './Component';
+import { Dom } from './Dom';
 
 /**
  * Module for creating snapshot of editor which includes html content and the current selection
  */
 export class Snapshot extends Component<IJodit> {
-	isBlocked: boolean = false;
-
 	/**
 	 * Compare two snapshotes, if and htmls and selections match, then return true
 	 *
@@ -24,13 +19,12 @@ export class Snapshot extends Component<IJodit> {
 	 * @param {SnapshotType} second - second shot
 	 * @return {boolean}
 	 */
-	public static equal(first: SnapshotType, second: SnapshotType): boolean {
+	static equal(first: SnapshotType, second: SnapshotType): boolean {
 		return (
 			first.html === second.html &&
 			JSON.stringify(first.range) === JSON.stringify(second.range)
 		);
 	}
-
 	/**
 	 * Calc count element before some node in parentNode. All text nodes are joined
 	 *
@@ -50,14 +44,8 @@ export class Snapshot extends Component<IJodit> {
 		for (j = 0; j < elms.length; j += 1) {
 			if (
 				last &&
-				(!(
-						elms[j].nodeType === Node.TEXT_NODE &&
-						elms[j].textContent === ''
-					) &&
-					!(
-						last.nodeType === Node.TEXT_NODE &&
-						elms[j].nodeType === Node.TEXT_NODE
-					))
+				!(Dom.isText(elms[j]) && elms[j].textContent === '') &&
+				!(Dom.isText(last) && Dom.isText(elms[j]))
 			) {
 				count += 1;
 			}
@@ -80,11 +68,11 @@ export class Snapshot extends Component<IJodit> {
 	 * @return {number}
 	 */
 	private static strokeOffset(elm: Node | null, offset: number): number {
-		while (elm && elm.nodeType === Node.TEXT_NODE) {
+		while (Dom.isText(elm)) {
 			elm = elm.previousSibling;
+
 			if (
-				elm &&
-				elm.nodeType === Node.TEXT_NODE &&
+				Dom.isText(elm) &&
 				elm.textContent !== null
 			) {
 				offset += elm.textContent.length;
@@ -93,6 +81,47 @@ export class Snapshot extends Component<IJodit> {
 
 		return offset;
 	}
+
+	/**
+	 * Calc whole hierarchy path before some element in editor's tree
+	 *
+	 * @param {Node | null} elm
+	 * @return {number[]}
+	 * @private
+	 */
+	private calcHierarchyLadder(elm: Node | null): number[] {
+		const counts: number[] = [];
+
+		if (
+			!elm ||
+			!elm.parentNode ||
+			!Dom.isOrContains(this.jodit.editor, elm)
+		) {
+			return [];
+		}
+
+		while (elm && elm !== this.jodit.editor) {
+			if (elm) {
+				counts.push(Snapshot.countNodesBeforeInParent(elm));
+			}
+			elm = elm.parentNode;
+		}
+
+		return counts.reverse();
+	}
+
+	private getElementByLadder(ladder: number[]): Node {
+		let n: Node = this.jodit.editor as Node,
+			i: number;
+
+		for (i = 0; n && i < ladder.length; i += 1) {
+			n = n.childNodes[ladder[i]];
+		}
+
+		return n;
+	}
+
+	isBlocked: boolean = false;
 
 	/**
 	 * Creates object a snapshot of editor: html and the current selection. Current selection calculate by
@@ -118,13 +147,11 @@ export class Snapshot extends Component<IJodit> {
 		const sel = this.jodit.selection.sel;
 
 		if (sel && sel.rangeCount) {
-			const
-				range = sel.getRangeAt(0),
+			const range = sel.getRangeAt(0),
 				startContainer = this.calcHierarchyLadder(range.startContainer),
 				endContainer = this.calcHierarchyLadder(range.endContainer);
 
-			let
-				startOffset = Snapshot.strokeOffset(
+			let startOffset = Snapshot.strokeOffset(
 					range.startContainer,
 					range.startOffset
 				),
@@ -184,8 +211,13 @@ export class Snapshot extends Component<IJodit> {
 				this.jodit.selection.selectRange(range);
 			}
 		} catch (__ignore) {
+			this.jodit.editor.lastChild &&
+				this.jodit.selection.setCursorAfter(
+					this.jodit.editor.lastChild
+				);
+
 			if (process.env.NODE_ENV !== 'production') {
-				throw __ignore;
+				console.warn('Broken snapshot', __ignore);
 			}
 		}
 
@@ -195,44 +227,5 @@ export class Snapshot extends Component<IJodit> {
 	destruct(): any {
 		this.isBlocked = false;
 		super.destruct();
-	}
-
-	/**
-	 * Calc whole hierarchy path before some element in editor's tree
-	 *
-	 * @param {Node | null} elm
-	 * @return {number[]}
-	 * @private
-	 */
-	private calcHierarchyLadder(elm: Node | null): number[] {
-		const counts: number[] = [];
-
-		if (
-			!elm ||
-			!elm.parentNode ||
-			!Dom.isOrContains(this.jodit.editor, elm)
-		) {
-			return [];
-		}
-
-		while (elm && elm !== this.jodit.editor) {
-			if (elm) {
-				counts.push(Snapshot.countNodesBeforeInParent(elm));
-			}
-			elm = elm.parentNode;
-		}
-
-		return counts.reverse();
-	}
-
-	private getElementByLadder(ladder: number[]): Node {
-		let n: Node = this.jodit.editor as Node,
-			i: number;
-
-		for (i = 0; n && i < ladder.length; i += 1) {
-			n = n.childNodes[ladder[i]];
-		}
-
-		return n;
 	}
 }

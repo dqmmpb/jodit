@@ -1,22 +1,27 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IDictionary, IStorage} from '../../types';
+import { IStorage, StorageValueType } from '../../types';
 
-export class MemoryStorageProvider implements IStorage {
-	data: IDictionary<string> = {};
+export class MemoryStorageProvider<T = StorageValueType> implements IStorage<T> {
+	private data: Map<string, T> = new Map();
 
-	public set(key: string, value: string | number) {
-		this.data[key] = value.toString();
+	set(key: string, value: T) {
+		this.data.set(key, value);
 	}
 
-	public get(key: string): string | null {
-		return this.data[key] || null;
+	get<R = T>(key: string): R | void {
+		return <R | void>this.data.get(key);
+	}
+
+	exists(key: string): boolean {
+		return this.data.has(key);
+	}
+
+	clear() {
+		this.data.clear();
 	}
 }

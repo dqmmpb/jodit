@@ -1,47 +1,48 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import { Config, OptionsDefault } from './Config';
 import * as consts from './constants';
-import { Component } from './modules/Component';
 import { Dom } from './modules/Dom';
 import {
 	asArray,
 	css,
-	debounce,
-	defaultLanguage,
 	inArray,
+	isDestructable,
+	isPromise,
 	normalizeKeyAliases,
-	splitArray,
-	sprintf
+	error,
+	isString,
+	markDeprecated
 } from './modules/helpers/';
+
 import { JoditArray } from './modules/helpers/JoditArray';
 import { JoditObject } from './modules/helpers/JoditObject';
 import { Observer } from './modules/observer/observer';
 import { Select } from './modules/Selection';
 import { StatusBar } from './modules/StatusBar';
-import { LocalStorageProvider } from './modules/storage/localStorageProvider';
 import { Storage } from './modules/storage/storage';
 
 import {
 	CustomCommand,
 	ExecCommandCallback,
 	IDictionary,
-	IPlugin,
+	IPluginSystem,
+	IStatusBar,
+	IViewOptions,
+	IWorkPlace,
 	markerInfo,
 	Modes
-} from './types/types';
+} from './types';
 
 import { ViewWithToolbar } from './modules/view/viewWithToolbar';
-import { IJodit } from './types/jodit';
-import { IFileBrowser, IUploader } from './types';
-import { ucfirst } from './modules/helpers/string/ucfirst';
+import { IFileBrowser, IJodit, IUploader } from './types/';
+import { PluginSystem } from './modules/PluginSystem';
+import { STATUSES } from './modules/Component';
+import { MODE_WYSIWYG } from './constants';
 
 const SAFE_COUNT_CHANGE_CALL = 10;
 
@@ -49,276 +50,35 @@ const SAFE_COUNT_CHANGE_CALL = 10;
  * Class Jodit. Main class
  */
 export class Jodit extends ViewWithToolbar implements IJodit {
-	static defaultOptions: Config;
-	static plugins: any = {};
-	static modules: any = {};
-	static instances: IDictionary<Jodit> = {};
-	static lang: any = {};
 	/**
-	 * @property {HTMLDocument} editorDocument
+	 * Define if object is Jodit
 	 */
-	editorDocument: HTMLDocument;
-	/**
-	 * @property {Window} editorWindow
-	 */
-	editorWindow: Window;
-	/**
-	 * Container for set/get value
-	 * @type {Storage}
-	 */
-	storage: Storage = new Storage(new LocalStorageProvider());
-	/**
-	 * workplace It contains source and wysiwyg editors
-	 */
-	workplace: HTMLDivElement;
-	statusbar: StatusBar;
-	observer: Observer;
-	/**
-	 * element It contains source element
-	 */
-	element: HTMLElement;
-	/**
-	 * editor It contains the root element editor
-	 */
-	editor: HTMLDivElement | HTMLBodyElement;
-	/**
-	 * iframe Iframe for iframe mode
-	 */
-	iframe: HTMLIFrameElement | null = null;
-	/**
-	 * options All Jodit settings default + second arguments of constructor
-	 */
-	options: Config;
-	/**
-	 * @property {Select} selection
-	 */
-	selection: Select;
-	helper: any;
-	__plugins: IDictionary<IPlugin> = {};
-	mode: Modes = consts.MODE_WYSIWYG;
-	isInited: boolean = false;
-	private __defaultStyleDisplayKey = 'data-jodit-default-style-display';
-	private __defaultClassesKey = 'data-jodit-default-classes';
-	private commands: IDictionary<Array<CustomCommand<IJodit>>> = {};
-	private __selectionLocked: markerInfo[] | null = null;
-	private __wasReadOnly: boolean = false;
-	private __callChangeCount = 0;
-
-	/**
-	 * Create instance of Jodit
-	 * @constructor
-	 *
-	 * @param {HTMLInputElement | string} element Selector or HTMLElement
-	 * @param {object} options Editor's options
-	 */
-	constructor(element: HTMLInputElement | string, options?: object) {
-		super();
-
-		this.options = new OptionsDefault(options) as Config;
-
-		// in iframe it can be changed
-		this.editorDocument = this.options.ownerDocument;
-		this.editorWindow = this.options.ownerWindow;
-
-		this.ownerDocument = this.options.ownerDocument;
-		this.ownerWindow = this.options.ownerWindow;
-
-		if (typeof element === 'string') {
-			try {
-				this.element = this.ownerDocument.querySelector(
-					element
-				) as HTMLInputElement;
-			} catch {
-				throw new Error(
-					'String "' + element + '" should be valid HTML selector'
-				);
-			}
-		} else {
-			this.element = element;
-		}
-
-		// Duck checking
-		if (
-			!this.element ||
-			typeof this.element !== 'object' ||
-			this.element.nodeType !== Node.ELEMENT_NODE ||
-			!this.element.cloneNode
-		) {
-			throw new Error(
-				`Element "${element}" should be string or HTMLElement instance`
-			);
-		}
-
-		if (this.element.attributes) {
-			Array.from(this.element.attributes).forEach((attr: Attr) => {
-				const name: string = attr.name;
-				let value: string | boolean | number = attr.value;
-
-				if (
-					(Jodit.defaultOptions as any)[name] !== undefined &&
-					(!options || (options as any)[name] === undefined)
-				) {
-					if (['readonly', 'disabled'].indexOf(name) !== -1) {
-						value = value === '' || value === 'true';
-					}
-
-					if (/^[0-9]+(\.)?([0-9]+)?$/.test(value.toString())) {
-						value = Number(value);
-					}
-
-					(this.options as any)[name] = value;
-				}
-			});
-		}
-
-		if (this.options.events) {
-			Object.keys(this.options.events).forEach((key: string) => {
-				this.events.on(key, this.options.events[key]);
-			});
-		}
-
-		this.container.classList.add('jodit_container');
-		this.container.setAttribute('contenteditable', 'false');
-
-		this.selection = new Select(this);
-		this.events.on('removeMarkers', () => {
-			if (this.selection) {
-				this.selection.removeMarkers();
-			}
-		});
-
-		this.observer = new Observer(this);
-
-		let buffer: null | string = null;
-
-		if (this.options.inline) {
-			if (['TEXTAREA', 'INPUT'].indexOf(this.element.nodeName) === -1) {
-				this.container = this.element as HTMLDivElement;
-				this.element.setAttribute(
-					this.__defaultClassesKey,
-					this.element.className.toString()
-				);
-
-				buffer = this.container.innerHTML;
-
-				this.container.innerHTML = '';
-			}
-
-			this.container.classList.add('jodit_inline');
-			this.container.classList.add('jodit_container');
-		}
-
-		// actual for inline mode
-		if (this.element !== this.container) {
-			// hide source element
-			if (this.element.style.display) {
-				this.element.setAttribute(
-					this.__defaultStyleDisplayKey,
-					this.element.style.display
-				);
-			}
-
-			this.element.style.display = 'none';
-		}
-
-		this.container.classList.add(
-			'jodit_' + (this.options.theme || 'default') + '_theme'
-		);
-
-		if (this.options.zIndex) {
-			this.container.style.zIndex = parseInt(
-				this.options.zIndex.toString(),
-				10
-			).toString();
-		}
-
-		this.workplace = this.create.div('jodit_workplace', {
-			contenteditable: false
-		});
-
-		if (this.options.toolbar) {
-			this.toolbar.build(
-				splitArray(this.options.buttons).concat(
-					this.options.extraButtons
-				),
-				this.container
-			);
-		}
-
-		const bs = this.options.toolbarButtonSize.toLowerCase();
-		this.container.classList.add(
-			`jodit_toolbar_size-${
-				['middle', 'large', 'small'].indexOf(bs) !== -1 ? bs : 'middle'
-			}`
-		);
-
-		if (this.options.textIcons) {
-			this.container.classList.add('jodit_text_icons');
-		}
-
-		this.events.on(this.ownerWindow, 'resize', () => {
-			if (this.events) {
-				this.events.fire('resize');
-			}
-		});
-
-		this.container.appendChild(this.workplace);
-		this.statusbar = new StatusBar(this, this.container);
-
-		this.workplace.appendChild(this.progress_bar);
-
-		if (this.element.parentNode && this.element !== this.container) {
-			this.element.parentNode.insertBefore(this.container, this.element);
-		}
-
-		this.id =
-			this.element.getAttribute('id') || new Date().getTime().toString();
-
-		this.editor = this.create.div('jodit_wysiwyg', {
-			contenteditable: true,
-			'aria-disabled': false,
-			tabindex: this.options.tabIndex
-		});
-
-		this.workplace.appendChild(this.editor);
-
-		this.setNativeEditorValue(this.getElementValue()); // Init value
-
-		(async () => {
-			await this.beforeInitHook();
-
-			await this.events.fire('beforeInit', this);
-
-			try {
-				this.__initPlugines();
-			} catch (e) {}
-
-			await this.__initEditor(buffer);
-
-			if (this.isDestructed) {
-				return;
-			}
-
-			const opt = this.options;
-
-			if (
-				opt.enableDragAndDropFileToEditor &&
-				opt.uploader &&
-				(opt.uploader.url || opt.uploader.insertImageAsBase64URI)
-			) {
-				this.uploader.bind(this.editor);
-			}
-
-			this.isInited = true;
-
-			if (this.events) {
-				await this.events.fire('afterInit', this);
-				this.events.fire('afterConstructor', this);
-			}
-
-			await this.afterInitHook();
-		})();
+	get isJodit(): true {
+		return true;
 	}
+
+	/**
+	 * Plain text editor's value
+	 */
+	get text(): string {
+		if (this.editor) {
+			return this.editor.innerText || '';
+		}
+
+		const div = this.create.inside.div();
+		div.innerHTML = this.getElementValue();
+
+		return div.innerText || '';
+	}
+
+	/**
+	 * @deprecated
+	 * @see text
+	 */
+	getEditorText = markDeprecated((): string => this.text, [
+		'getEditorText',
+		'text'
+	]);
 
 	get value(): string {
 		return this.getEditorValue();
@@ -341,6 +101,173 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	}
 
 	/**
+	 * Method wrap usual Array in Object helper for prevent deep array merging in options
+	 *
+	 * @param array
+	 * @constructor
+	 */
+	static Array(array: any[]): JoditArray {
+		return new JoditArray(array);
+	}
+
+	/**
+	 * Method wrap usual Has Object in Object helper for prevent deep object merging in options*
+	 *
+	 * @param object
+	 * @constructor
+	 */
+	static Object(object: any): JoditObject {
+		return new JoditObject(object);
+	}
+
+	/**
+	 * Emits events in all instances
+	 *
+	 * @param events
+	 * @param args
+	 */
+	static fireEach(events: string, ...args: any[]) {
+		Object.keys(Jodit.instances).forEach(key => {
+			const editor: Jodit = Jodit.instances[key];
+
+			if (!editor.isDestructed && editor.events) {
+				editor.events.fire(events, ...args);
+			}
+		});
+	}
+
+	/**
+	 * Fabric for creating Jodit instance
+	 *
+	 * @param element
+	 * @param options
+	 */
+	static make(element: HTMLElement | string, options?: object): Jodit {
+		return new Jodit(element, options);
+	}
+
+	static defaultOptions: Config;
+	static plugins: IPluginSystem = new PluginSystem();
+	static modules: any = {};
+	static instances: IDictionary<Jodit> = {};
+	static lang: any = {};
+
+	private __defaultStyleDisplayKey = 'data-jodit-default-style-display';
+	private __defaultClassesKey = 'data-jodit-default-classes';
+
+	private commands: IDictionary<Array<CustomCommand<IJodit>>> = {};
+
+	private __selectionLocked: markerInfo[] | null = null;
+
+	private __wasReadOnly: boolean = false;
+
+	/**
+	 * Container for set/get value
+	 * @type {Storage}
+	 */
+	storage = Storage.makeStorage(true, this.id);
+
+	/**
+	 * Editor has focus in this time
+	 */
+	editorIsActive: boolean = false;
+
+	private setPlaceField(field: keyof IWorkPlace, value: any): void {
+		if (!this.currentPlace) {
+			this.currentPlace = {} as any;
+			this.places = [this.currentPlace];
+		}
+
+		this.currentPlace[field] = value;
+	}
+
+	/**
+	 * element It contains source element
+	 */
+	get element(): HTMLElement {
+		return this.currentPlace.element;
+	}
+
+	/**
+	 * editor It contains the root element editor
+	 */
+	get editor(): HTMLDivElement | HTMLBodyElement {
+		return this.currentPlace.editor;
+	}
+
+	set editor(editor: HTMLDivElement | HTMLBodyElement) {
+		this.setPlaceField('editor', editor);
+	}
+
+	/**
+	 * Container for all staff
+	 */
+	get container(): HTMLDivElement {
+		return this.currentPlace.container;
+	}
+
+	set container(container: HTMLDivElement) {
+		this.setPlaceField('container', container);
+	}
+
+	/**
+	 * workplace It contains source and wysiwyg editors
+	 */
+	get workplace(): HTMLDivElement {
+		return this.currentPlace.workplace;
+	}
+
+	/**
+	 * Statusbar module
+	 */
+	get statusbar(): IStatusBar {
+		return this.currentPlace.statusbar;
+	}
+
+	/**
+	 * iframe Iframe for iframe mode
+	 */
+	get iframe(): HTMLIFrameElement | void {
+		return this.currentPlace.iframe;
+	}
+
+	set iframe(iframe: HTMLIFrameElement | void) {
+		this.setPlaceField('iframe', iframe);
+	}
+
+	get observer(): Observer {
+		return this.currentPlace.observer;
+	}
+
+	/**
+	 * In iframe mode editor's window can be different by owner
+	 */
+	get editorWindow(): Window {
+		return this.currentPlace.editorWindow;
+	}
+
+	set editorWindow(win: Window) {
+		this.setPlaceField('editorWindow', win);
+	}
+
+	/**
+	 * In iframe mode editor's window can be different by owner
+	 */
+	get editorDocument(): Document {
+		return this.currentPlace.editorWindow.document;
+	}
+
+	/**
+	 * options All Jodit settings default + second arguments of constructor
+	 */
+	options: Config;
+
+	/**
+	 * @property {Select} selection
+	 */
+	selection: Select;
+
+	/**
 	 * @property {Uploader} uploader
 	 */
 	get uploader(): IUploader {
@@ -354,30 +281,17 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		return this.getInstance('FileBrowser');
 	}
 
-	static Array(array: any[]): JoditArray {
-		return new JoditArray(array);
-	}
-
-	static Object(object: any): JoditObject {
-		return new JoditObject(object);
-	}
-
-	static fireEach(events: string, ...args: any[]) {
-		Object.keys(Jodit.instances).forEach((key: string) => {
-			const editor: Jodit = Jodit.instances[key];
-			if (!editor.isDestructed && editor.events) {
-				editor.events.fire(events, ...args);
-			}
-		});
-	}
+	private __mode: Modes = consts.MODE_WYSIWYG;
 
 	/**
-	 * Return source element value
+	 * Editor's mode
 	 */
-	getElementValue() {
-		return (this.element as HTMLInputElement).value !== undefined
-			? (this.element as HTMLInputElement).value
-			: this.element.innerHTML;
+	get mode(): Modes {
+		return this.__mode;
+	}
+
+	set mode(mode: Modes) {
+		this.setMode(mode);
 	}
 
 	/**
@@ -386,6 +300,14 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	 * @return {string}
 	 */
 	getNativeEditorValue(): string {
+		let value: string;
+
+		value = this.events.fire('beforeGetNativeEditorValue');
+
+		if (isString(value)) {
+			return value;
+		}
+
 		if (this.editor) {
 			return this.editor.innerHTML;
 		}
@@ -398,6 +320,10 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	 * @param value
 	 */
 	setNativeEditorValue(value: string) {
+		if (this.events.fire('beforeSetNativeEditorValue', value)) {
+			return;
+		}
+
 		if (this.editor) {
 			this.editor.innerHTML = value;
 		}
@@ -465,44 +391,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		return new_value.value;
 	}
 
-	getEditorText(): string {
-		if (this.editor) {
-			return this.editor.innerText;
-		}
-
-		const div: HTMLDivElement = this.create.inside.div();
-		div.innerHTML = this.getElementValue();
-
-		return div.innerText;
-	}
-
-	/**
-	 * Set source element value and if set sync fill editor value
-	 * When method was called without arguments - it is simple way to synchronize element to editor
-	 *
-	 * @param {string} [value]
-	 */
-	setElementValue(value?: string) {
-		if (typeof value !== 'string' && value !== undefined) {
-			throw new Error('value must be string');
-		}
-
-		if (value !== undefined) {
-			if (this.element !== this.container) {
-				if ((this.element as HTMLInputElement).value !== undefined) {
-					(this.element as HTMLInputElement).value = value;
-				} else {
-					this.element.innerHTML = value;
-				}
-			}
-		} else {
-			value = this.getElementValue();
-		}
-
-		if (value !== this.getEditorValue()) {
-			this.setEditorValue(value);
-		}
-	}
+	private __callChangeCount = 0;
 
 	/**
 	 * Set editor html value and if set sync fill source element value
@@ -549,10 +438,10 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		}
 
 		if (typeof value !== 'string' && value !== undefined) {
-			throw new Error('value must be string');
+			throw error('value must be string');
 		}
 
-		if (value !== undefined && this.editor.innerHTML !== value) {
+		if (value !== undefined && this.getNativeEditorValue() !== value) {
 			this.setNativeEditorValue(value);
 		}
 
@@ -568,9 +457,47 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 
 			try {
 				this.events.fire('change', new_value, old_value);
+				this.events.fire(this.observer, 'change', new_value, old_value);
 			} finally {
 				this.__callChangeCount = 0;
 			}
+		}
+	}
+
+	/**
+	 * Return source element value
+	 */
+	getElementValue() {
+		return (this.element as HTMLInputElement).value !== undefined
+			? (this.element as HTMLInputElement).value
+			: this.element.innerHTML;
+	}
+
+	/**
+	 * Set source element value and if set sync fill editor value
+	 * When method was called without arguments - it is simple way to synchronize element to editor
+	 *
+	 * @param {string} [value]
+	 */
+	setElementValue(value?: string) {
+		if (!isString(value) && value !== undefined) {
+			throw error('value must be string');
+		}
+
+		if (value !== undefined) {
+			if (this.element !== this.container) {
+				if ((this.element as HTMLInputElement).value !== undefined) {
+					(this.element as HTMLInputElement).value = value;
+				} else {
+					this.element.innerHTML = value;
+				}
+			}
+		} else {
+			value = this.getElementValue();
+		}
+
+		if (value !== this.getEditorValue()) {
+			this.setEditorValue(value);
 		}
 	}
 
@@ -690,7 +617,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		 * ```javascript
 		 * parent.events.on('beforeCommand', function (command) {
 		 *  if (command === 'justifyCenter') {
-		 *      var p = parent.getDocument().createElement('p')
+		 *      var p = parent.create.element('p')
 		 *      parent.selection.insertNode(p)
 		 *      parent.selection.setCursorIn(p);
 		 *      p.style.textAlign = 'justyfy';
@@ -733,6 +660,45 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		this.setEditorValue(); // synchrony
 
 		return result;
+	}
+
+	private execCustomCommands(
+		commandName: string,
+		second: any = false,
+		third: null | any = null
+	): false | void {
+		commandName = commandName.toLowerCase();
+
+		if (this.commands[commandName] !== undefined) {
+			let result: any;
+
+			const exec = (command: CustomCommand<Jodit>) => {
+				let callback: ExecCommandCallback<Jodit>;
+
+				if (typeof command === 'function') {
+					callback = command;
+				} else {
+					callback = command.exec;
+				}
+
+				const resultCurrent: any = (callback as any).call(
+					this,
+					commandName,
+					second,
+					third
+				);
+
+				if (resultCurrent !== undefined) {
+					result = resultCurrent;
+				}
+			};
+
+			for (let i = 0; i < this.commands[commandName].length; i += 1) {
+				exec(this.commands[commandName][i]);
+			}
+
+			return result;
+		}
 	}
 
 	/**
@@ -814,8 +780,9 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 	 */
 	setMode(mode: number | string) {
 		const oldmode: Modes = this.getMode();
+
 		const data = {
-				mode: parseInt(mode.toString(), 10) as Modes
+				mode: <Modes>parseInt(mode.toString(), 10)
 			},
 			modeClasses = [
 				'jodit_wysiwyg_mode',
@@ -839,7 +806,7 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 			return;
 		}
 
-		this.mode = inArray(data.mode, [
+		this.__mode = inArray(data.mode, [
 			consts.MODE_SOURCE,
 			consts.MODE_WYSIWYG,
 			consts.MODE_SPLIT
@@ -897,100 +864,6 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		}
 
 		this.setMode(mode);
-	}
-
-	/**
-	 * Internationalization method. Uses Jodit.lang object
-	 *
-	 * @param {string} key Some text
-	 * @param {string[]} params Some text
-	 * @return {string}
-	 * @example
-	 * ```javascript
-	 * var editor = new Jodit("#redactor", {
-	 *      langusage: 'ru'
-	 * });
-	 * console.log(editor.i18n('Cancel')) //Отмена;
-	 *
-	 * Jodit.defaultOptions.language = 'ru';
-	 * console.log(Jodit.prototype.i18n('Cancel')) //Отмена
-	 *
-	 * Jodit.lang.cs = {
-	 *    Cancel: 'Zrušit'
-	 * };
-	 * Jodit.defaultOptions.language = 'cs';
-	 * console.log(Jodit.prototype.i18n('Cancel')) //Zrušit
-	 *
-	 * Jodit.lang.cs = {
-	 *    'Hello world': 'Hello \s Good \s'
-	 * };
-	 * Jodit.defaultOptions.language = 'cs';
-	 * console.log(Jodit.prototype.i18n('Hello world', 'mr.Perkins', 'day')) //Hello mr.Perkins Good day
-	 * ```
-	 */
-	i18n(key: string, ...params: Array<string | number>): string {
-		const debug: boolean =
-			this.options !== undefined && this.options.debugLanguage;
-
-		let store: IDictionary;
-
-		const parse = (value: string): string =>
-				params.length
-					? sprintf.apply(this, [value].concat(params as string[]))
-					: value,
-			default_language: string =
-				Config.defaultOptions.language === 'auto'
-					? defaultLanguage(Config.defaultOptions.language)
-					: Config.defaultOptions.language,
-			language: string = defaultLanguage(
-				this.options ? this.options.language : default_language
-			);
-
-		if (this.options !== undefined && Jodit.lang[language] !== undefined) {
-			store = Jodit.lang[language];
-		} else {
-			if (Jodit.lang[default_language] !== undefined) {
-				store = Jodit.lang[default_language];
-			} else {
-				store = Jodit.lang.en;
-			}
-		}
-
-		if (
-			this.options !== undefined &&
-			(this.options.i18n as any)[language] !== undefined &&
-			(this.options.i18n as any)[language][key]
-		) {
-			return parse((this.options.i18n as any)[language][key]);
-		}
-
-		if (typeof store[key] === 'string' && store[key]) {
-			return parse(store[key]);
-		}
-
-		const lckey = key.toLowerCase();
-		if (typeof store[lckey] === 'string' && store[lckey]) {
-			return parse(store[lckey]);
-		}
-
-		const ucfkey = ucfirst(key);
-		if (typeof store[ucfkey] === 'string' && store[ucfkey]) {
-			return parse(store[ucfkey]);
-		}
-
-		if (debug) {
-			return '{' + key + '}';
-		}
-
-		if (typeof Jodit.lang.en[key] === 'string' && Jodit.lang.en[key]) {
-			return parse(Jodit.lang.en[key]);
-		}
-
-		if (process.env.NODE_ENV !== 'production' && language !== 'en') {
-			throw new Error(`i18n need "${key}" in "${language}"`);
-		}
-
-		return parse(key);
 	}
 
 	/**
@@ -1068,13 +941,446 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 		// do nothing
 	}
 
+	/** @override **/
+	protected initOptions(options?: object): void {
+		this.options = new OptionsDefault(options) as Config;
+	}
+
+	/** @override **/
+	protected initOwners(): void {
+		// in iframe it can be changed
+		this.editorWindow = this.options.ownerWindow;
+
+		this.ownerDocument = this.options.ownerDocument;
+		this.ownerWindow = this.options.ownerWindow;
+	}
+
+	/**
+	 * Create instance of Jodit
+	 * @constructor
+	 *
+	 * @param {HTMLInputElement | string} element Selector or HTMLElement
+	 * @param {object} options Editor's options
+	 */
+	constructor(element: HTMLElement | string, options?: object) {
+		super(undefined, options as IViewOptions);
+
+		try {
+			this.resolveElement(element); // check element valid
+		} catch (e) {
+			this.destruct();
+			throw e;
+		}
+
+		this.setStatus(STATUSES.beforeInit);
+
+		if (this.options.events) {
+			Object.keys(this.options.events).forEach((key: string) =>
+				this.events.on(key, this.options.events[key])
+			);
+		}
+
+		this.events.on(this.ownerWindow, 'resize', () => {
+			if (this.events) {
+				this.events.fire('resize');
+			}
+		});
+
+		this.selection = new Select(this);
+
+		this.initPlugins();
+
+		this.places.length = 0;
+		const addPlaceResult = this.addPlace(element, options);
+
+		Jodit.instances[this.id] = this;
+
+		const init = () => {
+			if (this.events) {
+				this.events.fire('afterInit', this);
+			}
+
+			this.afterInitHook();
+
+			this.setStatus(STATUSES.ready);
+
+			this.events.fire('afterConstructor', this);
+		};
+
+		if (isPromise(addPlaceResult)) {
+			addPlaceResult.finally(init);
+		} else {
+			init();
+		}
+	}
+
+	currentPlace: IWorkPlace;
+	places: IWorkPlace[];
+
+	private elementToPlace: Map<HTMLElement, IWorkPlace> = new Map();
+
+	/**
+	 * Create and init current editable place
+	 * @param source
+	 * @param options
+	 */
+	addPlace(
+		source: HTMLElement | string,
+		options?: object
+	): void | Promise<any> {
+		const element = this.resolveElement(source);
+
+		if (!this.places.length) {
+			this.id =
+				element.getAttribute('id') || new Date().getTime().toString();
+
+			Jodit.instances[this.id] = this;
+		}
+
+		if (element.attributes) {
+			Array.from(element.attributes).forEach((attr: Attr) => {
+				const name: string = attr.name;
+				let value: string | boolean | number = attr.value;
+
+				if (
+					(Jodit.defaultOptions as any)[name] !== undefined &&
+					(!options || (options as any)[name] === undefined)
+				) {
+					if (['readonly', 'disabled'].indexOf(name) !== -1) {
+						value = value === '' || value === 'true';
+					}
+
+					if (/^[0-9]+(\.)?([0-9]+)?$/.test(value.toString())) {
+						value = Number(value);
+					}
+
+					(this.options as any)[name] = value;
+				}
+			});
+		}
+
+		let container = this.create.div('jodit_container');
+
+		container.classList.add('jodit_container');
+		container.classList.add(
+			'jodit_' + (this.options.theme || 'default') + '_theme'
+		);
+
+		container.setAttribute('contenteditable', 'false');
+
+		let buffer: null | string = null;
+
+		if (this.options.inline) {
+			if (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) === -1) {
+				container = element as HTMLDivElement;
+				element.setAttribute(
+					this.__defaultClassesKey,
+					element.className.toString()
+				);
+
+				buffer = container.innerHTML;
+
+				container.innerHTML = '';
+			}
+
+			container.classList.add('jodit_inline');
+			container.classList.add('jodit_container');
+		}
+
+		// actual for inline mode
+		if (element !== container) {
+			// hide source element
+			if (element.style.display) {
+				element.setAttribute(
+					this.__defaultStyleDisplayKey,
+					element.style.display
+				);
+			}
+
+			element.style.display = 'none';
+		}
+
+		const workplace = this.create.div('jodit_workplace', {
+			contenteditable: false
+		});
+		container.appendChild(workplace);
+
+		const statusbar = new StatusBar(this, container);
+
+		if (element.parentNode && element !== container) {
+			element.parentNode.insertBefore(container, element);
+		}
+
+		const editor = this.create.div('jodit_wysiwyg', {
+			contenteditable: true,
+			'aria-disabled': false,
+			tabindex: this.options.tabIndex
+		});
+
+		workplace.appendChild(editor);
+
+		const currentPlace = {
+			editor,
+			element,
+			container,
+			workplace,
+			statusbar,
+			observer: new Observer(this),
+			editorWindow: this.ownerWindow
+		};
+
+		this.elementToPlace.set(editor, currentPlace);
+
+		this.setCurrentPlace(currentPlace);
+		this.places.push(currentPlace);
+
+		this.setNativeEditorValue(this.getElementValue()); // Init value
+
+		const opt = this.options;
+
+		const initResult = this.initEditor(buffer);
+
+		const init = () => {
+			if (
+				opt.enableDragAndDropFileToEditor &&
+				opt.uploader &&
+				(opt.uploader.url || opt.uploader.insertImageAsBase64URI)
+			) {
+				this.uploader.bind(this.editor);
+			}
+
+			// in initEditor - the editor could change
+			if (!this.elementToPlace.get(this.editor)) {
+				this.elementToPlace.set(this.editor, currentPlace);
+			}
+
+			this.events.fire('afterAddPlace', currentPlace);
+		};
+
+		if (isPromise(initResult)) {
+			return initResult.then(init);
+		}
+
+		init();
+	}
+
+	/**
+	 * Set current place object
+	 * @param place
+	 */
+	setCurrentPlace(place: IWorkPlace): void {
+		if (this.currentPlace === place) {
+			return;
+		}
+
+		if (!this.isEditorMode()) {
+			this.setMode(MODE_WYSIWYG);
+		}
+
+		this.currentPlace = place;
+
+		this.buildToolbar(place.container);
+
+		if (this.isReady) {
+			this.events.fire('changePlace', place);
+		}
+	}
+
+	private initPlugins(): void {
+		this.beforeInitHook();
+
+		this.events.fire('beforeInit', this);
+
+		try {
+			Jodit.plugins.init(this);
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
+	private initEditor(buffer: null | string): void | Promise<any> {
+		const result = this.createEditor();
+
+		const init = () => {
+			if (this.isInDestruct) {
+				return;
+			}
+
+			// syncro
+			if (this.element !== this.container) {
+				this.setElementValue();
+			} else {
+				buffer !== null && this.setEditorValue(buffer); // inline mode
+			}
+
+			let mode = this.options.defaultMode;
+
+			if (this.options.saveModeInStorage) {
+				const localMode = this.storage.get('jodit_default_mode');
+
+				if (typeof localMode === 'string') {
+					mode = parseInt(localMode, 10);
+				}
+			}
+
+			this.setMode(mode);
+
+			if (this.options.readonly) {
+				this.__wasReadOnly = false;
+				this.setReadOnly(true);
+			}
+
+			if (this.options.disabled) {
+				this.setDisabled(true);
+			}
+
+			// if enter plugin not installed
+			try {
+				this.editorDocument.execCommand(
+					'defaultParagraphSeparator',
+					false,
+					this.options.enter.toLowerCase()
+				);
+			} catch {}
+
+			// fix for native resizing
+			try {
+				this.editorDocument.execCommand(
+					'enableObjectResizing',
+					false,
+					'false'
+				);
+			} catch {}
+
+			try {
+				this.editorDocument.execCommand(
+					'enableInlineTableEditing',
+					false,
+					'false'
+				);
+			} catch {}
+		};
+
+		if (isPromise(result)) {
+			return result.then(init);
+		}
+
+		init();
+	}
+
+	/**
+	 * Create main DIV element and replace source textarea
+	 *
+	 * @private
+	 */
+	private createEditor(): void | Promise<any> {
+		const defaultEditorArea = this.editor;
+
+		const stayDefault:
+			| boolean
+			| undefined
+			| Promise<void> = this.events.fire('createEditor', this);
+
+		const init = () => {
+			if (this.isInDestruct) {
+				return;
+			}
+
+			if (stayDefault === false || isPromise(stayDefault)) {
+				Dom.safeRemove(defaultEditorArea);
+			}
+
+			if (this.options.editorCssClass) {
+				this.editor.classList.add(this.options.editorCssClass);
+			}
+
+			if (this.options.style) {
+				css(this.editor, this.options.style);
+			}
+
+			const editor = this.editor;
+			// proxy events
+			this.events
+				.on('synchro', () => {
+					this.setEditorValue();
+				})
+				.on('focus', () => {
+					this.editorIsActive = true;
+				})
+				.on('blur', () => (this.editorIsActive = false))
+				.on(editor, 'mousedown touchstart focus', () => {
+					const place = this.elementToPlace.get(editor);
+					if (place) {
+						this.setCurrentPlace(place);
+					}
+				})
+				.on(
+					editor,
+					'selectionchange selectionstart keydown keyup keypress dblclick mousedown mouseup ' +
+						'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur',
+					(event: Event): false | void => {
+						if (this.options.readonly) {
+							return;
+						}
+
+						if (this.events && this.events.fire) {
+							if (this.events.fire(event.type, event) === false) {
+								return false;
+							}
+
+							this.setEditorValue();
+						}
+					}
+				);
+
+			if (this.options.spellcheck) {
+				this.editor.setAttribute('spellcheck', 'true');
+			}
+
+			// direction
+			if (this.options.direction) {
+				const direction =
+					this.options.direction.toLowerCase() === 'rtl'
+						? 'rtl'
+						: 'ltr';
+
+				this.editor.style.direction = direction;
+				this.container.style.direction = direction;
+				this.editor.setAttribute('dir', direction);
+				this.container.setAttribute('dir', direction);
+
+				this.toolbar.setDirection(direction);
+			}
+
+			if (this.options.triggerChangeEvent) {
+				this.events.on(
+					'change',
+					this.async.debounce(() => {
+						this.events && this.events.fire(this.element, 'change');
+					}, this.defaultTimeout)
+				);
+			}
+		};
+
+		if (isPromise(stayDefault)) {
+			return stayDefault.then(init);
+		}
+
+		init();
+	}
+
 	/**
 	 * Jodit's Destructor. Remove editor, and return source input
 	 */
 	destruct() {
-		if (this.isDestructed) {
+		if (this.isInDestruct) {
 			return;
 		}
+
+		this.setStatus(STATUSES.beforeDestruct);
+
+		this.async.clear();
+		this.elementToPlace.clear();
 
 		/**
 		 * Triggered before {@link events:beforeDestruct|beforeDestruct} executed. If returned false method stopped
@@ -1096,292 +1402,102 @@ export class Jodit extends ViewWithToolbar implements IJodit {
 			return;
 		}
 
-		const buffer: string = this.getEditorValue();
+		const buffer = this.getEditorValue();
 
-		if (this.element !== this.container) {
-			if (this.element.hasAttribute(this.__defaultStyleDisplayKey)) {
-				this.element.style.display = this.element.getAttribute(
-					this.__defaultStyleDisplayKey
-				);
-				this.element.removeAttribute(this.__defaultStyleDisplayKey);
-			} else {
-				this.element.style.display = '';
-			}
-		} else {
-			if (this.element.hasAttribute(this.__defaultClassesKey)) {
-				this.element.className =
-					this.element.getAttribute(this.__defaultClassesKey) || '';
-				this.element.removeAttribute(this.__defaultClassesKey);
-			}
-		}
-
-		if (
-			this.element.hasAttribute('style') &&
-			!this.element.getAttribute('style')
-		) {
-			this.element.removeAttribute('style');
-		}
-
-		Object.keys(this.__plugins).forEach((pluginName: string) => {
-			const plugin = this.__plugins[pluginName];
-			if (
-				plugin !== undefined &&
-				plugin.destruct !== undefined &&
-				typeof plugin.destruct === 'function'
-			) {
-				plugin.destruct();
-			}
-
-			delete this.__plugins[pluginName];
-		});
-
-		this.observer.destruct();
-		this.statusbar.destruct();
-
-		delete this.observer;
-		delete this.statusbar;
+		this.storage.clear();
 		delete this.storage;
 
-		this.components.forEach((component: Component) => {
-			if (
-				component.destruct !== undefined &&
-				typeof component.destruct === 'function' &&
-				!component.isDestructed
-			) {
-				component.destruct();
-			}
-		});
+		this.buffer.clear();
+		delete this.buffer;
 
-		this.components.length = 0;
 		this.commands = {};
 
 		delete this.selection;
 		this.__selectionLocked = null;
 
+		this.events.off(this.ownerWindow, 'resize');
 		this.events.off(this.ownerWindow);
 		this.events.off(this.ownerDocument);
 		this.events.off(this.ownerDocument.body);
-		this.events.off(this.element);
-		this.events.off(this.editor);
 
-		Dom.safeRemove(this.workplace);
-		Dom.safeRemove(this.editor);
-		Dom.safeRemove(this.progress_bar);
-		Dom.safeRemove(this.iframe);
+		this.components.forEach(component => {
+			if (isDestructable(component) && !component.isInDestruct) {
+				component.destruct();
+			}
+		});
 
-		if (this.container !== this.element) {
-			Dom.safeRemove(this.container);
-		}
+		this.components.clear();
 
-		delete this.workplace;
-		delete this.editor;
-		delete this.progress_bar;
-		delete this.iframe;
+		this.places.forEach(
+			({
+				container,
+				workplace,
+				statusbar,
+				element,
+				iframe,
+				editor,
+				observer
+			}) => {
+				if (element !== container) {
+					if (element.hasAttribute(this.__defaultStyleDisplayKey)) {
+						const attr = element.getAttribute(
+							this.__defaultStyleDisplayKey
+						);
 
-		// inline mode
-		if (this.container === this.element) {
-			this.element.innerHTML = buffer;
-		}
+						if (attr) {
+							element.style.display = attr;
+							element.removeAttribute(
+								this.__defaultStyleDisplayKey
+							);
+						}
+					} else {
+						element.style.display = '';
+					}
+				} else {
+					if (element.hasAttribute(this.__defaultClassesKey)) {
+						element.className =
+							element.getAttribute(this.__defaultClassesKey) ||
+							'';
+						element.removeAttribute(this.__defaultClassesKey);
+					}
+				}
+
+				if (
+					element.hasAttribute('style') &&
+					!element.getAttribute('style')
+				) {
+					element.removeAttribute('style');
+				}
+
+				!statusbar.isInDestruct && statusbar.destruct();
+
+				this.events.off(container);
+				this.events.off(element);
+				this.events.off(editor);
+
+				Dom.safeRemove(workplace);
+				Dom.safeRemove(editor);
+
+				if (container !== element) {
+					Dom.safeRemove(container);
+				}
+
+				Dom.safeRemove(iframe);
+
+				// inline mode
+				if (container === element) {
+					element.innerHTML = buffer;
+				}
+
+				!observer.isInDestruct && observer.destruct();
+			}
+		);
+
+		this.places.length = 0;
+		this.currentPlace = {} as any;
 
 		delete Jodit.instances[this.id];
 
 		super.destruct();
-
-		delete this.container;
-	}
-
-	private execCustomCommands(
-		commandName: string,
-		second: any = false,
-		third: null | any = null
-	): false | void {
-		commandName = commandName.toLowerCase();
-
-		if (this.commands[commandName] !== undefined) {
-			let result: any;
-
-			const exec = (command: CustomCommand<Jodit>) => {
-				let callback: ExecCommandCallback<Jodit>;
-
-				if (typeof command === 'function') {
-					callback = command;
-				} else {
-					callback = command.exec;
-				}
-
-				const resultCurrent: any = (callback as any).call(
-					this,
-					commandName,
-					second,
-					third
-				);
-
-				if (resultCurrent !== undefined) {
-					result = resultCurrent;
-				}
-			};
-
-			for (let i = 0; i < this.commands[commandName].length; i += 1) {
-				exec(this.commands[commandName][i]);
-			}
-
-			return result;
-		}
-	}
-
-	private __initPlugines() {
-		const dp = this.options.disablePlugins;
-		const disable = Array.isArray(dp)
-			? dp.map(name => name.toLowerCase())
-			: dp.toLowerCase().split(/[\s,]+/);
-
-		Object.keys(Jodit.plugins).forEach((key: string) => {
-			if (disable.indexOf(key.toLowerCase()) === -1) {
-				this.__plugins[key] = new Jodit.plugins[key](this);
-			}
-		});
-	}
-
-	private async __initEditor(buffer: null | string) {
-		await this.__createEditor();
-
-		if (this.isDestructed) {
-			return;
-		}
-
-		// syncro
-		if (this.element !== this.container) {
-			this.setElementValue();
-		} else {
-			buffer !== null && this.setEditorValue(buffer); // inline mode
-		}
-
-		Jodit.instances[this.id] = this;
-
-		let mode: number = this.options.defaultMode;
-
-		if (this.options.saveModeInStorage) {
-			const localMode: string | null = this.storage.get(
-				'jodit_default_mode'
-			);
-			if (localMode !== null) {
-				mode = parseInt(localMode, 10);
-			}
-		}
-
-		this.setMode(mode);
-
-		if (this.options.readonly) {
-			this.setReadOnly(true);
-		}
-
-		if (this.options.disabled) {
-			this.setDisabled(true);
-		}
-
-		// if enter plugin not installed
-		try {
-			this.editorDocument.execCommand(
-				'defaultParagraphSeparator',
-				false,
-				this.options.enter.toLowerCase()
-			);
-		} catch {}
-
-		// fix for native resizing
-		try {
-			this.editorDocument.execCommand(
-				'enableObjectResizing',
-				false,
-				'false'
-			);
-		} catch {}
-
-		try {
-			this.editorDocument.execCommand(
-				'enableInlineTableEditing',
-				false,
-				'false'
-			);
-		} catch {}
-	}
-
-	/**
-	 * Create main DIV element and replace source textarea
-	 *
-	 * @private
-	 */
-	private async __createEditor() {
-		const defaultEditorAreae: HTMLElement = this.editor;
-
-		const stayDefault: boolean | undefined = await this.events.fire(
-			'createEditor',
-			this
-		);
-
-		if (this.isDestructed) {
-			return;
-		}
-
-		if (stayDefault === false) {
-			Dom.safeRemove(defaultEditorAreae);
-		}
-
-		if (this.options.editorCssClass) {
-			this.editor.classList.add(this.options.editorCssClass);
-		}
-
-		if (this.options.style) {
-			css(this.editor, this.options.style);
-		}
-
-		// proxy events
-		this.events
-			.on('synchro', () => {
-				this.setEditorValue();
-			})
-			.on(
-				this.editor,
-				'selectionchange selectionstart keydown keyup keypress mousedown mouseup mousepress ' +
-					'click copy cut dragstart drop dragover paste resize touchstart touchend focus blur',
-				(event: Event): false | void => {
-					if (this.options.readonly) {
-						return;
-					}
-					if (this.events && this.events.fire) {
-						if (this.events.fire(event.type, event) === false) {
-							return false;
-						}
-
-						this.setEditorValue();
-					}
-				}
-			);
-
-		if (this.options.spellcheck) {
-			this.editor.setAttribute('spellcheck', 'true');
-		}
-
-		// direction
-		if (this.options.direction) {
-			const direction =
-				this.options.direction.toLowerCase() === 'rtl' ? 'rtl' : 'ltr';
-
-			this.editor.style.direction = direction;
-			this.container.style.direction = direction;
-			this.editor.setAttribute('dir', direction);
-			this.container.setAttribute('dir', direction);
-
-			this.toolbar.setDirection(direction);
-		}
-
-		if (this.options.triggerChangeEvent) {
-			this.events.on(
-				'change',
-				debounce(() => {
-					this.events && this.events.fire(this.element, 'change');
-				}, this.defaultTimeout)
-			);
-		}
 	}
 }

@@ -1,16 +1,12 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {Dom} from '../modules/Dom';
-import {setTimeout} from '../modules/helpers/async';
-import {IJodit} from '../types';
+import { Config } from '../Config';
+import { Dom } from '../modules/Dom';
+import { IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -29,18 +25,20 @@ Config.prototype.autofocus = false;
  * @param {Jodit} editor
  */
 export function autofocus(editor: IJodit) {
-	let timeout: number;
-	editor.events
-		.on('afterInit', () => {
-			if (editor.options.autofocus) {
-				if (editor.defaultTimeout) {
-					timeout = setTimeout(editor.selection.focus, 300);
-				} else {
-					editor.selection.focus();
-				}
+	editor.events.on('afterInit', () => {
+		if (editor.options.autofocus) {
+			if (editor.defaultTimeout) {
+				editor.async.setTimeout(editor.selection.focus, 300);
+			} else {
+				editor.selection.focus();
 			}
-		})
-		.on('mousedown', (e: MouseEvent) => {
+		}
+	});
+
+	editor.events.on('afterInit afterAddPlace', () => {
+		editor.events
+			.off(editor.editor, 'mousedown.autofocus')
+			.on(editor.editor, 'mousedown.autofocus', (e: MouseEvent) => {
 			if (
 				editor.isEditorMode() &&
 				e.target &&
@@ -53,8 +51,6 @@ export function autofocus(editor: IJodit) {
 					editor.selection.setCursorIn(e.target as HTMLElement);
 				}
 			}
-		})
-		.on('beforeDestruct', () => {
-			clearTimeout(timeout);
 		});
+	});
 }

@@ -1,17 +1,14 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_UP} from '../constants';
-import {Alert, Dialog} from '../modules/dialog/';
-import {IControlType} from '../types/toolbar';
-import {IJodit} from '../types';
+import { Config } from '../Config';
+import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_UP } from '../constants';
+import { Alert } from '../modules/dialog/';
+import { IControlType } from '../types/toolbar';
+import { IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -245,23 +242,24 @@ Config.prototype.controls.symbol = {
 		);
 		if (container) {
 			if (editor.options.usePopupForSpecialCharacters) {
-				const box: HTMLDivElement = editor.ownerDocument.createElement(
-					'div'
-				);
+				const box = editor.create.div();
+
 				box.classList.add('jodit_symbols');
 				box.appendChild(container);
 				editor.events.on(container, 'close_dialog', close);
 				return box;
 			} else {
-				const dialog: Dialog = Alert(
+				const dialog = Alert(
 					container,
 					editor.i18n('Select Special Character'),
-					void 0,
+					undefined,
 					'jodit_symbols'
 				);
+
 				const a: HTMLAnchorElement | null = container.querySelector(
 					'a'
 				);
+
 				a && a.focus();
 				editor.events.on('beforeDestruct', () => {
 					dialog && dialog.close();
@@ -280,10 +278,10 @@ export class symbols {
 	constructor(editor: IJodit) {
 		editor.events.on('generateSpecialCharactersTable.symbols', () => {
 			const container: HTMLDivElement = editor.create.fromHTML(
-				'<div class="jodit_symbols-container">' +
-				'<div class="jodit_symbols-container_table"><table><tbody></tbody></table></div>' +
-				'<div class="jodit_symbols-container_preview"><div class="jodit_symbols-preview"></div></div>' +
-				'</div>'
+					'<div class="jodit_symbols-container">' +
+						'<div class="jodit_symbols-container_table"><table><tbody></tbody></table></div>' +
+						'<div class="jodit_symbols-container_preview"><div class="jodit_symbols-preview"></div></div>' +
+						'</div>'
 				) as HTMLDivElement,
 				preview: HTMLDivElement = container.querySelector(
 					'.jodit_symbols-preview'
@@ -297,6 +295,7 @@ export class symbols {
 			for (
 				let i: number = 0;
 				i < editor.options.specialCharacters.length;
+
 			) {
 				const tr: HTMLTableRowElement = editor.create.element('tr');
 
@@ -307,7 +306,7 @@ export class symbols {
 					j += 1, i += 1
 				) {
 					const td: HTMLTableCellElement = editor.create.element(
-						'td'
+							'td'
 						),
 						a: HTMLAnchorElement = editor.create.fromHTML(
 							`<a
@@ -329,10 +328,10 @@ export class symbols {
 			const self: symbols = this;
 
 			editor.events
-				.on(chars, 'focus', function (this: HTMLAnchorElement) {
+				.on(chars, 'focus', function(this: HTMLAnchorElement) {
 					preview.innerHTML = this.innerHTML;
 				})
-				.on(chars, 'mousedown', function (
+				.on(chars, 'mousedown', function(
 					this: HTMLAnchorElement,
 					e?: MouseEvent
 				) {
@@ -344,7 +343,7 @@ export class symbols {
 						e && e.stopImmediatePropagation();
 					}
 				})
-				.on(chars, 'mouseenter', function (this: HTMLAnchorElement) {
+				.on(chars, 'mouseenter', function(this: HTMLAnchorElement) {
 					if (this && this.nodeName === 'A') {
 						this.focus();
 					}
@@ -353,8 +352,8 @@ export class symbols {
 					const target: HTMLAnchorElement = e.target as HTMLAnchorElement;
 					if (target && target.nodeName === 'A') {
 						const index: number = parseInt(
-							target.getAttribute('data-index') || '0',
-							10
+								target.getAttribute('data-index') || '0',
+								10
 							),
 							jIndex: number = parseInt(
 								target.getAttribute('data-index-j') || '0',
@@ -374,11 +373,11 @@ export class symbols {
 									newIndex =
 										e.which === KEY_UP
 											? Math.floor(
-											chars.length /
-											self.countInRow
-											) *
-											self.countInRow +
-											jIndex
+													chars.length /
+														self.countInRow
+											  ) *
+													self.countInRow +
+											  jIndex
 											: jIndex;
 
 									if (newIndex > chars.length - 1) {

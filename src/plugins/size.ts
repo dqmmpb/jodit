@@ -1,16 +1,12 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {debounce, throttle} from '../modules/helpers/async';
-import {css} from '../modules/helpers/css';
-import {IJodit, IPointBound} from '../types';
+import { Config } from '../Config';
+import { css } from '../modules/helpers/css';
+import { IJodit, IPointBound } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -46,9 +42,8 @@ export function size(editor: IJodit) {
 		editor.options.height !== 'auto' &&
 		(editor.options.allowResizeX || editor.options.allowResizeY)
 	) {
-		const
-			handle = editor.create.div(
-				'jodit_resize',
+		const handle = editor.create.div(
+				'jodit_editor_resize',
 				'<a tabindex="-1" href="javascript:void(0)"></a>'
 			),
 			start: IPointBound = {
@@ -63,17 +58,19 @@ export function size(editor: IJodit) {
 		editor.events
 			.on(handle, 'mousedown touchstart', (e: MouseEvent) => {
 				isResized = true;
+
 				start.x = e.clientX;
 				start.y = e.clientY;
 				start.w = editor.container.offsetWidth;
 				start.h = editor.container.offsetHeight;
+
 				editor.lock();
 				e.preventDefault();
 			})
 			.on(
 				editor.ownerWindow,
 				'mousemove touchmove',
-				throttle((e: MouseEvent) => {
+				editor.async.throttle((e: MouseEvent) => {
 					if (isResized) {
 						if (editor.options.allowResizeY) {
 							setHeight(start.h + e.clientY - start.y);
@@ -105,7 +102,7 @@ export function size(editor: IJodit) {
 
 	const getNotWorkHeight = (): number =>
 		(editor.options.toolbar ? editor.toolbar.container.offsetHeight : 0) +
-		(editor.statusbar ? editor.statusbar.container.offsetHeight : 0);
+		(editor.statusbar ? editor.statusbar.getHeight() : 0);
 
 	const calcMinHeightWorkspace = () => {
 		if (!editor.container || !editor.container.parentNode) {
@@ -145,7 +142,10 @@ export function size(editor: IJodit) {
 		}
 	};
 
-	const resizeWorkspace = debounce(resizeWorkspaceImd, editor.defaultTimeout);
+	const resizeWorkspace = editor.async.debounce(
+		resizeWorkspaceImd,
+		editor.defaultTimeout
+	);
 
 	editor.events
 		.on('toggleFullSize', (fullsize: boolean) => {
@@ -155,7 +155,7 @@ export function size(editor: IJodit) {
 			}
 		})
 		.on(
-			'afterInit',
+			'afterInit changePlace',
 			() => {
 				if (!editor.options.inline) {
 					css(editor.editor, {
@@ -172,9 +172,8 @@ export function size(editor: IJodit) {
 				let height: string | number = editor.options.height;
 
 				if (editor.options.saveHeightInStorage && height !== 'auto') {
-					const localHeight: string | null = editor.storage.get(
-						'height'
-					);
+					const localHeight = editor.storage.get<string>('height');
+
 					if (localHeight) {
 						height = localHeight;
 					}

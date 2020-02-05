@@ -1,17 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
+import { Config } from '../Config';
 import * as consts from '../constants';
-import {debounce} from '../modules/helpers/async';
-import {$$} from '../modules/helpers/selector';
-import {IJodit} from '../types';
+import { $$ } from '../modules/helpers/selector';
+import { IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -39,7 +35,7 @@ Config.prototype.mediaBlocks = ['video', 'audio'];
 export function media(editor: IJodit) {
 	const keyFake: string = 'jodit_fake_wrapper';
 
-	const {mediaFakeTag, mediaBlocks, mediaInFakeBlock} = editor.options;
+	const { mediaFakeTag, mediaBlocks, mediaInFakeBlock } = editor.options;
 
 	const wrap = (element: HTMLElement) => {
 		if (
@@ -53,17 +49,7 @@ export function media(editor: IJodit) {
 			let wrapper: HTMLElement;
 
 			wrapper = editor.create.inside.fromHTML(
-				'<' +
-				mediaFakeTag +
-				' data-jodit-temp="1" ' +
-				'contenteditable="false" ' +
-				'draggable="true" ' +
-				'data-' +
-				keyFake +
-				'="1">' +
-				'</' +
-				mediaFakeTag +
-				'>'
+				`<${mediaFakeTag} data-jodit-temp="1" contenteditable="false" draggable="true" data-${keyFake}="1"></${mediaFakeTag}>`
 			);
 
 			wrapper.style.display =
@@ -102,12 +88,11 @@ export function media(editor: IJodit) {
 				}
 			})
 			.on(
-				'change afterInit afterSetMode',
-				debounce(() => {
+				'change afterInit afterSetMode changePlace',
+				editor.async.debounce(() => {
 					if (
 						!editor.isDestructed &&
-						editor.getMode() !== consts.MODE_SOURCE &&
-						editor.editor
+						editor.getMode() !== consts.MODE_SOURCE
 					) {
 						$$(mediaBlocks.join(','), editor.editor).forEach(
 							(elm: HTMLElement) => {

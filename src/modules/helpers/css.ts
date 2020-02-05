@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import {IDictionary} from '../../types';
@@ -47,7 +44,7 @@ export const css = (
 
 			if (
 				_value !== undefined &&
-				css(elm, _key, void 0, true) !== normilizeCSSValue(_key, _value)
+				css(elm, _key, undefined, true) !== normilizeCSSValue(_key, _value)
 			) {
 				(elm.style as any)[_key] = _value;
 			}
@@ -73,12 +70,13 @@ export const css = (
 		key as string
 		];
 
-	let result: string | number =
-		currentValue !== undefined && currentValue !== ''
-			? currentValue
-			: win && !onlyStyleMode
-			? win.getComputedStyle(element).getPropertyValue(key2)
-			: '';
+	let result: string | number = '';
+
+	if (currentValue !== undefined && currentValue !== '') {
+		result = currentValue;
+	} else if (win && !onlyStyleMode) {
+		result = win.getComputedStyle(element).getPropertyValue(key2)
+	}
 
 	if (
 		numberFieldsReg.test(key as string) &&
@@ -88,4 +86,21 @@ export const css = (
 	}
 
 	return normilizeCSSValue(key as string, result);
+};
+
+/**
+ * Clear center align
+ * @param image
+ */
+export const clearCenterAlign = (image: HTMLElement) => {
+	if (css(image, 'display') === 'block') {
+		css(image, 'display', '');
+	}
+	if (
+		image.style.marginLeft === 'auto' &&
+		image.style.marginRight === 'auto'
+	) {
+		image.style.marginLeft = '';
+		image.style.marginRight = '';
+	}
 };

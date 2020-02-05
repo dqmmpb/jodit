@@ -1,20 +1,16 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-import {Config} from '../Config';
+import { Config } from '../Config';
 import {
 	COMMAND_KEYS,
 	INVISIBLE_SPACE_REG_EXP,
 	SPACE_REG_EXP
 } from '../constants';
-import {debounce} from '../modules/helpers/async';
-import {IJodit, SnapshotType} from '../types';
-import {stripTags} from '../modules/helpers/html';
+import { IJodit, SnapshotType } from '../types';
+import { stripTags } from '../modules/helpers/html';
 
 declare module '../Config' {
 	interface Config {
@@ -51,7 +47,7 @@ export function limit(jodit: IJodit) {
 		): void | boolean => {
 			const text: string =
 				inputText ||
-				(jodit.options.limitHTML ? jodit.value : jodit.getEditorText());
+				(jodit.options.limitHTML ? jodit.value : jodit.text);
 
 			const words: string[] = text
 				.replace(INVISIBLE_SPACE_REG_EXP, '')
@@ -82,14 +78,12 @@ export function limit(jodit: IJodit) {
 		let snapshot: SnapshotType | null = null;
 
 		jodit.events
+			.off('.limit')
+			.on('beforePaste.limit', () => {
+				snapshot = jodit.observer.snapshot.make();
+			})
 			.on(
-				'beforePaste',
-				() => {
-					snapshot = jodit.observer.snapshot.make();
-				}
-			)
-			.on(
-				'keydown keyup beforeEnter beforePaste',
+				'keydown.limit keyup.limit beforeEnter.limit beforePaste.limit',
 				(event: KeyboardEvent): false | void => {
 					if (callback(event) !== undefined) {
 						return false;
@@ -97,8 +91,8 @@ export function limit(jodit: IJodit) {
 				}
 			)
 			.on(
-				'change',
-				debounce((newValue: string, oldValue: string) => {
+				'change.limit',
+				jodit.async.debounce((newValue: string, oldValue: string) => {
 					if (
 						callback(
 							null,
@@ -111,14 +105,11 @@ export function limit(jodit: IJodit) {
 					}
 				}, jodit.defaultTimeout)
 			)
-			.on(
-				'afterPaste',
-				(): false | void => {
-					if (callback(null) === false && snapshot) {
-						jodit.observer.snapshot.restore(snapshot);
-						return false;
-					}
+			.on('afterPaste.limit', (): false | void => {
+				if (callback(null) === false && snapshot) {
+					jodit.observer.snapshot.restore(snapshot);
+					return false;
 				}
-			);
+			});
 	}
 }

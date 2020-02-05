@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import {Config} from '../Config';
@@ -98,24 +95,36 @@ export function fullsize(editor: IViewWithToolbar) {
 				}
 			}
 		},
-		toggle = (condition?: boolean) => {
+
+		/**
+		 * Change editor's state between FullSize and normal
+		 * @param enable
+		 */
+		toggle = (enable?: boolean) => {
 			if (!editor.container) {
 				return;
 			}
 
-			if (condition === undefined) {
-				condition = !editor.container.classList.contains(
+			if (enable === undefined) {
+				enable = !editor.container.classList.contains(
 					'jodit_fullsize'
 				);
 			}
 
-			editor.options.fullsize = !!condition;
+			editor.options.fullsize = enable;
 
-			shown = condition;
+			shown = enable;
 
-			editor.container.classList.toggle('jodit_fullsize', condition);
+			editor.container.classList.toggle('jodit_fullsize', enable);
 
 			if (editor.toolbar) {
+				if (!enable) {
+					editor.toolbar.getParentContainer()?.appendChild(editor.toolbar.container);
+				} else {
+					editor.container.querySelector('.jodit_toolbar_container')
+						?.appendChild(editor.toolbar.container);
+				}
+
 				css(editor.toolbar.container, 'width', 'auto');
 			}
 
@@ -123,14 +132,14 @@ export function fullsize(editor: IViewWithToolbar) {
 				let node = editor.container.parentNode as HTMLElement;
 
 				while (node && node.nodeType !== Node.DOCUMENT_NODE) {
-					node.classList.toggle('jodit_fullsize_box', condition);
+					node.classList.toggle('jodit_fullsize_box', enable);
 					node = node.parentNode as HTMLElement;
 				}
 
 				resize();
 			}
 
-			editor.events.fire('afterResize');
+			editor.events?.fire('afterResize');
 		};
 
 	if (editor.options.globalFullsize) {
@@ -139,7 +148,7 @@ export function fullsize(editor: IViewWithToolbar) {
 
 	editor.events
 		.on('afterInit afterOpen', () => {
-			editor.toggleFullSize(editor.options.fullsize);
+			editor.toggleFullSize(editor?.options?.fullsize);
 		})
 		.on('toggleFullSize', toggle)
 		.on('beforeDestruct beforeClose', () => {

@@ -1,32 +1,43 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import * as consts from '../constants';
 import {
 	INVISIBLE_SPACE,
-	INVISIBLE_SPACE_REG_EXP_END,
-	INVISIBLE_SPACE_REG_EXP_START
+	INVISIBLE_SPACE_REG_EXP_END as INV_END,
+	INVISIBLE_SPACE_REG_EXP_START as INV_START
 } from '../constants';
 
-import {HTMLTagNames, IDictionary, IJodit, markerInfo} from '../types';
-import {Dom} from './Dom';
-import {css} from './helpers/css';
-import {normalizeNode, normilizeCSSValue} from './helpers/normalize';
-import {$$} from './helpers/selector';
-import {isPlainObject} from './helpers/checker';
-import {each} from './helpers/each';
-import {trim} from './helpers/string';
+import { HTMLTagNames, IDictionary, IJodit, markerInfo } from '../types';
+import { Dom } from './Dom';
+import { css } from './helpers/css';
+import { normalizeNode, normilizeCSSValue } from './helpers/normalize';
+import { $$ } from './helpers/selector';
+import { isFunction, isPlainObject } from './helpers/checker';
+import { each } from './helpers/each';
+import { trim } from './helpers/string';
+import { error } from './helpers';
 
 type WindowSelection = Selection | null;
 
 export class Select {
 	constructor(readonly jodit: IJodit) {
+		jodit.events.on('removeMarkers', () => {
+			this.removeMarkers();
+		});
+	}
+
+	/**
+	 * Throw Error exception if parameter is not Node
+	 * @param node
+	 */
+	private errorNode(node: unknown) {
+		if (!Dom.isNode(node, this.win)) {
+			throw error('Parameter node must be instance of Node');
+		}
 	}
 
 	/**
@@ -77,8 +88,7 @@ export class Select {
 	 * Remove all selected content
 	 */
 	remove() {
-		const
-			sel = this.sel,
+		const sel = this.sel,
 			current: false | Node = this.current();
 
 		if (sel && current) {
@@ -87,6 +97,21 @@ export class Select {
 				sel.getRangeAt(i).collapse(true);
 			}
 		}
+	}
+
+	/**
+	 * Remove node element from editor
+	 * @param node
+	 */
+	removeNode(node: Node): void {
+		if (!Dom.isOrContains(this.jodit.editor, node, true)) {
+			throw error(
+				"Selection.removeNode can remove only editor's children"
+			);
+		}
+
+		Dom.safeRemove(node);
+		this.jodit.events.fire('afterRemoveNode', node);
 	}
 
 	/**
@@ -101,39 +126,29 @@ export class Select {
 		this.removeMarkers();
 
 		try {
-			let rng: Range = this.createRange();
+			let rng = this.createRange();
 
-			if ((this.doc as any).caretPositionFromPoint) {
-				const caret: CaretPosition = (this
-					.doc as any).caretPositionFromPoint(x, y);
-				rng.setStart(caret.offsetNode, caret.offset);
-			} else if (this.doc.caretRangeFromPoint) {
-				const caret: Range = this.doc.caretRangeFromPoint(x, y);
-				rng.setStart(caret.startContainer, caret.startOffset);
-			}
+			(() => {
+				if (this.doc.caretPositionFromPoint) {
+					const caret = this.doc.caretPositionFromPoint(x, y);
 
-			if (rng) {
-				rng.collapse(true);
-				const sel = this.sel;
-
-				if (sel) {
-					sel.removeAllRanges();
-					sel.addRange(rng);
+					if (caret) {
+						rng.setStart(caret.offsetNode, caret.offset);
+						return;
+					}
 				}
-			} else if (
-				typeof (this.doc as any).body.createTextRange !== 'undefined'
-			) {
-				const range: any = (this.doc as any).body.createTextRange();
-				range.moveToPoint(x, y);
-				const endRange: any = range.duplicate();
-				endRange.moveToPoint(x, y);
-				range.setEndPoint('EndToEnd', endRange);
-				range.select();
-			}
+
+				if (this.doc.caretRangeFromPoint) {
+					const caret = this.doc.caretRangeFromPoint(x, y);
+					rng.setStart(caret.startContainer, caret.startOffset);
+				}
+			})();
+
+			rng.collapse(true);
+			this.selectRange(rng);
 
 			return true;
-		} catch {
-		}
+		} catch {}
 
 		return false;
 	}
@@ -144,7 +159,7 @@ export class Select {
 	 */
 	isMarker = (elm: Node): boolean =>
 		Dom.isNode(elm, this.win) &&
-		elm.nodeType === Node.ELEMENT_NODE &&
+		Dom.isElement(elm) &&
 		elm.nodeName === 'SPAN' &&
 		(elm as Element).hasAttribute('data-' + consts.MARKER_CLASS);
 
@@ -217,8 +232,7 @@ export class Select {
 			sel && sel.removeAllRanges();
 
 			selectionInfo.forEach((selection: markerInfo) => {
-				const
-					range = this.createRange(),
+				const range = this.createRange(),
 					end = this.area.querySelector(
 						'#' + selection.endId
 					) as HTMLElement,
@@ -233,10 +247,7 @@ export class Select {
 				if (selection.collapsed || !end) {
 					const previousNode: Node | null = start.previousSibling;
 
-					if (
-						previousNode &&
-						previousNode.nodeType === Node.TEXT_NODE
-					) {
+					if (Dom.isText(previousNode)) {
 						range.setStart(
 							previousNode,
 							previousNode.nodeValue
@@ -330,8 +341,7 @@ export class Select {
 
 			try {
 				sel.addRange(ranges[i].cloneRange());
-			} catch {
-			}
+			} catch {}
 		}
 
 		return info;
@@ -351,15 +361,18 @@ export class Select {
 			this.win.focus();
 			this.area.focus();
 
-			const
-				sel = this.sel,
-				range = this.createRange();
+			const sel: WindowSelection = this.sel,
+				range = sel?.rangeCount ? sel?.getRangeAt(0) : null;
 
-			if (sel && (!sel.rangeCount || !this.current())) {
+			if (!range || !Dom.isOrContains(this.area, range.startContainer)) {
+				const range = this.createRange();
 				range.setStart(this.area, 0);
 				range.collapse(true);
-				sel.removeAllRanges();
-				sel.addRange(range);
+				this.selectRange(range);
+			}
+
+			if (!this.jodit.editorIsActive) {
+				this.jodit?.events?.fire('focus');
 			}
 
 			return true;
@@ -410,43 +423,32 @@ export class Select {
 			if (sel && sel.rangeCount > 0) {
 				const range = sel.getRangeAt(0);
 
-				let
-					node: Node | null = range.startContainer,
+				let node: Node | null = range.startContainer,
 					rightMode: boolean = false;
 
 				const child = (nd: Node): Node | null =>
 					rightMode ? nd.lastChild : nd.firstChild;
 
-				if (node.nodeType !== Node.TEXT_NODE) {
+				if (!Dom.isText(node)) {
 					node = range.startContainer.childNodes[range.startOffset];
 
 					if (!node) {
 						node =
 							range.startContainer.childNodes[
-							range.startOffset - 1
-								];
+								range.startOffset - 1
+							];
 						rightMode = true;
 					}
 
-					if (
-						node &&
-						sel.isCollapsed &&
-						node.nodeType !== Node.TEXT_NODE
-					) {
+					if (node && sel.isCollapsed && !Dom.isText(node)) {
 						// test Current method - Cursor in the left of some SPAN
-						if (
-							!rightMode &&
-							node.previousSibling &&
-							node.previousSibling.nodeType === Node.TEXT_NODE
-						) {
+						if (!rightMode && Dom.isText(node.previousSibling)) {
 							node = node.previousSibling;
 						} else if (checkChild) {
 							let current: Node | null = child(node);
+
 							while (current) {
-								if (
-									current &&
-									current.nodeType === Node.TEXT_NODE
-								) {
+								if (current && Dom.isText(current)) {
 									node = current;
 									break;
 								}
@@ -455,11 +457,7 @@ export class Select {
 						}
 					}
 
-					if (
-						node &&
-						!sel.isCollapsed &&
-						node.nodeType !== Node.TEXT_NODE
-					) {
+					if (node && !sel.isCollapsed && !Dom.isText(node)) {
 						let leftChild: Node | null = node,
 							rightChild: Node | null = node;
 
@@ -469,13 +467,13 @@ export class Select {
 						} while (
 							leftChild &&
 							rightChild &&
-							leftChild.nodeType !== Node.TEXT_NODE
-							);
+							!Dom.isText(leftChild)
+						);
 
 						if (
 							leftChild === rightChild &&
 							leftChild &&
-							leftChild.nodeType === Node.TEXT_NODE
+							Dom.isText(leftChild)
 						) {
 							node = leftChild;
 						}
@@ -506,7 +504,9 @@ export class Select {
 	) {
 		this.errorNode(node);
 
-		this.focus();
+		if (!this.isFocused() && this.jodit.isEditorMode()) {
+			this.focus();
+		}
 
 		const sel = this.sel;
 
@@ -518,18 +518,33 @@ export class Select {
 			const range = sel.getRangeAt(0);
 
 			if (Dom.isOrContains(this.area, range.commonAncestorContainer)) {
-				range.deleteContents();
-				range.insertNode(node);
+				if (
+					/^(BR|HR|IMG|VIDEO)$/i.test(
+						range.startContainer.nodeName
+					) &&
+					range.collapsed
+				) {
+					range.startContainer.parentNode?.insertBefore(
+						node,
+						range.startContainer
+					);
+				} else {
+					range.deleteContents();
+					range.insertNode(node);
+				}
 			} else {
 				this.area.appendChild(node);
 			}
-
 		} else {
 			this.area.appendChild(node);
 		}
 
 		if (insertCursorAfter) {
-			this.setCursorAfter(node);
+			if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+				node.lastChild && this.setCursorAfter(node.lastChild);
+			} else {
+				this.setCursorAfter(node);
+			}
 		}
 
 		if (fireChange && this.jodit.events) {
@@ -555,8 +570,7 @@ export class Select {
 			return;
 		}
 
-		const
-			node = this.jodit.create.inside.div(),
+		const node = this.jodit.create.inside.div(),
 			fragment = this.jodit.create.inside.fragment();
 
 		let lastChild: Node | null, lastEditorElement: Node | null;
@@ -600,12 +614,11 @@ export class Select {
 		lastEditorElement = this.area.lastChild;
 
 		while (
-			lastEditorElement &&
-			lastEditorElement.nodeType === Node.TEXT_NODE &&
+			Dom.isText(lastEditorElement) &&
 			lastEditorElement.previousSibling &&
 			lastEditorElement.nodeValue &&
 			/^\s*$/.test(lastEditorElement.nodeValue)
-			) {
+		) {
 			lastEditorElement = lastEditorElement.previousSibling;
 		}
 
@@ -613,7 +626,7 @@ export class Select {
 			if (
 				lastEditorElement &&
 				lastChild === lastEditorElement &&
-				lastChild.nodeType === Node.ELEMENT_NODE
+				Dom.isElement(lastChild)
 			) {
 				this.area.appendChild(this.jodit.create.inside.element('br'));
 			}
@@ -705,15 +718,13 @@ export class Select {
 		if (sel && sel.rangeCount) {
 			const range = sel.getRangeAt(0);
 
-			const
-				nodes: Node[] = [],
-				startOffset: number = range.startOffset,
-				length: number = this.area.childNodes.length,
+			const nodes: Node[] = [],
+				startOffset = range.startOffset,
+				length = this.area.childNodes.length,
+				elementOffset = startOffset < length ? startOffset : length - 1,
 				start: Node =
 					range.startContainer === this.area
-						? this.area.childNodes[
-							startOffset < length ? startOffset : length - 1
-							]
+						? this.area.childNodes[elementOffset]
 						: range.startContainer,
 				end: Node =
 					range.endContainer === this.area
@@ -733,7 +744,7 @@ export class Select {
 					}
 
 					// checks parentElement as well because partial selections are not equal to entire element
-					return node === end || (node && node.contains(end));
+					return node === end || (node && node.contains && node.contains(end));
 				},
 				this.area,
 				true,
@@ -742,6 +753,10 @@ export class Select {
 			);
 
 			const forEvery = (current: Node): void => {
+				if (!Dom.isOrContains(this.jodit.editor, current, true)) {
+					return;
+				}
+
 				if (current.nodeName.match(/^(UL|OL)$/)) {
 					return Array.from(current.childNodes).forEach(forEvery);
 				}
@@ -753,6 +768,7 @@ export class Select {
 						const currentB = this.jodit.create.inside.text(
 							INVISIBLE_SPACE
 						);
+
 						current.appendChild(currentB);
 						current = currentB;
 					}
@@ -788,14 +804,14 @@ export class Select {
 				this.area
 			)
 		) {
-			throw new Error('Node element must be in editor');
+			throw error('Node element must be in editor');
 		}
 
 		const range = this.createRange();
 		let fakeNode: Text | false = false;
 
-		if (node.nodeType !== Node.TEXT_NODE) {
-			fakeNode = this.doc.createTextNode(consts.INVISIBLE_SPACE);
+		if (!Dom.isText(node)) {
+			fakeNode = this.jodit.create.inside.text(consts.INVISIBLE_SPACE);
 			range.setStartAfter(node);
 			range.insertNode(fakeNode);
 			range.selectNode(fakeNode);
@@ -822,69 +838,74 @@ export class Select {
 	 * @return {boolean | null} true - the cursor is at the end(start) block, null - cursor somewhere outside
 	 */
 	cursorInTheEdge(start: boolean, parentBlock: HTMLElement): boolean | null {
-		const
-			sel = this.sel,
-			range: Range | null =
-				sel && sel.rangeCount ? sel.getRangeAt(0) : null;
+		const end = !start,
+			range = this.sel?.getRangeAt(0),
+			current = this.current(false);
 
-		if (!range) {
+		if (
+			!range ||
+			!current ||
+			!Dom.isOrContains(parentBlock, current, true)
+		) {
 			return null;
 		}
 
-		const container = start ? range.startContainer : range.endContainer,
-			sibling = (node: Node): Node | false => {
-				return start
-					? Dom.prev(node, elm => !!elm, parentBlock)
-					: Dom.next(node, elm => !!elm, parentBlock);
-			},
-			checkSiblings = (next: Node | false): false | void => {
-				while (next) {
-					next = sibling(next);
-					if (
-						next &&
-						!Dom.isEmptyTextNode(next) &&
-						next.nodeName !== 'BR'
-					) {
-						return false;
-					}
-				}
-			};
+		const container = start ? range.startContainer : range.endContainer;
+		const offset = start ? range.startOffset : range.endOffset;
+		const check = (elm: Node | null) =>
+			elm && elm.nodeName !== 'BR' && !Dom.isEmptyTextNode(elm);
 
-		if (container.nodeType === Node.TEXT_NODE) {
-			const value: string = container.nodeValue || '';
+		// check right offset
+		if (Dom.isText(container)) {
+			const text = container.nodeValue || '';
+
+			if (end && text.replace(INV_END, '').length > offset) {
+				return false;
+			}
+
+			const inv = INV_START.exec(text);
 			if (
 				start &&
-				range.startOffset >
-				value.length -
-				value.replace(INVISIBLE_SPACE_REG_EXP_START, '').length
+				((inv && inv[0].length < offset) || (!inv && offset > 0))
 			) {
 				return false;
 			}
-			if (
-				!start &&
-				range.startOffset <
-				value.replace(INVISIBLE_SPACE_REG_EXP_END, '').length
-			) {
-				return false;
-			}
+		} else {
+			const children = Array.from(container.childNodes);
 
-			if (checkSiblings(container) === false) {
-				return false;
-			}
-		}
-
-		const current: Node | false = this.current(false);
-		if (!current || !Dom.isOrContains(parentBlock, current, true)) {
-			return null;
-		}
-
-		if (!start && range.startContainer.childNodes[range.startOffset]) {
-			if (current && !Dom.isEmptyTextNode(current)) {
-				return false;
+			if (end) {
+				if (children.slice(offset).some(check)) {
+					return false;
+				}
+			} else {
+				if (children.slice(0, offset).some(check)) {
+					return false;
+				}
 			}
 		}
 
-		return checkSiblings(current) !== false;
+		const next = start
+			? Dom.prev(current, check, parentBlock)
+			: Dom.next(current, check, parentBlock);
+
+		return !next;
+		//'<li><p><span>test</span>s<span>test</span></p></li>'
+	}
+
+	/**
+	 * Wrapper for cursorInTheEdge
+	 * @param parentBlock
+	 */
+	cursorOnTheLeft(parentBlock: HTMLElement): boolean | null {
+		return this.cursorInTheEdge(true, parentBlock);
+	}
+
+	/**
+	 * Wrapper for cursorInTheEdge
+	 * @param parentBlock
+	 */
+	cursorOnTheRight(parentBlock: HTMLElement): boolean | null {
+		return this.cursorInTheEdge(false, parentBlock);
 	}
 
 	/**
@@ -906,14 +927,14 @@ export class Select {
 				this.area
 			)
 		) {
-			throw new Error('Node element must be in editor');
+			throw error('Node element must be in editor');
 		}
 
 		const range = this.createRange();
 		let fakeNode: Text | false = false;
 
-		if (node.nodeType !== Node.TEXT_NODE) {
-			fakeNode = this.doc.createTextNode(consts.INVISIBLE_SPACE);
+		if (!Dom.isText(node)) {
+			fakeNode = this.jodit.create.inside.text(consts.INVISIBLE_SPACE);
 			range.setStartBefore(node);
 			range.collapse(true);
 			range.insertNode(fakeNode);
@@ -948,7 +969,7 @@ export class Select {
 				this.area
 			)
 		) {
-			throw new Error('Node element must be in editor');
+			throw error('Node element must be in editor');
 		}
 
 		const range = this.createRange();
@@ -957,7 +978,7 @@ export class Select {
 			last: Node = node;
 
 		do {
-			if (start.nodeType === Node.TEXT_NODE) {
+			if (Dom.isText(start)) {
 				break;
 			}
 			last = start;
@@ -965,7 +986,7 @@ export class Select {
 		} while (start);
 
 		if (!start) {
-			const fakeNode: Text = this.doc.createTextNode(
+			const fakeNode = this.jodit.create.inside.text(
 				consts.INVISIBLE_SPACE
 			);
 			if (!/^(img|br|input)$/i.test(last.nodeName)) {
@@ -1027,7 +1048,7 @@ export class Select {
 				this.area
 			)
 		) {
-			throw new Error('Node element must be in editor');
+			throw error('Node element must be in editor');
 		}
 
 		const range = this.createRange();
@@ -1039,6 +1060,12 @@ export class Select {
 
 	/**
 	 * Return current selected HTML
+	 * @example
+	 * ```javascript
+	 * const editor = new jodit();
+	 * console.log(editor.selection.getHTML()); // html
+	 * console.log(Jodit.modules.Helpers.stripTags(editor.selection.getHTML())); // plain text
+	 * ```
 	 */
 	getHTML(): string {
 		const sel = this.sel;
@@ -1057,6 +1084,59 @@ export class Select {
 	}
 
 	/**
+	 * Wrap all selected fragments inside Tag or apply some callback
+	 * @param tagOrCallback
+	 */
+	wrapInTag(
+		tagOrCallback: HTMLTagNames | ((font: HTMLElement) => void)
+	): HTMLElement[] {
+		// fix issue https://github.com/xdan/jodit/issues/65
+		$$('*[style*=font-size]', this.area).forEach((elm: HTMLElement) => {
+			elm.style &&
+				elm.style.fontSize &&
+				elm.setAttribute(
+					'data-font-size',
+					elm.style.fontSize.toString()
+				);
+		});
+
+		this.doc.execCommand('fontsize', false, '7');
+
+		$$('*[data-font-size]', this.area).forEach((elm: HTMLElement) => {
+			const fontSize = elm.getAttribute('data-font-size');
+
+			if (elm.style && fontSize) {
+				elm.style.fontSize = fontSize;
+				elm.removeAttribute('data-font-size');
+			}
+		});
+
+		const result: HTMLElement[] = [];
+
+		$$('font[size="7"]', this.area).forEach((font: HTMLElement) => {
+			try {
+				if (isFunction(tagOrCallback)) {
+					tagOrCallback(font);
+				} else {
+					result.push(
+						Dom.replace(
+							font,
+							tagOrCallback,
+							this.jodit.create.inside
+						)
+					);
+				}
+			} finally {
+				if (font.parentNode) {
+					Dom.unwrap(font);
+				}
+			}
+		});
+
+		return result;
+	}
+
+	/**
 	 * Apply some css rules for all selections. It method wraps selections in nodeName tag.
 	 *
 	 * @param {object} cssRules
@@ -1071,8 +1151,7 @@ export class Select {
 			| IDictionary<string | string[]>
 			| IDictionary<(editor: IJodit, elm: HTMLElement) => boolean>
 	) {
-		const
-			WRAP = 1,
+		const WRAP = 1,
 			UNWRAP = 0,
 			defaultTag = 'SPAN',
 			FONT = 'FONT';
@@ -1087,7 +1166,7 @@ export class Select {
 		const checkCssRulesFor = (elm: HTMLElement): boolean => {
 			return (
 				elm.nodeName !== FONT &&
-				elm.nodeType === Node.ELEMENT_NODE &&
+				Dom.isElement(elm) &&
 				((isPlainObject(options) &&
 					each(
 						options as IDictionary<string[]>,
@@ -1117,7 +1196,7 @@ export class Select {
 				return false;
 			}
 
-			const reg: RegExp = new RegExp('^' + elm.nodeName + '$', 'i');
+			const reg = RegExp('^' + elm.nodeName + '$', 'i');
 
 			return (
 				(reg.test(nodeName) ||
@@ -1135,9 +1214,10 @@ export class Select {
 						if (
 							mode === UNWRAP ||
 							css(elm, rule) ===
-							normilizeCSSValue(rule, cssRules[
-								rule
-								] as string)
+								normilizeCSSValue(
+									rule,
+									cssRules[rule] as string
+								)
 						) {
 							css(elm, rule, '');
 							if (mode === undefined) {
@@ -1167,162 +1247,7 @@ export class Select {
 			}
 		};
 
-		if (!this.isCollapsed()) {
-			const selInfo: markerInfo[] = this.save();
-			normalizeNode(this.area.firstChild); // FF fix for test "commandsTest - Exec command "bold"
-			// for some text that contains a few STRONG elements, should unwrap all of these"
-
-			// fix issue https://github.com/xdan/jodit/issues/65
-			$$('*[style*=font-size]', this.area).forEach((elm: HTMLElement) => {
-				elm.style &&
-				elm.style.fontSize &&
-				elm.setAttribute(
-					'data-font-size',
-					elm.style.fontSize.toString()
-				);
-			});
-
-			this.doc.execCommand('fontsize', false, '7');
-
-			$$('*[data-font-size]', this.area).forEach((elm: HTMLElement) => {
-				if (elm.style && elm.getAttribute('data-font-size')) {
-					elm.style.fontSize = elm.getAttribute('data-font-size');
-					elm.removeAttribute('data-font-size');
-				}
-			});
-
-			$$('font[size="7"]', this.area).forEach((font: HTMLElement) => {
-				if (
-					!Dom.next(
-						font,
-						findNextCondition,
-						font.parentNode as HTMLElement
-					) &&
-					!Dom.prev(
-						font,
-						findNextCondition,
-						font.parentNode as HTMLElement
-					) &&
-					isSuitElement(font.parentNode as HTMLElement) &&
-					font.parentNode !== this.area &&
-					(!Dom.isBlock(font.parentNode, this.win) ||
-						consts.IS_BLOCK.test(nodeName))
-				) {
-					toggleStyles(font.parentNode as HTMLElement);
-				} else if (
-					font.firstChild &&
-					!Dom.next(
-						font.firstChild,
-						findNextCondition,
-						font as HTMLElement
-					) &&
-					!Dom.prev(
-						font.firstChild,
-						findNextCondition,
-						font as HTMLElement
-					) &&
-					isSuitElement(font.firstChild as HTMLElement)
-				) {
-					toggleStyles(font.firstChild as HTMLElement);
-				} else if (Dom.closest(font, isSuitElement, this.area)) {
-					const
-						leftRange = this.createRange(),
-						wrapper = Dom.closest(
-							font,
-							isSuitElement,
-							this.area
-						) as HTMLElement;
-
-					leftRange.setStartBefore(wrapper);
-					leftRange.setEndBefore(font);
-
-					const leftFragment: DocumentFragment = leftRange.extractContents();
-
-					if (
-						(!leftFragment.textContent ||
-							!trim(leftFragment.textContent).length) &&
-						leftFragment.firstChild
-					) {
-						Dom.unwrap(leftFragment.firstChild);
-					}
-
-					if (wrapper.parentNode) {
-						wrapper.parentNode.insertBefore(leftFragment, wrapper);
-					}
-
-					leftRange.setStartAfter(font);
-					leftRange.setEndAfter(wrapper);
-					const rightFragment = leftRange.extractContents();
-
-					// case then marker can be inside fragnment
-					if (
-						(!rightFragment.textContent ||
-							!trim(rightFragment.textContent).length) &&
-						rightFragment.firstChild
-					) {
-						Dom.unwrap(rightFragment.firstChild);
-					}
-
-					Dom.after(wrapper, rightFragment);
-
-					toggleStyles(wrapper);
-				} else {
-					// unwrap all suit elements inside
-					const needUnwrap: Node[] = [];
-					let firstElementSuit: boolean | undefined;
-
-					if (font.firstChild) {
-						Dom.find(
-							font.firstChild,
-							(elm: Node | null) => {
-								if (elm && isSuitElement(elm as HTMLElement)) {
-									if (firstElementSuit === undefined) {
-										firstElementSuit = true;
-									}
-									needUnwrap.push(elm);
-								} else {
-									if (firstElementSuit === undefined) {
-										firstElementSuit = false;
-									}
-								}
-								return false;
-							},
-							font,
-							true
-						);
-					}
-
-					needUnwrap.forEach(Dom.unwrap);
-
-					if (!firstElementSuit) {
-						if (mode === undefined) {
-							mode = WRAP;
-						}
-						if (mode === WRAP) {
-							css(
-								Dom.replace(
-									font,
-									nodeName,
-									false,
-									false,
-									this.doc
-								),
-								cssRules &&
-								nodeName.toUpperCase() === defaultTag
-									? cssRules
-									: {}
-							);
-						}
-					}
-				}
-
-				if (font.parentNode) {
-					Dom.unwrap(font);
-				}
-			});
-
-			this.restore(selInfo);
-		} else {
+		if (this.isCollapsed()) {
 			let clearStyle: boolean = false;
 
 			if (
@@ -1330,18 +1255,20 @@ export class Select {
 				Dom.closest(this.current() as Node, nodeName, this.area)
 			) {
 				clearStyle = true;
-				const closest: Node = Dom.closest(
+				const closest = Dom.closest(
 					this.current() as Node,
 					nodeName,
 					this.area
-				) as Node;
+				);
+
 				if (closest) {
 					this.setCursorAfter(closest);
 				}
 			}
 
 			if (nodeName.toUpperCase() === defaultTag || !clearStyle) {
-				const node: Node = this.jodit.create.inside.element(nodeName);
+				const node = this.jodit.create.inside.element(nodeName);
+
 				node.appendChild(
 					this.jodit.create.inside.text(consts.INVISIBLE_SPACE)
 				);
@@ -1353,17 +1280,209 @@ export class Select {
 				}
 
 				this.setCursorIn(node);
+
+				return;
 			}
 		}
+
+		const selInfo: markerInfo[] = this.save();
+
+		normalizeNode(this.area.firstChild); // FF fix for test "commandsTest - Exec command "bold"
+		// for some text that contains a few STRONG elements, should unwrap all of these"
+		this.wrapInTag((font: HTMLElement) => {
+			if (
+				!Dom.next(
+					font,
+					findNextCondition,
+					font.parentNode as HTMLElement
+				) &&
+				!Dom.prev(
+					font,
+					findNextCondition,
+					font.parentNode as HTMLElement
+				) &&
+				isSuitElement(font.parentNode as HTMLElement) &&
+				font.parentNode !== this.area &&
+				(!Dom.isBlock(font.parentNode, this.win) ||
+					consts.IS_BLOCK.test(nodeName))
+			) {
+				toggleStyles(font.parentNode as HTMLElement);
+				return;
+			}
+
+			if (
+				font.firstChild &&
+				!Dom.next(
+					font.firstChild,
+					findNextCondition,
+					font as HTMLElement
+				) &&
+				!Dom.prev(
+					font.firstChild,
+					findNextCondition,
+					font as HTMLElement
+				) &&
+				isSuitElement(font.firstChild as HTMLElement)
+			) {
+				toggleStyles(font.firstChild as HTMLElement);
+				return;
+			}
+
+			if (Dom.closest(font, isSuitElement, this.area)) {
+				const leftRange = this.createRange(),
+					wrapper = Dom.closest(
+						font,
+						isSuitElement,
+						this.area
+					) as HTMLElement;
+
+				leftRange.setStartBefore(wrapper);
+				leftRange.setEndBefore(font);
+
+				const leftFragment = leftRange.extractContents();
+
+				if (
+					(!leftFragment.textContent ||
+						!trim(leftFragment.textContent).length) &&
+					leftFragment.firstChild
+				) {
+					Dom.unwrap(leftFragment.firstChild);
+				}
+
+				if (wrapper.parentNode) {
+					wrapper.parentNode.insertBefore(leftFragment, wrapper);
+				}
+
+				leftRange.setStartAfter(font);
+				leftRange.setEndAfter(wrapper);
+
+				const rightFragment = leftRange.extractContents();
+
+				// case then marker can be inside fragnment
+				if (
+					(!rightFragment.textContent ||
+						!trim(rightFragment.textContent).length) &&
+					rightFragment.firstChild
+				) {
+					Dom.unwrap(rightFragment.firstChild);
+				}
+
+				Dom.after(wrapper, rightFragment);
+
+				toggleStyles(wrapper);
+				return;
+			}
+			// unwrap all suit elements inside
+			const needUnwrap: Node[] = [];
+			let firstElementSuit: boolean | undefined;
+
+			if (font.firstChild) {
+				Dom.find(
+					font.firstChild,
+					(elm: Node | null) => {
+						if (elm && isSuitElement(elm as HTMLElement)) {
+							if (firstElementSuit === undefined) {
+								firstElementSuit = true;
+							}
+							needUnwrap.push(elm);
+						} else {
+							if (firstElementSuit === undefined) {
+								firstElementSuit = false;
+							}
+						}
+						return false;
+					},
+					font,
+					true
+				);
+			}
+
+			needUnwrap.forEach(Dom.unwrap);
+
+			if (!firstElementSuit) {
+				if (mode === undefined) {
+					mode = WRAP;
+				}
+
+				if (mode === WRAP) {
+					css(
+						Dom.replace(font, nodeName, this.jodit.create.inside),
+						cssRules && nodeName.toUpperCase() === defaultTag
+							? cssRules
+							: {}
+					);
+				}
+			}
+		});
+
+		this.restore(selInfo);
 	}
 
 	/**
-	 * Throw Error exception if parameter is not Node
-	 * @param node
+	 * Split selection on two parts
+	 * @param currentBox
 	 */
-	private errorNode(node: unknown) {
-		if (!Dom.isNode(node, this.win)) {
-			throw new Error('Parameter node must be instance of Node');
+	splitSelection(currentBox: HTMLElement): Element | null {
+		if (!this.isCollapsed()) {
+			return null;
 		}
+
+		const leftRange = this.createRange();
+		const range = this.range;
+
+		leftRange.setStartBefore(currentBox);
+
+		const cursorOnTheRight = this.cursorOnTheRight(currentBox);
+		const cursorOnTheLeft = this.cursorOnTheLeft(currentBox);
+
+		if (cursorOnTheRight || cursorOnTheLeft) {
+			const br = this.jodit.create.inside.element('br');
+			range.insertNode(br);
+
+			const clearBR = (
+				start: Node,
+				getNext: (node: Node) => Node | null
+			) => {
+				let next = getNext(start);
+
+				while (next) {
+					const nextSib = getNext(next);
+
+					if (
+						next &&
+						(next.nodeName === 'BR' || Dom.isEmptyTextNode(next))
+					) {
+						Dom.safeRemove(next);
+					} else {
+						break;
+					}
+
+					next = nextSib;
+				}
+			};
+
+			clearBR(br, (n: Node) => n.nextSibling);
+			clearBR(br, (n: Node) => n.previousSibling);
+
+			if (cursorOnTheRight) {
+				leftRange.setEndBefore(br);
+				range.setEndBefore(br);
+			} else {
+				leftRange.setEndAfter(br);
+				range.setEndAfter(br);
+			}
+		} else {
+			leftRange.setEnd(range.startContainer, range.startOffset);
+		}
+
+		const fragment = leftRange.extractContents();
+
+		if (currentBox.parentNode) {
+			try {
+				currentBox.parentNode.insertBefore(fragment, currentBox);
+			} catch {}
+		}
+
+		return currentBox.previousElementSibling;
 	}
 }

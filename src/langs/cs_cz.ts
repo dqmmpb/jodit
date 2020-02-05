@@ -6,8 +6,6 @@ export default {
 	'About Jodit': 'O Jodit',
 	'Jodit Editor': 'Editor Jodit',
 	'Free Non-commercial Version': 'Verze pro nekomerční použití',
-	'GNU General Public License, version 2 or later':
-		'Licence GNU (GPL), verze 2 nebo vyšší',
 
 	"Jodit User's Guide": 'Jodit Uživatelská příručka',
 	'contains detailed help for using': 'obsahuje detailní nápovědu',
@@ -229,4 +227,10 @@ export default {
 	preview: 'náhled',
 	download: 'Stažení',
 
+	'Paste from clipboard': 'Vložit ze schránky',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Váš prohlížeč nepodporuje přímý přístup do schránky.',
+	'Copy selection': 'Kopírovat výběr',
+	'copy': 'kopírování',
+	'Border radius': 'Border radius',
+	'Show all': 'Zobrazit všechny',
 } as IDictionary<string>;

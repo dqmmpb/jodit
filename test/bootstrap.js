@@ -1,19 +1,23 @@
-typeof window.chai !== 'undefined' && (chai.config.includeStack = true);
+typeof window.chai !== 'undefined' &&
+	(function() {
+		chai.config.includeStack = true;
+		chai.config.showDiff = true;
+	})();
+typeof window.mocha !== 'undefined' && mocha.timeout(15000);
 
-var
-	oldI18n = Jodit.prototype.i18n,
+const oldI18n = Jodit.prototype.i18n,
 	oldAjaxSender = Jodit.modules.Ajax.prototype.send,
 	naturalPromise = window.Promise;
 
-function mocPromise() {
+function mockPromise() {
 	window.Promise = SynchronousPromise;
 }
 
-function unmocPromise() {
+function unmockPromise() {
 	window.Promise = naturalPromise;
 }
 
-var defaultPermissions = {
+const defaultPermissions = {
 	permissions: {
 		allowFiles: true,
 		allowFileMove: true,
@@ -31,9 +35,188 @@ var defaultPermissions = {
 	}
 };
 
-if (typeof window.chai !== 'undefined') {
-	mocPromise();
+function mockAjax() {
+	if (typeof window.chai !== 'undefined') {
+		Jodit.modules.Ajax.prototype.send = function() {
+			const ajax = this;
 
+			const request = this.prepareRequest();
+
+			let action = request.data.action;
+
+			if (!action && request.data.get) {
+				action = request.data.get('action');
+			}
+
+			if (
+				action === undefined &&
+				request.url &&
+				request.url.match(/action=/)
+			) {
+				const actioExec = /action=([\w]+)/.exec(request.url);
+				action = actioExec[1];
+			}
+
+			return new Promise(function(resolve) {
+				switch (action) {
+					case 'fileUpload':
+						const file = ajax.options.data.get('files[0]');
+						resolve({
+							success: true,
+							time: '2018-03-31 23:38:54',
+							data: {
+								baseurl: 'https://xdsoft.net/jodit/files/',
+								messages: [],
+								files: [file.name],
+								isImages: [/\.(png|jpg|gif)$/.test(file.name)],
+								code: 220
+							}
+						});
+						break;
+					case 'files':
+						resolve({
+							success: true,
+							time: '2018-03-15 12:49:49',
+							data: {
+								sources: {
+									default: {
+										baseurl:
+											'https://xdsoft.net/jodit/files/',
+										path: '',
+										files: [
+											{
+												file:
+													'1966051_524428741092238_1051008806888563137_o.jpg',
+												thumb:
+													'_thumbs/1966051_524428741092238_1051008806888563137_o.jpg',
+												changed: '03/15/2018 12:40 PM',
+												size: '126.59kB',
+												isImage: true
+											},
+											{
+												file: 'images.jpg',
+												thumb: '_thumbs/images.jpg',
+												changed: '01/15/2018 12:40 PM',
+												size: '6.84kB',
+												isImage: true
+											},
+											{
+												file: 'ibanez-s520-443140.jpg',
+												thumb:
+													'_thumbs/ibanez-s520-443140.jpg',
+												changed: '04/15/2018 12:40 PM',
+												size: '18.73kB',
+												isImage: true
+											},
+											{
+												file: 'test.txt',
+												thumb: '_thumbs/test.txt.png',
+												changed: '05/15/2018 12:40 PM',
+												size: '18.72kB',
+												isImage: false
+											}
+										]
+									}
+								},
+								code: 220
+							}
+						});
+						break;
+					case 'folders':
+						resolve({
+							success: true,
+							time: '2018-03-15 12:49:49',
+							data: {
+								sources: {
+									default: {
+										baseurl:
+											'https://xdsoft.net/jodit/files/',
+										path: '',
+										folders: ['.', 'ceicom', 'test']
+									}
+								},
+								code: 220
+							}
+						});
+						break;
+					case 'permissions':
+						resolve({
+							success: true,
+							time: '2018-03-15 12:49:49',
+							data: defaultPermissions,
+							code: 220
+						});
+						break;
+					case 'fileUploadRemote':
+						resolve({
+							success: true,
+							time: '2018-03-15 12:45:03',
+							data: {
+								newfilename: 'artio.jpg',
+								baseurl: 'https://xdsoft.net/jodit/files/',
+								code: 220
+							}
+						});
+						break;
+					case 'getLocalFileByUrl':
+						switch (ajax.options.data.url) {
+							case location.protocol +
+								'//' +
+								location.host +
+								'/artio.jpg':
+							case location.protocol +
+								'//' +
+								location.host +
+								'/tests/artio.jpg':
+							case location.protocol +
+								'//' +
+								location.host +
+								'/test/tests/artio.jpg':
+							case location.protocol +
+								'//' +
+								location.host +
+								'/jodit/test/tests/artio.jpg':
+							case 'https://xdsoft.net/jodit/files/th.jpg':
+								resolve({
+									success: true,
+									time: '2018-03-15 12:55:00',
+									data: {
+										path: '',
+										name: 'th.jpg',
+										source: 'default',
+										code: 220
+									}
+								});
+								break;
+							default:
+								resolve({
+									success: false,
+									time: '2018-03-15 12:08:54',
+									data: {
+										messages: [
+											'File does not exist or is above the root of the connector'
+										],
+										code: 424
+									}
+								});
+								break;
+						}
+						break;
+					default:
+						break;
+				}
+			});
+		};
+	}
+}
+
+function unmockAjax() {
+	Jodit.modules.Ajax.prototype.send = oldAjaxSender;
+}
+
+if (typeof window.chai !== 'undefined') {
+	mockPromise();
+	mockAjax();
 	window.FormData = function() {
 		this.data = {};
 		this.append = function(key, value) {
@@ -43,190 +226,29 @@ if (typeof window.chai !== 'undefined') {
 			return this.data[key];
 		};
 	};
-
-	Jodit.modules.Ajax.prototype.send = function(data) {
-		var ajax = this,
-			action = ajax.options.data.action;
-
-		if (!action && ajax.options.data.get) {
-			action = ajax.options.data.get('action');
-		}
-
-		if (
-			action === undefined &&
-			this.options.url &&
-			this.options.url.match(/action=/)
-		) {
-			var actioExec = /action=([\w]+)/.exec(this.options.url);
-			action = actioExec[1];
-		}
-
-		return new Promise(function(resolve, reject) {
-			switch (action) {
-				case 'fileUpload':
-					var file = ajax.options.data.get('files[0]');
-					resolve({
-						success: true,
-						time: '2018-03-31 23:38:54',
-						data: {
-							baseurl: 'https://xdsoft.net/jodit/files/',
-							messages: [],
-							files: [file.name],
-							isImages: [/\.(png|jpg|gif)$/.test(file.name)],
-							code: 220
-						}
-					});
-					break;
-				case 'files':
-					resolve({
-						success: true,
-						time: '2018-03-15 12:49:49',
-						data: {
-							sources: {
-								default: {
-									baseurl: 'https://xdsoft.net/jodit/files/',
-									path: '',
-									files: [
-										{
-											file:
-												'1966051_524428741092238_1051008806888563137_o.jpg',
-											thumb:
-												'_thumbs/1966051_524428741092238_1051008806888563137_o.jpg',
-											changed: '03/15/2018 12:40 PM',
-											size: '126.59kB',
-											isImage: true
-										},
-										{
-											file: 'images.jpg',
-											thumb: '_thumbs/images.jpg',
-											changed: '01/15/2018 12:40 PM',
-											size: '6.84kB',
-											isImage: true
-										},
-										{
-											file: 'ibanez-s520-443140.jpg',
-											thumb:
-												'_thumbs/ibanez-s520-443140.jpg',
-											changed: '04/15/2018 12:40 PM',
-											size: '18.73kB',
-											isImage: true
-										},
-										{
-											file: 'test.txt',
-											thumb: '_thumbs/test.txt.png',
-											changed: '05/15/2018 12:40 PM',
-											size: '18.72kB',
-											isImage: false
-										}
-									]
-								}
-							},
-							code: 220
-						}
-					});
-					break;
-				case 'folders':
-					resolve({
-						success: true,
-						time: '2018-03-15 12:49:49',
-						data: {
-							sources: {
-								default: {
-									baseurl: 'https://xdsoft.net/jodit/files/',
-									path: '',
-									folders: ['.', 'ceicom', 'test']
-								}
-							},
-							code: 220
-						}
-					});
-					break;
-				case 'permissions':
-					resolve({
-						success: true,
-						time: '2018-03-15 12:49:49',
-						data: defaultPermissions,
-						code: 220
-					});
-					break;
-				case 'fileUploadRemote':
-					resolve({
-						success: true,
-						time: '2018-03-15 12:45:03',
-						data: {
-							newfilename: 'artio.jpg',
-							baseurl: 'https://xdsoft.net/jodit/files/',
-							code: 220
-						}
-					});
-					break;
-				case 'getLocalFileByUrl':
-					switch (ajax.options.data.url) {
-						case location.protocol +
-						'//' +
-						location.host +
-						'/tests/artio.jpg':
-						case location.protocol +
-						'//' +
-						location.host +
-						'/test/tests/artio.jpg':
-						case location.protocol +
-						'//' +
-						location.host +
-						'/jodit/test/tests/artio.jpg':
-						case 'https://xdsoft.net/jodit/files/th.jpg':
-							resolve({
-								success: true,
-								time: '2018-03-15 12:55:00',
-								data: {
-									path: '',
-									name: 'th.jpg',
-									source: 'default',
-									code: 220
-								}
-							});
-							break;
-						default:
-							resolve({
-								success: false,
-								time: '2018-03-15 12:08:54',
-								data: {
-									messages: [
-										'File does not exist or is above the root of the connector'
-									],
-									code: 424
-								}
-							});
-							break;
-					}
-					break;
-				default:
-					break;
-			}
-		});
-	};
 }
 
-var i18nkeys = [];
+const i18nkeys = [];
+const excludeI18nKeys = ['adddate'];
 
 Jodit.prototype.i18n = function(key) {
-	i18nkeys.indexOf(key) === -1 &&
-	key.indexOf('<svg') === -1 &&
-	i18nkeys.push(key);
+	excludeI18nKeys.indexOf(key) === -1 &&
+		i18nkeys.indexOf(key) === -1 &&
+		key.indexOf('<svg') === -1 &&
+		i18nkeys.push(key);
+
 	return oldI18n.apply(this, arguments);
 };
 
 Jodit.defaultOptions.filebrowser.saveStateInStorage = false;
-
-// Jodit.defaultOptions.disablePlugins = ['source'];
-
 Jodit.defaultOptions.observer.timeout = 0;
+
 if (Jodit.defaultOptions.cleanHTML) {
 	Jodit.defaultOptions.cleanHTML.timeout = 0;
 	Jodit.defaultOptions.cleanHTML.fillEmptyParagraph = false;
 }
 
-Jodit.defaultOptions.useAceEditor = false;
+Jodit.defaultOptions.sourceEditor = 'area';
 Jodit.defaultOptions.language = 'en';
 Jodit.defaultOptions.iframeCSSLinks.push('/app.css');
 Jodit.defaultOptions.iframeStyle +=
@@ -242,37 +264,36 @@ td,th {\
 
 if (String.prototype.repeat === undefined) {
 	String.prototype.repeat = function(count) {
-		var result = [];
-		for (var i = 0; i < count; i++) {
+		const result = [];
+
+		for (let i = 0; i < count; i++) {
 			result.push(this);
 		}
+
 		return result.join('');
 	};
 }
 
 (function(e) {
 	e.matches ||
-	(e.matches =
-		e['matchesSelector'] !== undefined
-			? e['matchesSelector']
-			: function(selector) {
-				const matches = this.ownerDocument.querySelectorAll(
-					selector
-					),
-					th = this;
-				return Array.prototype.some.call(matches, function(e) {
-					return e === th;
-				});
-			});
+		(e.matches =
+			e['matchesSelector'] !== undefined
+				? e['matchesSelector']
+				: function(selector) {
+						const matches = this.ownerDocument.querySelectorAll(
+								selector
+							),
+							th = this;
+						return Array.prototype.some.call(matches, function(e) {
+							return e === th;
+						});
+				  });
 })(Element.prototype);
 
-var
-	expect = typeof chai !== 'undefined' ? chai.expect : function() {
-	},
+const expect = typeof chai !== 'undefined' ? chai.expect : function() {},
 	stuff = [];
 
-var
-	box = document.createElement('div');
+const box = document.createElement('div');
 
 document.body.appendChild(box);
 
@@ -287,34 +308,50 @@ function removeStuff() {
 
 	stuff.forEach(function(elm) {
 		elm && elm.parentNode && elm.parentNode.removeChild(elm);
-		delete elm;
 	});
 
 	stuff.length = 0;
 
-	Array
-		.from(document.querySelectorAll('.jodit.jodit_dialog_box.active'))
-		.forEach(function(dialog) {
-			simulateEvent('close_dialog', 0, dialog);
-		});
+	Array.from(
+		document.querySelectorAll('.jodit.jodit_dialog_box.active')
+	).forEach(function(dialog) {
+		simulateEvent('close_dialog', 0, dialog);
+	});
 
-	mocPromise();
+	Jodit.modules.Ajax.log.length = 0;
+
+	mockPromise();
 }
 
 if (typeof afterEach === 'function') {
 	afterEach(removeStuff);
 }
 
+/**
+ * Create and insert into DOM test textarea
+ *
+ * @param [id]
+ * @param [noput]
+ * @returns {HTMLTextAreaElement}
+ */
 function appendTestArea(id, noput) {
-	var textarea = document.createElement('textarea');
+	const textarea = document.createElement('textarea');
 	textarea.setAttribute('id', id || 'editor_' + new Date().getTime());
 	box.appendChild(textarea);
+
 	!noput && stuff.push(textarea);
 	return textarea;
 }
 
+/**
+ * Create empty DIV block and but it inside Box
+ *
+ * @param [id]
+ * @param [noput]
+ * @returns {HTMLDivElement}
+ */
 function appendTestDiv(id, noput) {
-	var textarea = document.createElement('div');
+	const textarea = document.createElement('div');
 	textarea.setAttribute('id', id || 'editor_' + new Date().getTime());
 	box.appendChild(textarea);
 	!noput && stuff.push(textarea);
@@ -326,9 +363,9 @@ function trim(value) {
 }
 
 function toFixedWithoutRounding(value, precision) {
-	var factorError = Math.pow(10, 14);
-	var factorTruncate = Math.pow(10, 14 - precision);
-	var factorDecimal = Math.pow(10, precision);
+	const factorError = Math.pow(10, 14);
+	const factorTruncate = Math.pow(10, 14 - precision);
+	const factorDecimal = Math.pow(10, precision);
 	return (
 		Math.floor(Math.floor(value * factorError + 1) / factorTruncate) /
 		factorDecimal
@@ -336,63 +373,64 @@ function toFixedWithoutRounding(value, precision) {
 }
 
 function sortStyles(matches) {
-	var styles = matches
-		.replace(/&quot;/g, '\'')
-		.replace(/"/g, '\'')
+	let styles = matches
+		.replace(/&quot;/g, "'")
+		.replace(/"/g, "'")
 		.split(';');
 
 	styles = styles.map(trim).filter(function(elm) {
 		return elm.length;
 	});
 
-	var border = null;
+	let border = null;
+
 	styles = styles
 		.map(function(elm) {
-			var keyvalue = elm.split(':').map(trim);
+			const keyValue = elm.split(':').map(trim);
 
-			if (keyvalue[0] === 'border-image') {
+			if (keyValue[0] === 'border-image') {
 				return null;
 			}
 
-			if (/rgb\(/.test(keyvalue[1])) {
-				keyvalue[1] = keyvalue[1].replace(/rgb\([^\)]+\)/, function(
+			if (/rgb\(/.test(keyValue[1])) {
+				keyValue[1] = keyValue[1].replace(/rgb\([^)]+\)/, function(
 					match
 				) {
 					return Jodit.modules.Helpers.normalizeColor(match);
 				});
 			}
 
-			if (keyvalue[0].match(/^border$/)) {
-				keyvalue[1] = keyvalue[1].split(/[\s]+/);
+			if (keyValue[0].match(/^border$/)) {
+				keyValue[1] = keyValue[1].split(/[\s]+/);
 			}
 
-			if (keyvalue[0].match(/^border-(style|width|color)/)) {
+			if (keyValue[0].match(/^border-(style|width|color)/)) {
 				if (border === null) {
-					border = keyvalue;
-					keyvalue[0] = 'border';
-					keyvalue[1] = [keyvalue[1]];
+					border = keyValue;
+					keyValue[0] = 'border';
+					keyValue[1] = [keyValue[1]];
 				} else {
-					border[1].push(keyvalue[1]);
+					border[1].push(keyValue[1]);
 					return null;
 				}
 			}
 
-			if (/font-family/i.test(keyvalue[0])) {
-				keyvalue[1] = keyvalue[1]
+			if (/font-family/i.test(keyValue[0])) {
+				keyValue[1] = keyValue[1]
 					.split(',')
 					.map(Jodit.modules.Helpers.trim)
 					.join(',');
 			}
 
-			if (/%$/.test(keyvalue[1])) {
-				var fl = parseFloat(keyvalue[1]),
-					nt = parseInt(keyvalue[1], 10);
+			if (/%$/.test(keyValue[1])) {
+				const fl = parseFloat(keyValue[1]),
+					nt = parseInt(keyValue[1], 10);
 				if (fl - nt > 0) {
-					keyvalue[1] = toFixedWithoutRounding(fl, 2) + '%';
+					keyValue[1] = toFixedWithoutRounding(fl, 2) + '%';
 				}
 			}
 
-			return keyvalue;
+			return keyValue;
 		})
 		.filter(function(a) {
 			return a !== null;
@@ -407,25 +445,31 @@ function sortStyles(matches) {
 				.join(':');
 		})
 		.sort(function(a, b) {
-			return a < b ? -1 : a > b ? 1 : 0;
+			if (a < b) {
+				return - 1;
+			}
+
+			return a > b ? 1 : 0;
 		});
 
 	return styles.join(';');
 }
 
 function sortAttributes(html) {
-	var tag = /<([^>]+)>/g;
-	var reg = /([a-z_\-]+)[\s]*=[\s]*"([^"]*)"/i,
-		matches,
+	const tag = /<([^>]+)>/g;
+	const reg = /([a-z_\-]+)[\s]*=[\s]*"([^"]*)"/i,
 		tags = [];
 
-	while ((tagmatch = tag.exec(html))) {
-		attrs = [];
+	let matches, tagMatch;
 
-		var newtag = tagmatch[0];
+	while ((tagMatch = tag.exec(html))) {
+		const attrs = [];
+
+		let newTag = tagMatch[0];
 
 		do {
-			matches = reg.exec(newtag);
+			matches = reg.exec(newTag);
+
 			if (!matches) {
 				break;
 			}
@@ -440,33 +484,37 @@ function sortAttributes(html) {
 					value: matches[2]
 				});
 
-				newtag = newtag.replace(
+				newTag = newTag.replace(
 					matches[0],
 					'attribute:' + attrs.length
 				);
 			} else {
-				newtag = newtag.replace(' ' + matches[0], '');
+				newTag = newTag.replace(' ' + matches[0], '');
 			}
 		} while (matches);
 
 		attrs.sort(function(a, b) {
-			return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+			if (a.name < b.name) {
+				return -1;
+			}
+
+			return a.name > b.name ? 1 : 0;
 		});
 
 		attrs.forEach(function(elm, i) {
-			newtag = newtag.replace(
+			newTag = newTag.replace(
 				'attribute:' + (i + 1),
 				elm.name + '="' + elm.value + '"'
 			);
 		});
 
 		tags.push({
-			name: tagmatch[0],
-			value: newtag
+			name: tagMatch[0],
+			value: newTag
 		});
 	}
 
-	tags.forEach(function(elm, i) {
+	tags.forEach(function(elm) {
 		html = html.replace(elm.name, elm.value);
 	});
 
@@ -481,7 +529,7 @@ function sortAttributes(html) {
  * @param options
  */
 function simulateEvent(type, keyCodeArg, element, options) {
-	var evt = (element.ownerDocument || document).createEvent('HTMLEvents');
+	const evt = (element.ownerDocument || document).createEvent('HTMLEvents');
 	evt.initEvent(type, true, true);
 	evt.keyCode = keyCodeArg;
 	evt.which = keyCodeArg;
@@ -499,7 +547,7 @@ function simulateEvent(type, keyCodeArg, element, options) {
 	}
 
 	if (type.match(/^touch/) && !evt.changedTouches) {
-		var changedTouches = {};
+		const changedTouches = {};
 
 		['pageX', 'pageY', 'clientX', 'clientY'].forEach(function(key) {
 			changedTouches[key] = evt[key];
@@ -511,8 +559,70 @@ function simulateEvent(type, keyCodeArg, element, options) {
 	element.dispatchEvent(evt);
 }
 
+/**
+ * Click and trigger some button event
+ *
+ * @param {string} buttonName
+ * @param {Jodit} editor
+ */
+function clickButton(buttonName, editor) {
+	simulateEvent(
+		'mousedown',
+		0,
+		editor.container.querySelector(
+			'.jodit_toolbar_btn.jodit_toolbar_btn-' + buttonName
+		)
+	);
+}
+
+/**
+ * Set listener and remove it after first call
+ *
+ * @param {string} event
+ * @param {HTMLElement} element
+ * @param {Function} callback
+ */
+function one(event, element, callback) {
+	const on = function() {
+		element.removeEventListener(event, on);
+		callback.apply(element, arguments);
+	};
+
+	element.addEventListener(event, on);
+}
+
+/**
+ * Set one handler for load image
+ *
+ * @param {HTMLImageElement} image
+ * @param {Function} callback
+ */
+function onLoadImage(image, callback) {
+	if (!image.complete) {
+		one('load', image, callback);
+	} else {
+		callback.apply(image);
+	}
+}
+
+/**
+ *
+ * @param element
+ * @param pastedText
+ */
+function simulatePaste(element, pastedText) {
+	simulateEvent('paste', 0, element, function(data) {
+		data.clipboardData = {
+			types: ['text/html'],
+			getData: function() {
+				return pastedText;
+			}
+		};
+	});
+}
+
 function setCursor(elm, inEnd) {
-	var range = document.createRange();
+	const range = document.createRange();
 	range.selectNodeContents(elm);
 	range.collapse(!inEnd);
 	window.getSelection().removeAllRanges();
@@ -520,13 +630,15 @@ function setCursor(elm, inEnd) {
 }
 
 function createPoint(x, y, color) {
-	var div = document.createElement('div');
+	const div = document.createElement('div');
+
 	div.setAttribute(
 		'style',
 		'position: absolute; z-index: 1000000000;width: 5px; height: 5px; background: ' +
-		(color || 'red') +
-		';'
+			(color || 'red') +
+			';'
 	);
+
 	div.style.left = parseInt(x, 10) + 'px';
 	div.style.top = parseInt(y, 10) + 'px';
 
@@ -534,9 +646,10 @@ function createPoint(x, y, color) {
 }
 
 function offset(el) {
-	var rect = el.getBoundingClientRect(),
+	const rect = el.getBoundingClientRect(),
 		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
 		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
 	return {
 		top: rect.top + scrollTop,
 		left: rect.left + scrollLeft,
@@ -559,57 +672,58 @@ function offset(el) {
  */
 
 (function() {
-	var serializeXML = function(node, output) {
-		var nodeType = node.nodeType;
-		if (nodeType == 3) {
-			// TEXT nodes.
-			// Replace special XML characters with their entities.
+	const serializeXML = function(node, output) {
+		const nodeType = node.nodeType;
+
+		if (nodeType === 3) {
 			output.push(
 				node.textContent
 					.replace(/&/, '&amp;')
 					.replace(/</, '&lt;')
 					.replace('>', '&gt;')
 			);
-		} else if (nodeType == 1) {
-			// ELEMENT nodes.
-			// Serialize Element nodes.
+		} else if (nodeType === 1) {
 			output.push('<', node.tagName);
+
 			if (node.hasAttributes()) {
-				var attrMap = node.attributes;
-				for (var i = 0, len = attrMap.length; i < len; ++i) {
-					var attrNode = attrMap.item(i);
-					output.push(' ', attrNode.name, '=\'', attrNode.value, '\'');
+				const attrMap = node.attributes;
+
+				for (let i = 0, len = attrMap.length; i < len; ++i) {
+					const attrNode = attrMap.item(i);
+					output.push(' ', attrNode.name, "='", attrNode.value, "'");
 				}
 			}
+
 			if (node.hasChildNodes()) {
 				output.push('>');
-				var childNodes = node.childNodes;
-				for (var i = 0, len = childNodes.length; i < len; ++i) {
+				const childNodes = node.childNodes;
+
+				for (let i = 0, len = childNodes.length; i < len; i += 1) {
 					serializeXML(childNodes.item(i), output);
 				}
+
 				output.push('</', node.tagName, '>');
 			} else {
 				output.push('/>');
 			}
-		} else if (nodeType == 8) {
-			// TODO(codedread): Replace special characters with XML entities?
+		} else if (nodeType === 8) {
 			output.push('<!--', node.nodeValue, '-->');
 		} else {
-			// TODO: Handle CDATA nodes.
-			// TODO: Handle ENTITY nodes.
-			// TODO: Handle DOCUMENT nodes.
 			throw 'Error serializing XML. Unhandled node of type: ' + nodeType;
 		}
 	};
+
 	// The innerHTML DOM property for SVGElement.
 	Object.defineProperty(SVGElement.prototype, 'innerHTML', {
 		get: function() {
-			var output = [];
-			var childNode = this.firstChild;
+			const output = [];
+			let childNode = this.firstChild;
+
 			while (childNode) {
 				serializeXML(childNode, output);
 				childNode = childNode.nextSibling;
 			}
+
 			return output.join('');
 		},
 		set: function(markupText) {
@@ -620,26 +734,29 @@ function offset(el) {
 
 			try {
 				// Parse the markup into valid nodes.
-				var dXML = new DOMParser();
+				const dXML = new DOMParser();
+
 				dXML.async = false;
 				// Wrap the markup into a SVG node to ensure parsing works.
 				sXML =
-					'<svg xmlns=\'http://www.w3.org/2000/svg\'>' +
+					"<svg xmlns='http://www.w3.org/2000/svg'>" +
 					markupText +
 					'</svg>';
-				var svgDocElement = dXML.parseFromString(sXML, 'text/xml')
+				const svgDocElement = dXML.parseFromString(sXML, 'text/xml')
 					.documentElement;
 
 				// Now take each node, import it and append to this element.
-				var childNode = svgDocElement.firstChild;
+				let childNode = svgDocElement.firstChild;
+
 				while (childNode) {
 					this.appendChild(
 						this.ownerDocument.importNode(childNode, true)
 					);
+
 					childNode = childNode.nextSibling;
 				}
 			} catch (e) {
-				throw new Error('Error parsing XML string');
+				throw new Error('Error parsing XML string' + e.toString());
 			}
 		}
 	});
@@ -675,7 +792,7 @@ function FileXLS() {
 
 if (typeof window.chai !== 'undefined') {
 	window.FileReader = function() {
-		var self = this;
+		const self = this;
 		self.result = null;
 		/**
 		 *

@@ -7,9 +7,6 @@ export default {
 	Advanced: 'Gelişmiş',
 	'About Jodit': 'Jodit Hakkında',
 	'Jodit Editor': 'Jodit Editor',
-	'Free Non-commercial Version': 'Ücretsiz, ticari olmayan versiyon',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, Versiyon 2 ve sonrası için',
 	"Jodit User's Guide": 'Jodit Kullanım Kılavuzu',
 	'contains detailed help for using': 'kullanım için detaylı bilgiler içerir',
 	'For information about the license, please go to our website:':
@@ -149,6 +146,7 @@ export default {
 	'Sort by name': 'İsme göre sırala',
 	'Sort by size': 'Boyuta göre sırala',
 	'Add folder': 'Klasör ekle',
+	Split: 'Ayır',
 	'Split vertical': 'Dikey ayır',
 	'Split horizontal': 'Yatay ayır',
 	Merge: 'Birleştir',
@@ -229,4 +227,10 @@ export default {
 	'Enter new name': 'Yeni isim girin',
 	preview: 'Ön izleme',
 	download: 'İndir',
+	'Paste from clipboard': 'Panodan yapıştır ',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Tarayıcınız pano doğrudan erişim desteklemiyor.',
+	'Copy selection': 'Kopya seçimi',
+	'copy': 'kopya',
+	'Border radius': 'Sınır yarıçapı',
+	'Show all': 'Tümünü Göster ',
 } as IDictionary<string>;

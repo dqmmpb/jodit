@@ -1,14 +1,30 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Dom} from '../../Dom';
-import {$$} from '../selector';
+import { Dom } from '../../Dom';
+import { $$ } from '../selector';
+import { trim } from '../string';
+
+function normalizeCSS(s: string) {
+	return s
+		.replace(/mso-[a-z\-]+:[\s]*[^;]+;/gi, '')
+		.replace(/mso-[a-z\-]+:[\s]*[^";]+$/gi, '')
+		.replace(/border[a-z\-]*:[\s]*[^;]+;/gi, '')
+		.replace(/([0-9.]+)(pt|cm)/gi, (match, units, metrics) => {
+			switch (metrics.toLowerCase()) {
+				case 'pt':
+					return (parseFloat(units) * 1.328).toFixed(0) + 'px';
+
+				case 'cm':
+					return (parseFloat(units) * 0.02645833).toFixed(0) + 'px';
+			}
+
+			return match;
+		});
+}
 
 export const applyStyles = (html: string): string => {
 	if (html.indexOf('<html ') === -1) {
@@ -18,7 +34,8 @@ export const applyStyles = (html: string): string => {
 	html = html.substring(html.indexOf('<html '), html.length);
 	html = html.substring(0, html.lastIndexOf('</html>') + '</html>'.length);
 
-	const iframe: HTMLIFrameElement = document.createElement('iframe');
+	const iframe = document.createElement('iframe');
+
 	iframe.style.display = 'none';
 	document.body.appendChild(iframe);
 
@@ -38,8 +55,8 @@ export const applyStyles = (html: string): string => {
 
 			if (iframeDoc.styleSheets.length) {
 				rules = (iframeDoc.styleSheets[
-				iframeDoc.styleSheets.length - 1
-					] as any).cssRules;
+					iframeDoc.styleSheets.length - 1
+				] as any).cssRules;
 			}
 
 			for (let idx = 0; idx < rules.length; idx += 1) {
@@ -50,14 +67,29 @@ export const applyStyles = (html: string): string => {
 				collection = $$(rules[idx].selectorText, iframeDoc.body);
 
 				collection.forEach((elm: HTMLElement) => {
-					elm.style.cssText += rules[idx].style.cssText
-						.replace(/mso-[a-z\-]+:[\s]*[^;]+;/g, '')
-						.replace(/border[a-z\-]*:[\s]*[^;]+;/g, '');
+					elm.style.cssText = normalizeCSS(
+						rules[idx].style.cssText + ';' + elm.style.cssText
+					);
 				});
 			}
 
+			Dom.each(iframeDoc.body, node => {
+				if (Dom.isElement(node)) {
+					const elm = node as HTMLElement;
+					const css = elm.style.cssText;
+
+					if (css) {
+						elm.style.cssText = normalizeCSS(css);
+					}
+
+					if (elm.hasAttribute('lang')) {
+						elm.removeAttribute('lang');
+					}
+				}
+			});
+
 			convertedString = iframeDoc.firstChild
-				? iframeDoc.body.innerHTML
+				? trim(iframeDoc.body.innerHTML)
 				: '';
 		}
 	} catch {
@@ -69,7 +101,9 @@ export const applyStyles = (html: string): string => {
 		html = convertedString;
 	}
 
-	return html
-		.replace(/<(\/)?(html|colgroup|col|o:p)[^>]*>/g, '')
-		.replace(/<!--[^>]*>/g, '');
+	return trim(
+		html
+			.replace(/<(\/)?(html|colgroup|col|o:p)[^>]*>/g, '')
+			.replace(/<!--[^>]*>/g, '')
+	);
 };

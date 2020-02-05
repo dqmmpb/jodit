@@ -1,4 +1,4 @@
-import {IDictionary} from '../types';
+import { IDictionary } from '../types';
 
 export default {
 	'Type something': '输入一些内容',
@@ -7,8 +7,6 @@ export default {
 	'About Jodit': '关于Jodit',
 	'Jodit Editor': 'Jodit Editor',
 	'Free Non-commercial Version': 'Free Non-commercial Version',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, version 2 or later',
 	"Jodit User's Guide": '开发者指南',
 	'contains detailed help for using': '使用帮助',
 	'For information about the license, please go to our website:':
@@ -75,10 +73,10 @@ export default {
 	Center: '居中',
 	Left: '居左',
 	'--Not Set--': '无',
-	Src: '源地址',
-	Title: '标题',
-	Alternative: '文本',
-	Link: '链接',
+	Src: 'Src',
+	Title: 'Title',
+	Alternative: 'Alternative',
+	Link: 'Link',
 	'Open link in new tab': '在新窗口打开链接',
 	Image: '图片',
 	file: 'file',
@@ -114,11 +112,11 @@ export default {
 	'Drop image': '拖动图片到此',
 	'Drop file': '拖动文件到此',
 	'or click': '或点击',
-	'Alternative text': '显示文本',
+	'Alternative text': 'Alternative text',
 	Browse: '浏览',
 	Upload: '上传',
 	Background: '背景色',
-	Text: '字体颜色',
+	Text: '文字',
 
 	// popap module
 	Top: '顶部',
@@ -150,6 +148,7 @@ export default {
 	Paste: '粘贴',
 	'Choose Content to Paste': '选择内容并粘贴',
 
+	All: '全部',
 	source: '源码',
 	bold: '粗体',
 	italic: '斜体',
@@ -181,8 +180,8 @@ export default {
 	selectall: '全选',
 	'Open link': '打开链接',
 	'Edit link': '编辑链接',
-	'No follow': '不要追踪此特定链接"',
-	Unlink: '删除链接',
+	'No follow': 'No follow',
+	Unlink: 'Unlink',
 	Eye: '回顧',
 	' URL': 'URL',
 	Reset: '重置',
@@ -203,6 +202,8 @@ export default {
 	Merge: '合并',
 	'Add column': '添加列',
 	'Add row': '添加行',
+	Border: '边框',
+	'Embed code': '嵌入代码',
 	Delete: '删除',
 	'Horizontal align': '水平对齐',
 
@@ -211,14 +212,23 @@ export default {
 	'Sort by name': '名称排序',
 	'Sort by size': '大小排序',
 	'Add folder': '新建文件夹',
+	Split: '拆分',
+	'Split vertical': '垂直拆分',
+	'Split horizontal': '水平拆分',
 	'You can only edit your own images. Download this image on the host?':
-		'你只能编辑你自己的图片。' + '下载图片到本地？',
+		'你只能编辑你自己的图片。' + 'Download this image on the host?',
 	'The image has been successfully uploaded to the host!': '图片上传成功',
 	palette: '调色板',
-	pencil: '要編輯',
-	'There are no files': '此目錄中沒有文件。',
-	rename: '匈牙利',
+	pencil: '铅笔',
+	'There are no files': '此目录中沒有文件。',
+	rename: '重命名',
 	'Enter new name': '输入新名称',
-	preview: '預習',
-	download: '下載',
+	preview: '预览',
+	download: '下载',
+	'Paste from clipboard': '粘贴从剪贴板',
+	'Your browser doesn\'t support direct access to the clipboard.': '你浏览器不支持直接访问的剪贴板。',
+	'Copy selection': '复制的选择',
+	'copy': '复制',
+	'Border radius': '边界半径',
+	'Show all': '显示所有',
 } as IDictionary<string>;

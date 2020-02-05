@@ -1,16 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {Plugin} from '../modules/Plugin';
-import {normalizeKeyAliases} from '../modules/helpers/normalize';
-import {IDictionary, IJodit} from '../types';
+import { Config } from '../Config';
+import { Plugin } from '../modules/Plugin';
+import { normalizeKeyAliases } from '../modules/helpers/normalize';
+import { IDictionary, IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -40,7 +37,24 @@ Config.prototype.commandToHotkeys = {
  * Allow set hotkey for command or button
  */
 export class hotkeys extends Plugin {
-	public specialKeys: { [key: number]: string } = {
+	private onKeyPress = (event: KeyboardEvent): string => {
+		const special: string | false = this.specialKeys[event.which],
+			character: string = (
+				event.key || String.fromCharCode(event.which)
+			).toLowerCase();
+
+		const modif: string[] = [special || character];
+
+		['alt', 'ctrl', 'shift', 'meta'].forEach(specialKey => {
+			if ((event as any)[specialKey + 'Key'] && special !== specialKey) {
+				modif.push(specialKey);
+			}
+		});
+
+		return normalizeKeyAliases(modif.join('+'));
+	};
+
+	specialKeys: { [key: number]: string } = {
 		8: 'backspace',
 		9: 'tab',
 		10: 'return',
@@ -123,6 +137,7 @@ export class hotkeys extends Plugin {
 		let itIsHotkey: boolean = false;
 
 		editor.events
+			.off('.hotkeys')
 			.on(
 				'keydown.hotkeys',
 				(event: KeyboardEvent): void | false => {
@@ -141,8 +156,8 @@ export class hotkeys extends Plugin {
 						return false;
 					}
 				},
-				void 0,
-				void 0,
+				undefined,
+				undefined,
 				true
 			)
 			.on(
@@ -154,32 +169,14 @@ export class hotkeys extends Plugin {
 						return false;
 					}
 				},
-				void 0,
-				void 0,
+				undefined,
+				undefined,
 				true
 			);
 	}
-
 	beforeDestruct(jodit: IJodit): void {
 		if (jodit.events) {
 			jodit.events.off('.hotkeys');
 		}
 	}
-
-	private onKeyPress = (event: KeyboardEvent): string => {
-		const special: string | false = this.specialKeys[event.which],
-			character: string = (
-				event.key || String.fromCharCode(event.which)
-			).toLowerCase();
-
-		const modif: string[] = [special || character];
-
-		['alt', 'ctrl', 'shift', 'meta'].forEach(specialKey => {
-			if ((event as any)[specialKey + 'Key'] && special !== specialKey) {
-				modif.push(specialKey);
-			}
-		});
-
-		return normalizeKeyAliases(modif.join('+'));
-	};
 }

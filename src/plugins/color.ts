@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import {Config} from '../Config';
@@ -22,12 +19,11 @@ Config.prototype.controls.brush = {
 			return true;
 		}
 
-		const
-			current: Node | false = editor.selection.current(),
-			icon: SVGSVGElement | null = button.container.querySelector('svg');
+		const current: Node | false = editor.selection.current(),
+			icon = button.container.querySelector('svg');
 
 		if (icon && icon.style.fill) {
-			icon.style.fill = null;
+			icon.style.removeProperty('fill');
 		}
 
 		if (current && !button.isDisable()) {
@@ -37,17 +33,14 @@ Config.prototype.controls.brush = {
 					elm => {
 						return (
 							Dom.isBlock(elm, editor.editorWindow) ||
-							(elm &&
-								Dom.isNode(elm, editor.editorWindow) &&
-								elm.nodeType === Node.ELEMENT_NODE)
+							(elm && Dom.isElement(elm))
 						);
 					},
 					editor.editor
 				) as HTMLElement) || editor.editor;
 
-			const
-				colorHEX: string = css(currentBpx, 'color').toString(),
-				bgHEX: string = css(currentBpx, 'background-color').toString();
+			const colorHEX = css(currentBpx, 'color').toString(),
+				bgHEX = css(currentBpx, 'background-color').toString();
 
 			if (colorHEX !== css(editor.editor, 'color').toString()) {
 				icon && (icon.style.fill = colorHEX);
@@ -78,7 +71,7 @@ Config.prototype.controls.brush = {
 			current &&
 			current !== editor.editor &&
 			Dom.isNode(current, editor.editorWindow) &&
-			current.nodeType === Node.ELEMENT_NODE
+			Dom.isElement(current)
 		) {
 			colorHEX = css(current as HTMLElement, 'color').toString();
 			bg_color = css(

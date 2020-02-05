@@ -1,25 +1,22 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
+import { Config } from '../Config';
 import {
 	ImageEditorActionBox,
 	IJodit,
 	ImageEditorOptions,
 	ImageAction
 } from '../types';
-import {IViewBased} from '../types/view';
-import {Component} from './Component';
-import {Alert, Dialog, Promt} from './dialog/';
-import {$$, css, debounce, throttle, trim} from './helpers/';
-import {ToolbarIcon} from './toolbar/icon';
-import {Dom} from './Dom';
+import { IViewBased } from '../types/view';
+import { Component } from './Component';
+import { Alert, Dialog, Promt } from './dialog/';
+import { $$, css, trim } from './helpers/';
+import { ToolbarIcon } from './toolbar/icon';
+import { Dom } from './Dom';
 
 declare module '../Config' {
 	interface Config {
@@ -84,387 +81,67 @@ Config.prototype.imageeditor = {
 	cropDefaultHeight: '70%'
 };
 
+const jie = 'jodit_image_editor';
+const gi = ToolbarIcon.getIcon.bind(ToolbarIcon);
+
 /**
  * The module allows you toWYSIWYG edit the image: resize or cut any part of it
  *
  */
 export class ImageEditor extends Component {
-	public options: ImageEditorOptions;
-	public onSave: (
-		name: void | string,
-		data: ImageEditorActionBox,
-		hide: () => void,
-		failed: (e: Error) => void
-	) => void;
 	private resizeUseRatio: boolean = true;
 	private cropUseRatio: boolean = true;
+
 	private dialog: Dialog;
 	private image: HTMLImageElement;
 	private cropImage: HTMLImageElement;
 	private clicked = false;
 	private target: HTMLElement;
+
 	private start_x: number;
 	private start_y: number;
 	private top_x: number;
 	private top_y: number;
+
 	private width: number;
 	private height: number;
+
 	private activeTab: ImageAction = 'resize';
+
 	private naturalWidth: number;
 	private naturalHeight: number;
+
 	private ratio: number;
 	private new_h: number;
 	private new_w: number;
 	private diff_x: number;
 	private diff_y: number;
+
 	private buttons: HTMLElement[];
+
 	private editor: HTMLElement;
+
 	private widthInput: HTMLInputElement;
 	private heightInput: HTMLInputElement;
+
 	private resize_box: HTMLElement;
 	private crop_box: HTMLElement;
 	private sizes: HTMLElement;
+
 	private resizeHandler: HTMLElement;
 	private cropHandler: HTMLElement;
+
 	private cropBox = {
 		x: 0,
 		y: 0,
 		w: 0,
 		h: 0
 	};
+
 	private resizeBox = {
 		w: 0,
 		h: 0
 	};
-
-	constructor(editor: IViewBased) {
-		super(editor);
-
-		this.options =
-			editor && (editor as IJodit).options
-				? (editor as IJodit).options.imageeditor
-				: Config.defaultOptions.imageeditor;
-
-		this.resizeUseRatio = this.options.resizeUseRatio;
-		this.cropUseRatio = this.options.cropUseRatio;
-		this.buttons = [
-			this.jodit.create.fromHTML(
-				'<button data-action="reset" type="button" class="jodit_btn">' +
-				ToolbarIcon.getIcon('update') +
-				'&nbsp;' +
-				editor.i18n('Reset') +
-				'</button>'
-			),
-			this.jodit.create.fromHTML(
-				'<button data-action="save" type="button" class="jodit_btn jodit_btn_success">' +
-				ToolbarIcon.getIcon('save') +
-				'&nbsp;' +
-				editor.i18n('Save') +
-				'</button>'
-			),
-			this.jodit.create.fromHTML(
-				'<button data-action="saveas" type="button" class="jodit_btn jodit_btn_success">' +
-				ToolbarIcon.getIcon('save') +
-				'&nbsp;' +
-				editor.i18n('Save as ...') +
-				'</button>'
-			)
-		];
-		this.activeTab = this.options.resize ? 'resize' : 'crop';
-
-		this.editor = this.jodit.create.fromHTML(
-			'<form class="jodit_image_editor jodit_properties">' +
-			'<div class="jodit_grid">' +
-			'<div class="jodit_col-lg-3-4">' +
-			(this.options.resize
-				? '<div class="jodit_image_editor_area jodit_image_editor_area_resize active">\
-                                <div class="jodit_image_editor_box"></div>\
-                                <div class="jodit_image_editor_resizer">\
-                                    <i class="jodit_bottomright"></i>\
-                                </div>\
-                            </div>'
-				: '') +
-			(this.options.crop
-				? '<div class="jodit_image_editor_area jodit_image_editor_area_crop' +
-				(!this.options.resize ? ' active' : '') +
-				'">\
-                            <div class="jodit_image_editor_box">\
-                                <div class="jodit_image_editor_croper">\
-                                    <i class="jodit_bottomright"></i>\
-                                    <i class="jodit_sizes"></i>\
-                                </div>\
-                            </div>\
-                        </div>'
-				: '') +
-			'</div>' +
-			'<div class="jodit_col-lg-1-4">' +
-			(this.options.resize
-				? '<div data-area="resize" class="jodit_image_editor_slider active">\
-                                <div class="jodit_image_editor_slider-title">' +
-				ToolbarIcon.getIcon('resize') +
-				editor.i18n('Resize') +
-				'</div>\
-                            <div class="jodit_image_editor_slider-content">\
-                                <div class="jodit_form_group">\
-                                    <label for="jodit_image_editor_width">' +
-				editor.i18n('Width') +
-				'</label>\
-                                    <input type="number" class="jodit_image_editor_width"/>\
-                                </div>\
-                                <div class="jodit_form_group">\
-                                    <label for="jodit_image_editor_height">' +
-				editor.i18n('Height') +
-				'</label>\
-                                    <input type="number" class="jodit_image_editor_height"/>\
-                                </div>\
-                                <div class="jodit_form_group">\
-                                    <label>' +
-				editor.i18n('Keep Aspect Ratio') +
-				'</label>\
-                                    <div class="jodit_btn_group jodit_btn_radio_group">\
-                                        <input ' +
-				(this.resizeUseRatio ? 'checked' : '') +
-				' type="checkbox" class="jodit_image_editor_keep_spect_ratio"/>\
-                                        <button type="button"  data-yes="1" \
-                                            class="jodit_col6 jodit_btn jodit_btn_success ' +
-				(this.resizeUseRatio ? 'active' : '') +
-				'">' +
-				editor.i18n('Yes') +
-				'</button>\
-                                        <button type="button" class="jodit_col6 jodit_btn' +
-				(!this.resizeUseRatio ? 'active' : '') +
-				'">' +
-				editor.i18n('No') +
-				'</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>'
-				: '') +
-			(this.options.crop
-				? '<div data-area="crop" class="jodit_image_editor_slider' +
-				(!this.options.resize ? ' active' : '') +
-				'">\
-                            <div class="jodit_image_editor_slider-title">' +
-				ToolbarIcon.getIcon('crop') +
-				editor.i18n('Crop') +
-				'</div>\
-                            <div class="jodit_image_editor_slider-content">\
-                                <div class="jodit_form_group">\
-                                    <label>' +
-				editor.i18n('Keep Aspect Ratio') +
-				'</label>\
-                                    <div class="jodit_btn_group jodit_btn_radio_group">\
-                                        <input ' +
-				(this.cropUseRatio ? 'checked' : '') +
-				' type="checkbox" class="jodit_image_editor_keep_spect_ratio_crop"/>\
-                                        <button type="button" data-yes="1" \
-                                            class="jodit_col6 jodit_btn jodit_btn_success ' +
-				(this.cropUseRatio ? 'active' : '') +
-				'">' +
-				editor.i18n('Yes') +
-				'</button>\
-                                        <button type="button" class="jodit_col6 jodit_btn ' +
-				(!this.cropUseRatio ? 'active' : '') +
-				'">' +
-				editor.i18n('No') +
-				'</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>'
-				: '') +
-			'</div>' +
-			'</div>' +
-			'</form>'
-		);
-
-		this.widthInput = this.editor.querySelector(
-			'.jodit_image_editor_width'
-		) as HTMLInputElement;
-		this.heightInput = this.editor.querySelector(
-			'.jodit_image_editor_height'
-		) as HTMLInputElement;
-
-		this.resize_box = this.editor.querySelector(
-			'.jodit_image_editor_area.jodit_image_editor_area_resize .jodit_image_editor_box'
-		) as HTMLElement;
-		this.crop_box = this.editor.querySelector(
-			'.jodit_image_editor_area.jodit_image_editor_area_crop .jodit_image_editor_box'
-		) as HTMLElement;
-		this.sizes = this.editor.querySelector(
-			'.jodit_image_editor_area.jodit_image_editor_area_crop .jodit_sizes'
-		) as HTMLElement;
-
-		this.resizeHandler = this.editor.querySelector(
-			'.jodit_image_editor_resizer'
-		) as HTMLElement;
-		this.cropHandler = this.editor.querySelector(
-			'.jodit_image_editor_croper'
-		) as HTMLElement;
-
-		this.dialog = new Dialog(editor);
-		this.dialog.setContent(this.editor);
-
-		this.dialog.setSize(this.options.width, this.options.height);
-		this.dialog.setTitle(this.buttons);
-
-		this.setHandlers();
-	}
-
-	/**
-	 * Hide image editor
-	 *
-	 * @method hide
-	 */
-	public hide = () => {
-		this.dialog.close();
-	};
-
-	/**
-	 * Open image editor
-	 *
-	 * @method open
-	 * @param {string} url
-	 * @param {function} save
-	 * @param {string} [save.name] new filename
-	 * @param {object} save.data Bound box for resize and crop operation
-	 * @param {string} save.data.action resize or crop
-	 * @param {object} save.data.box Bound box
-	 * @param {function} save.success called after success operation
-	 * @param {function} save.failed called after failed operation
-	 * @example
-	 * ```javascript
-	 * var jodit = new Jodit('.editor', {
-	 *     imageeditor: {
-	 *         crop: false,
-	 *         closeAfterSave: true,
-	 *         width: 500
-	 *     }
-	 * });
-	 * jodit.imageeditor.open('http://xdsoft.net/jodit/images/test.png', function (name, data, success, failed) {
-	 *     var img = jodit.node.create('img');
-	 *     img.setAttribute('src', 'http://xdsoft.net/jodit/images/test.png');
-	 *     if (box.action !== 'resize') {
-	 *          return failed('Sorry it is work only in resize mode. For croping use FileBrowser');
-	 *     }
-	 *     img.style.width = data.w;
-	 *     img.style.height = data.h;
-	 *     jodit.selection.insertNode(img);
-	 *     success();
-	 * });
-	 * ```
-	 */
-	public open = (
-		url: string,
-		save: (
-			newname: string | void,
-			box: ImageEditorActionBox,
-			success: () => void,
-			failed: (error: Error) => void
-		) => void
-	): Promise<Dialog> => {
-		return new Promise(resolve => {
-			const timestamp = new Date().getTime();
-
-			this.image = this.jodit.create.element('img');
-
-			$$('img,.jodit_icon-loader', this.resize_box).forEach(
-				Dom.safeRemove
-			);
-
-			$$('img,.jodit_icon-loader', this.crop_box).forEach(Dom.safeRemove);
-
-			css(this.cropHandler, 'background', 'transparent');
-
-			this.onSave = save;
-
-			this.resize_box.appendChild(
-				this.jodit.create.element('i', {class: 'jodit_icon-loader'})
-			);
-			this.crop_box.appendChild(
-				this.jodit.create.element('i', {class: 'jodit_icon-loader'})
-			);
-
-			if (/\?/.test(url)) {
-				url += '&_tst=' + timestamp;
-			} else {
-				url += '?_tst=' + timestamp;
-			}
-
-			this.image.setAttribute('src', url);
-
-			this.dialog.open();
-
-			const onload = () => {
-				if (this.isDestructed) {
-					return;
-				}
-
-				this.image.removeEventListener('load', onload);
-				this.naturalWidth = this.image.naturalWidth;
-				this.naturalHeight = this.image.naturalHeight;
-
-				this.widthInput.value = this.naturalWidth.toString();
-				this.heightInput.value = this.naturalHeight.toString();
-
-				this.ratio = this.naturalWidth / this.naturalHeight;
-
-				this.resize_box.appendChild(this.image);
-
-				this.cropImage = this.image.cloneNode() as HTMLImageElement;
-
-				this.crop_box.appendChild(this.cropImage);
-
-				$$('.jodit_icon-loader', this.editor).forEach(Dom.safeRemove);
-
-				if (this.activeTab === 'crop') {
-					this.showCrop();
-				}
-
-				this.jodit.events.fire(this.resizeHandler, 'updatesize');
-				this.jodit.events.fire(this.cropHandler, 'updatesize');
-
-				this.dialog.setPosition();
-				this.jodit.events.fire('afterImageEditor');
-
-				resolve(this.dialog);
-			};
-
-			this.image.addEventListener('load', onload);
-
-			if (this.image.complete) {
-				onload();
-			}
-		});
-	};
-
-	destruct(): any {
-		if (this.isDestructed) {
-			return;
-		}
-
-		if (this.dialog) {
-			this.dialog.destruct();
-			delete this.dialog;
-		}
-
-		Dom.safeRemove(this.editor);
-		delete this.widthInput;
-		delete this.heightInput;
-		delete this.resize_box;
-		delete this.crop_box;
-		delete this.sizes;
-		delete this.resizeHandler;
-		delete this.cropHandler;
-		delete this.editor;
-
-		if (this.jodit.events) {
-			this.jodit.events.off('.jodit_image_editor');
-		}
-
-		super.destruct();
-	}
 
 	private calcValueByPercent = (
 		value: number | string,
@@ -510,7 +187,6 @@ export class ImageEditor extends Component {
 			height: hn
 		});
 	};
-
 	private showCrop = () => {
 		if (!this.cropImage) {
 			return;
@@ -518,16 +194,23 @@ export class ImageEditor extends Component {
 
 		this.calcCropBox();
 
-		this.new_w = this.calcValueByPercent(
-			this.cropImage.offsetWidth || this.image.offsetWidth,
-			this.options.cropDefaultWidth
-		);
+		const w =
+			this.cropImage.offsetWidth ||
+			this.image.offsetWidth ||
+			this.image.naturalWidth;
+
+		this.new_w = this.calcValueByPercent(w, this.options.cropDefaultWidth);
+
+		const h =
+			this.cropImage.offsetHeight ||
+			this.image.offsetHeight ||
+			this.image.naturalHeight;
 
 		if (this.cropUseRatio) {
 			this.new_h = this.new_w / this.ratio;
 		} else {
 			this.new_h = this.calcValueByPercent(
-				this.cropImage.offsetHeight || this.image.offsetHeight,
+				h,
 				this.options.cropDefaultHeight
 			);
 		}
@@ -536,12 +219,8 @@ export class ImageEditor extends Component {
 			backgroundImage: 'url(' + this.cropImage.getAttribute('src') + ')',
 			width: this.new_w,
 			height: this.new_h,
-			left:
-				(this.cropImage.offsetWidth || this.image.offsetWidth) / 2 -
-				this.new_w / 2,
-			top:
-				(this.cropImage.offsetHeight || this.image.offsetHeight) / 2 -
-				this.new_h / 2
+			left: w / 2 - this.new_w / 2,
+			top: h / 2 - this.new_h / 2
 		});
 
 		this.jodit.events.fire(this.cropHandler, 'updatesize');
@@ -560,7 +239,7 @@ export class ImageEditor extends Component {
 		this.cropBox.w = this.cropHandler.offsetWidth / ratioX;
 		this.cropBox.h = this.cropHandler.offsetHeight / ratioY;
 
-		this.sizes.innerText =
+		this.sizes.textContent =
 			this.cropBox.w.toFixed(0) + 'x' + this.cropBox.h.toFixed(0);
 	};
 
@@ -577,11 +256,9 @@ export class ImageEditor extends Component {
 					self.editor.querySelector('.jodit_bottomright'),
 					self.cropHandler
 				] as HTMLElement[],
-				'mousedown.jodit_image_editor',
+				`mousedown.${jie}`,
 				(e: MouseEvent) => {
-					self.target =
-						(e.target as HTMLElement) ||
-						(e.srcElement as HTMLElement);
+					self.target = e.target as HTMLElement;
 
 					e.preventDefault();
 					e.stopImmediatePropagation();
@@ -602,11 +279,11 @@ export class ImageEditor extends Component {
 					}
 				}
 			)
-			.off(this.jodit.ownerWindow, '.jodit_image_editor' + self.jodit.id)
+			.off(this.jodit.ownerWindow, `.${jie}` + self.jodit.id)
 			.on(
 				this.jodit.ownerWindow,
-				'mousemove.jodit_image_editor' + self.jodit.id,
-				throttle((e: MouseEvent) => {
+				`mousemove.${jie}` + self.jodit.id,
+				this.jodit.async.throttle((e: MouseEvent) => {
 					if (self.clicked) {
 						self.diff_x = e.clientX - self.start_x;
 						self.diff_y = e.clientY - self.start_y;
@@ -671,8 +348,8 @@ export class ImageEditor extends Component {
 							} else {
 								if (
 									self.top_x +
-									self.diff_x +
-									self.cropHandler.offsetWidth >
+										self.diff_x +
+										self.cropHandler.offsetWidth >
 									self.cropImage.offsetWidth
 								) {
 									self.diff_x =
@@ -687,8 +364,8 @@ export class ImageEditor extends Component {
 								);
 								if (
 									self.top_y +
-									self.diff_y +
-									self.cropHandler.offsetHeight >
+										self.diff_y +
+										self.cropHandler.offsetHeight >
 									self.cropImage.offsetHeight
 								) {
 									self.diff_y =
@@ -713,21 +390,16 @@ export class ImageEditor extends Component {
 				}, 5)
 			)
 
+			.on(this.jodit.ownerWindow, `resize.${jie}` + self.jodit.id, () => {
+				this.jodit.events.fire(self.resizeHandler, 'updatesize');
+				self.showCrop();
+				this.jodit.events.fire(self.cropHandler, 'updatesize');
+			})
+
 			.on(
 				this.jodit.ownerWindow,
-				'resize.jodit_image_editor' + self.jodit.id,
-				() => {
-					this.jodit.events.fire(self.resizeHandler, 'updatesize');
-					self.showCrop();
-					this.jodit.events.fire(self.cropHandler, 'updatesize');
-				}
-			)
-			.on(
-				this.jodit.ownerWindow,
-				'mouseup.jodit_image_editor' +
-				self.jodit.id +
-				' keydown.jodit_image_editor' +
-				self.jodit.id,
+				`mouseup.${jie} ${self.jodit.id} keydown.${jie}` +
+					self.jodit.id,
 				(e: MouseEvent) => {
 					if (self.clicked) {
 						self.clicked = false;
@@ -738,20 +410,13 @@ export class ImageEditor extends Component {
 
 		// btn group
 
-		$$('.jodit_btn_group', self.editor).forEach(group => {
-			const input: HTMLInputElement = group.querySelector(
-				'input'
-			) as HTMLInputElement;
+		$$('.jodit_button_group', self.editor).forEach(group => {
+			const input = group.querySelector('input') as HTMLInputElement;
 			self.jodit.events.on(
 				group,
 				'click change',
-				function (this: HTMLButtonElement) {
-					const button: HTMLButtonElement = this as HTMLButtonElement;
-					$$('button', group).forEach((buttonElm: HTMLElement) =>
-						buttonElm.classList.remove('active')
-					);
-					button.classList.add('active');
-					input.checked = !!button.getAttribute('data-yes');
+				function(this: HTMLButtonElement) {
+					input.checked = !input.checked;
 					self.jodit.events.fire(input, 'change');
 				},
 				'button'
@@ -761,21 +426,20 @@ export class ImageEditor extends Component {
 		self.jodit.events
 			.on(
 				this.editor,
-				'click.jodit_image_editor',
-				function (this: HTMLElement) {
+				'click.' + jie,
+				function(this: HTMLElement) {
 					$$(
-						'.jodit_image_editor_slider,.jodit_image_editor_area',
+						`.${jie}_slider,.${jie}_area`,
 						self.editor
 					).forEach(elm => elm.classList.remove('active'));
-					const slide: HTMLElement = this.parentNode as HTMLElement;
+					const slide = this.parentNode as HTMLElement;
 					slide.classList.add('active');
 					self.activeTab =
 						<ImageAction>slide.getAttribute('data-area') ||
 						'resize';
 
 					const tab: HTMLDivElement | null = self.editor.querySelector(
-						'.jodit_image_editor_area.jodit_image_editor_area_' +
-						self.activeTab
+						`.${jie}_area.${jie}_area_` + self.activeTab
 					);
 					if (tab) {
 						tab.classList.add('active');
@@ -785,16 +449,17 @@ export class ImageEditor extends Component {
 						self.showCrop();
 					}
 				},
-				'.jodit_image_editor_slider-title'
+				`.${jie}_slider-title`
 			)
 			.on(
 				self.widthInput,
-				'change.jodit_image_editor mousedown.jodit_image_editor keydown.jodit_image_editor',
-				debounce(() => {
+				`change.${jie} mousedown.${jie} keydown.${jie}`,
+				self.jodit.async.debounce(() => {
 					const value: number = parseInt(self.widthInput.value, 10);
 					let another: number;
 					if (value > self.options.min_width) {
 						css(self.image, 'width', value + 'px');
+
 						if (self.resizeUseRatio) {
 							another = Math.round(value / self.ratio);
 							if (another > self.options.min_height) {
@@ -808,8 +473,8 @@ export class ImageEditor extends Component {
 			)
 			.on(
 				self.heightInput,
-				'change.jodit_image_editor mousedown.jodit_image_editor keydown.jodit_image_editor',
-				debounce(() => {
+				`change.${jie} mousedown.${jie} keydown.${jie}`,
+				self.jodit.async.debounce(() => {
 					if (this.isDestructed) {
 						return;
 					}
@@ -818,8 +483,10 @@ export class ImageEditor extends Component {
 					let another: number;
 					if (value > self.options.min_height) {
 						css(self.image, 'height', value + 'px');
+
 						if (self.resizeUseRatio) {
 							another = Math.round(value * self.ratio);
+
 							if (another > self.options.min_width) {
 								css(self.image, 'width', another + 'px');
 								self.widthInput.value = another.toString();
@@ -831,17 +498,19 @@ export class ImageEditor extends Component {
 			);
 
 		const rationResizeButton: HTMLInputElement | null = self.editor.querySelector(
-			'.jodit_image_editor_keep_spect_ratio'
+			`.${jie}_keep_spect_ratio`
 		);
 		if (rationResizeButton) {
 			rationResizeButton.addEventListener('change', () => {
 				self.resizeUseRatio = rationResizeButton.checked;
 			});
 		}
+
 		// use ratio
 		const rationCropButton: HTMLInputElement | null = self.editor.querySelector(
-			'.jodit_image_editor_keep_spect_ratio_crop'
+			`.${jie}_keep_spect_ratio_crop`
 		);
+
 		if (rationCropButton) {
 			rationCropButton.addEventListener('change', () => {
 				self.cropUseRatio = rationCropButton.checked;
@@ -865,20 +534,22 @@ export class ImageEditor extends Component {
 					return;
 				}
 
-				let new_x: number = css(self.cropHandler, 'left') as number,
-					new_y: number = css(self.cropHandler, 'top') as number,
+				let new_x = css(self.cropHandler, 'left') as number,
+					new_y = css(self.cropHandler, 'top') as number,
 					new_width = self.cropHandler.offsetWidth,
 					new_height = self.cropHandler.offsetHeight;
 
 				if (new_x < 0) {
 					new_x = 0;
 				}
+
 				if (new_y < 0) {
 					new_y = 0;
 				}
 
 				if (new_x + new_width > self.cropImage.offsetWidth) {
 					new_width = self.cropImage.offsetWidth - new_x;
+
 					if (self.cropUseRatio) {
 						new_height = new_width / self.ratio;
 					}
@@ -886,6 +557,7 @@ export class ImageEditor extends Component {
 
 				if (new_y + new_height > self.cropImage.offsetHeight) {
 					new_height = self.cropImage.offsetHeight - new_y;
+
 					if (self.cropUseRatio) {
 						new_width = new_height * self.ratio;
 					}
@@ -971,4 +643,351 @@ export class ImageEditor extends Component {
 			});
 		});
 	};
+
+	options: ImageEditorOptions;
+
+	onSave: (
+		name: void | string,
+		data: ImageEditorActionBox,
+		hide: () => void,
+		failed: (e: Error) => void
+	) => void;
+
+	/**
+	 * Hide image editor
+	 *
+	 * @method hide
+	 */
+	hide = () => {
+		this.dialog.close();
+	};
+
+	/**
+	 * Open image editor
+	 *
+	 * @method open
+	 * @param {string} url
+	 * @param {function} save
+	 * @param {string} [save.name] new filename
+	 * @param {object} save.data Bound box for resize and crop operation
+	 * @param {string} save.data.action resize or crop
+	 * @param {object} save.data.box Bound box
+	 * @param {function} save.success called after success operation
+	 * @param {function} save.failed called after failed operation
+	 * @example
+	 * ```javascript
+	 * var jodit = new Jodit('.editor', {
+	 *		 imageeditor: {
+	 *				 crop: false,
+	 *				 closeAfterSave: true,
+	 *				 width: 500
+	 *		 }
+	 * });
+	 * jodit.imageeditor.open('http://xdsoft.net/jodit/images/test.png', function (name, data, success, failed) {
+	 *		 var img = jodit.node.create('img');
+	 *		 img.setAttribute('src', 'http://xdsoft.net/jodit/images/test.png');
+	 *		 if (box.action !== 'resize') {
+	 *					return failed('Sorry it is work only in resize mode. For croping use FileBrowser');
+	 *		 }
+	 *		 img.style.width = data.w;
+	 *		 img.style.height = data.h;
+	 *		 jodit.selection.insertNode(img);
+	 *		 success();
+	 * });
+	 * ```
+	 */
+	open = (
+		url: string,
+		save: (
+			newname: string | void,
+			box: ImageEditorActionBox,
+			success: () => void,
+			failed: (error: Error) => void
+		) => void
+	): Promise<Dialog> => {
+		return this.jodit.async.promise<Dialog>(resolve => {
+			const timestamp = new Date().getTime();
+
+			this.image = this.jodit.create.element('img');
+
+			$$('img,.jodit_icon-loader', this.resize_box).forEach(
+				Dom.safeRemove
+			);
+
+			$$('img,.jodit_icon-loader', this.crop_box).forEach(Dom.safeRemove);
+
+			css(this.cropHandler, 'background', 'transparent');
+
+			this.onSave = save;
+
+			this.resize_box.appendChild(
+				this.jodit.create.element('i', { class: 'jodit_icon-loader' })
+			);
+
+			this.crop_box.appendChild(
+				this.jodit.create.element('i', { class: 'jodit_icon-loader' })
+			);
+
+			if (/\?/.test(url)) {
+				url += '&_tst=' + timestamp;
+			} else {
+				url += '?_tst=' + timestamp;
+			}
+
+			this.image.setAttribute('src', url);
+
+			this.dialog.open();
+
+			const onload = () => {
+				if (this.isDestructed) {
+					return;
+				}
+
+				this.image.removeEventListener('load', onload);
+				this.naturalWidth = this.image.naturalWidth;
+				this.naturalHeight = this.image.naturalHeight;
+
+				this.widthInput.value = this.naturalWidth.toString();
+				this.heightInput.value = this.naturalHeight.toString();
+
+				this.ratio = this.naturalWidth / this.naturalHeight;
+
+				this.resize_box.appendChild(this.image);
+
+				this.cropImage = this.image.cloneNode(true) as HTMLImageElement;
+
+				this.crop_box.appendChild(this.cropImage);
+
+				$$('.jodit_icon-loader', this.editor).forEach(Dom.safeRemove);
+
+				if (this.activeTab === 'crop') {
+					this.showCrop();
+				}
+
+				this.jodit.events.fire(this.resizeHandler, 'updatesize');
+				this.jodit.events.fire(this.cropHandler, 'updatesize');
+
+				this.dialog.setPosition();
+				this.jodit.events.fire('afterImageEditor');
+
+				resolve(this.dialog);
+			};
+
+			this.image.addEventListener('load', onload);
+
+			if (this.image.complete) {
+				onload();
+			}
+		});
+	};
+
+	constructor(editor: IViewBased) {
+		super(editor);
+
+		this.options =
+			editor && (editor as IJodit).options
+				? (editor as IJodit).options.imageeditor
+				: Config.defaultOptions.imageeditor;
+
+		const o = this.options;
+		const i = editor.i18n;
+
+		this.resizeUseRatio = o.resizeUseRatio;
+		this.cropUseRatio = o.cropUseRatio;
+
+		const r = this.resizeUseRatio;
+		const c = this.cropUseRatio;
+
+		this.buttons = [
+			this.jodit.create.fromHTML(
+				'<button data-action="reset" type="button" class="jodit_button">' +
+					gi('update') +
+					'&nbsp;' +
+					i('Reset') +
+					'</button>'
+			),
+
+			this.jodit.create.fromHTML(
+				'<button data-action="save" type="button" class="jodit_button jodit_button_success">' +
+					gi('save') +
+					'&nbsp;' +
+					i('Save') +
+					'</button>'
+			),
+
+			this.jodit.create.fromHTML(
+				'<button data-action="saveas" type="button" class="jodit_button jodit_button_success">' +
+					gi('save') +
+					'&nbsp;' +
+					i('Save as ...') +
+					'</button>'
+			)
+		];
+
+		this.activeTab = o.resize ? 'resize' : 'crop';
+
+		const act = (el: boolean, className = 'active') =>
+			el ? className : '';
+
+		const switcher = (
+			label: string,
+			className: string,
+			active: boolean = true
+		) => `<div class="jodit_form_group">
+			<label>${i(label)}</label>
+			<div class="jodit_button_group jodit_button_radio_group">
+				<input ${act(
+					active,
+					'checked'
+				)} type="checkbox" class="${jie}_${className} jodit_input"/>
+
+				<button type="button" data-yes="1" class="jodit_button jodit_status_success">${i(
+					'Yes'
+				)}</button>
+
+				<button type="button" class="jodit_button jodit_status_danger">${i(
+					'No'
+				)}</button>
+			</div>
+		</div>`;
+
+		this.editor = this.jodit.create.fromHTML(
+			`<form class="${jie} jodit_properties">
+							<div class="jodit_grid">
+								<div class="jodit_col-lg-3-4">
+								${
+									o.resize
+										? `<div class="${jie}_area ${jie}_area_resize active">
+												<div class="${jie}_box"></div>
+												<div class="${jie}_resizer">
+													<i class="jodit_bottomright"></i>
+												</div>
+											</div>`
+										: ''
+								}
+								${
+									o.crop
+										? `<div class="${jie}_area ${jie}_area_crop ${act(
+												!o.resize
+										  )}">
+												<div class="${jie}_box">
+													<div class="${jie}_croper">
+														<i class="jodit_bottomright"></i>
+														<i class="jodit_sizes"></i>
+													</div>
+												</div>
+											</div>`
+										: ''
+								}
+								</div>
+								<div class="jodit_col-lg-1-4">
+								${
+									o.resize
+										? `<div data-area="resize" class="${jie}_slider active">
+												<div class="${jie}_slider-title">
+													${gi('resize')}
+													${i('Resize')}
+												</div>
+												<div class="${jie}_slider-content">
+													<div class="jodit_form_group">
+														<label for="${jie}_width">
+															${i('Width')}
+														</label>
+														<input type="number" class="${jie}_width jodit_input"/>
+													</div>
+													<div class="jodit_form_group">
+														<label for="${jie}_height">
+															${i('Height')}
+														</label>
+														<input type="number" class="${jie}_height jodit_input"/>
+													</div>
+													${switcher('Keep Aspect Ratio', 'keep_spect_ratio', r)}
+												</div>
+											</div>`
+										: ''
+								}
+								${
+									o.crop
+										? `<div data-area="crop" class="${jie}_slider ${act(
+												!o.resize
+										  )}'">
+												<div class="${jie}_slider-title">
+													${gi('crop')}
+													${i('Crop')}
+												</div>
+												<div class="${jie}_slider-content">
+													${switcher('Keep Aspect Ratio', 'keep_spect_ratio_crop', c)}
+												</div>
+											</div>`
+										: ''
+								}
+								</div>
+							</div>
+						</form>`
+		);
+
+		this.widthInput = this.editor.querySelector(
+			`.${jie}_width`
+		) as HTMLInputElement;
+
+		this.heightInput = this.editor.querySelector(
+			`.${jie}_height`
+		) as HTMLInputElement;
+
+		this.resize_box = this.editor.querySelector(
+			`.${jie}_area.${jie}_area_resize .${jie}_box`
+		) as HTMLElement;
+
+		this.crop_box = this.editor.querySelector(
+			`.${jie}_area.${jie}_area_crop .${jie}_box`
+		) as HTMLElement;
+
+		this.sizes = this.editor.querySelector(
+			`.${jie}_area.${jie}_area_crop .jodit_sizes`
+		) as HTMLElement;
+
+		this.resizeHandler = this.editor.querySelector(
+			`.${jie}_resizer`
+		) as HTMLElement;
+
+		this.cropHandler = this.editor.querySelector(
+			`.${jie}_croper`
+		) as HTMLElement;
+
+		this.dialog = new Dialog(editor);
+		this.dialog.setContent(this.editor);
+
+		this.dialog.setSize(this.options.width, this.options.height);
+		this.dialog.setTitle(this.buttons);
+
+		this.setHandlers();
+	}
+
+	destruct(): any {
+		if (this.isDestructed) {
+			return;
+		}
+
+		if (this.dialog) {
+			this.dialog.destruct();
+			delete this.dialog;
+		}
+
+		Dom.safeRemove(this.editor);
+
+		delete this.widthInput;
+		delete this.heightInput;
+		delete this.resize_box;
+		delete this.crop_box;
+		delete this.sizes;
+		delete this.resizeHandler;
+		delete this.cropHandler;
+		delete this.editor;
+
+		if (this.jodit.events) {
+			this.jodit.events.off(`.${jie}`);
+		}
+
+		super.destruct();
+	}
 }

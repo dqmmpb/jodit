@@ -1,14 +1,11 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {$$, debounce} from '../modules/helpers/';
-import {IJodit} from '../types';
+import { $$ } from '../modules/helpers/';
+import { IJodit } from '../types';
 
 const JODIT_IMAGE_PROCESSOR_BINDED = '__jodit_imageprocessor_binded';
 
@@ -19,8 +16,8 @@ const JODIT_IMAGE_PROCESSOR_BINDED = '__jodit_imageprocessor_binded';
  */
 export function imageProcessor(editor: IJodit) {
 	editor.events.on(
-		'change afterInit',
-		debounce(() => {
+		'change afterInit changePlace',
+		editor.async.debounce(() => {
 			if (editor.editor) {
 				$$('img', editor.editor).forEach((elm: HTMLElement) => {
 					if (!(elm as any)[JODIT_IMAGE_PROCESSOR_BINDED]) {
@@ -30,8 +27,8 @@ export function imageProcessor(editor: IJodit) {
 								'load',
 								function ElementOnLoad() {
 									editor.events &&
-									editor.events.fire &&
-									editor.events.fire('resize');
+										editor.events.fire &&
+										editor.events.fire('resize');
 									elm.removeEventListener(
 										'load',
 										ElementOnLoad
@@ -39,6 +36,7 @@ export function imageProcessor(editor: IJodit) {
 								}
 							);
 						}
+
 						editor.events.on(elm, 'mousedown touchstart', () => {
 							editor.selection.select(elm);
 						});

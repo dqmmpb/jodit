@@ -1,18 +1,15 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config, OptionsDefault} from '../../Config';
+import { Config, OptionsDefault } from '../../Config';
 import * as consts from '../../constants';
-import {Dialog} from '../dialog/dialog';
-import {Confirm} from '../dialog/confirm';
-import {Promt} from '../dialog/promt';
-import {ToolbarIcon} from '../toolbar/icon';
+import { Dialog } from '../dialog/dialog';
+import { Confirm } from '../dialog/confirm';
+import { Promt } from '../dialog/promt';
+import { ToolbarIcon } from '../toolbar/icon';
 
 import {
 	IFileBrowser,
@@ -23,164 +20,37 @@ import {
 	ISourceFile,
 	ISourcesFiles,
 	IFileBrowserState,
-	IFileBrowserItem, IFileBrowserFolder, IFileBrowserDataProvider
+	IFileBrowserItem,
+	IFileBrowserFolder,
+	IFileBrowserDataProvider
 } from '../../types/fileBrowser';
 
-import {IDictionary, ImageEditorActionBox} from '../../types/types';
-import {IUploader, IUploaderOptions} from '../../types/uploader';
-import {ImageEditor} from '../ImageEditor';
-import {LocalStorageProvider} from '../storage/localStorageProvider';
-import {Storage} from '../storage/storage';
-import {each} from '../helpers/each';
-import {normalizePath} from '../helpers/normalize/';
-import {$$} from '../helpers/selector';
-import {ctrlKey} from '../helpers/ctrlKey';
-import {extend} from '../helpers/extend';
-import {setTimeout} from '../helpers/async/setTimeout';
-import {ViewWithToolbar} from '../view/viewWithToolbar';
-import {IJodit} from '../../types';
+import { IDictionary, ImageEditorActionBox } from '../../types/types';
+import { IUploader, IUploaderOptions } from '../../types/uploader';
+import { ImageEditor } from '../ImageEditor';
+import { Storage } from '../storage/storage';
+import { each } from '../helpers/each';
+import { normalizePath } from '../helpers/normalize/';
+import { $$ } from '../helpers/selector';
+import { ctrlKey } from '../helpers/ctrlKey';
+import { extend } from '../helpers/extend';
+import { ViewWithToolbar } from '../view/viewWithToolbar';
+import { IJodit, IStorage } from '../../types';
 import './config';
-import {Dom} from '../Dom';
-import {debounce} from '../helpers/async';
-import {Alert} from '../dialog';
+import { Dom } from '../Dom';
+import { Alert } from '../dialog';
 import DataProvider from './dataProvider';
 import contextMenu from './builders/contextMenu';
-import {ObserveObject} from '../events/observeObject';
-import {FileBrowserItem} from './builders/item';
-import {MemoryStorageProvider} from '../storage/memoryStorageProvider';
-import {isValidName} from '../helpers/checker/isValidName';
+import { ObserveObject } from '../events/observeObject';
+import { FileBrowserItem } from './builders/item';
+import { isValidName } from '../helpers/checker/isValidName';
+import { F_CLASS, ICON_LOADER, ITEM_CLASS } from './consts';
+import { error } from '../helpers';
 
-export const F_CLASS = 'jodit_filebrowser';
-
-export const ITEM_CLASS = F_CLASS + '_files_item';
-export const ICON_LOADER = '<i class="jodit_icon-loader"></i>';
-
-const
-	DEFAULT_SOURCE_NAME = 'default',
+const DEFAULT_SOURCE_NAME = 'default',
 	ITEM_ACTIVE_CLASS = ITEM_CLASS + '-active-true';
 
 export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
-	state = ObserveObject.create<IFileBrowserState>({
-		activeElements: [],
-		elements: [],
-		folders: [],
-		view: 'tiles',
-		sortBy: 'changed-desc',
-		filterWord: '',
-		onlyImages: false
-	});
-	dataProvider: IFileBrowserDataProvider;
-	options: IFileBrowserOptions;
-	dialog: Dialog;
-	/**
-	 * Container for set/get value
-	 * @type {Storage}
-	 */
-	storage: Storage;
-	uploader: IUploader;
-	private loader = this.create.div(F_CLASS + '_loader', ICON_LOADER);
-	private browser = this.create.div(F_CLASS + ' non-selected');
-	private status_line = this.create.div(F_CLASS + '_status');
-	private tree = this.create.div(F_CLASS + '_tree');
-	private files = this.create.div(F_CLASS + '_files');
-	private statusTimer: number;
-	private elementsMap: IDictionary<{ elm: HTMLElement, item: IFileBrowserItem }> = {};
-
-	constructor(editor?: IJodit, options?: IFileBrowserOptions) {
-		super(editor, options);
-
-		const self: FileBrowser = this,
-			doc: HTMLDocument = editor ? editor.ownerDocument : document,
-			editorDoc: HTMLDocument = editor ? editor.editorDocument : doc;
-
-		if (editor) {
-			this.id = editor.id;
-		}
-
-		self.options = new OptionsDefault(
-			extend(
-				true,
-				{},
-				self.options,
-				Config.defaultOptions.filebrowser,
-				options,
-				editor ? editor.options.filebrowser : void 0
-			)
-		) as IFileBrowserOptions;
-
-		self.storage = new Storage(
-			this.options.filebrowser.saveStateInStorage ? new LocalStorageProvider() : new MemoryStorageProvider()
-		);
-
-		self.dataProvider = new DataProvider(self.options, self.jodit || self);
-		self.dialog = new Dialog(editor || self, {
-			fullsize: self.options.fullsize,
-			buttons: ['dialog.fullsize', 'dialog.close']
-		});
-
-		if (self.options.showFoldersPanel) {
-			self.browser.appendChild(self.tree);
-		}
-		self.browser.appendChild(self.files);
-		self.browser.appendChild(self.status_line);
-
-		this.initEventsListeners();
-		this.initNativeEventsListeners();
-
-		self.dialog.setSize(self.options.width, self.options.height);
-
-		[
-			'getLocalFileByUrl',
-			'crop',
-			'resize',
-			'create',
-			'fileMove',
-			'folderMove',
-			'fileRename',
-			'folderRename',
-			'fileRemove',
-			'folderRemove',
-			'folder',
-			'items',
-			'permissions'
-		].forEach(key => {
-			if (this.options[key] !== null) {
-				this.options[key] = extend(
-					true,
-					{},
-					this.options.ajax,
-					this.options[key]
-				);
-			}
-		});
-
-		self.stateToView();
-
-		const view = this.storage.get(F_CLASS + '_view');
-
-		if (view && this.options.view === null) {
-			self.state.view = view === 'list' ? 'list' : 'tiles';
-		} else {
-			self.state.view = self.options.view === 'list' ? 'list' : 'tiles';
-		}
-
-
-		const sortBy = self.storage.get(F_CLASS + '_sortby');
-
-		if (sortBy) {
-			const parts = sortBy.split('-');
-			self.state.sortBy = ['changed', 'name', 'size'].includes(parts[0]) ? sortBy : 'changed-desc';
-		} else {
-			self.state.sortBy = self.options.sortBy || 'changed-desc';
-		}
-
-		self.dataProvider.currentBaseUrl = $$('base', editorDoc).length
-			? $$('base', editorDoc)[0].getAttribute('href') || ''
-			: location.protocol + '//' + location.host;
-
-		self.initUploader(editor);
-	}
-
 	/**
 	 * Return default timeout period in milliseconds for some debounce or throttle functions. By default return {observer.timeout} options
 	 *
@@ -191,6 +61,24 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			? this.jodit.defaultTimeout
 			: Config.defaultOptions.observer.timeout;
 	}
+
+	private loader = this.create.div(F_CLASS + '_loader', ICON_LOADER);
+	private browser = this.create.div(F_CLASS + ' non-selected');
+	private status_line = this.create.div(F_CLASS + '_status');
+	private tree = this.create.div(F_CLASS + '_tree');
+	private files = this.create.div(F_CLASS + '_files');
+
+	state = ObserveObject.create<IFileBrowserState>({
+		activeElements: [],
+		elements: [],
+		folders: [],
+		view: 'tiles',
+		sortBy: 'changed-desc',
+		filterWord: '',
+		onlyImages: false
+	});
+
+	dataProvider: IFileBrowserDataProvider;
 
 	async loadItems(
 		path: string = this.dataProvider.currentPath,
@@ -228,9 +116,11 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	}
 
 	async loadTree(): Promise<any> {
-		const
-			path: string = this.dataProvider.currentPath,
-			source: string = this.dataProvider.currentSource;
+		const path: string = this.dataProvider.currentPath,
+			source: string = this.dataProvider.currentSource,
+			error = (e: string | Error) => {
+				throw e instanceof Error ? e : error(e);
+			};
 
 		if (this.uploader) {
 			this.uploader.setPath(path);
@@ -259,15 +149,17 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 						this.generateFolderTree(respData.data.sources);
 					}
 				})
-				.catch(() => {
+				.catch(e => {
 					this.errorHandler(
-						new Error(this.jodit.i18n('Error on load folders'))
+						error(this.jodit.i18n('Error on load folders'))
 					);
+
+					error(e);
 				});
 
 			const items = this.loadItems(path, source);
 
-			return Promise.all([tree, items]);
+			return Promise.all([tree, items]).catch(error);
 		} else {
 			this.tree.classList.remove('active');
 		}
@@ -282,17 +174,114 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 				}
 
 				if (!this.options.isSuccess(resp)) {
-					throw new Error(this.options.getMessage(resp));
+					throw error(this.options.getMessage(resp));
 				} else {
 					this.status(
 						this.options.getMessage(resp) ||
-						this.i18n('File "%s" was deleted', name),
+							this.i18n('File "%s" was deleted', name),
 						true
 					);
 				}
 			})
 			.catch(this.status);
 	}
+
+	private generateFolderTree(sources: ISourcesFiles) {
+		const folders: IFileBrowserFolder[] = [];
+
+		each<ISource>(sources, (source_name, source) => {
+			source.folders.forEach((name: string) => {
+				folders.push({
+					name,
+					source,
+					sourceName: source_name
+				});
+			});
+		});
+
+		this.state.folders = folders;
+	}
+
+	private generateItemsList(sources: ISourcesFiles) {
+		const elements: IFileBrowserItem[] = [];
+
+		const state = this.state,
+			canBeFile = (item: ISourceFile): boolean =>
+				!this.state.onlyImages ||
+				item.isImage === undefined ||
+				item.isImage,
+			inFilter = (item: ISourceFile): boolean =>
+				!state.filterWord.length ||
+				this.options.filter === undefined ||
+				this.options.filter(item, state.filterWord);
+
+		each<ISource>(sources, (source_name, source) => {
+			if (source.files && source.files.length) {
+				if (typeof this.options.sort === 'function') {
+					source.files.sort((a, b) =>
+						this.options.sort(a, b, state.sortBy)
+					);
+				}
+
+				source.files.forEach((item: ISourceFile) => {
+					if (inFilter(item) && canBeFile(item)) {
+						elements.push(
+							FileBrowserItem.create({
+								...item,
+								sourceName: source_name,
+								source
+							})
+						);
+					}
+				});
+			}
+		});
+
+		this.state.elements = elements;
+	}
+
+	private onSelect(callback: (data: IFileBrowserCallBackData) => void) {
+		return () => {
+			if (this.state.activeElements.length) {
+				const urls: string[] = [];
+
+				this.state.activeElements.forEach(elm => {
+					const url = elm.fileURL;
+					url && urls.push(url);
+				});
+
+				this.close();
+
+				if (typeof callback === 'function') {
+					callback({
+						baseurl: '',
+						files: urls
+					} as IFileBrowserCallBackData);
+				}
+			}
+
+			return false;
+		};
+	}
+
+	private errorHandler = (resp: Error | IFileBrowserAnswer) => {
+		if (resp instanceof Error) {
+			this.status(this.i18n(resp.message));
+		} else {
+			this.status(this.options.getMessage(resp));
+		}
+	};
+
+	options: IFileBrowserOptions;
+
+	dialog: Dialog;
+
+	/**
+	 * Container for set/get value
+	 */
+	storage: IStorage;
+
+	uploader: IUploader;
 
 	/**
 	 *
@@ -319,8 +308,6 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			message = message.message;
 		}
 
-		clearTimeout(this.statusTimer);
-
 		this.status_line.classList.remove('success');
 
 		this.status_line.classList.add('active');
@@ -333,10 +320,16 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			this.status_line.classList.add('success');
 		}
 
-		this.statusTimer = setTimeout(() => {
-			this.status_line.classList.remove('active');
-			Dom.detach(this.status_line);
-		}, this.options.howLongShowMsg);
+		this.async.setTimeout(
+			() => {
+				this.status_line.classList.remove('active');
+				Dom.detach(this.status_line);
+			},
+			{
+				timeout: this.options.howLongShowMsg,
+				label: 'fileBrowser.status'
+			}
+		);
 	};
 
 	/**
@@ -370,9 +363,9 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	): Promise<void> => {
 		this.state.onlyImages = onlyImages;
 
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			if (!this.options.items || !this.options.items.url) {
-				throw new Error('Need set options.filebrowser.ajax.url');
+				throw error('Need set options.filebrowser.ajax.url');
 			}
 
 			let localTimeout: number = 0;
@@ -409,7 +402,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 
 			this.events.fire('sort.filebrowser', this.state.sortBy);
 
-			this.loadTree().then(resolve);
+			this.loadTree().then(resolve, reject);
 		});
 	};
 
@@ -465,12 +458,10 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 								}
 							});
 						} else {
-							failed(new Error(this.options.getMessage(resp)));
+							failed(error(this.options.getMessage(resp)));
 
 							if (onFailed) {
-								onFailed(
-									new Error(this.options.getMessage(resp))
-								);
+								onFailed(error(this.options.getMessage(resp)));
 							}
 						}
 					})
@@ -485,106 +476,14 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		);
 	};
 
-	destruct() {
-		this.dialog.destruct();
-		delete this.dialog;
-		this.events && this.events.off('.filebrowser');
-		this.uploader && this.uploader.destruct();
-		delete this.uploader;
-		super.destruct();
-	}
-
-	private generateFolderTree(sources: ISourcesFiles) {
-		const folders: IFileBrowserFolder[] = [];
-
-		each<ISource>(sources, (source_name, source) => {
-			source.folders.forEach((name: string) => {
-				folders.push({
-					name,
-					source,
-					sourceName: source_name
-				});
-			});
-		});
-
-		this.state.folders = folders;
-	}
-
-	private generateItemsList(sources: ISourcesFiles) {
-		const elements: IFileBrowserItem[] = [];
-
-		const
-			state = this.state,
-			canBeFile = (item: ISourceFile): boolean => (
-				!this.state.onlyImages ||
-				item.isImage === undefined ||
-				item.isImage
-			),
-			inFilter = (item: ISourceFile): boolean => (
-				!state.filterWord.length ||
-				this.options.filter === undefined ||
-				this.options.filter(item, state.filterWord)
-			);
-
-		each<ISource>(sources, (source_name, source) => {
-			if (source.files && source.files.length) {
-				if (typeof this.options.sort === 'function') {
-					source.files.sort((a, b) =>
-						this.options.sort(a, b, state.sortBy)
-					);
-				}
-
-				source.files.forEach((item: ISourceFile) => {
-					if (inFilter(item) && canBeFile(item)) {
-						elements.push(FileBrowserItem.create({
-							...item,
-							sourceName: source_name,
-							source
-						}));
-					}
-				});
-			}
-		});
-
-		this.state.elements = elements;
-	}
-
-	private onSelect(callback: (data: IFileBrowserCallBackData) => void) {
-		return () => {
-			if (this.state.activeElements.length) {
-				const urls: string[] = [];
-
-				this.state.activeElements.forEach((elm) => {
-					const url = elm.fileURL;
-					url && urls.push(url);
-				});
-
-				this.close();
-
-				if (typeof callback === 'function') {
-					callback({
-						baseurl: '',
-						files: urls
-					} as IFileBrowserCallBackData);
-				}
-			}
-
-			return false;
-		};
-	}
-
-	private errorHandler = (resp: Error | IFileBrowserAnswer) => {
-		if (resp instanceof Error) {
-			this.status(this.i18n(resp.message));
-		} else {
-			this.status(this.options.getMessage(resp));
-		}
-	};
+	private elementsMap: IDictionary<{
+		elm: HTMLElement;
+		item: IFileBrowserItem;
+	}> = {};
 
 	private elementToItem(elm: HTMLElement): IFileBrowserItem | void {
-		const
-			{key} = elm.dataset,
-			{item} = this.elementsMap[key || ''];
+		const { key } = elm.dataset,
+			{ item } = this.elementsMap[key || ''];
 
 		return item;
 	}
@@ -593,8 +492,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	 * Convert state to view
 	 */
 	private stateToView() {
-		const
-			{state, files, create, options} = this,
+		const { state, files, create, options } = this,
 			getDomElement = (item: IFileBrowserItem): HTMLElement => {
 				const key = item.uniqueHashKey;
 
@@ -624,9 +522,8 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		state
 			.on('beforeChange.activeElements', () => {
 				state.activeElements.forEach(item => {
-					const
-						key = item.uniqueHashKey,
-						{elm} = this.elementsMap[key];
+					const key = item.uniqueHashKey,
+						{ elm } = this.elementsMap[key];
 
 					elm && elm.classList.remove(ITEM_ACTIVE_CLASS);
 				});
@@ -636,9 +533,8 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 				this.events.fire('changeSelection');
 
 				state.activeElements.forEach(item => {
-					const
-						key = item.uniqueHashKey,
-						{elm} = this.elementsMap[key];
+					const key = item.uniqueHashKey,
+						{ elm } = this.elementsMap[key];
 
 					elm && elm.classList.add(ITEM_ACTIVE_CLASS);
 				});
@@ -656,64 +552,94 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 				this.storage.set(F_CLASS + '_sortby', state.sortBy);
 			})
 
-			.on('change.elements', debounce(() => {
-				Dom.detach(files);
+			.on(
+				'change.elements',
+				this.async.debounce(() => {
+					Dom.detach(files);
 
-				if (state.elements.length) {
-					state.elements.forEach(item => {
-						this.files.appendChild(getDomElement(item));
-					});
-				} else {
-					files.appendChild(
-						create.div(F_CLASS + '_no_files', this.i18n('There are no files'))
-					);
-				}
-			}, this.defaultTimeout))
+					if (state.elements.length) {
+						state.elements.forEach(item => {
+							this.files.appendChild(getDomElement(item));
+						});
+					} else {
+						files.appendChild(
+							create.div(
+								F_CLASS + '_no_files',
+								this.i18n('There are no files')
+							)
+						);
+					}
+				}, this.defaultTimeout)
+			)
 
-			.on('change.folders', debounce(() => {
+			.on(
+				'change.folders',
+				this.async.debounce(() => {
 					Dom.detach(this.tree);
 
-					let
-						lastSource = DEFAULT_SOURCE_NAME,
+					let lastSource = DEFAULT_SOURCE_NAME,
 						lastSource2: ISource | null = null;
 
-					const
-						appendCreateButton = (source: ISource | null, sourceName: string, force: boolean = false) => {
-
-							if (
-								source &&
-								lastSource2 &&
-								(source !== lastSource2 || force) &&
-								options.createNewFolder &&
-								this.dataProvider.canI('FolderCreate')
-							) {
-								this.tree.appendChild(create.a(
-									'jodit_button addfolder', {
-										'href': 'javascript:void(0)',
-										'data-path': normalizePath(source.path + '/'),
+					const appendCreateButton = (
+						source: ISource | null,
+						sourceName: string,
+						force: boolean = false
+					) => {
+						if (
+							source &&
+							lastSource2 &&
+							(source !== lastSource2 || force) &&
+							options.createNewFolder &&
+							this.dataProvider.canI('FolderCreate')
+						) {
+							this.tree.appendChild(
+								create.a(
+									'jodit_button addfolder',
+									{
+										href: 'javascript:void(0)',
+										'data-path': normalizePath(
+											source.path + '/'
+										),
 										'data-source': sourceName
-									}, ToolbarIcon.getIcon('plus') + ' ' + this.i18n('Add folder')));
+									},
+									ToolbarIcon.getIcon('plus') +
+										' ' +
+										this.i18n('Add folder')
+								)
+							);
 
-								lastSource2 = source;
-							}
-						};
+							lastSource2 = source;
+						}
+					};
 
-					state.folders.forEach((folder) => {
-						const {name, source, sourceName} = folder;
+					state.folders.forEach(folder => {
+						const { name, source, sourceName } = folder;
 
 						if (sourceName && sourceName !== lastSource) {
-							this.tree.appendChild(create.div(F_CLASS + '_source_title', sourceName));
+							this.tree.appendChild(
+								create.div(
+									F_CLASS + '_source_title',
+									sourceName
+								)
+							);
 							lastSource = sourceName;
 						}
 
-						const folderElm = create.a(F_CLASS + '_tree_item', {
-							'draggable': 'draggable',
-							'href': 'javascript:void(0)',
-							'data-path': normalizePath(source.path, name + '/'),
-							'data-name': name,
-							'data-source': sourceName,
-							'data-source-path': source.path,
-						}, create.span(F_CLASS + '_tree_item_title', name));
+						const folderElm = create.a(
+							F_CLASS + '_tree_item',
+							{
+								draggable: 'draggable',
+								href: 'javascript:void(0)',
+								'data-path': normalizePath(
+									source.path,
+									name + '/'
+								),
+								'data-name': name,
+								'data-source': sourceName,
+								'data-source-path': source.path
+							},
+							create.span(F_CLASS + '_tree_item_title', name)
+						);
 
 						appendCreateButton(source, sourceName);
 
@@ -725,18 +651,38 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 							return;
 						}
 
-						if (options.deleteFolder && this.dataProvider.canI('FolderRename')) {
-							folderElm.appendChild(create.element('i', {
-								'class': 'jodit_icon_folder jodit_icon_folder_rename',
-								'title': this.i18n('Rename')
-							}, ToolbarIcon.getIcon('pencil')));
+						if (
+							options.deleteFolder &&
+							this.dataProvider.canI('FolderRename')
+						) {
+							folderElm.appendChild(
+								create.element(
+									'i',
+									{
+										class:
+											'jodit_icon_folder jodit_icon_folder_rename',
+										title: this.i18n('Rename')
+									},
+									ToolbarIcon.getIcon('pencil')
+								)
+							);
 						}
 
-						if (options.deleteFolder && this.dataProvider.canI('FolderRemove')) {
-							folderElm.appendChild(create.element('i', {
-								'class': 'jodit_icon_folder jodit_icon_folder_remove',
-								'title': this.i18n('Delete')
-							}, ToolbarIcon.getIcon('cancel')));
+						if (
+							options.deleteFolder &&
+							this.dataProvider.canI('FolderRemove')
+						) {
+							folderElm.appendChild(
+								create.element(
+									'i',
+									{
+										class:
+											'jodit_icon_folder jodit_icon_folder_remove',
+										title: this.i18n('Delete')
+									},
+									ToolbarIcon.getIcon('cancel')
+								)
+							);
 						}
 					});
 
@@ -746,8 +692,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	}
 
 	private initEventsListeners() {
-		const
-			state = this.state,
+		const state = this.state,
 			self = this;
 
 		self.events
@@ -774,7 +719,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 						if (yes) {
 							const promises: Array<Promise<any>> = [];
 
-							self.state.activeElements.forEach((item) => {
+							self.state.activeElements.forEach(item => {
 								promises.push(
 									self.deleteFile(
 										item.file || item.name || '',
@@ -804,115 +749,115 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 					);
 				}
 			})
-			.on('fileRename.filebrowser', (name: string, path: string, source: string) => {
-				if (self.state.activeElements.length === 1) {
-					Promt(
-						self.i18n('Enter new name'),
-						self.i18n('Rename'),
-						(newname: string) => {
-							if (!isValidName(newname)) {
-								self.status(self.i18n('Enter new name'));
-								return false;
-							}
+			.on(
+				'fileRename.filebrowser',
+				(name: string, path: string, source: string) => {
+					if (self.state.activeElements.length === 1) {
+						Promt(
+							self.i18n('Enter new name'),
+							self.i18n('Rename'),
+							(newName: string): false | void => {
+								if (!isValidName(newName)) {
+									self.status(self.i18n('Enter new name'));
+									return false;
+								}
 
-							self.dataProvider
-								.fileRename(
-									path,
-									name,
-									newname,
-									source
-								)
-								.then(resp => {
-									if (
-										self.options.fileRename &&
-										self.options.fileRename.process
-									) {
-										resp = self.options.fileRename.process.call(
-											self,
-											resp
-										);
-									}
+								self.dataProvider
+									.fileRename(path, name, newName, source)
+									.then(resp => {
+										if (
+											self.options.fileRename &&
+											self.options.fileRename.process
+										) {
+											resp = self.options.fileRename.process.call(
+												self,
+												resp
+											);
+										}
 
-									if (!self.options.isSuccess(resp)) {
-										throw new Error(
-											self.options.getMessage(resp)
-										);
-									} else {
-										self.state.activeElements = [];
-										self.status(
-											self.options.getMessage(resp),
-											true
-										);
-									}
+										if (!self.options.isSuccess(resp)) {
+											throw error(
+												self.options.getMessage(resp)
+											);
+										} else {
+											self.state.activeElements = [];
+											self.status(
+												self.options.getMessage(resp),
+												true
+											);
+										}
 
-									self.loadItems();
-								})
-								.catch(self.status);
+										self.loadItems();
+									})
+									.catch(self.status);
 
-							return;
-						},
-						self.i18n('type name'),
-						name
-					);
+								return;
+							},
+							self.i18n('type name'),
+							name
+						);
+					}
 				}
-			})
+			)
 			.on('update.filebrowser', () => {
 				self.loadTree();
 			});
 	}
 
 	private initNativeEventsListeners() {
-		let
-			dragElement: false | HTMLElement = false;
+		let dragElement: false | HTMLElement = false;
 
-		const
-			self = this;
+		const self = this;
 
 		self.events
 			.on(
 				self.tree,
 				'click',
-				function (this: HTMLElement, e: MouseEvent) {
-					const
-						a: HTMLAnchorElement = this.parentNode as HTMLAnchorElement,
+				function(this: HTMLElement, e: MouseEvent) {
+					const a: HTMLAnchorElement = this
+							.parentNode as HTMLAnchorElement,
 						path: string = a.getAttribute('data-path') || '';
 
-					Confirm(self.i18n('Are you sure?'), self.i18n('Delete'), (yes: boolean) => {
-						if (yes) {
-							self.dataProvider
-								.folderRemove(
-									path,
-									a.getAttribute('data-name') || '',
-									a.getAttribute('data-source') || ''
-								)
-								.then(resp => {
-									if (
-										self.options.folderRemove &&
-										self.options.folderRemove.process
-									) {
-										resp = self.options.folderRemove.process.call(
-											self,
-											resp
-										);
-									}
+					Confirm(
+						self.i18n('Are you sure?'),
+						self.i18n('Delete'),
+						(yes: boolean) => {
+							if (yes) {
+								self.dataProvider
+									.folderRemove(
+										path,
+										a.getAttribute('data-name') || '',
+										a.getAttribute('data-source') || ''
+									)
+									.then(resp => {
+										if (
+											self.options.folderRemove &&
+											self.options.folderRemove.process
+										) {
+											resp = self.options.folderRemove.process.call(
+												self,
+												resp
+											);
+										}
 
-									if (!self.options.isSuccess(resp)) {
-										throw new Error(
-											self.options.getMessage(resp)
-										);
-									} else {
-										self.state.activeElements = [];
-										self.status(
-											self.options.getMessage(resp),
-											true
-										);
-									}
+										if (!self.options.isSuccess(resp)) {
+											throw error(
+												self.options.getMessage(resp)
+											);
+										} else {
+											self.state.activeElements = [];
+											self.status(
+												self.options.getMessage(resp),
+												true
+											);
+										}
 
-									self.loadTree();
-								})
-								.catch(self.status);
+										self.loadTree();
+									})
+									.catch(self.status);
+							}
 						}
-					});
+					);
 
 					e.stopImmediatePropagation();
 					return false;
@@ -922,17 +867,17 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.tree,
 				'click',
-				function (this: HTMLElement, e: MouseEvent) {
-					const
-						a: HTMLAnchorElement = this.parentNode as HTMLAnchorElement,
+				function(this: HTMLElement, e: MouseEvent) {
+					const a: HTMLAnchorElement = this
+							.parentNode as HTMLAnchorElement,
 						name: string = a.getAttribute('data-name') || '',
 						path: string = a.getAttribute('data-source-path') || '';
 
 					Promt(
 						self.i18n('Enter new name'),
 						self.i18n('Rename'),
-						(newname: string) => {
-							if (!isValidName(newname)) {
+						(newName: string): false | void => {
+							if (!isValidName(newName)) {
 								self.status(self.i18n('Enter new name'));
 								return false;
 							}
@@ -941,7 +886,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 								.folderRename(
 									path,
 									a.getAttribute('data-name') || '',
-									newname,
+									newName,
 									a.getAttribute('data-source') || ''
 								)
 								.then(resp => {
@@ -956,7 +901,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 									}
 
 									if (!self.options.isSuccess(resp)) {
-										throw new Error(
+										throw error(
 											self.options.getMessage(resp)
 										);
 									} else {
@@ -986,7 +931,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.tree,
 				'click',
-				function (this: HTMLAnchorElement) {
+				function(this: HTMLAnchorElement) {
 					if (this.classList.contains('addfolder')) {
 						Promt(
 							self.i18n('Enter Directory name'),
@@ -1025,7 +970,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.tree,
 				'dragstart',
-				function (this: HTMLAnchorElement) {
+				function(this: HTMLAnchorElement) {
 					if (self.options.moveFolder) {
 						dragElement = this;
 					}
@@ -1035,7 +980,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.tree,
 				'drop',
-				function (this: HTMLAnchorElement): boolean | void {
+				function(this: HTMLAnchorElement): boolean | void {
 					if (
 						(self.options.moveFile || self.options.moveFolder) &&
 						dragElement
@@ -1044,7 +989,12 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 							dragElement.getAttribute('data-path') || '';
 
 						// move folder
-						if (!self.options.moveFolder && dragElement.classList.contains(F_CLASS + '_tree_item')) {
+						if (
+							!self.options.moveFolder &&
+							dragElement.classList.contains(
+								F_CLASS + '_tree_item'
+							)
+						) {
 							return false;
 						}
 
@@ -1085,9 +1035,8 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.files,
 				'click',
-				function (this: HTMLElement, e: MouseEvent) {
-					const
-						item = self.elementToItem(this);
+				function(this: HTMLElement, e: MouseEvent): false | void {
+					const item = self.elementToItem(this);
 
 					if (!item) {
 						return;
@@ -1096,9 +1045,11 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 					if (!ctrlKey(e)) {
 						self.state.activeElements = [item];
 					} else {
-						self.state.activeElements = [...self.state.activeElements, item];
+						self.state.activeElements = [
+							...self.state.activeElements,
+							item
+						];
 					}
-
 
 					e.stopPropagation();
 
@@ -1109,7 +1060,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(
 				self.files,
 				'dragstart',
-				function () {
+				function() {
 					if (self.options.moveFile) {
 						dragElement = this;
 					}
@@ -1119,22 +1070,20 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			.on(self.dialog.container, 'drop', (e: DragEvent) =>
 				e.preventDefault()
 			);
-
 	}
 
 	private initUploader(editor?: IJodit) {
-		const
-			self = this,
+		const self = this,
 			uploaderOptions: IUploaderOptions<IUploader> = extend(
 				true,
 				{},
 				Config.defaultOptions.uploader,
 				self.options.uploader,
-				editor && editor.options && editor.options.uploader !== null
-					? {
-						...(editor.options.uploader as IUploaderOptions<IUploader>)
-					}
-					: {}
+				{
+					...(editor?.options?.uploader as IUploaderOptions<
+						IUploader
+					>)
+				}
 			) as IUploaderOptions<IUploader>;
 
 		const uploadHandler = () => {
@@ -1149,5 +1098,110 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		self.events.on('bindUploader.filebrowser', (button: HTMLElement) => {
 			self.uploader.bind(button, uploadHandler, self.errorHandler);
 		});
+	}
+
+	constructor(editor?: IJodit, options?: IFileBrowserOptions) {
+		super(editor, options);
+
+		const self: FileBrowser = this,
+			doc: HTMLDocument = editor ? editor.ownerDocument : document,
+			editorDoc: HTMLDocument = editor ? editor.editorDocument : doc;
+
+		if (editor) {
+			this.id = editor.id;
+		}
+
+		self.options = new OptionsDefault(
+			extend(
+				true,
+				{},
+				self.options,
+				Config.defaultOptions.filebrowser,
+				options,
+				editor ? editor.options.filebrowser : undefined
+			)
+		) as IFileBrowserOptions;
+
+		self.storage = Storage.makeStorage(
+			this.options.filebrowser.saveStateInStorage
+		);
+
+		self.dataProvider = new DataProvider(self.options, self.jodit || self);
+		self.dialog = new Dialog(editor || self, {
+			fullsize: self.options.fullsize,
+			buttons: ['dialog.fullsize', 'dialog.close']
+		});
+
+		if (self.options.showFoldersPanel) {
+			self.browser.appendChild(self.tree);
+		}
+		self.browser.appendChild(self.files);
+		self.browser.appendChild(self.status_line);
+
+		this.initEventsListeners();
+		this.initNativeEventsListeners();
+
+		self.dialog.setSize(self.options.width, self.options.height);
+
+		[
+			'getLocalFileByUrl',
+			'crop',
+			'resize',
+			'create',
+			'fileMove',
+			'folderMove',
+			'fileRename',
+			'folderRename',
+			'fileRemove',
+			'folderRemove',
+			'folder',
+			'items',
+			'permissions'
+		].forEach(key => {
+			if (this.options[key] !== null) {
+				this.options[key] = extend(
+					true,
+					{},
+					this.options.ajax,
+					this.options[key]
+				);
+			}
+		});
+
+		self.stateToView();
+
+		const view = this.storage.get(F_CLASS + '_view');
+
+		if (view && this.options.view === null) {
+			self.state.view = view === 'list' ? 'list' : 'tiles';
+		} else {
+			self.state.view = self.options.view === 'list' ? 'list' : 'tiles';
+		}
+
+		const sortBy = self.storage.get<string>(F_CLASS + '_sortby');
+
+		if (sortBy) {
+			const parts = sortBy.split('-');
+			self.state.sortBy = ['changed', 'name', 'size'].includes(parts[0])
+				? sortBy
+				: 'changed-desc';
+		} else {
+			self.state.sortBy = self.options.sortBy || 'changed-desc';
+		}
+
+		self.dataProvider.currentBaseUrl = $$('base', editorDoc).length
+			? $$('base', editorDoc)[0].getAttribute('href') || ''
+			: location.protocol + '//' + location.host;
+
+		self.initUploader(editor);
+	}
+
+	destruct() {
+		this.dialog.destruct();
+		delete this.dialog;
+		this.events && this.events.off('.filebrowser');
+		this.uploader && this.uploader.destruct();
+		delete this.uploader;
+		super.destruct();
 	}
 }

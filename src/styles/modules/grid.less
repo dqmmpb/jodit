@@ -1,20 +1,17 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 @import (reference) '../variables';
 @import (reference) '../mixins';
 
 .jodit_grid {
+	display: flex;
 	width: 100%;
 
 	[class*='jodit_col-'] {
-		display: block;
-		float: left;
+		flex: 1 1 auto;
 	}
 
 	.jodit_col-lg {
@@ -27,6 +24,4 @@
 		.loop(5, 5);
 		.loop(4, 4);
 	}
-
-	.clearfix();
 }

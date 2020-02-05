@@ -5,10 +5,6 @@ export default {
 	// About
 	'About Jodit': 'A propos de Jodit',
 	'Jodit Editor': 'Editeur Jodit',
-	'Free Non-commercial Version': 'Version gratuite, non commerciale',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, version 2 ou ultérieure',
-
 	"Jodit User's Guide": "Guide de l'utilisateur",
 	'contains detailed help for using': "Aide détaillée à l'utilisation",
 	'For information about the license, please go to our website:':
@@ -139,6 +135,10 @@ export default {
 	'Chars: %d': 'Symboles: %d',
 	'Words: %d': 'Mots: %d',
 
+	Split: 'Split',
+	'Split vertical': 'Split vertical',
+	'Split horizontal': 'Split horizontal',
+
 	'Strike through': 'Frapper à travers',
 	Underline: 'Souligner',
 	superscript: 'exposant',
@@ -223,4 +223,10 @@ export default {
 	'Enter new name': 'Entrez un nouveau nom',
 	preview: 'Aperçu',
 	download: 'Télécharger',
+	'Paste from clipboard': 'Coller à partir du presse-papiers',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Votre navigateur ne prend pas en charge l\'accès direct à la presse-papiers.',
+	'Copy selection': 'Copier la sélection',
+	'copy': 'copie',
+	'Border radius': 'Rayon des frontières',
+	'Show all': 'Afficher tous les',
 } as IDictionary<string>;

@@ -5,10 +5,6 @@ export default {
 	// About
 	'About Jodit': 'О Jodit',
 	'Jodit Editor': 'Редактор Jodit',
-	'Free Non-commercial Version': 'Версия для не коммерческого использования',
-	'GNU General Public License, version 2 or later':
-		'Стандартная общественная лицензия GNU (GPL), версия 2 или выше',
-
 	'Jodit User\'s Guide': 'Jodit Руководство пользователя',
 	'contains detailed help for using':
 		'содержит детальную информацию по использованию',
@@ -133,7 +129,7 @@ export default {
 	'Delete table': 'Удалить таблицу',
 	'Delete row': 'Удалять ряд',
 	'Delete column': 'Удалить столбец',
-	'Empty cell': 'Отчистить ячейку',
+	'Empty cell': 'Очистить ячейку',
 
 	source: 'HTML',
 	bold: 'жирный',
@@ -205,7 +201,7 @@ export default {
 	Split: 'Разделить',
 	'Split vertical': 'Разделить по вертикали',
 	'Split horizontal': 'Разделить по горизонтали',
-	Merge: 'Объеденить в одну',
+	Merge: 'Объединить в одну',
 	'Add column': 'Добавить столбец',
 	'Add row': 'Добавить строку',
 	Delete: 'Удалить',
@@ -233,4 +229,10 @@ export default {
 	'Enter new name': 'Введите новое имя',
 	preview: 'Предпросмотр',
 	download: 'Скачать',
+	'Paste from clipboard': 'Вставить из буфера обмена',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Ваш браузер не поддерживает прямой доступ к буферу обмена.',
+	'Copy selection': 'Скопировать выделенное',
+	'copy': 'копия',
+	'Border radius': 'Радиус границы',
+	'Show all': 'Показать все',
 } as IDictionary<string>;

@@ -1,23 +1,34 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {IViewBased} from './view';
+import { IViewBased } from './view';
+import { IJodit } from './jodit';
 
 export interface IDictionary<T = any> {
 	[key: string]: T;
 }
 
-interface IComponent<T extends IViewBased = IViewBased> {
+export interface IInitable {
+	init(jodit: IViewBased): any;
+}
+
+export interface IDestructible {
+	destruct(jodit?: IJodit): any;
+}
+
+export type ComponentStatus = number;
+
+interface IComponent<T extends IViewBased = IViewBased> extends IDestructible {
 	jodit: T;
 	isDestructed: boolean;
+	isInDestruct: boolean;
+	isReady: boolean;
 
-	destruct(): any;
+	componentStatus: ComponentStatus;
+	setStatus(componentStatus: ComponentStatus): void;
 }
 
 export type NodeCondition = (
@@ -39,7 +50,7 @@ export interface IPoint {
 	y: number;
 }
 
-export interface IPointBound extends IPoint {
+export interface IPointBound extends IPoint{
 	w: number;
 	h: number;
 }
@@ -71,25 +82,25 @@ export interface IPermissions {
 	allowFolderRename: boolean;
 	allowImageResize: boolean;
 	allowImageCrop: boolean;
-
 	[key: string]: boolean;
 }
 
 export type CallbackFunction<T = any> = (this: T, ...args: any[]) => any | void;
+export type BooleanFunction<T = any> = (this: T, ...args: any[]) => boolean;
 
 export type ExecCommandCallback<T> =
 	| ((
-	this: T,
-	command: string,
-	value?: string,
-	next?: boolean
-) => void | boolean | Promise<void | boolean>)
+			this: T,
+			command: string,
+			value?: string,
+			next?: boolean
+	  ) => void | boolean | Promise<void | boolean>)
 	| ((
-	this: T,
-	command: string,
-	value: string,
-	next: string
-) => void | boolean | Promise<void | boolean>);
+			this: T,
+			command: string,
+			value: string,
+			next: string
+	  ) => void | boolean | Promise<void | boolean>);
 
 export interface ICommandType<T> {
 	exec: ExecCommandCallback<T>;
@@ -103,12 +114,6 @@ export interface IHasScroll {
 	clientLeft: number;
 	scrollTop: number;
 	scrollLeft: number;
-}
-
-export interface IStorage {
-	set(key: string, value: string | number): void;
-
-	get(key: string): string | null;
 }
 
 export interface RangeType {
@@ -129,16 +134,6 @@ export interface markerInfo {
 	collapsed: boolean;
 	startMarker: string;
 	endMarker?: string;
-}
-
-export interface IPlugin {
-	jodit: IViewBased;
-
-	destruct(): void;
-
-	afterInit(jodit?: IViewBased): void;
-
-	beforeDestruct(jodit?: IViewBased): void;
 }
 
 /**

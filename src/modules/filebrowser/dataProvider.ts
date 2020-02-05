@@ -9,53 +9,93 @@ import {
 	IDictionary
 } from '../../types';
 
-import {extend, normalizeRelativePath} from '../helpers';
-import {Ajax} from '../Ajax';
+import { error, extend, normalizeRelativePath } from '../helpers';
+import { Ajax } from '../Ajax';
 
 export const DEFAULT_SOURCE_NAME = 'default';
 
 const possableRules = [
-	"allowFiles",
-	"allowFileMove",
-	"allowFileUpload",
-	"allowFileUploadRemote",
-	"allowFileRemove",
-	"allowFileRename",
-	"allowFolders",
-	"allowFolderMove",
-	"allowFolderCreate",
-	"allowFolderRemove",
-	"allowFolderRename",
-	"allowImageResize",
-	"allowImageCrop"
+	'allowFiles',
+	'allowFileMove',
+	'allowFileUpload',
+	'allowFileUploadRemote',
+	'allowFileRemove',
+	'allowFileRename',
+	'allowFolders',
+	'allowFolderMove',
+	'allowFolderCreate',
+	'allowFolderRemove',
+	'allowFolderRename',
+	'allowImageResize',
+	'allowImageCrop'
 ];
 
 export default class dataProvider implements IFileBrowserDataProvider {
-	currentPath: string = '';
-	currentSource: string = DEFAULT_SOURCE_NAME;
-	currentBaseUrl: string = '';
 	private __currentPermissions: IPermissions | null = null;
-
-	constructor(
-		readonly options: IFileBrowserOptions,
-		readonly parent: IViewBased
-	) {
-	}
 
 	canI(action: string): boolean {
 		const rule = 'allow' + action;
 
 		if (process.env.NODE_ENV !== 'production') {
 			if (!possableRules.includes(rule)) {
-				throw new Error('Wrong action ' + action);
+				throw error('Wrong action ' + action);
 			}
 		}
 
 		return (
 			this.__currentPermissions === null ||
-			(this.__currentPermissions[rule] === undefined ||
-				this.__currentPermissions[rule])
+			this.__currentPermissions[rule] === undefined ||
+				this.__currentPermissions[rule]
 		);
+	}
+
+	currentPath: string = '';
+	currentSource: string = DEFAULT_SOURCE_NAME;
+	currentBaseUrl: string = '';
+
+	constructor(
+		readonly options: IFileBrowserOptions,
+		readonly parent: IViewBased
+	) {}
+
+	/**
+	 *
+	 * @param {string} name
+	 * @param {Function} success
+	 * @param {Function} error
+	 * @return {Promise}
+	 */
+	private get(
+		name: string,
+		success?: (resp: IFileBrowserAnswer) => void,
+		error?: (error: Error) => void
+	): Promise<IFileBrowserAnswer> {
+		const opts: IFileBrowserAjaxOptions = extend(
+			true,
+			{},
+			this.options.ajax,
+			this.options[name] !== undefined
+				? this.options[name]
+				: this.options.ajax
+		);
+
+		if (opts.prepareData) {
+			opts.data = opts.prepareData.call(this, <IDictionary>opts.data);
+		}
+
+		const ajax = new Ajax(this.parent, opts);
+
+		const promise = ajax.send();
+
+		if (success) {
+			promise.then(success);
+		}
+
+		if (error) {
+			promise.catch(error);
+		}
+
+		return promise;
 	}
 
 	/**
@@ -167,7 +207,7 @@ export default class dataProvider implements IFileBrowserDataProvider {
 				if (this.options.isSuccess(resp)) {
 					success(resp.data.path, resp.data.name, resp.data.source);
 				} else {
-					onFailed(new Error(this.options.getMessage(resp)));
+					onFailed(error(this.options.getMessage(resp)));
 				}
 			},
 			onFailed
@@ -409,45 +449,5 @@ export default class dataProvider implements IFileBrowserDataProvider {
 		this.options.resize.data.source = source;
 
 		return this.get('resize');
-	}
-
-	/**
-	 *
-	 * @param {string} name
-	 * @param {Function} success
-	 * @param {Function} error
-	 * @return {Promise}
-	 */
-	private get(
-		name: string,
-		success?: (resp: IFileBrowserAnswer) => void,
-		error?: (error: Error) => void
-	): Promise<IFileBrowserAnswer> {
-		const opts: IFileBrowserAjaxOptions = extend(
-			true,
-			{},
-			this.options.ajax,
-			this.options[name] !== undefined
-				? this.options[name]
-				: this.options.ajax
-		);
-
-		if (opts.prepareData) {
-			opts.data = opts.prepareData.call(this, <IDictionary>opts.data);
-		}
-
-		const ajax: Ajax = new Ajax(this.parent, opts);
-
-		const promise = ajax.send();
-
-		if (success) {
-			promise.then(success);
-		}
-
-		if (error) {
-			promise.catch(error);
-		}
-
-		return promise;
 	}
 }

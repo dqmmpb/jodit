@@ -1,19 +1,17 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {HTMLTagNames, IComponent, IDictionary, Modes} from './types';
-import {IViewBased} from './view';
-import {IJodit} from './jodit';
-import {IFileBrowser} from './fileBrowser';
-
-interface IControlType<T = IJodit | IViewBased | IFileBrowser,
-	Button = IToolbarButton> {
+import { HTMLTagNames, IComponent, IDestructible, IDictionary, Modes } from './types';
+import { IViewBased } from './view';
+import { IJodit } from './jodit';
+import { IFileBrowser } from './fileBrowser';
+interface IControlType<
+	T = IJodit | IViewBased | IFileBrowser,
+	Button = IToolbarButton
+> {
 	controlName?: string;
 	name?: string;
 	mode?: Modes;
@@ -215,7 +213,7 @@ interface IControlType<T = IJodit | IViewBased | IFileBrowser,
 	 *      {
 	 *          icon: "insertCode",
 	 *          popup: function (editor) {
-	 *              var div = dccument.createElement('div'), button = dccument.createElement('button');
+	 *              var div = document.createElement('div'), button = dccument.createElement('button');
 	 *              div.innerHTML = 'Hi! Click button and enter your code';
 	 *              button.innerHTML = 'Click me';
 	 *
@@ -270,18 +268,14 @@ interface IToolbarButton extends IToolbarElement {
 	tooltipText: string;
 
 	isDisable(): boolean;
-
 	isActive(): boolean;
 }
 
 interface IToolbarCollection extends IComponent {
 	readonly listenEvents: string;
-	firstButton: IToolbarElement;
-	immedateCheckActiveButtons: () => void;
-	checkActiveButtons: () => void;
-	container: HTMLElement;
 
 	getButtonsList(): string[];
+	firstButton: IToolbarElement;
 
 	appendChild(button: IToolbarElement): void;
 
@@ -291,10 +285,11 @@ interface IToolbarCollection extends IComponent {
 
 	clear(): void;
 
+	immediateCheckActiveButtons: () => void;
+
 	buttonIsActive(button: IToolbarButton): boolean | void;
 
 	buttonIsDisabled(button: IToolbarButton): boolean | void;
-
 	/**
 	 * Target for button element
 	 *
@@ -302,7 +297,26 @@ interface IToolbarCollection extends IComponent {
 	 */
 	getTarget(button: IToolbarButton): Node | void;
 
+	checkActiveButtons: () => void;
+
+	container: HTMLElement;
+
 	setDirection(direction: 'rtl' | 'ltr'): void;
 
 	destruct(): void;
+
+	getParentContainer(): HTMLElement;
+}
+
+export interface IStatusBar extends IComponent {
+	show(): void;
+	hide(): void;
+	getHeight(): number;
+	append(el: HTMLElement, inTheRight?: boolean): void;
+}
+
+export interface IProgressBar extends IDestructible {
+	show(): IProgressBar;
+	progress(percentage: number): IProgressBar;
+	hide(): IProgressBar;
 }

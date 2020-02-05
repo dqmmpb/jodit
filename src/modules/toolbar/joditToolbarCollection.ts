@@ -1,35 +1,20 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {ToolbarCollection} from './collection';
-import {ToolbarButton} from './button';
-import {IDictionary} from '../../types/types';
-import {IJodit} from '../../types/jodit';
-import {IViewBased} from '../../types/view';
-import {Dom} from '../Dom';
-import {css} from '../helpers/css';
+import { ToolbarCollection } from './collection';
+import { ToolbarButton } from './button';
+import { IDictionary, IToolbarCollection } from '../../types/';
+import { IJodit } from '../../types/jodit';
+import { IViewBased } from '../../types/view';
+import { Dom } from '../Dom';
+import { css } from '../helpers/css';
 import * as consts from '../../constants';
-import {isJoditObject} from '../helpers/checker/isJoditObject';
+import { isJoditObject } from '../helpers/checker/isJoditObject';
 
 export class JoditToolbarCollection extends ToolbarCollection<IJodit> {
-	static makeCollection(jodit: IViewBased): ToolbarCollection<IViewBased> {
-		const collection = isJoditObject(jodit)
-			? new JoditToolbarCollection(jodit)
-			: new ToolbarCollection(jodit);
-
-		if (jodit.options.textIcons) {
-			collection.container.classList.add('jodit_text_icons');
-		}
-
-		return collection;
-	}
-
 	checkActiveStatus = (
 		cssObject:
 			| IDictionary<string | string[]>
@@ -122,7 +107,7 @@ export class JoditToolbarCollection extends ToolbarCollection<IJodit> {
 				Dom.up(
 					elm,
 					(node: Node | null): boolean | void => {
-						if (node && node.nodeType !== Node.TEXT_NODE) {
+						if (node && !Dom.isText(node)) {
 							return this.checkActiveStatus(
 								css,
 								node as HTMLElement
@@ -164,5 +149,21 @@ export class JoditToolbarCollection extends ToolbarCollection<IJodit> {
 	 */
 	getTarget(button: ToolbarButton): Node | void {
 		return button.target || this.jodit.selection.current() || undefined;
+	}
+
+	/**
+	 * Collection factory
+	 * @param jodit
+	 */
+	static makeCollection(jodit: IViewBased): IToolbarCollection {
+		const collection = isJoditObject(jodit)
+			? new JoditToolbarCollection(jodit)
+			: new ToolbarCollection(jodit);
+
+		if (jodit.options.textIcons) {
+			collection.container.classList.add('jodit_text_icons');
+		}
+
+		return collection;
 	}
 }

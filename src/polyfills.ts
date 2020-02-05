@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import 'classlist-polyfill';
@@ -46,4 +43,34 @@ if (!Array.prototype.includes) {
 	Array.prototype.includes = function (value: any) {
 		return this.indexOf(value) > -1;
 	}
+}
+
+if (typeof Object.assign != 'function') {
+	// Must be writable: true, enumerable: false, configurable: true
+	Object.defineProperty(Object, "assign", {
+		value: function assign(target:any, varArgs:any) { // .length of function is 2
+		'use strict';
+		if (target == null) { // TypeError if undefined or null
+			throw new TypeError('Cannot convert undefined or null to object');
+		}
+
+		var to = Object(target);
+
+		for (var index = 1; index < arguments.length; index++) {
+			var nextSource = arguments[index];
+
+			if (nextSource != null) { // Skip over if undefined or null
+			for (var nextKey in nextSource) {
+				// Avoid bugs when hasOwnProperty is shadowed
+				if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+				to[nextKey] = nextSource[nextKey];
+				}
+			}
+			}
+		}
+		return to;
+		},
+		writable: true,
+		configurable: true
+	});
 }

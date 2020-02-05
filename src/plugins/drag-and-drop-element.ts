@@ -1,23 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {
-	css,
-	ctrlKey,
-	dataBind,
-	setTimeout,
-	splitArray,
-	throttle
-} from '../modules/helpers/';
-import {Plugin} from '../modules/Plugin';
-import {Dom} from '../modules/Dom';
+import { Config } from '../Config';
+import { css, ctrlKey, dataBind, splitArray } from '../modules/helpers/';
+import { Plugin } from '../modules/Plugin';
+import { Dom } from '../modules/Dom';
 
 declare module '../Config' {
 	interface Config {
@@ -41,7 +31,7 @@ export class DragAndDropElement extends Plugin {
 
 	private timeout: number = 0;
 
-	private onDrag = throttle((event: DragEvent) => {
+	private onDrag = this.jodit.async.throttle((event: DragEvent) => {
 		if (!this.draggable) {
 			return;
 		}
@@ -60,32 +50,6 @@ export class DragAndDropElement extends Plugin {
 
 		this.jodit.selection.insertCursorAtPoint(event.clientX, event.clientY);
 	}, this.jodit.defaultTimeout);
-
-	public afterInit() {
-		this.dragList = this.jodit.options.draggableTags
-			? splitArray(this.jodit.options.draggableTags)
-				.filter(item => item)
-				.map((item: string) => item.toLowerCase())
-			: [];
-
-		if (!this.dragList.length) {
-			return;
-		}
-
-		this.jodit.events
-			.on(this.jodit.editor, 'mousemove touchmove', this.onDrag)
-			.on(
-				this.jodit.editor,
-				'mousedown touchstart dragstart',
-				this.onDragStart
-			)
-			.on('mouseup touchend', this.onDrop)
-			.on(window, 'mouseup touchend', this.onDragEnd);
-	}
-
-	public beforeDestruct() {
-		this.onDragEnd();
-	}
 
 	private onDragStart = (event: DragEvent) => {
 		let target: Node | null = event.target as Node,
@@ -115,7 +79,7 @@ export class DragAndDropElement extends Plugin {
 		this.isCopyMode = ctrlKey(event); // we can move only element from editor
 		this.onDragEnd();
 
-		this.timeout = setTimeout(
+		this.timeout = this.jodit.async.setTimeout(
 			(lastNode?: HTMLElement) => {
 				if (!lastNode) {
 					return;
@@ -144,7 +108,11 @@ export class DragAndDropElement extends Plugin {
 	};
 
 	private onDragEnd = () => {
-		window.clearTimeout(this.timeout);
+		if (this.isInDestruct) {
+			return;
+		}
+
+		this.jodit.async.clearTimeout(this.timeout);
 
 		if (this.draggable) {
 			Dom.safeRemove(this.draggable);
@@ -175,4 +143,40 @@ export class DragAndDropElement extends Plugin {
 
 		this.jodit.events.fire('synchro');
 	};
+
+	protected afterInit() {
+		this.dragList = this.jodit.options.draggableTags
+			? splitArray(this.jodit.options.draggableTags)
+					.filter(item => item)
+					.map((item: string) => item.toLowerCase())
+			: [];
+
+		if (!this.dragList.length) {
+			return;
+		}
+
+		this.jodit.events
+			.on(this.jodit.editor, 'mousemove touchmove', this.onDrag)
+			.on(
+				this.jodit.editor,
+				'mousedown touchstart dragstart',
+				this.onDragStart
+			)
+			.on('mouseup touchend', this.onDrop)
+			.on(window, 'mouseup touchend', this.onDragEnd);
+	}
+
+	protected beforeDestruct() {
+		this.onDragEnd();
+
+		this.jodit.events
+			.off(this.jodit.editor, 'mousemove touchmove', this.onDrag)
+			.off(
+				this.jodit.editor,
+				'mousedown touchstart dragstart',
+				this.onDragStart
+			)
+			.off('mouseup touchend', this.onDrop)
+			.off(window, 'mouseup touchend', this.onDragEnd);
+	}
 }

@@ -8,8 +8,6 @@ export default {
 	'About Jodit': 'Over Jodit',
 	'Jodit Editor': 'Jodit Editor',
 	'Free Non-commercial Version': 'Gratis niet-commerciële versie',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, versie 2 of hoger',
 	"Jodit User's Guide": 'Jodit gebruikershandleiding',
 	'contains detailed help for using':
 		'bevat gedetailleerde informatie voor gebruik.',
@@ -149,6 +147,7 @@ export default {
 	'Sort by name': 'Sorteren op naam',
 	'Sort by size': 'Sorteren op grootte',
 	'Add folder': 'Map toevoegen',
+	Split: 'Splitsen',
 	'Split vertical': 'Verticaal splitsen',
 	'Split horizontal': 'Horizontaal splitsen',
 	Merge: 'Samenvoegen',
@@ -230,4 +229,10 @@ export default {
 	'Enter new name': 'Voer een nieuwe naam in',
 	preview: 'voorvertoning',
 	download: 'Download',
+	'Paste from clipboard': 'Plakken van klembord',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Uw browser ondersteunt geen directe toegang tot het klembord.',
+	'Copy selection': 'Selectie kopiëren',
+	'copy': 'kopiëren',
+	'Border radius': 'Border radius',
+	'Show all': 'Toon alle',
 } as IDictionary<string>;

@@ -1,13 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license;
- * Copyright 2013-2019 Valeriy Chupurnov https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright 2013-2020 Valeriy Chupurnov https://xdsoft.net
  */
 
 import * as consts from '../constants';
-import {HTMLTagNames, IJodit, NodeCondition} from '../types';
-import {css} from './helpers/';
-import {trim} from './helpers/string';
+import { HTMLTagNames, ICreate, IJodit, NodeCondition } from '../types';
+import { css, dataBind, isString } from './helpers/';
+import { trim } from './helpers/string';
 
 export class Dom {
 	/**
@@ -99,9 +99,7 @@ export class Dom {
 		const selInfo = editor.selection.save();
 
 		const wrapper =
-			typeof tag === 'string'
-				? editor.editorDocument.createElement(tag)
-				: tag;
+			typeof tag === 'string' ? editor.create.inside.element(tag) : tag;
 
 		if (!current.parentNode) {
 			return null;
@@ -121,15 +119,14 @@ export class Dom {
 	 * @param node
 	 */
 	static unwrap(node: Node) {
-		const parent: Node | null = node.parentNode,
-			el = node;
+		const parent = node.parentNode;
 
 		if (parent) {
-			while (el.firstChild) {
-				parent.insertBefore(el.firstChild, el);
+			while (node.firstChild) {
+				parent.insertBefore(node.firstChild, node);
 			}
 
-			Dom.safeRemove(el);
+			Dom.safeRemove(node);
 		}
 	}
 
@@ -150,19 +147,24 @@ export class Dom {
 	 */
 	static each(
 		elm: Node | HTMLElement,
-		callback: (this: Node, node: Node) => void | false
+		callback: (node: Node) => void | boolean
 	): boolean {
 		let node: Node | null | false = elm.firstChild;
 
 		if (node) {
 			while (node) {
-				if (
-					callback.call(node, node) === false ||
-					!Dom.each(node, callback)
-				) {
+				const next = Dom.next(node, Boolean, elm);
+
+				if (callback(node) === false) {
 					return false;
 				}
-				node = Dom.next(node, nd => !!nd, elm);
+
+				// inside callback - node could be removed
+				if (node.parentNode && !Dom.each(node, callback)) {
+					return false;
+				}
+
+				node = next;
 			}
 		}
 
@@ -186,15 +188,14 @@ export class Dom {
 	 */
 	static replace(
 		elm: HTMLElement,
-		newTagName: string | HTMLElement,
+		newTagName: HTMLTagNames | HTMLElement,
+		create: ICreate,
 		withAttributes = false,
-		notMoveContent = false,
-		doc: Document
+		notMoveContent = false
 	): HTMLElement {
-		const tag: HTMLElement =
-			typeof newTagName === 'string'
-				? doc.createElement(newTagName)
-				: newTagName;
+		const tag = isString(newTagName)
+			? create.element(newTagName)
+			: newTagName;
 
 		if (!notMoveContent) {
 			while (elm.firstChild) {
@@ -224,8 +225,7 @@ export class Dom {
 	 */
 	static isEmptyTextNode(node: Node): boolean {
 		return (
-			node &&
-			node.nodeType === Node.TEXT_NODE &&
+			Dom.isText(node) &&
 			(!node.nodeValue ||
 				node.nodeValue.replace(consts.INVISIBLE_SPACE_REG_EXP, '')
 					.length === 0)
@@ -233,7 +233,7 @@ export class Dom {
 	}
 
 	/**
-	 * Check if element is not empty
+	 * Check if element is empty
 	 *
 	 * @param {Node} node
 	 * @param {RegExp} condNoEmptyElement
@@ -247,28 +247,23 @@ export class Dom {
 			return true;
 		}
 
-		if (node.nodeType === Node.TEXT_NODE) {
+		if (Dom.isText(node)) {
 			return node.nodeValue === null || trim(node.nodeValue).length === 0;
 		}
 
 		return (
-			!node.nodeName.toLowerCase().match(condNoEmptyElement) &&
-			Dom.each(
-				node as HTMLElement,
-				(elm: Node | null): false | void => {
-					if (
-						(elm &&
-							elm.nodeType === Node.TEXT_NODE &&
-							(elm.nodeValue !== null &&
-								trim(elm.nodeValue).length !== 0)) ||
-						(elm &&
-							elm.nodeType === Node.ELEMENT_NODE &&
-							condNoEmptyElement.test(elm.nodeName.toLowerCase()))
-					) {
-						return false;
-					}
+			!condNoEmptyElement.test(node.nodeName.toLowerCase()) &&
+			Dom.each(node as HTMLElement, (elm: Node | null): false | void => {
+				if (
+					(Dom.isText(elm) &&
+						elm.nodeValue !== null &&
+						trim(elm.nodeValue).length !== 0) ||
+					(Dom.isElement(elm) &&
+						condNoEmptyElement.test(elm.nodeName.toLowerCase()))
+				) {
+					return false;
 				}
-			)
+			})
 		);
 	}
 
@@ -331,14 +326,29 @@ export class Dom {
 	}
 
 	/**
+	 * Check if element is text node
+	 * @param node
+	 */
+	static isText(node: Node | null): node is Text {
+		return Boolean(node && node.nodeType === Node.TEXT_NODE);
+	}
+
+	/**
+	 * Check if element is element node
+	 * @param node
+	 */
+	static isElement(node: Node | null): node is Element {
+		return Boolean(node && node.nodeType === Node.ELEMENT_NODE);
+	}
+
+	/**
 	 * Check element is inline block
 	 *
 	 * @param node
 	 */
-	static isInlineBlock(node: unknown): boolean {
+	static isInlineBlock(node: Node | null): boolean {
 		return (
-			!!node &&
-			(<Node>node).nodeType === Node.ELEMENT_NODE &&
+			Dom.isElement(node) &&
 			['inline', 'inline-block'].indexOf(
 				css(node as HTMLElement, 'display').toString()
 			) !== -1
@@ -353,9 +363,9 @@ export class Dom {
 		return (
 			node &&
 			node instanceof (win as any).HTMLElement &&
-			this.isBlock(node, win) &&
+			Dom.isBlock(node, win) &&
 			!/^(TD|TH|CAPTION|FORM)$/.test(node.nodeName) &&
-			node.style !== void 0 &&
+			node.style !== undefined &&
 			!/^(fixed|absolute)/i.test(node.style.position)
 		);
 	}
@@ -415,13 +425,11 @@ export class Dom {
 		node: HTMLElement,
 		className: string
 	): HTMLElement | false {
-		return <HTMLElement | false>this.prev(
+		return <HTMLElement | false>Dom.prev(
 			node,
 			node => {
 				return (
-					node &&
-					node.nodeType === Node.ELEMENT_NODE &&
-					(<HTMLElement>node).classList.contains(className)
+					Dom.isElement(node) && node.classList.contains(className)
 				);
 			},
 			<HTMLElement>node.parentNode
@@ -432,13 +440,11 @@ export class Dom {
 		node: HTMLElement,
 		className: string
 	): HTMLElement | false {
-		return <HTMLElement | false>this.next(
+		return <HTMLElement | false>Dom.next(
 			node,
 			node => {
 				return (
-					node &&
-					node.nodeType === Node.ELEMENT_NODE &&
-					(<HTMLElement>node).classList.contains(className)
+					Dom.isElement(node) && node.classList.contains(className)
 				);
 			},
 			<HTMLElement>node.parentNode
@@ -540,7 +546,7 @@ export class Dom {
 			nextElement &&
 			Dom.isInlineBlock(nextElement) &&
 			(!toLeft ? nextElement.firstChild : nextElement.lastChild)
-			) {
+		) {
 			nextElement = !toLeft
 				? nextElement.firstChild
 				: nextElement.lastChild;
@@ -621,9 +627,11 @@ export class Dom {
 			if (condition(start)) {
 				return start;
 			}
+
 			if (start === root || !start.parentNode) {
 				break;
 			}
+
 			start = start.parentNode;
 		} while (start && start !== root);
 
@@ -658,6 +666,24 @@ export class Dom {
 	}
 
 	/**
+	 * Append new element in the start of root
+	 * @param root
+	 * @param newElement
+	 */
+	static appendChildFirst(
+		root: HTMLElement,
+		newElement: HTMLElement | DocumentFragment
+	): void {
+		const child = root.firstChild;
+
+		if (child) {
+			root.insertBefore(newElement, child);
+		} else {
+			root.appendChild(newElement);
+		}
+	}
+
+	/**
 	 * Insert newElement after element
 	 *
 	 * @param elm
@@ -689,13 +715,8 @@ export class Dom {
 			from.ownerDocument || document
 		).createDocumentFragment();
 
-		[].slice.call(from.childNodes).forEach((node: Node) => {
-			if (
-				node.nodeType !== Node.TEXT_NODE ||
-				node.nodeValue !== consts.INVISIBLE_SPACE
-			) {
-				fragment.appendChild(node);
-			}
+		Array.from(from.childNodes).forEach((node: Node) => {
+			fragment.appendChild(node);
 		});
 
 		if (!inStart || !to.firstChild) {
@@ -777,7 +798,55 @@ export class Dom {
 	 *
 	 * @param node
 	 */
-	static safeRemove(node: Node | false | null) {
+	static safeRemove(node: Node | false | null | void) {
 		node && node.parentNode && node.parentNode.removeChild(node);
+	}
+
+	/**
+	 * Add or remove attribute
+	 *
+	 * @param elm
+	 * @param attr
+	 * @param enable
+	 */
+	static toggleAttribute(
+		elm: HTMLElement,
+		attr: string,
+		enable: boolean | number
+	) {
+		if (enable !== false) {
+			elm.setAttribute(attr, enable.toString());
+		} else {
+			elm.removeAttribute(attr);
+		}
+	}
+
+	/**
+	 * Hide element
+	 * @param node
+	 */
+	static hide(node: HTMLElement | null): void {
+		if (!node) {
+			return;
+		}
+
+		dataBind(node, '__old_display', node.style.display);
+		node.style.display = 'none';
+	}
+
+	/**
+	 * Show element
+	 * @param node
+	 */
+	static show(node: HTMLElement | null): void {
+		if (!node) {
+			return;
+		}
+
+		const display = dataBind(node, '__old_display');
+
+		if (node.style.display === 'none') {
+			node.style.display = display || '';
+		}
 	}
 }

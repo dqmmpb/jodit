@@ -1,7 +1,8 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * License GNU General License version 2 or later;
- * Copyright 2013-2019 Valeriy Chupurnov https://xdsoft.net
+  * Released under MIT see LICENSE.txt in the project root for license information.
+
+ * Copyright 2013-2020 Valeriy Chupurnov https://xdsoft.net
  */
 
 import {CallbackFunction} from './types';

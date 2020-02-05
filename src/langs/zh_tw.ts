@@ -1,14 +1,12 @@
-﻿import {IDictionary} from '../types';
+﻿import { IDictionary } from '../types';
 
 export default {
-	'Type something': '輸入壹些內容',
+	'Type something': '輸入一些內容',
 	// About
 	Advanced: '高級',
 	'About Jodit': '關於Jodit',
 	'Jodit Editor': 'Jodit Editor',
-	'Free Non-commercial Version': 'Free Non-commercial Version',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, version 2 or later',
+
 	"Jodit User's Guide": '開發者指南',
 	'contains detailed help for using': '使用幫助',
 	'For information about the license, please go to our website:':
@@ -37,7 +35,7 @@ export default {
 	'Insert Horizontal Line': '分割線',
 	'Insert Image': '圖片',
 	'Insert file': '文件',
-	'Insert youtube/vimeo video': 'youtube/vimeo 視頻',
+	'Insert youtube/vimeo video': 'youtube/vimeo 影片',
 	'Insert link': '鏈接',
 	'Font size': '字號',
 	'Font family': '字體',
@@ -59,7 +57,7 @@ export default {
 	'Select Special Character': '選擇特殊符號',
 	'Insert Special Character': '特殊符號',
 
-	'Paint format': '格式復制',
+	'Paint format': '格式複製',
 	'Change mode': '改變模式',
 
 	// plugin Image
@@ -75,10 +73,10 @@ export default {
 	Center: '居中',
 	Left: '居左',
 	'--Not Set--': '無',
-	Src: '源地址',
-	Title: '標題',
-	Alternative: '文本',
-	Link: '鏈接',
+	Src: 'Src',
+	Title: 'Title',
+	Alternative: 'Alternative',
+	Link: 'Link',
 	'Open link in new tab': '在新窗口打開鏈接',
 	Image: '圖片',
 	file: 'file',
@@ -89,15 +87,15 @@ export default {
 
 	// plugin paste
 	'Your code is similar to HTML. Keep as HTML?':
-		'妳粘貼的文本是壹段html代碼，是否保留源格式',
-	'Paste as HTML': 'html粘貼',
+		'你黏貼的文本是一段html代碼，是否保留源格式',
+	'Paste as HTML': 'html黏貼',
 	Keep: '保留源格式',
 	Clean: '匹配目標格式',
 	'Insert as Text': '把html代碼視為普通文本',
-	'Word Paste Detected': '文本粘貼',
+	'Word Paste Detected': '文本黏貼',
 
 	'The pasted content is coming from a Microsoft Word/Excel document. Do you want to keep the format or clean it up?':
-		'正在粘貼 Word/Excel 的文本，是否保留源格式？',
+		'正在黏貼 Word/Excel 的文本，是否保留源格式？',
 
 	'Insert only Text': '只保留文本',
 
@@ -105,7 +103,7 @@ export default {
 	'File Browser': '文件管理',
 	'Error on load list': '加載list錯誤',
 	'Error on load folders': '加載folders錯誤',
-	'Are you sure?': '妳確定嗎？',
+	'Are you sure?': '你確定嗎？',
 	'Enter Directory name': '輸入路徑',
 	'Create directory': '創建路徑',
 	'type name': 'type name',
@@ -114,11 +112,11 @@ export default {
 	'Drop image': '拖動圖片到此',
 	'Drop file': '拖動文件到此',
 	'or click': '或點擊',
-	'Alternative text': '顯示文本',
+	'Alternative text': 'Alternative text',
 	Browse: '瀏覽',
 	Upload: '上傳',
 	Background: '背景色',
-	Text: '字體顏色',
+	Text: '文字',
 
 	// popap module
 	Top: '頂部',
@@ -147,9 +145,10 @@ export default {
 	'Search for': '查找',
 	'Replace with': '替換為',
 	Replace: '替換',
-	Paste: '粘貼',
-	'Choose Content to Paste': '選擇內容並粘貼',
+	Paste: '黏貼',
+	'Choose Content to Paste': '選擇內容並黏貼',
 
+	All: '全部',
 	source: '源碼',
 	bold: '粗體',
 	italic: '斜體',
@@ -162,7 +161,7 @@ export default {
 	eraser: '橡皮擦',
 	paragraph: '段落',
 	fontsize: '字號',
-	video: '視頻',
+	video: '影片',
 	font: '字體',
 	about: '關於',
 	print: '打印',
@@ -173,7 +172,7 @@ export default {
 	outdent: '減少縮進',
 	fullsize: '全屏',
 	shrink: '收縮',
-	copyformat: '復制格式',
+	copyformat: '複製格式',
 	hr: '分割線',
 	ul: '無序列表',
 	ol: '順序列表',
@@ -181,8 +180,8 @@ export default {
 	selectall: '全選',
 	'Open link': '打開鏈接',
 	'Edit link': '編輯鏈接',
-	'No follow': '不要追蹤此特定鏈接"',
-	Unlink: '删除鏈接',
+	'No follow': 'No follow',
+	Unlink: 'Unlink',
 	Eye: '回顧',
 	' URL': 'URL',
 	Reset: '重置',
@@ -200,9 +199,11 @@ export default {
 	'Select %s': '選擇: %s',
 	Update: '更新',
 	'Vertical align': '垂直對齊',
-	Merge: '合並',
+	Merge: '合併',
 	'Add column': '添加列',
 	'Add row': '添加行',
+	Border: '邊框',
+	'Embed code': '嵌入代碼',
 	Delete: '刪除',
 	'Horizontal align': '水平對齊',
 
@@ -211,14 +212,23 @@ export default {
 	'Sort by name': '名稱排序',
 	'Sort by size': '大小排序',
 	'Add folder': '新建文件夾',
+	Split: '拆分',
+	'Split vertical': '垂直拆分',
+	'Split horizontal': '水平拆分',
 	'You can only edit your own images. Download this image on the host?':
-		'妳只能編輯妳自己的圖片。' + '下載圖片到本地？',
+		'妳只能編輯妳自己的圖片。' + 'Download this image on the host?',
 	'The image has been successfully uploaded to the host!': '圖片上傳成功',
 	palette: '調色板',
-	pencil: '要編輯',
+	pencil: '鉛筆',
 	'There are no files': '此目錄中沒有文件。',
-	rename: '匈牙利',
+	rename: '重命名',
 	'Enter new name': '輸入新名稱',
-	preview: '預習',
+	preview: '預覽',
 	download: '下載',
+	'Paste from clipboard': 'วางจากคลิปบอร์ด',
+	'Your browser doesn\'t support direct access to the clipboard.': 'ของเบราว์เซอร์ไม่สนับสนุนโดยตรงเข้าไปยังคลิปบอร์ด',
+	'Copy selection': 'คัดลอกส่วนที่เลือก',
+	'copy': 'คัดลอก',
+	'Border radius': 'เส้นขอบรัศมี',
+	'Show all': 'แสดงทั้งหมด',
 } as IDictionary<string>;

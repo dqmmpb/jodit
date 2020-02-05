@@ -7,9 +7,7 @@ export default {
 	Advanced: 'Avançado',
 	'About Jodit': 'Sobre o Jodit',
 	'Jodit Editor': 'Editor Jodit',
-	'Free Non-commercial Version': 'Versão Gratuita não-comercial',
-	'GNU General Public License, version 2 or later':
-		'Licença Pública GNU General, Versão 2 ou posterior',
+
 	"Jodit User's Guide": 'Guia de usuário Jodit',
 	'contains detailed help for using': 'contém ajuda detalhada para o uso.',
 	'For information about the license, please go to our website:':
@@ -89,7 +87,7 @@ export default {
 
 	// plugin paste
 	'Your code is similar to HTML. Keep as HTML?':
-		'Seu código é simular ao HTML. Manter como HTML?',
+		'Seu código é similar ao HTML. Manter como HTML?',
 	'Paste as HTML': 'Colar como HTML?',
 	Keep: 'Manter',
 	Clean: 'Limpar',
@@ -148,6 +146,7 @@ export default {
 	'Sort by name': 'Ordenar por nome',
 	'Sort by size': 'Ordenar por tamanho',
 	'Add folder': 'Adicionar pasta',
+	'Split': 'Dividir',
 	'Split vertical': 'Dividir vertical',
 	'Split horizontal': 'Dividir horizontal',
 	Merge: 'Mesclar',
@@ -229,4 +228,10 @@ export default {
 	'Enter new name': 'Digite um novo nome',
 	preview: 'preview',
 	download: 'Baixar',
+	'Paste from clipboard': 'Colar da área de transferência',
+	'Your browser doesn\'t support direct access to the clipboard.': 'O seu navegador não oferece suporte a acesso direto para a área de transferência.',
+	'Copy selection': 'Selecção de cópia',
+	'copy': 'cópia',
+	'Border radius': 'Border radius',
+	'Show all': 'Mostrar todos os',
 } as IDictionary<string>;

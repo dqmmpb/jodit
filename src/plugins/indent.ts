@@ -1,17 +1,14 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {BR, PARAGRAPH} from '../constants';
-import {Dom} from '../modules/Dom';
-import {IControlType} from '../types/toolbar';
-import {HTMLTagNames, IJodit} from '../types';
+import { Config } from '../Config';
+import { BR, PARAGRAPH } from '../constants';
+import { Dom } from '../modules/Dom';
+import { IControlType } from '../types/toolbar';
+import { HTMLTagNames, IJodit } from '../types';
 
 Config.prototype.controls.indent = {
 	tooltip: 'Increase Indent'
@@ -56,53 +53,56 @@ Config.prototype.indentMargin = 10;
 export function indent(editor: IJodit) {
 	const callback = (command: string): void | false => {
 		const indentedBoxes: HTMLElement[] = [];
-		editor.selection.eachSelection(
-			(current: Node): false | void => {
-				const selectionInfo = editor.selection.save();
-				let currentBox: HTMLElement | false = current
-					? (Dom.up(
+
+		editor.selection.eachSelection((current: Node): false | void => {
+			const selectionInfo = editor.selection.save();
+
+			let currentBox: HTMLElement | false = current
+				? (Dom.up(
 						current,
 						node => Dom.isBlock(node, editor.editorWindow),
 						editor.editor
-					) as HTMLElement)
-					: false;
+				  ) as HTMLElement)
+				: false;
 
-				const enter: string = editor.options.enter;
-				if (!currentBox && current) {
-					currentBox = Dom.wrapInline(
-						current,
-						enter !== BR ? <HTMLTagNames>enter : PARAGRAPH,
-						editor
-					);
-				}
+			const enter: string = editor.options.enter;
 
-				if (!currentBox) {
-					editor.selection.restore(selectionInfo);
-					return false;
-				}
-
-				const alreadyIndented: boolean =
-					indentedBoxes.indexOf(currentBox) !== -1;
-				if (currentBox && currentBox.style && !alreadyIndented) {
-					indentedBoxes.push(currentBox);
-
-					let marginLeft: number = currentBox.style.marginLeft
-						? parseInt(currentBox.style.marginLeft, 10)
-						: 0;
-					marginLeft +=
-						editor.options.indentMargin *
-						(command === 'outdent' ? -1 : 1);
-					currentBox.style.marginLeft =
-						marginLeft > 0 ? marginLeft + 'px' : '';
-
-					if (!currentBox.getAttribute('style')) {
-						currentBox.removeAttribute('style');
-					}
-				}
-
-				editor.selection.restore(selectionInfo);
+			if (!currentBox && current) {
+				currentBox = Dom.wrapInline(
+					current,
+					enter !== BR ? <HTMLTagNames>enter : PARAGRAPH,
+					editor
+				);
 			}
-		);
+
+			if (!currentBox) {
+				editor.selection.restore(selectionInfo);
+				return false;
+			}
+
+			const alreadyIndented = indentedBoxes.indexOf(currentBox) !== -1;
+
+			if (currentBox && currentBox.style && !alreadyIndented) {
+				indentedBoxes.push(currentBox);
+
+				let marginLeft = currentBox.style.marginLeft
+					? parseInt(currentBox.style.marginLeft, 10)
+					: 0;
+
+				marginLeft +=
+					editor.options.indentMargin *
+					(command === 'outdent' ? -1 : 1);
+
+				currentBox.style.marginLeft =
+					marginLeft > 0 ? marginLeft + 'px' : '';
+
+				if (!currentBox.getAttribute('style')) {
+					currentBox.removeAttribute('style');
+				}
+			}
+
+			editor.selection.restore(selectionInfo);
+		});
 
 		editor.setEditorValue();
 
@@ -113,6 +113,7 @@ export function indent(editor: IJodit) {
 		exec: callback,
 		hotkeys: ['ctrl+]', 'cmd+]']
 	});
+
 	editor.registerCommand('outdent', {
 		exec: callback,
 		hotkeys: ['ctrl+[', 'cmd+[']

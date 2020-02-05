@@ -1,16 +1,12 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {IDictionary} from '../types';
-import {IViewBased} from '../types/view';
-import {each, extend} from './helpers/';
+import { Config } from '../Config';
+import { IDictionary, IRequest, IViewBased } from '../types';
+import { each, error, extend, isPlainObject, parseQuery } from './helpers/';
 
 /**
  * @property {object} defaultAjaxOptions A set of key/value pairs that configure the Ajax request. All settings
@@ -39,35 +35,8 @@ import {each, extend} from './helpers/';
  * the XMLHttpRequest object.
  */
 
-declare const XDomainRequest: any;
-
-export interface AjaxOptions {
-	dataType?: string;
-	method?: string;
-
-	url?: string;
-
-	data:
-		| IDictionary<string>
-		| null
-		| FormData
-		| string
-		| IDictionary<string | IDictionary<any>>;
-
-	contentType?: string | false;
-
-	headers?: IDictionary<string> | null;
-
-	withCredentials?: boolean;
-
-	queryBuild?: (
-		this: Ajax,
-		obj: string | IDictionary<string | object> | FormData,
-		prefix?: string
-	) => string | FormData;
-
-	xhr?: () => XMLHttpRequest;
-}
+import { AjaxOptions, IAjax } from '../types';
+import { buildQuery } from './helpers/buildQuery';
 
 declare module '../Config' {
 	interface Config {
@@ -92,47 +61,51 @@ Config.prototype.defaultAjaxOptions = {
 	withCredentials: false,
 
 	xhr(): XMLHttpRequest {
-		const XHR =
-			typeof XDomainRequest === 'undefined'
-				? XMLHttpRequest
-				: XDomainRequest;
-		return new XHR();
+		return new XMLHttpRequest();
 	}
 } as AjaxOptions;
 
-export class Ajax {
-	public status: number;
-	public response: string;
-	public options: AjaxOptions;
-	public jodit: IViewBased;
+export class Ajax implements IAjax {
+	static log: IRequest[] = [];
+
 	private readonly xhr: XMLHttpRequest;
+
 	private success_response_codes = [200, 201, 202];
 
-	constructor(editor: IViewBased, options: AjaxOptions) {
-		this.jodit = editor;
-		this.options = extend(
-			true,
-			{},
-			Config.prototype.defaultAjaxOptions,
-			options
-		) as AjaxOptions;
-
-		if (this.options.xhr) {
-			this.xhr = this.options.xhr();
+	private __buildParams(
+		obj: string | IDictionary<string | object> | FormData,
+		prefix?: string
+	): string | FormData {
+		if (
+			this.options.queryBuild &&
+			typeof this.options.queryBuild === 'function'
+		) {
+			return this.options.queryBuild.call(this, obj, prefix);
 		}
 
-		editor &&
-		editor.events &&
-		editor.events.on('beforeDestruct', () => {
-			this.abort();
-		});
+		if (
+			typeof obj === 'string' ||
+			((this.jodit.ownerWindow as any).FormData &&
+				obj instanceof (this.jodit.ownerWindow as any).FormData)
+		) {
+			return obj as string | FormData;
+		}
+
+		return buildQuery(obj);
 	}
 
-	public abort(): Ajax {
+	status: number;
+
+	response: string;
+
+	options: AjaxOptions;
+
+	jodit: IViewBased;
+
+	abort(): Ajax {
 		try {
 			this.xhr.abort();
-		} catch {
-		}
+		} catch {}
 
 		return this;
 	}
@@ -151,21 +124,24 @@ export class Ajax {
 					}
 
 					if (!result) {
-						throw new Error('No JSON format');
+						throw error('No JSON format');
 					}
 
 					return result;
 				};
 
 				this.xhr.onabort = () => {
-					reject(new Error(this.xhr.statusText));
+					reject(error(this.xhr.statusText));
 				};
+
 				this.xhr.onerror = () => {
-					reject(new Error(this.xhr.statusText));
+					reject(error(this.xhr.statusText));
 				};
+
 				this.xhr.ontimeout = () => {
-					reject(new Error(this.xhr.statusText));
+					reject(error(this.xhr.statusText));
 				};
+
 				this.xhr.onload = () => {
 					this.response = this.xhr.responseText;
 					this.status = this.xhr.status;
@@ -188,9 +164,9 @@ export class Ajax {
 						} else {
 							reject.call(
 								this.xhr,
-								new Error(
+								error(
 									this.xhr.statusText ||
-									this.jodit.i18n('Connection error!')
+										this.jodit.i18n('Connection error!')
 								)
 							);
 						}
@@ -200,15 +176,13 @@ export class Ajax {
 				this.xhr.withCredentials =
 					this.options.withCredentials || false;
 
-				if (this.options.url) {
-					this.xhr.open(
-						this.options.method || 'get',
-						this.options.url,
-						true
-					);
-				} else {
-					throw new Error('Need URL for AJAX request');
-				}
+				const {url, data, method} = this.prepareRequest();
+
+				this.xhr.open(
+					method,
+					url,
+					true
+				);
 
 				if (this.options.contentType && this.xhr.setRequestHeader) {
 					this.xhr.setRequestHeader(
@@ -218,7 +192,7 @@ export class Ajax {
 				}
 
 				if (this.options.headers && this.xhr.setRequestHeader) {
-					each(this.options.headers, (key: string, value: string) => {
+					each(this.options.headers, (key, value) => {
 						this.xhr.setRequestHeader(key, value);
 					});
 				}
@@ -226,8 +200,8 @@ export class Ajax {
 				// IE
 				setTimeout(() => {
 					this.xhr.send(
-						this.options.data
-							? this.__buildParams(this.options.data)
+						data
+							? this.__buildParams(data)
 							: undefined
 					);
 				}, 0);
@@ -235,42 +209,56 @@ export class Ajax {
 		);
 	}
 
-	private __buildParams(
-		obj: string | IDictionary<string | object> | FormData,
-		prefix?: string
-	): string | FormData {
-		if (
-			this.options.queryBuild &&
-			typeof this.options.queryBuild === 'function'
-		) {
-			return this.options.queryBuild.call(this, obj, prefix);
+	prepareRequest(): IRequest {
+		if (!this.options.url) {
+			throw error('Need URL for AJAX request');
 		}
 
-		if (
-			typeof obj === 'string' ||
-			((this.jodit.ownerWindow as any).FormData &&
-				obj instanceof (this.jodit.ownerWindow as any).FormData)
-		) {
-			return obj as string | FormData;
-		}
+		let url: string = this.options.url;
+		const data = this.options.data;
+		const method = (this.options.method || 'get').toLowerCase();
 
-		const str: string[] = [];
-		let p: string, k: string, v: any;
+		if (method === 'get' && data && isPlainObject(data)) {
+			const qIndex = url.indexOf('?');
 
-		for (p in obj) {
-			if (obj.hasOwnProperty(p)) {
-				k = prefix ? prefix + '[' + p + ']' : p;
-				v = (obj as IDictionary<string>)[p];
-				str.push(
-					typeof v === 'object'
-						? (this.__buildParams(v, k) as string)
-						: encodeURIComponent(k) +
-						'=' +
-						encodeURIComponent(v as string)
-				);
+			if (qIndex !== -1) {
+				const urlData = parseQuery(url) ;
+				url = url.substr(0, qIndex) + '?' + buildQuery({...urlData, ...data as IDictionary})
+			} else {
+				url += '?' + buildQuery(this.options.data as IDictionary)
 			}
 		}
 
-		return str.join('&');
+		const request = {
+			url,
+			method,
+			data
+		};
+
+		Ajax.log.splice(100);
+		Ajax.log.push(request);
+
+		return request;
+	}
+
+	constructor(editor: IViewBased, options: AjaxOptions) {
+		this.jodit = editor;
+
+		this.options = extend(
+			true,
+			{},
+			Config.prototype.defaultAjaxOptions,
+			options
+		) as AjaxOptions;
+
+		if (this.options.xhr) {
+			this.xhr = this.options.xhr();
+		}
+
+		editor &&
+			editor.events &&
+			editor.events.on('beforeDestruct', () => {
+				this.abort();
+			});
 	}
 }

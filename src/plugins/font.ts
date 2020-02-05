@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import {Config} from '../Config';
@@ -44,9 +41,7 @@ Config.prototype.controls.fontsize = (<IControlType<IJodit>>{
 					elm => {
 						return (
 							Dom.isBlock(elm, editor.editorWindow) ||
-							(elm &&
-								Dom.isNode(elm, editor.editorWindow) &&
-								elm.nodeType === Node.ELEMENT_NODE)
+							(elm && Dom.isElement(elm))
 						);
 					},
 					editor.editor
@@ -72,9 +67,7 @@ Config.prototype.controls.fontsize = (<IControlType<IJodit>>{
 					elm => {
 						return (
 							Dom.isBlock(elm, editor.editorWindow) ||
-							(elm &&
-								Dom.isNode(elm, editor.editorWindow) &&
-								elm.nodeType === Node.ELEMENT_NODE)
+							(elm && Dom.isElement(elm))
 						);
 					},
 					editor.editor
@@ -131,9 +124,7 @@ Config.prototype.controls.font = (<IControlType<IJodit>>{
 					elm => {
 						return (
 							Dom.isBlock(elm, editor.editorWindow) ||
-							(elm &&
-								Dom.isNode(elm, editor.editorWindow) &&
-								elm.nodeType === Node.ELEMENT_NODE)
+							(elm && Dom.isElement(elm))
 						);
 					},
 					editor.editor
@@ -165,9 +156,7 @@ Config.prototype.controls.font = (<IControlType<IJodit>>{
 					(elm: Node | null) => {
 						return (
 							Dom.isBlock(elm, editor.editorWindow) ||
-							(Dom.isNode(elm, editor.editorWindow) &&
-								elm &&
-								elm.nodeType === Node.ELEMENT_NODE)
+							Dom.isElement(elm)
 						);
 					},
 					editor.editor

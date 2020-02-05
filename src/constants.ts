@@ -1,10 +1,7 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
 import {IDictionary} from './types';
@@ -19,8 +16,8 @@ export const SPACE_REG_EXP_START = /^[\s\n\t\r\uFEFF\u200b]+/g;
 export const SPACE_REG_EXP_END = /[\s\n\t\r\uFEFF\u200b]+$/g;
 
 export const IS_BLOCK = /^(PRE|DIV|P|LI|H[1-6]|BLOCKQUOTE|TD|TH|TABLE|BODY|HTML|FIGCAPTION|FIGURE|DT|DD)$/i;
-export const IS_INLINE = /^(STRONG|SPAN|I|EM|B|SUP|SUB)$/;
-export const MAY_BE_REMOVED_WITH_KEY = /^(IMG|BR|IFRAME|SCRIPT|INPUT|TEXTAREA|HR|JODIT|JODIT-MEDIA)$/;
+export const IS_INLINE = /^(STRONG|SPAN|I|EM|B|SUP|SUB)$/i;
+export const MAY_BE_REMOVED_WITH_KEY = /^(IMG|BR|IFRAME|SCRIPT|INPUT|TEXTAREA|HR|JODIT|JODIT-MEDIA)$/i;
 
 export const KEY_BACKSPACE = 8;
 export const KEY_TAB = 9;
@@ -131,3 +128,26 @@ export const KEY_ALIASES: IDictionary<string> = {
 	win: 'meta',
 	windows: 'meta'
 };
+
+export const BASE_PATH: string = ((): string => {
+	if (typeof document  === 'undefined') {
+		return '';
+	}
+
+	const script = document.currentScript as HTMLScriptElement,
+		removeScriptName = (s: string) => s.replace(/\/[^\/]+.js$/, '/');
+
+	if (script) {
+		return removeScriptName(script.src);
+	}
+
+	const scripts = document.querySelectorAll<HTMLScriptElement>(
+		'script[src]'
+	);
+
+	if (scripts && scripts.length) {
+		return removeScriptName(scripts[scripts.length - 1].src);
+	}
+
+	return window.location.href;
+})();

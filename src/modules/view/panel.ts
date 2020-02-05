@@ -1,67 +1,100 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Component} from '../Component';
-import {IPanel, IViewBased} from '../../types/view';
-import {Dom} from '../Dom';
-import {Create} from '../Create';
-import {isJoditObject} from '../helpers/checker/isJoditObject';
+import { Component } from '../Component';
+import { IPanel, IViewBased, IViewOptions } from '../../types/view';
+import { Dom } from '../Dom';
+import { Create } from '../Create';
+import { error } from '../helpers';
 
-export class Panel extends Component implements IPanel {
-	public ownerDocument: Document = document;
-	public ownerWindow: Window = window;
-	public container: HTMLDivElement;
-	/**
-	 * @property {Create} Native DOM element creator
-	 */
-	public create: Create;
+export abstract class Panel extends Component implements IPanel {
 	protected __whoLocked: string | false = '';
 	protected __isFullSize: boolean = false;
 
-	constructor(jodit?: IViewBased) {
+	ownerDocument: Document;
+	ownerWindow: Window;
+
+	container: HTMLDivElement;
+
+	/**
+	 * @property {Create} Native DOM element creator
+	 */
+	create: Create;
+
+	abstract options: IViewOptions;
+	protected initOptions(options?: IViewOptions): void {
+		this.options = { ...(this.options || {}), ...options };
+	}
+
+	protected initOwners(): void {
+		this.ownerDocument = window.document;
+		this.ownerWindow = window;
+	}
+
+	/**
+	 * Try to find element by selector
+	 * @param element
+	 */
+	protected resolveElement(element: string | HTMLElement): HTMLElement {
+		let resolved = element;
+
+		if (typeof element === 'string') {
+			try {
+				resolved = this.ownerDocument.querySelector(
+					element
+				) as HTMLInputElement;
+			} catch {
+				throw error(
+					'String "' + element + '" should be valid HTML selector'
+				);
+			}
+		}
+
+		// Duck checking
+		if (
+			!resolved ||
+			typeof resolved !== 'object' ||
+			!Dom.isElement(resolved) ||
+			!resolved.cloneNode
+		) {
+			throw error(
+				'Element "' +
+					element +
+					'" should be string or HTMLElement instance'
+			);
+		}
+
+		return resolved;
+	}
+
+	protected constructor(jodit?: IViewBased, options?: IViewOptions) {
 		super(jodit);
+
+		this.initOptions(options);
+		this.initOwners();
 
 		if (jodit && jodit.ownerDocument) {
 			this.ownerDocument = jodit.ownerDocument;
 			this.ownerWindow = jodit.ownerWindow;
 		}
 
-		this.create = new Create(
-			this.ownerDocument,
-			isJoditObject(jodit) ? jodit.editorDocument : undefined
-		);
+		this.create = new Create(this);
 
 		this.container = this.create.div();
 	}
 
-	destruct(): any {
-		if (!this.isDestructed) {
-			return;
-		}
+	isLocked = (): boolean => this.__whoLocked !== '';
 
-		Dom.safeRemove(this.container);
-		delete this.container;
-		super.destruct();
-	}
-
-	public isLocked = (): boolean => {
-		return this.__whoLocked !== '';
-	};
-
-	public isLockedNotBy = (name: string): boolean => {
-		return this.isLocked() && this.__whoLocked !== name;
-	};
+	isLockedNotBy = (name: string): boolean =>
+		this.isLocked() && this.__whoLocked !== name;
 
 	/**
 	 * Disable selecting
 	 */
-	public lock(name: string = 'any') {
+	lock(name = 'any') {
 		if (!this.isLocked()) {
 			this.__whoLocked = name;
 			return true;
@@ -73,7 +106,7 @@ export class Panel extends Component implements IPanel {
 	/**
 	 * Enable selecting
 	 */
-	public unlock() {
+	unlock() {
 		if (this.isLocked()) {
 			this.__whoLocked = '';
 			return true;
@@ -82,9 +115,9 @@ export class Panel extends Component implements IPanel {
 		return false;
 	}
 
-	public isFullSize = (): boolean => this.__isFullSize;
+	isFullSize = (): boolean => this.__isFullSize;
 
-	public toggleFullSize(isFullSize?: boolean) {
+	toggleFullSize(isFullSize?: boolean) {
 		if (isFullSize === undefined) {
 			isFullSize = !this.__isFullSize;
 		}
@@ -94,5 +127,14 @@ export class Panel extends Component implements IPanel {
 		}
 
 		this.__isFullSize = isFullSize;
+	}
+
+	destruct(): any {
+		if (!this.isDestructed) {
+			return;
+		}
+
+		Dom.safeRemove(this.container);
+		super.destruct();
 	}
 }

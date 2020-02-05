@@ -7,9 +7,7 @@ export default {
 	Advanced: 'מתקדם',
 	'About Jodit': 'About Jodit',
 	'Jodit Editor': 'Jodit Editor',
-	'Free Non-commercial Version': 'Free Non-commercial Version',
-	'GNU General Public License, version 2 or later':
-		'GNU General Public License, version 2 or later',
+
 	"Jodit User's Guide": "Jodit User's Guide",
 	'contains detailed help for using': 'contains detailed help for using.',
 	'For information about the license, please go to our website:':
@@ -148,6 +146,7 @@ export default {
 	'Sort by name': 'מיין לפי שם',
 	'Sort by size': 'מיין לפי גודל',
 	'Add folder': 'הוסף תקייה',
+	Split: 'פיצול',
 	'Split vertical': 'פיצול אנכי',
 	'Split horizontal': 'פיצול אופקי',
 	Merge: 'מזג',
@@ -228,4 +227,10 @@ export default {
 	'Enter new name': 'הזן שם חדש',
 	preview: 'תצוגה מקדימה',
 	download: 'הורד',
+	'Paste from clipboard': 'להדביק מהלוח',
+	'Your browser doesn\'t support direct access to the clipboard.': 'הדפדפן שלך לא תומך גישה ישירה ללוח.',
+	'Copy selection': 'העתק בחירה',
+	'copy': 'העתק',
+	'Border radius': 'רדיוס הגבול',
+	'Show all': 'הצג את כל',
 } as IDictionary<string>;

@@ -1,17 +1,13 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {Dom} from '../modules/Dom';
-import {setTimeout} from '../modules/helpers/async';
-import {css} from '../modules/helpers';
-import {IJodit} from '../types';
+import { Config } from '../Config';
+import { Dom } from '../modules/Dom';
+import { css } from '../modules/helpers';
+import { IJodit } from '../types';
 
 declare module '../Config' {
 	interface Config {
@@ -43,7 +39,7 @@ export function errorMessages(editor: IJodit) {
 		let height: number;
 
 		const messagesBox: HTMLDivElement = editor.create.div(
-			'jodit_error_box_for_messages'
+				'jodit_error_box_for_messages'
 			),
 			recalcOffsets = () => {
 				height = 5;
@@ -57,8 +53,6 @@ export function errorMessages(editor: IJodit) {
 						editor.options.showMessageErrorOffsetPx;
 				});
 			};
-
-		editor.workplace.appendChild(messagesBox);
 
 		/**
 		 * Вывести всплывающее сообщение внизу редактора
@@ -82,6 +76,8 @@ export function errorMessages(editor: IJodit) {
 			.on(
 				'errorMessage',
 				(message: string, className: string, timeout: number) => {
+					editor.workplace.appendChild(messagesBox);
+
 					const newmessage = editor.create.div(
 						'active ' + (className || ''),
 						message
@@ -90,10 +86,11 @@ export function errorMessages(editor: IJodit) {
 					messagesBox.appendChild(newmessage);
 
 					recalcOffsets();
-					setTimeout(() => {
+
+					editor.async.setTimeout(() => {
 						newmessage.classList.remove('active');
 
-						setTimeout(() => {
+						editor.async.setTimeout(() => {
 							Dom.safeRemove(newmessage);
 							recalcOffsets();
 						}, 300);

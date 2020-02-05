@@ -7,9 +7,7 @@ export default {
 	Advanced: 'Avanzato',
 	'About Jodit': 'A proposito di Jodit',
 	'Jodit Editor': 'Jodit Editor',
-	'Free Non-commercial Version': 'Versione gratuita non commerciale',
-	'GNU General Public License, version 2 or later':
-		'Licenza pubblica generale GNU, versione 2 o successiva',
+
 	"Jodit User's Guide": 'Guida utente di Jodit',
 	'contains detailed help for using':
 		"contiene una guida dettagliata per l'uso.",
@@ -148,6 +146,7 @@ export default {
 	'Sort by name': 'Ordina per nome',
 	'Sort by size': 'Ordina per dimensione',
 	'Add folder': 'Aggiungi cartella',
+	Split: 'Dividere',
 	'Split vertical': 'Dividere verticalmente',
 	'Split horizontal': 'Diviso orizzontale',
 	Merge: 'Fondi',
@@ -228,4 +227,10 @@ export default {
 	'Enter new name': 'Inserisci un nuovo nome',
 	preview: 'anteprima',
 	download: 'Scaricare',
+	'Paste from clipboard': 'Incolla dagli appunti',
+	'Your browser doesn\'t support direct access to the clipboard.': 'Il tuo browser non supporta l\'accesso diretto agli appunti.',
+	'Copy selection': 'Selezione di copia',
+	'copy': 'copia',
+	'Border radius': 'Border radius',
+	'Show all': 'Mostra tutti',
 } as IDictionary<string>;

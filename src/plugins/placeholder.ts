@@ -1,18 +1,16 @@
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
- * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
- * For GPL see LICENSE-GPL.txt in the project root for license information.
- * For MIT see LICENSE-MIT.txt in the project root for license information.
- * For commercial licenses see https://xdsoft.net/jodit/commercial/
- * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
+import { Config } from '../Config';
 import * as consts from '../constants';
-import {css} from '../modules/helpers/css';
-import {debounce} from '../modules/helpers/async';
-import {Dom} from '../modules/Dom';
-import {IJodit} from '../types';
+import { css } from '../modules/helpers/css';
+import { Dom } from '../modules/Dom';
+import { IJodit } from '../types';
+import { Plugin } from '../modules/Plugin';
+import { MAY_BE_REMOVED_WITH_KEY } from '../constants';
 
 /**
  * Show placeholder
@@ -65,129 +63,176 @@ Config.prototype.placeholder = 'Type something';
  *
  * @param {Jodit} editor
  */
-export function placeholder(this: any, editor: IJodit) {
-	if (!editor.options.showPlaceholder) {
-		return;
+export class placeholder extends Plugin {
+	private placeholderElm!: HTMLElement;
+
+	protected afterInit(editor: IJodit): void {
+		if (!editor.options.showPlaceholder) {
+			return;
+		}
+
+		this.toggle = editor.async.debounce(
+			this.toggle.bind(this),
+			this.jodit.defaultTimeout / 10
+		);
+
+		this.placeholderElm = editor.create.fromHTML(
+			`<span style="display: none;" class="jodit_placeholder">${editor.i18n(
+				editor.options.placeholder
+			)}</span>`
+		);
+
+		if (editor.options.direction === 'rtl') {
+			this.placeholderElm.style.right = '0px';
+			this.placeholderElm.style.direction = 'rtl';
+		}
+
+		editor.events
+			.on('readonly', (isReadOnly: boolean) => {
+				if (isReadOnly) {
+					this.hide();
+				} else {
+					this.toggle();
+				}
+			})
+			.on('changePlace', this.init);
+
+		this.addEvents();
 	}
 
-	(this as any).destruct = () => {
-		Dom.safeRemove(placeholderElm);
+	private addEvents = () => {
+		const editor = this.jodit;
+
+		if (
+			editor.options.useInputsPlaceholder &&
+			editor.element.hasAttribute('placeholder')
+		) {
+			this.placeholderElm.innerHTML =
+				editor.element.getAttribute('placeholder') || '';
+		}
+
+		editor.events.fire('placeholder', this.placeholderElm.innerHTML);
+
+		editor.events
+			.off('.placeholder')
+			.on(
+				'change.placeholder focus.placeholder keyup.placeholder mouseup.placeholder keydown.placeholder ' +
+					'mousedown.placeholder afterSetMode.placeholder',
+				this.toggle
+			)
+			.on(window, 'load', this.toggle);
+
+		this.toggle();
 	};
 
-	const show = () => {
-			if (!placeholderElm.parentNode || editor.options.readonly) {
-				return;
-			}
+	private show() {
+		const editor = this.jodit;
 
-			// let marginTop: number = 0,
-			// 	marginLeft: number = 0;
+		if (editor.options.readonly) {
+			return;
+		}
 
-			// const style: CSSStyleDeclaration = editor.editorWindow.getComputedStyle(
-			// 	editor.editor
-			// );
-			//
-			// if (
-			// 	editor.editor.firstChild &&
-			// 	editor.editor.firstChild.nodeType === Node.ELEMENT_NODE
-			// ) {
-			// 	const style2: CSSStyleDeclaration = editor.editorWindow.getComputedStyle(
-			// 		editor.editor.firstChild as Element
-			// 	);
-			// 	marginTop = parseInt(style2.getPropertyValue('margin-top'), 10);
-			// 	marginLeft = parseInt(
-			// 		style2.getPropertyValue('margin-left'),
-			// 		10
-			// 	);
-			// 	placeholderElm.style.fontSize =
-			// 		parseInt(style2.getPropertyValue('font-size'), 10) + 'px';
-			// 	placeholderElm.style.lineHeight = style2.getPropertyValue(
-			// 		'line-height'
-			// 	);
-			// } else {
-			// 	placeholderElm.style.fontSize =
-			// 		parseInt(style.getPropertyValue('font-size'), 10) + 'px';
-			// 	placeholderElm.style.lineHeight = style.getPropertyValue(
-			// 		'line-height'
-			// 	);
-			// }
+		let marginTop: number = 0,
+			marginLeft: number = 0;
 
-			css(placeholderElm, {
-				display: 'block' // ,
-				// marginTop: Math.max(
-				// 	parseInt(style.getPropertyValue('margin-top'), 10),
-				// 	marginTop
-				// ),
-				// marginLeft: Math.max(
-				// 	parseInt(style.getPropertyValue('margin-left'), 10),
-				// 	marginLeft
-				// )
-			});
-		},
-		hide = () => {
-			if (placeholderElm.parentNode) {
-				placeholderElm.style.display = 'none';
-			}
-		},
-		toggle = debounce(() => {
-			if (placeholderElm.parentNode === null) {
-				return;
-			}
+		const style = editor.editorWindow.getComputedStyle(editor.editor);
 
-			if (!editor.editor) {
-				return;
-			}
+		editor.workplace.appendChild(this.placeholderElm);
 
-			if (editor.getRealMode() !== consts.MODE_WYSIWYG) {
-				return hide();
-			}
+		if (Dom.isElement(editor.editor.firstChild)) {
+			const style2 = editor.editorWindow.getComputedStyle(
+				editor.editor.firstChild as Element
+			);
 
-			const value: string = editor.getEditorValue();
+			marginTop = parseInt(style2.getPropertyValue('margin-top'), 10);
 
-			if (value && !/^<(p|div|h[1-6])><\/\1>$/.test(value)) {
-				hide();
-			} else {
-				show();
-			}
-		}, editor.defaultTimeout / 10);
+			marginLeft = parseInt(style2.getPropertyValue('margin-left'), 10);
 
-	const placeholderElm: HTMLElement = editor.create.fromHTML(
-		'<span style="display: none;" class="jodit_placeholder">' +
-		editor.i18n(editor.options.placeholder) +
-		'</span>'
-	);
+			this.placeholderElm.style.fontSize =
+				parseInt(style2.getPropertyValue('font-size'), 10) + 'px';
 
-	if (editor.options.direction === 'rtl') {
-		placeholderElm.style.right = '0px';
-		placeholderElm.style.direction = 'rtl';
-	}
+			this.placeholderElm.style.lineHeight = style2.getPropertyValue(
+				'line-height'
+			);
+		} else {
+			this.placeholderElm.style.fontSize =
+				parseInt(style.getPropertyValue('font-size'), 10) + 'px';
 
-	if (
-		editor.options.useInputsPlaceholder &&
-		editor.element.hasAttribute('placeholder')
-	) {
-		placeholderElm.innerHTML =
-			editor.element.getAttribute('placeholder') || '';
-	}
+			this.placeholderElm.style.lineHeight = style.getPropertyValue(
+				'line-height'
+			);
+		}
 
-	editor.events
-		.on('readonly', (isReadOnly: boolean) => {
-			if (isReadOnly) {
-				hide();
-			} else {
-				toggle();
-			}
-		})
-		.on('afterInit', () => {
-			editor.workplace.appendChild(placeholderElm);
-
-			toggle();
-
-			editor.events.fire('placeholder', placeholderElm.innerHTML);
-			editor.events
-				.on(
-					'change keyup mouseup keydown mousedown afterSetMode',
-					toggle
-				)
-				.on(window, 'load', toggle);
+		css(this.placeholderElm, {
+			display: 'block',
+			marginTop: Math.max(
+				parseInt(style.getPropertyValue('margin-top'), 10),
+				marginTop
+			),
+			marginLeft: Math.max(
+				parseInt(style.getPropertyValue('margin-left'), 10),
+				marginLeft
+			)
 		});
+	}
+
+	private hide(): void {
+		Dom.safeRemove(this.placeholderElm);
+	}
+
+	private toggle() {
+		const editor = this.jodit;
+
+		if (!editor.editor || editor.isInDestruct) {
+			return;
+		}
+
+		if (editor.getRealMode() !== consts.MODE_WYSIWYG) {
+			this.hide();
+			return;
+		}
+
+		if (!this.isEmpty(editor.editor)) {
+			this.hide();
+		} else {
+			this.show();
+		}
+	}
+
+	private isEmpty(root: HTMLElement): boolean {
+		if (!root.firstChild) {
+			return true;
+		}
+
+		const first = root.firstChild;
+
+		if (MAY_BE_REMOVED_WITH_KEY.test(first.nodeName) || /^(TABLE)$/i.test(first.nodeName)) {
+			return false;
+		}
+
+		const next = Dom.next(
+			first,
+			node => node && !Dom.isEmptyTextNode(node),
+			root
+		);
+
+		if (Dom.isText(first) && !next) {
+			return Dom.isEmptyTextNode(first);
+		}
+
+		if (
+			!next &&
+			Dom.each(first, elm => Dom.isEmpty(elm) || elm.nodeName === 'BR')
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected beforeDestruct(jodit: IJodit): void {
+		this.hide();
+
+		this.jodit.events.off('.placeholder').off(window, 'load', this.toggle);
+	}
 }
