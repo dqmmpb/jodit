@@ -19187,7 +19187,6 @@ class Uploader_Uploader extends Component_Component {
         if (!fileList.length) {
             return Promise.reject(type_error('Need files'));
         }
-        const promisesSequence = [];
         const promises = [];
         if (this.options.insertImageAsBase64URI) {
             let file, i;
@@ -19261,39 +19260,34 @@ class Uploader_Uploader extends Component_Component {
                 });
             }
             const prepareDataResult = uploader.options.prepareData.call(this, form);
-            if (prepareDataResult instanceof Promise) {
-                promisesSequence.push(prepareDataResult);
-            }
-            else {
-                promisesSequence.push(Promise.resolve(prepareDataResult));
-            }
-            promises.push(uploader
-                .send(form, (resp) => {
-                if (this.options.isSuccess.call(uploader, resp)) {
-                    if (typeof (handlerSuccess ||
-                        uploader.options.defaultHandlerSuccess) === 'function') {
-                        (handlerSuccess ||
-                            uploader.options
-                                .defaultHandlerSuccess).call(uploader, uploader.options.process.call(uploader, resp));
+            promises.push(Promise.resolve(prepareDataResult)
+                .then(() => {
+                return uploader.send(form, (resp) => {
+                    if (this.options.isSuccess.call(uploader, resp)) {
+                        if (typeof (handlerSuccess ||
+                            uploader.options.defaultHandlerSuccess) === 'function') {
+                            (handlerSuccess ||
+                                uploader.options
+                                    .defaultHandlerSuccess).call(uploader, uploader.options.process.call(uploader, resp));
+                        }
                     }
-                }
-                else {
-                    if (typeof (handlerError ||
-                        uploader.options.defaultHandlerError)) {
-                        (handlerError ||
-                            uploader.options
-                                .defaultHandlerError).call(uploader, type_error(uploader.options.getMessage.call(uploader, resp)));
-                        return;
+                    else {
+                        if (typeof (handlerError ||
+                            uploader.options.defaultHandlerError)) {
+                            (handlerError ||
+                                uploader.options
+                                    .defaultHandlerError).call(uploader, type_error(uploader.options.getMessage.call(uploader, resp)));
+                            return;
+                        }
                     }
-                }
+                });
             })
                 .then(() => {
                 this.jodit.events &&
                     this.jodit.events.fire('filesWereUploaded');
             }));
         }
-        promisesSequence.push(Promise.all(promises));
-        return promisesSequence.reduce((pre, next) => pre.then(r => next));
+        return Promise.all(promises);
     }
     setPath(path) {
         this.path = path;

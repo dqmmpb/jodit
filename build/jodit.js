@@ -22343,7 +22343,6 @@ var Uploader = (function (_super) {
         if (!fileList.length) {
             return Promise.reject(helpers_1.error('Need files'));
         }
-        var promisesSequence = [];
         var promises = [];
         if (this.options.insertImageAsBase64URI) {
             var file_1, i = void 0;
@@ -22421,39 +22420,34 @@ var Uploader = (function (_super) {
                 });
             }
             var prepareDataResult = uploader.options.prepareData.call(this, form_1);
-            if (prepareDataResult instanceof Promise) {
-                promisesSequence.push(prepareDataResult);
-            }
-            else {
-                promisesSequence.push(Promise.resolve(prepareDataResult));
-            }
-            promises.push(uploader
-                .send(form_1, function (resp) {
-                if (_this.options.isSuccess.call(uploader, resp)) {
-                    if (typeof (handlerSuccess ||
-                        uploader.options.defaultHandlerSuccess) === 'function') {
-                        (handlerSuccess ||
-                            uploader.options
-                                .defaultHandlerSuccess).call(uploader, uploader.options.process.call(uploader, resp));
+            promises.push(Promise.resolve(prepareDataResult)
+                .then(function () {
+                return uploader.send(form_1, function (resp) {
+                    if (_this.options.isSuccess.call(uploader, resp)) {
+                        if (typeof (handlerSuccess ||
+                            uploader.options.defaultHandlerSuccess) === 'function') {
+                            (handlerSuccess ||
+                                uploader.options
+                                    .defaultHandlerSuccess).call(uploader, uploader.options.process.call(uploader, resp));
+                        }
                     }
-                }
-                else {
-                    if (typeof (handlerError ||
-                        uploader.options.defaultHandlerError)) {
-                        (handlerError ||
-                            uploader.options
-                                .defaultHandlerError).call(uploader, helpers_1.error(uploader.options.getMessage.call(uploader, resp)));
-                        return;
+                    else {
+                        if (typeof (handlerError ||
+                            uploader.options.defaultHandlerError)) {
+                            (handlerError ||
+                                uploader.options
+                                    .defaultHandlerError).call(uploader, helpers_1.error(uploader.options.getMessage.call(uploader, resp)));
+                            return;
+                        }
                     }
-                }
+                });
             })
                 .then(function () {
                 _this.jodit.events &&
                     _this.jodit.events.fire('filesWereUploaded');
             }));
         }
-        promisesSequence.push(Promise.all(promises));
-        return promisesSequence.reduce(function (pre, next) { return pre.then(function (r) { return next; }); });
+        return Promise.all(promises);
     };
     Uploader.prototype.setPath = function (path) {
         this.path = path;

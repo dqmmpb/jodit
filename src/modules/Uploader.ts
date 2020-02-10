@@ -309,8 +309,6 @@ export class Uploader extends Component implements IUploader {
 			return Promise.reject(error('Need files'));
 		}
 
-		const promisesSequence: Array<Promise<any>> = [];
-
 		const promises: Array<Promise<any>> = [];
 
 		if (this.options.insertImageAsBase64URI) {
@@ -423,53 +421,49 @@ export class Uploader extends Component implements IUploader {
 
 			const prepareDataResult = uploader.options.prepareData.call(this, form);
 
-			if (prepareDataResult instanceof Promise) {
-				promisesSequence.push(prepareDataResult);
-			} else {
-				promisesSequence.push(Promise.resolve(prepareDataResult));
-			}
-
 			promises.push(
-				uploader
-					.send(form, (resp: IUploaderAnswer) => {
-						if (this.options.isSuccess.call(uploader, resp)) {
-							if (
-								typeof (
-									handlerSuccess ||
-									uploader.options.defaultHandlerSuccess
-								) === 'function'
-							) {
-								((handlerSuccess ||
-									uploader.options
-										.defaultHandlerSuccess) as HandlerSuccess).call(
-									uploader,
-									uploader.options.process.call(
+				Promise.resolve(prepareDataResult)
+					.then(() => {
+						return uploader.send(form, (resp: IUploaderAnswer) => {
+							if (this.options.isSuccess.call(uploader, resp)) {
+								if (
+									typeof (
+										handlerSuccess ||
+										uploader.options.defaultHandlerSuccess
+									) === 'function'
+								) {
+									((handlerSuccess ||
+										uploader.options
+											.defaultHandlerSuccess) as HandlerSuccess).call(
 										uploader,
-										resp
-									) as IUploaderData
-								);
-							}
-						} else {
-							if (
-								typeof (
-									handlerError ||
-									uploader.options.defaultHandlerError
-								)
-							) {
-								((handlerError ||
-									uploader.options
-										.defaultHandlerError) as HandlerError).call(
-									uploader,
-									error(
-										uploader.options.getMessage.call(
+										uploader.options.process.call(
 											uploader,
 											resp
-										)
+										) as IUploaderData
+									);
+								}
+							} else {
+								if (
+									typeof (
+										handlerError ||
+										uploader.options.defaultHandlerError
 									)
-								);
-								return;
+								) {
+									((handlerError ||
+										uploader.options
+											.defaultHandlerError) as HandlerError).call(
+										uploader,
+										error(
+											uploader.options.getMessage.call(
+												uploader,
+												resp
+											)
+										)
+									);
+									return;
+								}
 							}
-						}
+						});
 					})
 					.then(() => {
 						this.jodit.events &&
@@ -478,9 +472,7 @@ export class Uploader extends Component implements IUploader {
 			);
 		}
 
-		promisesSequence.push(Promise.all(promises));
-
-		return promisesSequence.reduce((pre, next) => pre.then(r => next));
+		return Promise.all(promises);
 	}
 
 	/**
