@@ -1,4 +1,9 @@
-import { ContextMenu } from '../../ContextMenu';
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
+
 import { Dialog } from '../../dialog';
 import { Dom } from '../../Dom';
 import { ToolbarIcon } from '../..';
@@ -16,7 +21,7 @@ export default (self: FileBrowser) => {
 		return () => {};
 	}
 
-	const contextmenu = new ContextMenu(self.jodit || self);
+	const contextmenu = makeContextMenu(self.jodit || self);
 
 	return function(this: HTMLElement, e: DragEvent): boolean | void {
 		let item: HTMLElement = this,
@@ -70,8 +75,10 @@ export default (self: FileBrowser) => {
 										ga('data-name'),
 										ga('data-source')
 									);
+
 									self.state.activeElements = [];
-									self.loadTree();
+
+									await self.loadTree();
 								}
 						  }
 						: false,
@@ -82,11 +89,11 @@ export default (self: FileBrowser) => {
 								title: 'Preview',
 								exec: () => {
 									const preview = new Dialog(self),
-										temp_content: HTMLElement = self.create.div(
+										temp_content = self.create.div(
 											F_CLASS + '_preview',
 											ICON_LOADER
 										),
-										preview_box: HTMLElement = self.create.div(
+										preview_box = self.create.div(
 											F_CLASS + '_preview_box'
 										),
 										next = self.create.fromHTML(
@@ -103,12 +110,13 @@ export default (self: FileBrowser) => {
 											image.setAttribute('src', src);
 
 											const onload = () => {
-												image.removeEventListener(
-													'load',
-													onload as EventListenerOrEventListenerObject
-												);
+												if (self.isInDestruct) {
+													return;
+												}
 
-												temp_content.innerHTML = '';
+												self.events.off(image, 'load');
+
+												Dom.detach(temp_content);
 
 												if (opt.showPreviewNavigation) {
 													if (
@@ -147,16 +155,16 @@ export default (self: FileBrowser) => {
 												);
 											};
 
-											image.addEventListener(
+											self.events.on(
+												image,
 												'load',
 												onload
 											);
+
 											if (image.complete) {
 												onload();
 											}
 										};
-
-									addLoadHandler(ga('href'));
 
 									self.events.on(
 										[next, prev],
@@ -196,11 +204,18 @@ export default (self: FileBrowser) => {
 										}
 									);
 
+									preview.container.classList.add(F_CLASS + '_preview_dialog');
 									preview.setContent(temp_content);
 									preview.setPosition();
 									preview.open();
 
-									self?.events?.fire('previewOpened');
+									addLoadHandler(ga('href'));
+
+									self?.events
+										?.on('beforeDestruct', () => {
+											preview.destruct();
+										})
+										.fire('previewOpened');
 								}
 						  }
 						: false,
@@ -220,6 +235,10 @@ export default (self: FileBrowser) => {
 			);
 		}, self.defaultTimeout);
 
+		self?.events.on('beforeDestruct', () => {
+			contextmenu.destruct();
+		});
+
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -229,3 +248,4 @@ export default (self: FileBrowser) => {
 
 import { FileBrowser } from '../fileBrowser';
 import { error } from '../../helpers';
+import { makeContextMenu } from '../factories';

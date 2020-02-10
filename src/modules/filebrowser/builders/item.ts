@@ -1,10 +1,14 @@
-import {IFileBrowserItemElement, IFileBrowserItemWrapper} from '../../../types';
-import {extend} from '../../helpers/extend';
-import {normalizePath, normalizeURL} from '../../helpers/normalize';
+import { IFileBrowserItemElement, IFileBrowserItemWrapper } from '../../../types';
+import { extend } from '../../helpers/extend';
+import { normalizePath, normalizeURL } from '../../helpers/normalize';
 
 export class FileBrowserItem implements IFileBrowserItemWrapper {
 	private constructor(readonly data: IFileBrowserItemElement) {
 		extend(this, data);
+	}
+
+	static create(data: IFileBrowserItemElement): FileBrowserItem & IFileBrowserItemElement {
+		return <any>(new FileBrowserItem(data));
 	}
 
 	get path(): string {
@@ -14,7 +18,7 @@ export class FileBrowserItem implements IFileBrowserItemWrapper {
 	get imageURL(): string {
 		const
 			timestamp: string = new Date().getTime().toString(),
-			{thumbIsAbsolute, source, thumb, file} = this.data,
+			{ thumbIsAbsolute, source, thumb, file } = this.data,
 			path = thumb || file;
 
 		return (thumbIsAbsolute && path) ?
@@ -23,7 +27,7 @@ export class FileBrowserItem implements IFileBrowserItemWrapper {
 	}
 
 	get fileURL(): string {
-		let {name, file, fileIsAbsolute, source} = this.data;
+		let { name, file, fileIsAbsolute, source } = this.data;
 
 		if (file !== undefined) {
 			name = file;
@@ -33,7 +37,7 @@ export class FileBrowserItem implements IFileBrowserItemWrapper {
 	}
 
 	get time(): string {
-		const {changed} = this.data;
+		const { changed } = this.data;
 
 		return (
 			changed &&
@@ -49,9 +53,5 @@ export class FileBrowserItem implements IFileBrowserItemWrapper {
 		key = key.toLowerCase().replace(/[^0-9a-z\-.]/g, '-');
 
 		return key;
-	}
-
-	static create(data: IFileBrowserItemElement): FileBrowserItem & IFileBrowserItemElement {
-		return <any>(new FileBrowserItem(data));
 	}
 }

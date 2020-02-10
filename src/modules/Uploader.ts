@@ -9,6 +9,7 @@ import {
 	BuildDataResult,
 	HandlerError,
 	HandlerSuccess,
+	IAjax,
 	IDictionary,
 	IJodit,
 	IUploader,
@@ -198,7 +199,7 @@ export class Uploader extends Component implements IUploader {
 		return data;
 	}
 
-	private ajaxInstances: Ajax[] = [];
+	private ajaxInstances: IAjax[] = [];
 
 	send(
 		data: FormData | IDictionary<string>,
@@ -208,7 +209,7 @@ export class Uploader extends Component implements IUploader {
 			sendData = (
 				request: FormData | IDictionary<string> | string
 			): Promise<any> => {
-				const ajax: Ajax = new Ajax(this.jodit || this, {
+				const ajax = new Ajax(this.jodit || this, {
 					xhr: () => {
 						const xhr = new XMLHttpRequest();
 
@@ -257,6 +258,7 @@ export class Uploader extends Component implements IUploader {
 
 				const removeAjaxInstanceFromList = () => {
 					const index = this.ajaxInstances.indexOf(ajax);
+
 					if (index !== -1) {
 						this.ajaxInstances.splice(index, 1);
 					}
@@ -765,7 +767,7 @@ export class Uploader extends Component implements IUploader {
 
 		this.ajaxInstances.forEach(ajax => {
 			try {
-				ajax.abort();
+				ajax.destruct();
 			} catch {}
 		});
 

@@ -160,7 +160,7 @@ export class Select {
 	isMarker = (elm: Node): boolean =>
 		Dom.isNode(elm, this.win) &&
 		Dom.isElement(elm) &&
-		elm.nodeName === 'SPAN' &&
+		Dom.isTag(elm, 'span') &&
 		(elm as Element).hasAttribute('data-' + consts.MARKER_CLASS);
 
 	/**
@@ -228,12 +228,10 @@ export class Select {
 	 */
 	restore(selectionInfo: markerInfo[] | null = []) {
 		if (Array.isArray(selectionInfo)) {
-			const sel = this.sel;
-			sel && sel.removeAllRanges();
+			let range: Range | false = false;
 
 			selectionInfo.forEach((selection: markerInfo) => {
-				const range = this.createRange(),
-					end = this.area.querySelector(
+				const end = this.area.querySelector(
 						'#' + selection.endId
 					) as HTMLElement,
 					start = this.area.querySelector(
@@ -243,6 +241,8 @@ export class Select {
 				if (!start) {
 					return;
 				}
+
+				range = this.createRange();
 
 				if (selection.collapsed || !end) {
 					const previousNode: Node | null = start.previousSibling;
@@ -268,9 +268,11 @@ export class Select {
 					range.setEndBefore(end);
 					Dom.safeRemove(end);
 				}
-
-				sel && sel.addRange(range);
 			});
+
+			if (range) {
+				this.selectRange(range);
+			}
 		}
 	}
 
@@ -294,6 +296,7 @@ export class Select {
 
 		for (i = 0; i < length; i += 1) {
 			ranges[i] = sel.getRangeAt(i);
+
 			if (ranges[i].collapsed) {
 				start = this.marker(true, ranges[i]);
 
@@ -305,6 +308,7 @@ export class Select {
 			} else {
 				start = this.marker(true, ranges[i]);
 				end = this.marker(false, ranges[i]);
+
 				info[i] = {
 					startId: start.id,
 					endId: end.id,
@@ -744,7 +748,10 @@ export class Select {
 					}
 
 					// checks parentElement as well because partial selections are not equal to entire element
-					return node === end || (node && node.contains && node.contains(end));
+					return (
+						node === end ||
+						(node && node.contains && node.contains(end))
+					);
 				},
 				this.area,
 				true,
@@ -761,7 +768,7 @@ export class Select {
 					return Array.from(current.childNodes).forEach(forEvery);
 				}
 
-				if (current.nodeName === 'LI') {
+				if (Dom.isTag(current, 'li')) {
 					if (current.firstChild) {
 						current = current.firstChild;
 					} else {
@@ -853,7 +860,7 @@ export class Select {
 		const container = start ? range.startContainer : range.endContainer;
 		const offset = start ? range.startOffset : range.endOffset;
 		const check = (elm: Node | null) =>
-			elm && elm.nodeName !== 'BR' && !Dom.isEmptyTextNode(elm);
+			elm && !Dom.isTag(elm, 'br') && !Dom.isEmptyTextNode(elm);
 
 		// check right offset
 		if (Dom.isText(container)) {
@@ -1153,8 +1160,7 @@ export class Select {
 	) {
 		const WRAP = 1,
 			UNWRAP = 0,
-			defaultTag = 'SPAN',
-			FONT = 'FONT';
+			defaultTag = 'SPAN';
 
 		let mode: number;
 
@@ -1165,7 +1171,7 @@ export class Select {
 
 		const checkCssRulesFor = (elm: HTMLElement): boolean => {
 			return (
-				elm.nodeName !== FONT &&
+				!Dom.isTag(elm, 'font') &&
 				Dom.isElement(elm) &&
 				((isPlainObject(options) &&
 					each(
@@ -1450,7 +1456,7 @@ export class Select {
 
 					if (
 						next &&
-						(next.nodeName === 'BR' || Dom.isEmptyTextNode(next))
+						(Dom.isTag(next, 'br') || Dom.isEmptyTextNode(next))
 					) {
 						Dom.safeRemove(next);
 					} else {

@@ -39,13 +39,13 @@ import { IJodit, IStorage } from '../../types';
 import './config';
 import { Dom } from '../Dom';
 import { Alert } from '../dialog';
-import DataProvider from './dataProvider';
 import contextMenu from './builders/contextMenu';
 import { ObserveObject } from '../events/observeObject';
 import { FileBrowserItem } from './builders/item';
 import { isValidName } from '../helpers/checker/isValidName';
 import { F_CLASS, ICON_LOADER, ITEM_CLASS } from './consts';
 import { error } from '../helpers';
+import { makeDataProvider } from './factories';
 
 const DEFAULT_SOURCE_NAME = 'default',
 	ITEM_ACTIVE_CLASS = ITEM_CLASS + '-active-true';
@@ -240,23 +240,33 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		this.state.elements = elements;
 	}
 
-	private onSelect(callback: (data: IFileBrowserCallBackData) => void) {
+	private onSelect(callback?: (data: IFileBrowserCallBackData) => void) {
 		return () => {
 			if (this.state.activeElements.length) {
-				const urls: string[] = [];
+				const files: string[] = [];
+				const isImages: boolean[] = [];
 
 				this.state.activeElements.forEach(elm => {
 					const url = elm.fileURL;
-					url && urls.push(url);
+
+					if (url) {
+						files.push(url);
+						isImages.push(elm.isImage || false);
+					}
 				});
 
 				this.close();
 
-				if (typeof callback === 'function') {
-					callback({
-						baseurl: '',
-						files: urls
-					} as IFileBrowserCallBackData);
+				const data = {
+					baseurl: '',
+					files,
+					isImages
+				} as IFileBrowserCallBackData;
+
+				if (typeof callback !== 'function') {
+					this.options.defaultCallback(this, data);
+				} else {
+					callback(data);
 				}
 			}
 
@@ -358,7 +368,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	 * @return Promise
 	 */
 	open = (
-		callback: (data: IFileBrowserCallBackData) => void,
+		callback?: (data: IFileBrowserCallBackData) => void,
 		onlyImages: boolean = false
 	): Promise<void> => {
 		this.state.onlyImages = onlyImages;
@@ -377,7 +387,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 					this.files,
 					'touchstart',
 					() => {
-						const now: number = new Date().getTime();
+						const now = new Date().getTime();
 
 						if (
 							now - localTimeout <
@@ -1126,7 +1136,8 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 			this.options.filebrowser.saveStateInStorage
 		);
 
-		self.dataProvider = new DataProvider(self.options, self.jodit || self);
+		self.dataProvider = makeDataProvider(self.jodit || self, self.options);
+
 		self.dialog = new Dialog(editor || self, {
 			fullsize: self.options.fullsize,
 			buttons: ['dialog.fullsize', 'dialog.close']
@@ -1197,11 +1208,16 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 	}
 
 	destruct() {
+		if (this.isInDestruct) {
+			return;
+		}
+
 		this.dialog.destruct();
 		delete this.dialog;
 		this.events && this.events.off('.filebrowser');
 		this.uploader && this.uploader.destruct();
 		delete this.uploader;
+
 		super.destruct();
 	}
 }

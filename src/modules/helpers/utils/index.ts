@@ -5,3 +5,5 @@
  */
 
 export * from './markDeprecated';
+export * from './utils';
+

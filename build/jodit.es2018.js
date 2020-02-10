@@ -1,7 +1,7 @@
 /*!
  jodit - Jodit is awesome and usefully wysiwyg editor with filebrowser
  Author: Chupurnov <chupurnov@gmail.com> (https://xdsoft.net/)
- Version: v3.3.19
+ Version: v3.3.22
  Url: https://xdsoft.net/jodit/
  License(s): MIT
 */
@@ -106,7 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["Type something","About Jodit","Jodit Editor","Jodit User's Guide","contains detailed help for using","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","Open in new tab","Open editor in fullsize","Clear Formatting","Fill color or set the text color","Redo","Undo","Bold","Italic","Insert Unordered List","Insert Ordered List","Align Center","Align Justify","Align Left","Align Right","Insert Horizontal Line","Insert Image","Insert file","Insert youtube/vimeo video","Insert link","Font size","Font family","Insert format block","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Quote","Code","Insert","Insert table","Decrease Indent","Increase Indent","Select Special Character","Insert Special Character","Paint format","Change mode","Margins","top","right","bottom","left","Styles","Classes","Align","Right","Center","Left","--Not Set--","Src","Title","Alternative","Link","Open link in new tab","Image","file","Advanced","Image properties","Cancel","Ok","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","Drop image","Drop file","or click","Alternative text","Upload","Browse","Background","Text","Top","Middle","Bottom","Insert column before","Insert column after","Insert row above","Insert row below","Delete table","Delete row","Delete column","Empty cell","Chars: %d","Words: %d","Strike through","Underline","superscript","subscript","Cut selection","Select all","Break","Search for","Replace with","Replace","Paste","Choose Content to Paste","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","hr","ul","ol","cut","selectall","Embed code","Open link","Edit link","No follow","Unlink","Update","pencil","Eye"," URL","Edit","Horizontal align","Filter","Sort by changed","Sort by name","Sort by size","Add folder","Reset","Save","Save as ...","Resize","Crop","Width","Height","Keep Aspect Ratio","Yes","No","Remove","Select","Select %s","Vertical align","Split","Merge","Add column","Add row","License: %s","Delete","Split vertical","Split horizontal","Border","Your code is similar to HTML. Keep as HTML?","Paste as HTML","Keep","Insert as Text","Insert only Text","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","palette","There are no files","rename","Enter new name","preview","download","Paste from clipboard","Your browser doesn't support direct access to the clipboard.","Copy selection","copy","Border radius","Show all"]
+module.exports.default = ["Type something","About Jodit","Jodit Editor","Jodit User's Guide","contains detailed help for using","For information about the license, please go to our website:","Buy full version","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","Open in new tab","Open editor in fullsize","Clear Formatting","Fill color or set the text color","Redo","Undo","Bold","Italic","Insert Unordered List","Insert Ordered List","Align Center","Align Justify","Align Left","Align Right","Insert Horizontal Line","Insert Image","Insert file","Insert youtube/vimeo video","Insert link","Font size","Font family","Insert format block","Normal","Heading 1","Heading 2","Heading 3","Heading 4","Quote","Code","Insert","Insert table","Decrease Indent","Increase Indent","Select Special Character","Insert Special Character","Paint format","Change mode","Margins","top","right","bottom","left","Styles","Classes","Align","Right","Center","Left","--Not Set--","Src","Title","Alternative","Link","Open link in new tab","Image","file","Advanced","Image properties","Cancel","Ok","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","Drop image","Drop file","or click","Alternative text","Upload","Browse","Background","Text","Top","Middle","Bottom","Insert column before","Insert column after","Insert row above","Insert row below","Delete table","Delete row","Delete column","Empty cell","Chars: %d","Words: %d","Strike through","Underline","superscript","subscript","Cut selection","Select all","Break","Search for","Replace with","Replace","Paste","Choose Content to Paste","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","hr","ul","ol","cut","selectall","Embed code","Open link","Edit link","No follow","Unlink","Update","pencil","Eye"," URL","Edit","Horizontal align","Filter","Sort by changed","Sort by name","Sort by size","Add folder","Reset","Save","Save as ...","Resize","Crop","Width","Height","Keep Aspect Ratio","Yes","No","Remove","Select","Select %s","Vertical align","Split","Merge","Add column","Add row","License: %s","Delete","Split vertical","Split horizontal","Border","Your code is similar to HTML. Keep as HTML?","Paste as HTML","Keep","Insert as Text","Insert only Text","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","palette","There are no files","Rename","Enter new name","preview","download","Paste from clipboard","Your browser doesn't support direct access to the clipboard.","Copy selection","copy","Border radius","Show all"]
 
 /***/ }),
 /* 1 */
@@ -634,7 +634,7 @@ module.exports.default = ["Scrivi qualcosa...","A proposito di Jodit","Jodit Edi
 /* 88 */
 /***/ (function(module, exports) {
 
-module.exports.default = ["なにかタイプしてください","Joditについて","Jodit Editor","Jodit ユーザーズ・ガイド","詳しい使い方","ライセンス詳細についてはJodit Webサイトを確認ください：","フルバージョンを購入","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","新しいタブで開く","エディターのサイズ（フル/ノーマル）","書式をクリア","テキストの色","やり直し","元に戻す","太字","斜体","箇条書き","番号付きリスト","中央揃え","両端揃え","左揃え","右揃え","区切り線を挿入","画像を挿入","ファイルを挿入","Youtube/Vimeo 動画","リンクを挿入","フォントサイズ","フォント","テキストのスタイル","指定なし","タイトル1","タイトル2","タイトル3","タイトル4","引用","コード","挿入","表を挿入","インデント減","インデント増","特殊文字を選択","特殊文字を挿入","書式を貼付け","編集モード切替え","マージン","上","右","下","左","スタイル","クラス","配置","右寄せ","中央寄せ","左寄せ","指定なし","ソース","タイトル","代替テキスト","リンク","新しいタブで開く","画像","ファイル","高度な設定","画像のプロパティー","キャンセル","確定","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","ここに画像をドロップ","ここにファイルをドロップ","or クリック","代替テキスト","アップロード","ブラウズ","背景","文字","上","中央","下","左に列を挿入","右に列を挿入","上に行を挿入","下に行を挿入","表を削除","行を削除","列を削除","セルを空にする","文字数: %d","単語数: %d","取り消し線","下線","上付き文字","下付き文字","切り取り","すべて選択","Pause","検索","置換","置換","貼付け","選択した内容を貼付け","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","分割線","箇条書き","番号付きリスト","切り取り","すべて選択","埋め込みコード","リンクを開く","リンクを編集","No follow","リンク解除","更新","鉛筆","サイトを確認","URL","編集","水平方向の配置","Filter","Sort by changed","Sort by name","Sort by size","Add folder","リセット","保存","Save as ...","リサイズ","Crop","幅","高さ","縦横比を保持","はい","いいえ","移除","選択","選択: %s","垂直方向の配置","分割","セルの結合","列を追加","行を追加",null,"削除","セルの分割（垂直方向）","セルの分割（水平方向）","境界線","HTMLコードを保持しますか？","HTMLで貼付け","HTMLを保持","HTMLをテキストにする","テキストだけ","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","パレット","There are no files","rename","Enter new name","プレビュー","ダウンロード","貼り付け","お使いのブラウザはクリップボードを使用できません","コピー","copy","角の丸み","全て表示"]
+module.exports.default = ["なにかタイプしてください","Joditについて","Jodit Editor","Jodit ユーザーズ・ガイド","詳しい使い方","ライセンス詳細についてはJodit Webサイトを確認ください：","フルバージョンを購入","Copyright © XDSoft.net - Chupurnov Valeriy. All rights reserved.","Anchor","新しいタブで開く","エディターのサイズ（フル/ノーマル）","書式をクリア","テキストの色","やり直し","元に戻す","太字","斜体","箇条書き","番号付きリスト","中央揃え","両端揃え","左揃え","右揃え","区切り線を挿入","画像を挿入","ファイルを挿入","Youtube/Vimeo 動画","リンクを挿入","フォントサイズ","フォント","テキストのスタイル","指定なし","タイトル1","タイトル2","タイトル3","タイトル4","引用","コード","挿入","表を挿入","インデント減","インデント増","特殊文字を選択","特殊文字を挿入","書式を貼付け","編集モード切替え","マージン","上","右","下","左","スタイル","クラス","配置","右寄せ","中央寄せ","左寄せ","指定なし","ソース","タイトル","代替テキスト","リンク","新しいタブで開く","画像","ファイル","高度な設定","画像のプロパティー","キャンセル","確定","File Browser","Error on load list","Error on load folders","Are you sure?","Enter Directory name","Create directory","type name","ここに画像をドロップ","ここにファイルをドロップ","or クリック","代替テキスト","アップロード","ブラウズ","背景","文字","上","中央","下","左に列を挿入","右に列を挿入","上に行を挿入","下に行を挿入","表を削除","行を削除","列を削除","セルを空にする","文字数: %d","単語数: %d","取り消し線","下線","上付き文字","下付き文字","切り取り","すべて選択","Pause","検索","置換","置換","貼付け","選択した内容を貼付け","source","bold","italic","brush","link","undo","redo","table","image","eraser","paragraph","fontsize","video","font","about","print","symbol","underline","strikethrough","indent","outdent","fullsize","shrink","copyformat","分割線","箇条書き","番号付きリスト","切り取り","すべて選択","埋め込みコード","リンクを開く","リンクを編集","No follow","リンク解除","更新","鉛筆","サイトを確認","URL","編集","水平方向の配置","Filter","Sort by changed","Sort by name","Sort by size","Add folder","リセット","保存","Save as ...","リサイズ","Crop","幅","高さ","縦横比を保持","はい","いいえ","移除","選択","選択: %s","垂直方向の配置","分割","セルの結合","列を追加","行を追加",null,"削除","セルの分割（垂直方向）","セルの分割（水平方向）","境界線","HTMLコードを保持しますか？","HTMLで貼付け","HTMLを保持","HTMLをテキストにする","テキストだけ","You can only edit your own images. Download this image on the host?","The image has been successfully uploaded to the host!","パレット","There are no files","Rename","Enter new name","プレビュー","ダウンロード","貼り付け","お使いのブラウザはクリップボードを使用できません","コピー","copy","角の丸み","全て表示"]
 
 /***/ }),
 /* 89 */
@@ -751,6 +751,7 @@ var helpers_namespaceObject = {};
 __webpack_require__.r(helpers_namespaceObject);
 __webpack_require__.d(helpers_namespaceObject, "cns", function() { return cns; });
 __webpack_require__.d(helpers_namespaceObject, "markDeprecated", function() { return markDeprecated; });
+__webpack_require__.d(helpers_namespaceObject, "call", function() { return call; });
 __webpack_require__.d(helpers_namespaceObject, "asArray", function() { return asArray; });
 __webpack_require__.d(helpers_namespaceObject, "inArray", function() { return inArray; });
 __webpack_require__.d(helpers_namespaceObject, "splitArray", function() { return splitArray; });
@@ -828,7 +829,7 @@ var plugins_namespaceObject = {};
 __webpack_require__.r(plugins_namespaceObject);
 __webpack_require__.d(plugins_namespaceObject, "addNewLine", function() { return addNewLine; });
 __webpack_require__.d(plugins_namespaceObject, "autofocus", function() { return autofocus; });
-__webpack_require__.d(plugins_namespaceObject, "backspace", function() { return backspace; });
+__webpack_require__.d(plugins_namespaceObject, "backspace", function() { return backspace_backspace; });
 __webpack_require__.d(plugins_namespaceObject, "bold", function() { return bold; });
 __webpack_require__.d(plugins_namespaceObject, "cleanHtml", function() { return clean_html_cleanHtml; });
 __webpack_require__.d(plugins_namespaceObject, "clipboard", function() { return cut_clipboard; });
@@ -1099,12 +1100,23 @@ function markDeprecated(method, names = [''], ctx = null) {
     };
 }
 
+// CONCATENATED MODULE: ./src/modules/helpers/utils/utils.ts
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
+function call(func, ...args) {
+    return func(...args);
+}
+
 // CONCATENATED MODULE: ./src/modules/helpers/utils/index.ts
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
  * Released under MIT see LICENSE.txt in the project root for license information.
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
+
 
 
 // CONCATENATED MODULE: ./src/modules/helpers/array/asArray.ts
@@ -2848,6 +2860,7 @@ class Dom_Dom {
     }
     static isInlineBlock(node) {
         return (Dom_Dom.isElement(node) &&
+            !/^(BR|HR)$/i.test(node.tagName) &&
             ['inline', 'inline-block'].indexOf(css_css(node, 'display').toString()) !== -1);
     }
     static canSplitBlock(node, win) {
@@ -3020,6 +3033,10 @@ class Dom_Dom {
         if (node.style.display === 'none') {
             node.style.display = display || '';
         }
+    }
+    static isTag(node, tag) {
+        return (Dom_Dom.isElement(node) &&
+            node.tagName.toLowerCase() === tag.toLowerCase());
     }
 }
 Dom_Dom.wrapInline = (current, tag, editor) => {
@@ -3379,15 +3396,14 @@ var Widget_Widget;
             currentImage = null;
             if (elm &&
                 !Dom_Dom.isText(elm) &&
-                (elm.tagName === 'IMG' || $$('img', elm).length)) {
+                (Dom_Dom.isTag(elm, 'img') || $$('img', elm).length)) {
                 currentImage = elm.tagName === 'IMG' ? elm : $$('img', elm)[0];
                 val_val(form, 'input[name=url]', currentImage.getAttribute('src'));
                 val_val(form, 'input[name=text]', currentImage.getAttribute('alt'));
                 button.textContent = editor.i18n('Update');
             }
             if (elm &&
-                !Dom_Dom.isText(elm) &&
-                elm.nodeName === 'A') {
+                Dom_Dom.isTag(elm, 'a')) {
                 val_val(form, 'input[name=url]', elm.getAttribute('href') || '');
                 val_val(form, 'input[name=text]', elm.getAttribute('title') || '');
                 button.textContent = editor.i18n('Update');
@@ -3824,13 +3840,10 @@ Config_Config.prototype.controls = {
             }
             const selInfo = editor.selection.save();
             return FileSelectorWidget(editor, {
-                filebrowser: async (data) => {
+                filebrowser: (data) => {
                     editor.selection.restore(selInfo);
-                    if (data.files && data.files.length) {
-                        for (let i = 0; i < data.files.length; i += 1) {
-                            await editor.selection.insertImage(data.baseurl + data.files[i], null, editor.options.imageDefaultWidth);
-                        }
-                    }
+                    data.files &&
+                        data.files.forEach(file => editor.selection.insertImage(data.baseurl + file, null, editor.options.imageDefaultWidth));
                     close();
                 },
                 upload: true,
@@ -3852,31 +3865,20 @@ Config_Config.prototype.controls = {
     file: {
         popup: (editor, current, self, close) => {
             const insert = (url, title = '') => {
-                editor.selection.insertNode(editor.create.inside.fromHTML('<a href="' +
-                    url +
-                    '" title="' +
-                    title +
-                    '">' +
-                    (title || url) +
-                    '</a>'));
+                editor.selection.insertNode(editor.create.inside.fromHTML(`<a href="${url}" title="${title}">${title || url}</a>`));
             };
             let sourceAnchor = null;
             if (current &&
-                (current.nodeName === 'A' ||
+                (Dom_Dom.isTag(current, 'a') ||
                     Dom_Dom.closest(current, 'A', editor.editor))) {
-                sourceAnchor =
-                    current.nodeName === 'A'
-                        ? current
-                        : Dom_Dom.closest(current, 'A', editor.editor);
+                sourceAnchor = Dom_Dom.isTag(current, 'a')
+                    ? current
+                    : Dom_Dom.closest(current, 'A', editor.editor);
             }
             return FileSelectorWidget(editor, {
                 filebrowser: (data) => {
-                    if (data.files && data.files.length) {
-                        let i;
-                        for (i = 0; i < data.files.length; i += 1) {
-                            insert(data.baseurl + data.files[i]);
-                        }
-                    }
+                    data.files &&
+                        data.files.forEach(file => insert(data.baseurl + file));
                     close();
                 },
                 upload: true,
@@ -4307,7 +4309,7 @@ class Selection_Select {
         this.jodit = jodit;
         this.isMarker = (elm) => Dom_Dom.isNode(elm, this.win) &&
             Dom_Dom.isElement(elm) &&
-            elm.nodeName === 'SPAN' &&
+            Dom_Dom.isTag(elm, 'span') &&
             elm.hasAttribute('data-' + MARKER_CLASS);
         this.focus = () => {
             var _a, _b, _c, _d;
@@ -4349,7 +4351,8 @@ class Selection_Select {
                         !this.isMarker(node)) {
                         nodes.push(node);
                     }
-                    return node === end || (node && node.contains && node.contains(end));
+                    return (node === end ||
+                        (node && node.contains && node.contains(end)));
                 }, this.area, true, 'nextSibling', false);
                 const forEvery = (current) => {
                     if (!Dom_Dom.isOrContains(this.jodit.editor, current, true)) {
@@ -4358,7 +4361,7 @@ class Selection_Select {
                     if (current.nodeName.match(/^(UL|OL)$/)) {
                         return Array.from(current.childNodes).forEach(forEvery);
                     }
-                    if (current.nodeName === 'LI') {
+                    if (Dom_Dom.isTag(current, 'li')) {
                         if (current.firstChild) {
                             current = current.firstChild;
                         }
@@ -4473,13 +4476,13 @@ class Selection_Select {
     }
     restore(selectionInfo = []) {
         if (Array.isArray(selectionInfo)) {
-            const sel = this.sel;
-            sel && sel.removeAllRanges();
+            let range = false;
             selectionInfo.forEach((selection) => {
-                const range = this.createRange(), end = this.area.querySelector('#' + selection.endId), start = this.area.querySelector('#' + selection.startId);
+                const end = this.area.querySelector('#' + selection.endId), start = this.area.querySelector('#' + selection.startId);
                 if (!start) {
                     return;
                 }
+                range = this.createRange();
                 if (selection.collapsed || !end) {
                     const previousNode = start.previousSibling;
                     if (Dom_Dom.isText(previousNode)) {
@@ -4499,8 +4502,10 @@ class Selection_Select {
                     range.setEndBefore(end);
                     Dom_Dom.safeRemove(end);
                 }
-                sel && sel.addRange(range);
             });
+            if (range) {
+                this.selectRange(range);
+            }
         }
     }
     save() {
@@ -4782,7 +4787,7 @@ class Selection_Select {
         }
         const container = start ? range.startContainer : range.endContainer;
         const offset = start ? range.startOffset : range.endOffset;
-        const check = (elm) => elm && elm.nodeName !== 'BR' && !Dom_Dom.isEmptyTextNode(elm);
+        const check = (elm) => elm && !Dom_Dom.isTag(elm, 'br') && !Dom_Dom.isEmptyTextNode(elm);
         if (Dom_Dom.isText(container)) {
             const text = container.nodeValue || '';
             if (end && text.replace(INVISIBLE_SPACE_REG_EXP_END, '').length > offset) {
@@ -4929,13 +4934,13 @@ class Selection_Select {
         return result;
     }
     applyCSS(cssRules, nodeName = 'span', options) {
-        const WRAP = 1, UNWRAP = 0, defaultTag = 'SPAN', FONT = 'FONT';
+        const WRAP = 1, UNWRAP = 0, defaultTag = 'SPAN';
         let mode;
         const findNextCondition = (elm) => elm !== null &&
             !Dom_Dom.isEmptyTextNode(elm) &&
             !this.isMarker(elm);
         const checkCssRulesFor = (elm) => {
-            return (elm.nodeName !== FONT &&
+            return (!Dom_Dom.isTag(elm, 'font') &&
                 Dom_Dom.isElement(elm) &&
                 ((isPlainObject(options) &&
                     each(options, (cssPropertyKey, cssPropertyValues) => {
@@ -5098,7 +5103,7 @@ class Selection_Select {
                 while (next) {
                     const nextSib = getNext(next);
                     if (next &&
-                        (next.nodeName === 'BR' || Dom_Dom.isEmptyTextNode(next))) {
+                        (Dom_Dom.isTag(next, 'br') || Dom_Dom.isEmptyTextNode(next))) {
                         Dom_Dom.safeRemove(next);
                     }
                     else {
@@ -5895,7 +5900,7 @@ class panel_Panel extends Component_Component {
         this.__isFullSize = isFullSize;
     }
     destruct() {
-        if (!this.isDestructed) {
+        if (this.isDestructed) {
             return;
         }
         Dom_Dom.safeRemove(this.container);
@@ -5952,17 +5957,18 @@ class Async_Async {
         };
     }
     throttle(fn, timeout) {
-        let timer = null, needInvoke, callee;
+        let timer = null, needInvoke, callee, lastArgs;
         return (...args) => {
             needInvoke = true;
+            lastArgs = args;
             if (!timeout) {
-                fn(...args);
+                fn(...lastArgs);
                 return;
             }
             if (!timer) {
                 callee = () => {
                     if (needInvoke) {
-                        fn(...args);
+                        fn(...lastArgs);
                         needInvoke = false;
                         timer = this.setTimeout(callee, timeout);
                         this.timers.set(callee, timer);
@@ -6070,7 +6076,7 @@ class view_View extends panel_Panel {
         var _a, _b, _c;
         super(jodit, options);
         this.components = new Set();
-        this.version = "3.3.19";
+        this.version = "3.3.22";
         this.__modulesInstances = {};
         this.buffer = storage_Storage.makeStorage();
         this.progressbar = new ProgressBar_ProgressBar(this);
@@ -8051,6 +8057,8 @@ Config_Config.prototype.defaultAjaxOptions = {
 class Ajax_Ajax {
     constructor(editor, options) {
         this.success_response_codes = [200, 201, 202];
+        this.resolved = false;
+        this.activated = false;
         this.jodit = editor;
         this.options = extend(true, {}, Config_Config.prototype.defaultAjaxOptions, options);
         if (this.options.xhr) {
@@ -8078,11 +8086,11 @@ class Ajax_Ajax {
         try {
             this.xhr.abort();
         }
-        catch (e) {
-        }
+        catch (e) { }
         return this;
     }
     send() {
+        this.activated = true;
         return new Promise((resolve, reject) => {
             const __parse = (resp) => {
                 let result = null;
@@ -8103,6 +8111,7 @@ class Ajax_Ajax {
             this.xhr.onload = () => {
                 this.response = this.xhr.responseText;
                 this.status = this.xhr.status;
+                this.resolved = true;
                 resolve.call(this.xhr, __parse(this.response) || {});
             };
             this.xhr.onreadystatechange = () => {
@@ -8110,6 +8119,7 @@ class Ajax_Ajax {
                     const resp = this.xhr.responseText;
                     this.response = resp;
                     this.status = this.xhr.status;
+                    this.resolved = true;
                     if (this.success_response_codes.indexOf(this.xhr.status) > -1) {
                         resolve.call(this.xhr, __parse(resp) || {});
                     }
@@ -8132,9 +8142,7 @@ class Ajax_Ajax {
                 });
             }
             setTimeout(() => {
-                this.xhr.send(data
-                    ? this.__buildParams(data)
-                    : undefined);
+                this.xhr.send(data ? this.__buildParams(data) : undefined);
             }, 0);
         });
     }
@@ -8167,6 +8175,12 @@ class Ajax_Ajax {
         Ajax_Ajax.log.push(request);
         return request;
     }
+    destruct() {
+        if (this.activated && !this.resolved) {
+            this.abort();
+            this.resolved = true;
+        }
+    }
 }
 Ajax_Ajax.log = [];
 
@@ -8183,14 +8197,16 @@ Ajax_Ajax.log = [];
 class ContextMenu_ContextMenu extends Component_Component {
     constructor(editor) {
         super(editor);
+        this.evnts = 'mousedown jodit_close_dialog scroll';
         this.hide = () => {
-            this.context.classList.remove('jodit_context_menu-show');
-            this.jodit.ownerWindow.removeEventListener('mouseup', this.hide);
+            Dom_Dom.safeRemove(this.context);
+            this.jodit.events.off(this.jodit.ownerWindow, this.evnts, this.hide);
         };
         this.context = editor.create.div('jodit_context_menu');
-        editor.ownerDocument.body.appendChild(this.context);
+        this.context.classList.add('jodit_context_menu-show');
     }
     show(x, y, actions, zIndex) {
+        var _a;
         const self = this;
         if (!Array.isArray(actions)) {
             return;
@@ -8198,7 +8214,7 @@ class ContextMenu_ContextMenu extends Component_Component {
         if (zIndex) {
             this.context.style.zIndex = zIndex.toString();
         }
-        this.context.innerHTML = '';
+        Dom_Dom.detach(this.context);
         actions.forEach(item => {
             if (!item) {
                 return;
@@ -8208,8 +8224,9 @@ class ContextMenu_ContextMenu extends Component_Component {
                 (item.icon ? ToolbarIcon.getIcon(item.icon) : '') +
                 '<span></span></a>');
             const span = action.querySelector('span');
-            action.addEventListener('click', (e) => {
-                item.exec && item.exec.call(self, e);
+            action.addEventListener('mousedown', (e) => {
+                var _a;
+                (_a = item.exec) === null || _a === void 0 ? void 0 : _a.call(self, e);
                 self.hide();
                 return false;
             });
@@ -8220,15 +8237,18 @@ class ContextMenu_ContextMenu extends Component_Component {
             left: x,
             top: y
         });
-        this.jodit.events.on(this.jodit.ownerWindow, 'mouseup jodit_close_dialog', self.hide);
-        this.context.classList.add('jodit_context_menu-show');
+        this.jodit.events.on(this.jodit.ownerWindow, this.evnts, self.hide);
         this.jodit.markOwner(this.context);
+        (_a = this.jodit) === null || _a === void 0 ? void 0 : _a.ownerDocument.body.appendChild(this.context);
     }
     destruct() {
+        if (this.isInDestruct) {
+            return;
+        }
         this.setStatus(STATUSES.beforeDestruct);
         Dom_Dom.safeRemove(this.context);
         delete this.context;
-        this.jodit.events.off(this.jodit.ownerWindow, 'mouseup', this.hide);
+        this.jodit.events.off(this.jodit.ownerWindow, this.evnts, this.hide);
         super.destruct();
     }
 }
@@ -8459,6 +8479,33 @@ function autofocus(editor) {
     });
 }
 
+// CONCATENATED MODULE: ./src/modules/Plugin.ts
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
+
+class Plugin_Plugin extends Component_Component {
+    constructor(jodit) {
+        super(jodit);
+        this.destruct = this.destruct.bind(this, jodit);
+        jodit.events
+            .on('afterInit', this.afterInit.bind(this, jodit))
+            .on('beforeDestruct', this.destruct);
+    }
+    init(jodit) { }
+    destruct() {
+        var _a, _b;
+        if (!this.isDestructed) {
+            this.setStatus(STATUSES.beforeDestruct);
+            (_b = (_a = this.jodit) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.off('beforeDestruct', this.destruct);
+            this.beforeDestruct(this.jodit);
+            super.destruct();
+        }
+    }
+}
+
 // CONCATENATED MODULE: ./src/plugins/backspace.ts
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
@@ -8469,111 +8516,130 @@ function autofocus(editor) {
 
 
 
-function backspace(editor) {
-    const removeEmptyBlocks = (container) => {
+
+class backspace_backspace extends Plugin_Plugin {
+    constructor() {
+        super(...arguments);
+        this.potentialRemovable = MAY_BE_REMOVED_WITH_KEY;
+        this.isEmpty = (node) => {
+            if (node.nodeName.match(/^(TD|TH|TR|TABLE|LI)$/) !== null) {
+                return false;
+            }
+            if (Dom_Dom.isEmpty(node) ||
+                node.nodeName.match(this.potentialRemovable) !== null) {
+                return true;
+            }
+            if (Dom_Dom.isText(node) && !Dom_Dom.isEmptyTextNode(node)) {
+                return false;
+            }
+            return Array.from(node.childNodes).every(this.isEmpty);
+        };
+    }
+    removeEmptyBlocks(container) {
         let box = container, parent;
         normalizeNode(container);
         do {
             const html = box.innerHTML.replace(INVISIBLE_SPACE_REG_EXP, '');
             if ((!html.length || html === '<br>') &&
-                !Dom_Dom.isCell(box, editor.editorWindow) &&
+                !Dom_Dom.isCell(box, this.jodit.editorWindow) &&
                 box.parentNode &&
-                container !== editor.editor) {
+                container !== this.jodit.editor) {
                 parent = box.parentNode;
-                editor.selection.removeNode(box);
+                this.jodit.selection.removeNode(box);
             }
             else {
                 break;
             }
             box = parent;
-        } while (box && box !== editor.editor);
-    };
-    const removeChar = (box, toLeft, range) => {
-        if (Dom_Dom.isText(box.node) && isString(box.node.nodeValue)) {
-            let value = box.node.nodeValue, startOffset = toLeft ? value.length : 0;
-            const increment = toLeft ? -1 : 1, startOffsetInRange = startOffset;
-            while (startOffset >= 0 &&
-                startOffset <= value.length &&
-                value[startOffset + (toLeft ? -1 : 0)] ===
-                    INVISIBLE_SPACE) {
-                startOffset += increment;
-            }
-            if (startOffset !== startOffsetInRange) {
-                if (toLeft) {
-                    value =
-                        value.substr(0, startOffset) +
-                            value.substr(startOffsetInRange);
+        } while (box && box !== this.jodit.editor);
+    }
+    removeChar(box, toLeft, range) {
+        let nextElement = null;
+        do {
+            if (Dom_Dom.isText(box.node) && isString(box.node.nodeValue)) {
+                let value = box.node.nodeValue, startOffset = toLeft ? value.length : 0;
+                const increment = toLeft ? -1 : 1, startOffsetInRange = startOffset;
+                while (startOffset >= 0 &&
+                    startOffset <= value.length &&
+                    value[startOffset + (toLeft ? -1 : 0)] ===
+                        INVISIBLE_SPACE) {
+                    startOffset += increment;
                 }
-                else {
-                    value =
-                        value.substr(0, startOffsetInRange) +
-                            value.substr(startOffset);
-                    startOffset = startOffsetInRange;
-                }
-                box.node.nodeValue = value;
-            }
-            range.setStart(box.node, startOffset);
-            range.collapse(true);
-            editor.selection.selectRange(range);
-            let nextElement = Dom_Dom.findInline(box.node, toLeft, editor.editor);
-            if (value.length) {
-                let setRange = false;
-                if (toLeft) {
-                    if (startOffset) {
-                        setRange = true;
+                if (startOffset !== startOffsetInRange) {
+                    if (toLeft) {
+                        value =
+                            value.substr(0, startOffset) +
+                                value.substr(startOffsetInRange);
                     }
-                }
-                else {
-                    if (startOffset < value.length) {
-                        setRange = true;
+                    else {
+                        value =
+                            value.substr(0, startOffsetInRange) +
+                                value.substr(startOffset);
+                        startOffset = startOffsetInRange;
                     }
+                    box.node.nodeValue = value;
                 }
-                if (setRange) {
-                    return true;
-                }
-            }
-            else {
-                range.setStartBefore(box.node);
+                range.setStart(box.node, startOffset);
                 range.collapse(true);
-                editor.selection.selectRange(range);
-                editor.selection.removeNode(box.node);
-                box.node = nextElement;
-            }
-            if (nextElement) {
-                if (Dom_Dom.isInlineBlock(nextElement)) {
-                    nextElement = toLeft
-                        ? nextElement.lastChild
-                        : nextElement.firstChild;
+                this.jodit.selection.selectRange(range);
+                nextElement = Dom_Dom.findInline(box.node, toLeft, this.jodit.editor);
+                if (value.length) {
+                    let setRange = false;
+                    if (toLeft) {
+                        if (startOffset) {
+                            setRange = true;
+                        }
+                    }
+                    else {
+                        if (startOffset < value.length) {
+                            setRange = true;
+                        }
+                    }
+                    if (setRange) {
+                        return true;
+                    }
                 }
-                if (Dom_Dom.isText(nextElement)) {
+                else {
+                    range.setStartBefore(box.node);
+                    range.collapse(true);
+                    this.jodit.selection.selectRange(range);
+                    this.jodit.selection.removeNode(box.node);
                     box.node = nextElement;
-                    return removeChar(box, toLeft, range);
+                }
+                if (nextElement) {
+                    if (Dom_Dom.isInlineBlock(nextElement)) {
+                        nextElement = toLeft
+                            ? nextElement.lastChild
+                            : nextElement.firstChild;
+                    }
+                    if (Dom_Dom.isText(nextElement)) {
+                        box.node = nextElement;
+                    }
                 }
             }
-        }
-    };
-    const potentialRemovable = MAY_BE_REMOVED_WITH_KEY;
-    const removePotential = (node) => {
-        if (node && potentialRemovable.test(node.nodeName)) {
-            editor.selection.removeNode(node);
+        } while (Dom_Dom.isText(nextElement));
+    }
+    removePotential(node) {
+        if (node && this.potentialRemovable.test(node.nodeName)) {
+            this.jodit.selection.removeNode(node);
             return false;
         }
-    };
-    const removeInline = (box, toLeft, range) => {
+    }
+    removeInline(box, toLeft, range) {
         if (box.node) {
             const workElement = box.node;
-            const removeCharFlag = removeChar(box, toLeft, range);
-            if (removeCharFlag !== undefined) {
+            const removeCharFlag = this.removeChar(box, toLeft, range);
+            if (removeCharFlag) {
                 return true;
             }
             if (!box.node) {
                 box.node = workElement.parentNode;
             }
-            if (box.node === editor.editor) {
+            if (box.node === this.jodit.editor) {
                 return false;
             }
             let node = box.node;
-            if (removePotential(node) === false) {
+            if (this.removePotential(node) === false) {
                 return false;
             }
             if (node) {
@@ -8584,174 +8650,163 @@ function backspace(editor) {
                 node.nodeValue.match(/^[\n\r]+$/)) {
                 node = toLeft ? node.previousSibling : node.nextSibling;
             }
-            return removePotential(node);
+            return this.removePotential(node);
         }
-    };
-    const isEmpty = (node) => {
-        if (node.nodeName.match(/^(TD|TH|TR|TABLE|LI)$/) !== null) {
+    }
+    afterInit(jodit) {
+        jodit.events
+            .on('afterCommand', (command) => {
+            if (command === 'delete') {
+                this.afterCommand();
+            }
+        })
+            .on('keydown', (event) => {
+            if (event.which === KEY_BACKSPACE ||
+                event.which === KEY_DELETE) {
+                return this.onDelete(event.which === KEY_BACKSPACE);
+            }
+        });
+    }
+    afterCommand() {
+        const jodit = this.jodit;
+        const current = jodit.selection.current();
+        if (current && Dom_Dom.isTag(current.firstChild, 'br')) {
+            jodit.selection.removeNode(current.firstChild);
+        }
+        if (!trim(jodit.editor.textContent || '') &&
+            !jodit.editor.querySelector('img') &&
+            (!current || !Dom_Dom.closest(current, 'table', jodit.editor))) {
+            jodit.editor.innerHTML = '';
+            const node = jodit.selection.setCursorIn(jodit.editor);
+            jodit.selection.removeNode(node);
+        }
+    }
+    onDelete(toLeft) {
+        const jodit = this.jodit;
+        if (!jodit.selection.isFocused()) {
+            jodit.selection.focus();
+        }
+        if (!jodit.selection.isCollapsed()) {
+            jodit.execCommand('Delete');
             return false;
         }
-        if (Dom_Dom.isEmpty(node) ||
-            node.nodeName.match(potentialRemovable) !== null) {
-            return true;
-        }
-        if (Dom_Dom.isText(node) && !Dom_Dom.isEmptyTextNode(node)) {
+        const sel = jodit.selection.sel, range = sel && sel.rangeCount ? sel.getRangeAt(0) : false;
+        if (!range) {
             return false;
         }
-        return node.childNodes.length
-            ? Array.from(node.childNodes).every(isEmpty)
-            : true;
-    };
-    editor.events
-        .on('afterCommand', (command) => {
-        if (command === 'delete') {
-            const current = editor.selection.current();
-            if (current &&
-                current.firstChild &&
-                current.firstChild.nodeName === 'BR') {
-                editor.selection.removeNode(current.firstChild);
-            }
-            if (!trim(editor.editor.textContent || '') &&
-                !editor.editor.querySelector('img') &&
-                (!current || !Dom_Dom.closest(current, 'table', editor.editor))) {
-                editor.editor.innerHTML = '';
-                const node = editor.selection.setCursorIn(editor.editor);
-                editor.selection.removeNode(node);
-            }
-        }
-    })
-        .on('keydown', (event) => {
-        if (event.which === KEY_BACKSPACE ||
-            event.which === KEY_DELETE) {
-            const toLeft = event.which === KEY_BACKSPACE;
-            if (!editor.selection.isFocused()) {
-                editor.selection.focus();
-            }
-            if (!editor.selection.isCollapsed()) {
-                editor.execCommand('Delete');
+        const fakeNode = jodit.create.inside.text(INVISIBLE_SPACE);
+        const marker = jodit.create.inside.span();
+        try {
+            range.insertNode(fakeNode);
+            if (!Dom_Dom.isOrContains(jodit.editor, fakeNode)) {
                 return false;
             }
-            const sel = editor.selection.sel, range = sel && sel.rangeCount ? sel.getRangeAt(0) : false;
-            if (!range) {
+            let container = Dom_Dom.up(fakeNode, node => Dom_Dom.isBlock(node, jodit.editorWindow), jodit.editor);
+            const workElement = Dom_Dom.findInline(fakeNode, toLeft, jodit.editor);
+            const box = {
+                node: workElement
+            };
+            let tryRemoveInline;
+            if (workElement) {
+                tryRemoveInline = this.removeInline(box, toLeft, range);
+            }
+            else if (fakeNode.parentNode) {
+                tryRemoveInline = this.removeInline({
+                    node: toLeft
+                        ? fakeNode.parentNode.previousSibling
+                        : fakeNode.parentNode.nextSibling
+                }, toLeft, range);
+            }
+            if (tryRemoveInline !== undefined) {
+                return tryRemoveInline ? undefined : false;
+            }
+            if (container && container.nodeName.match(/^(TD)$/)) {
                 return false;
             }
-            const fakeNode = editor.create.inside.text(INVISIBLE_SPACE);
-            const marker = editor.create.inside.span();
-            try {
-                range.insertNode(fakeNode);
-                if (!Dom_Dom.isOrContains(editor.editor, fakeNode)) {
-                    return false;
-                }
-                let container = Dom_Dom.up(fakeNode, node => Dom_Dom.isBlock(node, editor.editorWindow), editor.editor);
-                const workElement = Dom_Dom.findInline(fakeNode, toLeft, editor.editor);
-                const box = {
-                    node: workElement
-                };
-                let tryRemoveInline;
-                if (workElement) {
-                    tryRemoveInline = removeInline(box, toLeft, range);
-                }
-                else if (fakeNode.parentNode) {
-                    tryRemoveInline = removeInline({
-                        node: toLeft
-                            ? fakeNode.parentNode.previousSibling
-                            : fakeNode.parentNode.nextSibling
-                    }, toLeft, range);
-                }
-                if (tryRemoveInline !== undefined) {
-                    return tryRemoveInline ? undefined : false;
-                }
-                if (container && container.nodeName.match(/^(TD)$/)) {
-                    return false;
-                }
-                let prevBox = toLeft
-                    ? Dom_Dom.prev(box.node || fakeNode, node => Dom_Dom.isBlock(node, editor.editorWindow), editor.editor)
-                    : Dom_Dom.next(box.node || fakeNode, node => Dom_Dom.isBlock(node, editor.editorWindow), editor.editor);
-                if (!prevBox && container && container.parentNode) {
-                    prevBox = editor.create.inside.element(editor.options.enter);
-                    let boxNode = container;
-                    while (boxNode &&
-                        boxNode.parentNode &&
-                        boxNode.parentNode !== editor.editor) {
-                        boxNode = boxNode.parentNode;
-                    }
+            let prevBox = call(toLeft ? Dom_Dom.prev : Dom_Dom.next, box.node || fakeNode, node => Dom_Dom.isBlock(node, jodit.editorWindow), jodit.editor);
+            if (!prevBox && container && container.parentNode) {
+                prevBox = jodit.create.inside.element(jodit.options.enter);
+                let boxNode = container;
+                while (boxNode &&
                     boxNode.parentNode &&
-                        boxNode.parentNode.insertBefore(prevBox, boxNode);
+                    boxNode.parentNode !== jodit.editor) {
+                    boxNode = boxNode.parentNode;
                 }
-                else {
-                    if (prevBox && isEmpty(prevBox)) {
-                        editor.selection.removeNode(prevBox);
-                        return false;
-                    }
-                }
-                if (prevBox) {
-                    const tmpNode = editor.selection.setCursorIn(prevBox, !toLeft);
-                    editor.selection.insertNode(marker, false, false);
-                    if (Dom_Dom.isText(tmpNode) &&
-                        tmpNode.nodeValue === INVISIBLE_SPACE) {
-                        Dom_Dom.safeRemove(tmpNode);
-                    }
-                }
-                if (container) {
-                    removeEmptyBlocks(container);
-                    if (prevBox && container.parentNode) {
-                        if (container.nodeName === prevBox.nodeName &&
-                            container.parentNode &&
-                            prevBox.parentNode &&
-                            container.parentNode !== editor.editor &&
-                            prevBox.parentNode !== editor.editor &&
-                            container.parentNode !== prevBox.parentNode &&
-                            container.parentNode.nodeName ===
-                                prevBox.parentNode.nodeName) {
-                            container = container.parentNode;
-                            prevBox = prevBox.parentNode;
-                        }
-                        Dom_Dom.moveContent(container, prevBox, !toLeft);
-                        normalizeNode(prevBox);
-                    }
-                    if (prevBox && prevBox.nodeName === 'LI') {
-                        const UL = Dom_Dom.closest(prevBox, 'Ul|OL', editor.editor);
-                        if (UL) {
-                            const nextBox = UL.nextSibling;
-                            if (nextBox &&
-                                nextBox.nodeName === UL.nodeName &&
-                                UL !== nextBox) {
-                                Dom_Dom.moveContent(nextBox, UL, !toLeft);
-                                editor.selection.removeNode(nextBox);
-                            }
-                        }
-                    }
-                    removeEmptyBlocks(container);
+                boxNode.parentNode &&
+                    boxNode.parentNode.insertBefore(prevBox, boxNode);
+            }
+            else {
+                if (prevBox && this.isEmpty(prevBox)) {
+                    jodit.selection.removeNode(prevBox);
                     return false;
                 }
             }
-            finally {
-                if (fakeNode.parentNode &&
-                    fakeNode.nodeValue === INVISIBLE_SPACE) {
-                    const parent = fakeNode.parentNode;
-                    Dom_Dom.safeRemove(fakeNode);
-                    if (!parent.firstChild &&
-                        parent.parentNode &&
-                        parent !== editor.editor) {
-                        editor.selection.removeNode(parent);
-                    }
+            if (prevBox) {
+                const tmpNode = jodit.selection.setCursorIn(prevBox, !toLeft);
+                jodit.selection.insertNode(marker, false, false);
+                if (Dom_Dom.isText(tmpNode) &&
+                    tmpNode.nodeValue === INVISIBLE_SPACE) {
+                    Dom_Dom.safeRemove(tmpNode);
                 }
-                if (marker &&
-                    Dom_Dom.isOrContains(editor.editor, marker, true)) {
-                    const tmpNode = editor.selection.setCursorBefore(marker);
-                    Dom_Dom.safeRemove(marker);
-                    if (tmpNode &&
-                        tmpNode.parentNode &&
-                        (Dom_Dom.findInline(tmpNode, true, tmpNode.parentNode) ||
-                            Dom_Dom.findInline(tmpNode, true, tmpNode.parentNode))) {
-                        Dom_Dom.safeRemove(tmpNode);
-                    }
-                }
-                editor.setEditorValue();
             }
-            return false;
+            if (container) {
+                let parentContainer = container.parentNode;
+                this.removeEmptyBlocks(container);
+                if (prevBox && parentContainer) {
+                    if (container.nodeName === prevBox.nodeName &&
+                        parentContainer &&
+                        prevBox.parentNode &&
+                        parentContainer !== jodit.editor &&
+                        prevBox.parentNode !== jodit.editor &&
+                        parentContainer !== prevBox.parentNode &&
+                        parentContainer.nodeName === prevBox.parentNode.nodeName) {
+                        container = parentContainer;
+                        prevBox = prevBox.parentNode;
+                    }
+                    Dom_Dom.moveContent(container, prevBox, !toLeft);
+                    normalizeNode(prevBox);
+                }
+                if (Dom_Dom.isTag(prevBox, 'li')) {
+                    const UL = Dom_Dom.closest(prevBox, 'Ul|OL', jodit.editor);
+                    if (UL) {
+                        const nextBox = UL.nextSibling;
+                        if (nextBox &&
+                            nextBox.nodeName === UL.nodeName &&
+                            UL !== nextBox) {
+                            Dom_Dom.moveContent(nextBox, UL, !toLeft);
+                            jodit.selection.removeNode(nextBox);
+                        }
+                    }
+                }
+                this.removeEmptyBlocks(container);
+                return false;
+            }
         }
-    });
+        finally {
+            const parent = fakeNode.parentNode;
+            if (parent && fakeNode.nodeValue === INVISIBLE_SPACE) {
+                Dom_Dom.safeRemove(fakeNode);
+                if (!parent.firstChild &&
+                    parent.parentNode &&
+                    parent !== jodit.editor) {
+                    jodit.selection.removeNode(parent);
+                }
+            }
+            if (marker && Dom_Dom.isOrContains(jodit.editor, marker, true)) {
+                const tmpNode = jodit.selection.setCursorBefore(marker);
+                Dom_Dom.safeRemove(marker);
+                if (tmpNode &&
+                    tmpNode.parentNode &&
+                    (Dom_Dom.findInline(tmpNode, true, tmpNode.parentNode) ||
+                        Dom_Dom.findInline(tmpNode, false, tmpNode.parentNode))) {
+                    Dom_Dom.safeRemove(tmpNode);
+                }
+            }
+            jodit.setEditorValue();
+        }
+        return false;
+    }
+    beforeDestruct(jodit) { }
 }
 
 // CONCATENATED MODULE: ./src/plugins/bold.ts
@@ -8831,33 +8886,6 @@ function bold(editor) {
         .registerCommand('strikethrough', {
         exec: callBack
     });
-}
-
-// CONCATENATED MODULE: ./src/modules/Plugin.ts
-/*!
- * Jodit Editor (https://xdsoft.net/jodit/)
- * Released under MIT see LICENSE.txt in the project root for license information.
- * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
- */
-
-class Plugin_Plugin extends Component_Component {
-    constructor(jodit) {
-        super(jodit);
-        this.destruct = this.destruct.bind(this, jodit);
-        jodit.events
-            .on('afterInit', this.afterInit.bind(this, jodit))
-            .on('beforeDestruct', this.destruct);
-    }
-    init(jodit) { }
-    destruct() {
-        var _a, _b;
-        if (!this.isDestructed) {
-            this.setStatus(STATUSES.beforeDestruct);
-            (_b = (_a = this.jodit) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.off('beforeDestruct', this.destruct);
-            this.beforeDestruct(this.jodit);
-            super.destruct();
-        }
-    }
 }
 
 // CONCATENATED MODULE: ./src/plugins/clean-html.ts
@@ -9004,7 +9032,7 @@ class clean_html_cleanHtml extends Plugin_Plugin {
                     Dom_Dom.each(elm, child => {
                         this.cleanNode(child, onlyRemoveFont);
                     });
-                    if (elm.nodeName === 'FONT') {
+                    if (Dom_Dom.isTag(elm, 'font')) {
                         Dom_Dom.unwrap(elm);
                     }
                     else if (!onlyRemoveFont) {
@@ -9153,7 +9181,7 @@ class clean_html_cleanHtml extends Plugin_Plugin {
             return true;
         }
         if (current &&
-            node.nodeName === 'BR' &&
+            Dom_Dom.isTag(node, 'br') &&
             clean_html_cleanHtml.hasNotEmptyTextSibling(node) &&
             !clean_html_cleanHtml.hasNotEmptyTextSibling(node, true) &&
             Dom_Dom.up(node, node => Dom_Dom.isBlock(node, this.jodit.editorWindow), this.jodit.editor) !==
@@ -9713,7 +9741,7 @@ class paste_storage_pasteStorage extends Plugin_Plugin {
         this.dialog.setFooter([pasteButton, cancelButton]);
         this.jodit.events.on(this.listBox, 'click dblclick', (e) => {
             const a = e.target;
-            if (a && a.nodeName === 'A' && a.hasAttribute('data-index')) {
+            if (Dom_Dom.isTag(a, 'a') && a.hasAttribute('data-index')) {
                 this.selectIndex(parseInt(a.getAttribute('data-index') || '0', 10));
             }
             if (e.type === 'dblclick') {
@@ -9825,7 +9853,7 @@ Config_Config.prototype.controls.copyformat = {
                     editor.buffer.set(copyformat_pluginKey, false);
                     const currentNode = editor.selection.current();
                     if (currentNode) {
-                        if (currentNode.nodeName === 'IMG') {
+                        if (Dom_Dom.isTag(currentNode, 'img')) {
                             css_css(currentNode, format);
                         }
                         else {
@@ -10045,7 +10073,7 @@ class drag_and_drop_DragAndDrop extends Plugin_Plugin {
                         this.jodit.selection.selectRange(range);
                         this.jodit.events.fire('synchro');
                     }
-                    if (fragment.nodeName === 'IMG' && this.jodit.events) {
+                    if (Dom_Dom.isTag(fragment, 'img') && this.jodit.events) {
                         this.jodit.events.fire('afterInsertImage', fragment);
                     }
                 }
@@ -10075,7 +10103,7 @@ class drag_and_drop_DragAndDrop extends Plugin_Plugin {
                 target.matches('.jodit_filebrowser_files_item')) {
                 target = target.querySelector('img');
             }
-            if (target.nodeName === 'IMG') {
+            if (Dom_Dom.isTag(target, 'img')) {
                 this.draggable = target.cloneNode(true);
                 dataBind(this.draggable, 'target', target);
                 css_css(this.draggable, {
@@ -10128,7 +10156,6 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
         this.isCopyMode = false;
         this.draggable = null;
         this.wasMoved = false;
-        this.timeout = 0;
         this.onDrag = this.jodit.async.throttle((event) => {
             if (!this.draggable) {
                 return;
@@ -10136,11 +10163,21 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
             this.wasMoved = true;
             this.jodit.events.fire('hidePopup hideResizer');
             if (!this.draggable.parentNode) {
+                css_css(this.draggable, {
+                    'z-index': 100000000000000,
+                    'pointer-events': 'none',
+                    position: 'fixed',
+                    display: 'inline-block',
+                    left: event.clientX,
+                    top: event.clientY,
+                    width: this.draggable.offsetWidth,
+                    height: this.draggable.offsetHeight
+                });
                 this.jodit.ownerDocument.body.appendChild(this.draggable);
             }
             css_css(this.draggable, {
-                left: event.clientX + 20,
-                top: event.clientY + 20
+                left: event.clientX,
+                top: event.clientY
             });
             this.jodit.selection.insertCursorAtPoint(event.clientX, event.clientY);
         }, this.jodit.defaultTimeout);
@@ -10150,7 +10187,7 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
                 return;
             }
             do {
-                if (this.dragList.indexOf(target.nodeName.toLowerCase()) !== -1) {
+                if (this.dragList.includes(target.nodeName.toLowerCase())) {
                     if (!last ||
                         (target.firstChild === last && target.lastChild === last)) {
                         last = target;
@@ -10163,30 +10200,13 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
             }
             this.isCopyMode = ctrlKey(event);
             this.onDragEnd();
-            this.timeout = this.jodit.async.setTimeout((lastNode) => {
-                if (!lastNode) {
-                    return;
-                }
-                this.draggable = lastNode.cloneNode(true);
-                dataBind(this.draggable, 'target', lastNode);
-                css_css(this.draggable, {
-                    'z-index': 100000000000000,
-                    'pointer-events': 'none',
-                    position: 'fixed',
-                    display: 'inlin-block',
-                    left: event.clientX,
-                    top: event.clientY,
-                    width: lastNode.offsetWidth,
-                    height: lastNode.offsetHeight
-                });
-            }, this.jodit.defaultTimeout, last);
-            event.preventDefault();
+            this.draggable = last.cloneNode(true);
+            dataBind(this.draggable, 'target', last);
         };
         this.onDragEnd = () => {
             if (this.isInDestruct) {
                 return;
             }
-            this.jodit.async.clearTimeout(this.timeout);
             if (this.draggable) {
                 Dom_Dom.safeRemove(this.draggable);
                 this.draggable = null;
@@ -10204,7 +10224,7 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
                 fragment = fragment.cloneNode(true);
             }
             this.jodit.selection.insertNode(fragment, true, false);
-            if (fragment.nodeName === 'IMG' && this.jodit.events) {
+            if (Dom_Dom.isTag(fragment, 'img') && this.jodit.events) {
                 this.jodit.events.fire('afterInsertImage', fragment);
             }
             this.jodit.events.fire('synchro');
@@ -10315,7 +10335,7 @@ class enter_enter extends Plugin_Plugin {
             sel.select(current);
         }
         let currentBox = this.getBlockWrapper(current);
-        const isLi = currentBox && currentBox.nodeName === 'LI';
+        const isLi = Dom_Dom.isTag(currentBox, 'li');
         if (!isLi && this.checkBR(current, event.shiftKey) === false) {
             return false;
         }
@@ -10361,7 +10381,7 @@ class enter_enter extends Plugin_Plugin {
                 break;
             }
             if (tagReg.test(node.nodeName)) {
-                if (node.nodeName === 'LI') {
+                if (Dom_Dom.isTag(node, 'li')) {
                     return node;
                 }
                 return (this.getBlockWrapper(node.parentNode, /^li$/i) ||
@@ -10415,10 +10435,10 @@ class enter_enter extends Plugin_Plugin {
     enterInsideEmptyLIelement(currentBox) {
         let fakeTextNode = false;
         const ul = Dom_Dom.closest(currentBox, 'ol|ul', this.jodit.editor);
-        if (!Dom_Dom.prev(currentBox, (elm) => elm && elm.nodeName === 'LI', ul)) {
+        if (!Dom_Dom.prev(currentBox, (elm) => Dom_Dom.isTag(elm, 'li'), ul)) {
             fakeTextNode = this.jodit.selection.setCursorBefore(ul);
         }
-        else if (!Dom_Dom.next(currentBox, (elm) => elm && elm.nodeName === 'LI', ul)) {
+        else if (!Dom_Dom.next(currentBox, (elm) => Dom_Dom.isTag(elm, 'li'), ul)) {
             fakeTextNode = this.jodit.selection.setCursorAfter(ul);
         }
         else {
@@ -10674,7 +10694,7 @@ Config_Config.prototype.controls.paragraph = {
             return (currentBpx &&
                 currentBpx !== editor.editor &&
                 control.list !== undefined &&
-                currentBpx.nodeName.toLowerCase() !== 'p' &&
+                !Dom_Dom.isTag(currentBpx, 'p') &&
                 control.list[currentBpx.nodeName.toLowerCase()] !== undefined);
         }
         return false;
@@ -10693,7 +10713,7 @@ function formatBlock(editor) {
             let currentBox = current
                 ? Dom_Dom.up(current, node => Dom_Dom.isBlock(node, editor.editorWindow), editor.editor)
                 : false;
-            if ((!currentBox || currentBox.nodeName === 'LI') && current) {
+            if ((!currentBox || Dom_Dom.isTag(currentBox, 'li')) && current) {
                 currentBox = Dom_Dom.wrapInline(current, editor.options.enter, editor);
             }
             if (!currentBox) {
@@ -10702,8 +10722,7 @@ function formatBlock(editor) {
             }
             if (!currentBox.tagName.match(/TD|TH|TBODY|TABLE|THEAD/i)) {
                 if (third === editor.options.enterBlock.toLowerCase() &&
-                    currentBox.parentNode &&
-                    currentBox.parentNode.nodeName === 'LI') {
+                    Dom_Dom.isTag(currentBox.parentNode, 'li')) {
                     Dom_Dom.unwrap(currentBox);
                 }
                 else {
@@ -11520,7 +11539,6 @@ function imageProperties(editor) {
                     },
                     filebrowser: (data) => {
                         if (data &&
-                            data.files &&
                             Array.isArray(data.files) &&
                             data.files.length) {
                             image.setAttribute('src', data.files[0]);
@@ -11920,7 +11938,7 @@ class Table_Table {
                     while (box[rowIndex + 1][nextCell] === cell) {
                         nextCell += 1;
                     }
-                    const nextRow = Dom_Dom.next(cell.parentNode, (elm) => Dom_Dom.isElement(elm) && elm.nodeName === 'TR', table);
+                    const nextRow = Dom_Dom.next(cell.parentNode, (elm) => Dom_Dom.isTag(elm, 'tr'), table);
                     if (box[rowIndex + 1][nextCell]) {
                         nextRow.insertBefore(cell, box[rowIndex + 1][nextCell]);
                     }
@@ -12696,7 +12714,7 @@ class inline_popup_inlinePopup extends Plugin_Plugin {
             this.isTargetAction = false;
             this.isSelectionPopup = false;
             if (!this.isSelectionStarted) {
-                const elements = Object.keys(this.jodit.options.popup).join('|'), target = event.target.nodeName === 'IMG'
+                const elements = Object.keys(this.jodit.options.popup).join('|'), target = Dom_Dom.isTag(event.target, 'img')
                     ? event.target
                     : Dom_Dom.closest(event.target, elements, this.jodit.editor);
                 if (!target ||
@@ -12754,7 +12772,7 @@ class inline_popup_inlinePopup extends Plugin_Plugin {
             .on(this.target, 'mousedown keydown touchstart', (e) => {
             e.stopPropagation();
         })
-            .on('beforeOpenPopup hidePopup afterSetMode blur', this.hidePopup)
+            .on('beforeOpenPopup hidePopup afterSetMode', this.hidePopup)
             .on('recalcPositionPopup', this.reCalcPosition)
             .on('getDiffButtons.mobile', (_toolbar) => {
             if (this.toolbar === _toolbar) {
@@ -12794,6 +12812,7 @@ class inline_popup_inlinePopup extends Plugin_Plugin {
         delete this.toolbar;
         Dom_Dom.safeRemove(this.target);
         Dom_Dom.safeRemove(this.container);
+        Dom_Dom.safeRemove(this.targetContainer);
         editor.events &&
             editor.events
                 .off([editor.ownerWindow], 'scroll resize', this.reCalcPosition)
@@ -13048,7 +13067,7 @@ Config_Config.prototype.controls.link = {
         if (!content_input) {
             content_input = editor.create.element('input', {
                 type: 'hidden',
-                ref: "content_input"
+                ref: 'content_input'
             });
         }
         if (formClassName) {
@@ -13057,16 +13076,18 @@ Config_Config.prototype.controls.link = {
         if (isImageContent) {
             Dom_Dom.hide(content_input_box);
         }
-        const getSelectionText = () => stripTags(editor.selection.range.cloneContents(), editor.editorDocument);
-        if (!isImageContent && current) {
-            content_input.value = getSelectionText();
-        }
         let link;
+        const getSelectionText = () => link
+            ? link.innerText
+            : stripTags(editor.selection.range.cloneContents(), editor.editorDocument);
         if (current && Dom_Dom.closest(current, 'A', editor.editor)) {
             link = Dom_Dom.closest(current, 'A', editor.editor);
         }
         else {
             link = false;
+        }
+        if (!isImageContent && current) {
+            content_input.value = getSelectionText();
         }
         if (link) {
             url_input.value = link.getAttribute('href') || '';
@@ -13189,12 +13210,11 @@ function link_link(jodit) {
             let newtag, node;
             if (command === 'removeFormat') {
                 node = sel.current();
-                if (node && node.nodeName !== 'A') {
+                if (node && !Dom_Dom.isTag(node, 'a')) {
                     node = Dom_Dom.closest(node, 'A', jodit.editor);
                 }
-                if (node && node.nodeName === 'A') {
-                    if (node.innerHTML ===
-                        node.textContent) {
+                if (Dom_Dom.isTag(node, 'a')) {
+                    if (node.innerHTML === node.textContent) {
                         newtag = jodit.create.inside.text(node.innerHTML);
                     }
                     else {
@@ -13392,12 +13412,11 @@ function orderedlist(editor) {
     editor.events.on('afterCommand', (command) => {
         if (/insert(un)?orderedlist/i.test(command)) {
             const ul = Dom_Dom.up(editor.selection.current(), (tag) => tag && /^UL|OL$/i.test(tag.nodeName), editor.editor);
-            if (ul && ul.parentNode && ul.parentNode.nodeName === 'P') {
+            if (ul && Dom_Dom.isTag(ul.parentNode, 'p')) {
                 const selection = editor.selection.save();
                 Dom_Dom.unwrap(ul.parentNode);
                 Array.from(ul.childNodes).forEach((li) => {
-                    if (Dom_Dom.isElement(li.lastChild) &&
-                        li.lastChild.nodeName === 'BR') {
+                    if (Dom_Dom.isTag(li.lastChild, 'br')) {
                         Dom_Dom.safeRemove(li.lastChild);
                     }
                 });
@@ -13515,7 +13534,8 @@ class placeholder_placeholder extends Plugin_Plugin {
             return true;
         }
         const first = root.firstChild;
-        if (MAY_BE_REMOVED_WITH_KEY.test(first.nodeName) || /^(TABLE)$/i.test(first.nodeName)) {
+        if (MAY_BE_REMOVED_WITH_KEY.test(first.nodeName) ||
+            /^(TABLE)$/i.test(first.nodeName)) {
             return false;
         }
         const next = Dom_Dom.next(first, node => node && !Dom_Dom.isEmptyTextNode(node), root);
@@ -13523,7 +13543,7 @@ class placeholder_placeholder extends Plugin_Plugin {
             return Dom_Dom.isEmptyTextNode(first);
         }
         if (!next &&
-            Dom_Dom.each(first, elm => Dom_Dom.isEmpty(elm) || elm.nodeName === 'BR')) {
+            Dom_Dom.each(first, elm => Dom_Dom.isEmpty(elm) || Dom_Dom.isTag(elm, 'br'))) {
             return true;
         }
         return false;
@@ -13709,7 +13729,7 @@ function resizer(editor) {
         editor.events
             .on(element, 'dragstart', hideResizer)
             .on(element, 'mousedown', (event) => {
-            if (IS_IE && element.nodeName === 'IMG') {
+            if (IS_IE && Dom_Dom.isTag(element, 'img')) {
                 event.preventDefault();
             }
         })
@@ -15223,6 +15243,7 @@ class sticky_sticky extends Plugin_Plugin {
 
 
 
+
 Config_Config.prototype.usePopupForSpecialCharacters = false;
 Config_Config.prototype.specialCharacters = [
     '!',
@@ -15474,12 +15495,12 @@ class symbols_symbols {
                 for (let j = 0; j < this.countInRow &&
                     i < editor.options.specialCharacters.length; j += 1, i += 1) {
                     const td = editor.create.element('td'), a = editor.create.fromHTML(`<a
-                                    data-index="${i}"
-                                    data-index-j="${j}"
-                                    href="javascript:void(0)"
-                                    role="option"
-                                    tabindex="-1"
-                                >${editor.options.specialCharacters[i]}</a>`);
+											data-index="${i}"
+											data-index-j="${j}"
+											href="javascript:void(0)"
+											role="option"
+											tabindex="-1"
+									>${editor.options.specialCharacters[i]}</a>`);
                     chars.push(a);
                     td.appendChild(a);
                     tr.appendChild(td);
@@ -15492,7 +15513,7 @@ class symbols_symbols {
                 preview.innerHTML = this.innerHTML;
             })
                 .on(chars, 'mousedown', function (e) {
-                if (this && this.nodeName === 'A') {
+                if (Dom_Dom.isTag(this, 'a')) {
                     editor.selection.focus();
                     editor.selection.insertHTML(this.innerHTML);
                     editor.events.fire(this, 'close_dialog');
@@ -15501,13 +15522,13 @@ class symbols_symbols {
                 }
             })
                 .on(chars, 'mouseenter', function () {
-                if (this && this.nodeName === 'A') {
+                if (Dom_Dom.isTag(this, 'a')) {
                     this.focus();
                 }
             })
                 .on(chars, 'keydown', (e) => {
                 const target = e.target;
-                if (target && target.nodeName === 'A') {
+                if (Dom_Dom.isTag(target, 'a')) {
                     const index = parseInt(target.getAttribute('data-index') || '0', 10), jIndex = parseInt(target.getAttribute('data-index-j') || '0', 10);
                     let newIndex;
                     switch (e.which) {
@@ -15587,7 +15608,7 @@ function tableKeyboardNavigation(editor) {
                 if (((event.which === KEY_LEFT ||
                     event.which === KEY_UP) &&
                     (Dom_Dom.prev(current, (elm) => event.which === KEY_UP
-                        ? elm && elm.nodeName === 'BR'
+                        ? Dom_Dom.isTag(elm, 'br')
                         : !!elm, block) ||
                         (event.which !== KEY_UP &&
                             Dom_Dom.isText(current) &&
@@ -15595,7 +15616,7 @@ function tableKeyboardNavigation(editor) {
                     ((event.which === KEY_RIGHT ||
                         event.which === KEY_DOWN) &&
                         (Dom_Dom.next(current, (elm) => event.which === KEY_DOWN
-                            ? elm && elm.nodeName === 'BR'
+                            ? Dom_Dom.isTag(elm, 'br')
                             : !!elm, block) ||
                             (event.which !== KEY_DOWN &&
                                 Dom_Dom.isText(current) &&
@@ -15989,7 +16010,7 @@ class table_TableProcessor extends Plugin_Plugin {
     __setWorkCell(cell, wholeTable = null) {
         this.__wholeTable = wholeTable;
         this.__workCell = cell;
-        this.__workTable = Dom_Dom.up(cell, (elm) => elm && elm.nodeName === 'TABLE', this.jodit.editor);
+        this.__workTable = Dom_Dom.up(cell, (elm) => Dom_Dom.isTag(elm, 'table'), this.jodit.editor);
     }
     __calcResizerPosition(table, cell, offsetX = 0, delta = 0) {
         const box = offset_offset(cell, this.jodit, this.jodit.editorDocument);
@@ -16149,7 +16170,7 @@ class table_TableProcessor extends Plugin_Plugin {
         })
             .on(this.jodit.ownerWindow, 'scroll.table', () => {
             if (this.__drag) {
-                const parent = Dom_Dom.up(this.__workCell, (elm) => elm && elm.nodeName === 'TABLE', editor.editor);
+                const parent = Dom_Dom.up(this.__workCell, (elm) => Dom_Dom.isTag(elm, 'table'), editor.editor);
                 if (parent) {
                     const parentBox = parent.getBoundingClientRect();
                     this.__resizerHandler.style.top = parentBox.top + 'px';
@@ -16480,6 +16501,7 @@ class xpath_xpath extends Plugin_Plugin {
 
 
 
+
 Config_Config.prototype.dialog = {
     extraButtons: [],
     resizable: true,
@@ -16599,6 +16621,7 @@ class dialog_Dialog extends viewWithToolbar_ViewWithToolbar {
         this.document = document;
         this.window = window;
         this.close = (e) => {
+            var _a, _b, _c, _d;
             if (this.isDestructed) {
                 return;
             }
@@ -16618,10 +16641,8 @@ class dialog_Dialog extends viewWithToolbar_ViewWithToolbar {
             if (this.destroyAfterClose) {
                 this.destruct();
             }
-            if (this.jodit && this.jodit.events) {
-                this.jodit.events.fire(this, 'afterClose');
-                this.jodit.events.fire(this.ownerWindow, 'jodit_close_dialog');
-            }
+            (_b = (_a = this.jodit) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.fire(this, 'afterClose');
+            (_d = (_c = this.jodit) === null || _c === void 0 ? void 0 : _c.events) === null || _d === void 0 ? void 0 : _d.fire(this.ownerWindow, 'jodit_close_dialog');
         };
         if (isJoditObject(jodit)) {
             this.window = jodit.ownerWindow;
@@ -16635,6 +16656,7 @@ class dialog_Dialog extends viewWithToolbar_ViewWithToolbar {
             ? jodit.options.dialog
             : Config_Config.prototype.dialog;
         self.options = { ...opt, ...self.options };
+        Dom_Dom.safeRemove(self.container);
         self.container = this.create.fromHTML('<div style="z-index:' +
             self.options.zIndex +
             '" class="jodit jodit_dialog_box">' +
@@ -16823,6 +16845,7 @@ class dialog_Dialog extends viewWithToolbar_ViewWithToolbar {
         if (this.isInDestruct) {
             return;
         }
+        this.setStatus(STATUSES.beforeDestruct);
         if (this.events) {
             this.events
                 .off(this.window, 'mousemove', this.onMouseMove)
@@ -16833,6 +16856,7 @@ class dialog_Dialog extends viewWithToolbar_ViewWithToolbar {
         super.destruct();
     }
 }
+
 
 
 // CONCATENATED MODULE: ./src/modules/dialog/alert.ts
@@ -16985,6 +17009,11 @@ const Confirm = (msg, title, callback) => {
 
 
 // CONCATENATED MODULE: ./src/modules/filebrowser/consts.ts
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
 const F_CLASS = 'jodit_filebrowser';
 const ITEM_CLASS = F_CLASS + '_files_item';
 const ICON_LOADER = '<i class="jodit_icon-loader"></i>';
@@ -17181,7 +17210,25 @@ Config_Config.prototype.filebrowser = {
     permissions: {
         data: { action: 'permissions' }
     },
-    uploader: null
+    uploader: null,
+    defaultCallback: (filebrowser, data) => {
+        const jodit = filebrowser.jodit;
+        if (jodit && jodit.isJodit) {
+            if (data.files && data.files.length) {
+                data.files.forEach((file, i) => {
+                    const url = data.baseurl + file;
+                    const isImage = data.isImages ? data.isImages[i] : false;
+                    if (isImage) {
+                        jodit.selection.insertImage(url, null, jodit.options.imageDefaultWidth);
+                    }
+                    else {
+                        jodit.selection.insertNode(jodit.create.inside.fromHTML(`<a href="${url}" title="${url}">${url}</a>`));
+                    }
+                });
+                filebrowser.close();
+            }
+        }
+    }
 };
 Config_Config.prototype.controls.filebrowser = {
     upload: {
@@ -17297,6 +17344,11 @@ Config_Config.prototype.controls.filebrowser = {
 };
 
 // CONCATENATED MODULE: ./src/modules/filebrowser/dataProvider.ts
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
 
 
 const DEFAULT_SOURCE_NAME = 'default';
@@ -17315,14 +17367,15 @@ const possableRules = [
     'allowImageResize',
     'allowImageCrop'
 ];
-class dataProvider_dataProvider {
-    constructor(options, parent) {
-        this.options = options;
+class dataProvider_DataProvider {
+    constructor(parent, options) {
         this.parent = parent;
+        this.options = options;
         this.__currentPermissions = null;
         this.currentPath = '';
         this.currentSource = DEFAULT_SOURCE_NAME;
         this.currentBaseUrl = '';
+        this.ajaxInstances = [];
         this.getPathByUrl = (url, success, onFailed) => {
             const action = 'getLocalFileByUrl';
             this.options[action].data.url = url;
@@ -17352,6 +17405,7 @@ class dataProvider_dataProvider {
         }
         const ajax = new Ajax_Ajax(this.parent, opts);
         const promise = ajax.send();
+        this.ajaxInstances.push(ajax);
         if (success) {
             promise.then(success);
         }
@@ -17505,10 +17559,33 @@ class dataProvider_dataProvider {
         this.options.resize.data.source = source;
         return this.get('resize');
     }
+    destruct() {
+        this.ajaxInstances.forEach(a => a.destruct());
+        this.ajaxInstances.length = 0;
+    }
+}
+
+// CONCATENATED MODULE: ./src/modules/filebrowser/factories.ts
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
+
+
+function makeDataProvider(parent, options) {
+    return new dataProvider_DataProvider(parent, options);
+}
+function makeContextMenu(parent) {
+    return new ContextMenu_ContextMenu(parent);
 }
 
 // CONCATENATED MODULE: ./src/modules/filebrowser/builders/contextMenu.ts
-
+/*!
+ * Jodit Editor (https://xdsoft.net/jodit/)
+ * Released under MIT see LICENSE.txt in the project root for license information.
+ * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
+ */
 
 
 
@@ -17521,8 +17598,9 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
     if (!self.options.contextMenu) {
         return () => { };
     }
-    const contextmenu = new ContextMenu_ContextMenu(self.jodit || self);
+    const contextmenu = makeContextMenu(self.jodit || self);
     return function (e) {
+        var _a;
         let item = this, opt = self.options, ga = (attr) => item.getAttribute(attr) || '';
         self.async.setTimeout(() => {
             contextmenu.show(e.pageX, e.pageY, [
@@ -17554,7 +17632,7 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
                         exec: async () => {
                             await self.deleteFile(ga('data-name'), ga('data-source'));
                             self.state.activeElements = [];
-                            self.loadTree();
+                            await self.loadTree();
                         }
                     }
                     : false,
@@ -17569,8 +17647,11 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
                                 image.setAttribute('src', src);
                                 const onload = () => {
                                     var _a, _b;
-                                    image.removeEventListener('load', onload);
-                                    temp_content.innerHTML = '';
+                                    if (self.isInDestruct) {
+                                        return;
+                                    }
+                                    self.events.off(image, 'load');
+                                    Dom_Dom.detach(temp_content);
                                     if (opt.showPreviewNavigation) {
                                         if (Dom_Dom.prevWithClass(item, ITEM_CLASS)) {
                                             temp_content.appendChild(prev);
@@ -17584,12 +17665,11 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
                                     preview.setPosition();
                                     (_b = (_a = self) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.fire('previewOpenedAndLoaded');
                                 };
-                                image.addEventListener('load', onload);
+                                self.events.on(image, 'load', onload);
                                 if (image.complete) {
                                     onload();
                                 }
                             };
-                            addLoadHandler(ga('href'));
                             self.events.on([next, prev], 'click', function () {
                                 if (this.classList.contains(CLASS_PREVIEW +
                                     'navigation-next')) {
@@ -17606,10 +17686,14 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
                                 temp_content.innerHTML = ICON_LOADER;
                                 addLoadHandler(ga('href'));
                             });
+                            preview.container.classList.add(F_CLASS + '_preview_dialog');
                             preview.setContent(temp_content);
                             preview.setPosition();
                             preview.open();
-                            (_b = (_a = self) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.fire('previewOpened');
+                            addLoadHandler(ga('href'));
+                            (_b = (_a = self) === null || _a === void 0 ? void 0 : _a.events) === null || _b === void 0 ? void 0 : _b.on('beforeDestruct', () => {
+                                preview.destruct();
+                            }).fire('previewOpened');
                         }
                     }
                     : false,
@@ -17625,11 +17709,15 @@ const CLASS_PREVIEW = F_CLASS + '_preview_', preview_tpl_next = (next = 'next', 
                 }
             ], self.dialog.getZIndex() + 1);
         }, self.defaultTimeout);
+        (_a = self) === null || _a === void 0 ? void 0 : _a.events.on('beforeDestruct', () => {
+            contextmenu.destruct();
+        });
         e.stopPropagation();
         e.preventDefault();
         return false;
     };
 });
+
 
 
 // CONCATENATED MODULE: ./src/modules/events/observeObject.ts
@@ -17696,6 +17784,9 @@ class item_FileBrowserItem {
         this.data = data;
         extend(this, data);
     }
+    static create(data) {
+        return (new item_FileBrowserItem(data));
+    }
     get path() {
         return normalizePath(this.data.source.path ? this.data.source.path + '/' : '/');
     }
@@ -17722,9 +17813,6 @@ class item_FileBrowserItem {
         let key = [data.sourceName, data.name, data.file, this.time, data.thumb].join('_');
         key = key.toLowerCase().replace(/[^0-9a-z\-.]/g, '-');
         return key;
-    }
-    static create(data) {
-        return (new item_FileBrowserItem(data));
     }
 }
 
@@ -17875,7 +17963,7 @@ class fileBrowser_FileBrowser extends viewWithToolbar_ViewWithToolbar {
         }
         self.options = new OptionsDefault(extend(true, {}, self.options, Config_Config.defaultOptions.filebrowser, options, editor ? editor.options.filebrowser : undefined));
         self.storage = storage_Storage.makeStorage(this.options.filebrowser.saveStateInStorage);
-        self.dataProvider = new dataProvider_dataProvider(self.options, self.jodit || self);
+        self.dataProvider = makeDataProvider(self.jodit || self, self.options);
         self.dialog = new dialog_Dialog(editor || self, {
             fullsize: self.options.fullsize,
             buttons: ['dialog.fullsize', 'dialog.close']
@@ -18049,17 +18137,26 @@ class fileBrowser_FileBrowser extends viewWithToolbar_ViewWithToolbar {
     onSelect(callback) {
         return () => {
             if (this.state.activeElements.length) {
-                const urls = [];
+                const files = [];
+                const isImages = [];
                 this.state.activeElements.forEach(elm => {
                     const url = elm.fileURL;
-                    url && urls.push(url);
+                    if (url) {
+                        files.push(url);
+                        isImages.push(elm.isImage || false);
+                    }
                 });
                 this.close();
-                if (typeof callback === 'function') {
-                    callback({
-                        baseurl: '',
-                        files: urls
-                    });
+                const data = {
+                    baseurl: '',
+                    files,
+                    isImages
+                };
+                if (typeof callback !== 'function') {
+                    this.options.defaultCallback(this, data);
+                }
+                else {
+                    callback(data);
                 }
             }
             return false;
@@ -18415,6 +18512,9 @@ class fileBrowser_FileBrowser extends viewWithToolbar_ViewWithToolbar {
         });
     }
     destruct() {
+        if (this.isInDestruct) {
+            return;
+        }
         this.dialog.destruct();
         delete this.dialog;
         this.events && this.events.off('.filebrowser');
@@ -19434,7 +19534,7 @@ class Uploader_Uploader extends Component_Component {
         this.setStatus(STATUSES.beforeDestruct);
         this.ajaxInstances.forEach(ajax => {
             try {
-                ajax.abort();
+                ajax.destruct();
             }
             catch (_a) { }
         });

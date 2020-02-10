@@ -4,9 +4,9 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {Config} from '../Config';
-import {IDictionary, IRequest, IViewBased} from '../types';
-import {each, error, extend, isPlainObject, parseQuery} from './helpers/';
+import { Config } from '../Config';
+import { IDictionary, IRequest, IViewBased } from '../types';
+import { each, error, extend, isPlainObject, parseQuery } from './helpers/';
 
 /**
  * @property {object} defaultAjaxOptions A set of key/value pairs that configure the Ajax request. All settings
@@ -35,8 +35,8 @@ import {each, error, extend, isPlainObject, parseQuery} from './helpers/';
  * the XMLHttpRequest object.
  */
 
-import {AjaxOptions, IAjax} from '../types';
-import {buildQuery} from './helpers/buildQuery';
+import { AjaxOptions, IAjax } from '../types';
+import { buildQuery } from './helpers/buildQuery';
 
 declare module '../Config' {
 	interface Config {
@@ -105,12 +105,16 @@ export class Ajax implements IAjax {
 	abort(): Ajax {
 		try {
 			this.xhr.abort();
-		} catch (e) {
-		}
+		} catch (e) {}
 		return this;
 	}
 
+	private resolved = false;
+	private activated = false;
+
 	send(): Promise<any> {
+		this.activated = true;
+
 		return new Promise(
 			(
 				resolve: (this: XMLHttpRequest, resp: object) => any,
@@ -141,6 +145,8 @@ export class Ajax implements IAjax {
 				this.xhr.onload = () => {
 					this.response = this.xhr.responseText;
 					this.status = this.xhr.status;
+					this.resolved = true;
+
 					resolve.call(this.xhr, __parse(this.response) || {});
 				};
 
@@ -150,6 +156,7 @@ export class Ajax implements IAjax {
 
 						this.response = resp;
 						this.status = this.xhr.status;
+						this.resolved = true;
 
 						if (
 							this.success_response_codes.indexOf(
@@ -162,7 +169,7 @@ export class Ajax implements IAjax {
 								this.xhr,
 								error(
 									this.xhr.statusText ||
-									this.jodit.i18n('Connection error!')
+										this.jodit.i18n('Connection error!')
 								)
 							);
 						}
@@ -172,7 +179,7 @@ export class Ajax implements IAjax {
 				this.xhr.withCredentials =
 					this.options.withCredentials || false;
 
-				const {url, data, method} = this.prepareRequest();
+				const { url, data, method } = this.prepareRequest();
 
 				this.xhr.open(method, url, true);
 
@@ -191,11 +198,7 @@ export class Ajax implements IAjax {
 
 				// IE
 				setTimeout(() => {
-					this.xhr.send(
-						data
-							? this.__buildParams(data)
-							: undefined
-					);
+					this.xhr.send(data ? this.__buildParams(data) : undefined);
 				}, 0);
 			}
 		);
@@ -218,7 +221,7 @@ export class Ajax implements IAjax {
 				url =
 					url.substr(0, qIndex) +
 					'?' +
-					buildQuery({...urlData, ...(data as IDictionary)});
+					buildQuery({ ...urlData, ...(data as IDictionary) });
 			} else {
 				url += '?' + buildQuery(this.options.data as IDictionary);
 			}
@@ -251,9 +254,16 @@ export class Ajax implements IAjax {
 		}
 
 		editor &&
-		editor.events &&
-		editor.events.on('beforeDestruct', () => {
+			editor.events &&
+			editor.events.on('beforeDestruct', () => {
+				this.abort();
+			});
+	}
+
+	destruct(): any {
+		if (this.activated && !this.resolved) {
 			this.abort();
-		});
+			this.resolved = true;
+		}
 	}
 }

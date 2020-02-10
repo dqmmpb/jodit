@@ -529,7 +529,20 @@ function sortAttributes(html) {
  * @param options
  */
 function simulateEvent(type, keyCodeArg, element, options) {
+	if (Array.isArray(type)) {
+		return type.forEach(function (event) {
+			simulateEvent(event, keyCodeArg, element, options);
+		});
+	}
+
+	if (Array.isArray(element)) {
+		return element.forEach(function (elm) {
+			simulateEvent(type, keyCodeArg, elm, options);
+		});
+	}
+
 	const evt = (element.ownerDocument || document).createEvent('HTMLEvents');
+
 	evt.initEvent(type, true, true);
 	evt.keyCode = keyCodeArg;
 	evt.which = keyCodeArg;
@@ -563,13 +576,13 @@ function simulateEvent(type, keyCodeArg, element, options) {
  * Click and trigger some button event
  *
  * @param {string} buttonName
- * @param {Jodit} editor
+ * @param {Jodit|HTMLElement} joditOrElement
  */
-function clickButton(buttonName, editor) {
+function clickButton(buttonName, joditOrElement) {
 	simulateEvent(
 		'mousedown',
 		0,
-		editor.container.querySelector(
+		(joditOrElement.isJodit ? joditOrElement.container : joditOrElement).querySelector(
 			'.jodit_toolbar_btn.jodit_toolbar_btn-' + buttonName
 		)
 	);
