@@ -8078,7 +8078,8 @@ class Ajax_Ajax {
         try {
             this.xhr.abort();
         }
-        catch (_a) { }
+        catch (e) {
+        }
         return this;
     }
     send() {
@@ -8087,9 +8088,6 @@ class Ajax_Ajax {
                 let result = null;
                 if (this.options.dataType === 'json') {
                     result = JSON.parse(resp);
-                }
-                if (!result) {
-                    throw type_error('No JSON format');
                 }
                 return result;
             };
@@ -8113,7 +8111,7 @@ class Ajax_Ajax {
                     this.response = resp;
                     this.status = this.xhr.status;
                     if (this.success_response_codes.indexOf(this.xhr.status) > -1) {
-                        resolve.call(this.xhr, __parse(resp));
+                        resolve.call(this.xhr, __parse(resp) || {});
                     }
                     else {
                         reject.call(this.xhr, type_error(this.xhr.statusText ||
@@ -8151,7 +8149,10 @@ class Ajax_Ajax {
             const qIndex = url.indexOf('?');
             if (qIndex !== -1) {
                 const urlData = parseQuery(url);
-                url = url.substr(0, qIndex) + '?' + buildQuery({ ...urlData, ...data });
+                url =
+                    url.substr(0, qIndex) +
+                        '?' +
+                        buildQuery({ ...urlData, ...data });
             }
             else {
                 url += '?' + buildQuery(this.options.data);

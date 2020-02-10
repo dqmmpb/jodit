@@ -4,9 +4,9 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { Config } from '../Config';
-import { IDictionary, IRequest, IViewBased } from '../types';
-import { each, error, extend, isPlainObject, parseQuery } from './helpers/';
+import {Config} from '../Config';
+import {IDictionary, IRequest, IViewBased} from '../types';
+import {each, error, extend, isPlainObject, parseQuery} from './helpers/';
 
 /**
  * @property {object} defaultAjaxOptions A set of key/value pairs that configure the Ajax request. All settings
@@ -35,8 +35,8 @@ import { each, error, extend, isPlainObject, parseQuery } from './helpers/';
  * the XMLHttpRequest object.
  */
 
-import { AjaxOptions, IAjax } from '../types';
-import { buildQuery } from './helpers/buildQuery';
+import {AjaxOptions, IAjax} from '../types';
+import {buildQuery} from './helpers/buildQuery';
 
 declare module '../Config' {
 	interface Config {
@@ -105,8 +105,8 @@ export class Ajax implements IAjax {
 	abort(): Ajax {
 		try {
 			this.xhr.abort();
-		} catch {}
-
+		} catch (e) {
+		}
 		return this;
 	}
 
@@ -116,15 +116,11 @@ export class Ajax implements IAjax {
 				resolve: (this: XMLHttpRequest, resp: object) => any,
 				reject: (error: Error) => any
 			) => {
-				const __parse = (resp: string): object => {
+				const __parse = (resp: string): object | null => {
 					let result: object | null = null;
 
 					if (this.options.dataType === 'json') {
 						result = JSON.parse(resp);
-					}
-
-					if (!result) {
-						throw error('No JSON format');
 					}
 
 					return result;
@@ -160,13 +156,13 @@ export class Ajax implements IAjax {
 								this.xhr.status
 							) > -1
 						) {
-							resolve.call(this.xhr, __parse(resp));
+							resolve.call(this.xhr, __parse(resp) || {});
 						} else {
 							reject.call(
 								this.xhr,
 								error(
 									this.xhr.statusText ||
-										this.jodit.i18n('Connection error!')
+									this.jodit.i18n('Connection error!')
 								)
 							);
 						}
@@ -178,11 +174,7 @@ export class Ajax implements IAjax {
 
 				const {url, data, method} = this.prepareRequest();
 
-				this.xhr.open(
-					method,
-					url,
-					true
-				);
+				this.xhr.open(method, url, true);
 
 				if (this.options.contentType && this.xhr.setRequestHeader) {
 					this.xhr.setRequestHeader(
@@ -222,10 +214,13 @@ export class Ajax implements IAjax {
 			const qIndex = url.indexOf('?');
 
 			if (qIndex !== -1) {
-				const urlData = parseQuery(url) ;
-				url = url.substr(0, qIndex) + '?' + buildQuery({...urlData, ...data as IDictionary})
+				const urlData = parseQuery(url);
+				url =
+					url.substr(0, qIndex) +
+					'?' +
+					buildQuery({...urlData, ...(data as IDictionary)});
 			} else {
-				url += '?' + buildQuery(this.options.data as IDictionary)
+				url += '?' + buildQuery(this.options.data as IDictionary);
 			}
 		}
 
@@ -256,9 +251,9 @@ export class Ajax implements IAjax {
 		}
 
 		editor &&
-			editor.events &&
-			editor.events.on('beforeDestruct', () => {
-				this.abort();
-			});
+		editor.events &&
+		editor.events.on('beforeDestruct', () => {
+			this.abort();
+		});
 	}
 }

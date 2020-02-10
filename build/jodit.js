@@ -5291,7 +5291,8 @@ var Ajax = (function () {
         try {
             this.xhr.abort();
         }
-        catch (_a) { }
+        catch (e) {
+        }
         return this;
     };
     Ajax.prototype.send = function () {
@@ -5301,9 +5302,6 @@ var Ajax = (function () {
                 var result = null;
                 if (_this.options.dataType === 'json') {
                     result = JSON.parse(resp);
-                }
-                if (!result) {
-                    throw helpers_1.error('No JSON format');
                 }
                 return result;
             };
@@ -5327,7 +5325,7 @@ var Ajax = (function () {
                     _this.response = resp;
                     _this.status = _this.xhr.status;
                     if (_this.success_response_codes.indexOf(_this.xhr.status) > -1) {
-                        resolve.call(_this.xhr, __parse(resp));
+                        resolve.call(_this.xhr, __parse(resp) || {});
                     }
                     else {
                         reject.call(_this.xhr, helpers_1.error(_this.xhr.statusText ||
@@ -5365,7 +5363,10 @@ var Ajax = (function () {
             var qIndex = url.indexOf('?');
             if (qIndex !== -1) {
                 var urlData = helpers_1.parseQuery(url);
-                url = url.substr(0, qIndex) + '?' + buildQuery_1.buildQuery(tslib_1.__assign(tslib_1.__assign({}, urlData), data));
+                url =
+                    url.substr(0, qIndex) +
+                        '?' +
+                        buildQuery_1.buildQuery(tslib_1.__assign(tslib_1.__assign({}, urlData), data));
             }
             else {
                 url += '?' + buildQuery_1.buildQuery(this.options.data);
