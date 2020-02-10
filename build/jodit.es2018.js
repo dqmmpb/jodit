@@ -11722,7 +11722,7 @@ function imageProperties(editor) {
             dialog.close();
         });
         buttons.cancel.addEventListener('click', () => dialog.close());
-        dialog.setFooter([buttons.cancel, buttons.remove, buttons.check]);
+        dialog.setFooter([[buttons.cancel, buttons.remove], buttons.check]);
         dialog.setSize(500);
         dialog.open();
         if (e) {
