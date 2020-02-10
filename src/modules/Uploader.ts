@@ -309,6 +309,8 @@ export class Uploader extends Component implements IUploader {
 			return Promise.reject(error('Need files'));
 		}
 
+		const promisesSequence: Array<Promise<any>> = [];
+
 		const promises: Array<Promise<any>> = [];
 
 		if (this.options.insertImageAsBase64URI) {
@@ -419,7 +421,13 @@ export class Uploader extends Component implements IUploader {
 				});
 			}
 
-			uploader.options.prepareData.call(this, form);
+			const prepareDataResult = uploader.options.prepareData.call(this, form);
+
+			if (prepareDataResult instanceof Promise) {
+				promisesSequence.push(prepareDataResult);
+			} else {
+				promisesSequence.push(Promise.resolve(prepareDataResult));
+			}
 
 			promises.push(
 				uploader
@@ -470,7 +478,9 @@ export class Uploader extends Component implements IUploader {
 			);
 		}
 
-		return Promise.all(promises);
+		promisesSequence.push(Promise.all(promises));
+
+		return promisesSequence.reduce((pre, next) => pre.then(r => next));
 	}
 
 	/**

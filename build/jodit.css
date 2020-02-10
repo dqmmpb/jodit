@@ -2031,7 +2031,7 @@ html.jodit_fullsize_box{
 .jodit_fullsize .toolbar{
   width:100% !important;
 }
-.jodit_fullsize .jodit_area,.jodit_fullsize .jodit_editor{
+.jodit_fullsize .jodit,.jodit_fullsize .jodit_area{
   height:100%;
 }
 .jodit_fullsize .jodit_workflow{
@@ -2256,10 +2256,10 @@ html.jodit_fullsize_box{
   min-height:50px;
   overflow:hidden;
 }
-.jodit_editor_resize{
+.jodit_resize{
   position:relative;
 }
-.jodit_editor_resize a{
+.jodit_resize a{
   position:absolute;
   bottom:0;
   right:0;
@@ -2850,16 +2850,17 @@ html.jodit_fullsize_box{
 .jodit_dark_theme.jodit_container,.jodit_dark_theme.jodit_container.jodit_disabled,.jodit_dark_theme .jodit_toolbar_list>.jodit_toolbar{
   background-color:#575757;
 }
-.jodit_dark_theme .jodit_statusbar,.jodit_dark_theme .jodit_workplace{
-  border-color:rgba(87, 87, 87, .8);
+.jodit_dark_theme.jodit_container:not(.jodit_inline) .jodit_workplace{
+  border-color:#575757;
 }
 .jodit_dark_theme .jodit_statusbar{
   background-color:rgba(95, 92, 92, .8);
+  border-color:rgba(87, 87, 87, .8);
 }
 .jodit_dark_theme .jodit_statusbar,.jodit_dark_theme .jodit_statusbar .jodit_statusbar_item span{
   color:#d1cccc;
 }
-.jodit_dark_theme .jodit_toolbar_popup,.jodit_dark_theme .jodit_toolbar_popup-inline,.jodit_dark_theme .jodit_toolbar_popup-inline:before,.jodit_dark_theme .jodit_toolbar_popup:before{
+.jodit_dark_theme .jodit_popup_triangle,.jodit_dark_theme .jodit_popup_triangle:before,.jodit_dark_theme .jodit_toolbar_popup,.jodit_dark_theme .jodit_toolbar_popup-inline,.jodit_dark_theme .jodit_toolbar_popup-inline:before,.jodit_dark_theme .jodit_toolbar_popup:before{
   background:#575757;
 }
 .jodit_dark_theme .jodit_toolbar{
@@ -2881,8 +2882,11 @@ html.jodit_fullsize_box{
 .jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn.active,.jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn.jodit_active,.jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn:active,.jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn:hover{
   background-color:#575757;
 }
-.jodit_dark_theme .jodit_icon,.jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn.jodit_with_dropdownlist .jodit_with_dropdownlist-trigger{
+.jodit_dark_theme .jodit_icon,.jodit_dark_theme .jodit_toolbar li.jodit_toolbar_btn.jodit_with_dropdownlist .jodit_with_dropdownlist-trigger,.jodit_dark_theme .jodit_upload_button svg{
   fill:silver;
+}
+.jodit_dark_theme .jodit_icon_close{
+  stroke:silver;
 }
 .jodit_dark_theme .jodit_wysiwyg,.jodit_dark_theme .jodit_wysiwyg_iframe{
   background-color:#575757;
@@ -2941,5 +2945,18 @@ html.jodit_fullsize_box{
 .jodit_dark_theme .jodit_resizer>i{
   background:rgba(104, 103, 103, .75);
   border-color:silver;
+}
+.jodit_dark_theme .jodit_input{
+  border-color:hsla(0, 5.2%, 81%, .5);
+  background-color:#d1cccc;
+}
+.jodit_dark_theme.jodit_dialog_box .jodit_dialog{
+  background-color:#575757;
+}
+.jodit_dark_theme.jodit_dialog_box .jodit_dialog .jodit_dialog_header,.jodit_dark_theme.jodit_dialog_box .jodit_dialog .jodit_filebrowser_files.active .jodit_filebrowser_files_item{
+  border-color:#444;
+}
+.jodit_dark_theme.jodit_dialog_box .jodit_dialog .jodit_filebrowser_files.active .jodit_filebrowser_files_item-info{
+  background-color:#d1cccc;
 }
 
