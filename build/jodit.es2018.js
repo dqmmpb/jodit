@@ -19392,7 +19392,7 @@ class Uploader_Uploader extends Component_Component {
             const prepareDataResult = uploader.options.prepareData.call(this, form);
             promises.push(Promise.resolve(prepareDataResult)
                 .then(() => {
-                const sendFun = uploader.options.customerSend ||
+                const sendFun = uploader.options.customSend ||
                     Uploader_Uploader.prototype.send;
                 return sendFun.call(this, this.options.url, form, (resp) => {
                     if (this.options.isSuccess.call(uploader, resp)) {

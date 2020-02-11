@@ -166,7 +166,7 @@
         uploader: {
 					url: 'https://xdsoft.net/jodit/connector/index.php?action=fileUpload',
 					insertImageAsBase64URI: true,
-					customerSend: function(url, data, success) {
+					customSend: function(url, data, success) {
 						return new Promise((resolve, reject) => {
 							resolve({
 								success: true,

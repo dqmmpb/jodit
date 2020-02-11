@@ -175,7 +175,7 @@ export interface IUploaderOptions<T> {
 	withCredentials: boolean;
 
 	prepareData: (this: T, formData: FormData) => any;
-	customerSend: (
+	customSend: (
 		this: T,
 		url: string,
 		data: FormData | IDictionary<string>,

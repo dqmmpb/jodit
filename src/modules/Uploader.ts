@@ -438,7 +438,7 @@ export class Uploader extends Component implements IUploader {
 				Promise.resolve(prepareDataResult)
 					.then(() => {
 						const sendFun =
-							uploader.options.customerSend ||
+							uploader.options.customSend ||
 							Uploader.prototype.send;
 
 						return sendFun.call(
