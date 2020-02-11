@@ -789,11 +789,11 @@ export class ImageEditor extends Component {
 				? (editor as IJodit).options.imageeditor
 				: Config.defaultOptions.imageeditor;
 
-		const o = this.options;
-		const i = editor.i18n;
+		const opts = this.options;
+		const i18n = editor.i18n.bind(editor);
 
-		this.resizeUseRatio = o.resizeUseRatio;
-		this.cropUseRatio = o.cropUseRatio;
+		this.resizeUseRatio = opts.resizeUseRatio;
+		this.cropUseRatio = opts.cropUseRatio;
 
 		const r = this.resizeUseRatio;
 		const c = this.cropUseRatio;
@@ -803,7 +803,7 @@ export class ImageEditor extends Component {
 				'<button data-action="reset" type="button" class="jodit_button">' +
 					gi('update') +
 					'&nbsp;' +
-					i('Reset') +
+					i18n('Reset') +
 					'</button>'
 			),
 
@@ -811,7 +811,7 @@ export class ImageEditor extends Component {
 				'<button data-action="save" type="button" class="jodit_button jodit_button_success">' +
 					gi('save') +
 					'&nbsp;' +
-					i('Save') +
+					i18n('Save') +
 					'</button>'
 			),
 
@@ -819,12 +819,12 @@ export class ImageEditor extends Component {
 				'<button data-action="saveas" type="button" class="jodit_button jodit_button_success">' +
 					gi('save') +
 					'&nbsp;' +
-					i('Save as ...') +
+					i18n('Save as ...') +
 					'</button>'
 			)
 		];
 
-		this.activeTab = o.resize ? 'resize' : 'crop';
+		this.activeTab = opts.resize ? 'resize' : 'crop';
 
 		const act = (el: boolean, className = 'active') =>
 			el ? className : '';
@@ -834,18 +834,18 @@ export class ImageEditor extends Component {
 			className: string,
 			active: boolean = true
 		) => `<div class="jodit_form_group">
-			<label>${i(label)}</label>
+			<label>${i18n(label)}</label>
 			<div class="jodit_button_group jodit_button_radio_group">
 				<input ${act(
 					active,
 					'checked'
 				)} type="checkbox" class="${jie}_${className} jodit_input"/>
 
-				<button type="button" data-yes="1" class="jodit_button jodit_status_success">${i(
+				<button type="button" data-yes="1" class="jodit_button jodit_status_success">${i18n(
 					'Yes'
 				)}</button>
 
-				<button type="button" class="jodit_button jodit_status_danger">${i(
+				<button type="button" class="jodit_button jodit_status_danger">${i18n(
 					'No'
 				)}</button>
 			</div>
@@ -856,7 +856,7 @@ export class ImageEditor extends Component {
 							<div class="jodit_grid">
 								<div class="jodit_col-lg-3-4">
 								${
-									o.resize
+									opts.resize
 										? `<div class="${jie}_area ${jie}_area_resize active">
 												<div class="${jie}_box"></div>
 												<div class="${jie}_resizer">
@@ -866,9 +866,9 @@ export class ImageEditor extends Component {
 										: ''
 								}
 								${
-									o.crop
+									opts.crop
 										? `<div class="${jie}_area ${jie}_area_crop ${act(
-												!o.resize
+												!opts.resize
 										  )}">
 												<div class="${jie}_box">
 													<div class="${jie}_croper">
@@ -882,22 +882,22 @@ export class ImageEditor extends Component {
 								</div>
 								<div class="jodit_col-lg-1-4">
 								${
-									o.resize
+									opts.resize
 										? `<div data-area="resize" class="${jie}_slider active">
 												<div class="${jie}_slider-title">
 													${gi('resize')}
-													${i('Resize')}
+													${i18n('Resize')}
 												</div>
 												<div class="${jie}_slider-content">
 													<div class="jodit_form_group">
 														<label for="${jie}_width">
-															${i('Width')}
+															${i18n('Width')}
 														</label>
 														<input type="number" class="${jie}_width jodit_input"/>
 													</div>
 													<div class="jodit_form_group">
 														<label for="${jie}_height">
-															${i('Height')}
+															${i18n('Height')}
 														</label>
 														<input type="number" class="${jie}_height jodit_input"/>
 													</div>
@@ -907,13 +907,13 @@ export class ImageEditor extends Component {
 										: ''
 								}
 								${
-									o.crop
+									opts.crop
 										? `<div data-area="crop" class="${jie}_slider ${act(
-												!o.resize
+												!opts.resize
 										  )}'">
 												<div class="${jie}_slider-title">
 													${gi('crop')}
-													${i('Crop')}
+													${i18n('Crop')}
 												</div>
 												<div class="${jie}_slider-content">
 													${switcher('Keep Aspect Ratio', 'keep_spect_ratio_crop', c)}

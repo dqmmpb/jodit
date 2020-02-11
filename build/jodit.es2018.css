@@ -1583,6 +1583,7 @@ svg.jodit_icon{
   margin:10px 0;
   text-align:center;
   overflow:hidden;
+  min-width:180px;
 }
 .jodit_draganddrop_file_box:hover,.jodit_uploadfile_button:hover{
   background-color:#ecebe9;

@@ -233,4 +233,5 @@ export default {
 	'copy': 'kopya',
 	'Border radius': 'Sınır yarıçapı',
 	'Show all': 'Tümünü Göster ',
+	'Inline Base64URI': 'Inline Base64URI',
 } as IDictionary<string>;

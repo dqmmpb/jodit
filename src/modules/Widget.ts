@@ -52,16 +52,17 @@ export namespace Widget {
 		callback: (newColor: string) => void,
 		coldColor: string
 	): HTMLDivElement => {
+		const i18n = editor.i18n.bind(editor);
 		const valueHex = normalizeColor(coldColor),
 			form: HTMLDivElement = editor.create.div('jodit_colorpicker'),
 			iconEye: string = editor.options.textIcons
 				? ''
 				: ToolbarIcon.getIcon('eye'),
 			iconEraser: string = editor.options.textIcons
-				? `<span>${editor.i18n('eraser')}</span>`
+				? `<span>${i18n('eraser')}</span>`
 				: ToolbarIcon.getIcon('eraser'),
 			iconPalette: string = editor.options.textIcons
-				? `<span>${editor.i18n('palette')}</span>`
+				? `<span>${i18n('palette')}</span>`
 				: ToolbarIcon.getIcon('palette'),
 			setColor = (target: HTMLElement, color: string) => {
 				target.innerHTML = ToolbarIcon.getIcon('eye');
@@ -243,6 +244,7 @@ export namespace Widget {
 		tabs: IDictionary<(() => void) | HTMLElement>,
 		state?: { __activeTab: string }
 	): HTMLDivElement => {
+		const i18n = editor.i18n.bind(editor);
 		const box: HTMLDivElement = editor.create.div('jodit_tabs'),
 			tabBox: HTMLDivElement = editor.create.div('jodit_tabs_wrapper'),
 			buttons: HTMLDivElement = editor.create.div('jodit_tabs_buttons'),
@@ -269,7 +271,7 @@ export namespace Widget {
 
 			button.innerHTML = /<svg/.test(name.toString())
 				? name
-				: editor.i18n(name.toString());
+				: i18n(name.toString());
 			buttons.appendChild(button);
 
 			if (typeof tabOptions !== 'function') {
@@ -387,6 +389,7 @@ export namespace Widget {
 		close: () => void,
 		isImage: boolean = true
 	): HTMLDivElement => {
+		const i18n = editor.i18n.bind(editor);
 		let currentImage: any;
 
 		const tabs: IDictionary<HTMLElement> | IDictionary<() => void> = {};
@@ -398,21 +401,36 @@ export namespace Widget {
 				editor.options.uploader.insertImageAsBase64URI)
 		) {
 			const dragbox = editor.create.fromHTML(
-				'<div class="jodit_draganddrop_file_box">' +
-					`<strong>${editor.i18n(
+				'<div class="jodit_draganddrop_file_box_wrapper">' +
+					(isImage
+						? `<label>
+							<input
+							 class="jodit_checkbox"
+							 name="insertImageAsBase64URI"
+							 type="checkbox"
+							 ${editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : ''}
+							 />
+								<span>${i18n('Inline Base64URI')}</span>
+							</label>`
+						: '') +
+					'<div class="jodit_draganddrop_file_box">' +
+					`<strong>${i18n(
 						isImage ? 'Drop image' : 'Drop file'
 					)}</strong>` +
-					`<span><br>${editor.i18n('or click')}</span>` +
+					`<span><br>${i18n('or click')}</span>` +
 					`<input type="file" accept="${
 						isImage ? 'image/*' : '*'
 					}" tabindex="-1" dir="auto" multiple=""/>` +
+					'</div>' +
 					'</div>'
 			);
 
 			editor.getInstance<IUploader>('Uploader').bind(
 				dragbox,
 				(resp: IUploaderData) => {
-					let handler = isFunction(callbacks.upload) ? callbacks.upload : editor.options.uploader.defaultHandlerSuccess;
+					const handler = isFunction(callbacks.upload)
+						? callbacks.upload
+						: editor.options.uploader.defaultHandlerSuccess;
 
 					if (typeof handler === 'function') {
 						handler.call(editor, resp);
@@ -426,7 +444,7 @@ export namespace Widget {
 			const icon = editor.options.textIcons
 				? ''
 				: ToolbarIcon.getIcon('upload');
-			tabs[icon + editor.i18n('Upload')] = dragbox;
+			tabs[icon + i18n('Upload')] = dragbox;
 		}
 
 		if (callbacks.filebrowser) {
@@ -437,7 +455,7 @@ export namespace Widget {
 				const icon = editor.options.textIcons
 					? ''
 					: ToolbarIcon.getIcon('folder');
-				tabs[icon + editor.i18n('Browse')] = () => {
+				tabs[icon + i18n('Browse')] = () => {
 					close && close();
 					if (callbacks.filebrowser) {
 						(editor.getInstance(
@@ -450,22 +468,18 @@ export namespace Widget {
 
 		if (callbacks.url) {
 			const form = editor.create.fromHTML(
-		`<form onsubmit="return false;" class="jodit_form">
-						<div class="jodit_form_group">
-							<input class="jodit_input" type="text" required name="url" placeholder="http://"/>
-						</div>
-						<div class="jodit_form_group">
-							<input class="jodit_input" type="text" name="text" placeholder="${editor.i18n('Alternative text')}"/>
-						</div>
-						<div style="text-align: right"><button class="jodit_button">${editor.i18n('Insert')}</button></div>
-					</form>`
+				`<form onsubmit="return false;" class="jodit_form">
+                    <div class="jodit_form_group">
+                        <input class="jodit_input" type="text" required name="url" placeholder="http://"/>
+                    </div>
+                    <div class="jodit_form_group">
+                        <input class="jodit_input" type="text" name="text" placeholder="${i18n('Alternative text')}"/>
+                    </div>
+                    <div style="text-align: right"><button class="jodit_button">${i18n('Insert')}</button></div>
+                </form>`
 				) as HTMLFormElement,
-				button = form.querySelector(
-					'button'
-				) as HTMLButtonElement,
-				url = form.querySelector(
-					'input[name=url]'
-				) as HTMLInputElement;
+				button = form.querySelector('button') as HTMLButtonElement,
+				url = form.querySelector('input[name=url]') as HTMLInputElement;
 
 			currentImage = null;
 
@@ -477,7 +491,7 @@ export namespace Widget {
 				currentImage = elm.tagName === 'IMG' ? elm : $$('img', elm)[0];
 				val(form, 'input[name=url]', currentImage.getAttribute('src'));
 				val(form, 'input[name=text]', currentImage.getAttribute('alt'));
-				button.textContent = editor.i18n('Update');
+				button.textContent = i18n('Update');
 			}
 
 			if (
@@ -486,7 +500,7 @@ export namespace Widget {
 			) {
 				val(form, 'input[name=url]', elm.getAttribute('href') || '');
 				val(form, 'input[name=text]', elm.getAttribute('title') || '');
-				button.textContent = editor.i18n('Update');
+				button.textContent = i18n('Update');
 			}
 
 			form.addEventListener(

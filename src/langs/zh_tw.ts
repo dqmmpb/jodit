@@ -112,7 +112,7 @@ export default {
 	'Drop image': '拖動圖片到此',
 	'Drop file': '拖動文件到此',
 	'or click': '或點擊',
-	'Alternative text': 'Alternative text',
+	'Alternative text': '替代文本',
 	Browse: '瀏覽',
 	Upload: '上傳',
 	Background: '背景色',
@@ -232,4 +232,5 @@ export default {
 	'copy': 'คัดลอก',
 	'Border radius': 'เส้นขอบรัศมี',
 	'Show all': 'แสดงทั้งหมด',
+	'Inline Base64URI': 'Base64內聯',
 } as IDictionary<string>;

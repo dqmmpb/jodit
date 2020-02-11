@@ -202,6 +202,7 @@ export class Uploader extends Component implements IUploader {
 	private ajaxInstances: IAjax[] = [];
 
 	send(
+		url: string,
 		data: FormData | IDictionary<string>,
 		success: (resp: IUploaderAnswer) => void
 	): Promise<any> {
@@ -246,7 +247,7 @@ export class Uploader extends Component implements IUploader {
 					},
 					method: this.options.method || 'POST',
 					data: request,
-					url: this.options.url,
+					url,
 					headers: this.options.headers,
 					queryBuild: this.options.queryBuild,
 					contentType: this.options.contentType.call(this, request),
@@ -294,6 +295,7 @@ export class Uploader extends Component implements IUploader {
 	 * @param process
 	 */
 	sendFiles(
+		insertImageAsBase64URI: boolean,
 		files: FileList | File[] | null,
 		handlerSuccess?: HandlerSuccess,
 		handlerError?: HandlerError,
@@ -313,7 +315,7 @@ export class Uploader extends Component implements IUploader {
 
 		const promises: Array<Promise<any>> = [];
 
-		if (this.options.insertImageAsBase64URI) {
+		if (insertImageAsBase64URI) {
 			let file: File, i: number;
 
 			for (i = 0; i < fileList.length; i += 1) {
@@ -427,51 +429,66 @@ export class Uploader extends Component implements IUploader {
 				});
 			}
 
-			const prepareDataResult = uploader.options.prepareData.call(this, form);
+			const prepareDataResult = uploader.options.prepareData.call(
+				this,
+				form
+			);
 
 			promises.push(
 				Promise.resolve(prepareDataResult)
 					.then(() => {
-						return uploader.send(form, (resp: IUploaderAnswer) => {
-							if (this.options.isSuccess.call(uploader, resp)) {
+						const sendFun =
+							uploader.options.customerSend ||
+							Uploader.prototype.send;
+
+						return sendFun.call(
+							this,
+							this.options.url,
+							form,
+							(resp: IUploaderAnswer) => {
 								if (
-									typeof (
-										handlerSuccess ||
-										uploader.options.defaultHandlerSuccess
-									) === 'function'
+									this.options.isSuccess.call(uploader, resp)
 								) {
-									((handlerSuccess ||
-										uploader.options
-											.defaultHandlerSuccess) as HandlerSuccess).call(
-										uploader,
-										uploader.options.process.call(
+									if (
+										typeof (
+											handlerSuccess ||
+											uploader.options
+												.defaultHandlerSuccess
+										) === 'function'
+									) {
+										((handlerSuccess ||
+											uploader.options
+												.defaultHandlerSuccess) as HandlerSuccess).call(
 											uploader,
-											resp
-										) as IUploaderData
-									);
-								}
-							} else {
-								if (
-									typeof (
-										handlerError ||
-										uploader.options.defaultHandlerError
-									)
-								) {
-									((handlerError ||
-										uploader.options
-											.defaultHandlerError) as HandlerError).call(
-										uploader,
-										error(
-											uploader.options.getMessage.call(
+											uploader.options.process.call(
 												uploader,
 												resp
-											)
+											) as IUploaderData
+										);
+									}
+								} else {
+									if (
+										typeof (
+											handlerError ||
+											uploader.options.defaultHandlerError
 										)
-									);
-									return;
+									) {
+										((handlerError ||
+											uploader.options
+												.defaultHandlerError) as HandlerError).call(
+											uploader,
+											error(
+												uploader.options.getMessage.call(
+													uploader,
+													resp
+												)
+											)
+										);
+										return;
+									}
 								}
 							}
-						});
+						);
 					})
 					.then(() => {
 						this.jodit.events &&
@@ -532,10 +549,8 @@ export class Uploader extends Component implements IUploader {
 	) {
 		const self: Uploader = this,
 			onPaste = (e: ClipboardEvent): false | void => {
-				let i: number,
-					file: File | null,
-					extension: string,
-					cData = e.clipboardData;
+				let i: number, file: File | null, extension: string;
+				const cData = e.clipboardData;
 
 				const process = (formdata: FormData) => {
 					if (file) {
@@ -544,9 +559,23 @@ export class Uploader extends Component implements IUploader {
 					}
 				};
 
+				// form insertImageAsBase64URI control
+				const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
+					'input[name=insertImageAsBase64URI]'
+				);
+
+				const insertImageAsBase64URI = inputInsertImageAsBase64URI
+					? !!inputInsertImageAsBase64URI.checked
+					: self.options.insertImageAsBase64URI;
+
 				// send data on server
 				if (cData && cData.files && cData.files.length) {
-					this.sendFiles(cData.files, handlerSuccess, handlerError);
+					this.sendFiles(
+						insertImageAsBase64URI,
+						cData.files,
+						handlerSuccess,
+						handlerError
+					);
 
 					return false;
 				}
@@ -554,8 +583,7 @@ export class Uploader extends Component implements IUploader {
 				if (browser('ff') || IS_IE) {
 					if (
 						cData &&
-						(!cData.types.length ||
-							cData.types[0] !== TEXT_PLAIN)
+						(!cData.types.length || cData.types[0] !== TEXT_PLAIN)
 					) {
 						const div = this.jodit.create.div('', {
 							tabindex: -1,
@@ -589,6 +617,7 @@ export class Uploader extends Component implements IUploader {
 									child.getAttribute('src') || '';
 								restore();
 								self.sendFiles(
+									insertImageAsBase64URI,
 									[Uploader.dataURItoBlob(src) as File],
 									handlerSuccess,
 									handlerError
@@ -618,6 +647,7 @@ export class Uploader extends Component implements IUploader {
 									: '';
 
 								this.sendFiles(
+									insertImageAsBase64URI,
 									[file],
 									handlerSuccess,
 									handlerError,
@@ -676,7 +706,18 @@ export class Uploader extends Component implements IUploader {
 				) {
 					event.preventDefault();
 					event.stopImmediatePropagation();
+
+					// form insertImageAsBase64URI control
+					const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
+						'input[name=insertImageAsBase64URI]'
+					);
+
+					const insertImageAsBase64URI = inputInsertImageAsBase64URI
+						? !!inputInsertImageAsBase64URI.checked
+						: self.options.insertImageAsBase64URI;
+
 					this.sendFiles(
+						insertImageAsBase64URI,
 						event.dataTransfer.files,
 						handlerSuccess,
 						handlerError
@@ -692,16 +733,28 @@ export class Uploader extends Component implements IUploader {
 			self.jodit.events.on(inputFile, 'change', function(
 				this: HTMLInputElement
 			) {
-				self.sendFiles(this.files, handlerSuccess, handlerError).then(
-					() => {
-						inputFile.value = '';
-
-						if (!/safari/i.test(navigator.userAgent)) {
-							inputFile.type = '';
-							inputFile.type = 'file';
-						}
-					}
+				// form insertImageAsBase64URI control
+				const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
+					'input[name=insertImageAsBase64URI]'
 				);
+
+				const insertImageAsBase64URI = inputInsertImageAsBase64URI
+					? !!inputInsertImageAsBase64URI.checked
+					: self.options.insertImageAsBase64URI;
+
+				self.sendFiles(
+					insertImageAsBase64URI,
+					this.files,
+					handlerSuccess,
+					handlerError
+				).then(() => {
+					inputFile.value = '';
+
+					if (!/safari/i.test(navigator.userAgent)) {
+						inputFile.type = '';
+						inputFile.type = 'file';
+					}
+				});
 			});
 		}
 	}
@@ -720,6 +773,7 @@ export class Uploader extends Component implements IUploader {
 	) {
 		const uploader = this;
 		uploader.send(
+			this.options.url,
 			{
 				action: 'fileUploadRemote',
 				url

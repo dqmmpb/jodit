@@ -233,4 +233,5 @@ export default {
 	'copy': 'copia',
 	'Border radius': 'Border radius',
 	'Show all': 'Mostra tutti',
+	'Inline Base64URI': 'Inline Base64URI',
 } as IDictionary<string>;

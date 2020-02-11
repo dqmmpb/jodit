@@ -221,4 +221,5 @@ export default {
 	'copy': 'نسخ',
 	'Border radius': 'دائرة نصف قطرها الحدود',
 	'Show all': 'عرض كل',
+	'Inline Base64URI': 'مضمنة Base64URI',
 } as IDictionary<string>;

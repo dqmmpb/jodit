@@ -236,4 +236,5 @@ export default {
 	'copy': 'másolás',
 	'Border radius': 'Határ sugár',
 	'Show all': 'Összes',
+	'Inline Base64URI': 'Inline Base64URI',
 } as IDictionary<string>;

@@ -175,6 +175,12 @@ export interface IUploaderOptions<T> {
 	withCredentials: boolean;
 
 	prepareData: (this: T, formData: FormData) => any;
+	customerSend: (
+		this: T,
+		url: string,
+		data: FormData | IDictionary<string>,
+		success: (resp: IUploaderAnswer) => void
+	) => Promise<any>;
 	buildData?: (this: T, formData: any) => BuildDataResult;
 	queryBuild?: (
 		obj: string | IDictionary<string | object> | FormData,
@@ -199,11 +205,13 @@ export interface IUploader extends IComponent {
 	buildData(data: FormData | IDictionary<string> | string): BuildDataResult;
 
 	send(
+		url: string,
 		data: FormData | IDictionary<string>,
 		success: (resp: IUploaderAnswer) => void
 	): Promise<any>;
 
 	sendFiles(
+		insertImageAsBase64URI: boolean,
 		files: FileList | File[] | null,
 		handlerSuccess?: HandlerSuccess,
 		handlerError?: HandlerError,

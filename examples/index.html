@@ -164,7 +164,22 @@
             timeout: 100
         },
         uploader: {
-            url: 'https://xdsoft.net/jodit/connector/index.php?action=fileUpload'
+					url: 'https://xdsoft.net/jodit/connector/index.php?action=fileUpload',
+					insertImageAsBase64URI: true,
+					customerSend: function(url, data, success) {
+						return new Promise((resolve, reject) => {
+							resolve({
+								success: true,
+								data: {
+									baseurl: '',
+									files: [`http://email-tool-us.oss-accelerate.aliyuncs.com/uploadDoc/9b58367a-f1a4-4a0d-9a4b-1052c06a904b.jpg`],
+									isImages: [true],
+								}
+							});
+						}).then((resp) => {
+							success.call(this, resp);
+						});
+					}
         },
         filebrowser: {
             // buttons: ['list', 'tiles', 'sort'],
