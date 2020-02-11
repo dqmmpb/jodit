@@ -3354,9 +3354,9 @@ var Widget_Widget;
             editor.options.uploader &&
             (editor.options.uploader.url ||
                 editor.options.uploader.insertImageAsBase64URI)) {
-            const dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_file_box_wrapper">' +
+            const dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_wrapper">' +
                 (isImage
-                    ? `<label class="jodit_vertical_middle">
+                    ? `<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">
 							<input
 							 class="jodit_checkbox"
 							 name="insertImageAsBase64URI"

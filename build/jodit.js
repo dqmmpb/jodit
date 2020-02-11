@@ -3334,9 +3334,9 @@ var Widget;
             editor.options.uploader &&
             (editor.options.uploader.url ||
                 editor.options.uploader.insertImageAsBase64URI)) {
-            var dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_file_box_wrapper">' +
+            var dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_wrapper">' +
                 (isImage
-                    ? "<label class=\"jodit_vertical_middle\">\n\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"insertImageAsBase64URI\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />\n\t\t\t\t\t\t\t\t<span>" + i18n('Inline Base64URI') + "</span>\n\t\t\t\t\t\t\t</label>"
+                    ? "<label class=\"jodit_draganddrop_label_base64 jodit_vertical_middle\">\n\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"insertImageAsBase64URI\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />\n\t\t\t\t\t\t\t\t<span>" + i18n('Inline Base64URI') + "</span>\n\t\t\t\t\t\t\t</label>"
                     : '') +
                 '<div class="jodit_draganddrop_file_box">' +
                 ("<strong>" + i18n(isImage ? 'Drop image' : 'Drop file') + "</strong>") +
