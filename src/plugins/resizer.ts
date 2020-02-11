@@ -328,8 +328,8 @@ export function resizer(editor: IJodit) {
 			isResizing = true;
 			// resized = false;
 
-			start_x = e.clientX;
-			start_y = e.clientY;
+			start_x = e.screenX;
+			start_y = e.screenY;
 			editor.events.fire('hidePopup');
 			editor.lock(LOCK_KEY);
 		});
@@ -371,8 +371,8 @@ export function resizer(editor: IJodit) {
 					'mousemove.resizer touchmove.resizer',
 					(e: MouseEvent) => {
 						if (isResizing) {
-							diff_x = e.clientX - start_x;
-							diff_y = e.clientY - start_y;
+							diff_x = e.screenX - start_x;
+							diff_y = e.screenY - start_y;
 
 							if (!currentElement) {
 								return;
