@@ -380,16 +380,22 @@ export class Uploader extends Component implements IUploader {
 						/\/([a-z0-9]+)/i
 					) as string[];
 
+					const ext: string[] = file.name.match(
+						/\.([^\.]+)$/i
+					) as string[];
+
 					const extension: string =
-						mime && mime[1] ? mime[1].toLowerCase() : '';
+						(ext && ext[1]) ||
+						(mime && mime[1] && mime[1].toLowerCase()) ||
+						'';
 
 					let newName =
-						fileList[i].name ||
+						file.name ||
 						Math.random()
 							.toString()
 							.replace('.', '');
 
-					if (extension) {
+					if (extension && !['plain'].includes(extension)) {
 						let extForReg = extension;
 
 						if (['jpeg', 'jpg'].includes(extForReg)) {
