@@ -49,13 +49,14 @@ Config.prototype.addNewLineTagsTriggers = [
  */
 
 export function addNewLine(editor: IJodit) {
+	const i18n = editor.i18n.bind(editor);
 	if (!editor.options.addNewLine) {
 		return;
 	}
 
 	const line = editor.create.fromHTML(
 		'<div role="button" tabIndex="-1" title="' +
-			editor.i18n('Break') +
+			i18n('Break') +
 			'" class="jodit-add-new-line"><span>' +
 			ToolbarIcon.getIcon('enter') +
 			'</span></div>'

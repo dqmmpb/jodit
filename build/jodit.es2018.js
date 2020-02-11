@@ -8273,11 +8273,12 @@ Config_Config.prototype.addNewLineTagsTriggers = [
     'jodit'
 ];
 function addNewLine(editor) {
+    const i18n = editor.i18n.bind(editor);
     if (!editor.options.addNewLine) {
         return;
     }
     const line = editor.create.fromHTML('<div role="button" tabIndex="-1" title="' +
-        editor.i18n('Break') +
+        i18n('Break') +
         '" class="jodit-add-new-line"><span>' +
         ToolbarIcon.getIcon('enter') +
         '</span></div>');
@@ -9254,6 +9255,7 @@ const getDataTransfer = (event) => {
 Config_Config.prototype.controls.paste = {
     tooltip: 'Paste from clipboard',
     async exec(editor) {
+        const i18n = editor.i18n.bind(editor);
         editor.selection.focus();
         let text = '', error = true;
         if (error) {
@@ -9287,7 +9289,7 @@ Config_Config.prototype.controls.paste = {
         }
         else {
             if (error) {
-                Alert(editor.i18n("Your browser doesn't support direct access to the clipboard."), () => {
+                Alert(i18n("Your browser doesn't support direct access to the clipboard."), () => {
                     editor.selection.focus();
                 });
             }
@@ -9295,6 +9297,7 @@ Config_Config.prototype.controls.paste = {
     }
 };
 function paste(editor) {
+    const i18n = editor.i18n.bind(editor);
     const opt = editor.options, clearOrKeep = (msg, title, callback, clearButton = 'Clean', clear2Button = 'Insert only Text') => {
         var _a;
         if (editor.events &&
@@ -9303,10 +9306,10 @@ function paste(editor) {
         }
         const dialog = Confirm(`<div style="word-break: normal; white-space: normal">${msg}</div>`, title, callback);
         editor.markOwner(dialog.container);
-        const keep = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button jodit_button_primary"><span>${editor.i18n('Keep')}</span></a>`);
-        const clear = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n(clearButton)}</span></a>`);
-        const clear2 = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n(clear2Button)}</span></a>`);
-        const cancel = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n('Cancel')}</span></a>`);
+        const keep = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button jodit_button_primary"><span>${i18n('Keep')}</span></a>`);
+        const clear = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${i18n(clearButton)}</span></a>`);
+        const clear2 = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${i18n(clear2Button)}</span></a>`);
+        const cancel = dialog.create.fromHTML(`<a href="javascript:void(0)" class="jodit_button"><span>${i18n('Cancel')}</span></a>`);
         editor.events.on(keep, 'click', () => {
             dialog.close();
             callback && callback(true);
@@ -9358,7 +9361,7 @@ function paste(editor) {
                 editor.setEditorValue();
             };
             if (opt.askBeforePasteHTML) {
-                clearOrKeep(editor.i18n('Your code is similar to HTML. Keep as HTML?'), editor.i18n('Paste as HTML'), (agree) => {
+                clearOrKeep(i18n('Your code is similar to HTML. Keep as HTML?'), i18n('Paste as HTML'), (agree) => {
                     let insertType = INSERT_AS_HTML;
                     if (agree === false) {
                         insertType = INSERT_AS_TEXT;
@@ -9419,8 +9422,8 @@ function paste(editor) {
                             editor.setEditorValue();
                         };
                         if (opt.askBeforePasteFromWord) {
-                            clearOrKeep(editor.i18n('The pasted content is coming from a Microsoft Word/Excel document. ' +
-                                'Do you want to keep the format or clean it up?'), editor.i18n('Word Paste Detected'), (agree) => {
+                            clearOrKeep(i18n('The pasted content is coming from a Microsoft Word/Excel document. ' +
+                                'Do you want to keep the format or clean it up?'), i18n('Word Paste Detected'), (agree) => {
                                 let insertType = INSERT_AS_HTML;
                                 if (agree === false) {
                                     insertType = INSERT_AS_TEXT;
@@ -10647,6 +10650,7 @@ function font_font(editor) {
 Config_Config.prototype.controls.paragraph = {
     command: 'formatBlock',
     getLabel: (editor, btn, button) => {
+        const i18n = editor.i18n.bind(editor);
         const current = editor.selection.current();
         if (current && editor.options.textIcons) {
             const currentBox = Dom_Dom.closest(current, node => Dom_Dom.isBlock(node, editor.editorWindow), editor.editor) || editor.editor, currentValue = currentBox.nodeName.toLowerCase(), list = btn.list;
@@ -10655,7 +10659,7 @@ Config_Config.prototype.controls.paragraph = {
                 btn.data.currentValue !== currentValue &&
                 btn.list &&
                 list[currentValue]) {
-                button.textBox.innerHTML = `<span>${editor.i18n(list[currentValue])}</span>`;
+                button.textBox.innerHTML = `<span>${i18n(list[currentValue])}</span>`;
                 button.textBox.firstChild.classList.add('jodit_icon');
                 btn.data.currentValue = currentValue;
             }
@@ -10700,7 +10704,8 @@ Config_Config.prototype.controls.paragraph = {
         return false;
     },
     template: (editor, key, value) => {
-        return `<${key} class="jodit_list_element"><span>${editor.i18n(value)}</span></${key}></li>`;
+        const i18n = editor.i18n.bind(editor);
+        return `<${key} class="jodit_list_element"><span>${i18n(value)}</span></${key}></li>`;
     },
     tooltip: 'Insert format block'
 };
@@ -10769,11 +10774,12 @@ Config_Config.prototype.controls.fullsize = {
     },
     isActive: (editor) => editor.isFullSize(),
     getLabel: (editor, btn, button) => {
+        const i18n = editor.i18n.bind(editor);
         const mode = editor.isFullSize() ? 'shrink' : 'fullsize';
         if (button) {
             button.textBox.innerHTML = !editor.options.textIcons
                 ? ToolbarIcon.getIcon(mode)
-                : `<span>${editor.i18n(mode)}</span>`;
+                : `<span>${i18n(mode)}</span>`;
             button.textBox.firstChild.classList.add('jodit_icon');
         }
     },
@@ -11277,7 +11283,7 @@ Config_Config.prototype.image = {
     selectImageAfterClose: true
 };
 function imageProperties(editor) {
-    const i18n = editor.i18n, gi = ToolbarIcon.getIcon.bind(ToolbarIcon), opt = editor.options, dom = editor.create.fromHTML.bind(editor.create);
+    const i18n = editor.i18n.bind(editor), gi = ToolbarIcon.getIcon.bind(ToolbarIcon), opt = editor.options, dom = editor.create.fromHTML.bind(editor.create);
     const open = function (e) {
         if (opt.readonly) {
             return;
@@ -13462,11 +13468,12 @@ class placeholder_placeholder extends Plugin_Plugin {
         };
     }
     afterInit(editor) {
+        const i18n = editor.i18n.bind(editor);
         if (!editor.options.showPlaceholder) {
             return;
         }
         this.toggle = editor.async.debounce(this.toggle.bind(this), this.jodit.defaultTimeout / 10);
-        this.placeholderElm = editor.create.fromHTML(`<span style="display: none;" class="jodit_placeholder">${editor.i18n(editor.options.placeholder)}</span>`);
+        this.placeholderElm = editor.create.fromHTML(`<span style="display: none;" class="jodit_placeholder">${i18n(editor.options.placeholder)}</span>`);
         if (editor.options.direction === 'rtl') {
             this.placeholderElm.style.right = '0px';
             this.placeholderElm.style.direction = 'rtl';
@@ -15462,6 +15469,7 @@ Config_Config.prototype.controls.symbol = {
     hotkeys: ['ctrl+shift+i', 'cmd+shift+i'],
     tooltip: 'Insert Special Character',
     popup: (editor, current, control, close) => {
+        const i18n = editor.i18n.bind(editor);
         const container = editor.events.fire('generateSpecialCharactersTable.symbols');
         if (container) {
             if (editor.options.usePopupForSpecialCharacters) {
@@ -15472,7 +15480,7 @@ Config_Config.prototype.controls.symbol = {
                 return box;
             }
             else {
-                const dialog = Alert(container, editor.i18n('Select Special Character'), undefined, 'jodit_symbols');
+                const dialog = Alert(container, i18n('Select Special Character'), undefined, 'jodit_symbols');
                 const a = container.querySelector('a');
                 a && a.focus();
                 editor.events.on('beforeDestruct', () => {

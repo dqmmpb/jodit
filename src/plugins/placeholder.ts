@@ -67,6 +67,7 @@ export class placeholder extends Plugin {
 	private placeholderElm!: HTMLElement;
 
 	protected afterInit(editor: IJodit): void {
+		const i18n = editor.i18n.bind(editor);
 		if (!editor.options.showPlaceholder) {
 			return;
 		}
@@ -77,7 +78,7 @@ export class placeholder extends Plugin {
 		);
 
 		this.placeholderElm = editor.create.fromHTML(
-			`<span style="display: none;" class="jodit_placeholder">${editor.i18n(
+			`<span style="display: none;" class="jodit_placeholder">${i18n(
 				editor.options.placeholder
 			)}</span>`
 		);

@@ -238,6 +238,7 @@ Config.prototype.controls.symbol = {
 	hotkeys: ['ctrl+shift+i', 'cmd+shift+i'],
 	tooltip: 'Insert Special Character',
 	popup: (editor: IJodit, current, control, close): any => {
+		const i18n = editor.i18n.bind(editor);
 		const container: HTMLElement | undefined = editor.events.fire(
 			'generateSpecialCharactersTable.symbols'
 		);
@@ -252,7 +253,7 @@ Config.prototype.controls.symbol = {
 			} else {
 				const dialog = Alert(
 					container,
-					editor.i18n('Select Special Character'),
+					i18n('Select Special Character'),
 					undefined,
 					'jodit_symbols'
 				);

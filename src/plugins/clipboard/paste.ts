@@ -85,6 +85,7 @@ Config.prototype.controls.paste = {
 	tooltip: 'Paste from clipboard',
 
 	async exec(editor: IJodit) {
+		const i18n = editor.i18n.bind(editor);
 		editor.selection.focus();
 
 		let text = '',
@@ -124,7 +125,7 @@ Config.prototype.controls.paste = {
 		} else {
 			if (error) {
 				Alert(
-					editor.i18n(
+					i18n(
 						"Your browser doesn't support direct access to the clipboard."
 					),
 					() => {
@@ -140,6 +141,7 @@ Config.prototype.controls.paste = {
  * Ask before paste HTML source
  */
 export function paste(editor: IJodit) {
+	const i18n = editor.i18n.bind(editor);
 	const opt = editor.options,
 		clearOrKeep = (
 			msg: string,
@@ -171,25 +173,25 @@ export function paste(editor: IJodit) {
 			editor.markOwner(dialog.container);
 
 			const keep = dialog.create.fromHTML(
-				`<a href="javascript:void(0)" class="jodit_button jodit_button_primary"><span>${editor.i18n(
+				`<a href="javascript:void(0)" class="jodit_button jodit_button_primary"><span>${i18n(
 					'Keep'
 				)}</span></a>`
 			) as HTMLAnchorElement;
 
 			const clear = dialog.create.fromHTML(
-				`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n(
+				`<a href="javascript:void(0)" class="jodit_button"><span>${i18n(
 					clearButton
 				)}</span></a>`
 			) as HTMLAnchorElement;
 
 			const clear2 = dialog.create.fromHTML(
-				`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n(
+				`<a href="javascript:void(0)" class="jodit_button"><span>${i18n(
 					clear2Button
 				)}</span></a>`
 			) as HTMLAnchorElement;
 
 			const cancel = dialog.create.fromHTML(
-				`<a href="javascript:void(0)" class="jodit_button"><span>${editor.i18n(
+				`<a href="javascript:void(0)" class="jodit_button"><span>${i18n(
 					'Cancel'
 				)}</span></a>`
 			) as HTMLAnchorElement;
@@ -277,8 +279,8 @@ export function paste(editor: IJodit) {
 
 			if (opt.askBeforePasteHTML) {
 				clearOrKeep(
-					editor.i18n('Your code is similar to HTML. Keep as HTML?'),
-					editor.i18n('Paste as HTML'),
+					i18n('Your code is similar to HTML. Keep as HTML?'),
+					i18n('Paste as HTML'),
 					(agree: boolean | number) => {
 						let insertType: string = INSERT_AS_HTML;
 
@@ -365,12 +367,12 @@ export function paste(editor: IJodit) {
 
 						if (opt.askBeforePasteFromWord) {
 							clearOrKeep(
-								editor.i18n(
+								i18n(
 									'The pasted content is coming from a Microsoft Word/Excel document. ' +
 										'Do you want to keep the format or clean it up?'
 								),
 
-								editor.i18n('Word Paste Detected'),
+								i18n('Word Paste Detected'),
 								(agree: number | boolean) => {
 									let insertType: string = INSERT_AS_HTML;
 

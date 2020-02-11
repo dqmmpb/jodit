@@ -12,6 +12,7 @@ import { IControlType } from '../types/toolbar';
 Config.prototype.controls.paragraph = {
 	command: 'formatBlock',
 	getLabel: (editor: IJodit, btn, button): boolean => {
+		const i18n = editor.i18n.bind(editor);
 		const current: Node | false = editor.selection.current();
 
 		if (current && editor.options.textIcons) {
@@ -31,7 +32,7 @@ Config.prototype.controls.paragraph = {
 				btn.list &&
 				list[currentValue]
 			) {
-				button.textBox.innerHTML = `<span>${editor.i18n(
+				button.textBox.innerHTML = `<span>${i18n(
 					list[currentValue]
 				)}</span>`;
 
@@ -113,7 +114,8 @@ Config.prototype.controls.paragraph = {
 	},
 
 	template: (editor: IJodit, key: string, value: string) => {
-		return `<${key} class="jodit_list_element"><span>${editor.i18n(
+		const i18n = editor.i18n.bind(editor);
+		return `<${key} class="jodit_list_element"><span>${i18n(
 			value
 		)}</span></${key}></li>`;
 	},

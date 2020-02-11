@@ -123,7 +123,13 @@
         </code></pre>
     </div>
     <div class="result">
-        <textarea id="area_editor"></textarea>
+        <textarea id="area_editor">
+<div><img src="http://email-tool-us.oss-accelerate.aliyuncs.com/uploadDoc/9b58367a-f1a4-4a0d-9a4b-1052c06a904b.jpg" style="width: 300px;"><br></div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+				</textarea>
     </div>
 </div>
 <footer>
@@ -148,6 +154,7 @@
 <script src="assets/app.js"></script>
 <script>
     var editor = new Jodit('#area_editor', {
+				language: 'zh_cn',
         textIcons: false,
         iframe: false,
         iframeStyle: '*,.jodit_wysiwyg {color:red;}',
@@ -167,7 +174,7 @@
         },
         commandToHotkeys: {
             'openreplacedialog': 'ctrl+p'
-        }
+        },
         // buttons: ['symbol'],
         // disablePlugins: 'hotkeys,mobile'
     });
