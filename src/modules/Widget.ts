@@ -403,7 +403,7 @@ export namespace Widget {
 			const dragbox = editor.create.fromHTML(
 				'<div class="jodit_draganddrop_file_box_wrapper">' +
 					(isImage
-						? `<label>
+						? `<label class="jodit_vertical_middle">
 							<input
 							 class="jodit_checkbox"
 							 name="insertImageAsBase64URI"

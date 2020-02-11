@@ -1575,6 +1575,9 @@ svg.jodit_icon{
   margin-left:0 !important;
   margin-right:2px !important;
 }
+.jodit_draganddrop_file_box_wrapper{
+  text-align:left;
+}
 .jodit_draganddrop_file_box,.jodit_uploadfile_button{
   position:relative;
   width:100%;
