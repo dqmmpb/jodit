@@ -4,7 +4,7 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 import { Config } from '../Config';
-import { IS_IE, TEXT_PLAIN } from '../constants';
+import * as consts from '../constants';
 import {
 	BuildDataResult,
 	HandlerError,
@@ -95,7 +95,7 @@ Config.prototype.uploader = {
 						: ['a', 'href'];
 
 				const elm: HTMLElement = this.jodit.create.inside.element(
-					<'img' | 'a'>tagName
+					tagName as 'img' | 'a'
 				);
 
 				elm.setAttribute(attr, resp.baseurl + filename);
@@ -580,10 +580,11 @@ export class Uploader extends Component implements IUploader {
 					return false;
 				}
 
-				if (browser('ff') || IS_IE) {
+				if (browser('ff') || consts.IS_IE) {
 					if (
 						cData &&
-						(!cData.types.length || cData.types[0] !== TEXT_PLAIN)
+						(!cData.types.length ||
+							cData.types[0] !== consts.TEXT_PLAIN)
 					) {
 						const div = this.jodit.create.div('', {
 							tabindex: -1,
@@ -661,7 +662,7 @@ export class Uploader extends Component implements IUploader {
 				}
 			};
 
-		if (this.jodit && (<IJodit>this.jodit).editor !== form) {
+		if (this.jodit && (this.jodit as IJodit).editor !== form) {
 			self.jodit.events.on(form, 'paste', onPaste);
 		} else {
 			self.jodit.events.on('beforePaste', onPaste);
@@ -799,9 +800,7 @@ export class Uploader extends Component implements IUploader {
 					) {
 						(handlerError || this.options.defaultHandlerError).call(
 							uploader,
-							error(
-								uploader.options.getMessage.call(this, resp)
-							)
+							error(uploader.options.getMessage.call(this, resp))
 						);
 						return;
 					}

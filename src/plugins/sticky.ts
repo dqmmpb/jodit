@@ -5,7 +5,7 @@
  */
 
 import { Config } from '../Config';
-import { IS_IE, MODE_WYSIWYG } from '../constants';
+import * as consts from '../constants';
 import { Plugin } from '../modules/Plugin';
 import { css } from '../modules/helpers/css';
 import { offset } from '../modules/helpers/size';
@@ -50,7 +50,7 @@ export class sticky extends Plugin {
 	private dummyBox?: HTMLElement;
 
 	private createDummy = (toolbar: HTMLElement) => {
-		if (IS_IE && !this.dummyBox) {
+		if (consts.IS_IE && !this.dummyBox) {
 			this.dummyBox = this.jodit.create.div();
 			this.dummyBox.classList.add('jodit_sticky-dummy_toolbar');
 			this.jodit.container.insertBefore(this.dummyBox, toolbar);
@@ -80,7 +80,7 @@ export class sticky extends Plugin {
 			width: this.jodit.container.offsetWidth
 		});
 
-		if (IS_IE && this.dummyBox) {
+		if (consts.IS_IE && this.dummyBox) {
 			css(this.dummyBox, {
 				height: toolbar.offsetHeight
 			});
@@ -118,7 +118,7 @@ export class sticky extends Plugin {
 					),
 
 					doSticky: boolean =
-						jodit.getMode() === MODE_WYSIWYG &&
+						jodit.getMode() === consts.MODE_WYSIWYG &&
 						(scrollWindowTop + jodit.options.toolbarStickyOffset >
 							offsetEditor.top &&
 							scrollWindowTop +

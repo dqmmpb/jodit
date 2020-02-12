@@ -5,7 +5,6 @@
  */
 
 import * as consts from '../constants';
-import { MAY_BE_REMOVED_WITH_KEY } from '../constants';
 import { Dom } from '../modules/Dom';
 import { call, isString, normalizeNode, trim } from '../modules/helpers/';
 import { IJodit } from '../types';
@@ -135,7 +134,7 @@ export class backspace extends Plugin {
 		} while (Dom.isText(nextElement));
 	}
 
-	private potentialRemovable: RegExp = MAY_BE_REMOVED_WITH_KEY;
+	private potentialRemovable: RegExp = consts.MAY_BE_REMOVED_WITH_KEY;
 
 	private removePotential(node: Node | null): false | void {
 		if (node && this.potentialRemovable.test(node.nodeName)) {
@@ -268,7 +267,7 @@ export class backspace extends Plugin {
 			return false;
 		}
 
-		const fakeNode = jodit.create.inside.text(consts.INVISIBLE_SPACE);
+		const fakeNode = jodit.create.inside.text(consts.EMPTY);
 
 		const marker = jodit.create.inside.span();
 

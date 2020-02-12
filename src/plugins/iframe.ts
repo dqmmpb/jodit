@@ -11,7 +11,7 @@ import { IJodit } from '../types';
 import { isPromise } from '../modules/helpers/checker';
 import { Dom } from '../modules';
 import { error } from '../modules/helpers';
-import { MODE_SOURCE } from '../constants';
+import * as consts from '../constants';
 
 declare module '../Config' {
 	interface Config {
@@ -257,7 +257,7 @@ export function iframe(editor: IJodit) {
 					Dom.toggleAttribute(
 						doc.body,
 						'contenteditable',
-						editor.getMode() !== MODE_SOURCE && !editor.getReadOnly()
+						editor.getMode() !== consts.MODE_SOURCE && !editor.getReadOnly()
 					);
 				};
 

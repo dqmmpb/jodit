@@ -6,7 +6,6 @@
 
 import { Config } from '../Config';
 import * as consts from '../constants';
-import { MODE_WYSIWYG } from '../constants';
 import { Dom } from '../modules/Dom';
 import { ToolbarIcon } from '../modules/toolbar/icon';
 import { Plugin } from '../modules/Plugin';
@@ -564,7 +563,7 @@ export class search extends Plugin {
 						this.jodit.container,
 						'keydown.search',
 						(e: KeyboardEvent) => {
-							if (editor.getRealMode() !== MODE_WYSIWYG) {
+							if (editor.getRealMode() !== consts.MODE_WYSIWYG) {
 								return;
 							}
 

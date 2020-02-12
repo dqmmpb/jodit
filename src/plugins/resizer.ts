@@ -6,7 +6,6 @@
 
 import { Config } from '../Config';
 import * as consts from '../constants';
-import { IS_IE } from '../constants';
 import { IBound } from '../types/types';
 import { Dom } from '../modules/Dom';
 import { $$ } from '../modules/helpers/selector';
@@ -265,7 +264,7 @@ export function resizer(editor: IJodit) {
 				.on(element, 'dragstart', hideResizer)
 				.on(element, 'mousedown', (event: MouseEvent) => {
 					// for IE don't show native resizer
-					if (IS_IE && Dom.isTag(element, 'img')) {
+					if (consts.IS_IE && Dom.isTag(element, 'img')) {
 						event.preventDefault();
 					}
 				})

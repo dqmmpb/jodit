@@ -5,7 +5,7 @@
  */
 
 import { Config } from '../Config';
-import { INVISIBLE_SPACE, MODE_WYSIWYG } from '../constants';
+import * as consts from '../constants';
 import { ContextMenu } from '../modules/ContextMenu';
 import { Dom } from '../modules/Dom';
 import { getXPathByElement } from '../modules/helpers/selector';
@@ -148,7 +148,7 @@ export class xpath extends Plugin {
 		const current: Node | false = this.jodit.selection.current();
 
 		if (this.container) {
-			this.container.innerHTML = INVISIBLE_SPACE;
+			this.container.innerHTML = consts.EMPTY;
 		}
 
 		if (current) {
@@ -208,11 +208,11 @@ export class xpath extends Plugin {
 					() => {
 						this.jodit.statusbar.append(this.container);
 
-						if (this.jodit.getRealMode() === MODE_WYSIWYG) {
+						if (this.jodit.getRealMode() === consts.MODE_WYSIWYG) {
 							this.calcPath();
 						} else {
 							if (this.container) {
-								this.container.innerHTML = INVISIBLE_SPACE;
+								this.container.innerHTML = consts.EMPTY;
 							}
 							this.appendSelectAll();
 						}

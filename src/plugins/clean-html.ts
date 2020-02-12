@@ -5,13 +5,7 @@
  */
 
 import { Config } from '../Config';
-import {
-	INVISIBLE_SPACE,
-	INVISIBLE_SPACE_REG_EXP,
-	INVISIBLE_SPACE_REG_EXP as INV_REG,
-	SPACE_REG_EXP,
-	IS_INLINE
-} from '../constants';
+import * as consts from '../constants';
 import { Dom } from '../modules/Dom';
 import { normalizeNode, trim } from '../modules/helpers/';
 import { HTMLTagNames, IDictionary, IJodit } from '../types';
@@ -318,11 +312,11 @@ export class cleanHtml extends Plugin {
 					if (node && Dom.isText(node)) {
 						if (
 							node.nodeValue !== null &&
-							INV_REG.test(node.nodeValue) &&
-							node.nodeValue.replace(INV_REG, '').length !== 0
+							consts.INVISIBLE_SPACE_REG_EXP.test(node.nodeValue) &&
+							node.nodeValue.replace(consts.INVISIBLE_SPACE_REG_EXP, '').length !== 0
 						) {
 							node.nodeValue = node.nodeValue.replace(
-								INV_REG,
+								consts.INVISIBLE_SPACE_REG_EXP,
 								''
 							);
 
@@ -413,7 +407,7 @@ export class cleanHtml extends Plugin {
 		}
 
 		if (parentNode) {
-			const tmp = this.jodit.create.inside.text(INVISIBLE_SPACE);
+			const tmp = this.jodit.create.inside.text(consts.EMPTY);
 			range.insertNode(tmp);
 			const insideParent = Dom.isOrContains(parentNode, tmp, true);
 			Dom.safeRemove(tmp);
@@ -442,7 +436,7 @@ export class cleanHtml extends Plugin {
 
 	private cleanFragment(fragment: Node): Node {
 		Dom.each(fragment, node => {
-			if (Dom.isElement(node) && IS_INLINE.test(node.nodeName)) {
+			if (Dom.isElement(node) && consts.IS_INLINE.test(node.nodeName)) {
 				this.cleanFragment(node);
 				Dom.unwrap(node);
 			}
@@ -492,11 +486,11 @@ export class cleanHtml extends Plugin {
 					this.jodit.options.cleanHTML.replaceNBSP &&
 					Dom.isText(elm) &&
 					elm.nodeValue !== null &&
-					elm.nodeValue.match(SPACE_REG_EXP)
+					elm.nodeValue.match(consts.SPACE_REG_EXP)
 				) {
 					elm.nodeValue = elm.nodeValue
-						.replace(INVISIBLE_SPACE_REG_EXP, '')
-						.replace(SPACE_REG_EXP, ' ');
+						.replace(consts.INVISIBLE_SPACE_REG_EXP, '')
+						.replace(consts.SPACE_REG_EXP, ' ');
 				}
 				break;
 
@@ -540,7 +534,7 @@ export class cleanHtml extends Plugin {
 			this.jodit.options.cleanHTML.removeEmptyElements &&
 			current !== false &&
 			Dom.isElement(node) &&
-			node.nodeName.match(IS_INLINE) !== null &&
+			node.nodeName.match(consts.IS_INLINE) !== null &&
 			!this.jodit.selection.isMarker(node) &&
 			trim((node as Element).innerHTML).length === 0 &&
 			!Dom.isOrContains(node, current)

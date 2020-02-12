@@ -6,6 +6,7 @@
 
 import {IDictionary} from './types';
 
+export const EMPTY = '';
 export const INVISIBLE_SPACE = '\uFEFF';
 export const INVISIBLE_SPACE_REG_EXP = /[\uFEFF]/g;
 export const INVISIBLE_SPACE_REG_EXP_END = /[\uFEFF]+$/g;
@@ -130,7 +131,7 @@ export const KEY_ALIASES: IDictionary<string> = {
 };
 
 export const BASE_PATH: string = ((): string => {
-	if (typeof document  === 'undefined') {
+	if (typeof document === 'undefined') {
 		return '';
 	}
 

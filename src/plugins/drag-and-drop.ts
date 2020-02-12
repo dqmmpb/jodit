@@ -4,7 +4,8 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import { TEXT_HTML, TEXT_PLAIN } from '../constants';
+import * as consts from '../constants';
+
 import { Dom } from '../modules/Dom';
 import { css, ctrlKey, dataBind } from '../modules/helpers';
 import { Plugin } from '../modules/Plugin';
@@ -186,7 +187,7 @@ export class DragAndDrop extends Plugin {
 
 	private getText = (event: DragEvent): string | null => {
 		const dt = getDataTransfer(event);
-		return dt ? dt.getData(TEXT_HTML) || dt.getData(TEXT_PLAIN) : null;
+		return dt ? dt.getData(consts.TEXT_HTML) || dt.getData(consts.TEXT_PLAIN) : null;
 	};
 
 	afterInit() {

@@ -433,6 +433,11 @@ export namespace Widget {
 						: editor.options.uploader.defaultHandlerSuccess;
 
 					if (typeof handler === 'function') {
+						if (!isImage && resp.isImages) {
+							resp.isImages = resp.isImages.map(
+								i => isImage && i
+							);
+						}
 						handler.call(editor, resp);
 					}
 				},

@@ -5,7 +5,7 @@
  */
 
 import { Config } from '../Config';
-import { BR, PARAGRAPH } from '../constants';
+import * as consts from '../constants';
 import { Dom } from '../modules/Dom';
 import { IControlType } from '../types/toolbar';
 import { HTMLTagNames, IJodit } from '../types';
@@ -70,7 +70,7 @@ export function indent(editor: IJodit) {
 			if (!currentBox && current) {
 				currentBox = Dom.wrapInline(
 					current,
-					enter !== BR ? <HTMLTagNames>enter : PARAGRAPH,
+					enter !== consts.BR ? <HTMLTagNames>enter : consts.PARAGRAPH,
 					editor
 				);
 			}

@@ -4,11 +4,7 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 import { Config } from '../Config';
-import {
-	COMMAND_KEYS,
-	INVISIBLE_SPACE_REG_EXP,
-	SPACE_REG_EXP
-} from '../constants';
+import * as consts from '../constants';
 import { IJodit, SnapshotType } from '../types';
 import { stripTags } from '../modules/helpers/html';
 
@@ -50,11 +46,11 @@ export function limit(jodit: IJodit) {
 				(jodit.options.limitHTML ? jodit.value : jodit.text);
 
 			const words: string[] = text
-				.replace(INVISIBLE_SPACE_REG_EXP, '')
-				.split(SPACE_REG_EXP)
+				.replace(consts.INVISIBLE_SPACE_REG_EXP, '')
+				.split(consts.SPACE_REG_EXP)
 				.filter((e: string) => e.length);
 
-			if (event && COMMAND_KEYS.indexOf(event.which) !== -1) {
+			if (event && consts.COMMAND_KEYS.indexOf(event.which) !== -1) {
 				return;
 			}
 

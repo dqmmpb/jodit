@@ -5,7 +5,7 @@
  */
 
 import { Config } from '../Config';
-import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_UP } from '../constants';
+import * as consts from '../constants';
 import { Alert } from '../modules/dialog/';
 import { IControlType } from '../types/toolbar';
 import { IJodit } from '../types';
@@ -366,15 +366,15 @@ export class symbols {
 						let newIndex: number;
 
 						switch (e.which) {
-							case KEY_UP:
-							case KEY_DOWN:
+							case consts.KEY_UP:
+							case consts.KEY_DOWN:
 								newIndex =
-									e.which === KEY_UP
+									e.which === consts.KEY_UP
 										? index - self.countInRow
 										: index + self.countInRow;
 								if (chars[newIndex] === undefined) {
 									newIndex =
-										e.which === KEY_UP
+										e.which === consts.KEY_UP
 											? Math.floor(
 													chars.length /
 														self.countInRow
@@ -390,22 +390,22 @@ export class symbols {
 
 								chars[newIndex] && chars[newIndex].focus();
 								break;
-							case KEY_RIGHT:
-							case KEY_LEFT:
+							case consts.KEY_RIGHT:
+							case consts.KEY_LEFT:
 								newIndex =
-									e.which === KEY_LEFT
+									e.which === consts.KEY_LEFT
 										? index - 1
 										: index + 1;
 								if (chars[newIndex] === undefined) {
 									newIndex =
-										e.which === KEY_LEFT
+										e.which === consts.KEY_LEFT
 											? chars.length - 1
 											: 0;
 								}
 
 								chars[newIndex] && chars[newIndex].focus();
 								break;
-							case KEY_ENTER:
+							case consts.KEY_ENTER:
 								editor.events.fire(target, 'mousedown');
 								e.stopImmediatePropagation();
 								e.preventDefault();

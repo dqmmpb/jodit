@@ -699,6 +699,7 @@ module.exports = __webpack_require__(98);
 __webpack_require__.r(__webpack_exports__);
 var constants_namespaceObject = {};
 __webpack_require__.r(constants_namespaceObject);
+__webpack_require__.d(constants_namespaceObject, "EMPTY", function() { return EMPTY; });
 __webpack_require__.d(constants_namespaceObject, "INVISIBLE_SPACE", function() { return INVISIBLE_SPACE; });
 __webpack_require__.d(constants_namespaceObject, "INVISIBLE_SPACE_REG_EXP", function() { return INVISIBLE_SPACE_REG_EXP; });
 __webpack_require__.d(constants_namespaceObject, "INVISIBLE_SPACE_REG_EXP_END", function() { return INVISIBLE_SPACE_REG_EXP_END; });
@@ -988,6 +989,7 @@ var bundle = __webpack_require__(97);
  * Released under MIT see LICENSE.txt in the project root for license information.
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
+const EMPTY = '';
 const INVISIBLE_SPACE = '\uFEFF';
 const INVISIBLE_SPACE_REG_EXP = /[\uFEFF]/g;
 const INVISIBLE_SPACE_REG_EXP_END = /[\uFEFF]+$/g;
@@ -3377,6 +3379,9 @@ var Widget_Widget;
                     ? callbacks.upload
                     : editor.options.uploader.defaultHandlerSuccess;
                 if (typeof handler === 'function') {
+                    if (!isImage && resp.isImages) {
+                        resp.isImages = resp.isImages.map(i => isImage && i);
+                    }
                     handler.call(editor, resp);
                 }
             }, (error) => {
@@ -4321,7 +4326,6 @@ class observer_Observer extends Component_Component {
 
 
 
-
 class Selection_Select {
     constructor(jodit) {
         this.jodit = jodit;
@@ -4384,7 +4388,7 @@ class Selection_Select {
                             current = current.firstChild;
                         }
                         else {
-                            const currentB = this.jodit.create.inside.text(INVISIBLE_SPACE);
+                            const currentB = this.jodit.create.inside.text(EMPTY);
                             current.appendChild(currentB);
                             current = currentB;
                         }
@@ -4484,7 +4488,7 @@ class Selection_Select {
         marker.style.lineHeight = '0';
         marker.style.display = 'none';
         marker.setAttribute('data-' + MARKER_CLASS, atStart ? 'start' : 'end');
-        marker.appendChild(this.jodit.create.inside.text(INVISIBLE_SPACE));
+        marker.appendChild(this.jodit.create.inside.text(EMPTY));
         if (newRange) {
             if (Dom_Dom.isOrContains(this.area, atStart ? newRange.startContainer : newRange.endContainer)) {
                 newRange.insertNode(marker);
@@ -4783,7 +4787,7 @@ class Selection_Select {
         const range = this.createRange();
         let fakeNode = false;
         if (!Dom_Dom.isText(node)) {
-            fakeNode = this.jodit.create.inside.text(INVISIBLE_SPACE);
+            fakeNode = this.jodit.create.inside.text(EMPTY);
             range.setStartAfter(node);
             range.insertNode(fakeNode);
             range.selectNode(fakeNode);
@@ -4849,7 +4853,7 @@ class Selection_Select {
         const range = this.createRange();
         let fakeNode = false;
         if (!Dom_Dom.isText(node)) {
-            fakeNode = this.jodit.create.inside.text(INVISIBLE_SPACE);
+            fakeNode = this.jodit.create.inside.text(EMPTY);
             range.setStartBefore(node);
             range.collapse(true);
             range.insertNode(fakeNode);
@@ -4877,7 +4881,7 @@ class Selection_Select {
             start = inStart ? start.firstChild : start.lastChild;
         } while (start);
         if (!start) {
-            const fakeNode = this.jodit.create.inside.text(INVISIBLE_SPACE);
+            const fakeNode = this.jodit.create.inside.text(EMPTY);
             if (!/^(img|br|input)$/i.test(last.nodeName)) {
                 last.appendChild(fakeNode);
                 last = fakeNode;
@@ -5019,7 +5023,7 @@ class Selection_Select {
             }
             if (nodeName.toUpperCase() === defaultTag || !clearStyle) {
                 const node = this.jodit.create.inside.element(nodeName);
-                node.appendChild(this.jodit.create.inside.text(INVISIBLE_SPACE));
+                node.appendChild(this.jodit.create.inside.text(EMPTY));
                 this.insertNode(node, false, false);
                 if (nodeName.toUpperCase() === defaultTag && cssRules) {
                     css_css(node, cssRules);
@@ -8535,7 +8539,6 @@ class Plugin_Plugin extends Component_Component {
 
 
 
-
 class backspace_backspace extends Plugin_Plugin {
     constructor() {
         super(...arguments);
@@ -8713,7 +8716,7 @@ class backspace_backspace extends Plugin_Plugin {
         if (!range) {
             return false;
         }
-        const fakeNode = jodit.create.inside.text(INVISIBLE_SPACE);
+        const fakeNode = jodit.create.inside.text(EMPTY);
         const marker = jodit.create.inside.span();
         try {
             range.insertNode(fakeNode);
@@ -9164,7 +9167,7 @@ class clean_html_cleanHtml extends Plugin_Plugin {
             fragment = range.extractContents();
         }
         if (parentNode) {
-            const tmp = this.jodit.create.inside.text(INVISIBLE_SPACE);
+            const tmp = this.jodit.create.inside.text(EMPTY);
             range.insertNode(tmp);
             const insideParent = Dom_Dom.isOrContains(parentNode, tmp, true);
             Dom_Dom.safeRemove(tmp);
@@ -10286,7 +10289,6 @@ class drag_and_drop_element_DragAndDropElement extends Plugin_Plugin {
 
 
 
-
 const insertParagraph = (editor, fake, wrapperTag, style) => {
     var _a;
     const p = editor.create.inside.element(wrapperTag), helper_node = editor.create.inside.element('br');
@@ -10351,7 +10353,7 @@ class enter_enter extends Plugin_Plugin {
         const editor = this.jodit, sel = editor.selection, defaultTag = this.defaultTag;
         let current = sel.current(false);
         if (!current || current === editor.editor) {
-            current = editor.create.inside.text(INVISIBLE_SPACE);
+            current = editor.create.inside.text(EMPTY);
             sel.insertNode(current);
             sel.select(current);
         }
@@ -13462,7 +13464,6 @@ function orderedlist(editor) {
 
 
 
-
 Config_Config.prototype.showPlaceholder = true;
 Config_Config.prototype.useInputsPlaceholder = true;
 Config_Config.prototype.placeholder = 'Type something';
@@ -13625,7 +13626,6 @@ class redoundo_redoundo extends Plugin_Plugin {
  * Released under MIT see LICENSE.txt in the project root for license information.
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-
 
 
 
@@ -13947,7 +13947,6 @@ function resizer(editor) {
  * Released under MIT see LICENSE.txt in the project root for license information.
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
-
 
 
 
@@ -16418,7 +16417,7 @@ class xpath_xpath extends Plugin_Plugin {
             }
             const current = this.jodit.selection.current();
             if (this.container) {
-                this.container.innerHTML = INVISIBLE_SPACE;
+                this.container.innerHTML = EMPTY;
             }
             if (current) {
                 let name, xpth, li;
@@ -16451,7 +16450,7 @@ class xpath_xpath extends Plugin_Plugin {
                 }
                 else {
                     if (this.container) {
-                        this.container.innerHTML = INVISIBLE_SPACE;
+                        this.container.innerHTML = EMPTY;
                     }
                     this.appendSelectAll();
                 }
@@ -19448,7 +19447,8 @@ class Uploader_Uploader extends Component_Component {
             }
             if (browser('ff') || IS_IE) {
                 if (cData &&
-                    (!cData.types.length || cData.types[0] !== TEXT_PLAIN)) {
+                    (!cData.types.length ||
+                        cData.types[0] !== TEXT_PLAIN)) {
                     const div = this.jodit.create.div('', {
                         tabindex: -1,
                         style: 'left: -9999px; top: 0; width: 0; height: 100%;line-height: 140%; ' +

@@ -5,7 +5,7 @@
  */
 
 import { Config } from '../Config';
-import { INVISIBLE_SPACE_REG_EXP, SPACE_REG_EXP } from '../constants';
+import * as consts from '../constants';
 import { Plugin } from '../modules/Plugin';
 import { Dom } from '../modules/Dom';
 
@@ -55,7 +55,7 @@ export class stat extends Plugin {
 		if (this.jodit.options.showCharsCounter) {
 			this.charCounter.textContent = this.jodit.i18n(
 				'Chars: %d',
-				text.replace(SPACE_REG_EXP, '').length
+				text.replace(consts.SPACE_REG_EXP, '').length
 			);
 		}
 
@@ -63,8 +63,8 @@ export class stat extends Plugin {
 			this.wordCounter.textContent = this.jodit.i18n(
 				'Words: %d',
 				text
-					.replace(INVISIBLE_SPACE_REG_EXP, '')
-					.split(SPACE_REG_EXP)
+					.replace(consts.INVISIBLE_SPACE_REG_EXP, '')
+					.split(consts.SPACE_REG_EXP)
 					.filter((e: string) => e.length).length
 			);
 		}

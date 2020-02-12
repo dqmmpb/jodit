@@ -5,11 +5,6 @@
  */
 
 import * as consts from '../constants';
-import {
-	INVISIBLE_SPACE,
-	INVISIBLE_SPACE_REG_EXP_END as INV_END,
-	INVISIBLE_SPACE_REG_EXP_START as INV_START
-} from '../constants';
 
 import { HTMLTagNames, IDictionary, IJodit, markerInfo } from '../types';
 import { Dom } from './Dom';
@@ -204,7 +199,7 @@ export class Select {
 		);
 
 		marker.appendChild(
-			this.jodit.create.inside.text(consts.INVISIBLE_SPACE)
+			this.jodit.create.inside.text(consts.EMPTY)
 		);
 
 		if (newRange) {
@@ -772,9 +767,7 @@ export class Select {
 					if (current.firstChild) {
 						current = current.firstChild;
 					} else {
-						const currentB = this.jodit.create.inside.text(
-							INVISIBLE_SPACE
-						);
+						const currentB = this.jodit.create.inside.text(consts.EMPTY);
 
 						current.appendChild(currentB);
 						current = currentB;
@@ -818,7 +811,7 @@ export class Select {
 		let fakeNode: Text | false = false;
 
 		if (!Dom.isText(node)) {
-			fakeNode = this.jodit.create.inside.text(consts.INVISIBLE_SPACE);
+			fakeNode = this.jodit.create.inside.text(consts.EMPTY);
 			range.setStartAfter(node);
 			range.insertNode(fakeNode);
 			range.selectNode(fakeNode);
@@ -866,11 +859,11 @@ export class Select {
 		if (Dom.isText(container)) {
 			const text = container.nodeValue || '';
 
-			if (end && text.replace(INV_END, '').length > offset) {
+			if (end && text.replace(consts.INVISIBLE_SPACE_REG_EXP_END, '').length > offset) {
 				return false;
 			}
 
-			const inv = INV_START.exec(text);
+			const inv = consts.INVISIBLE_SPACE_REG_EXP_START.exec(text);
 			if (
 				start &&
 				((inv && inv[0].length < offset) || (!inv && offset > 0))
@@ -941,7 +934,7 @@ export class Select {
 		let fakeNode: Text | false = false;
 
 		if (!Dom.isText(node)) {
-			fakeNode = this.jodit.create.inside.text(consts.INVISIBLE_SPACE);
+			fakeNode = this.jodit.create.inside.text(consts.EMPTY);
 			range.setStartBefore(node);
 			range.collapse(true);
 			range.insertNode(fakeNode);
@@ -993,9 +986,7 @@ export class Select {
 		} while (start);
 
 		if (!start) {
-			const fakeNode = this.jodit.create.inside.text(
-				consts.INVISIBLE_SPACE
-			);
+			const fakeNode = this.jodit.create.inside.text(consts.EMPTY);
 			if (!/^(img|br|input)$/i.test(last.nodeName)) {
 				last.appendChild(fakeNode);
 				last = fakeNode;
@@ -1276,7 +1267,7 @@ export class Select {
 				const node = this.jodit.create.inside.element(nodeName);
 
 				node.appendChild(
-					this.jodit.create.inside.text(consts.INVISIBLE_SPACE)
+					this.jodit.create.inside.text(consts.EMPTY)
 				);
 
 				this.insertNode(node, false, false);

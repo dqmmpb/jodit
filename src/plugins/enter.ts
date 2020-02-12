@@ -9,7 +9,6 @@ import { Dom } from '../modules/Dom';
 import { $$, scrollIntoView } from '../modules/helpers/';
 import { HTMLTagNames, IJodit } from '../types';
 import { Plugin } from '../modules/Plugin';
-import { INVISIBLE_SPACE } from '../constants';
 
 /**
  * Insert default paragraph
@@ -131,7 +130,7 @@ export class enter extends Plugin {
 		let current = sel.current(false) as Node;
 
 		if (!current || current === editor.editor) {
-			current = editor.create.inside.text(INVISIBLE_SPACE);
+			current = editor.create.inside.text(consts.EMPTY);
 			sel.insertNode(current);
 			sel.select(current);
 		}
