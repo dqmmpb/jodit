@@ -164,7 +164,7 @@ export default {
   'No follow': 'No follow',
   Unlink: 'Hapus tautan',
   Eye: 'Mata',
-  pencil: 'pensil',
+  pencil: 'Edit',
   Update: 'Perbarui',
   ' URL': 'URL',
   Edit: 'Edit',

@@ -64,7 +64,7 @@ export class backspace extends Plugin {
 					startOffset >= 0 &&
 					startOffset <= value.length &&
 					value[startOffset + (toLeft ? -1 : 0)] ===
-						consts.INVISIBLE_SPACE
+						consts.EMPTY
 				) {
 					startOffset += increment;
 				}
@@ -354,7 +354,7 @@ export class backspace extends Plugin {
 
 				if (
 					Dom.isText(tmpNode) &&
-					tmpNode.nodeValue === consts.INVISIBLE_SPACE
+					tmpNode.nodeValue === consts.EMPTY
 				) {
 					Dom.safeRemove(tmpNode);
 				}
@@ -410,7 +410,7 @@ export class backspace extends Plugin {
 		} finally {
 			const parent = fakeNode.parentNode;
 
-			if (parent && fakeNode.nodeValue === consts.INVISIBLE_SPACE) {
+			if (parent && fakeNode.nodeValue === consts.EMPTY) {
 				Dom.safeRemove(fakeNode);
 
 				if (
