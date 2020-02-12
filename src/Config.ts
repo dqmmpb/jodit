@@ -1007,7 +1007,7 @@ Config.prototype.controls = {
 			);
 		},
 		tags: ['img'],
-		tooltip: 'Insert Image'
+		tooltip: 'Insert image'
 	} as IControlType,
 
 	file: {
