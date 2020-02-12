@@ -4,6 +4,7 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
+import * as filesize from 'filesize';
 import { IJodit } from '../types/jodit';
 
 import {
@@ -402,17 +403,23 @@ export namespace Widget {
 		) {
 			const dragbox = editor.create.fromHTML(
 				'<div class="jodit_draganddrop_wrapper">' +
+					'<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">' +
 					(isImage
-						? `<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">
-							<input
+						? `<input
 							 class="jodit_checkbox"
-							 name="insertImageAsBase64URI"
+							 name="uploadImageToCloud"
 							 type="checkbox"
-							 ${editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : ''}
-							 />
-								<span>${i18n('Inline Base64URI')}</span>
-							</label>`
+							 ${!editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : ''}
+							 />`
 						: '') +
+					`<span>${i18n(
+						'Upload %s to cloud.',
+						i18n(isImage ? 'image' : 'file')
+					)}${i18n(
+						'( The Max. file size is %s. )',
+						filesize(editor.options.uploader.maxSize)
+					)}</span>` +
+					'</label>' +
 					'<div class="jodit_draganddrop_file_box">' +
 					`<strong>${i18n(
 						isImage ? 'Drop image' : 'Drop file'

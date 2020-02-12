@@ -46,7 +46,7 @@ Config.prototype.enableDragAndDropFileToEditor = true;
 
 Config.prototype.uploader = {
 	url: '',
-
+	maxSize: 4 * 1024 * 1024 * 1024,
 	insertImageAsBase64URI: false,
 	imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
 	headers: null,
@@ -560,12 +560,12 @@ export class Uploader extends Component implements IUploader {
 				};
 
 				// form insertImageAsBase64URI control
-				const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
-					'input[name=insertImageAsBase64URI]'
+				const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
+					'input[name=uploadImageToCloud]'
 				);
 
-				const insertImageAsBase64URI = inputInsertImageAsBase64URI
-					? !!inputInsertImageAsBase64URI.checked
+				const insertImageAsBase64URI = inputUploadImageToCloud
+					? !inputUploadImageToCloud.checked
 					: self.options.insertImageAsBase64URI;
 
 				// send data on server
@@ -709,12 +709,12 @@ export class Uploader extends Component implements IUploader {
 					event.stopImmediatePropagation();
 
 					// form insertImageAsBase64URI control
-					const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
-						'input[name=insertImageAsBase64URI]'
+					const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
+						'input[name=uploadImageToCloud]'
 					);
 
-					const insertImageAsBase64URI = inputInsertImageAsBase64URI
-						? !!inputInsertImageAsBase64URI.checked
+					const insertImageAsBase64URI = inputUploadImageToCloud
+						? !inputUploadImageToCloud.checked
 						: self.options.insertImageAsBase64URI;
 
 					this.sendFiles(
@@ -735,12 +735,12 @@ export class Uploader extends Component implements IUploader {
 				this: HTMLInputElement
 			) {
 				// form insertImageAsBase64URI control
-				const inputInsertImageAsBase64URI: HTMLInputElement | null = form.querySelector(
-					'input[name=insertImageAsBase64URI]'
+				const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
+					'input[name=uploadImageToCloud]'
 				);
 
-				const insertImageAsBase64URI = inputInsertImageAsBase64URI
-					? !!inputInsertImageAsBase64URI.checked
+				const insertImageAsBase64URI = inputUploadImageToCloud
+					? !inputUploadImageToCloud.checked
 					: self.options.insertImageAsBase64URI;
 
 				self.sendFiles(

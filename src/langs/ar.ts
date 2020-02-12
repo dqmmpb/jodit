@@ -221,5 +221,6 @@ export default {
 	'copy': 'نسخ',
 	'Border radius': 'دائرة نصف قطرها الحدود',
 	'Show all': 'عرض كل',
-	'Inline Base64URI': 'مضمنة Base64URI',
+	'Upload %s to cloud.': 'Upload %s to cloud.',
+	'( The Max. file size is %s. )': '( The Max. file size is %s. )',
 } as IDictionary<string>;

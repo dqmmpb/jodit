@@ -1579,6 +1579,7 @@ svg.jodit_icon{
   text-align:left;
 }
 .jodit_draganddrop_label_base64{
+  font-size:12px;
   margin-top:10px;
 }
 .jodit_draganddrop_file_box,.jodit_uploadfile_button{

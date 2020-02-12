@@ -167,7 +167,8 @@
         },
         uploader: {
 					url: 'https://xdsoft.net/jodit/connector/index.php?action=fileUpload',
-					insertImageAsBase64URI: true,
+					maxSize: 20 * 1024 * 1024,
+					insertImageAsBase64URI: false,
 					customSend: function(url, data, success) {
 						return new Promise((resolve, reject) => {
 							resolve({
@@ -183,12 +184,12 @@
 						});
 					}
         },
-        filebrowser: {
+        /*filebrowser: {
             // buttons: ['list', 'tiles', 'sort'],
             ajax: {
                 url: 'https://xdsoft.net/jodit/connector/index.php'
             }
-        },
+        },*/
         commandToHotkeys: {
             'openreplacedialog': 'ctrl+p'
         },

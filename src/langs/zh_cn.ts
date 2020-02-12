@@ -232,5 +232,6 @@ export default {
 	'copy': '复制',
 	'Border radius': '边界半径',
 	'Show all': '显示所有',
-	'Inline Base64URI': 'Base64内联',
+	'Upload %s to cloud.': '上传%s到云端',
+	'( The Max. file size is %s. )': '(最大文件不超过%s)',
 } as IDictionary<string>;

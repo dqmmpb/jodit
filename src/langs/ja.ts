@@ -230,5 +230,6 @@ export default {
 	'copy': 'copy',
 	'Border radius': '角の丸み',
 	'Show all': '全て表示',
-	'Inline Base64URI': 'Inline Base64URI',
+	'Upload %s to cloud.': 'Upload %s to cloud.',
+	'( The Max. file size is %s. )': '( The Max. file size is %s. )',
 } as IDictionary<string>;
