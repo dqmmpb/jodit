@@ -9,8 +9,9 @@ import { MODE_SOURCE } from '../../constants';
 import { Plugin } from '../../modules/Plugin';
 import { IJodit, ISourceEditor, markerInfo } from '../../types';
 import { Dom } from '../../modules/Dom';
-import { isString, loadNext } from '../../modules/helpers';
+import { isString } from '../../modules/helpers';
 import { createSourceEditor } from './editor/factory';
+import 'js-beautify';
 
 /**
  * Plug-in change simple textarea on CodeMirror editor in Source code mode
@@ -133,7 +134,6 @@ export class source extends Plugin {
 			this.selInfo = this.jodit.selection.save() || [];
 			this.jodit.setEditorValue();
 			this.fromWYSIWYG(true);
-
 		} else {
 			this.selInfo.length = 0;
 			const value: string = this.getMirrorValue();
@@ -275,14 +275,17 @@ export class source extends Plugin {
 
 	private initSourceEditor(editor: IJodit) {
 		if (editor.options.sourceEditor !== 'area') {
-			const sourceEditor = createSourceEditor(editor.options.sourceEditor, editor, this.mirrorContainer, this.toWYSIWYG, this.fromWYSIWYG);
+			const sourceEditor = createSourceEditor(
+				editor.options.sourceEditor,
+				editor,
+				this.mirrorContainer,
+				this.toWYSIWYG, this.fromWYSIWYG);
 
 			sourceEditor.onReadyAlways(() => {
 				this.sourceEditor?.destruct();
 				this.sourceEditor = sourceEditor;
 				editor.events?.fire('sourceEditorReady', editor);
 			});
-
 		} else {
 			this.sourceEditor.onReadyAlways(() => {
 				editor.events?.fire('sourceEditorReady', editor);
@@ -312,15 +315,12 @@ export class source extends Plugin {
 		this.onReadonlyReact();
 
 		editor.events
-			.on(
-				'insertHTML.source',
-				(html: string): void | false => {
-					if (!editor.options.readonly && !this.jodit.isEditorMode()) {
-						this.insertHTML(html);
-						return false;
-					}
+			.on('insertHTML.source', (html: string): void | false => {
+				if (!editor.options.readonly && !this.jodit.isEditorMode()) {
+					this.insertHTML(html);
+					return false;
 				}
-			)
+			})
 			.on('readonly.source', this.onReadonlyReact)
 			.on('placeholder.source', (text: string) => {
 				this.sourceEditor.setPlaceHolder(text);
@@ -328,7 +328,7 @@ export class source extends Plugin {
 			.on('beforeCommand.source', this.onSelectAll)
 			.on('change.source', this.fromWYSIWYG);
 
-		editor.events.on('beautifyHTML', (html) => html);
+		editor.events.on('beautifyHTML', html => html);
 
 		if (editor.options.beautifyHTML) {
 			const addEventListener = () => {
@@ -337,7 +337,7 @@ export class source extends Plugin {
 				if (html_beautify && !editor.isInDestruct) {
 					editor.events
 						?.off('beautifyHTML')
-						?.on('beautifyHTML', (html) => html_beautify(html));
+						?.on('beautifyHTML', html => html_beautify(html));
 
 					return true;
 				}
@@ -345,12 +345,7 @@ export class source extends Plugin {
 				return false;
 			};
 
-			if (!addEventListener()) {
-				loadNext(
-					editor,
-					editor.options.beautifyHTMLCDNUrlsJS
-				).then(addEventListener);
-			}
+			addEventListener();
 		}
 
 		this.fromWYSIWYG();

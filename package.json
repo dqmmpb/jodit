@@ -2,41 +2,69 @@
 	"name": "jodit",
 	"version": "3.3.22",
 	"description": "Jodit is awesome and usefully wysiwyg editor with filebrowser",
-	"main": "build/jodit.js",
-	"types": "index.d.ts",
-	"scripts": {
-		"newversion": "npm test && npm version patch --no-git-tag-version && npm run build && npm run newversiongit && npm publish ./",
-		"newversiongit": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master",
-		"start": "node server.js",
-		"clean": "rm -rf build/*",
-		"build": "npm run clean && gulp build && npm run build-es5 && npm run build-es18 && npm run build-no-uglify-es5 && npm run build-no-uglify-es18",
-		"build-es5": "webpack --progress --mode production --es es5 --uglify true",
-		"build-es18": "webpack --progress --mode production --es es2018 --uglify true",
-		"build-no-uglify-es5": "webpack --progress --mode production --es es5",
-		"build-no-uglify-es18": "webpack --progress --mode production --es es2018",
-		"test": "karma start --browsers Firefox karma.conf.js",
-		"test-chrome": "karma start --browsers Chrome karma.conf.js",
-		"jodit": "cd ../jodit-react/ && npm update && npm run newversion && cd ../jodit-angular/ && npm run newversion && cd ../jodit-joomla && npm run newversion && cd ../jodit-docs && npm run newversion && cd ../jodit-master && npm run newversion",
-		"types": "rm -rf types/* && tsc --project . --declaration --outDir types --emitDeclarationOnly",
-		"pretty": "prettier --write ./src/*.{ts,less} ./src/**/*.{ts,less} ./src/**/**/*.{ts,less}",
-		"fix": "tslint -c tslint.json ./src/**/*.ts ./src/**/**/*.ts ./src/*.ts --fix && npm run pretty"
+	"keywords": [
+		"editor",
+		"jodit",
+		"rich",
+		"wysiwyg"
+	],
+	"homepage": "https://xdsoft.net/jodit/",
+	"bugs": {
+		"url": "https://github.com/xdan/jodit/issues"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/xdan/jodit.git"
 	},
-	"keywords": [
-		"wysiwyg",
-		"editor",
-		"rich",
-		"jodit"
-	],
-	"author": "Chupurnov <chupurnov@gmail.com> (https://xdsoft.net/)",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/xdan/jodit/issues"
+	"author": "Chupurnov <chupurnov@gmail.com> (https://xdsoft.net/)",
+	"main": "build/jodit.js",
+	"types": "index.d.ts",
+	"scripts": {
+		"build": "npm run clean && gulp build && npm run build-es5 && npm run build-es18 && npm run build-no-uglify-es5 && npm run build-no-uglify-es18",
+		"build-es18": "webpack --progress --mode production --es es2018 --uglify true",
+		"build-es5": "webpack --progress --mode production --es es5 --uglify true",
+		"build-no-uglify-es18": "webpack --progress --mode production --es es2018",
+		"build-no-uglify-es5": "webpack --progress --mode production --es es5",
+		"clean": "rm -rf build/*",
+		"fix": "tslint -c tslint.json ./src/**/*.ts ./src/**/**/*.ts ./src/*.ts --fix && npm run pretty",
+		"jodit": "cd ../jodit-react/ && npm update && npm run newversion && cd ../jodit-angular/ && npm run newversion && cd ../jodit-joomla && npm run newversion && cd ../jodit-docs && npm run newversion && cd ../jodit-master && npm run newversion",
+		"newversion": "npm test && npm version patch --no-git-tag-version && npm run build && npm run newversiongit && npm publish ./",
+		"newversiongit": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/xdan/jodit/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master",
+		"pretty": "prettier --write ./src/*.{ts,less} ./src/**/*.{ts,less} ./src/**/**/*.{ts,less}",
+		"start": "node server.js",
+		"test": "karma start --browsers Firefox karma.conf.js",
+		"test-chrome": "karma start --browsers Chrome karma.conf.js",
+		"types": "rm -rf types/* && tsc --project . --declaration --outDir types --emitDeclarationOnly"
 	},
-	"homepage": "https://xdsoft.net/jodit/",
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{json,less}": [
+			"prettier --write --ignore-path ./build/*",
+			"git add"
+		],
+		"*.{ts}": [
+			"tslint -c tslint.json",
+			"prettier --write",
+			"git add"
+		],
+		"./test/**/*.{js}": [
+			"prettier --write --ignore-path ./build/*",
+			"git add"
+		]
+	},
+	"dependencies": {
+		"ace-builds": "^1.4.8",
+		"chai": "^4.2.0",
+		"filesize": "^5.0.0",
+		"gulp-typescript": "^5.0.1",
+		"js-beautify": "^1.10.3",
+		"mocha": "^7.0.1"
+	},
 	"devDependencies": {
 		"@types/ace": "0.0.42",
 		"@types/es6-promise": "^3.3.0",
@@ -90,31 +118,5 @@
 		"webpack-dev-middleware": "^3.7.2",
 		"webpack-dev-server": "^3.10.3",
 		"webpack-hot-middleware": "^2.25.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"./test/**/*.{js}": [
-			"prettier --write --ignore-path ./build/*",
-			"git add"
-		],
-		"*.{json,less}": [
-			"prettier --write --ignore-path ./build/*",
-			"git add"
-		],
-		"*.{ts}": [
-			"tslint -c tslint.json",
-			"prettier --write",
-			"git add"
-		]
-	},
-	"dependencies": {
-		"chai": "^4.2.0",
-		"filesize": "^5.0.0",
-		"gulp-typescript": "^5.0.1",
-		"mocha": "^7.0.1"
 	}
 }

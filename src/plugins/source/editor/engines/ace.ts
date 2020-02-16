@@ -6,8 +6,10 @@
 
 import { IJodit, ISourceEditor } from '../../../../types';
 import * as consts from '../../../../constants';
-import { isString, loadNext } from '../../../../modules/helpers';
+import { isString } from '../../../../modules/helpers';
 import { SourceEditor } from '../SourceEditor';
+import 'ace-builds';
+import 'ace-builds/webpack-resolver';
 
 export class AceEditor extends SourceEditor<AceAjax.Editor>
 	implements ISourceEditor {
@@ -160,10 +162,9 @@ export class AceEditor extends SourceEditor<AceAjax.Editor>
 				this.setValue(this.getValue());
 			}
 
-			editor.events
-				.on('afterResize', () => {
-					this.instance.resize();
-				});
+			editor.events.on('afterResize', () => {
+				this.instance.resize();
+			});
 
 			this.onReady();
 		};
@@ -180,41 +181,33 @@ export class AceEditor extends SourceEditor<AceAjax.Editor>
 				this.fromWYSIWYG();
 				tryInitAceEditor();
 			})
-			.on(
-				'beforeCommand',
-				(command: string): false | void => {
+			.on('beforeCommand', (command: string): false | void => {
+				if (
+					editor.getRealMode() !== consts.MODE_WYSIWYG &&
+					(command === 'redo' || command === 'undo') &&
+					this.undoManager
+				) {
 					if (
-						editor.getRealMode() !== consts.MODE_WYSIWYG &&
-						(command === 'redo' || command === 'undo') &&
-						this.undoManager
+						(this.undoManager as any)[
+							'has' +
+								command.substr(0, 1).toUpperCase() +
+								command.substr(1)
+						]
 					) {
-						if (
-							(this.undoManager as any)[
-								'has' +
-									command.substr(0, 1).toUpperCase() +
-									command.substr(1)
-							]
-						) {
-							this.instance[command]();
-						}
-						this.updateButtons();
-						return false;
+						this.instance[command]();
 					}
+					this.updateButtons();
+					return false;
 				}
-			);
+			});
 
 		tryInitAceEditor();
 
 		// global add ace editor in browser
 		if (!this.aceExists()) {
-			loadNext(
-				editor,
-				editor.options.sourceEditorCDNUrlsJS
-			).then(() => {
-				if (!editor.isInDestruct) {
-					tryInitAceEditor();
-				}
-			});
+			if (!editor.isInDestruct) {
+				tryInitAceEditor();
+			}
 		}
 	}
 
