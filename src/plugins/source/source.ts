@@ -9,7 +9,8 @@ import { MODE_SOURCE } from '../../constants';
 import { Plugin } from '../../modules/Plugin';
 import { IJodit, ISourceEditor, markerInfo } from '../../types';
 import { Dom } from '../../modules/Dom';
-import { isString, loadNext } from '../../modules/helpers';
+// import { isString, loadNext } from '../../modules/helpers';
+import { isString } from '../../modules/helpers';
 import { createSourceEditor } from './editor/factory';
 
 /**
@@ -353,9 +354,9 @@ export class source extends Plugin {
 			};
 
 			if (!addEventListener()) {
-				loadNext(editor, editor.options.beautifyHTMLCDNUrlsJS).then(
-					addEventListener
-				);
+				// loadNext(editor, editor.options.beautifyHTMLCDNUrlsJS).then(
+				addEventListener();
+				// );
 			}
 		}
 

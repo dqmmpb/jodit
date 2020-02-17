@@ -31,15 +31,15 @@ declare module '../../Config' {
 		 */
 		beautifyHTML: boolean;
 
-		/**
-		 * CDN URLs for HTML Beautifier
-		 */
-		beautifyHTMLCDNUrlsJS: string[];
-
-		/**
-		 * CDN URLs for ACE editor
-		 */
-		sourceEditorCDNUrlsJS: string[];
+		// /**
+		//  * CDN URLs for HTML Beautifier
+		//  */
+		// beautifyHTMLCDNUrlsJS: string[];
+		//
+		// /**
+		//  * CDN URLs for ACE editor
+		//  */
+		// sourceEditorCDNUrlsJS: string[];
 	}
 }
 
@@ -73,14 +73,14 @@ Config.prototype.sourceEditorNativeOptions = {
 	highlightActiveLine: true
 };
 
-Config.prototype.sourceEditorCDNUrlsJS = [
-	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js'
-];
-
-Config.prototype.beautifyHTMLCDNUrlsJS = [
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify.min.js',
-	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.min.js'
-];
+// Config.prototype.sourceEditorCDNUrlsJS = [
+// 	'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js'
+// ];
+//
+// Config.prototype.beautifyHTMLCDNUrlsJS = [
+// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify.min.js',
+// 	'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.min.js'
+// ];
 
 Config.prototype.controls.source = {
 	mode: consts.MODE_SPLIT,

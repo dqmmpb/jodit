@@ -14503,13 +14503,6 @@ Config_Config.prototype.sourceEditorNativeOptions = {
     wrap: true,
     highlightActiveLine: true
 };
-Config_Config.prototype.sourceEditorCDNUrlsJS = [
-    'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js'
-];
-Config_Config.prototype.beautifyHTMLCDNUrlsJS = [
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.min.js'
-];
 Config_Config.prototype.controls.source = {
     mode: MODE_SPLIT,
     exec: (editor) => {
@@ -14770,11 +14763,9 @@ class ace_AceEditor extends SourceEditor {
         });
         tryInitAceEditor();
         if (!this.aceExists()) {
-            loadNext(editor, editor.options.sourceEditorCDNUrlsJS).then(() => {
-                if (!editor.isInDestruct) {
-                    tryInitAceEditor();
-                }
-            });
+            if (!editor.isInDestruct) {
+                tryInitAceEditor();
+            }
         }
     }
     destruct() {
@@ -15104,7 +15095,7 @@ class source_source extends Plugin_Plugin {
                 return false;
             };
             if (!addEventListener()) {
-                loadNext(editor, editor.options.beautifyHTMLCDNUrlsJS).then(addEventListener);
+                addEventListener();
             }
         }
         this.fromWYSIWYG();
