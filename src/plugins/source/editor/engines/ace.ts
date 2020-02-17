@@ -6,7 +6,7 @@
 
 import { IJodit, ISourceEditor } from '../../../../types';
 import * as consts from '../../../../constants';
-import { isString } from '../../../../modules/helpers';
+import { isString, loadNext } from '../../../../modules/helpers';
 import { SourceEditor } from '../SourceEditor';
 
 export class AceEditor extends SourceEditor<AceAjax.Editor>
@@ -203,9 +203,11 @@ export class AceEditor extends SourceEditor<AceAjax.Editor>
 
 		// global add ace editor in browser
 		if (!this.aceExists()) {
-			if (!editor.isInDestruct) {
-				tryInitAceEditor();
-			}
+			loadNext(editor, editor.options.sourceEditorCDNUrlsJS).then(() => {
+				if (!editor.isInDestruct) {
+					tryInitAceEditor();
+				}
+			});
 		}
 	}
 

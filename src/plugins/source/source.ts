@@ -9,9 +9,8 @@ import { MODE_SOURCE } from '../../constants';
 import { Plugin } from '../../modules/Plugin';
 import { IJodit, ISourceEditor, markerInfo } from '../../types';
 import { Dom } from '../../modules/Dom';
-import { isString } from '../../modules/helpers';
+import { isString, loadNext } from '../../modules/helpers';
 import { createSourceEditor } from './editor/factory';
-import 'js-beautify';
 
 /**
  * Plug-in change simple textarea on CodeMirror editor in Source code mode
@@ -279,7 +278,9 @@ export class source extends Plugin {
 				editor.options.sourceEditor,
 				editor,
 				this.mirrorContainer,
-				this.toWYSIWYG, this.fromWYSIWYG);
+				this.toWYSIWYG,
+				this.fromWYSIWYG
+			);
 
 			sourceEditor.onReadyAlways(() => {
 				this.sourceEditor?.destruct();
@@ -301,7 +302,13 @@ export class source extends Plugin {
 			editor.workplace.appendChild(this.mirrorContainer);
 		});
 
-		this.sourceEditor = createSourceEditor('area', editor, this.mirrorContainer, this.toWYSIWYG, this.fromWYSIWYG);
+		this.sourceEditor = createSourceEditor(
+			'area',
+			editor,
+			this.mirrorContainer,
+			this.toWYSIWYG,
+			this.fromWYSIWYG
+		);
 
 		const addListeners = () => {
 			// save restore selection
@@ -345,7 +352,11 @@ export class source extends Plugin {
 				return false;
 			};
 
-			addEventListener();
+			if (!addEventListener()) {
+				loadNext(editor, editor.options.beautifyHTMLCDNUrlsJS).then(
+					addEventListener
+				);
+			}
 		}
 
 		this.fromWYSIWYG();
