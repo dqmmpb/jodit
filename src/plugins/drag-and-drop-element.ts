@@ -30,6 +30,7 @@ export class DragAndDropElement extends Plugin {
 	private wasMoved: boolean = false;
 
 	private onDrag = this.jodit.async.throttle((event: DragEvent) => {
+		console.log(1111, 'onDrag', this.draggable);
 		if (!this.draggable) {
 			return;
 		}
@@ -61,6 +62,7 @@ export class DragAndDropElement extends Plugin {
 	}, this.jodit.defaultTimeout);
 
 	private onDragStart = (event: DragEvent) => {
+		console.log(555555, this.draggable)
 		let target: Node | null = event.target as Node,
 			last: HTMLElement | null = null;
 
@@ -93,10 +95,11 @@ export class DragAndDropElement extends Plugin {
 	};
 
 	private onDragEnd = () => {
+		console.log(3333, this.draggable)
 		if (this.isInDestruct) {
 			return;
 		}
-
+		console.log(4444, this.draggable)
 		if (this.draggable) {
 			Dom.safeRemove(this.draggable);
 			this.draggable = null;
@@ -105,6 +108,7 @@ export class DragAndDropElement extends Plugin {
 	};
 
 	private onDrop = () => {
+		console.log(6666, this.draggable);
 		if (!this.draggable || !this.wasMoved) {
 			this.onDragEnd();
 			return;
@@ -145,7 +149,7 @@ export class DragAndDropElement extends Plugin {
 				'mousedown touchstart dragstart',
 				this.onDragStart
 			)
-			.on('mouseup touchend', this.onDrop)
+			.on(window, 'mouseup touchend', this.onDrop)
 			.on(window, 'mouseup touchend', this.onDragEnd);
 	}
 
@@ -159,7 +163,7 @@ export class DragAndDropElement extends Plugin {
 				'mousedown touchstart dragstart',
 				this.onDragStart
 			)
-			.off('mouseup touchend', this.onDrop)
+			.off(window, 'mouseup touchend', this.onDrop)
 			.off(window, 'mouseup touchend', this.onDragEnd);
 	}
 }
