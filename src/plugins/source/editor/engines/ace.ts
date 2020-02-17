@@ -8,8 +8,6 @@ import { IJodit, ISourceEditor } from '../../../../types';
 import * as consts from '../../../../constants';
 import { isString } from '../../../../modules/helpers';
 import { SourceEditor } from '../SourceEditor';
-import 'ace-builds';
-import 'ace-builds/webpack-resolver';
 
 export class AceEditor extends SourceEditor<AceAjax.Editor>
 	implements ISourceEditor {
