@@ -2304,6 +2304,12 @@ html.jodit_fullsize_box{
 .jodit_source *{
   font:12px / normal Monaco,Menlo,Ubuntu Mono,Consolas,source-code-pro,monospace;
 }
+.jodit_source .ace_cjk{
+  display:inline-block;
+  text-align:center;
+  vertical-align:middle;
+  line-height:1 !important;
+}
 .jodit_container.jodit_source_mode .jodit_wysiwyg,.jodit_container.jodit_source_mode .jodit_wysiwyg_iframe{
   display:none !important;
 }
