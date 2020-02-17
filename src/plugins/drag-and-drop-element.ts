@@ -29,9 +29,64 @@ export class DragAndDropElement extends Plugin {
 	private draggable: HTMLElement | null = null;
 	private wasMoved: boolean = false;
 
+	private diffStep = 10;
+	private startX = 0;
+	private startY = 0;
+
+	private onDragStart = (event: DragEvent) => {
+		let target: Node | null = event.target as Node,
+			last: HTMLElement | null = null;
+
+		if (!this.dragList.length) {
+			return;
+		}
+
+		do {
+			if (this.dragList.includes(target.nodeName.toLowerCase())) {
+				if (
+					!last ||
+					(target.firstChild === last && target.lastChild === last)
+				) {
+					last = target as HTMLElement;
+				}
+			}
+
+			target = target.parentNode;
+		} while (target && target !== this.jodit.editor);
+
+		if (!last) {
+			return;
+		}
+
+		this.startX = event.clientX;
+		this.startY = event.clientY;
+
+		this.isCopyMode = ctrlKey(event); // we can move only element from editor
+		this.onDragEnd();
+
+		this.draggable = last.cloneNode(true) as HTMLElement;
+		dataBind(this.draggable, 'target', last);
+
+		this.jodit.events.on(
+			this.jodit.editor,
+			'mousemove touchmove',
+			this.onDrag
+		);
+	};
+
 	private onDrag = this.jodit.async.throttle((event: DragEvent) => {
-		console.log(1111, 'onDrag', this.draggable);
 		if (!this.draggable) {
+			return;
+		}
+
+		const x = event.clientX,
+			y = event.clientY;
+
+		if (
+			Math.sqrt(
+				Math.pow(x - this.startX, 2) + Math.pow(y - this.startY, 2)
+			) < this.diffStep
+		) {
 			return;
 		}
 
@@ -61,54 +116,25 @@ export class DragAndDropElement extends Plugin {
 		this.jodit.selection.insertCursorAtPoint(event.clientX, event.clientY);
 	}, this.jodit.defaultTimeout);
 
-	private onDragStart = (event: DragEvent) => {
-		console.log(555555, this.draggable)
-		let target: Node | null = event.target as Node,
-			last: HTMLElement | null = null;
-
-		if (!this.dragList.length) {
-			return;
-		}
-
-		do {
-			if (this.dragList.includes(target.nodeName.toLowerCase())) {
-				if (
-					!last ||
-					(target.firstChild === last && target.lastChild === last)
-				) {
-					last = target as HTMLElement;
-				}
-			}
-
-			target = target.parentNode;
-		} while (target && target !== this.jodit.editor);
-
-		if (!last) {
-			return;
-		}
-
-		this.isCopyMode = ctrlKey(event); // we can move only element from editor
-		this.onDragEnd();
-
-		this.draggable = last.cloneNode(true) as HTMLElement;
-		dataBind(this.draggable, 'target', last);
-	};
-
 	private onDragEnd = () => {
-		console.log(3333, this.draggable)
 		if (this.isInDestruct) {
 			return;
 		}
-		console.log(4444, this.draggable)
+
 		if (this.draggable) {
 			Dom.safeRemove(this.draggable);
 			this.draggable = null;
 			this.wasMoved = false;
+
+			this.jodit.events.off(
+				this.jodit.editor,
+				'mousemove touchmove',
+				this.onDrag
+			);
 		}
 	};
 
 	private onDrop = () => {
-		console.log(6666, this.draggable);
 		if (!this.draggable || !this.wasMoved) {
 			this.onDragEnd();
 			return;
@@ -143,14 +169,17 @@ export class DragAndDropElement extends Plugin {
 		}
 
 		this.jodit.events
-			.on(this.jodit.editor, 'mousemove touchmove', this.onDrag)
 			.on(
 				this.jodit.editor,
 				'mousedown touchstart dragstart',
 				this.onDragStart
 			)
-			.on(window, 'mouseup touchend', this.onDrop)
-			.on(window, 'mouseup touchend', this.onDragEnd);
+			.on('mouseup touchend', this.onDrop)
+			.on(
+				[this.jodit.editorWindow, this.jodit.ownerWindow],
+				'mouseup touchend',
+				this.onDragEnd
+			);
 	}
 
 	protected beforeDestruct() {
@@ -163,7 +192,7 @@ export class DragAndDropElement extends Plugin {
 				'mousedown touchstart dragstart',
 				this.onDragStart
 			)
-			.off(window, 'mouseup touchend', this.onDrop)
+			.off('mouseup touchend', this.onDrop)
 			.off(window, 'mouseup touchend', this.onDragEnd);
 	}
 }

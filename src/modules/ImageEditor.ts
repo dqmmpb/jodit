@@ -13,7 +13,7 @@ import {
 } from '../types';
 import { IViewBased } from '../types/view';
 import { Component } from './Component';
-import { Alert, Dialog, Promt } from './dialog/';
+import { Alert, Dialog, Prompt } from './dialog/';
 import { $$, css, trim } from './helpers/';
 import { ToolbarIcon } from './toolbar/icon';
 import { Dom } from './Dom';
@@ -93,29 +93,29 @@ export class ImageEditor extends Component {
 	private cropUseRatio: boolean = true;
 
 	private dialog: Dialog;
-	private image: HTMLImageElement;
-	private cropImage: HTMLImageElement;
+	private image!: HTMLImageElement;
+	private cropImage!: HTMLImageElement;
 	private clicked = false;
-	private target: HTMLElement;
+	private target!: HTMLElement;
 
-	private start_x: number;
-	private start_y: number;
-	private top_x: number;
-	private top_y: number;
+	private start_x: number = 0;
+	private start_y: number = 0;
+	private top_x: number = 0;
+	private top_y: number = 0;
 
-	private width: number;
-	private height: number;
+	private width: number = 0;
+	private height: number = 0;
 
 	private activeTab: ImageAction = 'resize';
 
-	private naturalWidth: number;
-	private naturalHeight: number;
+	private naturalWidth: number = 0;
+	private naturalHeight: number = 0;
 
-	private ratio: number;
-	private new_h: number;
-	private new_w: number;
-	private diff_x: number;
-	private diff_y: number;
+	private ratio: number = 0;
+	private new_h: number = 0;
+	private new_w: number = 0;
+	private diff_x: number = 0;
+	private diff_y: number = 0;
 
 	private buttons: HTMLElement[];
 
@@ -432,7 +432,9 @@ export class ImageEditor extends Component {
 						`.${jie}_slider,.${jie}_area`,
 						self.editor
 					).forEach(elm => elm.classList.remove('active'));
+
 					const slide = this.parentNode as HTMLElement;
+
 					slide.classList.add('active');
 					self.activeTab =
 						<ImageAction>slide.getAttribute('data-area') ||
@@ -502,7 +504,7 @@ export class ImageEditor extends Component {
 		);
 		if (rationResizeButton) {
 			rationResizeButton.addEventListener('change', () => {
-				self.resizeUseRatio = rationResizeButton.checked;
+				this.resizeUseRatio = rationResizeButton.checked;
 			});
 		}
 
@@ -513,7 +515,7 @@ export class ImageEditor extends Component {
 
 		if (rationCropButton) {
 			rationCropButton.addEventListener('change', () => {
-				self.cropUseRatio = rationCropButton.checked;
+				this.cropUseRatio = rationCropButton.checked;
 			});
 		}
 
@@ -595,7 +597,7 @@ export class ImageEditor extends Component {
 
 				switch (button.getAttribute('data-action')) {
 					case 'saveas':
-						Promt(
+						Prompt(
 							self.jodit.i18n('Enter new name'),
 							self.jodit.i18n('Save in new file'),
 							(name: string): false | void => {
@@ -646,7 +648,7 @@ export class ImageEditor extends Component {
 
 	options: ImageEditorOptions;
 
-	onSave: (
+	onSave!: (
 		name: void | string,
 		data: ImageEditorActionBox,
 		hide: () => void,

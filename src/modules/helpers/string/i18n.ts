@@ -39,7 +39,7 @@ export const sprintf = (str: string, args?: Array<string | number>): string => {
  * var editor = new Jodit("#redactor", {
  *      langusage: 'ru'
  * });
- * console.log(editor.i18n('Cancel')) //Отмена;
+ * console.log(i18n('Cancel')) //Отмена;
  *
  * Jodit.defaultOptions.language = 'ru';
  * console.log(Jodit.prototype.i18n('Cancel')) //Отмена

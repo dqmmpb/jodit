@@ -4,10 +4,20 @@
  * Copyright (c) 2013-2020 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 
-import {extend} from './extend';
+import { extend } from './extend';
 
 export class JoditArray {
-	public length: number = 0;
+	length: number = 0;
+
+	toString() {
+		const out = [];
+
+		for (let i = 0; i < this.length; i += 1) {
+			out[i] = (this as any)[i];
+		}
+
+		return out.toString();
+	}
 
 	constructor(data: any[]) {
 		extend(true, this, data);
@@ -26,15 +36,5 @@ export class JoditArray {
 		].forEach((method: string) => {
 			(this as any)[method] = proto[method];
 		});
-	}
-
-	public toString() {
-		const out = [];
-
-		for (let i = 0; i < this.length; i += 1) {
-			out[i] = (this as any)[i];
-		}
-
-		return out.toString();
 	}
 }

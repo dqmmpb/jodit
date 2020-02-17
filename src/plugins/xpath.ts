@@ -116,7 +116,8 @@ export class xpath extends Plugin {
 		return li;
 	};
 
-	private selectAllButton: ToolbarButton;
+	private selectAllButton!: ToolbarButton;
+
 	private removeSelectAll = () => {
 		if (this.selectAllButton) {
 			this.selectAllButton.destruct();
@@ -189,7 +190,7 @@ export class xpath extends Plugin {
 		this.jodit.defaultTimeout * 2
 	);
 
-	container: HTMLElement;
+	container!: HTMLElement;
 	menu: ContextMenu | null = null;
 
 	afterInit() {
@@ -206,6 +207,10 @@ export class xpath extends Plugin {
 				.on(
 					'afterSetMode.xpath afterInit.xpath changePlace.xpath',
 					() => {
+						if (!this.jodit.options.showXPathInStatusbar) {
+							return;
+						}
+
 						this.jodit.statusbar.append(this.container);
 
 						if (this.jodit.getRealMode() === consts.MODE_WYSIWYG) {

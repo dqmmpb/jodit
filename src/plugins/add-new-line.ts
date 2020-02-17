@@ -6,15 +6,19 @@
 
 import { Config } from '../Config';
 import { Dom } from '../modules/Dom';
-import { offset } from '../modules/helpers/size';
+import { offset, position } from '../modules/helpers/size';
 import { ToolbarIcon } from '../modules/toolbar/icon';
 import { IBound, IJodit } from '../types';
+import { Plugin } from '../modules/Plugin';
+import { call } from '../modules/helpers/utils';
+import { scrollIntoView } from '../modules/helpers';
 
 declare module '../Config' {
 	interface Config {
 		addNewLine: boolean;
 		addNewLineTagsTriggers: string[];
 		addNewLineOnDBLClick: boolean;
+		addNewLineDeltaShow: number;
 	}
 }
 
@@ -43,270 +47,290 @@ Config.prototype.addNewLineTagsTriggers = [
 ];
 
 /**
+ * Absolute delta between cursor position and edge(top or bottom)
+ * of element when show line
+ */
+Config.prototype.addNewLineDeltaShow = 20;
+
+const ns = 'addnewline';
+
+/**
  * Create helper for adding new paragraph(Jodit.defaultOptions.enter tag) before iframe, table or image
  *
  * @param {Jodit} editor
  */
-
-export function addNewLine(editor: IJodit) {
-	const i18n = editor.i18n.bind(editor);
-	if (!editor.options.addNewLine) {
-		return;
-	}
-
-	const line = editor.create.fromHTML(
-		'<div role="button" tabIndex="-1" title="' +
-			i18n('Break') +
-			'" class="jodit-add-new-line"><span>' +
-			ToolbarIcon.getIcon('enter') +
-			'</span></div>'
+export class addNewLine extends Plugin {
+	private line = this.jodit.create.fromHTML(
+		`<div role="button" tabIndex="-1" title="${this.jodit.i18n(
+			'Break'
+		)}" class="jodit-add-new-line"><span>${ToolbarIcon.getIcon(
+			'enter'
+		)}</span></div>`
 	) as HTMLDivElement;
 
-	const delta = 10;
-	const isMatchedTag = new RegExp(
-		'^(' + editor.options.addNewLineTagsTriggers.join('|') + ')$',
+	private isMatchedTag = new RegExp(
+		'^(' + this.jodit.options.addNewLineTagsTriggers.join('|') + ')$',
 		'i'
 	);
 
-	let timeout: number;
-	let hidden: boolean = false;
-	let preview: boolean = false;
-	let current: HTMLElement | false;
+	private timeout!: number;
+	private preview: boolean = false;
+	private current!: HTMLElement | false;
+	private lineInFocus: boolean = false;
+	private isShown: boolean = false;
 
-	let lineInFocus: boolean = false;
-
-	const show = () => {
-		if (editor.options.readonly || editor.isLocked()) {
+	private show() {
+		if (
+			this.isShown ||
+			this.jodit.options.readonly ||
+			this.jodit.isLocked()
+		) {
 			return;
 		}
 
-		if (editor.container.classList.contains('jodit_popup_active')) {
+		this.isShown = true;
+
+		if (this.jodit.container.classList.contains('jodit_popup_active')) {
 			return;
 		}
 
-		editor.async.clearTimeout(timeout);
-		line.classList.toggle('jodit-add-new-line_after', !preview);
-		editor.container.appendChild(line);
-		line.style.width = editor.editor.clientWidth + 'px';
-		hidden = false;
-	};
+		this.jodit.async.clearTimeout(this.timeout);
+		this.line.classList.toggle('jodit-add-new-line_after', !this.preview);
+		this.jodit.container.appendChild(this.line);
+		this.line.style.width = this.jodit.editor.clientWidth + 'px';
+	}
 
-	const hideForce = () => {
-		editor.async.clearTimeout(timeout);
-		lineInFocus = false;
-		Dom.safeRemove(line);
-		hidden = true;
-	};
-
-	const canGetFocus = (elm: Node | null): boolean => {
-		return (
-			elm !== null &&
-			Dom.isBlock(elm, editor.editorWindow) &&
-			!/^(img|table|iframe|hr)$/i.test(elm.nodeName)
-		);
-	};
-
-	const hide = () => {
-		if (hidden || lineInFocus) {
+	private hideForce = () => {
+		if (!this.isShown) {
 			return;
 		}
 
-		timeout = editor.async.setTimeout(hideForce, {
+		this.isShown = false;
+		this.jodit.async.clearTimeout(this.timeout);
+		this.lineInFocus = false;
+		Dom.safeRemove(this.line);
+	};
+
+	private hide = () => {
+		if (!this.isShown || this.lineInFocus) {
+			return;
+		}
+
+		this.timeout = this.jodit.async.setTimeout(this.hideForce, {
 			timeout: 500,
 			label: 'add-new-line-hide'
 		});
 	};
 
-	editor.events
-		.on('beforeDestruct', () => {
-			editor.async.clearTimeout(timeout);
-			Dom.safeRemove(line);
-			editor.events.off(line);
-		})
-		.on('afterInit', () => {
-			editor.events
-				.on(line, 'mousemove', (e: MouseEvent) => {
-					e.stopPropagation();
-				})
-				.on(line, 'mousedown touchstart', (e: MouseEvent) => {
-					const p = editor.create.inside.element(
-						editor.options.enter
-					);
+	private canGetFocus = (elm: Node | null): boolean => {
+		return (
+			elm !== null &&
+			Dom.isBlock(elm, this.jodit.editorWindow) &&
+			!/^(img|table|iframe|hr)$/i.test(elm.nodeName)
+		);
+	};
 
-					if (preview && current && current.parentNode) {
-						current.parentNode.insertBefore(p, current);
-					} else {
-						editor.editor.appendChild(p);
-					}
+	protected afterInit(editor: IJodit): void {
+		if (!editor.options.addNewLine) {
+			return;
+		}
 
-					editor.selection.setCursorIn(p);
+		editor.events
+			.on(this.line, 'mousemove', (e: MouseEvent) => {
+				e.stopPropagation();
+			})
+			.on(this.line, 'mousedown touchstart', this.onClickLine)
+			.on('change', this.hideForce)
+			.on(this.line, 'mouseenter', () => {
+				this.jodit.async.clearTimeout(this.timeout);
+				this.lineInFocus = true;
+			})
+			.on(this.line, 'mouseleave', () => {
+				this.lineInFocus = false;
+			})
+			.on('changePlace', this.addEventListeners.bind(this));
 
-					editor.events.fire('synchro');
-					hideForce();
-					e.preventDefault();
-				});
-		})
-		.on('afterInit', () => {
-			editor.events
-				.on(editor.editor, 'scroll', hideForce)
-				.on('change', hideForce)
-				.on(editor.container, 'mouseleave', hide)
-				.on(line, 'mouseenter', () => {
-					clearTimeout(timeout);
-					lineInFocus = true;
-				})
-				.on(line, 'mouseleave', () => {
-					lineInFocus = false;
-				})
-				.on(editor.editor, 'dblclick', (e: MouseEvent) => {
-					if (
-						!editor.options.readonly &&
-						editor.options.addNewLineOnDBLClick &&
-						e.target === editor.editor &&
-						editor.selection.isCollapsed()
-					) {
-						const editorBound: IBound = offset(
-							editor.editor,
-							editor,
-							editor.editorDocument
-						);
+		this.addEventListeners();
+	}
 
-						const top = e.pageY - editor.editorWindow.pageYOffset;
+	private addEventListeners() {
+		const editor = this.jodit;
 
-						const p = editor.create.inside.element(
-							editor.options.enter
-						);
+		editor.events
+			.off(editor.editor, '.' + ns)
+			.off(editor.container, '.' + ns)
+			.on(
+				[editor.ownerWindow, editor.editorWindow, editor.editor],
+				`scroll` + '.' + ns,
+				this.hideForce
+			)
+			.on(editor.editor, 'dblclick' + '.' + ns, this.onDblClickEditor)
+			.on(editor.editor, 'click' + '.' + ns, this.hide)
+			.on(editor.container, 'mouseleave' + '.' + ns, this.hide)
+			.on(
+				editor.editor,
+				'mousemove' + '.' + ns,
+				editor.async.debounce(this.onMouseMove, editor.defaultTimeout * 3)
+			);
+	}
 
-						if (
-							Math.abs(top - editorBound.top) <
-								Math.abs(
-									top - (editorBound.height + editorBound.top)
-								) &&
-							editor.editor.firstChild
-						) {
-							editor.editor.insertBefore(
-								p,
-								editor.editor.firstChild
-							);
-						} else {
-							editor.editor.appendChild(p);
-						}
+	private onClickLine = (e: MouseEvent) => {
+		const editor = this.jodit;
+		const p = editor.create.inside.element(editor.options.enter);
 
-						editor.selection.setCursorIn(p);
-						editor.setEditorValue();
-						hideForce();
-						e.preventDefault();
-					}
-				})
-				.on(
-					editor.editor,
-					'mousemove',
-					editor.async.debounce((e: MouseEvent) => {
-						let currentElement: HTMLElement = editor.editorDocument.elementFromPoint(
-							e.pageX - editor.editorWindow.pageXOffset,
-							e.pageY - editor.editorWindow.pageYOffset
-						) as HTMLElement;
+		if (this.preview && this.current && this.current.parentNode) {
+			this.current.parentNode.insertBefore(p, this.current);
+		} else {
+			editor.editor.appendChild(p);
+		}
 
-						if (
-							currentElement &&
-							Dom.isOrContains(line, currentElement)
-						) {
-							return;
-						}
+		editor.selection.setCursorIn(p);
+		scrollIntoView(p, editor.editor, editor.editorDocument);
 
-						if (
-							!currentElement ||
-							!Dom.isOrContains(editor.editor, currentElement)
-						) {
-							return;
-						}
+		editor.events.fire('synchro');
+		this.hideForce();
 
-						if (
-							!currentElement ||
-							!currentElement.nodeName.match(isMatchedTag) ||
-							!Dom.isOrContains(editor.editor, currentElement)
-						) {
-							currentElement = Dom.closest(
-								currentElement,
-								isMatchedTag,
-								editor.editor
-							) as HTMLElement;
-							if (!currentElement) {
-								hide();
-								return;
-							}
-						}
+		e.preventDefault();
+	};
 
-						if (isMatchedTag.test(currentElement.nodeName)) {
-							const parentBox: Node | false = Dom.up(
-								currentElement,
-								node => Dom.isBlock(node, editor.editorWindow),
-								editor.editor
-							);
-							if (parentBox && parentBox !== editor.editor) {
-								currentElement = parentBox as HTMLElement;
-							}
-						}
+	private onDblClickEditor = (e: MouseEvent) => {
+		const editor = this.jodit;
 
-						const editorBound = offset(
-							editor.editor,
-							editor,
-							editor.editorDocument
-						);
+		if (
+			!editor.options.readonly &&
+			editor.options.addNewLineOnDBLClick &&
+			e.target === editor.editor &&
+			editor.selection.isCollapsed()
+		) {
+			const editorBound: IBound = offset(
+				editor.editor,
+				editor,
+				editor.editorDocument
+			);
 
-						const position = offset(
-							currentElement as HTMLElement,
-							editor,
-							editor.editorDocument
-						);
+			const top = e.pageY - editor.editorWindow.pageYOffset;
 
-						let top: false | number = false;
+			const p = editor.create.inside.element(editor.options.enter);
 
-						if (Math.abs(e.pageY - position.top) < delta) {
-							top = position.top;
-							if (top - editorBound.top >= 20) {
-								top -= 15;
-							}
-							preview = true;
-						}
-						if (
-							Math.abs(
-								e.pageY - (position.top + position.height)
-							) < delta
-						) {
-							top = position.top + position.height;
-							if (
-								editorBound.top + editorBound.height - top >=
-								25
-							) {
-								top += 15;
-							}
-							preview = false;
-						}
+			if (
+				Math.abs(top - editorBound.top) <
+					Math.abs(top - (editorBound.height + editorBound.top)) &&
+				editor.editor.firstChild
+			) {
+				editor.editor.insertBefore(p, editor.editor.firstChild);
+			} else {
+				editor.editor.appendChild(p);
+			}
 
-						if (
-							top !== false &&
-							((preview &&
-								!Dom.prev(
-									currentElement,
-									canGetFocus,
-									editor.editor
-								)) ||
-								(!preview &&
-									!Dom.next(
-										currentElement,
-										canGetFocus,
-										editor.editor
-									)))
-						) {
-							line.style.top = top + 'px';
-							current = currentElement;
-							show();
-						} else {
-							current = false;
-							hide();
-						}
-					}, editor.defaultTimeout)
-				);
-		});
+			editor.selection.setCursorIn(p);
+			editor.setEditorValue();
+
+			this.hideForce();
+			e.preventDefault();
+		}
+	};
+
+	private onMouseMove = (e: MouseEvent) => {
+		const editor = this.jodit;
+
+		let currentElement: HTMLElement | null = editor.editorDocument.elementFromPoint(
+			e.clientX,
+			e.clientY
+		) as HTMLElement;
+
+		if (
+			!Dom.isHTMLElement(currentElement, editor.editorWindow) ||
+			Dom.isOrContains(this.line, currentElement)
+		) {
+			return;
+		}
+
+		if (!Dom.isOrContains(editor.editor, currentElement)) {
+			return;
+		}
+
+		if (!this.isMatchedTag.test(currentElement.nodeName)) {
+			currentElement = Dom.closest(
+				currentElement,
+				this.isMatchedTag,
+				editor.editor
+			) as HTMLElement;
+		}
+
+		if (!currentElement) {
+			this.hide();
+			return;
+		}
+
+		if (this.isMatchedTag.test(currentElement.nodeName)) {
+			const parentBox: Node | false = Dom.up(
+				currentElement,
+				node => Dom.isBlock(node, editor.editorWindow),
+				editor.editor
+			);
+
+			if (parentBox && parentBox !== editor.editor) {
+				currentElement = parentBox as HTMLElement;
+			}
+		}
+
+		const pos = position(currentElement, this.jodit);
+
+		let top: false | number = false;
+
+		let { clientY } = e;
+
+		if (this.jodit.iframe) {
+			const { top } = position(this.jodit.iframe, this.jodit, true);
+			clientY += top;
+		}
+
+		const delta = this.jodit.options.addNewLineDeltaShow;
+
+		if (Math.abs(clientY - pos.top) <= delta) {
+			top = pos.top;
+			this.preview = true;
+		}
+
+		if (Math.abs(clientY - (pos.top + pos.height)) <= delta) {
+			top = pos.top + pos.height;
+			this.preview = false;
+		}
+
+		if (
+			top !== false &&
+			!call(
+				this.preview ? Dom.prev : Dom.next,
+				currentElement,
+				this.canGetFocus,
+				editor.editor
+			)
+		) {
+			this.line.style.top = top + 'px';
+			this.current = currentElement;
+			this.show();
+		} else {
+			this.current = false;
+			this.hide();
+		}
+	};
+
+	protected beforeDestruct(): void {
+		this.jodit.async.clearTimeout(this.timeout);
+		this.jodit.events.off(this.line);
+		this.jodit.events.off('changePlace', this.addEventListeners);
+
+		Dom.safeRemove(this.line);
+
+		this.jodit.events
+			.off(
+				[
+					this.jodit.ownerWindow,
+					this.jodit.editorWindow,
+					this.jodit.editor
+				],
+				'.' + ns
+			)
+			.off(this.jodit.container, '.' + ns);
+	}
 }

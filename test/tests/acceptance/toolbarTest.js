@@ -783,13 +783,7 @@ describe('Toolbar', function() {
 
 			editor.value = 'Test';
 
-			simulateEvent(
-				'mousedown',
-				0,
-				editor.container.querySelector(
-					'.jodit_toolbar_btn.jodit_toolbar_btn-left'
-				)
-			);
+			clickButton('left', editor);
 
 			const list = editor.container.querySelector('.jodit_toolbar_list');
 
@@ -2668,7 +2662,53 @@ describe('Toolbar', function() {
 			expect(secondEditPlace.innerHTML).equals('second');
 			expect(thirdEditPlace.innerHTML).equals('third');
 		});
-	});
 
-	afterEach(removeStuff);
+		describe('For all instances you can set self options', function() {
+			it('Should change options for all instances', function() {
+				const toolbarBox = appendTestDiv(),
+					firstEditPlace = appendTestDiv('firstEditPlace'),
+					secondEditPlace = appendTestDiv('secondEditPlace'),
+					thirdEditPlace = appendTestDiv('thirdEditPlace'),
+					editor = Jodit.make(firstEditPlace);
+
+				editor.setPanel(toolbarBox);
+
+				editor.value = 'first';
+
+				editor.addPlace(secondEditPlace, {
+					"readonly": true,
+					"showCharsCounter": false,
+					"showWordsCounter": false,
+					"showXPathInStatusbar": false
+				});
+
+				editor.value = 'second';
+
+				editor.addPlace(thirdEditPlace, {
+					"readonly": false,
+					"showCharsCounter": false,
+					"showWordsCounter": false,
+					"showXPathInStatusbar": false
+				});
+
+				editor.value = 'third';
+
+				const editPlaces = editor.ownerDocument.querySelectorAll('.jodit_wysiwyg');
+				expect(editPlaces.length).equals(3);
+
+				simulateEvent('focus', 0, editPlaces[0]);
+				expect(editor.options.readonly).is.false;
+				expect(editor.options.showCharsCounter).is.true;
+
+				simulateEvent('focus', 0, editPlaces[1]);
+				expect(editor.options.readonly).is.true;
+				expect(editor.options.showCharsCounter).is.false;
+
+				simulateEvent('focus', 0, editPlaces[2]);
+				expect(editor.options.readonly).is.false;
+				expect(editor.options.showCharsCounter).is.false;
+
+			});
+		});
+	});
 });

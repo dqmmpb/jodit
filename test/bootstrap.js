@@ -320,6 +320,8 @@ function removeStuff() {
 
 	Jodit.modules.Ajax.log.length = 0;
 
+	getBox().removeAttribute('style');
+
 	mockPromise();
 }
 
@@ -642,12 +644,12 @@ function setCursor(elm, inEnd) {
 	window.getSelection().addRange(range);
 }
 
-function createPoint(x, y, color) {
+function createPoint(x, y, color, fixed = false) {
 	const div = document.createElement('div');
 
 	div.setAttribute(
 		'style',
-		'position: absolute; z-index: 1000000000;width: 5px; height: 5px; background: ' +
+		'position: ' + (fixed ? 'fixed': 'absolute') + '; z-index: 1000000000;width: 5px; height: 5px; background: ' +
 			(color || 'red') +
 			';'
 	);
@@ -656,6 +658,7 @@ function createPoint(x, y, color) {
 	div.style.top = parseInt(y, 10) + 'px';
 
 	document.body.appendChild(div);
+	stuff.push(div);
 }
 
 function offset(el) {

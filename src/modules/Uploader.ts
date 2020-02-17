@@ -166,7 +166,7 @@ export class Uploader extends Component implements IUploader {
 
 	private options: IUploaderOptions<Uploader>;
 
-	jodit: IViewBased;
+	jodit!: IViewBased;
 
 	buildData(data: FormData | IDictionary<string> | string): BuildDataResult {
 		if (

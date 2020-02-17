@@ -147,11 +147,8 @@ export class AceEditor extends SourceEditor<AceAjax.Editor>
 			);
 
 			this.instance.getSession().setUseWorker(false);
-			this.instance.$blockScrolling = Infinity;
 
-			this.instance.setOptions({
-				maxLines: Infinity
-			});
+			this.instance.$blockScrolling = Infinity;
 
 			this.instance.on('change', this.toWYSIWYG as any);
 			this.instance.on('focus', this.proxyOnFocus);
@@ -161,9 +158,27 @@ export class AceEditor extends SourceEditor<AceAjax.Editor>
 				this.setValue(this.getValue());
 			}
 
-			editor.events.on('afterResize', () => {
+			const onResize = this.jodit.async.debounce(() => {
+				if (editor.isInDestruct) {
+					return;
+				}
+
+				if (editor.options.height !== 'auto') {
+					this.instance.setOption(
+						'maxLines',
+						editor.workplace.offsetHeight /
+							this.instance.renderer.lineHeight
+					);
+				} else {
+					this.instance.setOption('maxLines', Infinity);
+				}
+
 				this.instance.resize();
-			});
+			}, this.jodit.defaultTimeout * 2);
+
+			editor.events.on('afterResize afterSetMode', onResize);
+
+			onResize();
 
 			this.onReady();
 		};

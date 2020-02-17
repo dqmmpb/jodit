@@ -8,7 +8,7 @@ import { Config, OptionsDefault } from '../../Config';
 import * as consts from '../../constants';
 import { Dialog } from '../dialog/dialog';
 import { Confirm } from '../dialog/confirm';
-import { Promt } from '../dialog/promt';
+import { Prompt } from '../dialog/prompt';
 import { ToolbarIcon } from '../toolbar/icon';
 
 import {
@@ -78,7 +78,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		onlyImages: false
 	});
 
-	dataProvider: IFileBrowserDataProvider;
+	dataProvider!: IFileBrowserDataProvider;
 
 	async loadItems(
 		path: string = this.dataProvider.currentPath,
@@ -282,16 +282,16 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 		}
 	};
 
-	options: IFileBrowserOptions;
+	options!: IFileBrowserOptions;
 
-	dialog: Dialog;
+	dialog!: Dialog;
 
 	/**
 	 * Container for set/get value
 	 */
-	storage: IStorage;
+	storage!: IStorage;
 
-	uploader: IUploader;
+	uploader!: IUploader;
 
 	/**
 	 *
@@ -763,7 +763,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 				'fileRename.filebrowser',
 				(name: string, path: string, source: string) => {
 					if (self.state.activeElements.length === 1) {
-						Promt(
+						Prompt(
 							self.i18n('Enter new name'),
 							self.i18n('Rename'),
 							(newName: string): false | void => {
@@ -883,7 +883,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 						name: string = a.getAttribute('data-name') || '',
 						path: string = a.getAttribute('data-source-path') || '';
 
-					Promt(
+					Prompt(
 						self.i18n('Enter new name'),
 						self.i18n('Rename'),
 						(newName: string): false | void => {
@@ -943,7 +943,7 @@ export class FileBrowser extends ViewWithToolbar implements IFileBrowser {
 				'click',
 				function(this: HTMLAnchorElement) {
 					if (this.classList.contains('addfolder')) {
-						Promt(
+						Prompt(
 							self.i18n('Enter Directory name'),
 							self.i18n('Create directory'),
 							(name: string) => {

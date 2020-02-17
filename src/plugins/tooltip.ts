@@ -13,7 +13,7 @@ import { Dom } from '../modules/Dom';
 export class tooltip extends Plugin {
 	private isOpened = false;
 
-	container: HTMLElement;
+	container!: HTMLElement;
 
 	afterInit(jodit: IJodit) {
 		this.container = jodit.create.div('jodit_tooltip');
@@ -73,6 +73,7 @@ export class tooltip extends Plugin {
 		if (this.isOpened) {
 			this.isOpened = false;
 			this.container.classList.remove('jodit_tooltip_visible');
+
 			css(this.container, {
 				left: -5000,
 				position: 'fixed'

@@ -1,9 +1,15 @@
 # Changelog
 
-## 3.3.22
+## 3.3.23
+### BugFix
+* [#325](https://github.com/xdan/jodit/issues/325) [#239](https://github.com/xdan/jodit/issues/239)
+* [#327](https://github.com/xdan/jodit/issues/327)
+* [#292](https://github.com/xdan/jodit/issues/292)
+* [#203](https://github.com/xdan/jodit/issues/203)
+* [#339](https://github.com/xdan/jodit/issues/339)
 
 ### Feature
-* Added Dom.isTag method
+* Added `Dom`.`isTag` method
 ```js
 const editor = Jodit.make('#editor');
 
@@ -13,7 +19,15 @@ const br = document.createElement('br');
 Jodit.modules.Dom.isTag(a, 'a') // true
 Jodit.modules.Dom.isTag(br, 'br') // true
 ```
-
+* Added `Helpers`.`call` method
+```js
+const f = Math.random();
+Jodit.modules.Helpers.call(f > 0.5 ? Math.ceil : Math.floor, f);
+```
+* Added `Helpers`.`position` method - Helper function to get an element's exact position
+```js
+console.log(Jodit.modules.Helpers.position(editor.editor.querySelector('p')));
+```
 ## 3.3.19
 ### BugFix
 * Fixed a lots bugs inside `link` plugin

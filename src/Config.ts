@@ -50,7 +50,7 @@ export class Config implements IViewOptions {
 	 */
 	iframe: boolean = false;
 
-	commandToHotkeys: IDictionary<string | string[]>;
+	commandToHotkeys!: IDictionary<string | string[]>;
 
 	license: string = '';
 
@@ -90,6 +90,7 @@ export class Config implements IViewOptions {
 	ownerDocument: Document = (typeof document !== 'undefined'
 		? document
 		: null) as Document;
+
 	ownerWindow: Window = (typeof window !== 'undefined'
 		? window
 		: null) as Window;
@@ -331,7 +332,7 @@ export class Config implements IViewOptions {
 	 *    debugLanguage: true
 	 * });
 	 *
-	 * console.log(editor.i18n("Test")); // {Test}
+	 * console.log(i18n("Test")); // {Test}
 	 * </script>
 	 * ```
 	 */
@@ -350,7 +351,7 @@ export class Config implements IViewOptions {
 	 *         }
 	 *     }
 	 * });
-	 * console.log(editor.i18n('Type something')) //Начните что-либо вводить
+	 * console.log(i18n('Type something')) //Начните что-либо вводить
 	 * ```
 	 */
 	i18n: false = false;
@@ -798,7 +799,7 @@ export class Config implements IViewOptions {
 	/**
 	 * Behavior for buttons
 	 */
-	controls: Controls;
+	controls!: Controls;
 
 	events: IDictionary<(...args: any[]) => any> = {};
 
@@ -1073,21 +1074,22 @@ Config.prototype.controls = {
 	} as IControlType,
 	video: {
 		popup: (editor: IJodit, current, control, close) => {
+			const i18n = editor.i18n.bind(editor);
 			const bylink = editor.create.fromHTML(
 					`<form class="jodit_form">
 					<div class="jodit jodit_form_group">
 						<input class="jodit_input" required name="code" placeholder="http://" type="url"/>
-						<button class="jodit_button" type="submit">${editor.i18n('Insert')}</button>
+						<button class="jodit_button" type="submit">${i18n('Insert')}</button>
 					</div>
 				</form>`
 				) as HTMLFormElement,
 				bycode = editor.create.fromHTML(
 					`<form class="jodit_form">
 									<div class="jodit_form_group">
-										<textarea class="jodit_textarea" required name="code" placeholder="${editor.i18n(
+										<textarea class="jodit_textarea" required name="code" placeholder="${i18n(
 											'Embed code'
 										)}"></textarea>
-										<button class="jodit_button" type="submit">${editor.i18n('Insert')}</button>
+										<button class="jodit_button" type="submit">${i18n('Insert')}</button>
 									</div>
 								</form>`
 				) as HTMLFormElement,
@@ -1100,16 +1102,16 @@ Config.prototype.controls = {
 				};
 
 			if (editor.options.textIcons) {
-				tab[editor.i18n('Link')] = bylink;
-				tab[editor.i18n('Code')] = bycode;
+				tab[i18n('Link')] = bylink;
+				tab[i18n('Code')] = bycode;
 			} else {
 				tab[
-					ToolbarIcon.getIcon('link') + '&nbsp;' + editor.i18n('Link')
+					ToolbarIcon.getIcon('link') + '&nbsp;' + i18n('Link')
 				] = bylink;
 				tab[
 					ToolbarIcon.getIcon('source') +
 						'&nbsp;' +
-						editor.i18n('Code')
+						i18n('Code')
 				] = bycode;
 			}
 
@@ -1154,3 +1156,7 @@ Config.prototype.controls = {
 		tooltip: 'Insert youtube/vimeo video'
 	} as IControlType
 };
+
+export function configFactory(options?: object): Config {
+	return new OptionsDefault(options) as Config;
+}
