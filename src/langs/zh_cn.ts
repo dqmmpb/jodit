@@ -200,7 +200,7 @@ export default {
 	selectall: '全选',
 	'Open link': '打开链接',
 	'Edit link': '编辑链接',
-	'No follow': '不追踪',
+	'No follow': '不抓取',
 	Unlink: '移除链接',
 	Eye: '回顾',
 	pencil: '铅笔',

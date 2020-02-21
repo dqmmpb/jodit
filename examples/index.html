@@ -179,27 +179,27 @@
 					url: 'https://xdsoft.net/jodit/connector/index.php?action=fileUpload',
 					maxSize: 20 * 1024 * 1024,
 					insertImageAsBase64URI: false,
-					customSend: function(url, data, success) {
-						return new Promise((resolve, reject) => {
-							resolve({
-								success: true,
-								data: {
-									baseurl: '',
-									files: [`http://email-tool-us.oss-accelerate.aliyuncs.com/uploadDoc/9b58367a-f1a4-4a0d-9a4b-1052c06a904b.jpg`],
-									isImages: [true],
-								}
-							});
-						}).then((resp) => {
-							success.call(this, resp);
-						});
-					}
+					// customSend: function(url, data, success) {
+					// 	return new Promise((resolve, reject) => {
+					// 		resolve({
+					// 			success: true,
+					// 			data: {
+					// 				baseurl: '',
+					// 				files: [`http://email-tool-us.oss-accelerate.aliyuncs.com/uploadDoc/9b58367a-f1a4-4a0d-9a4b-1052c06a904b.jpg`],
+					// 				isImages: [true],
+					// 			}
+					// 		});
+					// 	}).then((resp) => {
+					// 		success.call(this, resp);
+					// 	});
+					// }
         },
-        /*filebrowser: {
+        filebrowser: {
             // buttons: ['list', 'tiles', 'sort'],
             ajax: {
                 url: 'https://xdsoft.net/jodit/connector/index.php'
             }
-        },*/
+        },
         commandToHotkeys: {
             'openreplacedialog': 'ctrl+p'
         }
