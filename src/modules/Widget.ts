@@ -411,7 +411,18 @@ export namespace Widget {
 							 type="checkbox"
 							 ${!editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : ''}
 							 />`
-						: '') +
+						: `<input
+							 class="jodit_checkbox"
+							 name="uploadImageToCloud"
+							 type="checkbox"
+						   ${
+								!isImage ||
+								!editor.options.uploader.insertImageAsBase64URI
+									? 'checked="checked"'
+									: ''
+							}
+							 style="display: none"
+							 />`) +
 					`<span>${i18n(
 						'Upload %s to cloud.',
 						i18n(isImage ? 'image' : 'file')

@@ -3369,7 +3369,10 @@ var Widget;
                 '<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">' +
                 (isImage
                     ? "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (!editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />"
-                    : '') +
+                    : "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t   " + (!isImage ||
+                        !editor.options.uploader.insertImageAsBase64URI
+                        ? 'checked="checked"'
+                        : '') + "\n\t\t\t\t\t\t\t style=\"display: none\"\n\t\t\t\t\t\t\t />") +
                 ("<span>" + i18n('Upload %s to cloud.', i18n(isImage ? 'image' : 'file')) + i18n('( The Max. file size is %s. )', filesize(editor.options.uploader.maxSize)) + "</span>") +
                 '</label>' +
                 '<div class="jodit_draganddrop_file_box">' +
