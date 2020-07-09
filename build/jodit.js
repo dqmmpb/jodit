@@ -2439,7 +2439,7 @@ var Jodit = (function (_super) {
         var init = function () {
             if (opt.enableDragAndDropFileToEditor &&
                 opt.uploader &&
-                (opt.uploader.url || opt.uploader.insertImageAsBase64URI)) {
+                (opt.uploader.url || opt.uploader.insertImageAsLocalURI)) {
                 _this.uploader.bind(_this.editor);
             }
             if (!_this.elementToPlace.get(_this.editor)) {
@@ -3364,13 +3364,13 @@ var Widget;
         if (callbacks.upload &&
             editor.options.uploader &&
             (editor.options.uploader.url ||
-                editor.options.uploader.insertImageAsBase64URI)) {
+                editor.options.uploader.insertImageAsLocalURI)) {
             var dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_wrapper">' +
                 '<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">' +
                 (isImage
-                    ? "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (!editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />"
+                    ? "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />"
                     : "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t   " + (!isImage ||
-                        !editor.options.uploader.insertImageAsBase64URI
+                        !editor.options.uploader.insertImageAsLocalURI
                         ? 'checked="checked"'
                         : '') + "\n\t\t\t\t\t\t\t style=\"display: none\"\n\t\t\t\t\t\t\t />") +
                 ("<span>" + i18n('Upload %s to cloud.', i18n(isImage ? 'image' : 'file')) + i18n('( The Max. file size is %s. )', filesize(editor.options.uploader.maxSize)) + "</span>") +
@@ -22502,7 +22502,7 @@ Config_1.Config.prototype.enableDragAndDropFileToEditor = true;
 Config_1.Config.prototype.uploader = {
     url: '',
     maxSize: 4 * 1024 * 1024 * 1024,
-    insertImageAsBase64URI: false,
+    insertImageAsLocalURI: false,
     imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
     headers: null,
     data: null,
@@ -22668,7 +22668,7 @@ var Uploader = (function (_super) {
             return sendData(requestData);
         }
     };
-    Uploader.prototype.sendFiles = function (insertImageAsBase64URI, files, handlerSuccess, handlerError, process) {
+    Uploader.prototype.sendFiles = function (insertImageAsLocalURI, files, handlerSuccess, handlerError, process) {
         var _this = this;
         if (!files) {
             return Promise.reject(helpers_1.error('Need files'));
@@ -22679,43 +22679,34 @@ var Uploader = (function (_super) {
             return Promise.reject(helpers_1.error('Need files'));
         }
         var promises = [];
-        if (insertImageAsBase64URI) {
+        if (insertImageAsLocalURI) {
             var file_1, i = void 0;
-            var _loop_1 = function () {
+            for (i = 0; i < fileList.length; i += 1) {
                 file_1 = fileList[i];
                 if (file_1 && file_1.type) {
                     var mime = file_1.type.match(/\/([a-z0-9]+)/i);
                     var extension = mime[1]
                         ? mime[1].toLowerCase()
                         : '';
-                    if (this_1.options.imagesExtensions.includes(extension)) {
-                        var reader_1 = new FileReader();
+                    if (this.options.imagesExtensions.includes(extension)) {
                         promises.push(new Promise(function (resolve, reject) {
-                            reader_1.onerror = reject;
-                            reader_1.onloadend = function () {
-                                var resp = {
-                                    baseurl: '',
-                                    files: [reader_1.result],
-                                    isImages: [true]
-                                };
-                                if (typeof (handlerSuccess ||
-                                    uploader.options
-                                        .defaultHandlerSuccess) === 'function') {
-                                    (handlerSuccess ||
-                                        uploader.options
-                                            .defaultHandlerSuccess).call(uploader, resp);
-                                }
-                                resolve(resp);
+                            var resp = {
+                                baseurl: '',
+                                files: ["file://" + file_1.path],
+                                isImages: [true]
                             };
-                            reader_1.readAsDataURL(file_1);
+                            if (typeof (handlerSuccess ||
+                                uploader.options
+                                    .defaultHandlerSuccess) === 'function') {
+                                (handlerSuccess ||
+                                    uploader.options
+                                        .defaultHandlerSuccess).call(uploader, resp);
+                            }
+                            resolve(resp);
                         }));
                         fileList[i] = null;
                     }
                 }
-            };
-            var this_1 = this;
-            for (i = 0; i < fileList.length; i += 1) {
-                _loop_1();
             }
         }
         fileList = fileList.filter(function (a) { return a; });
@@ -22808,11 +22799,11 @@ var Uploader = (function (_super) {
                 }
             };
             var inputUploadImageToCloud = form.querySelector('input[name=uploadImageToCloud]');
-            var insertImageAsBase64URI = inputUploadImageToCloud
+            var insertImageAsLocalURI = inputUploadImageToCloud
                 ? !inputUploadImageToCloud.checked
-                : self.options.insertImageAsBase64URI;
+                : self.options.insertImageAsLocalURI;
             if (cData && cData.files && cData.files.length) {
-                _this.sendFiles(insertImageAsBase64URI, cData.files, handlerSuccess, handlerError);
+                _this.sendFiles(insertImageAsLocalURI, cData.files, handlerSuccess, handlerError);
                 return false;
             }
             if (helpers_1.browser('ff') || consts.IS_IE) {
@@ -22841,7 +22832,7 @@ var Uploader = (function (_super) {
                         if (child && child.hasAttribute('src')) {
                             var src = child.getAttribute('src') || '';
                             restore_1();
-                            self.sendFiles(insertImageAsBase64URI, [Uploader.dataURItoBlob(src)], handlerSuccess, handlerError);
+                            self.sendFiles(insertImageAsLocalURI, [Uploader.dataURItoBlob(src)], handlerSuccess, handlerError);
                         }
                     }, _this.jodit.defaultTimeout);
                 }
@@ -22858,7 +22849,7 @@ var Uploader = (function (_super) {
                             extension = mime[1]
                                 ? mime[1].toLowerCase()
                                 : '';
-                            _this.sendFiles(insertImageAsBase64URI, [file], handlerSuccess, handlerError, process);
+                            _this.sendFiles(insertImageAsLocalURI, [file], handlerSuccess, handlerError, process);
                         }
                         e.preventDefault();
                         break;
@@ -22903,20 +22894,20 @@ var Uploader = (function (_super) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
                 var inputUploadImageToCloud = form.querySelector('input[name=uploadImageToCloud]');
-                var insertImageAsBase64URI = inputUploadImageToCloud
+                var insertImageAsLocalURI = inputUploadImageToCloud
                     ? !inputUploadImageToCloud.checked
-                    : self.options.insertImageAsBase64URI;
-                _this.sendFiles(insertImageAsBase64URI, event.dataTransfer.files, handlerSuccess, handlerError);
+                    : self.options.insertImageAsLocalURI;
+                _this.sendFiles(insertImageAsLocalURI, event.dataTransfer.files, handlerSuccess, handlerError);
             }
         });
         var inputFile = form.querySelector('input[type=file]');
         if (inputFile) {
             self.jodit.events.on(inputFile, 'change', function () {
                 var inputUploadImageToCloud = form.querySelector('input[name=uploadImageToCloud]');
-                var insertImageAsBase64URI = inputUploadImageToCloud
+                var insertImageAsLocalURI = inputUploadImageToCloud
                     ? !inputUploadImageToCloud.checked
-                    : self.options.insertImageAsBase64URI;
-                self.sendFiles(insertImageAsBase64URI, this.files, handlerSuccess, handlerError).then(function () {
+                    : self.options.insertImageAsLocalURI;
+                self.sendFiles(insertImageAsLocalURI, this.files, handlerSuccess, handlerError).then(function () {
                     inputFile.value = '';
                     if (!/safari/i.test(navigator.userAgent)) {
                         inputFile.type = '';

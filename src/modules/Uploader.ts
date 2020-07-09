@@ -47,7 +47,7 @@ Config.prototype.enableDragAndDropFileToEditor = true;
 Config.prototype.uploader = {
 	url: '',
 	maxSize: 4 * 1024 * 1024 * 1024,
-	insertImageAsBase64URI: false,
+	insertImageAsLocalURI: false,
 	imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
 	headers: null,
 	data: null,
@@ -295,7 +295,7 @@ export class Uploader extends Component implements IUploader {
 	 * @param process
 	 */
 	sendFiles(
-		insertImageAsBase64URI: boolean,
+		insertImageAsLocalURI: boolean,
 		files: FileList | File[] | null,
 		handlerSuccess?: HandlerSuccess,
 		handlerError?: HandlerError,
@@ -315,7 +315,7 @@ export class Uploader extends Component implements IUploader {
 
 		const promises: Array<Promise<any>> = [];
 
-		if (insertImageAsBase64URI) {
+		if (insertImageAsLocalURI) {
 			let file: File, i: number;
 
 			for (i = 0; i < fileList.length; i += 1) {
@@ -328,36 +328,62 @@ export class Uploader extends Component implements IUploader {
 						? mime[1].toLowerCase()
 						: '';
 					if (this.options.imagesExtensions.includes(extension)) {
-						const reader: FileReader = new FileReader();
-
+						// const reader: FileReader = new FileReader();
+						//
+						// promises.push(
+						// 	new Promise<any>((resolve, reject) => {
+						// 		reader.onerror = reject;
+						// 		reader.onloadend = () => {
+						// 			const resp: IUploaderData = {
+						// 				baseurl: '',
+						// 				files: [reader.result],
+						// 				isImages: [true]
+						// 			} as IUploaderData;
+						//
+						// 			if (
+						// 				typeof (
+						// 					handlerSuccess ||
+						// 					uploader.options
+						// 						.defaultHandlerSuccess
+						// 				) === 'function'
+						// 			) {
+						// 				((handlerSuccess ||
+						// 					uploader.options
+						// 						.defaultHandlerSuccess) as HandlerSuccess).call(
+						// 					uploader,
+						// 					resp
+						// 				);
+						// 			}
+						//
+						// 			resolve(resp);
+						// 		};
+						// 		reader.readAsDataURL(file);
+						// 	})
+						// );
 						promises.push(
 							new Promise<any>((resolve, reject) => {
-								reader.onerror = reject;
-								reader.onloadend = () => {
-									const resp: IUploaderData = {
-										baseurl: '',
-										files: [reader.result],
-										isImages: [true]
-									} as IUploaderData;
+								const resp: IUploaderData = {
+									baseurl: '',
+									files: [`file://${(file as any).path}`],
+									isImages: [true]
+								} as IUploaderData;
 
-									if (
-										typeof (
-											handlerSuccess ||
-											uploader.options
-												.defaultHandlerSuccess
-										) === 'function'
-									) {
-										((handlerSuccess ||
-											uploader.options
-												.defaultHandlerSuccess) as HandlerSuccess).call(
-											uploader,
-											resp
-										);
-									}
+								if (
+									typeof (
+										handlerSuccess ||
+										uploader.options
+											.defaultHandlerSuccess
+									) === 'function'
+								) {
+									((handlerSuccess ||
+										uploader.options
+											.defaultHandlerSuccess) as HandlerSuccess).call(
+										uploader,
+										resp
+									);
+								}
 
-									resolve(resp);
-								};
-								reader.readAsDataURL(file);
+								resolve(resp);
 							})
 						);
 						(fileList[i] as any) = null;
@@ -559,19 +585,19 @@ export class Uploader extends Component implements IUploader {
 					}
 				};
 
-				// form insertImageAsBase64URI control
+				// form insertImageAsLocalURI control
 				const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
 					'input[name=uploadImageToCloud]'
 				);
 
-				const insertImageAsBase64URI = inputUploadImageToCloud
+				const insertImageAsLocalURI = inputUploadImageToCloud
 					? !inputUploadImageToCloud.checked
-					: self.options.insertImageAsBase64URI;
+					: self.options.insertImageAsLocalURI;
 
 				// send data on server
 				if (cData && cData.files && cData.files.length) {
 					this.sendFiles(
-						insertImageAsBase64URI,
+						insertImageAsLocalURI,
 						cData.files,
 						handlerSuccess,
 						handlerError
@@ -618,7 +644,7 @@ export class Uploader extends Component implements IUploader {
 									child.getAttribute('src') || '';
 								restore();
 								self.sendFiles(
-									insertImageAsBase64URI,
+									insertImageAsLocalURI,
 									[Uploader.dataURItoBlob(src) as File],
 									handlerSuccess,
 									handlerError
@@ -648,7 +674,7 @@ export class Uploader extends Component implements IUploader {
 									: '';
 
 								this.sendFiles(
-									insertImageAsBase64URI,
+									insertImageAsLocalURI,
 									[file],
 									handlerSuccess,
 									handlerError,
@@ -708,17 +734,17 @@ export class Uploader extends Component implements IUploader {
 					event.preventDefault();
 					event.stopImmediatePropagation();
 
-					// form insertImageAsBase64URI control
+					// form insertImageAsLocalURI control
 					const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
 						'input[name=uploadImageToCloud]'
 					);
 
-					const insertImageAsBase64URI = inputUploadImageToCloud
+					const insertImageAsLocalURI = inputUploadImageToCloud
 						? !inputUploadImageToCloud.checked
-						: self.options.insertImageAsBase64URI;
+						: self.options.insertImageAsLocalURI;
 
 					this.sendFiles(
-						insertImageAsBase64URI,
+						insertImageAsLocalURI,
 						event.dataTransfer.files,
 						handlerSuccess,
 						handlerError
@@ -734,17 +760,17 @@ export class Uploader extends Component implements IUploader {
 			self.jodit.events.on(inputFile, 'change', function(
 				this: HTMLInputElement
 			) {
-				// form insertImageAsBase64URI control
+				// form insertImageAsLocalURI control
 				const inputUploadImageToCloud: HTMLInputElement | null = form.querySelector(
 					'input[name=uploadImageToCloud]'
 				);
 
-				const insertImageAsBase64URI = inputUploadImageToCloud
+				const insertImageAsLocalURI = inputUploadImageToCloud
 					? !inputUploadImageToCloud.checked
-					: self.options.insertImageAsBase64URI;
+					: self.options.insertImageAsLocalURI;
 
 				self.sendFiles(
-					insertImageAsBase64URI,
+					insertImageAsLocalURI,
 					this.files,
 					handlerSuccess,
 					handlerError

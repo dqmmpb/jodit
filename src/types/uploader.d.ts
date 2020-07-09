@@ -165,7 +165,7 @@ export type BuildDataResult =
 export interface IUploaderOptions<T> {
 	url: string;
 	maxSize: number;
-	insertImageAsBase64URI: boolean;
+	insertImageAsLocalURI: boolean;
 	imagesExtensions: string[];
 	headers?: IDictionary<string> | null;
 	data: null | object;
@@ -213,7 +213,7 @@ export interface IUploader extends IComponent {
 	): Promise<any>;
 
 	sendFiles(
-		insertImageAsBase64URI: boolean,
+		insertImageAsLocalURI: boolean,
 		files: FileList | File[] | null,
 		handlerSuccess?: HandlerSuccess,
 		handlerError?: HandlerError,

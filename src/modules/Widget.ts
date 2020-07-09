@@ -399,7 +399,7 @@ export namespace Widget {
 			callbacks.upload &&
 			editor.options.uploader &&
 			(editor.options.uploader.url ||
-				editor.options.uploader.insertImageAsBase64URI)
+				editor.options.uploader.insertImageAsLocalURI)
 		) {
 			const dragbox = editor.create.fromHTML(
 				'<div class="jodit_draganddrop_wrapper">' +
@@ -409,7 +409,7 @@ export namespace Widget {
 							 class="jodit_checkbox"
 							 name="uploadImageToCloud"
 							 type="checkbox"
-							 ${!editor.options.uploader.insertImageAsBase64URI ? 'checked="checked"' : ''}
+							 ${!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : ''}
 							 />`
 						: `<input
 							 class="jodit_checkbox"
@@ -417,7 +417,7 @@ export namespace Widget {
 							 type="checkbox"
 						   ${
 								!isImage ||
-								!editor.options.uploader.insertImageAsBase64URI
+								!editor.options.uploader.insertImageAsLocalURI
 									? 'checked="checked"'
 									: ''
 							}
