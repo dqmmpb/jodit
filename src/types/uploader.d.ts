@@ -166,6 +166,7 @@ export interface IUploaderOptions<T> {
 	url: string;
 	maxSize: number;
 	insertImageAsLocalURI: boolean;
+	insertCheckboxDisabled: boolean;
 	imagesExtensions: string[];
 	headers?: IDictionary<string> | null;
 	data: null | object;

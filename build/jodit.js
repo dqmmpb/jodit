@@ -3368,8 +3368,8 @@ var Widget;
             var dragbox = editor.create.fromHTML('<div class="jodit_draganddrop_wrapper">' +
                 '<label class="jodit_draganddrop_label_base64 jodit_vertical_middle">' +
                 (isImage
-                    ? "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />"
-                    : "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t   " + (!isImage ||
+                    ? "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (editor.options.uploader.insertCheckboxDisabled ? 'disabled' : '') + "\n\t\t\t\t\t\t\t " + (!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : '') + "\n\t\t\t\t\t\t\t />"
+                    : "<input\n\t\t\t\t\t\t\t class=\"jodit_checkbox\"\n\t\t\t\t\t\t\t name=\"uploadImageToCloud\"\n\t\t\t\t\t\t\t type=\"checkbox\"\n\t\t\t\t\t\t\t " + (editor.options.uploader.insertCheckboxDisabled ? 'disabled' : '') + "\n\t\t\t\t\t\t   " + (!isImage ||
                         !editor.options.uploader.insertImageAsLocalURI
                         ? 'checked="checked"'
                         : '') + "\n\t\t\t\t\t\t\t style=\"display: none\"\n\t\t\t\t\t\t\t />") +

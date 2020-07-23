@@ -81,7 +81,6 @@ export namespace Widget {
 						')';
 				}
 			},
-
 			eachColor = (colors: string[] | IDictionary<string[]>) => {
 				const stack: string[] = [];
 
@@ -95,7 +94,6 @@ export namespace Widget {
 						stack.push(eachColor((colors as any)[key]));
 						stack.push('</div>');
 					});
-
 				} else if (Array.isArray(colors)) {
 					colors.forEach(color => {
 						stack.push(
@@ -153,7 +151,7 @@ export namespace Widget {
 			editor.events.on(form, 'change', (e: MouseEvent) => {
 				e.stopPropagation();
 
-				let target: HTMLInputElement = e.target as HTMLInputElement;
+				const target: HTMLInputElement = e.target as HTMLInputElement;
 
 				if (
 					!target ||
@@ -370,7 +368,9 @@ export namespace Widget {
 	interface ImageSelectorCallbacks {
 		url?: (this: IJodit, url: string, alt: string) => void;
 		filebrowser?: (data: IFileBrowserCallBackData) => void;
-		upload?: ((this: IJodit, data: IFileBrowserCallBackData) => void) | true;
+		upload?:
+			| ((this: IJodit, data: IFileBrowserCallBackData) => void)
+			| true;
 	}
 
 	/**
@@ -409,12 +409,14 @@ export namespace Widget {
 							 class="jodit_checkbox"
 							 name="uploadImageToCloud"
 							 type="checkbox"
+							 ${editor.options.uploader.insertCheckboxDisabled ? 'disabled' : ''}
 							 ${!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : ''}
 							 />`
 						: `<input
 							 class="jodit_checkbox"
 							 name="uploadImageToCloud"
 							 type="checkbox"
+							 ${editor.options.uploader.insertCheckboxDisabled ? 'disabled' : ''}
 						   ${
 								!isImage ||
 								!editor.options.uploader.insertImageAsLocalURI
@@ -469,7 +471,6 @@ export namespace Widget {
 				: ToolbarIcon.getIcon('upload');
 			tabs[icon + i18n('Upload')] = dragbox;
 		}
-
 		if (callbacks.filebrowser) {
 			if (
 				editor.options.filebrowser.ajax.url ||
@@ -491,7 +492,7 @@ export namespace Widget {
 
 		if (callbacks.url) {
 			const form = editor.create.fromHTML(
-				`<form onsubmit="return false;" class="jodit_form">
+					`<form onsubmit="return false;" class="jodit_form">
                     <div class="jodit_form_group">
                         <input class="jodit_input" type="text" required name="url" placeholder="http://"/>
                     </div>

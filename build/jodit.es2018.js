@@ -3285,7 +3285,7 @@ var Widget_Widget;
                 '</span>'));
             editor.events.on(form, 'change', (e) => {
                 e.stopPropagation();
-                let target = e.target;
+                const target = e.target;
                 if (!target ||
                     !target.tagName ||
                     target.tagName.toUpperCase() !== 'INPUT') {
@@ -3409,12 +3409,14 @@ var Widget_Widget;
 							 class="jodit_checkbox"
 							 name="uploadImageToCloud"
 							 type="checkbox"
+							 ${editor.options.uploader.insertCheckboxDisabled ? 'disabled' : ''}
 							 ${!editor.options.uploader.insertImageAsLocalURI ? 'checked="checked"' : ''}
 							 />`
                     : `<input
 							 class="jodit_checkbox"
 							 name="uploadImageToCloud"
 							 type="checkbox"
+							 ${editor.options.uploader.insertCheckboxDisabled ? 'disabled' : ''}
 						   ${!isImage ||
                         !editor.options.uploader.insertImageAsLocalURI
                         ? 'checked="checked"'
