@@ -2722,6 +2722,9 @@ html.jodit_fullsize_box{
 .jodit_tooltip.jodit_tooltip_visible{
   opacity:1;
 }
+audio,canvas,iframe,img,svg,video{
+  vertical-align:middle;
+}
 .jodit,.jodit *,.jodit_container,.jodit_container *{
   box-sizing:border-box;
 }
